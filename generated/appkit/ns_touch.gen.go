@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,17 +32,17 @@ type ITouch interface {
 	objectivec.IObject
 	// properties:
 	Device() objc.ID
-	DeviceSize() coregraphics.CGSize
+	DeviceSize() objc.IObject /* cross-framework: Size */
 	Identity() objc.ID
 	Resting() bool /* primitive/slice/pointer. */
-	NormalizedPosition() coregraphics.CGPoint
+	NormalizedPosition() objc.IObject /* cross-framework: Point */
 	Phase() TouchPhase
 	Type() TouchType
 	IsResting() bool /* primitive/slice/pointer. */
 	SetIsResting(value bool /* primitive/slice/pointer. */)
 	// methods:
-	LocationInView(view IView) coregraphics.CGPoint
-	PreviousLocationInView(view IView) coregraphics.CGPoint
+	LocationInView(view IView) objc.IObject /* cross-framework: Point */
+	PreviousLocationInView(view IView) objc.IObject /* cross-framework: Point */
 }
 
 // A snapshot of a particular touch at an instant in time.
@@ -103,8 +102,8 @@ func NewTouch() Touch {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/location(in:)
-func (t_ Touch) LocationInView(view IView) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("locationInView:"), view)
+func (t_ Touch) LocationInView(view IView) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](t_.ID, objc.Sel("locationInView:"), view)
 	return rv
 }
 
@@ -113,8 +112,8 @@ func (t_ Touch) LocationInView(view IView) coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/previousLocation(in:)
-func (t_ Touch) PreviousLocationInView(view IView) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("previousLocationInView:"), view)
+func (t_ Touch) PreviousLocationInView(view IView) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](t_.ID, objc.Sel("previousLocationInView:"), view)
 	return rv
 }
 
@@ -133,8 +132,8 @@ func (t_ Touch) Device() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/deviceSize
-func (t_ Touch) DeviceSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("deviceSize"))
+func (t_ Touch) DeviceSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](t_.ID, objc.Sel("deviceSize"))
 	return rv
 }
 
@@ -163,8 +162,8 @@ func (t_ Touch) Resting() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/normalizedPosition
-func (t_ Touch) NormalizedPosition() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("normalizedPosition"))
+func (t_ Touch) NormalizedPosition() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](t_.ID, objc.Sel("normalizedPosition"))
 	return rv
 }
 

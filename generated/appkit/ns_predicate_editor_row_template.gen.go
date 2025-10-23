@@ -36,14 +36,14 @@ type IPredicateEditorRowTemplate interface {
 	SetObjectValue(value unsafe.Pointer)
 	RowTemplates() IPredicateEditorRowTemplate
 	SetRowTemplates(value IPredicateEditorRowTemplate)
-	CompoundTypes() foundation.objc.IObject /* cross-framework: Number */
-	SetCompoundTypes(value foundation.objc.IObject /* cross-framework: Number */)
+	CompoundTypes() objc.IObject /* cross-framework: NSNumber */
+	SetCompoundTypes(value objc.IObject /* cross-framework: NSNumber */)
 	LeftExpressions() objc.IObject /* cross-framework: Expression */
 	SetLeftExpressions(value objc.IObject /* cross-framework: Expression */)
 	Modifier() unsafe.Pointer
 	SetModifier(value unsafe.Pointer)
-	Operators() foundation.objc.IObject /* cross-framework: Number */
-	SetOperators(value foundation.objc.IObject /* cross-framework: Number */)
+	Operators() objc.IObject /* cross-framework: NSNumber */
+	SetOperators(value objc.IObject /* cross-framework: NSNumber */)
 	Options() int /* primitive/slice/pointer. */
 	SetOptions(value int /* primitive/slice/pointer. */)
 	RightExpressionAttributeType() AttributeType /* not a class type */
@@ -150,8 +150,8 @@ func (p_ PredicateEditorRowTemplate) SetRowTemplates(value IPredicateEditorRowTe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/compoundtypes
-func (p_ PredicateEditorRowTemplate) CompoundTypes() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("compoundTypes"))
+func (p_ PredicateEditorRowTemplate) CompoundTypes() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](p_.ID, objc.Sel("compoundTypes"))
 	return rv
 }
 
@@ -160,7 +160,7 @@ func (p_ PredicateEditorRowTemplate) CompoundTypes() foundation.objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/compoundtypes
-func (p_ PredicateEditorRowTemplate) SetCompoundTypes(value foundation.objc.IObject /* cross-framework: Number */) {
+func (p_ PredicateEditorRowTemplate) SetCompoundTypes(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCompoundTypes:"), value)
 }
 
@@ -207,8 +207,8 @@ func (p_ PredicateEditorRowTemplate) SetModifier(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/operators
-func (p_ PredicateEditorRowTemplate) Operators() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("operators"))
+func (p_ PredicateEditorRowTemplate) Operators() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](p_.ID, objc.Sel("operators"))
 	return rv
 }
 
@@ -217,7 +217,7 @@ func (p_ PredicateEditorRowTemplate) Operators() foundation.objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/operators
-func (p_ PredicateEditorRowTemplate) SetOperators(value foundation.objc.IObject /* cross-framework: Number */) {
+func (p_ PredicateEditorRowTemplate) SetOperators(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOperators:"), value)
 }
 

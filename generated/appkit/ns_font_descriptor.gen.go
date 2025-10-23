@@ -35,7 +35,7 @@ type IFontDescriptor interface {
 	FontAttributes() foundation.IDictionary /* already interface */
 	Matrix() objc.IObject /* cross-framework: AffineTransform */
 	PointSize() float64 /* primitive/slice/pointer. */
-	PostscriptName() string /* primitive/slice/pointer. */
+	PostscriptName() objc.IObject /* cross-framework: NSString */
 	RequiresFontAssetRequest() bool /* primitive/slice/pointer. */
 	SymbolicTraits() FontDescriptorSymbolicTraits
 	NSFontFamilyClassMask() unsafe.Pointer
@@ -46,8 +46,8 @@ type IFontDescriptor interface {
 	MatchingFontDescriptorsWithMandatoryKeys(mandatoryKeys unsafe.Pointer) []FontDescriptor /* primitive/slice/pointer. */
 	ObjectForKey(attribute objc.IObject /* cross-framework FontDescriptorAttributeName */) objc.ID
 	FontDescriptorWithDesign(design objc.IObject /* cross-framework FontDescriptorSystemDesign */) unsafe.Pointer
-	FontDescriptorWithFace(newFace string /* primitive/slice/pointer. */) IFontDescriptor
-	FontDescriptorWithFamily(newFamily string /* primitive/slice/pointer. */) IFontDescriptor
+	FontDescriptorWithFace(newFace objc.IObject /* cross-framework NSString */) IFontDescriptor
+	FontDescriptorWithFamily(newFamily objc.IObject /* cross-framework NSString */) IFontDescriptor
 	FontDescriptorWithMatrix(matrix objc.IObject /* cross-framework AffineTransform */) IFontDescriptor
 	FontDescriptorWithSize(newPointSize float64 /* primitive/slice/pointer. */) IFontDescriptor
 	FontDescriptorWithSymbolicTraits(symbolicTraits FontDescriptorSymbolicTraits) IFontDescriptor
@@ -122,8 +122,8 @@ func NewFontDescriptorWithFontAttributes(attributes foundation.IDictionary /* al
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/init(name:matrix:)
-func NewFontDescriptorWithNameMatrix(fontName string /* primitive/slice/pointer. */, matrix objc.IObject /* cross-framework AffineTransform */) FontDescriptor {
-	rv := objc.Send[FontDescriptor](objc.ID(getFontDescriptorClass().class), objc.Sel("fontDescriptorWithName:matrix:"), objc.String(fontName), matrix)
+func NewFontDescriptorWithNameMatrix(fontName objc.IObject /* cross-framework NSString */, matrix objc.IObject /* cross-framework AffineTransform */) FontDescriptor {
+	rv := objc.Send[FontDescriptor](objc.ID(getFontDescriptorClass().class), objc.Sel("fontDescriptorWithName:matrix:"), fontName, matrix)
 	return rv
 }
 
@@ -132,8 +132,8 @@ func NewFontDescriptorWithNameMatrix(fontName string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/init(name:size:)
-func NewFontDescriptorWithNameSize(fontName string /* primitive/slice/pointer. */, size float64 /* primitive/slice/pointer. */) FontDescriptor {
-	rv := objc.Send[FontDescriptor](objc.ID(getFontDescriptorClass().class), objc.Sel("fontDescriptorWithName:size:"), objc.String(fontName), size)
+func NewFontDescriptorWithNameSize(fontName objc.IObject /* cross-framework NSString */, size float64 /* primitive/slice/pointer. */) FontDescriptor {
+	rv := objc.Send[FontDescriptor](objc.ID(getFontDescriptorClass().class), objc.Sel("fontDescriptorWithName:size:"), fontName, size)
 	return rv
 }
 
@@ -153,8 +153,8 @@ func (fc _FontDescriptorClass) FontDescriptorWithFontAttributes(attributes found
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/init(name:matrix:)
-func (fc _FontDescriptorClass) FontDescriptorWithNameMatrix(fontName string /* primitive/slice/pointer. */, matrix objc.IObject /* cross-framework AffineTransform */) IFontDescriptor {
-	rv := objc.Send[FontDescriptor](objc.ID(fc.class), objc.Sel("fontDescriptorWithName:matrix:"), objc.String(fontName), matrix)
+func (fc _FontDescriptorClass) FontDescriptorWithNameMatrix(fontName objc.IObject /* cross-framework NSString */, matrix objc.IObject /* cross-framework AffineTransform */) IFontDescriptor {
+	rv := objc.Send[FontDescriptor](objc.ID(fc.class), objc.Sel("fontDescriptorWithName:matrix:"), fontName, matrix)
 	return rv
 }
 
@@ -163,8 +163,8 @@ func (fc _FontDescriptorClass) FontDescriptorWithNameMatrix(fontName string /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/init(name:size:)
-func (fc _FontDescriptorClass) FontDescriptorWithNameSize(fontName string /* primitive/slice/pointer. */, size float64 /* primitive/slice/pointer. */) IFontDescriptor {
-	rv := objc.Send[FontDescriptor](objc.ID(fc.class), objc.Sel("fontDescriptorWithName:size:"), objc.String(fontName), size)
+func (fc _FontDescriptorClass) FontDescriptorWithNameSize(fontName objc.IObject /* cross-framework NSString */, size float64 /* primitive/slice/pointer. */) IFontDescriptor {
+	rv := objc.Send[FontDescriptor](objc.ID(fc.class), objc.Sel("fontDescriptorWithName:size:"), fontName, size)
 	return rv
 }
 
@@ -233,8 +233,8 @@ func (f_ FontDescriptor) FontDescriptorWithDesign(design objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/withFace(_:)
-func (f_ FontDescriptor) FontDescriptorWithFace(newFace string /* primitive/slice/pointer. */) IFontDescriptor {
-	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("fontDescriptorWithFace:"), objc.String(newFace))
+func (f_ FontDescriptor) FontDescriptorWithFace(newFace objc.IObject /* cross-framework NSString */) IFontDescriptor {
+	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("fontDescriptorWithFace:"), newFace)
 	return rv
 }
 
@@ -243,8 +243,8 @@ func (f_ FontDescriptor) FontDescriptorWithFace(newFace string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/withFamily(_:)
-func (f_ FontDescriptor) FontDescriptorWithFamily(newFamily string /* primitive/slice/pointer. */) IFontDescriptor {
-	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("fontDescriptorWithFamily:"), objc.String(newFamily))
+func (f_ FontDescriptor) FontDescriptorWithFamily(newFamily objc.IObject /* cross-framework NSString */) IFontDescriptor {
+	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("fontDescriptorWithFamily:"), newFamily)
 	return rv
 }
 
@@ -313,8 +313,8 @@ func (f_ FontDescriptor) PointSize() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/postscriptName
-func (f_ FontDescriptor) PostscriptName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("postscriptName"))
+func (f_ FontDescriptor) PostscriptName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("postscriptName"))
 	return rv
 }
 

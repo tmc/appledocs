@@ -36,8 +36,8 @@ type IAnimation interface {
 	SetAnimationBlockingMode(value unsafe.Pointer)
 	AnimationCurve() unsafe.Pointer
 	SetAnimationCurve(value unsafe.Pointer)
-	CurrentProgress() unsafe.Pointer
-	SetCurrentProgress(value unsafe.Pointer)
+	CurrentProgress() objc.IObject /* cross-framework: Progress */
+	SetCurrentProgress(value objc.IObject /* cross-framework: Progress */)
 	CurrentValue() float32 /* primitive/slice/pointer. */
 	SetCurrentValue(value float32 /* primitive/slice/pointer. */)
 	Delegate() AnimationDelegate /* not a class type */
@@ -48,8 +48,8 @@ type IAnimation interface {
 	SetFrameRate(value float32 /* primitive/slice/pointer. */)
 	IsAnimating() bool /* primitive/slice/pointer. */
 	SetIsAnimating(value bool /* primitive/slice/pointer. */)
-	ProgressMarks() foundation.objc.IObject /* cross-framework: Number */
-	SetProgressMarks(value foundation.objc.IObject /* cross-framework: Number */)
+	ProgressMarks() objc.IObject /* cross-framework: NSNumber */
+	SetProgressMarks(value objc.IObject /* cross-framework: NSNumber */)
 	RunLoopModesForAnimating() unsafe.Pointer
 	SetRunLoopModesForAnimating(value unsafe.Pointer)
 	// methods:
@@ -150,8 +150,8 @@ func (a_ Animation) SetAnimationCurve(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/currentprogress
-func (a_ Animation) CurrentProgress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentProgress"))
+func (a_ Animation) CurrentProgress() objc.IObject /* cross-framework: Progress */ {
+	rv := objc.Send[foundation.Progress](a_.ID, objc.Sel("currentProgress"))
 	return rv
 }
 
@@ -160,7 +160,7 @@ func (a_ Animation) CurrentProgress() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/currentprogress
-func (a_ Animation) SetCurrentProgress(value unsafe.Pointer) {
+func (a_ Animation) SetCurrentProgress(value objc.IObject /* cross-framework: Progress */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentProgress:"), value)
 }
 
@@ -264,8 +264,8 @@ func (a_ Animation) SetIsAnimating(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/progressmarks
-func (a_ Animation) ProgressMarks() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("progressMarks"))
+func (a_ Animation) ProgressMarks() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](a_.ID, objc.Sel("progressMarks"))
 	return rv
 }
 
@@ -274,7 +274,7 @@ func (a_ Animation) ProgressMarks() foundation.objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/progressmarks
-func (a_ Animation) SetProgressMarks(value foundation.objc.IObject /* cross-framework: Number */) {
+func (a_ Animation) SetProgressMarks(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProgressMarks:"), value)
 }
 

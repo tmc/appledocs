@@ -31,8 +31,8 @@ type _ViewAnimationClass struct {
 type IViewAnimation interface {
 	IAnimation
 	// properties:
-	ViewAnimations() coreml.objc.IObject /* cross-framework: Key */
-	SetViewAnimations(value coreml.objc.IObject /* cross-framework: Key */)
+	ViewAnimations() objc.IObject /* cross-framework: Key */
+	SetViewAnimations(value objc.IObject /* cross-framework: Key */)
 	// methods:
 }
 
@@ -95,7 +95,7 @@ func NewViewAnimation() ViewAnimation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewanimation/viewanimations
-func (v_ ViewAnimation) ViewAnimations() coreml.objc.IObject /* cross-framework: Key */ {
+func (v_ ViewAnimation) ViewAnimations() objc.IObject /* cross-framework: Key */ {
 	rv := objc.Send[coreml.Key](v_.ID, objc.Sel("viewAnimations"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (v_ ViewAnimation) ViewAnimations() coreml.objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewanimation/viewanimations
-func (v_ ViewAnimation) SetViewAnimations(value coreml.objc.IObject /* cross-framework: Key */) {
+func (v_ ViewAnimation) SetViewAnimations(value objc.IObject /* cross-framework: Key */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setViewAnimations:"), value)
 }
 

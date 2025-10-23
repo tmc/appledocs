@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,11 +32,11 @@ type _BezierPathClass struct {
 type IBezierPath interface {
 	objectivec.IObject
 	// properties:
-	Bounds() coregraphics.CGRect
-	CGPath() coregraphics.PathRef /* not a class type */
-	SetCGPath(value coregraphics.PathRef /* not a class type */)
-	ControlPointBounds() coregraphics.CGRect
-	CurrentPoint() coregraphics.CGPoint
+	Bounds() objc.IObject /* cross-framework: Rect */
+	CGPath() PathRef /* not a class type */
+	SetCGPath(value PathRef /* not a class type */)
+	ControlPointBounds() objc.IObject /* cross-framework: Rect */
+	CurrentPoint() objc.IObject /* cross-framework: Point */
 	ElementCount() int /* primitive/slice/pointer. */
 	Flatness() float64 /* primitive/slice/pointer. */
 	SetFlatness(value float64 /* primitive/slice/pointer. */)
@@ -64,31 +64,31 @@ type IBezierPath interface {
 	AppendBezierPath(path IBezierPath)
 	AppendBezierPathWithCGGlyphInFont(glyph objc.IObject /* cross-framework Glyph */, font IFont)
 	AppendBezierPathWithCGGlyphsCountInFont(glyphs objc.IObject /* cross-framework Glyph */, count int /* primitive/slice/pointer. */, font IFont)
-	AppendBezierPathWithArcFromPointToPointRadius(point1 coregraphics.CGPoint, point2 coregraphics.CGPoint, radius float64 /* primitive/slice/pointer. */)
-	AppendBezierPathWithArcWithCenterRadiusStartAngleEndAngle(center coregraphics.CGPoint, radius float64 /* primitive/slice/pointer. */, startAngle float64 /* primitive/slice/pointer. */, endAngle float64 /* primitive/slice/pointer. */)
-	AppendBezierPathWithArcWithCenterRadiusStartAngleEndAngleClockwise(center coregraphics.CGPoint, radius float64 /* primitive/slice/pointer. */, startAngle float64 /* primitive/slice/pointer. */, endAngle float64 /* primitive/slice/pointer. */, clockwise bool /* primitive/slice/pointer. */)
-	AppendBezierPathWithOvalInRect(rect coregraphics.CGRect)
+	AppendBezierPathWithArcFromPointToPointRadius(point1 objc.IObject /* cross-framework Point */, point2 objc.IObject /* cross-framework Point */, radius float64 /* primitive/slice/pointer. */)
+	AppendBezierPathWithArcWithCenterRadiusStartAngleEndAngle(center objc.IObject /* cross-framework Point */, radius float64 /* primitive/slice/pointer. */, startAngle float64 /* primitive/slice/pointer. */, endAngle float64 /* primitive/slice/pointer. */)
+	AppendBezierPathWithArcWithCenterRadiusStartAngleEndAngleClockwise(center objc.IObject /* cross-framework Point */, radius float64 /* primitive/slice/pointer. */, startAngle float64 /* primitive/slice/pointer. */, endAngle float64 /* primitive/slice/pointer. */, clockwise bool /* primitive/slice/pointer. */)
+	AppendBezierPathWithOvalInRect(rect objc.IObject /* cross-framework Rect */)
 	AppendBezierPathWithPointsCount(points PointArray /* not a class type */, count int /* primitive/slice/pointer. */)
-	AppendBezierPathWithRect(rect coregraphics.CGRect)
-	AppendBezierPathWithRoundedRectXRadiusYRadius(rect coregraphics.CGRect, xRadius float64 /* primitive/slice/pointer. */, yRadius float64 /* primitive/slice/pointer. */)
+	AppendBezierPathWithRect(rect objc.IObject /* cross-framework Rect */)
+	AppendBezierPathWithRoundedRectXRadiusYRadius(rect objc.IObject /* cross-framework Rect */, xRadius float64 /* primitive/slice/pointer. */, yRadius float64 /* primitive/slice/pointer. */)
 	ClosePath()
-	ContainsPoint(point coregraphics.CGPoint) bool /* primitive/slice/pointer. */
-	CurveToPointControlPoint1ControlPoint2(endPoint coregraphics.CGPoint, controlPoint1 coregraphics.CGPoint, controlPoint2 coregraphics.CGPoint)
-	CurveToPointControlPoint(endPoint coregraphics.CGPoint, controlPoint coregraphics.CGPoint)
+	ContainsPoint(point objc.IObject /* cross-framework Point */) bool /* primitive/slice/pointer. */
+	CurveToPointControlPoint1ControlPoint2(endPoint objc.IObject /* cross-framework Point */, controlPoint1 objc.IObject /* cross-framework Point */, controlPoint2 objc.IObject /* cross-framework Point */)
+	CurveToPointControlPoint(endPoint objc.IObject /* cross-framework Point */, controlPoint objc.IObject /* cross-framework Point */)
 	ElementAtIndex(index int /* primitive/slice/pointer. */) BezierPathElement
 	ElementAtIndexAssociatedPoints(index int /* primitive/slice/pointer. */, points PointArray /* not a class type */) BezierPathElement
 	Fill()
-	GetLineDashCountPhase(pattern coregraphics.float64 /* primitive/slice/pointer. */, count Integer /* not a class type */, phase coregraphics.float64 /* primitive/slice/pointer. */)
-	LineToPoint(point coregraphics.CGPoint)
-	MoveToPoint(point coregraphics.CGPoint)
-	RelativeCurveToPointControlPoint1ControlPoint2(endPoint coregraphics.CGPoint, controlPoint1 coregraphics.CGPoint, controlPoint2 coregraphics.CGPoint)
-	RelativeCurveToPointControlPoint(endPoint coregraphics.CGPoint, controlPoint coregraphics.CGPoint)
-	RelativeLineToPoint(point coregraphics.CGPoint)
-	RelativeMoveToPoint(point coregraphics.CGPoint)
+	GetLineDashCountPhase(pattern corefoundation.CGFloat, count Integer /* not a class type */, phase corefoundation.CGFloat)
+	LineToPoint(point objc.IObject /* cross-framework Point */)
+	MoveToPoint(point objc.IObject /* cross-framework Point */)
+	RelativeCurveToPointControlPoint1ControlPoint2(endPoint objc.IObject /* cross-framework Point */, controlPoint1 objc.IObject /* cross-framework Point */, controlPoint2 objc.IObject /* cross-framework Point */)
+	RelativeCurveToPointControlPoint(endPoint objc.IObject /* cross-framework Point */, controlPoint objc.IObject /* cross-framework Point */)
+	RelativeLineToPoint(point objc.IObject /* cross-framework Point */)
+	RelativeMoveToPoint(point objc.IObject /* cross-framework Point */)
 	RemoveAllPoints()
 	SetAssociatedPointsAtIndex(points PointArray /* not a class type */, index int /* primitive/slice/pointer. */)
 	SetClip()
-	SetLineDashCountPhase(pattern coregraphics.float64 /* primitive/slice/pointer. */, count int /* primitive/slice/pointer. */, phase float64 /* primitive/slice/pointer. */)
+	SetLineDashCountPhase(pattern corefoundation.CGFloat, count int /* primitive/slice/pointer. */, phase float64 /* primitive/slice/pointer. */)
 	Stroke()
 	TransformUsingAffineTransform(transform objc.IObject /* cross-framework AffineTransform */)
 }
@@ -148,7 +148,7 @@ func NewBezierPath() BezierPath {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/init(cgPath:)
-func NewBezierPathWithCGPath(cgPath coregraphics.PathRef /* not a class type */) BezierPath {
+func NewBezierPathWithCGPath(cgPath PathRef /* not a class type */) BezierPath {
 	rv := objc.Send[BezierPath](objc.ID(getBezierPathClass().class), objc.Sel("bezierPathWithCGPath:"), cgPath)
 	return rv
 }
@@ -158,7 +158,7 @@ func NewBezierPathWithCGPath(cgPath coregraphics.PathRef /* not a class type */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/init(ovalIn:)
-func NewBezierPathWithOvalInRect(rect coregraphics.CGRect) BezierPath {
+func NewBezierPathWithOvalInRect(rect objc.IObject /* cross-framework Rect */) BezierPath {
 	rv := objc.Send[BezierPath](objc.ID(getBezierPathClass().class), objc.Sel("bezierPathWithOvalInRect:"), rect)
 	return rv
 }
@@ -168,7 +168,7 @@ func NewBezierPathWithOvalInRect(rect coregraphics.CGRect) BezierPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/init(rect:)
-func NewBezierPathWithRect(rect coregraphics.CGRect) BezierPath {
+func NewBezierPathWithRect(rect objc.IObject /* cross-framework Rect */) BezierPath {
 	rv := objc.Send[BezierPath](objc.ID(getBezierPathClass().class), objc.Sel("bezierPathWithRect:"), rect)
 	return rv
 }
@@ -178,7 +178,7 @@ func NewBezierPathWithRect(rect coregraphics.CGRect) BezierPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/init(roundedRect:xRadius:yRadius:)
-func NewBezierPathWithRoundedRectXRadiusYRadius(rect coregraphics.CGRect, xRadius float64 /* primitive/slice/pointer. */, yRadius float64 /* primitive/slice/pointer. */) BezierPath {
+func NewBezierPathWithRoundedRectXRadiusYRadius(rect objc.IObject /* cross-framework Rect */, xRadius float64 /* primitive/slice/pointer. */, yRadius float64 /* primitive/slice/pointer. */) BezierPath {
 	rv := objc.Send[BezierPath](objc.ID(getBezierPathClass().class), objc.Sel("bezierPathWithRoundedRect:xRadius:yRadius:"), rect, xRadius, yRadius)
 	return rv
 }
@@ -199,7 +199,7 @@ func (bc _BezierPathClass) BezierPath() IBezierPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/clip(_:)
-func (bc _BezierPathClass) ClipRect(rect coregraphics.CGRect) {
+func (bc _BezierPathClass) ClipRect(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](objc.ID(bc.class), objc.Sel("clipRect:"), rect)
 }
 
@@ -208,7 +208,7 @@ func (bc _BezierPathClass) ClipRect(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/drawPackedGlyphs(_:at:)
-func (bc _BezierPathClass) DrawPackedGlyphsAtPoint(packedGlyphs unsafe.Pointer, point coregraphics.CGPoint) {
+func (bc _BezierPathClass) DrawPackedGlyphsAtPoint(packedGlyphs unsafe.Pointer, point objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](objc.ID(bc.class), objc.Sel("drawPackedGlyphs:atPoint:"), packedGlyphs, point)
 }
 
@@ -217,14 +217,14 @@ func (bc _BezierPathClass) DrawPackedGlyphsAtPoint(packedGlyphs unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/fill(_:)
-func (bc _BezierPathClass) FillRect(rect coregraphics.CGRect) {
+func (bc _BezierPathClass) FillRect(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](objc.ID(bc.class), objc.Sel("fillRect:"), rect)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/init(cgPath:)
-func (bc _BezierPathClass) BezierPathWithCGPath(cgPath coregraphics.PathRef /* not a class type */) IBezierPath {
+func (bc _BezierPathClass) BezierPathWithCGPath(cgPath PathRef /* not a class type */) IBezierPath {
 	rv := objc.Send[BezierPath](objc.ID(bc.class), objc.Sel("bezierPathWithCGPath:"), cgPath)
 	return rv
 }
@@ -234,7 +234,7 @@ func (bc _BezierPathClass) BezierPathWithCGPath(cgPath coregraphics.PathRef /* n
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/init(ovalIn:)
-func (bc _BezierPathClass) BezierPathWithOvalInRect(rect coregraphics.CGRect) IBezierPath {
+func (bc _BezierPathClass) BezierPathWithOvalInRect(rect objc.IObject /* cross-framework Rect */) IBezierPath {
 	rv := objc.Send[BezierPath](objc.ID(bc.class), objc.Sel("bezierPathWithOvalInRect:"), rect)
 	return rv
 }
@@ -244,7 +244,7 @@ func (bc _BezierPathClass) BezierPathWithOvalInRect(rect coregraphics.CGRect) IB
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/init(rect:)
-func (bc _BezierPathClass) BezierPathWithRect(rect coregraphics.CGRect) IBezierPath {
+func (bc _BezierPathClass) BezierPathWithRect(rect objc.IObject /* cross-framework Rect */) IBezierPath {
 	rv := objc.Send[BezierPath](objc.ID(bc.class), objc.Sel("bezierPathWithRect:"), rect)
 	return rv
 }
@@ -254,7 +254,7 @@ func (bc _BezierPathClass) BezierPathWithRect(rect coregraphics.CGRect) IBezierP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/init(roundedRect:xRadius:yRadius:)
-func (bc _BezierPathClass) BezierPathWithRoundedRectXRadiusYRadius(rect coregraphics.CGRect, xRadius float64 /* primitive/slice/pointer. */, yRadius float64 /* primitive/slice/pointer. */) IBezierPath {
+func (bc _BezierPathClass) BezierPathWithRoundedRectXRadiusYRadius(rect objc.IObject /* cross-framework Rect */, xRadius float64 /* primitive/slice/pointer. */, yRadius float64 /* primitive/slice/pointer. */) IBezierPath {
 	rv := objc.Send[BezierPath](objc.ID(bc.class), objc.Sel("bezierPathWithRoundedRect:xRadius:yRadius:"), rect, xRadius, yRadius)
 	return rv
 }
@@ -264,7 +264,7 @@ func (bc _BezierPathClass) BezierPathWithRoundedRectXRadiusYRadius(rect coregrap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/stroke(_:)
-func (bc _BezierPathClass) StrokeRect(rect coregraphics.CGRect) {
+func (bc _BezierPathClass) StrokeRect(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](objc.ID(bc.class), objc.Sel("strokeRect:"), rect)
 }
 
@@ -273,7 +273,7 @@ func (bc _BezierPathClass) StrokeRect(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/strokeLine(from:to:)
-func (bc _BezierPathClass) StrokeLineFromPointToPoint(point1 coregraphics.CGPoint, point2 coregraphics.CGPoint) {
+func (bc _BezierPathClass) StrokeLineFromPointToPoint(point1 objc.IObject /* cross-framework Point */, point2 objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](objc.ID(bc.class), objc.Sel("strokeLineFromPoint:toPoint:"), point1, point2)
 }
 
@@ -372,7 +372,7 @@ func (b_ BezierPath) AppendBezierPathWithCGGlyphsCountInFont(glyphs objc.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/appendArc(from:to:radius:)
-func (b_ BezierPath) AppendBezierPathWithArcFromPointToPointRadius(point1 coregraphics.CGPoint, point2 coregraphics.CGPoint, radius float64 /* primitive/slice/pointer. */) {
+func (b_ BezierPath) AppendBezierPathWithArcFromPointToPointRadius(point1 objc.IObject /* cross-framework Point */, point2 objc.IObject /* cross-framework Point */, radius float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("appendBezierPathWithArcFromPoint:toPoint:radius:"), point1, point2, radius)
 }
 
@@ -381,7 +381,7 @@ func (b_ BezierPath) AppendBezierPathWithArcFromPointToPointRadius(point1 coregr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/appendArc(withCenter:radius:startAngle:endAngle:)
-func (b_ BezierPath) AppendBezierPathWithArcWithCenterRadiusStartAngleEndAngle(center coregraphics.CGPoint, radius float64 /* primitive/slice/pointer. */, startAngle float64 /* primitive/slice/pointer. */, endAngle float64 /* primitive/slice/pointer. */) {
+func (b_ BezierPath) AppendBezierPathWithArcWithCenterRadiusStartAngleEndAngle(center objc.IObject /* cross-framework Point */, radius float64 /* primitive/slice/pointer. */, startAngle float64 /* primitive/slice/pointer. */, endAngle float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("appendBezierPathWithArcWithCenter:radius:startAngle:endAngle:"), center, radius, startAngle, endAngle)
 }
 
@@ -390,7 +390,7 @@ func (b_ BezierPath) AppendBezierPathWithArcWithCenterRadiusStartAngleEndAngle(c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/appendArc(withCenter:radius:startAngle:endAngle:clockwise:)
-func (b_ BezierPath) AppendBezierPathWithArcWithCenterRadiusStartAngleEndAngleClockwise(center coregraphics.CGPoint, radius float64 /* primitive/slice/pointer. */, startAngle float64 /* primitive/slice/pointer. */, endAngle float64 /* primitive/slice/pointer. */, clockwise bool /* primitive/slice/pointer. */) {
+func (b_ BezierPath) AppendBezierPathWithArcWithCenterRadiusStartAngleEndAngleClockwise(center objc.IObject /* cross-framework Point */, radius float64 /* primitive/slice/pointer. */, startAngle float64 /* primitive/slice/pointer. */, endAngle float64 /* primitive/slice/pointer. */, clockwise bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("appendBezierPathWithArcWithCenter:radius:startAngle:endAngle:clockwise:"), center, radius, startAngle, endAngle, clockwise)
 }
 
@@ -399,7 +399,7 @@ func (b_ BezierPath) AppendBezierPathWithArcWithCenterRadiusStartAngleEndAngleCl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/appendOval(in:)
-func (b_ BezierPath) AppendBezierPathWithOvalInRect(rect coregraphics.CGRect) {
+func (b_ BezierPath) AppendBezierPathWithOvalInRect(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("appendBezierPathWithOvalInRect:"), rect)
 }
 
@@ -417,7 +417,7 @@ func (b_ BezierPath) AppendBezierPathWithPointsCount(points PointArray /* not a 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/appendRect(_:)
-func (b_ BezierPath) AppendBezierPathWithRect(rect coregraphics.CGRect) {
+func (b_ BezierPath) AppendBezierPathWithRect(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("appendBezierPathWithRect:"), rect)
 }
 
@@ -426,7 +426,7 @@ func (b_ BezierPath) AppendBezierPathWithRect(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/appendRoundedRect(_:xRadius:yRadius:)
-func (b_ BezierPath) AppendBezierPathWithRoundedRectXRadiusYRadius(rect coregraphics.CGRect, xRadius float64 /* primitive/slice/pointer. */, yRadius float64 /* primitive/slice/pointer. */) {
+func (b_ BezierPath) AppendBezierPathWithRoundedRectXRadiusYRadius(rect objc.IObject /* cross-framework Rect */, xRadius float64 /* primitive/slice/pointer. */, yRadius float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("appendBezierPathWithRoundedRect:xRadius:yRadius:"), rect, xRadius, yRadius)
 }
 
@@ -444,7 +444,7 @@ func (b_ BezierPath) ClosePath() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/contains(_:)
-func (b_ BezierPath) ContainsPoint(point coregraphics.CGPoint) bool /* primitive/slice/pointer. */ {
+func (b_ BezierPath) ContainsPoint(point objc.IObject /* cross-framework Point */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("containsPoint:"), point)
 	return rv
 }
@@ -454,14 +454,14 @@ func (b_ BezierPath) ContainsPoint(point coregraphics.CGPoint) bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/curve(to:controlPoint1:controlPoint2:)
-func (b_ BezierPath) CurveToPointControlPoint1ControlPoint2(endPoint coregraphics.CGPoint, controlPoint1 coregraphics.CGPoint, controlPoint2 coregraphics.CGPoint) {
+func (b_ BezierPath) CurveToPointControlPoint1ControlPoint2(endPoint objc.IObject /* cross-framework Point */, controlPoint1 objc.IObject /* cross-framework Point */, controlPoint2 objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("curveToPoint:controlPoint1:controlPoint2:"), endPoint, controlPoint1, controlPoint2)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/curve(to:controlPoint:)
-func (b_ BezierPath) CurveToPointControlPoint(endPoint coregraphics.CGPoint, controlPoint coregraphics.CGPoint) {
+func (b_ BezierPath) CurveToPointControlPoint(endPoint objc.IObject /* cross-framework Point */, controlPoint objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("curveToPoint:controlPoint:"), endPoint, controlPoint)
 }
 
@@ -499,7 +499,7 @@ func (b_ BezierPath) Fill() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/getLineDash(_:count:phase:)
-func (b_ BezierPath) GetLineDashCountPhase(pattern coregraphics.float64 /* primitive/slice/pointer. */, count Integer /* not a class type */, phase coregraphics.float64 /* primitive/slice/pointer. */) {
+func (b_ BezierPath) GetLineDashCountPhase(pattern corefoundation.CGFloat, count Integer /* not a class type */, phase corefoundation.CGFloat) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("getLineDash:count:phase:"), pattern, count, phase)
 }
 
@@ -508,7 +508,7 @@ func (b_ BezierPath) GetLineDashCountPhase(pattern coregraphics.float64 /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/line(to:)
-func (b_ BezierPath) LineToPoint(point coregraphics.CGPoint) {
+func (b_ BezierPath) LineToPoint(point objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("lineToPoint:"), point)
 }
 
@@ -517,7 +517,7 @@ func (b_ BezierPath) LineToPoint(point coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/move(to:)
-func (b_ BezierPath) MoveToPoint(point coregraphics.CGPoint) {
+func (b_ BezierPath) MoveToPoint(point objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("moveToPoint:"), point)
 }
 
@@ -526,14 +526,14 @@ func (b_ BezierPath) MoveToPoint(point coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/relativeCurve(to:controlPoint1:controlPoint2:)
-func (b_ BezierPath) RelativeCurveToPointControlPoint1ControlPoint2(endPoint coregraphics.CGPoint, controlPoint1 coregraphics.CGPoint, controlPoint2 coregraphics.CGPoint) {
+func (b_ BezierPath) RelativeCurveToPointControlPoint1ControlPoint2(endPoint objc.IObject /* cross-framework Point */, controlPoint1 objc.IObject /* cross-framework Point */, controlPoint2 objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("relativeCurveToPoint:controlPoint1:controlPoint2:"), endPoint, controlPoint1, controlPoint2)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/relativeCurve(to:controlPoint:)
-func (b_ BezierPath) RelativeCurveToPointControlPoint(endPoint coregraphics.CGPoint, controlPoint coregraphics.CGPoint) {
+func (b_ BezierPath) RelativeCurveToPointControlPoint(endPoint objc.IObject /* cross-framework Point */, controlPoint objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("relativeCurveToPoint:controlPoint:"), endPoint, controlPoint)
 }
 
@@ -542,7 +542,7 @@ func (b_ BezierPath) RelativeCurveToPointControlPoint(endPoint coregraphics.CGPo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/relativeLine(to:)
-func (b_ BezierPath) RelativeLineToPoint(point coregraphics.CGPoint) {
+func (b_ BezierPath) RelativeLineToPoint(point objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("relativeLineToPoint:"), point)
 }
 
@@ -551,7 +551,7 @@ func (b_ BezierPath) RelativeLineToPoint(point coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/relativeMove(to:)
-func (b_ BezierPath) RelativeMoveToPoint(point coregraphics.CGPoint) {
+func (b_ BezierPath) RelativeMoveToPoint(point objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("relativeMoveToPoint:"), point)
 }
 
@@ -587,7 +587,7 @@ func (b_ BezierPath) SetClip() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/setLineDash(_:count:phase:)
-func (b_ BezierPath) SetLineDashCountPhase(pattern coregraphics.float64 /* primitive/slice/pointer. */, count int /* primitive/slice/pointer. */, phase float64 /* primitive/slice/pointer. */) {
+func (b_ BezierPath) SetLineDashCountPhase(pattern corefoundation.CGFloat, count int /* primitive/slice/pointer. */, phase float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setLineDash:count:phase:"), pattern, count, phase)
 }
 
@@ -614,23 +614,23 @@ func (b_ BezierPath) TransformUsingAffineTransform(transform objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/bounds
-func (b_ BezierPath) Bounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](b_.ID, objc.Sel("bounds"))
+func (b_ BezierPath) Bounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](b_.ID, objc.Sel("bounds"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/cgPath
-func (b_ BezierPath) CGPath() coregraphics.PathRef /* not a class type */ {
-	rv := objc.Send[coregraphics.PathRef](b_.ID, objc.Sel("CGPath"))
+func (b_ BezierPath) CGPath() PathRef /* not a class type */ {
+	rv := objc.Send[PathRef](b_.ID, objc.Sel("CGPath"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/cgPath
-func (b_ BezierPath) SetCGPath(value coregraphics.PathRef /* not a class type */) {
+func (b_ BezierPath) SetCGPath(value PathRef /* not a class type */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setCGPath:"), value)
 }
 
@@ -639,8 +639,8 @@ func (b_ BezierPath) SetCGPath(value coregraphics.PathRef /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/controlPointBounds
-func (b_ BezierPath) ControlPointBounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](b_.ID, objc.Sel("controlPointBounds"))
+func (b_ BezierPath) ControlPointBounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](b_.ID, objc.Sel("controlPointBounds"))
 	return rv
 }
 
@@ -649,8 +649,8 @@ func (b_ BezierPath) ControlPointBounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/currentPoint
-func (b_ BezierPath) CurrentPoint() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](b_.ID, objc.Sel("currentPoint"))
+func (b_ BezierPath) CurrentPoint() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](b_.ID, objc.Sel("currentPoint"))
 	return rv
 }
 

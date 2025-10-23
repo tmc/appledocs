@@ -37,8 +37,8 @@ type IPathCell interface {
 	SetIsEditable(value bool /* primitive/slice/pointer. */)
 	IsSelectable() bool /* primitive/slice/pointer. */
 	SetIsSelectable(value bool /* primitive/slice/pointer. */)
-	AllowedTypes() string /* primitive/slice/pointer. */
-	SetAllowedTypes(value string /* primitive/slice/pointer. */)
+	AllowedTypes() objc.IObject /* cross-framework: NSString */
+	SetAllowedTypes(value objc.IObject /* cross-framework: NSString */)
 	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
 	ClickedPathComponentCell() IPathComponentCell
@@ -53,10 +53,10 @@ type IPathCell interface {
 	SetPathStyle(value unsafe.Pointer)
 	PlaceholderAttributedString() objc.IObject /* cross-framework: AttributedString */
 	SetPlaceholderAttributedString(value objc.IObject /* cross-framework: AttributedString */)
-	PlaceholderString() string /* primitive/slice/pointer. */
-	SetPlaceholderString(value string /* primitive/slice/pointer. */)
-	Url() foundation.objc.IObject /* cross-framework: URL */
-	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	PlaceholderString() objc.IObject /* cross-framework: NSString */
+	SetPlaceholderString(value objc.IObject /* cross-framework: NSString */)
+	Url() objc.IObject /* cross-framework: URL */
+	SetUrl(value objc.IObject /* cross-framework: URL */)
 	// methods:
 }
 
@@ -176,8 +176,8 @@ func (p_ PathCell) SetIsSelectable(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/allowedtypes
-func (p_ PathCell) AllowedTypes() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("allowedTypes"))
+func (p_ PathCell) AllowedTypes() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("allowedTypes"))
 	return rv
 }
 
@@ -186,8 +186,8 @@ func (p_ PathCell) AllowedTypes() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/allowedtypes
-func (p_ PathCell) SetAllowedTypes(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedTypes:"), objc.String(value))
+func (p_ PathCell) SetAllowedTypes(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedTypes:"), value)
 }
 
 
@@ -328,8 +328,8 @@ func (p_ PathCell) SetPlaceholderAttributedString(value objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderstring
-func (p_ PathCell) PlaceholderString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("placeholderString"))
+func (p_ PathCell) PlaceholderString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("placeholderString"))
 	return rv
 }
 
@@ -338,8 +338,8 @@ func (p_ PathCell) PlaceholderString() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderstring
-func (p_ PathCell) SetPlaceholderString(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderString:"), objc.String(value))
+func (p_ PathCell) SetPlaceholderString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderString:"), value)
 }
 
 
@@ -347,7 +347,7 @@ func (p_ PathCell) SetPlaceholderString(value string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/url
-func (p_ PathCell) Url() foundation.objc.IObject /* cross-framework: URL */ {
+func (p_ PathCell) Url() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
 	return rv
 }
@@ -357,7 +357,7 @@ func (p_ PathCell) Url() foundation.objc.IObject /* cross-framework: URL */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/url
-func (p_ PathCell) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
+func (p_ PathCell) SetUrl(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 

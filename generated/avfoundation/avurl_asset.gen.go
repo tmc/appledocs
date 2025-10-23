@@ -33,7 +33,7 @@ type IURLAsset interface {
 	IAsset
 	// properties:
 	AssetCache() AssetCache /* not a class type */
-	HttpSessionIdentifier() UUID /* not a class type */
+	HttpSessionIdentifier() objc.IObject /* cross-framework: UUID */
 	MayRequireContentKeysForMediaDataProcessing() bool /* primitive/slice/pointer. */
 	MediaExtensionProperties() IAVMediaExtensionProperties
 	ResourceLoader() IAVAssetResourceLoader
@@ -194,7 +194,7 @@ func (u_ URLAsset) AudiovisualContentTypes() objc.IObject /* cross-framework: UT
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset/httpSessionIdentifier
-func (u_ URLAsset) HttpSessionIdentifier() UUID /* not a class type */ {
+func (u_ URLAsset) HttpSessionIdentifier() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[UUID](u_.ID, objc.Sel("httpSessionIdentifier"))
 	return rv
 }

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,8 +35,8 @@ type IStringDrawingContext interface {
 	SetActualScaleFactor(value float64 /* primitive/slice/pointer. */)
 	MinimumScaleFactor() float64 /* primitive/slice/pointer. */
 	SetMinimumScaleFactor(value float64 /* primitive/slice/pointer. */)
-	TotalBounds() coregraphics.CGRect
-	SetTotalBounds(value coregraphics.CGRect)
+	TotalBounds() objc.IObject /* cross-framework: Rect */
+	SetTotalBounds(value objc.IObject /* cross-framework: Rect */)
 	// methods:
 }
 
@@ -136,8 +135,8 @@ func (s_ StringDrawingContext) SetMinimumScaleFactor(value float64 /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/totalbounds
-func (s_ StringDrawingContext) TotalBounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("totalBounds"))
+func (s_ StringDrawingContext) TotalBounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](s_.ID, objc.Sel("totalBounds"))
 	return rv
 }
 
@@ -146,7 +145,7 @@ func (s_ StringDrawingContext) TotalBounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/totalbounds
-func (s_ StringDrawingContext) SetTotalBounds(value coregraphics.CGRect) {
+func (s_ StringDrawingContext) SetTotalBounds(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTotalBounds:"), value)
 }
 

@@ -33,8 +33,8 @@ type IComposition interface {
 	// properties:
 	AllMediaSelections() IAVMediaSelection
 	SetAllMediaSelections(value IAVMediaSelection)
-	AvailableChapterLocales() unsafe.Pointer
-	SetAvailableChapterLocales(value unsafe.Pointer)
+	AvailableChapterLocales() objc.IObject /* cross-framework: Locale */
+	SetAvailableChapterLocales(value objc.IObject /* cross-framework: Locale */)
 	AvailableMediaCharacteristicsWithMediaSelectionOptions() MediaCharacteristic /* not a class type */
 	SetAvailableMediaCharacteristicsWithMediaSelectionOptions(value MediaCharacteristic /* not a class type */)
 	AvailableMetadataFormats() MetadataFormat /* not a class type */
@@ -172,8 +172,8 @@ func (c_ Composition) SetAllMediaSelections(value IAVMediaSelection) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/availablechapterlocales
-func (c_ Composition) AvailableChapterLocales() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableChapterLocales"))
+func (c_ Composition) AvailableChapterLocales() objc.IObject /* cross-framework: Locale */ {
+	rv := objc.Send[foundation.Locale](c_.ID, objc.Sel("availableChapterLocales"))
 	return rv
 }
 
@@ -182,7 +182,7 @@ func (c_ Composition) AvailableChapterLocales() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/availablechapterlocales
-func (c_ Composition) SetAvailableChapterLocales(value unsafe.Pointer) {
+func (c_ Composition) SetAvailableChapterLocales(value objc.IObject /* cross-framework: Locale */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableChapterLocales:"), value)
 }
 

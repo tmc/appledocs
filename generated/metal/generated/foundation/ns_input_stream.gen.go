@@ -1,0 +1,112 @@
+// Code generated from Apple documentation for Foundation. DO NOT EDIT.
+
+package foundation
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [InputStream] class.
+var (
+	InputStreamClass     _InputStreamClass
+	InputStreamClassOnce sync.Once
+)
+
+func getInputStreamClass() _InputStreamClass {
+	InputStreamClassOnce.Do(func() {
+		InputStreamClass = _InputStreamClass{objc.GetClass("NSInputStream")}
+	})
+	return InputStreamClass
+}
+
+type _InputStreamClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [InputStream] class.
+type IInputStream interface {
+	IStream
+	// properties:
+	HasBytesAvailable() bool /* primitive/slice/pointer. */
+	SetHasBytesAvailable(value bool /* primitive/slice/pointer. */)
+	// methods:
+}
+
+// A stream that provides read-only stream functionality.
+//
+// is “toll-free bridged” with its Core Foundation counterpart, . For more information on toll-free bridging, see .
+
+
+// A stream that provides read-only stream functionality.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream
+type InputStream struct {
+	Stream
+}
+
+// InputStreamFrom constructs a [InputStream] from an unsafe.Pointer.
+//
+// A stream that provides read-only stream functionality.
+func InputStreamFrom(ptr unsafe.Pointer) InputStream {
+	return InputStream{
+		Stream: StreamFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (ic _InputStreamClass) Alloc() InputStream {
+	rv := objc.Send[InputStream](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (ic _InputStreamClass) New() InputStream {
+	rv := objc.Send[InputStream](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ InputStream) Init() InputStream {
+	rv := objc.Send[InputStream](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ InputStream) Autorelease() InputStream {
+	rv := objc.Send[InputStream](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewInputStream creates a new InputStream instance.
+func NewInputStream() InputStream {
+	return getInputStreamClass().New()
+}
+
+
+
+// A Boolean value that indicates whether the receiver has bytes available to read.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/inputstream/hasbytesavailable
+func (i_ InputStream) HasBytesAvailable() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](i_.ID, objc.Sel("hasBytesAvailable"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the receiver has bytes available to read.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/inputstream/hasbytesavailable
+func (i_ InputStream) SetHasBytesAvailable(value bool /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setHasBytesAvailable:"), value)
+}
+
+
+

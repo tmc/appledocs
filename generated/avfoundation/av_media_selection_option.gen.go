@@ -42,8 +42,8 @@ type IMediaSelectionOption interface {
 	SetExtendedLanguageTag(value objc.IObject /* cross-framework: NSString */)
 	IsPlayable() bool /* primitive/slice/pointer. */
 	SetIsPlayable(value bool /* primitive/slice/pointer. */)
-	Locale() unsafe.Pointer
-	SetLocale(value unsafe.Pointer)
+	Locale() objc.IObject /* cross-framework: Locale */
+	SetLocale(value objc.IObject /* cross-framework: Locale */)
 	MediaSubTypes() objc.IObject /* cross-framework: NSNumber */
 	SetMediaSubTypes(value objc.IObject /* cross-framework: NSNumber */)
 	MediaType() MediaType /* not a class type */
@@ -201,8 +201,8 @@ func (m_ MediaSelectionOption) SetIsPlayable(value bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/locale
-func (m_ MediaSelectionOption) Locale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("locale"))
+func (m_ MediaSelectionOption) Locale() objc.IObject /* cross-framework: Locale */ {
+	rv := objc.Send[foundation.Locale](m_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -211,7 +211,7 @@ func (m_ MediaSelectionOption) Locale() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/locale
-func (m_ MediaSelectionOption) SetLocale(value unsafe.Pointer) {
+func (m_ MediaSelectionOption) SetLocale(value objc.IObject /* cross-framework: Locale */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocale:"), value)
 }
 

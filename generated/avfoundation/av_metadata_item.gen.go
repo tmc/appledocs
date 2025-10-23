@@ -56,8 +56,8 @@ type IMetadataItem interface {
 	SetKey(value ObjectProtocol /* not a class type */)
 	KeySpace() MetadataKeySpace /* not a class type */
 	SetKeySpace(value MetadataKeySpace /* not a class type */)
-	Locale() unsafe.Pointer
-	SetLocale(value unsafe.Pointer)
+	Locale() objc.IObject /* cross-framework: Locale */
+	SetLocale(value objc.IObject /* cross-framework: Locale */)
 	NumberValue() objc.IObject /* cross-framework: NSNumber */
 	SetNumberValue(value objc.IObject /* cross-framework: NSNumber */)
 	StartDate() objc.IObject /* cross-framework: Date */
@@ -356,8 +356,8 @@ func (m_ MetadataItem) SetKeySpace(value MetadataKeySpace /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/locale
-func (m_ MetadataItem) Locale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("locale"))
+func (m_ MetadataItem) Locale() objc.IObject /* cross-framework: Locale */ {
+	rv := objc.Send[foundation.Locale](m_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -366,7 +366,7 @@ func (m_ MetadataItem) Locale() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/locale
-func (m_ MetadataItem) SetLocale(value unsafe.Pointer) {
+func (m_ MetadataItem) SetLocale(value objc.IObject /* cross-framework: Locale */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocale:"), value)
 }
 

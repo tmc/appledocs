@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,12 +34,12 @@ type IHelpManager interface {
 	// properties:
 	// methods:
 	ContextHelpForObject(object objectivec.IObject) objc.IObject /* cross-framework: AttributedString */
-	FindStringInBook(query string /* primitive/slice/pointer. */, book objc.IObject /* cross-framework HelpBookName */)
+	FindStringInBook(query objc.IObject /* cross-framework NSString */, book objc.IObject /* cross-framework HelpBookName */)
 	OpenHelpAnchorInBook(anchor objc.IObject /* cross-framework HelpAnchorName */, book objc.IObject /* cross-framework HelpBookName */)
 	RegisterBooksInBundle(bundle objc.IObject /* cross-framework Bundle */) bool /* primitive/slice/pointer. */
 	RemoveContextHelpForObject(object objectivec.IObject)
 	SetContextHelpForObject(attrString objc.IObject /* cross-framework AttributedString */, object objectivec.IObject)
-	ShowContextHelpForObjectLocationHint(object objectivec.IObject, pt coregraphics.CGPoint) bool /* primitive/slice/pointer. */
+	ShowContextHelpForObjectLocationHint(object objectivec.IObject, pt objc.IObject /* cross-framework Point */) bool /* primitive/slice/pointer. */
 }
 
 // An object for displaying online help for an app.
@@ -125,8 +125,8 @@ func (h_ HelpManager) ContextHelpForObject(object objectivec.IObject) objc.IObje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/find(_:inBook:)
-func (h_ HelpManager) FindStringInBook(query string /* primitive/slice/pointer. */, book objc.IObject /* cross-framework HelpBookName */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("findString:inBook:"), objc.String(query), book)
+func (h_ HelpManager) FindStringInBook(query objc.IObject /* cross-framework NSString */, book objc.IObject /* cross-framework HelpBookName */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("findString:inBook:"), query, book)
 }
 
 
@@ -171,7 +171,7 @@ func (h_ HelpManager) SetContextHelpForObject(attrString objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/showContextHelp(for:locationHint:)
-func (h_ HelpManager) ShowContextHelpForObjectLocationHint(object objectivec.IObject, pt coregraphics.CGPoint) bool /* primitive/slice/pointer. */ {
+func (h_ HelpManager) ShowContextHelpForObjectLocationHint(object objectivec.IObject, pt objc.IObject /* cross-framework Point */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("showContextHelpForObject:locationHint:"), object, pt)
 	return rv
 }

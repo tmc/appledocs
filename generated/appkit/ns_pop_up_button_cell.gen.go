@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PopUpButtonCell] class.
@@ -31,7 +32,7 @@ type IPopUpButtonCell interface {
 	IMenuItemCell
 	// properties:
 	ItemArray() []MenuItem /* primitive/slice/pointer. */
-	TitleOfSelectedItem() string /* primitive/slice/pointer. */
+	TitleOfSelectedItem() objc.IObject /* cross-framework: NSString */
 	Image() IImage
 	SetImage(value IImage)
 	AltersStateOfSelectedItem() bool /* primitive/slice/pointer. */
@@ -42,16 +43,16 @@ type IPopUpButtonCell interface {
 	SetAutoenablesItems(value bool /* primitive/slice/pointer. */)
 	IndexOfSelectedItem() int /* primitive/slice/pointer. */
 	SetIndexOfSelectedItem(value int /* primitive/slice/pointer. */)
-	ItemTitles() string /* primitive/slice/pointer. */
-	SetItemTitles(value string /* primitive/slice/pointer. */)
+	ItemTitles() objc.IObject /* cross-framework: NSString */
+	SetItemTitles(value objc.IObject /* cross-framework: NSString */)
 	LastItem() objc.IObject /* cross-framework: MenuItem */
 	SetLastItem(value objc.IObject /* cross-framework: MenuItem */)
 	Menu() IMenu
 	SetMenu(value IMenu)
 	NumberOfItems() int /* primitive/slice/pointer. */
 	SetNumberOfItems(value int /* primitive/slice/pointer. */)
-	PreferredEdge() int /* primitive/slice/pointer. */
-	SetPreferredEdge(value int /* primitive/slice/pointer. */)
+	PreferredEdge() RectEdge /* not a class type */
+	SetPreferredEdge(value RectEdge /* not a class type */)
 	PullsDown() bool /* primitive/slice/pointer. */
 	SetPullsDown(value bool /* primitive/slice/pointer. */)
 	SelectedItem() objc.IObject /* cross-framework: MenuItem */
@@ -59,8 +60,8 @@ type IPopUpButtonCell interface {
 	UsesItemFromMenu() bool /* primitive/slice/pointer. */
 	SetUsesItemFromMenu(value bool /* primitive/slice/pointer. */)
 	// methods:
-	IndexOfItemWithTitle(title string /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */
-	InsertItemWithTitleAtIndex(title string /* primitive/slice/pointer. */, index int /* primitive/slice/pointer. */)
+	IndexOfItemWithTitle(title objc.IObject /* cross-framework NSString */) int /* primitive/slice/pointer. */
+	InsertItemWithTitleAtIndex(title objc.IObject /* cross-framework NSString */, index int /* primitive/slice/pointer. */)
 }
 
 // The class defines the visual appearance of pop-up buttons that display pop-up or pull-down menus. Pop-up menus present the user with a set of choices, much the way radio buttons do, but using much less space. Pull-down menus also provide a set of choices but present the information in a slightly different way, usually to provide a set of commands from which the user can choose.
@@ -122,8 +123,8 @@ func NewPopUpButtonCell() PopUpButtonCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButtonCell/indexOfItem(withTitle:)
-func (p_ PopUpButtonCell) IndexOfItemWithTitle(title string /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](p_.ID, objc.Sel("indexOfItemWithTitle:"), objc.String(title))
+func (p_ PopUpButtonCell) IndexOfItemWithTitle(title objc.IObject /* cross-framework NSString */) int /* primitive/slice/pointer. */ {
+	rv := objc.Send[int](p_.ID, objc.Sel("indexOfItemWithTitle:"), title)
 	return rv
 }
 
@@ -132,8 +133,8 @@ func (p_ PopUpButtonCell) IndexOfItemWithTitle(title string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButtonCell/insertItem(withTitle:at:)
-func (p_ PopUpButtonCell) InsertItemWithTitleAtIndex(title string /* primitive/slice/pointer. */, index int /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("insertItemWithTitle:atIndex:"), objc.String(title), index)
+func (p_ PopUpButtonCell) InsertItemWithTitleAtIndex(title objc.IObject /* cross-framework NSString */, index int /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("insertItemWithTitle:atIndex:"), title, index)
 }
 
 
@@ -151,8 +152,8 @@ func (p_ PopUpButtonCell) ItemArray() []MenuItem /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButtonCell/titleOfSelectedItem
-func (p_ PopUpButtonCell) TitleOfSelectedItem() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("titleOfSelectedItem"))
+func (p_ PopUpButtonCell) TitleOfSelectedItem() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("titleOfSelectedItem"))
 	return rv
 }
 
@@ -256,8 +257,8 @@ func (p_ PopUpButtonCell) SetIndexOfSelectedItem(value int /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/itemtitles
-func (p_ PopUpButtonCell) ItemTitles() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("itemTitles"))
+func (p_ PopUpButtonCell) ItemTitles() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("itemTitles"))
 	return rv
 }
 
@@ -266,8 +267,8 @@ func (p_ PopUpButtonCell) ItemTitles() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/itemtitles
-func (p_ PopUpButtonCell) SetItemTitles(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setItemTitles:"), objc.String(value))
+func (p_ PopUpButtonCell) SetItemTitles(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setItemTitles:"), value)
 }
 
 
@@ -332,8 +333,8 @@ func (p_ PopUpButtonCell) SetNumberOfItems(value int /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/preferrededge
-func (p_ PopUpButtonCell) PreferredEdge() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](p_.ID, objc.Sel("preferredEdge"))
+func (p_ PopUpButtonCell) PreferredEdge() RectEdge /* not a class type */ {
+	rv := objc.Send[RectEdge](p_.ID, objc.Sel("preferredEdge"))
 	return rv
 }
 
@@ -342,7 +343,7 @@ func (p_ PopUpButtonCell) PreferredEdge() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopupbuttoncell/preferrededge
-func (p_ PopUpButtonCell) SetPreferredEdge(value int /* primitive/slice/pointer. */) {
+func (p_ PopUpButtonCell) SetPreferredEdge(value RectEdge /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredEdge:"), value)
 }
 

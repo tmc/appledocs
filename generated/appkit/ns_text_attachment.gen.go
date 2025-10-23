@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -37,14 +36,14 @@ type ITextAttachment interface {
 	SetAllowsTextAttachmentView(value bool /* primitive/slice/pointer. */)
 	AttachmentCell() objc.ID
 	SetAttachmentCell(value objc.ID)
-	Bounds() coregraphics.CGRect
-	SetBounds(value coregraphics.CGRect)
-	Contents() foundation.objc.IObject /* cross-framework: NSData */
-	SetContents(value foundation.objc.IObject /* cross-framework: NSData */)
-	FileType() string /* primitive/slice/pointer. */
-	SetFileType(value string /* primitive/slice/pointer. */)
-	FileWrapper() FileWrapper /* not a class type */
-	SetFileWrapper(value FileWrapper /* not a class type */)
+	Bounds() objc.IObject /* cross-framework: Rect */
+	SetBounds(value objc.IObject /* cross-framework: Rect */)
+	Contents() objc.IObject /* cross-framework: NSData */
+	SetContents(value objc.IObject /* cross-framework: NSData */)
+	FileType() objc.IObject /* cross-framework: NSString */
+	SetFileType(value objc.IObject /* cross-framework: NSString */)
+	FileWrapper() objc.IObject /* cross-framework: FileWrapper */
+	SetFileWrapper(value objc.IObject /* cross-framework: FileWrapper */)
 	Image() IImage
 	SetImage(value IImage)
 	LineLayoutPadding() float64 /* primitive/slice/pointer. */
@@ -110,9 +109,9 @@ func NewTextAttachment() TextAttachment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/init(data:ofType:)
-func NewTextAttachmentWithDataOfType(contentData foundation.objc.IObject /* cross-framework NSData */, uti string /* primitive/slice/pointer. */) TextAttachment {
+func NewTextAttachmentWithDataOfType(contentData objc.IObject /* cross-framework NSData */, uti objc.IObject /* cross-framework NSString */) TextAttachment {
 	instance := getTextAttachmentClass().Alloc()
-	rv := objc.Send[TextAttachment](instance.ID, objc.Sel("initWithData:ofType:"), contentData, objc.String(uti))
+	rv := objc.Send[TextAttachment](instance.ID, objc.Sel("initWithData:ofType:"), contentData, uti)
 	rv.Autorelease()
 	return rv
 }
@@ -122,7 +121,7 @@ func NewTextAttachmentWithDataOfType(contentData foundation.objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/init(fileWrapper:)
-func NewTextAttachmentWithFileWrapper(fileWrapper FileWrapper /* not a class type */) TextAttachment {
+func NewTextAttachmentWithFileWrapper(fileWrapper objc.IObject /* cross-framework FileWrapper */) TextAttachment {
 	instance := getTextAttachmentClass().Alloc()
 	rv := objc.Send[TextAttachment](instance.ID, objc.Sel("initWithFileWrapper:"), fileWrapper)
 	rv.Autorelease()
@@ -135,8 +134,8 @@ func NewTextAttachmentWithFileWrapper(fileWrapper FileWrapper /* not a class typ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/registerViewProviderClass(_:forFileType:)
-func (tc _TextAttachmentClass) RegisterTextAttachmentViewProviderClassForFileType(textAttachmentViewProviderClass objc.Class, fileType string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("registerTextAttachmentViewProviderClass:forFileType:"), textAttachmentViewProviderClass, objc.String(fileType))
+func (tc _TextAttachmentClass) RegisterTextAttachmentViewProviderClassForFileType(textAttachmentViewProviderClass objc.Class, fileType objc.IObject /* cross-framework NSString */) {
+	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("registerTextAttachmentViewProviderClass:forFileType:"), textAttachmentViewProviderClass, fileType)
 }
 
 
@@ -144,8 +143,8 @@ func (tc _TextAttachmentClass) RegisterTextAttachmentViewProviderClassForFileTyp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/textAttachmentViewProviderClass(forFileType:)
-func (tc _TextAttachmentClass) TextAttachmentViewProviderClassForFileType(fileType string /* primitive/slice/pointer. */) objc.Class {
-	rv := objc.Send[objc.Class](objc.ID(tc.class), objc.Sel("textAttachmentViewProviderClassForFileType:"), objc.String(fileType))
+func (tc _TextAttachmentClass) TextAttachmentViewProviderClassForFileType(fileType objc.IObject /* cross-framework NSString */) objc.Class {
+	rv := objc.Send[objc.Class](objc.ID(tc.class), objc.Sel("textAttachmentViewProviderClassForFileType:"), fileType)
 	return rv
 }
 
@@ -192,8 +191,8 @@ func (t_ TextAttachment) SetAttachmentCell(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/bounds
-func (t_ TextAttachment) Bounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("bounds"))
+func (t_ TextAttachment) Bounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](t_.ID, objc.Sel("bounds"))
 	return rv
 }
 
@@ -202,7 +201,7 @@ func (t_ TextAttachment) Bounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/bounds
-func (t_ TextAttachment) SetBounds(value coregraphics.CGRect) {
+func (t_ TextAttachment) SetBounds(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBounds:"), value)
 }
 
@@ -211,7 +210,7 @@ func (t_ TextAttachment) SetBounds(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/contents
-func (t_ TextAttachment) Contents() foundation.objc.IObject /* cross-framework: NSData */ {
+func (t_ TextAttachment) Contents() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("contents"))
 	return rv
 }
@@ -221,7 +220,7 @@ func (t_ TextAttachment) Contents() foundation.objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/contents
-func (t_ TextAttachment) SetContents(value foundation.objc.IObject /* cross-framework: NSData */) {
+func (t_ TextAttachment) SetContents(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContents:"), value)
 }
 
@@ -230,8 +229,8 @@ func (t_ TextAttachment) SetContents(value foundation.objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/fileType
-func (t_ TextAttachment) FileType() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("fileType"))
+func (t_ TextAttachment) FileType() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("fileType"))
 	return rv
 }
 
@@ -240,8 +239,8 @@ func (t_ TextAttachment) FileType() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/fileType
-func (t_ TextAttachment) SetFileType(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setFileType:"), objc.String(value))
+func (t_ TextAttachment) SetFileType(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setFileType:"), value)
 }
 
 
@@ -249,7 +248,7 @@ func (t_ TextAttachment) SetFileType(value string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/fileWrapper
-func (t_ TextAttachment) FileWrapper() FileWrapper /* not a class type */ {
+func (t_ TextAttachment) FileWrapper() objc.IObject /* cross-framework: FileWrapper */ {
 	rv := objc.Send[FileWrapper](t_.ID, objc.Sel("fileWrapper"))
 	return rv
 }
@@ -259,7 +258,7 @@ func (t_ TextAttachment) FileWrapper() FileWrapper /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/fileWrapper
-func (t_ TextAttachment) SetFileWrapper(value FileWrapper /* not a class type */) {
+func (t_ TextAttachment) SetFileWrapper(value objc.IObject /* cross-framework: FileWrapper */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFileWrapper:"), value)
 }
 

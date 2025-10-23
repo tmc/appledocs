@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,8 +36,8 @@ type ITableColumn interface {
 	SetDataCell(value unsafe.Pointer)
 	HeaderCell() objc.IObject /* cross-framework: TableHeaderCell */
 	SetHeaderCell(value objc.IObject /* cross-framework: TableHeaderCell */)
-	HeaderToolTip() string /* primitive/slice/pointer. */
-	SetHeaderToolTip(value string /* primitive/slice/pointer. */)
+	HeaderToolTip() objc.IObject /* cross-framework: NSString */
+	SetHeaderToolTip(value objc.IObject /* cross-framework: NSString */)
 	Identifier() objc.IObject /* cross-framework: UserInterfaceItemIdentifier */
 	SetIdentifier(value objc.IObject /* cross-framework: UserInterfaceItemIdentifier */)
 	IsEditable() bool /* primitive/slice/pointer. */
@@ -49,12 +50,12 @@ type ITableColumn interface {
 	SetMinWidth(value float64 /* primitive/slice/pointer. */)
 	ResizingMask() unsafe.Pointer
 	SetResizingMask(value unsafe.Pointer)
-	SortDescriptorPrototype() SortDescriptor /* not a class type */
-	SetSortDescriptorPrototype(value SortDescriptor /* not a class type */)
+	SortDescriptorPrototype() objc.IObject /* cross-framework: SortDescriptor */
+	SetSortDescriptorPrototype(value objc.IObject /* cross-framework: SortDescriptor */)
 	TableView() objc.IObject /* cross-framework: TableView */
 	SetTableView(value objc.IObject /* cross-framework: TableView */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	Width() float64 /* primitive/slice/pointer. */
 	SetWidth(value float64 /* primitive/slice/pointer. */)
 	// methods:
@@ -155,8 +156,8 @@ func (t_ TableColumn) SetHeaderCell(value objc.IObject /* cross-framework: Table
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headertooltip
-func (t_ TableColumn) HeaderToolTip() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("headerToolTip"))
+func (t_ TableColumn) HeaderToolTip() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("headerToolTip"))
 	return rv
 }
 
@@ -165,8 +166,8 @@ func (t_ TableColumn) HeaderToolTip() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headertooltip
-func (t_ TableColumn) SetHeaderToolTip(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setHeaderToolTip:"), objc.String(value))
+func (t_ TableColumn) SetHeaderToolTip(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setHeaderToolTip:"), value)
 }
 
 
@@ -288,7 +289,7 @@ func (t_ TableColumn) SetResizingMask(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/sortdescriptorprototype
-func (t_ TableColumn) SortDescriptorPrototype() SortDescriptor /* not a class type */ {
+func (t_ TableColumn) SortDescriptorPrototype() objc.IObject /* cross-framework: SortDescriptor */ {
 	rv := objc.Send[SortDescriptor](t_.ID, objc.Sel("sortDescriptorPrototype"))
 	return rv
 }
@@ -298,7 +299,7 @@ func (t_ TableColumn) SortDescriptorPrototype() SortDescriptor /* not a class ty
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/sortdescriptorprototype
-func (t_ TableColumn) SetSortDescriptorPrototype(value SortDescriptor /* not a class type */) {
+func (t_ TableColumn) SetSortDescriptorPrototype(value objc.IObject /* cross-framework: SortDescriptor */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSortDescriptorPrototype:"), value)
 }
 
@@ -326,8 +327,8 @@ func (t_ TableColumn) SetTableView(value objc.IObject /* cross-framework: TableV
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/title
-func (t_ TableColumn) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("title"))
+func (t_ TableColumn) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -336,8 +337,8 @@ func (t_ TableColumn) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/title
-func (t_ TableColumn) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (t_ TableColumn) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTitle:"), value)
 }
 
 

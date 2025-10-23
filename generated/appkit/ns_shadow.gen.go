@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,8 +35,8 @@ type IShadow interface {
 	SetShadowBlurRadius(value float64 /* primitive/slice/pointer. */)
 	ShadowColor() IColor
 	SetShadowColor(value IColor)
-	ShadowOffset() coregraphics.CGSize
-	SetShadowOffset(value coregraphics.CGSize)
+	ShadowOffset() objc.IObject /* cross-framework: Size */
+	SetShadowOffset(value objc.IObject /* cross-framework: Size */)
 	// methods:
 	Set()
 }
@@ -147,8 +146,8 @@ func (s_ Shadow) SetShadowColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowOffset
-func (s_ Shadow) ShadowOffset() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("shadowOffset"))
+func (s_ Shadow) ShadowOffset() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](s_.ID, objc.Sel("shadowOffset"))
 	return rv
 }
 
@@ -157,7 +156,7 @@ func (s_ Shadow) ShadowOffset() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowOffset
-func (s_ Shadow) SetShadowOffset(value coregraphics.CGSize) {
+func (s_ Shadow) SetShadowOffset(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowOffset:"), value)
 }
 

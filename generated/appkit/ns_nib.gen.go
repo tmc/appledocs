@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +33,7 @@ type INib interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	InstantiateWithOwnerTopLevelObjects(owner objectivec.IObject, topLevelObjects objectivec.IObject) bool /* primitive/slice/pointer. */
+	InstantiateWithOwnerTopLevelObjects(owner objectivec.IObject, topLevelObjects objc.IObject /* cross-framework NSArray */) bool /* primitive/slice/pointer. */
 }
 
 // An object wrapper, or container, for an Interface Builder nib file.
@@ -92,7 +93,7 @@ func NewNib() Nib {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib/instantiate(withOwner:topLevelObjects:)
-func (n_ Nib) InstantiateWithOwnerTopLevelObjects(owner objectivec.IObject, topLevelObjects objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (n_ Nib) InstantiateWithOwnerTopLevelObjects(owner objectivec.IObject, topLevelObjects objc.IObject /* cross-framework NSArray */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](n_.ID, objc.Sel("instantiateWithOwner:topLevelObjects:"), owner, topLevelObjects)
 	return rv
 }

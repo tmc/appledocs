@@ -38,8 +38,8 @@ type IWorkspaceOpenConfiguration interface {
 	SetAddsToRecentItems(value bool /* primitive/slice/pointer. */)
 	AllowsRunningApplicationSubstitution() bool /* primitive/slice/pointer. */
 	SetAllowsRunningApplicationSubstitution(value bool /* primitive/slice/pointer. */)
-	AppleEvent() AppleEventDescriptor /* not a class type */
-	SetAppleEvent(value AppleEventDescriptor /* not a class type */)
+	AppleEvent() objc.IObject /* cross-framework: AppleEventDescriptor */
+	SetAppleEvent(value objc.IObject /* cross-framework: AppleEventDescriptor */)
 	Architecture() unsafe.Pointer
 	SetArchitecture(value unsafe.Pointer)
 	Arguments() []string /* primitive/slice/pointer. */
@@ -187,7 +187,7 @@ func (w_ WorkspaceOpenConfiguration) SetAllowsRunningApplicationSubstitution(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/appleEvent
-func (w_ WorkspaceOpenConfiguration) AppleEvent() AppleEventDescriptor /* not a class type */ {
+func (w_ WorkspaceOpenConfiguration) AppleEvent() objc.IObject /* cross-framework: AppleEventDescriptor */ {
 	rv := objc.Send[AppleEventDescriptor](w_.ID, objc.Sel("appleEvent"))
 	return rv
 }
@@ -197,7 +197,7 @@ func (w_ WorkspaceOpenConfiguration) AppleEvent() AppleEventDescriptor /* not a 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/appleEvent
-func (w_ WorkspaceOpenConfiguration) SetAppleEvent(value AppleEventDescriptor /* not a class type */) {
+func (w_ WorkspaceOpenConfiguration) SetAppleEvent(value objc.IObject /* cross-framework: AppleEventDescriptor */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAppleEvent:"), value)
 }
 

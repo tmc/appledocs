@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ObjectController] class.
@@ -38,8 +39,8 @@ type IObjectController interface {
 	SetCanRemove(value bool /* primitive/slice/pointer. */)
 	Content() unsafe.Pointer
 	SetContent(value unsafe.Pointer)
-	EntityName() string /* primitive/slice/pointer. */
-	SetEntityName(value string /* primitive/slice/pointer. */)
+	EntityName() objc.IObject /* cross-framework: NSString */
+	SetEntityName(value objc.IObject /* cross-framework: NSString */)
 	FetchPredicate() objc.IObject /* cross-framework: Predicate */
 	SetFetchPredicate(value objc.IObject /* cross-framework: Predicate */)
 	IsEditable() bool /* primitive/slice/pointer. */
@@ -192,8 +193,8 @@ func (o_ ObjectController) SetContent(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/entityname
-func (o_ ObjectController) EntityName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](o_.ID, objc.Sel("entityName"))
+func (o_ ObjectController) EntityName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("entityName"))
 	return rv
 }
 
@@ -202,8 +203,8 @@ func (o_ ObjectController) EntityName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/entityname
-func (o_ ObjectController) SetEntityName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setEntityName:"), objc.String(value))
+func (o_ ObjectController) SetEntityName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setEntityName:"), value)
 }
 
 

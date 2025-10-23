@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -32,8 +31,8 @@ type _EPSImageRepClass struct {
 type IEPSImageRep interface {
 	IImageRep
 	// properties:
-	BoundingBox() coregraphics.CGRect
-	EPSRepresentation() foundation.objc.IObject /* cross-framework: NSData */
+	BoundingBox() objc.IObject /* cross-framework: Rect */
+	EPSRepresentation() objc.IObject /* cross-framework: NSData */
 	// methods:
 }
 
@@ -94,7 +93,7 @@ func NewEPSImageRep() EPSImageRep {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/init(data:)
-func NewEPSImageRepWithData(epsData foundation.objc.IObject /* cross-framework NSData */) EPSImageRep {
+func NewEPSImageRepWithData(epsData objc.IObject /* cross-framework NSData */) EPSImageRep {
 	instance := getEPSImageRepClass().Alloc()
 	rv := objc.Send[EPSImageRep](instance.ID, objc.Sel("initWithData:"), epsData)
 	rv.Autorelease()
@@ -107,7 +106,7 @@ func NewEPSImageRepWithData(epsData foundation.objc.IObject /* cross-framework N
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/imageRepWithData:
-func (ec _EPSImageRepClass) ImageRepWithData(epsData foundation.objc.IObject /* cross-framework NSData */) unsafe.Pointer {
+func (ec _EPSImageRepClass) ImageRepWithData(epsData objc.IObject /* cross-framework NSData */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("imageRepWithData:"), epsData)
 	return rv
 }
@@ -117,8 +116,8 @@ func (ec _EPSImageRepClass) ImageRepWithData(epsData foundation.objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/boundingBox
-func (e_ EPSImageRep) BoundingBox() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](e_.ID, objc.Sel("boundingBox"))
+func (e_ EPSImageRep) BoundingBox() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](e_.ID, objc.Sel("boundingBox"))
 	return rv
 }
 
@@ -127,7 +126,7 @@ func (e_ EPSImageRep) BoundingBox() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/epsRepresentation
-func (e_ EPSImageRep) EPSRepresentation() foundation.objc.IObject /* cross-framework: NSData */ {
+func (e_ EPSImageRep) EPSRepresentation() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](e_.ID, objc.Sel("EPSRepresentation"))
 	return rv
 }

@@ -15,11 +15,3 @@ func ExampleNewTouchBar() {
 	_ = appkit.NewTouchBar()
 	// Output:
 }
-// ExampleNewTouchBarWithCoder demonstrates how to create a TouchBar instance using NewTouchBarWithCoder.
-// Creates a Touch Bar object from a coder object provided by a storyboard or NIB file.
-func ExampleNewTouchBarWithCoder() {
-	_ = appkit.NewTouchBarWithCoder(
-		appkit.Coder{}, // coder Coder
-	)
-	// Output:
-}

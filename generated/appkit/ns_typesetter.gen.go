@@ -7,9 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/coreml"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -39,25 +38,25 @@ type ITypesetter interface {
 	LayoutManager() objc.IObject /* cross-framework: LayoutManager */
 	LineFragmentPadding() float64 /* primitive/slice/pointer. */
 	SetLineFragmentPadding(value float64 /* primitive/slice/pointer. */)
-	ParagraphSeparatorCharacterRange() foundation.objc.IObject /* cross-framework: Range */
-	ParagraphSeparatorGlyphRange() foundation.objc.IObject /* cross-framework: Range */
+	ParagraphSeparatorCharacterRange() objc.IObject /* cross-framework: Range */
+	ParagraphSeparatorGlyphRange() objc.IObject /* cross-framework: Range */
 	TextContainers() []TextContainer /* primitive/slice/pointer. */
 	UsesFontLeading() bool /* primitive/slice/pointer. */
 	SetUsesFontLeading(value bool /* primitive/slice/pointer. */)
 	AttributedString() objc.IObject /* cross-framework: AttributedString */
 	SetAttributedString(value objc.IObject /* cross-framework: AttributedString */)
-	AttributesForExtraLineFragment() coreml.objc.IObject /* cross-framework: Key */
-	SetAttributesForExtraLineFragment(value coreml.objc.IObject /* cross-framework: Key */)
+	AttributesForExtraLineFragment() objc.IObject /* cross-framework: Key */
+	SetAttributesForExtraLineFragment(value objc.IObject /* cross-framework: Key */)
 	BidiProcessingEnabled() bool /* primitive/slice/pointer. */
 	SetBidiProcessingEnabled(value bool /* primitive/slice/pointer. */)
 	CurrentParagraphStyle() IParagraphStyle
 	SetCurrentParagraphStyle(value IParagraphStyle)
 	CurrentTextContainer() ITextContainer
 	SetCurrentTextContainer(value ITextContainer)
-	ParagraphCharacterRange() foundation.objc.IObject /* cross-framework: Range */
-	SetParagraphCharacterRange(value foundation.objc.IObject /* cross-framework: Range */)
-	ParagraphGlyphRange() foundation.objc.IObject /* cross-framework: Range */
-	SetParagraphGlyphRange(value foundation.objc.IObject /* cross-framework: Range */)
+	ParagraphCharacterRange() objc.IObject /* cross-framework: Range */
+	SetParagraphCharacterRange(value objc.IObject /* cross-framework: Range */)
+	ParagraphGlyphRange() objc.IObject /* cross-framework: Range */
+	SetParagraphGlyphRange(value objc.IObject /* cross-framework: Range */)
 	TypesetterBehavior() TypesetterBehavior
 	SetTypesetterBehavior(value TypesetterBehavior)
 	// methods:
@@ -65,20 +64,20 @@ type ITypesetter interface {
 	BaselineOffsetInLayoutManagerGlyphIndex(layoutMgr objc.IObject /* cross-framework LayoutManager */, glyphIndex uint /* primitive/slice/pointer. */) float64 /* primitive/slice/pointer. */
 	BeginLineWithGlyphAtIndex(glyphIndex uint /* primitive/slice/pointer. */)
 	BeginParagraph()
-	BoundingBoxForControlGlyphAtIndexForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(glyphIndex uint /* primitive/slice/pointer. */, textContainer ITextContainer, proposedRect coregraphics.CGRect, glyphPosition coregraphics.CGPoint, charIndex uint /* primitive/slice/pointer. */) coregraphics.CGRect
+	BoundingBoxForControlGlyphAtIndexForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(glyphIndex uint /* primitive/slice/pointer. */, textContainer ITextContainer, proposedRect objc.IObject /* cross-framework Rect */, glyphPosition objc.IObject /* cross-framework Point */, charIndex uint /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Rect */
 	EndParagraph()
-	GetLineFragmentRectUsedRectRemainingRectForStartingGlyphAtIndexProposedRectLineSpacingParagraphSpacingBeforeParagraphSpacingAfter(lineFragmentRect RectPointer /* not a class type */, lineFragmentUsedRect RectPointer /* not a class type */, remainingRect RectPointer /* not a class type */, startingGlyphIndex uint /* primitive/slice/pointer. */, proposedRect coregraphics.CGRect, lineSpacing float64 /* primitive/slice/pointer. */, paragraphSpacingBefore float64 /* primitive/slice/pointer. */, paragraphSpacingAfter float64 /* primitive/slice/pointer. */)
-	GlyphRangeForCharacterRangeActualCharacterRange(charRange foundation.objc.IObject /* cross-framework Range */, actualCharRange RangePointer /* not a class type */) foundation.objc.IObject /* cross-framework: Range */
+	GetLineFragmentRectUsedRectRemainingRectForStartingGlyphAtIndexProposedRectLineSpacingParagraphSpacingBeforeParagraphSpacingAfter(lineFragmentRect RectPointer /* not a class type */, lineFragmentUsedRect RectPointer /* not a class type */, remainingRect RectPointer /* not a class type */, startingGlyphIndex uint /* primitive/slice/pointer. */, proposedRect objc.IObject /* cross-framework Rect */, lineSpacing float64 /* primitive/slice/pointer. */, paragraphSpacingBefore float64 /* primitive/slice/pointer. */, paragraphSpacingAfter float64 /* primitive/slice/pointer. */)
+	GlyphRangeForCharacterRangeActualCharacterRange(charRange objc.IObject /* cross-framework Range */, actualCharRange RangePointer /* not a class type */) objc.IObject /* cross-framework: Range */
 	HyphenCharacterForGlyphAtIndex(glyphIndex uint /* primitive/slice/pointer. */) unsafe.Pointer
 	HyphenationFactorForGlyphAtIndex(glyphIndex uint /* primitive/slice/pointer. */) float32 /* primitive/slice/pointer. */
 	LayoutGlyphsInLayoutManagerStartingAtGlyphIndexMaxNumberOfLineFragmentsNextGlyphIndex(layoutManager objc.IObject /* cross-framework LayoutManager */, startGlyphIndex uint /* primitive/slice/pointer. */, maxNumLines uint /* primitive/slice/pointer. */, nextGlyph UInteger /* not a class type */)
-	SetDrawsOutsideLineFragmentForGlyphRange(flag bool /* primitive/slice/pointer. */, glyphRange foundation.objc.IObject /* cross-framework Range */)
-	SetHardInvalidationForGlyphRange(flag bool /* primitive/slice/pointer. */, glyphRange foundation.objc.IObject /* cross-framework Range */)
-	SetLocationWithAdvancementsForStartOfGlyphRange(location coregraphics.CGPoint, advancements coregraphics.float64 /* primitive/slice/pointer. */, glyphRange foundation.objc.IObject /* cross-framework Range */)
-	SetNotShownAttributeForGlyphRange(flag bool /* primitive/slice/pointer. */, glyphRange foundation.objc.IObject /* cross-framework Range */)
+	SetDrawsOutsideLineFragmentForGlyphRange(flag bool /* primitive/slice/pointer. */, glyphRange objc.IObject /* cross-framework Range */)
+	SetHardInvalidationForGlyphRange(flag bool /* primitive/slice/pointer. */, glyphRange objc.IObject /* cross-framework Range */)
+	SetLocationWithAdvancementsForStartOfGlyphRange(location objc.IObject /* cross-framework Point */, advancements corefoundation.CGFloat, glyphRange objc.IObject /* cross-framework Range */)
+	SetNotShownAttributeForGlyphRange(flag bool /* primitive/slice/pointer. */, glyphRange objc.IObject /* cross-framework Range */)
 	ShouldBreakLineByWordBeforeCharacterAtIndex(charIndex uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
 	SubstituteFontForFont(originalFont IFont) IFont
-	WillSetLineFragmentRectForGlyphRangeUsedRectBaselineOffset(lineRect RectPointer /* not a class type */, glyphRange foundation.objc.IObject /* cross-framework Range */, usedRect RectPointer /* not a class type */, baselineOffset coregraphics.float64 /* primitive/slice/pointer. */)
+	WillSetLineFragmentRectForGlyphRangeUsedRectBaselineOffset(lineRect RectPointer /* not a class type */, glyphRange objc.IObject /* cross-framework Range */, usedRect RectPointer /* not a class type */, baselineOffset corefoundation.CGFloat)
 }
 
 // An abstract class that performs various type layout tasks.
@@ -138,8 +137,8 @@ func NewTypesetter() Typesetter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetter/printingAdjustment(in:forNominallySpacedGlyphRange:packedGlyphs:count:)
-func (tc _TypesetterClass) PrintingAdjustmentInLayoutManagerForNominallySpacedGlyphRangePackedGlyphsCount(layoutMgr objc.IObject /* cross-framework LayoutManager */, nominallySpacedGlyphsRange foundation.objc.IObject /* cross-framework Range */, packedGlyphs unsafe.Pointer, packedGlyphsCount uint /* primitive/slice/pointer. */) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](objc.ID(tc.class), objc.Sel("printingAdjustmentInLayoutManager:forNominallySpacedGlyphRange:packedGlyphs:count:"), layoutMgr, nominallySpacedGlyphsRange, packedGlyphs, packedGlyphsCount)
+func (tc _TypesetterClass) PrintingAdjustmentInLayoutManagerForNominallySpacedGlyphRangePackedGlyphsCount(layoutMgr objc.IObject /* cross-framework LayoutManager */, nominallySpacedGlyphsRange objc.IObject /* cross-framework Range */, packedGlyphs unsafe.Pointer, packedGlyphsCount uint /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](objc.ID(tc.class), objc.Sel("printingAdjustmentInLayoutManager:forNominallySpacedGlyphRange:packedGlyphs:count:"), layoutMgr, nominallySpacedGlyphsRange, packedGlyphs, packedGlyphsCount)
 	return rv
 }
 
@@ -205,8 +204,8 @@ func (t_ Typesetter) BeginParagraph() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetter/boundingBox(forControlGlyphAt:for:proposedLineFragment:glyphPosition:characterIndex:)
-func (t_ Typesetter) BoundingBoxForControlGlyphAtIndexForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(glyphIndex uint /* primitive/slice/pointer. */, textContainer ITextContainer, proposedRect coregraphics.CGRect, glyphPosition coregraphics.CGPoint, charIndex uint /* primitive/slice/pointer. */) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:"), glyphIndex, textContainer, proposedRect, glyphPosition, charIndex)
+func (t_ Typesetter) BoundingBoxForControlGlyphAtIndexForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(glyphIndex uint /* primitive/slice/pointer. */, textContainer ITextContainer, proposedRect objc.IObject /* cross-framework Rect */, glyphPosition objc.IObject /* cross-framework Point */, charIndex uint /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](t_.ID, objc.Sel("boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:"), glyphIndex, textContainer, proposedRect, glyphPosition, charIndex)
 	return rv
 }
 
@@ -224,7 +223,7 @@ func (t_ Typesetter) EndParagraph() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetter/getLineFragmentRect(_:usedRect:remaining:forStartingGlyphAt:proposedRect:lineSpacing:paragraphSpacingBefore:paragraphSpacingAfter:)
-func (t_ Typesetter) GetLineFragmentRectUsedRectRemainingRectForStartingGlyphAtIndexProposedRectLineSpacingParagraphSpacingBeforeParagraphSpacingAfter(lineFragmentRect RectPointer /* not a class type */, lineFragmentUsedRect RectPointer /* not a class type */, remainingRect RectPointer /* not a class type */, startingGlyphIndex uint /* primitive/slice/pointer. */, proposedRect coregraphics.CGRect, lineSpacing float64 /* primitive/slice/pointer. */, paragraphSpacingBefore float64 /* primitive/slice/pointer. */, paragraphSpacingAfter float64 /* primitive/slice/pointer. */) {
+func (t_ Typesetter) GetLineFragmentRectUsedRectRemainingRectForStartingGlyphAtIndexProposedRectLineSpacingParagraphSpacingBeforeParagraphSpacingAfter(lineFragmentRect RectPointer /* not a class type */, lineFragmentUsedRect RectPointer /* not a class type */, remainingRect RectPointer /* not a class type */, startingGlyphIndex uint /* primitive/slice/pointer. */, proposedRect objc.IObject /* cross-framework Rect */, lineSpacing float64 /* primitive/slice/pointer. */, paragraphSpacingBefore float64 /* primitive/slice/pointer. */, paragraphSpacingAfter float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("getLineFragmentRect:usedRect:remainingRect:forStartingGlyphAtIndex:proposedRect:lineSpacing:paragraphSpacingBefore:paragraphSpacingAfter:"), lineFragmentRect, lineFragmentUsedRect, remainingRect, startingGlyphIndex, proposedRect, lineSpacing, paragraphSpacingBefore, paragraphSpacingAfter)
 }
 
@@ -233,8 +232,8 @@ func (t_ Typesetter) GetLineFragmentRectUsedRectRemainingRectForStartingGlyphAtI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetter/glyphRange(forCharacterRange:actualCharacterRange:)
-func (t_ Typesetter) GlyphRangeForCharacterRangeActualCharacterRange(charRange foundation.objc.IObject /* cross-framework Range */, actualCharRange RangePointer /* not a class type */) foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("glyphRangeForCharacterRange:actualCharacterRange:"), charRange, actualCharRange)
+func (t_ Typesetter) GlyphRangeForCharacterRangeActualCharacterRange(charRange objc.IObject /* cross-framework Range */, actualCharRange RangePointer /* not a class type */) objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[Range](t_.ID, objc.Sel("glyphRangeForCharacterRange:actualCharacterRange:"), charRange, actualCharRange)
 	return rv
 }
 
@@ -272,7 +271,7 @@ func (t_ Typesetter) LayoutGlyphsInLayoutManagerStartingAtGlyphIndexMaxNumberOfL
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetter/setDrawsOutsideLineFragment(_:forGlyphRange:)
-func (t_ Typesetter) SetDrawsOutsideLineFragmentForGlyphRange(flag bool /* primitive/slice/pointer. */, glyphRange foundation.objc.IObject /* cross-framework Range */) {
+func (t_ Typesetter) SetDrawsOutsideLineFragmentForGlyphRange(flag bool /* primitive/slice/pointer. */, glyphRange objc.IObject /* cross-framework Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDrawsOutsideLineFragment:forGlyphRange:"), flag, glyphRange)
 }
 
@@ -281,7 +280,7 @@ func (t_ Typesetter) SetDrawsOutsideLineFragmentForGlyphRange(flag bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetter/setHardInvalidation(_:forGlyphRange:)
-func (t_ Typesetter) SetHardInvalidationForGlyphRange(flag bool /* primitive/slice/pointer. */, glyphRange foundation.objc.IObject /* cross-framework Range */) {
+func (t_ Typesetter) SetHardInvalidationForGlyphRange(flag bool /* primitive/slice/pointer. */, glyphRange objc.IObject /* cross-framework Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHardInvalidation:forGlyphRange:"), flag, glyphRange)
 }
 
@@ -290,7 +289,7 @@ func (t_ Typesetter) SetHardInvalidationForGlyphRange(flag bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetter/setLocation(_:withAdvancements:forStartOfGlyphRange:)
-func (t_ Typesetter) SetLocationWithAdvancementsForStartOfGlyphRange(location coregraphics.CGPoint, advancements coregraphics.float64 /* primitive/slice/pointer. */, glyphRange foundation.objc.IObject /* cross-framework Range */) {
+func (t_ Typesetter) SetLocationWithAdvancementsForStartOfGlyphRange(location objc.IObject /* cross-framework Point */, advancements corefoundation.CGFloat, glyphRange objc.IObject /* cross-framework Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLocation:withAdvancements:forStartOfGlyphRange:"), location, advancements, glyphRange)
 }
 
@@ -299,7 +298,7 @@ func (t_ Typesetter) SetLocationWithAdvancementsForStartOfGlyphRange(location co
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetter/setNotShownAttribute(_:forGlyphRange:)
-func (t_ Typesetter) SetNotShownAttributeForGlyphRange(flag bool /* primitive/slice/pointer. */, glyphRange foundation.objc.IObject /* cross-framework Range */) {
+func (t_ Typesetter) SetNotShownAttributeForGlyphRange(flag bool /* primitive/slice/pointer. */, glyphRange objc.IObject /* cross-framework Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNotShownAttribute:forGlyphRange:"), flag, glyphRange)
 }
 
@@ -328,7 +327,7 @@ func (t_ Typesetter) SubstituteFontForFont(originalFont IFont) IFont {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetter/willSetLineFragmentRect(_:forGlyphRange:usedRect:baselineOffset:)
-func (t_ Typesetter) WillSetLineFragmentRectForGlyphRangeUsedRectBaselineOffset(lineRect RectPointer /* not a class type */, glyphRange foundation.objc.IObject /* cross-framework Range */, usedRect RectPointer /* not a class type */, baselineOffset coregraphics.float64 /* primitive/slice/pointer. */) {
+func (t_ Typesetter) WillSetLineFragmentRectForGlyphRangeUsedRectBaselineOffset(lineRect RectPointer /* not a class type */, glyphRange objc.IObject /* cross-framework Range */, usedRect RectPointer /* not a class type */, baselineOffset corefoundation.CGFloat) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("willSetLineFragmentRect:forGlyphRange:usedRect:baselineOffset:"), lineRect, glyphRange, usedRect, baselineOffset)
 }
 
@@ -385,8 +384,8 @@ func (t_ Typesetter) SetLineFragmentPadding(value float64 /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetter/paragraphSeparatorCharacterRange
-func (t_ Typesetter) ParagraphSeparatorCharacterRange() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("paragraphSeparatorCharacterRange"))
+func (t_ Typesetter) ParagraphSeparatorCharacterRange() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[Range](t_.ID, objc.Sel("paragraphSeparatorCharacterRange"))
 	return rv
 }
 
@@ -395,8 +394,8 @@ func (t_ Typesetter) ParagraphSeparatorCharacterRange() foundation.objc.IObject 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetter/paragraphSeparatorGlyphRange
-func (t_ Typesetter) ParagraphSeparatorGlyphRange() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("paragraphSeparatorGlyphRange"))
+func (t_ Typesetter) ParagraphSeparatorGlyphRange() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[Range](t_.ID, objc.Sel("paragraphSeparatorGlyphRange"))
 	return rv
 }
 
@@ -463,7 +462,7 @@ func (t_ Typesetter) SetAttributedString(value objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/attributesforextralinefragment
-func (t_ Typesetter) AttributesForExtraLineFragment() coreml.objc.IObject /* cross-framework: Key */ {
+func (t_ Typesetter) AttributesForExtraLineFragment() objc.IObject /* cross-framework: Key */ {
 	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("attributesForExtraLineFragment"))
 	return rv
 }
@@ -473,7 +472,7 @@ func (t_ Typesetter) AttributesForExtraLineFragment() coreml.objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/attributesforextralinefragment
-func (t_ Typesetter) SetAttributesForExtraLineFragment(value coreml.objc.IObject /* cross-framework: Key */) {
+func (t_ Typesetter) SetAttributesForExtraLineFragment(value objc.IObject /* cross-framework: Key */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributesForExtraLineFragment:"), value)
 }
 
@@ -539,8 +538,8 @@ func (t_ Typesetter) SetCurrentTextContainer(value ITextContainer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/paragraphcharacterrange
-func (t_ Typesetter) ParagraphCharacterRange() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("paragraphCharacterRange"))
+func (t_ Typesetter) ParagraphCharacterRange() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[Range](t_.ID, objc.Sel("paragraphCharacterRange"))
 	return rv
 }
 
@@ -549,7 +548,7 @@ func (t_ Typesetter) ParagraphCharacterRange() foundation.objc.IObject /* cross-
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/paragraphcharacterrange
-func (t_ Typesetter) SetParagraphCharacterRange(value foundation.objc.IObject /* cross-framework: Range */) {
+func (t_ Typesetter) SetParagraphCharacterRange(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphCharacterRange:"), value)
 }
 
@@ -558,8 +557,8 @@ func (t_ Typesetter) SetParagraphCharacterRange(value foundation.objc.IObject /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/paragraphglyphrange
-func (t_ Typesetter) ParagraphGlyphRange() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("paragraphGlyphRange"))
+func (t_ Typesetter) ParagraphGlyphRange() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[Range](t_.ID, objc.Sel("paragraphGlyphRange"))
 	return rv
 }
 
@@ -568,7 +567,7 @@ func (t_ Typesetter) ParagraphGlyphRange() foundation.objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/paragraphglyphrange
-func (t_ Typesetter) SetParagraphGlyphRange(value foundation.objc.IObject /* cross-framework: Range */) {
+func (t_ Typesetter) SetParagraphGlyphRange(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphGlyphRange:"), value)
 }
 

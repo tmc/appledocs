@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +31,7 @@ type _CursorClass struct {
 type ICursor interface {
 	objectivec.IObject
 	// properties:
-	HotSpot() coregraphics.CGPoint
+	HotSpot() objc.IObject /* cross-framework: Point */
 	Image() IImage
 	SetOnMouseEntered() bool /* primitive/slice/pointer. */
 	SetOnMouseExited() bool /* primitive/slice/pointer. */
@@ -101,7 +100,7 @@ func NewCursor() Cursor {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/init(coder:)
-func NewCursorWithCoder(coder Coder /* not a class type */) Cursor {
+func NewCursorWithCoder(coder objc.IObject /* cross-framework Coder */) Cursor {
 	instance := getCursorClass().Alloc()
 	rv := objc.Send[Cursor](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -113,7 +112,7 @@ func NewCursorWithCoder(coder Coder /* not a class type */) Cursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/init(image:foregroundColorHint:backgroundColorHint:hotSpot:)
-func NewCursorWithImageForegroundColorHintBackgroundColorHintHotSpot(newImage IImage, fg IColor, bg IColor, hotSpot coregraphics.CGPoint) Cursor {
+func NewCursorWithImageForegroundColorHintBackgroundColorHintHotSpot(newImage IImage, fg IColor, bg IColor, hotSpot objc.IObject /* cross-framework Point */) Cursor {
 	instance := getCursorClass().Alloc()
 	rv := objc.Send[Cursor](instance.ID, objc.Sel("initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:"), newImage, fg, bg, hotSpot)
 	rv.Autorelease()
@@ -125,7 +124,7 @@ func NewCursorWithImageForegroundColorHintBackgroundColorHintHotSpot(newImage II
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/init(image:hotSpot:)
-func NewCursorWithImageHotSpot(newImage IImage, point coregraphics.CGPoint) Cursor {
+func NewCursorWithImageHotSpot(newImage IImage, point objc.IObject /* cross-framework Point */) Cursor {
 	instance := getCursorClass().Alloc()
 	rv := objc.Send[Cursor](instance.ID, objc.Sel("initWithImage:hotSpot:"), newImage, point)
 	rv.Autorelease()
@@ -547,8 +546,8 @@ func (c_ Cursor) DragLinkCursor() ICursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/hotSpot
-func (c_ Cursor) HotSpot() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](c_.ID, objc.Sel("hotSpot"))
+func (c_ Cursor) HotSpot() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](c_.ID, objc.Sel("hotSpot"))
 	return rv
 }
 

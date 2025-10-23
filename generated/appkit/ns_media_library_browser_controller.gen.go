@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,8 +31,8 @@ type _MediaLibraryBrowserControllerClass struct {
 type IMediaLibraryBrowserController interface {
 	objectivec.IObject
 	// properties:
-	Frame() coregraphics.CGRect
-	SetFrame(value coregraphics.CGRect)
+	Frame() objc.IObject /* cross-framework: Rect */
+	SetFrame(value objc.IObject /* cross-framework: Rect */)
 	IsVisible() bool /* primitive/slice/pointer. */
 	SetIsVisible(value bool /* primitive/slice/pointer. */)
 	MediaLibraries() unsafe.Pointer
@@ -108,8 +107,8 @@ func (m_ MediaLibraryBrowserController) TogglePanel(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/frame
-func (m_ MediaLibraryBrowserController) Frame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](m_.ID, objc.Sel("frame"))
+func (m_ MediaLibraryBrowserController) Frame() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](m_.ID, objc.Sel("frame"))
 	return rv
 }
 
@@ -118,7 +117,7 @@ func (m_ MediaLibraryBrowserController) Frame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/frame
-func (m_ MediaLibraryBrowserController) SetFrame(value coregraphics.CGRect) {
+func (m_ MediaLibraryBrowserController) SetFrame(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFrame:"), value)
 }
 

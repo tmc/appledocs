@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -67,8 +68,8 @@ type ITouchBar interface {
 	SetTrackFillColor(value IColor)
 	IsVisible() bool /* primitive/slice/pointer. */
 	SetIsVisible(value bool /* primitive/slice/pointer. */)
-	CustomizationLabel() string /* primitive/slice/pointer. */
-	SetCustomizationLabel(value string /* primitive/slice/pointer. */)
+	CustomizationLabel() objc.IObject /* cross-framework: NSString */
+	SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */)
 	TouchBar() ITouchBar
 	SetTouchBar(value ITouchBar)
 	AcceptsTouchEvents() bool /* primitive/slice/pointer. */
@@ -134,7 +135,7 @@ func NewTouchBar() TouchBar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/init(coder:)
-func NewTouchBarWithCoder(coder Coder /* not a class type */) TouchBar {
+func NewTouchBarWithCoder(coder objc.IObject /* cross-framework Coder */) TouchBar {
 	instance := getTouchBarClass().Alloc()
 	rv := objc.Send[TouchBar](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -554,8 +555,8 @@ func (t_ TouchBar) SetIsVisible(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/customizationlabel
-func (t_ TouchBar) CustomizationLabel() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("customizationLabel"))
+func (t_ TouchBar) CustomizationLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("customizationLabel"))
 	return rv
 }
 
@@ -564,8 +565,8 @@ func (t_ TouchBar) CustomizationLabel() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/customizationlabel
-func (t_ TouchBar) SetCustomizationLabel(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
+func (t_ TouchBar) SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationLabel:"), value)
 }
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,9 +33,9 @@ type ITextAlternatives interface {
 	objectivec.IObject
 	// properties:
 	AlternativeStrings() []string /* primitive/slice/pointer. */
-	PrimaryString() string /* primitive/slice/pointer. */
+	PrimaryString() objc.IObject /* cross-framework: NSString */
 	// methods:
-	NoteSelectedAlternativeString(alternativeString string /* primitive/slice/pointer. */)
+	NoteSelectedAlternativeString(alternativeString objc.IObject /* cross-framework NSString */)
 }
 
 // A list of alternative strings for a piece of text.
@@ -94,9 +95,9 @@ func NewTextAlternatives() TextAlternatives {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives/init(primaryString:alternativeStrings:)
-func NewTextAlternativesWithPrimaryStringAlternativeStrings(primaryString string /* primitive/slice/pointer. */, alternativeStrings []string /* primitive/slice/pointer. */) TextAlternatives {
+func NewTextAlternativesWithPrimaryStringAlternativeStrings(primaryString objc.IObject /* cross-framework NSString */, alternativeStrings []string /* primitive/slice/pointer. */) TextAlternatives {
 	instance := getTextAlternativesClass().Alloc()
-	rv := objc.Send[TextAlternatives](instance.ID, objc.Sel("initWithPrimaryString:alternativeStrings:"), objc.String(primaryString), alternativeStrings)
+	rv := objc.Send[TextAlternatives](instance.ID, objc.Sel("initWithPrimaryString:alternativeStrings:"), primaryString, alternativeStrings)
 	rv.Autorelease()
 	return rv
 }
@@ -107,8 +108,8 @@ func NewTextAlternativesWithPrimaryStringAlternativeStrings(primaryString string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives/noteSelectedAlternativeString(_:)
-func (t_ TextAlternatives) NoteSelectedAlternativeString(alternativeString string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("noteSelectedAlternativeString:"), objc.String(alternativeString))
+func (t_ TextAlternatives) NoteSelectedAlternativeString(alternativeString objc.IObject /* cross-framework NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("noteSelectedAlternativeString:"), alternativeString)
 }
 
 
@@ -126,8 +127,8 @@ func (t_ TextAlternatives) AlternativeStrings() []string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives/primaryString
-func (t_ TextAlternatives) PrimaryString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("primaryString"))
+func (t_ TextAlternatives) PrimaryString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("primaryString"))
 	return rv
 }
 

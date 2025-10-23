@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/coreml"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -34,14 +33,14 @@ type _ColorSpaceClass struct {
 type IColorSpace interface {
 	objectivec.IObject
 	// properties:
-	CGColorSpace() coregraphics.CGColorSpaceRef
+	CGColorSpace() ColorSpaceRef /* not a class type */
 	ColorSyncProfile() unsafe.Pointer
-	ColorSpaceModel() coreml.objc.IObject /* cross-framework: Model */
-	SetColorSpaceModel(value coreml.objc.IObject /* cross-framework: Model */)
-	IccProfileData() foundation.objc.IObject /* cross-framework: Data */
-	SetIccProfileData(value foundation.objc.IObject /* cross-framework: Data */)
-	LocalizedName() string /* primitive/slice/pointer. */
-	SetLocalizedName(value string /* primitive/slice/pointer. */)
+	ColorSpaceModel() objc.IObject /* cross-framework: Model */
+	SetColorSpaceModel(value objc.IObject /* cross-framework: Model */)
+	IccProfileData() objc.IObject /* cross-framework: Data */
+	SetIccProfileData(value objc.IObject /* cross-framework: Data */)
+	LocalizedName() objc.IObject /* cross-framework: NSString */
+	SetLocalizedName(value objc.IObject /* cross-framework: NSString */)
 	NumberOfColorComponents() int /* primitive/slice/pointer. */
 	SetNumberOfColorComponents(value int /* primitive/slice/pointer. */)
 	// methods:
@@ -104,7 +103,7 @@ func NewColorSpace() ColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/init(cgColorSpace:)
-func NewColorSpaceWithCGColorSpace(cgColorSpace coregraphics.CGColorSpaceRef) ColorSpace {
+func NewColorSpaceWithCGColorSpace(cgColorSpace ColorSpaceRef /* not a class type */) ColorSpace {
 	instance := getColorSpaceClass().Alloc()
 	rv := objc.Send[ColorSpace](instance.ID, objc.Sel("initWithCGColorSpace:"), cgColorSpace)
 	rv.Autorelease()
@@ -154,8 +153,8 @@ func (cc _ColorSpaceClass) GenericGrayColorSpace() ColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/cgColorSpace
-func (c_ ColorSpace) CGColorSpace() coregraphics.CGColorSpaceRef {
-	rv := objc.Send[coregraphics.CGColorSpaceRef](c_.ID, objc.Sel("CGColorSpace"))
+func (c_ ColorSpace) CGColorSpace() ColorSpaceRef /* not a class type */ {
+	rv := objc.Send[ColorSpaceRef](c_.ID, objc.Sel("CGColorSpace"))
 	return rv
 }
 
@@ -204,7 +203,7 @@ func (c_ ColorSpace) GenericGrayColorSpace() IColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/colorspacemodel
-func (c_ ColorSpace) ColorSpaceModel() coreml.objc.IObject /* cross-framework: Model */ {
+func (c_ ColorSpace) ColorSpaceModel() objc.IObject /* cross-framework: Model */ {
 	rv := objc.Send[coreml.Model](c_.ID, objc.Sel("colorSpaceModel"))
 	return rv
 }
@@ -214,7 +213,7 @@ func (c_ ColorSpace) ColorSpaceModel() coreml.objc.IObject /* cross-framework: M
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/colorspacemodel
-func (c_ ColorSpace) SetColorSpaceModel(value coreml.objc.IObject /* cross-framework: Model */) {
+func (c_ ColorSpace) SetColorSpaceModel(value objc.IObject /* cross-framework: Model */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setColorSpaceModel:"), value)
 }
 
@@ -223,7 +222,7 @@ func (c_ ColorSpace) SetColorSpaceModel(value coreml.objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/iccprofiledata
-func (c_ ColorSpace) IccProfileData() foundation.objc.IObject /* cross-framework: Data */ {
+func (c_ ColorSpace) IccProfileData() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("iccProfileData"))
 	return rv
 }
@@ -233,7 +232,7 @@ func (c_ ColorSpace) IccProfileData() foundation.objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/iccprofiledata
-func (c_ ColorSpace) SetIccProfileData(value foundation.objc.IObject /* cross-framework: Data */) {
+func (c_ ColorSpace) SetIccProfileData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIccProfileData:"), value)
 }
 
@@ -242,8 +241,8 @@ func (c_ ColorSpace) SetIccProfileData(value foundation.objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/localizedname
-func (c_ ColorSpace) LocalizedName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
+func (c_ ColorSpace) LocalizedName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
@@ -252,8 +251,8 @@ func (c_ ColorSpace) LocalizedName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/localizedname
-func (c_ ColorSpace) SetLocalizedName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
+func (c_ ColorSpace) SetLocalizedName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedName:"), value)
 }
 
 

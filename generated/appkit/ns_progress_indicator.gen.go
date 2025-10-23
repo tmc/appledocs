@@ -47,8 +47,8 @@ type IProgressIndicator interface {
 	SetMaxValue(value float64 /* primitive/slice/pointer. */)
 	MinValue() float64 /* primitive/slice/pointer. */
 	SetMinValue(value float64 /* primitive/slice/pointer. */)
-	ObservedProgress() Progress /* not a class type */
-	SetObservedProgress(value Progress /* not a class type */)
+	ObservedProgress() objc.IObject /* cross-framework: Progress */
+	SetObservedProgress(value objc.IObject /* cross-framework: Progress */)
 	Style() ProgressIndicatorStyle
 	SetStyle(value ProgressIndicatorStyle)
 	UsesThreadedAnimation() bool /* primitive/slice/pointer. */
@@ -313,7 +313,7 @@ func (p_ ProgressIndicator) SetMinValue(value float64 /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/observedProgress
-func (p_ ProgressIndicator) ObservedProgress() Progress /* not a class type */ {
+func (p_ ProgressIndicator) ObservedProgress() objc.IObject /* cross-framework: Progress */ {
 	rv := objc.Send[Progress](p_.ID, objc.Sel("observedProgress"))
 	return rv
 }
@@ -323,7 +323,7 @@ func (p_ ProgressIndicator) ObservedProgress() Progress /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/observedProgress
-func (p_ ProgressIndicator) SetObservedProgress(value Progress /* not a class type */) {
+func (p_ ProgressIndicator) SetObservedProgress(value objc.IObject /* cross-framework: Progress */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObservedProgress:"), value)
 }
 

@@ -42,12 +42,12 @@ type IPrintOperation interface {
 	SetCurrentPage(value int /* primitive/slice/pointer. */)
 	IsCopyingOperation() bool /* primitive/slice/pointer. */
 	SetIsCopyingOperation(value bool /* primitive/slice/pointer. */)
-	JobTitle() string /* primitive/slice/pointer. */
-	SetJobTitle(value string /* primitive/slice/pointer. */)
+	JobTitle() objc.IObject /* cross-framework: NSString */
+	SetJobTitle(value objc.IObject /* cross-framework: NSString */)
 	PageOrder() unsafe.Pointer
 	SetPageOrder(value unsafe.Pointer)
-	PageRange() foundation.objc.IObject /* cross-framework: Range */
-	SetPageRange(value foundation.objc.IObject /* cross-framework: Range */)
+	PageRange() objc.IObject /* cross-framework: Range */
+	SetPageRange(value objc.IObject /* cross-framework: Range */)
 	PdfPanel() objc.IObject /* cross-framework: PDFPanel */
 	SetPdfPanel(value objc.IObject /* cross-framework: PDFPanel */)
 	PreferredRenderingQuality() unsafe.Pointer
@@ -215,8 +215,8 @@ func (p_ PrintOperation) SetIsCopyingOperation(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/jobtitle
-func (p_ PrintOperation) JobTitle() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("jobTitle"))
+func (p_ PrintOperation) JobTitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("jobTitle"))
 	return rv
 }
 
@@ -225,8 +225,8 @@ func (p_ PrintOperation) JobTitle() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/jobtitle
-func (p_ PrintOperation) SetJobTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setJobTitle:"), objc.String(value))
+func (p_ PrintOperation) SetJobTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setJobTitle:"), value)
 }
 
 
@@ -253,8 +253,8 @@ func (p_ PrintOperation) SetPageOrder(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/pagerange
-func (p_ PrintOperation) PageRange() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](p_.ID, objc.Sel("pageRange"))
+func (p_ PrintOperation) PageRange() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[Range](p_.ID, objc.Sel("pageRange"))
 	return rv
 }
 
@@ -263,7 +263,7 @@ func (p_ PrintOperation) PageRange() foundation.objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/pagerange
-func (p_ PrintOperation) SetPageRange(value foundation.objc.IObject /* cross-framework: Range */) {
+func (p_ PrintOperation) SetPageRange(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPageRange:"), value)
 }
 

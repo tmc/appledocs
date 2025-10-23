@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SharingServicePickerTouchBarItem] class.
@@ -30,8 +31,8 @@ type _SharingServicePickerTouchBarItemClass struct {
 type ISharingServicePickerTouchBarItem interface {
 	ITouchBarItem
 	// properties:
-	ButtonTitle() string /* primitive/slice/pointer. */
-	SetButtonTitle(value string /* primitive/slice/pointer. */)
+	ButtonTitle() objc.IObject /* cross-framework: NSString */
+	SetButtonTitle(value objc.IObject /* cross-framework: NSString */)
 	ActivityItemsConfiguration() ActivityItemsConfigurationReading /* not a class type */
 	SetActivityItemsConfiguration(value ActivityItemsConfigurationReading /* not a class type */)
 	ButtonImage() IImage
@@ -100,8 +101,8 @@ func NewSharingServicePickerTouchBarItem() SharingServicePickerTouchBarItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/buttonTitle
-func (s_ SharingServicePickerTouchBarItem) ButtonTitle() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("buttonTitle"))
+func (s_ SharingServicePickerTouchBarItem) ButtonTitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("buttonTitle"))
 	return rv
 }
 
@@ -110,8 +111,8 @@ func (s_ SharingServicePickerTouchBarItem) ButtonTitle() string /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/buttonTitle
-func (s_ SharingServicePickerTouchBarItem) SetButtonTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setButtonTitle:"), objc.String(value))
+func (s_ SharingServicePickerTouchBarItem) SetButtonTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setButtonTitle:"), value)
 }
 
 

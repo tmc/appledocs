@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -113,8 +114,8 @@ func NewParagraphStyle() ParagraphStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/defaultWritingDirection(forLanguage:)
-func (pc _ParagraphStyleClass) DefaultWritingDirectionForLanguage(languageName string /* primitive/slice/pointer. */) WritingDirection {
-	rv := objc.Send[WritingDirection](objc.ID(pc.class), objc.Sel("defaultWritingDirectionForLanguage:"), objc.String(languageName))
+func (pc _ParagraphStyleClass) DefaultWritingDirectionForLanguage(languageName objc.IObject /* cross-framework NSString */) WritingDirection {
+	rv := objc.Send[WritingDirection](objc.ID(pc.class), objc.Sel("defaultWritingDirectionForLanguage:"), languageName)
 	return rv
 }
 

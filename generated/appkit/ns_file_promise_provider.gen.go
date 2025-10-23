@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,8 +34,8 @@ type IFilePromiseProvider interface {
 	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	FileType() string /* primitive/slice/pointer. */
-	SetFileType(value string /* primitive/slice/pointer. */)
+	FileType() objc.IObject /* cross-framework: NSString */
+	SetFileType(value objc.IObject /* cross-framework: NSString */)
 	UserInfo() unsafe.Pointer
 	SetUserInfo(value unsafe.Pointer)
 	// methods:
@@ -112,8 +113,8 @@ func (f_ FilePromiseProvider) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromiseprovider/filetype
-func (f_ FilePromiseProvider) FileType() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("fileType"))
+func (f_ FilePromiseProvider) FileType() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("fileType"))
 	return rv
 }
 
@@ -122,8 +123,8 @@ func (f_ FilePromiseProvider) FileType() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromiseprovider/filetype
-func (f_ FilePromiseProvider) SetFileType(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFileType:"), objc.String(value))
+func (f_ FilePromiseProvider) SetFileType(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFileType:"), value)
 }
 
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [TableHeaderView] class.
@@ -37,8 +36,8 @@ type ITableHeaderView interface {
 	TableView() objc.IObject /* cross-framework: TableView */
 	SetTableView(value objc.IObject /* cross-framework: TableView */)
 	// methods:
-	ColumnAtPoint(point coregraphics.CGPoint) int /* primitive/slice/pointer. */
-	HeaderRectOfColumn(column int /* primitive/slice/pointer. */) coregraphics.CGRect
+	ColumnAtPoint(point objc.IObject /* cross-framework Point */) int /* primitive/slice/pointer. */
+	HeaderRectOfColumn(column int /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Rect */
 }
 
 // An object that draws headers over a table view’s columns and handles mouse events in those headers.
@@ -100,7 +99,7 @@ func NewTableHeaderView() TableHeaderView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/column(at:)
-func (t_ TableHeaderView) ColumnAtPoint(point coregraphics.CGPoint) int /* primitive/slice/pointer. */ {
+func (t_ TableHeaderView) ColumnAtPoint(point objc.IObject /* cross-framework Point */) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](t_.ID, objc.Sel("columnAtPoint:"), point)
 	return rv
 }
@@ -110,8 +109,8 @@ func (t_ TableHeaderView) ColumnAtPoint(point coregraphics.CGPoint) int /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/headerRect(ofColumn:)
-func (t_ TableHeaderView) HeaderRectOfColumn(column int /* primitive/slice/pointer. */) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("headerRectOfColumn:"), column)
+func (t_ TableHeaderView) HeaderRectOfColumn(column int /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](t_.ID, objc.Sel("headerRectOfColumn:"), column)
 	return rv
 }
 

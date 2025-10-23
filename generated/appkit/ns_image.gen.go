@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,16 +32,16 @@ type _ImageClass struct {
 type IImage interface {
 	objectivec.IObject
 	// properties:
-	AccessibilityDescription() string /* primitive/slice/pointer. */
-	SetAccessibilityDescription(value string /* primitive/slice/pointer. */)
-	AlignmentRect() coregraphics.CGRect
-	SetAlignmentRect(value coregraphics.CGRect)
+	AccessibilityDescription() objc.IObject /* cross-framework: NSString */
+	SetAccessibilityDescription(value objc.IObject /* cross-framework: NSString */)
+	AlignmentRect() objc.IObject /* cross-framework: Rect */
+	SetAlignmentRect(value objc.IObject /* cross-framework: Rect */)
 	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
 	CacheMode() ImageCacheMode
 	SetCacheMode(value ImageCacheMode)
-	CapInsets() EdgeInsets /* not a class type */
-	SetCapInsets(value EdgeInsets /* not a class type */)
+	CapInsets() objc.IObject /* cross-framework: EdgeInsets */
+	SetCapInsets(value objc.IObject /* cross-framework: EdgeInsets */)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Template() bool /* primitive/slice/pointer. */
@@ -58,10 +57,10 @@ type IImage interface {
 	Representations() []ImageRep /* primitive/slice/pointer. */
 	ResizingMode() ImageResizingMode
 	SetResizingMode(value ImageResizingMode)
-	Size() coregraphics.CGSize
-	SetSize(value coregraphics.CGSize)
+	Size() objc.IObject /* cross-framework: Size */
+	SetSize(value objc.IObject /* cross-framework: Size */)
 	SymbolConfiguration() IImageSymbolConfiguration
-	TIFFRepresentation() foundation.objc.IObject /* cross-framework: NSData */
+	TIFFRepresentation() objc.IObject /* cross-framework: NSData */
 	UsesEPSOnResolutionMismatch() bool /* primitive/slice/pointer. */
 	SetUsesEPSOnResolutionMismatch(value bool /* primitive/slice/pointer. */)
 	IsTemplate() bool /* primitive/slice/pointer. */
@@ -75,14 +74,14 @@ type IImage interface {
 	// methods:
 	AddRepresentation(imageRep IImageRep)
 	AddRepresentations(imageReps []ImageRep /* primitive/slice/pointer. */)
-	BestRepresentationForRectContextHints(rect coregraphics.CGRect, referenceContext IGraphicsContext, hints foundation.IDictionary /* already interface */) IImageRep
-	CGImageForProposedRectContextHints(proposedDestRect coregraphics.CGRect, referenceContext IGraphicsContext, hints foundation.IDictionary /* already interface */) coregraphics.CGImageRef
-	DrawAtPointFromRectOperationFraction(point coregraphics.CGPoint, fromRect coregraphics.CGRect, op CompositingOperation, delta float64 /* primitive/slice/pointer. */)
-	DrawInRect(rect coregraphics.CGRect)
-	DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fromRect coregraphics.CGRect, op CompositingOperation, delta float64 /* primitive/slice/pointer. */)
-	DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect coregraphics.CGRect, srcSpacePortionRect coregraphics.CGRect, op CompositingOperation, requestedAlpha float64 /* primitive/slice/pointer. */, respectContextIsFlipped bool /* primitive/slice/pointer. */, hints foundation.IDictionary /* already interface */)
-	DrawRepresentationInRect(imageRep IImageRep, rect coregraphics.CGRect) bool /* primitive/slice/pointer. */
-	HitTestRectWithImageDestinationRectContextHintsFlipped(testRectDestSpace coregraphics.CGRect, imageRectDestSpace coregraphics.CGRect, context IGraphicsContext, hints foundation.IDictionary /* already interface */, flipped bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	BestRepresentationForRectContextHints(rect objc.IObject /* cross-framework Rect */, referenceContext IGraphicsContext, hints foundation.IDictionary /* already interface */) IImageRep
+	CGImageForProposedRectContextHints(proposedDestRect objc.IObject /* cross-framework Rect */, referenceContext IGraphicsContext, hints foundation.IDictionary /* already interface */) ImageRef /* not a class type */
+	DrawAtPointFromRectOperationFraction(point objc.IObject /* cross-framework Point */, fromRect objc.IObject /* cross-framework Rect */, op CompositingOperation, delta float64 /* primitive/slice/pointer. */)
+	DrawInRect(rect objc.IObject /* cross-framework Rect */)
+	DrawInRectFromRectOperationFraction(rect objc.IObject /* cross-framework Rect */, fromRect objc.IObject /* cross-framework Rect */, op CompositingOperation, delta float64 /* primitive/slice/pointer. */)
+	DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect objc.IObject /* cross-framework Rect */, srcSpacePortionRect objc.IObject /* cross-framework Rect */, op CompositingOperation, requestedAlpha float64 /* primitive/slice/pointer. */, respectContextIsFlipped bool /* primitive/slice/pointer. */, hints foundation.IDictionary /* already interface */)
+	DrawRepresentationInRect(imageRep IImageRep, rect objc.IObject /* cross-framework Rect */) bool /* primitive/slice/pointer. */
+	HitTestRectWithImageDestinationRectContextHintsFlipped(testRectDestSpace objc.IObject /* cross-framework Rect */, imageRectDestSpace objc.IObject /* cross-framework Rect */, context IGraphicsContext, hints foundation.IDictionary /* already interface */, flipped bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
 	LayerContentsForContentsScale(layerContentsScale float64 /* primitive/slice/pointer. */) objc.ID
 	Name() objc.IObject /* cross-framework: ImageName */
 	Recache()
@@ -151,9 +150,9 @@ func NewImage() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(byReferencingFile:)
-func NewImageByReferencingFile(fileName string /* primitive/slice/pointer. */) Image {
+func NewImageByReferencingFile(fileName objc.IObject /* cross-framework NSString */) Image {
 	instance := getImageClass().Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initByReferencingFile:"), objc.String(fileName))
+	rv := objc.Send[Image](instance.ID, objc.Sel("initByReferencingFile:"), fileName)
 	rv.Autorelease()
 	return rv
 }
@@ -163,7 +162,7 @@ func NewImageByReferencingFile(fileName string /* primitive/slice/pointer. */) I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(byReferencing:)
-func NewImageByReferencingURL(url foundation.objc.IObject /* cross-framework URL */) Image {
+func NewImageByReferencingURL(url objc.IObject /* cross-framework NSURL */) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initByReferencingURL:"), url)
 	rv.Autorelease()
@@ -185,7 +184,7 @@ func NewImageNamed(name objc.IObject /* cross-framework ImageName */) Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(cgImage:size:)
-func NewImageWithCGImageSize(cgImage coregraphics.CGImageRef, size coregraphics.CGSize) Image {
+func NewImageWithCGImageSize(cgImage ImageRef /* not a class type */, size objc.IObject /* cross-framework Size */) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCGImage:size:"), cgImage, size)
 	rv.Autorelease()
@@ -197,7 +196,7 @@ func NewImageWithCGImageSize(cgImage coregraphics.CGImageRef, size coregraphics.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(coder:)
-func NewImageWithCoder(coder Coder /* not a class type */) Image {
+func NewImageWithCoder(coder objc.IObject /* cross-framework Coder */) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -209,9 +208,9 @@ func NewImageWithCoder(coder Coder /* not a class type */) Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(contentsOfFile:)
-func NewImageWithContentsOfFile(fileName string /* primitive/slice/pointer. */) Image {
+func NewImageWithContentsOfFile(fileName objc.IObject /* cross-framework NSString */) Image {
 	instance := getImageClass().Alloc()
-	rv := objc.Send[Image](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(fileName))
+	rv := objc.Send[Image](instance.ID, objc.Sel("initWithContentsOfFile:"), fileName)
 	rv.Autorelease()
 	return rv
 }
@@ -221,7 +220,7 @@ func NewImageWithContentsOfFile(fileName string /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(contentsOf:)
-func NewImageWithContentsOfURL(url foundation.objc.IObject /* cross-framework URL */) Image {
+func NewImageWithContentsOfURL(url objc.IObject /* cross-framework NSURL */) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -233,7 +232,7 @@ func NewImageWithContentsOfURL(url foundation.objc.IObject /* cross-framework UR
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(data:)
-func NewImageWithData(data foundation.objc.IObject /* cross-framework NSData */) Image {
+func NewImageWithData(data objc.IObject /* cross-framework NSData */) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithData:"), data)
 	rv.Autorelease()
@@ -245,7 +244,7 @@ func NewImageWithData(data foundation.objc.IObject /* cross-framework NSData */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(dataIgnoringOrientation:)
-func NewImageWithDataIgnoringOrientation(data foundation.objc.IObject /* cross-framework NSData */) Image {
+func NewImageWithDataIgnoringOrientation(data objc.IObject /* cross-framework NSData */) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithDataIgnoringOrientation:"), data)
 	rv.Autorelease()
@@ -269,7 +268,7 @@ func NewImageWithPasteboard(pasteboard IPasteboard) Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(size:)
-func NewImageWithSize(size coregraphics.CGSize) Image {
+func NewImageWithSize(size objc.IObject /* cross-framework Size */) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithSize:"), size)
 	rv.Autorelease()
@@ -281,7 +280,7 @@ func NewImageWithSize(size coregraphics.CGSize) Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(size:flipped:drawingHandler:)
-func NewImageWithSizeFlippedDrawingHandler(size coregraphics.CGSize, drawingHandlerShouldBeCalledWithFlippedContext bool /* primitive/slice/pointer. */, drawingHandler unsafe.Pointer) Image {
+func NewImageWithSizeFlippedDrawingHandler(size objc.IObject /* cross-framework Size */, drawingHandlerShouldBeCalledWithFlippedContext bool /* primitive/slice/pointer. */, drawingHandler unsafe.Pointer) Image {
 	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSize:flipped:drawingHandler:"), size, drawingHandlerShouldBeCalledWithFlippedContext, drawingHandler)
 	return rv
 }
@@ -289,8 +288,8 @@ func NewImageWithSizeFlippedDrawingHandler(size coregraphics.CGSize, drawingHand
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(symbolName:bundle:variableValue:)
-func NewImageWithSymbolNameBundleVariableValue(name string /* primitive/slice/pointer. */, bundle objc.IObject /* cross-framework Bundle */, value float64 /* primitive/slice/pointer. */) Image {
-	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSymbolName:bundle:variableValue:"), objc.String(name), bundle, value)
+func NewImageWithSymbolNameBundleVariableValue(name objc.IObject /* cross-framework NSString */, bundle objc.IObject /* cross-framework Bundle */, value float64 /* primitive/slice/pointer. */) Image {
+	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSymbolName:bundle:variableValue:"), name, bundle, value)
 	return rv
 }
 
@@ -299,8 +298,8 @@ func NewImageWithSymbolNameBundleVariableValue(name string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(symbolName:variableValue:)
-func NewImageWithSymbolNameVariableValue(name string /* primitive/slice/pointer. */, value float64 /* primitive/slice/pointer. */) Image {
-	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSymbolName:variableValue:"), objc.String(name), value)
+func NewImageWithSymbolNameVariableValue(name objc.IObject /* cross-framework NSString */, value float64 /* primitive/slice/pointer. */) Image {
+	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSymbolName:variableValue:"), name, value)
 	return rv
 }
 
@@ -309,8 +308,8 @@ func NewImageWithSymbolNameVariableValue(name string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(systemSymbolName:accessibilityDescription:)
-func NewImageWithSystemSymbolNameAccessibilityDescription(name string /* primitive/slice/pointer. */, description string /* primitive/slice/pointer. */) Image {
-	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSystemSymbolName:accessibilityDescription:"), objc.String(name), objc.String(description))
+func NewImageWithSystemSymbolNameAccessibilityDescription(name objc.IObject /* cross-framework NSString */, description objc.IObject /* cross-framework NSString */) Image {
+	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSystemSymbolName:accessibilityDescription:"), name, description)
 	return rv
 }
 
@@ -319,8 +318,8 @@ func NewImageWithSystemSymbolNameAccessibilityDescription(name string /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(systemSymbolName:variableValue:accessibilityDescription:)
-func NewImageWithSystemSymbolNameVariableValueAccessibilityDescription(name string /* primitive/slice/pointer. */, value float64 /* primitive/slice/pointer. */, description string /* primitive/slice/pointer. */) Image {
-	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSystemSymbolName:variableValue:accessibilityDescription:"), objc.String(name), value, objc.String(description))
+func NewImageWithSystemSymbolNameVariableValueAccessibilityDescription(name objc.IObject /* cross-framework NSString */, value float64 /* primitive/slice/pointer. */, description objc.IObject /* cross-framework NSString */) Image {
+	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSystemSymbolName:variableValue:accessibilityDescription:"), name, value, description)
 	return rv
 }
 
@@ -380,7 +379,7 @@ func (ic _ImageClass) ImageNamed(name objc.IObject /* cross-framework ImageName 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(size:flipped:drawingHandler:)
-func (ic _ImageClass) ImageWithSizeFlippedDrawingHandler(size coregraphics.CGSize, drawingHandlerShouldBeCalledWithFlippedContext bool /* primitive/slice/pointer. */, drawingHandler unsafe.Pointer) unsafe.Pointer {
+func (ic _ImageClass) ImageWithSizeFlippedDrawingHandler(size objc.IObject /* cross-framework Size */, drawingHandlerShouldBeCalledWithFlippedContext bool /* primitive/slice/pointer. */, drawingHandler unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSize:flipped:drawingHandler:"), size, drawingHandlerShouldBeCalledWithFlippedContext, drawingHandler)
 	return rv
 }
@@ -388,8 +387,8 @@ func (ic _ImageClass) ImageWithSizeFlippedDrawingHandler(size coregraphics.CGSiz
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(symbolName:bundle:variableValue:)
-func (ic _ImageClass) ImageWithSymbolNameBundleVariableValue(name string /* primitive/slice/pointer. */, bundle objc.IObject /* cross-framework Bundle */, value float64 /* primitive/slice/pointer. */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSymbolName:bundle:variableValue:"), objc.String(name), bundle, value)
+func (ic _ImageClass) ImageWithSymbolNameBundleVariableValue(name objc.IObject /* cross-framework NSString */, bundle objc.IObject /* cross-framework Bundle */, value float64 /* primitive/slice/pointer. */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSymbolName:bundle:variableValue:"), name, bundle, value)
 	return rv
 }
 
@@ -398,8 +397,8 @@ func (ic _ImageClass) ImageWithSymbolNameBundleVariableValue(name string /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(symbolName:variableValue:)
-func (ic _ImageClass) ImageWithSymbolNameVariableValue(name string /* primitive/slice/pointer. */, value float64 /* primitive/slice/pointer. */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSymbolName:variableValue:"), objc.String(name), value)
+func (ic _ImageClass) ImageWithSymbolNameVariableValue(name objc.IObject /* cross-framework NSString */, value float64 /* primitive/slice/pointer. */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSymbolName:variableValue:"), name, value)
 	return rv
 }
 
@@ -408,8 +407,8 @@ func (ic _ImageClass) ImageWithSymbolNameVariableValue(name string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(systemSymbolName:accessibilityDescription:)
-func (ic _ImageClass) ImageWithSystemSymbolNameAccessibilityDescription(name string /* primitive/slice/pointer. */, description string /* primitive/slice/pointer. */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSystemSymbolName:accessibilityDescription:"), objc.String(name), objc.String(description))
+func (ic _ImageClass) ImageWithSystemSymbolNameAccessibilityDescription(name objc.IObject /* cross-framework NSString */, description objc.IObject /* cross-framework NSString */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSystemSymbolName:accessibilityDescription:"), name, description)
 	return rv
 }
 
@@ -418,8 +417,8 @@ func (ic _ImageClass) ImageWithSystemSymbolNameAccessibilityDescription(name str
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(systemSymbolName:variableValue:accessibilityDescription:)
-func (ic _ImageClass) ImageWithSystemSymbolNameVariableValueAccessibilityDescription(name string /* primitive/slice/pointer. */, value float64 /* primitive/slice/pointer. */, description string /* primitive/slice/pointer. */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSystemSymbolName:variableValue:accessibilityDescription:"), objc.String(name), value, objc.String(description))
+func (ic _ImageClass) ImageWithSystemSymbolNameVariableValueAccessibilityDescription(name objc.IObject /* cross-framework NSString */, value float64 /* primitive/slice/pointer. */, description objc.IObject /* cross-framework NSString */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSystemSymbolName:variableValue:accessibilityDescription:"), name, value, description)
 	return rv
 }
 
@@ -464,7 +463,7 @@ func (i_ Image) AddRepresentations(imageReps []ImageRep /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/bestRepresentation(for:context:hints:)
-func (i_ Image) BestRepresentationForRectContextHints(rect coregraphics.CGRect, referenceContext IGraphicsContext, hints foundation.IDictionary /* already interface */) IImageRep {
+func (i_ Image) BestRepresentationForRectContextHints(rect objc.IObject /* cross-framework Rect */, referenceContext IGraphicsContext, hints foundation.IDictionary /* already interface */) IImageRep {
 	rv := objc.Send[ImageRep](i_.ID, objc.Sel("bestRepresentationForRect:context:hints:"), rect, referenceContext, hints)
 	return rv
 }
@@ -474,8 +473,8 @@ func (i_ Image) BestRepresentationForRectContextHints(rect coregraphics.CGRect, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/cgImage(forProposedRect:context:hints:)
-func (i_ Image) CGImageForProposedRectContextHints(proposedDestRect coregraphics.CGRect, referenceContext IGraphicsContext, hints foundation.IDictionary /* already interface */) coregraphics.CGImageRef {
-	rv := objc.Send[coregraphics.CGImageRef](i_.ID, objc.Sel("CGImageForProposedRect:context:hints:"), proposedDestRect, referenceContext, hints)
+func (i_ Image) CGImageForProposedRectContextHints(proposedDestRect objc.IObject /* cross-framework Rect */, referenceContext IGraphicsContext, hints foundation.IDictionary /* already interface */) ImageRef /* not a class type */ {
+	rv := objc.Send[ImageRef](i_.ID, objc.Sel("CGImageForProposedRect:context:hints:"), proposedDestRect, referenceContext, hints)
 	return rv
 }
 
@@ -484,7 +483,7 @@ func (i_ Image) CGImageForProposedRectContextHints(proposedDestRect coregraphics
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/draw(at:from:operation:fraction:)
-func (i_ Image) DrawAtPointFromRectOperationFraction(point coregraphics.CGPoint, fromRect coregraphics.CGRect, op CompositingOperation, delta float64 /* primitive/slice/pointer. */) {
+func (i_ Image) DrawAtPointFromRectOperationFraction(point objc.IObject /* cross-framework Point */, fromRect objc.IObject /* cross-framework Rect */, op CompositingOperation, delta float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("drawAtPoint:fromRect:operation:fraction:"), point, fromRect, op, delta)
 }
 
@@ -493,7 +492,7 @@ func (i_ Image) DrawAtPointFromRectOperationFraction(point coregraphics.CGPoint,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/draw(in:)
-func (i_ Image) DrawInRect(rect coregraphics.CGRect) {
+func (i_ Image) DrawInRect(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("drawInRect:"), rect)
 }
 
@@ -502,7 +501,7 @@ func (i_ Image) DrawInRect(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/draw(in:from:operation:fraction:)
-func (i_ Image) DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fromRect coregraphics.CGRect, op CompositingOperation, delta float64 /* primitive/slice/pointer. */) {
+func (i_ Image) DrawInRectFromRectOperationFraction(rect objc.IObject /* cross-framework Rect */, fromRect objc.IObject /* cross-framework Rect */, op CompositingOperation, delta float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("drawInRect:fromRect:operation:fraction:"), rect, fromRect, op, delta)
 }
 
@@ -511,7 +510,7 @@ func (i_ Image) DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/draw(in:from:operation:fraction:respectFlipped:hints:)
-func (i_ Image) DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect coregraphics.CGRect, srcSpacePortionRect coregraphics.CGRect, op CompositingOperation, requestedAlpha float64 /* primitive/slice/pointer. */, respectContextIsFlipped bool /* primitive/slice/pointer. */, hints foundation.IDictionary /* already interface */) {
+func (i_ Image) DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect objc.IObject /* cross-framework Rect */, srcSpacePortionRect objc.IObject /* cross-framework Rect */, op CompositingOperation, requestedAlpha float64 /* primitive/slice/pointer. */, respectContextIsFlipped bool /* primitive/slice/pointer. */, hints foundation.IDictionary /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("drawInRect:fromRect:operation:fraction:respectFlipped:hints:"), dstSpacePortionRect, srcSpacePortionRect, op, requestedAlpha, respectContextIsFlipped, hints)
 }
 
@@ -520,7 +519,7 @@ func (i_ Image) DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpaceP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/drawRepresentation(_:in:)
-func (i_ Image) DrawRepresentationInRect(imageRep IImageRep, rect coregraphics.CGRect) bool /* primitive/slice/pointer. */ {
+func (i_ Image) DrawRepresentationInRect(imageRep IImageRep, rect objc.IObject /* cross-framework Rect */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("drawRepresentation:inRect:"), imageRep, rect)
 	return rv
 }
@@ -530,7 +529,7 @@ func (i_ Image) DrawRepresentationInRect(imageRep IImageRep, rect coregraphics.C
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/hitTest(_:withDestinationRect:context:hints:flipped:)
-func (i_ Image) HitTestRectWithImageDestinationRectContextHintsFlipped(testRectDestSpace coregraphics.CGRect, imageRectDestSpace coregraphics.CGRect, context IGraphicsContext, hints foundation.IDictionary /* already interface */, flipped bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (i_ Image) HitTestRectWithImageDestinationRectContextHintsFlipped(testRectDestSpace objc.IObject /* cross-framework Rect */, imageRectDestSpace objc.IObject /* cross-framework Rect */, context IGraphicsContext, hints foundation.IDictionary /* already interface */, flipped bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("hitTestRect:withImageDestinationRect:context:hints:flipped:"), testRectDestSpace, imageRectDestSpace, context, hints, flipped)
 	return rv
 }
@@ -626,8 +625,8 @@ func (i_ Image) ImageWithSymbolConfiguration(configuration IImageSymbolConfigura
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/accessibilityDescription
-func (i_ Image) AccessibilityDescription() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](i_.ID, objc.Sel("accessibilityDescription"))
+func (i_ Image) AccessibilityDescription() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("accessibilityDescription"))
 	return rv
 }
 
@@ -636,8 +635,8 @@ func (i_ Image) AccessibilityDescription() string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/accessibilityDescription
-func (i_ Image) SetAccessibilityDescription(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setAccessibilityDescription:"), objc.String(value))
+func (i_ Image) SetAccessibilityDescription(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAccessibilityDescription:"), value)
 }
 
 
@@ -645,8 +644,8 @@ func (i_ Image) SetAccessibilityDescription(value string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/alignmentRect
-func (i_ Image) AlignmentRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](i_.ID, objc.Sel("alignmentRect"))
+func (i_ Image) AlignmentRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](i_.ID, objc.Sel("alignmentRect"))
 	return rv
 }
 
@@ -655,7 +654,7 @@ func (i_ Image) AlignmentRect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/alignmentRect
-func (i_ Image) SetAlignmentRect(value coregraphics.CGRect) {
+func (i_ Image) SetAlignmentRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAlignmentRect:"), value)
 }
 
@@ -702,7 +701,7 @@ func (i_ Image) SetCacheMode(value ImageCacheMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/capInsets
-func (i_ Image) CapInsets() EdgeInsets /* not a class type */ {
+func (i_ Image) CapInsets() objc.IObject /* cross-framework: EdgeInsets */ {
 	rv := objc.Send[EdgeInsets](i_.ID, objc.Sel("capInsets"))
 	return rv
 }
@@ -712,7 +711,7 @@ func (i_ Image) CapInsets() EdgeInsets /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/capInsets
-func (i_ Image) SetCapInsets(value EdgeInsets /* not a class type */) {
+func (i_ Image) SetCapInsets(value objc.IObject /* cross-framework: EdgeInsets */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCapInsets:"), value)
 }
 
@@ -883,8 +882,8 @@ func (i_ Image) SetResizingMode(value ImageResizingMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/size
-func (i_ Image) Size() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](i_.ID, objc.Sel("size"))
+func (i_ Image) Size() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](i_.ID, objc.Sel("size"))
 	return rv
 }
 
@@ -893,7 +892,7 @@ func (i_ Image) Size() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/size
-func (i_ Image) SetSize(value coregraphics.CGSize) {
+func (i_ Image) SetSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSize:"), value)
 }
 
@@ -912,7 +911,7 @@ func (i_ Image) SymbolConfiguration() IImageSymbolConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/tiffRepresentation
-func (i_ Image) TIFFRepresentation() foundation.objc.IObject /* cross-framework: NSData */ {
+func (i_ Image) TIFFRepresentation() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](i_.ID, objc.Sel("TIFFRepresentation"))
 	return rv
 }

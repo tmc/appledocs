@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,8 +33,8 @@ type IDraggingImageComponent interface {
 	// properties:
 	Contents() unsafe.Pointer
 	SetContents(value unsafe.Pointer)
-	Frame() coregraphics.CGRect
-	SetFrame(value coregraphics.CGRect)
+	Frame() objc.IObject /* cross-framework: Rect */
+	SetFrame(value objc.IObject /* cross-framework: Rect */)
 	Key() unsafe.Pointer
 	SetKey(value unsafe.Pointer)
 	// methods:
@@ -117,8 +116,8 @@ func (d_ DraggingImageComponent) SetContents(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent/frame
-func (d_ DraggingImageComponent) Frame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](d_.ID, objc.Sel("frame"))
+func (d_ DraggingImageComponent) Frame() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](d_.ID, objc.Sel("frame"))
 	return rv
 }
 
@@ -127,7 +126,7 @@ func (d_ DraggingImageComponent) Frame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent/frame
-func (d_ DraggingImageComponent) SetFrame(value coregraphics.CGRect) {
+func (d_ DraggingImageComponent) SetFrame(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFrame:"), value)
 }
 

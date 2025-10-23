@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -65,14 +64,14 @@ type IText interface {
 	SetIsSelectable(value bool /* primitive/slice/pointer. */)
 	IsVerticallyResizable() bool /* primitive/slice/pointer. */
 	SetIsVerticallyResizable(value bool /* primitive/slice/pointer. */)
-	MaxSize() coregraphics.CGSize
-	SetMaxSize(value coregraphics.CGSize)
-	MinSize() coregraphics.CGSize
-	SetMinSize(value coregraphics.CGSize)
-	SelectedRange() foundation.objc.IObject /* cross-framework: Range */
-	SetSelectedRange(value foundation.objc.IObject /* cross-framework: Range */)
-	String() string /* primitive/slice/pointer. */
-	SetString(value string /* primitive/slice/pointer. */)
+	MaxSize() objc.IObject /* cross-framework: Size */
+	SetMaxSize(value objc.IObject /* cross-framework: Size */)
+	MinSize() objc.IObject /* cross-framework: Size */
+	SetMinSize(value objc.IObject /* cross-framework: Size */)
+	SelectedRange() objc.IObject /* cross-framework: Range */
+	SetSelectedRange(value objc.IObject /* cross-framework: Range */)
+	String() objc.IObject /* cross-framework: NSString */
+	SetString(value objc.IObject /* cross-framework: NSString */)
 	TextColor() IColor
 	SetTextColor(value IColor)
 	UsesFontPanel() bool /* primitive/slice/pointer. */
@@ -85,17 +84,17 @@ type IText interface {
 	CopyRuler(sender objectivec.IObject)
 	Delete(sender objectivec.IObject)
 	PasteRuler(sender objectivec.IObject)
-	ReadRTFDFromFile(path string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	ReplaceCharactersInRangeWithRTFD(range_ foundation.objc.IObject /* cross-framework Range */, rtfdData foundation.objc.IObject /* cross-framework NSData */)
-	RTFFromRange(range_ foundation.objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Data */
-	RTFDFromRange(range_ foundation.objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Data */
-	SetFontRange(font IFont, range_ foundation.objc.IObject /* cross-framework Range */)
-	SetTextColorRange(color IColor, range_ foundation.objc.IObject /* cross-framework Range */)
+	ReadRTFDFromFile(path objc.IObject /* cross-framework NSString */) bool /* primitive/slice/pointer. */
+	ReplaceCharactersInRangeWithRTFD(range_ objc.IObject /* cross-framework Range */, rtfdData objc.IObject /* cross-framework NSData */)
+	RTFFromRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Data */
+	RTFDFromRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Data */
+	SetFontRange(font IFont, range_ objc.IObject /* cross-framework Range */)
+	SetTextColorRange(color IColor, range_ objc.IObject /* cross-framework Range */)
 	SizeToFit()
 	Superscript(sender objectivec.IObject)
 	ToggleRuler(sender objectivec.IObject)
 	Unscript(sender objectivec.IObject)
-	WriteRTFDToFileAtomically(path string /* primitive/slice/pointer. */, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	WriteRTFDToFileAtomically(path objc.IObject /* cross-framework NSString */, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
 }
 
 // The most general programmatic interface for objects that manage text.
@@ -155,7 +154,7 @@ func NewText() Text {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(coder:)
-func NewTextWithCoder(coder Coder /* not a class type */) Text {
+func NewTextWithCoder(coder objc.IObject /* cross-framework Coder */) Text {
 	instance := getTextClass().Alloc()
 	rv := objc.Send[Text](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -231,8 +230,8 @@ func (t_ Text) PasteRuler(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/readRTFD(fromFile:)
-func (t_ Text) ReadRTFDFromFile(path string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](t_.ID, objc.Sel("readRTFDFromFile:"), objc.String(path))
+func (t_ Text) ReadRTFDFromFile(path objc.IObject /* cross-framework NSString */) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](t_.ID, objc.Sel("readRTFDFromFile:"), path)
 	return rv
 }
 
@@ -241,7 +240,7 @@ func (t_ Text) ReadRTFDFromFile(path string /* primitive/slice/pointer. */) bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/replaceCharacters(in:withRTFD:)
-func (t_ Text) ReplaceCharactersInRangeWithRTFD(range_ foundation.objc.IObject /* cross-framework Range */, rtfdData foundation.objc.IObject /* cross-framework NSData */) {
+func (t_ Text) ReplaceCharactersInRangeWithRTFD(range_ objc.IObject /* cross-framework Range */, rtfdData objc.IObject /* cross-framework NSData */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("replaceCharactersInRange:withRTFD:"), range_, rtfdData)
 }
 
@@ -250,7 +249,7 @@ func (t_ Text) ReplaceCharactersInRangeWithRTFD(range_ foundation.objc.IObject /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/rtf(from:)
-func (t_ Text) RTFFromRange(range_ foundation.objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Data */ {
+func (t_ Text) RTFFromRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[Data](t_.ID, objc.Sel("RTFFromRange:"), range_)
 	return rv
 }
@@ -260,7 +259,7 @@ func (t_ Text) RTFFromRange(range_ foundation.objc.IObject /* cross-framework Ra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/rtfd(from:)
-func (t_ Text) RTFDFromRange(range_ foundation.objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Data */ {
+func (t_ Text) RTFDFromRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[Data](t_.ID, objc.Sel("RTFDFromRange:"), range_)
 	return rv
 }
@@ -270,7 +269,7 @@ func (t_ Text) RTFDFromRange(range_ foundation.objc.IObject /* cross-framework R
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/setFont(_:range:)
-func (t_ Text) SetFontRange(font IFont, range_ foundation.objc.IObject /* cross-framework Range */) {
+func (t_ Text) SetFontRange(font IFont, range_ objc.IObject /* cross-framework Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFont:range:"), font, range_)
 }
 
@@ -279,7 +278,7 @@ func (t_ Text) SetFontRange(font IFont, range_ foundation.objc.IObject /* cross-
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/setTextColor(_:range:)
-func (t_ Text) SetTextColorRange(color IColor, range_ foundation.objc.IObject /* cross-framework Range */) {
+func (t_ Text) SetTextColorRange(color IColor, range_ objc.IObject /* cross-framework Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextColor:range:"), color, range_)
 }
 
@@ -324,8 +323,8 @@ func (t_ Text) Unscript(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/writeRTFD(toFile:atomically:)
-func (t_ Text) WriteRTFDToFileAtomically(path string /* primitive/slice/pointer. */, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](t_.ID, objc.Sel("writeRTFDToFile:atomically:"), objc.String(path), flag)
+func (t_ Text) WriteRTFDToFileAtomically(path objc.IObject /* cross-framework NSString */, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](t_.ID, objc.Sel("writeRTFDToFile:atomically:"), path, flag)
 	return rv
 }
 
@@ -638,8 +637,8 @@ func (t_ Text) SetIsVerticallyResizable(value bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/maxsize
-func (t_ Text) MaxSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("maxSize"))
+func (t_ Text) MaxSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](t_.ID, objc.Sel("maxSize"))
 	return rv
 }
 
@@ -648,7 +647,7 @@ func (t_ Text) MaxSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/maxsize
-func (t_ Text) SetMaxSize(value coregraphics.CGSize) {
+func (t_ Text) SetMaxSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxSize:"), value)
 }
 
@@ -657,8 +656,8 @@ func (t_ Text) SetMaxSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/minsize
-func (t_ Text) MinSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("minSize"))
+func (t_ Text) MinSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](t_.ID, objc.Sel("minSize"))
 	return rv
 }
 
@@ -667,7 +666,7 @@ func (t_ Text) MinSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/minsize
-func (t_ Text) SetMinSize(value coregraphics.CGSize) {
+func (t_ Text) SetMinSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMinSize:"), value)
 }
 
@@ -676,8 +675,8 @@ func (t_ Text) SetMinSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/selectedrange
-func (t_ Text) SelectedRange() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("selectedRange"))
+func (t_ Text) SelectedRange() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[Range](t_.ID, objc.Sel("selectedRange"))
 	return rv
 }
 
@@ -686,7 +685,7 @@ func (t_ Text) SelectedRange() foundation.objc.IObject /* cross-framework: Range
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/selectedrange
-func (t_ Text) SetSelectedRange(value foundation.objc.IObject /* cross-framework: Range */) {
+func (t_ Text) SetSelectedRange(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedRange:"), value)
 }
 
@@ -695,8 +694,8 @@ func (t_ Text) SetSelectedRange(value foundation.objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/string
-func (t_ Text) String() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("string"))
+func (t_ Text) String() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("string"))
 	return rv
 }
 
@@ -705,8 +704,8 @@ func (t_ Text) String() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/string
-func (t_ Text) SetString(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), objc.String(value))
+func (t_ Text) SetString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), value)
 }
 
 

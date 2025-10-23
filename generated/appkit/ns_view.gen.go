@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/coreimage"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -36,9 +36,9 @@ type IView interface {
 	// properties:
 	AcceptsTouchEvents() bool /* primitive/slice/pointer. */
 	SetAcceptsTouchEvents(value bool /* primitive/slice/pointer. */)
-	AdditionalSafeAreaInsets() EdgeInsets /* not a class type */
-	SetAdditionalSafeAreaInsets(value EdgeInsets /* not a class type */)
-	AlignmentRectInsets() EdgeInsets /* not a class type */
+	AdditionalSafeAreaInsets() objc.IObject /* cross-framework: EdgeInsets */
+	SetAdditionalSafeAreaInsets(value objc.IObject /* cross-framework: EdgeInsets */)
+	AlignmentRectInsets() objc.IObject /* cross-framework: EdgeInsets */
 	AllowedTouchTypes() TouchTypeMask
 	SetAllowedTouchTypes(value TouchTypeMask)
 	AllowsVibrancy() bool /* primitive/slice/pointer. */
@@ -48,12 +48,12 @@ type IView interface {
 	SetAutoresizesSubviews(value bool /* primitive/slice/pointer. */)
 	AutoresizingMask() AutoresizingMaskOptions
 	SetAutoresizingMask(value AutoresizingMaskOptions)
-	BackgroundFilters() []coreimage.objc.IObject /* cross-framework: Filter */
-	SetBackgroundFilters(value []coreimage.objc.IObject /* cross-framework: Filter */)
+	BackgroundFilters() objc.IObject /* cross-framework: Filter */
+	SetBackgroundFilters(value objc.IObject /* cross-framework: Filter */)
 	BaselineOffsetFromBottom() float64 /* primitive/slice/pointer. */
 	BottomAnchor() objc.IObject /* cross-framework: LayoutYAxisAnchor */
-	Bounds() coregraphics.CGRect
-	SetBounds(value coregraphics.CGRect)
+	Bounds() objc.IObject /* cross-framework: Rect */
+	SetBounds(value objc.IObject /* cross-framework: Rect */)
 	BoundsRotation() float64 /* primitive/slice/pointer. */
 	SetBoundsRotation(value float64 /* primitive/slice/pointer. */)
 	CanBecomeKeyView() bool /* primitive/slice/pointer. */
@@ -70,18 +70,18 @@ type IView interface {
 	CompositingFilter() objc.IObject /* cross-framework: Filter */
 	SetCompositingFilter(value objc.IObject /* cross-framework: Filter */)
 	Constraints() []LayoutConstraint /* primitive/slice/pointer. */
-	ContentFilters() []coreimage.objc.IObject /* cross-framework: Filter */
-	SetContentFilters(value []coreimage.objc.IObject /* cross-framework: Filter */)
+	ContentFilters() objc.IObject /* cross-framework: Filter */
+	SetContentFilters(value objc.IObject /* cross-framework: Filter */)
 	EnclosingMenuItem() objc.IObject /* cross-framework: MenuItem */
 	EnclosingScrollView() IScrollView
 	FirstBaselineAnchor() objc.IObject /* cross-framework: LayoutYAxisAnchor */
 	FirstBaselineOffsetFromTop() float64 /* primitive/slice/pointer. */
-	FittingSize() coregraphics.CGSize
-	FocusRingMaskBounds() coregraphics.CGRect
+	FittingSize() objc.IObject /* cross-framework: Size */
+	FocusRingMaskBounds() objc.IObject /* cross-framework: Rect */
 	FocusRingType() FocusRingType
 	SetFocusRingType(value FocusRingType)
-	Frame() coregraphics.CGRect
-	SetFrame(value coregraphics.CGRect)
+	Frame() objc.IObject /* cross-framework: Rect */
+	SetFrame(value objc.IObject /* cross-framework: Rect */)
 	FrameCenterRotation() float64 /* primitive/slice/pointer. */
 	SetFrameCenterRotation(value float64 /* primitive/slice/pointer. */)
 	FrameRotation() float64 /* primitive/slice/pointer. */
@@ -93,7 +93,7 @@ type IView interface {
 	HeightAnchor() objc.IObject /* cross-framework: LayoutDimension */
 	InLiveResize() bool /* primitive/slice/pointer. */
 	InputContext() ITextInputContext
-	IntrinsicContentSize() coregraphics.CGSize
+	IntrinsicContentSize() objc.IObject /* cross-framework: Size */
 	DrawingFindIndicator() bool /* primitive/slice/pointer. */
 	Flipped() bool /* primitive/slice/pointer. */
 	Hidden() bool /* primitive/slice/pointer. */
@@ -141,28 +141,28 @@ type IView interface {
 	SetPostsFrameChangedNotifications(value bool /* primitive/slice/pointer. */)
 	PrefersCompactControlSizeMetrics() bool /* primitive/slice/pointer. */
 	SetPrefersCompactControlSizeMetrics(value bool /* primitive/slice/pointer. */)
-	PreparedContentRect() coregraphics.CGRect
-	SetPreparedContentRect(value coregraphics.CGRect)
+	PreparedContentRect() objc.IObject /* cross-framework: Rect */
+	SetPreparedContentRect(value objc.IObject /* cross-framework: Rect */)
 	PreservesContentDuringLiveResize() bool /* primitive/slice/pointer. */
 	PressureConfiguration() IPressureConfiguration
 	SetPressureConfiguration(value IPressureConfiguration)
 	PreviousKeyView() IView
 	PreviousValidKeyView() IView
-	PrintJobTitle() string /* primitive/slice/pointer. */
-	RectPreservedDuringLiveResize() coregraphics.CGRect
+	PrintJobTitle() objc.IObject /* cross-framework: NSString */
+	RectPreservedDuringLiveResize() objc.IObject /* cross-framework: Rect */
 	RegisteredDraggedTypes() []string /* primitive/slice/pointer. */
 	RightAnchor() ILayoutXAxisAnchor
-	SafeAreaInsets() EdgeInsets /* not a class type */
+	SafeAreaInsets() objc.IObject /* cross-framework: EdgeInsets */
 	SafeAreaLayoutGuide() ILayoutGuide
-	SafeAreaRect() coregraphics.CGRect
+	SafeAreaRect() objc.IObject /* cross-framework: Rect */
 	Shadow() IShadow
 	SetShadow(value IShadow)
 	Subviews() []View /* primitive/slice/pointer. */
 	SetSubviews(value []View /* primitive/slice/pointer. */)
 	Superview() IView
 	Tag() int /* primitive/slice/pointer. */
-	ToolTip() string /* primitive/slice/pointer. */
-	SetToolTip(value string /* primitive/slice/pointer. */)
+	ToolTip() objc.IObject /* cross-framework: NSString */
+	SetToolTip(value objc.IObject /* cross-framework: NSString */)
 	TopAnchor() objc.IObject /* cross-framework: LayoutYAxisAnchor */
 	TrackingAreas() []TrackingArea /* primitive/slice/pointer. */
 	TrailingAnchor() ILayoutXAxisAnchor
@@ -170,7 +170,7 @@ type IView interface {
 	SetTranslatesAutoresizingMaskIntoConstraints(value bool /* primitive/slice/pointer. */)
 	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
 	SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection)
-	VisibleRect() coregraphics.CGRect
+	VisibleRect() objc.IObject /* cross-framework: Rect */
 	WantsBestResolutionOpenGLSurface() bool /* primitive/slice/pointer. */
 	SetWantsBestResolutionOpenGLSurface(value bool /* primitive/slice/pointer. */)
 	WantsDefaultClipping() bool /* primitive/slice/pointer. */
@@ -190,100 +190,100 @@ type IView interface {
 	AcceptsFirstMouse(event IEvent) bool /* primitive/slice/pointer. */
 	AddConstraint(constraint ILayoutConstraint)
 	AddConstraints(constraints []LayoutConstraint /* primitive/slice/pointer. */)
-	AddCursorRectCursor(rect coregraphics.CGRect, object ICursor)
+	AddCursorRectCursor(rect objc.IObject /* cross-framework Rect */, object ICursor)
 	AddGestureRecognizer(gestureRecognizer objc.IObject /* cross-framework GestureRecognizer */)
 	AddLayoutGuide(guide ILayoutGuide)
 	AddSubview(view IView)
 	AddSubviewPositionedRelativeTo(view IView, place WindowOrderingMode, otherView IView)
-	AddToolTipRectOwnerUserData(rect coregraphics.CGRect, owner objectivec.IObject, data unsafe.Pointer) objc.IObject /* cross-framework: ToolTipTag */
+	AddToolTipRectOwnerUserData(rect objc.IObject /* cross-framework Rect */, owner objectivec.IObject, data unsafe.Pointer) objc.IObject /* cross-framework: ToolTipTag */
 	AddTrackingArea(trackingArea ITrackingArea)
-	AddTrackingRectOwnerUserDataAssumeInside(rect coregraphics.CGRect, owner objectivec.IObject, data unsafe.Pointer, flag bool /* primitive/slice/pointer. */) objc.IObject /* cross-framework: TrackingRectTag */
-	AdjustPageHeightNewTopBottomLimit(newBottom coregraphics.float64 /* primitive/slice/pointer. */, oldTop float64 /* primitive/slice/pointer. */, oldBottom float64 /* primitive/slice/pointer. */, bottomLimit float64 /* primitive/slice/pointer. */)
-	AdjustPageWidthNewLeftRightLimit(newRight coregraphics.float64 /* primitive/slice/pointer. */, oldLeft float64 /* primitive/slice/pointer. */, oldRight float64 /* primitive/slice/pointer. */, rightLimit float64 /* primitive/slice/pointer. */)
-	AdjustScroll(newVisible coregraphics.CGRect) coregraphics.CGRect
-	AlignmentRectForFrame(frame coregraphics.CGRect) coregraphics.CGRect
+	AddTrackingRectOwnerUserDataAssumeInside(rect objc.IObject /* cross-framework Rect */, owner objectivec.IObject, data unsafe.Pointer, flag bool /* primitive/slice/pointer. */) objc.IObject /* cross-framework: TrackingRectTag */
+	AdjustPageHeightNewTopBottomLimit(newBottom corefoundation.CGFloat, oldTop float64 /* primitive/slice/pointer. */, oldBottom float64 /* primitive/slice/pointer. */, bottomLimit float64 /* primitive/slice/pointer. */)
+	AdjustPageWidthNewLeftRightLimit(newRight corefoundation.CGFloat, oldLeft float64 /* primitive/slice/pointer. */, oldRight float64 /* primitive/slice/pointer. */, rightLimit float64 /* primitive/slice/pointer. */)
+	AdjustScroll(newVisible objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	AlignmentRectForFrame(frame objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
 	AncestorSharedWithView(view IView) IView
 	Autoscroll(event IEvent) bool /* primitive/slice/pointer. */
-	BackingAlignedRectOptions(rect coregraphics.CGRect, options AlignmentOptions /* not a class type */) coregraphics.CGRect
+	BackingAlignedRectOptions(rect objc.IObject /* cross-framework Rect */, options AlignmentOptions /* not a class type */) objc.IObject /* cross-framework: Rect */
 	BeginDocument()
 	BeginDraggingSessionWithItemsEventSource(items []DraggingItem /* primitive/slice/pointer. */, event IEvent, source objectivec.IObject) IDraggingSession
-	BeginPageInRectAtPlacement(rect coregraphics.CGRect, location coregraphics.CGPoint)
-	BitmapImageRepForCachingDisplayInRect(rect coregraphics.CGRect) IBitmapImageRep
-	CacheDisplayInRectToBitmapImageRep(rect coregraphics.CGRect, bitmapImageRep IBitmapImageRep)
-	CenterScanRect(rect coregraphics.CGRect) coregraphics.CGRect
+	BeginPageInRectAtPlacement(rect objc.IObject /* cross-framework Rect */, location objc.IObject /* cross-framework Point */)
+	BitmapImageRepForCachingDisplayInRect(rect objc.IObject /* cross-framework Rect */) IBitmapImageRep
+	CacheDisplayInRectToBitmapImageRep(rect objc.IObject /* cross-framework Rect */, bitmapImageRep IBitmapImageRep)
+	CenterScanRect(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
 	ConstraintsAffectingLayoutForOrientation(orientation LayoutConstraintOrientation) []LayoutConstraint /* primitive/slice/pointer. */
 	ContentCompressionResistancePriorityForOrientation(orientation LayoutConstraintOrientation) objc.IObject /* cross-framework: LayoutPriority */
 	ContentHuggingPriorityForOrientation(orientation LayoutConstraintOrientation) objc.IObject /* cross-framework: LayoutPriority */
-	ConvertPointFromView(point coregraphics.CGPoint, view IView) coregraphics.CGPoint
-	ConvertSizeFromView(size coregraphics.CGSize, view IView) coregraphics.CGSize
-	ConvertRectFromView(rect coregraphics.CGRect, view IView) coregraphics.CGRect
-	ConvertRectToView(rect coregraphics.CGRect, view IView) coregraphics.CGRect
-	ConvertSizeToView(size coregraphics.CGSize, view IView) coregraphics.CGSize
-	ConvertPointToView(point coregraphics.CGPoint, view IView) coregraphics.CGPoint
-	ConvertPointFromBacking(point coregraphics.CGPoint) coregraphics.CGPoint
-	ConvertRectFromBacking(rect coregraphics.CGRect) coregraphics.CGRect
-	ConvertSizeFromBacking(size coregraphics.CGSize) coregraphics.CGSize
-	ConvertPointFromLayer(point coregraphics.CGPoint) coregraphics.CGPoint
-	ConvertSizeFromLayer(size coregraphics.CGSize) coregraphics.CGSize
-	ConvertRectFromLayer(rect coregraphics.CGRect) coregraphics.CGRect
-	ConvertPointToBacking(point coregraphics.CGPoint) coregraphics.CGPoint
-	ConvertRectToBacking(rect coregraphics.CGRect) coregraphics.CGRect
-	ConvertSizeToBacking(size coregraphics.CGSize) coregraphics.CGSize
-	ConvertRectToLayer(rect coregraphics.CGRect) coregraphics.CGRect
-	ConvertSizeToLayer(size coregraphics.CGSize) coregraphics.CGSize
-	ConvertPointToLayer(point coregraphics.CGPoint) coregraphics.CGPoint
-	DataWithEPSInsideRect(rect coregraphics.CGRect) objc.IObject /* cross-framework: Data */
-	DataWithPDFInsideRect(rect coregraphics.CGRect) objc.IObject /* cross-framework: Data */
+	ConvertPointFromView(point objc.IObject /* cross-framework Point */, view IView) objc.IObject /* cross-framework: Point */
+	ConvertSizeFromView(size objc.IObject /* cross-framework Size */, view IView) objc.IObject /* cross-framework: Size */
+	ConvertRectFromView(rect objc.IObject /* cross-framework Rect */, view IView) objc.IObject /* cross-framework: Rect */
+	ConvertRectToView(rect objc.IObject /* cross-framework Rect */, view IView) objc.IObject /* cross-framework: Rect */
+	ConvertSizeToView(size objc.IObject /* cross-framework Size */, view IView) objc.IObject /* cross-framework: Size */
+	ConvertPointToView(point objc.IObject /* cross-framework Point */, view IView) objc.IObject /* cross-framework: Point */
+	ConvertPointFromBacking(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */
+	ConvertRectFromBacking(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	ConvertSizeFromBacking(size objc.IObject /* cross-framework Size */) objc.IObject /* cross-framework: Size */
+	ConvertPointFromLayer(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */
+	ConvertSizeFromLayer(size objc.IObject /* cross-framework Size */) objc.IObject /* cross-framework: Size */
+	ConvertRectFromLayer(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	ConvertPointToBacking(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */
+	ConvertRectToBacking(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	ConvertSizeToBacking(size objc.IObject /* cross-framework Size */) objc.IObject /* cross-framework: Size */
+	ConvertRectToLayer(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	ConvertSizeToLayer(size objc.IObject /* cross-framework Size */) objc.IObject /* cross-framework: Size */
+	ConvertPointToLayer(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */
+	DataWithEPSInsideRect(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Data */
+	DataWithPDFInsideRect(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Data */
 	DidAddSubview(subview IView)
 	DidCloseMenuWithEvent(menu IMenu, event IEvent)
 	DiscardCursorRects()
 	Display()
-	DisplayRect(rect coregraphics.CGRect)
+	DisplayRect(rect objc.IObject /* cross-framework Rect */)
 	DisplayIfNeeded()
-	DisplayIfNeededInRect(rect coregraphics.CGRect)
+	DisplayIfNeededInRect(rect objc.IObject /* cross-framework Rect */)
 	DisplayIfNeededIgnoringOpacity()
-	DisplayIfNeededInRectIgnoringOpacity(rect coregraphics.CGRect)
-	DisplayRectIgnoringOpacity(rect coregraphics.CGRect)
-	DisplayRectIgnoringOpacityInContext(rect coregraphics.CGRect, context IGraphicsContext)
+	DisplayIfNeededInRectIgnoringOpacity(rect objc.IObject /* cross-framework Rect */)
+	DisplayRectIgnoringOpacity(rect objc.IObject /* cross-framework Rect */)
+	DisplayRectIgnoringOpacityInContext(rect objc.IObject /* cross-framework Rect */, context IGraphicsContext)
 	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) objc.IObject /* cross-framework: DisplayLink */
-	DrawRect(dirtyRect coregraphics.CGRect)
+	DrawRect(dirtyRect objc.IObject /* cross-framework Rect */)
 	DrawFocusRingMask()
-	DrawPageBorderWithSize(borderSize coregraphics.CGSize)
-	EdgeInsetsForLayoutRegion(layoutRegion IViewLayoutRegion) EdgeInsets /* not a class type */
+	DrawPageBorderWithSize(borderSize objc.IObject /* cross-framework Size */)
+	EdgeInsetsForLayoutRegion(layoutRegion IViewLayoutRegion) objc.IObject /* cross-framework: EdgeInsets */
 	EndDocument()
 	EndPage()
 	EnterFullScreenModeWithOptions(screen IScreen, options foundation.IDictionary /* already interface */) bool /* primitive/slice/pointer. */
 	ExerciseAmbiguityInLayout()
 	ExitFullScreenModeWithOptions(options foundation.IDictionary /* already interface */)
-	FrameForAlignmentRect(alignmentRect coregraphics.CGRect) coregraphics.CGRect
-	GetRectsBeingDrawnCount(rects coregraphics.CGRect, count Integer /* not a class type */)
+	FrameForAlignmentRect(alignmentRect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	GetRectsBeingDrawnCount(rects unsafe.Pointer, count Integer /* not a class type */)
 	GetRectsExposedDuringLiveResizeCount(exposedRects Rect [ 4 ] /* not a class type */, count Integer /* not a class type */)
-	HitTest(point coregraphics.CGPoint) IView
+	HitTest(point objc.IObject /* cross-framework Point */) IView
 	InvalidateIntrinsicContentSize()
 	IsDescendantOf(view IView) bool /* primitive/slice/pointer. */
-	MouseInRect(point coregraphics.CGPoint, rect coregraphics.CGRect) bool /* primitive/slice/pointer. */
+	MouseInRect(point objc.IObject /* cross-framework Point */, rect objc.IObject /* cross-framework Rect */) bool /* primitive/slice/pointer. */
 	KnowsPageRange(range_ RangePointer /* not a class type */) bool /* primitive/slice/pointer. */
 	Layout()
 	LayoutGuideForLayoutRegion(layoutRegion IViewLayoutRegion) ILayoutGuide
 	LayoutSubtreeIfNeeded()
-	LocationOfPrintRect(rect coregraphics.CGRect) coregraphics.CGPoint
+	LocationOfPrintRect(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Point */
 	MakeBackingLayer() objc.IObject /* cross-framework: Layer */
 	MenuForEvent(event IEvent) IMenu
-	NeedsToDrawRect(rect coregraphics.CGRect) bool /* primitive/slice/pointer. */
+	NeedsToDrawRect(rect objc.IObject /* cross-framework Rect */) bool /* primitive/slice/pointer. */
 	NoteFocusRingMaskChanged()
 	PerformKeyEquivalent(event IEvent) bool /* primitive/slice/pointer. */
-	PrepareContentInRect(rect coregraphics.CGRect)
+	PrepareContentInRect(rect objc.IObject /* cross-framework Rect */)
 	PrepareForReuse()
 	Print(sender objectivec.IObject)
-	RectForLayoutRegion(layoutRegion IViewLayoutRegion) coregraphics.CGRect
-	RectForPage(page int /* primitive/slice/pointer. */) coregraphics.CGRect
-	RectForSmartMagnificationAtPointInRect(location coregraphics.CGPoint, visibleRect coregraphics.CGRect) coregraphics.CGRect
+	RectForLayoutRegion(layoutRegion IViewLayoutRegion) objc.IObject /* cross-framework: Rect */
+	RectForPage(page int /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Rect */
+	RectForSmartMagnificationAtPointInRect(location objc.IObject /* cross-framework Point */, visibleRect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
 	ReflectScrolledClipView(clipView IClipView)
 	RegisterForDraggedTypes(newTypes []string /* primitive/slice/pointer. */)
 	RemoveAllToolTips()
 	RemoveConstraint(constraint ILayoutConstraint)
 	RemoveConstraints(constraints []LayoutConstraint /* primitive/slice/pointer. */)
-	RemoveCursorRectCursor(rect coregraphics.CGRect, object ICursor)
+	RemoveCursorRectCursor(rect objc.IObject /* cross-framework Rect */, object ICursor)
 	RemoveFromSuperview()
 	RemoveFromSuperviewWithoutNeedingDisplay()
 	RemoveGestureRecognizer(gestureRecognizer objc.IObject /* cross-framework GestureRecognizer */)
@@ -293,39 +293,39 @@ type IView interface {
 	RemoveTrackingRect(tag objc.IObject /* cross-framework TrackingRectTag */)
 	ReplaceSubviewWith(oldView IView, newView IView)
 	ResetCursorRects()
-	ResizeWithOldSuperviewSize(oldSize coregraphics.CGSize)
-	ResizeSubviewsWithOldSize(oldSize coregraphics.CGSize)
+	ResizeWithOldSuperviewSize(oldSize objc.IObject /* cross-framework Size */)
+	ResizeSubviewsWithOldSize(oldSize objc.IObject /* cross-framework Size */)
 	RotateByAngle(angle float64 /* primitive/slice/pointer. */)
 	RulerViewDidAddMarker(ruler IRulerView, marker IRulerMarker)
 	RulerViewDidMoveMarker(ruler IRulerView, marker IRulerMarker)
 	RulerViewDidRemoveMarker(ruler IRulerView, marker IRulerMarker)
 	RulerViewHandleMouseDown(ruler IRulerView, event IEvent)
-	RulerViewLocationForPoint(ruler IRulerView, point coregraphics.CGPoint) float64 /* primitive/slice/pointer. */
-	RulerViewPointForLocation(ruler IRulerView, point float64 /* primitive/slice/pointer. */) coregraphics.CGPoint
+	RulerViewLocationForPoint(ruler IRulerView, point objc.IObject /* cross-framework Point */) float64 /* primitive/slice/pointer. */
+	RulerViewPointForLocation(ruler IRulerView, point float64 /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Point */
 	RulerViewShouldAddMarker(ruler IRulerView, marker IRulerMarker) bool /* primitive/slice/pointer. */
 	RulerViewShouldMoveMarker(ruler IRulerView, marker IRulerMarker) bool /* primitive/slice/pointer. */
 	RulerViewShouldRemoveMarker(ruler IRulerView, marker IRulerMarker) bool /* primitive/slice/pointer. */
 	RulerViewWillAddMarkerAtLocation(ruler IRulerView, marker IRulerMarker, location float64 /* primitive/slice/pointer. */) float64 /* primitive/slice/pointer. */
 	RulerViewWillMoveMarkerToLocation(ruler IRulerView, marker IRulerMarker, location float64 /* primitive/slice/pointer. */) float64 /* primitive/slice/pointer. */
 	RulerViewWillSetClientView(ruler IRulerView, newClient IView)
-	ScaleUnitSquareToSize(newUnitSize coregraphics.CGSize)
-	ScrollPoint(point coregraphics.CGPoint)
-	ScrollClipViewToPoint(clipView IClipView, point coregraphics.CGPoint)
-	ScrollRectToVisible(rect coregraphics.CGRect) bool /* primitive/slice/pointer. */
-	SetBoundsOrigin(newOrigin coregraphics.CGPoint)
-	SetBoundsSize(newSize coregraphics.CGSize)
+	ScaleUnitSquareToSize(newUnitSize objc.IObject /* cross-framework Size */)
+	ScrollPoint(point objc.IObject /* cross-framework Point */)
+	ScrollClipViewToPoint(clipView IClipView, point objc.IObject /* cross-framework Point */)
+	ScrollRectToVisible(rect objc.IObject /* cross-framework Rect */) bool /* primitive/slice/pointer. */
+	SetBoundsOrigin(newOrigin objc.IObject /* cross-framework Point */)
+	SetBoundsSize(newSize objc.IObject /* cross-framework Size */)
 	SetContentCompressionResistancePriorityForOrientation(priority objc.IObject /* cross-framework LayoutPriority */, orientation LayoutConstraintOrientation)
 	SetContentHuggingPriorityForOrientation(priority objc.IObject /* cross-framework LayoutPriority */, orientation LayoutConstraintOrientation)
-	SetFrameOrigin(newOrigin coregraphics.CGPoint)
-	SetFrameSize(newSize coregraphics.CGSize)
-	SetKeyboardFocusRingNeedsDisplayInRect(rect coregraphics.CGRect)
-	SetNeedsDisplayInRect(invalidRect coregraphics.CGRect)
+	SetFrameOrigin(newOrigin objc.IObject /* cross-framework Point */)
+	SetFrameSize(newSize objc.IObject /* cross-framework Size */)
+	SetKeyboardFocusRingNeedsDisplayInRect(rect objc.IObject /* cross-framework Rect */)
+	SetNeedsDisplayInRect(invalidRect objc.IObject /* cross-framework Rect */)
 	ShouldDelayWindowOrderingForEvent(event IEvent) bool /* primitive/slice/pointer. */
-	ShowDefinitionForAttributedStringAtPoint(attrString objc.IObject /* cross-framework AttributedString */, textBaselineOrigin coregraphics.CGPoint)
-	ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString objc.IObject /* cross-framework AttributedString */, targetRange foundation.objc.IObject /* cross-framework Range */, options foundation.IDictionary /* already interface */, originProvider Point  (^)( NSRange adjustedRange /* not a class type */)
+	ShowDefinitionForAttributedStringAtPoint(attrString objc.IObject /* cross-framework AttributedString */, textBaselineOrigin objc.IObject /* cross-framework Point */)
+	ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString objc.IObject /* cross-framework AttributedString */, targetRange objc.IObject /* cross-framework Range */, options foundation.IDictionary /* already interface */, originProvider Point  (^)( NSRange adjustedRange /* not a class type */)
 	SortSubviewsUsingFunctionContext(compare unsafe.Pointer, context unsafe.Pointer)
-	TranslateOriginToPoint(translation coregraphics.CGPoint)
-	TranslateRectsNeedingDisplayInRectBy(clipRect coregraphics.CGRect, delta coregraphics.CGSize)
+	TranslateOriginToPoint(translation objc.IObject /* cross-framework Point */)
+	TranslateRectsNeedingDisplayInRectBy(clipRect objc.IObject /* cross-framework Rect */, delta objc.IObject /* cross-framework Size */)
 	UnregisterDraggedTypes()
 	UpdateConstraints()
 	UpdateConstraintsForSubtreeIfNeeded()
@@ -345,8 +345,8 @@ type IView interface {
 	ViewWithTag(tag int /* primitive/slice/pointer. */) IView
 	WillOpenMenuWithEvent(menu IMenu, event IEvent)
 	WillRemoveSubview(subview IView)
-	WriteEPSInsideRectToPasteboard(rect coregraphics.CGRect, pasteboard IPasteboard)
-	WritePDFInsideRectToPasteboard(rect coregraphics.CGRect, pasteboard IPasteboard)
+	WriteEPSInsideRectToPasteboard(rect objc.IObject /* cross-framework Rect */, pasteboard IPasteboard)
+	WritePDFInsideRectToPasteboard(rect objc.IObject /* cross-framework Rect */, pasteboard IPasteboard)
 }
 
 // The infrastructure for drawing, printing, and handling events in an app.
@@ -408,7 +408,7 @@ func NewView() View {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/init(coder:)
-func NewViewWithCoder(coder Coder /* not a class type */) View {
+func NewViewWithCoder(coder objc.IObject /* cross-framework Coder */) View {
 	instance := getViewClass().Alloc()
 	rv := objc.Send[View](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -420,7 +420,7 @@ func NewViewWithCoder(coder Coder /* not a class type */) View {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/init(frame:)
-func NewViewWithFrame(frameRect coregraphics.CGRect) View {
+func NewViewWithFrame(frameRect objc.IObject /* cross-framework Rect */) View {
 	instance := getViewClass().Alloc()
 	rv := objc.Send[View](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()
@@ -506,7 +506,7 @@ func (v_ View) AddConstraints(constraints []LayoutConstraint /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/addCursorRect(_:cursor:)
-func (v_ View) AddCursorRectCursor(rect coregraphics.CGRect, object ICursor) {
+func (v_ View) AddCursorRectCursor(rect objc.IObject /* cross-framework Rect */, object ICursor) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("addCursorRect:cursor:"), rect, object)
 }
 
@@ -551,7 +551,7 @@ func (v_ View) AddSubviewPositionedRelativeTo(view IView, place WindowOrderingMo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/addToolTip(_:owner:userData:)
-func (v_ View) AddToolTipRectOwnerUserData(rect coregraphics.CGRect, owner objectivec.IObject, data unsafe.Pointer) objc.IObject /* cross-framework: ToolTipTag */ {
+func (v_ View) AddToolTipRectOwnerUserData(rect objc.IObject /* cross-framework Rect */, owner objectivec.IObject, data unsafe.Pointer) objc.IObject /* cross-framework: ToolTipTag */ {
 	rv := objc.Send[ToolTipTag](v_.ID, objc.Sel("addToolTipRect:owner:userData:"), rect, owner, data)
 	return rv
 }
@@ -570,7 +570,7 @@ func (v_ View) AddTrackingArea(trackingArea ITrackingArea) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/addTrackingRect(_:owner:userData:assumeInside:)
-func (v_ View) AddTrackingRectOwnerUserDataAssumeInside(rect coregraphics.CGRect, owner objectivec.IObject, data unsafe.Pointer, flag bool /* primitive/slice/pointer. */) objc.IObject /* cross-framework: TrackingRectTag */ {
+func (v_ View) AddTrackingRectOwnerUserDataAssumeInside(rect objc.IObject /* cross-framework Rect */, owner objectivec.IObject, data unsafe.Pointer, flag bool /* primitive/slice/pointer. */) objc.IObject /* cross-framework: TrackingRectTag */ {
 	rv := objc.Send[TrackingRectTag](v_.ID, objc.Sel("addTrackingRect:owner:userData:assumeInside:"), rect, owner, data, flag)
 	return rv
 }
@@ -580,7 +580,7 @@ func (v_ View) AddTrackingRectOwnerUserDataAssumeInside(rect coregraphics.CGRect
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/adjustPageHeightNew(_:top:bottom:limit:)
-func (v_ View) AdjustPageHeightNewTopBottomLimit(newBottom coregraphics.float64 /* primitive/slice/pointer. */, oldTop float64 /* primitive/slice/pointer. */, oldBottom float64 /* primitive/slice/pointer. */, bottomLimit float64 /* primitive/slice/pointer. */) {
+func (v_ View) AdjustPageHeightNewTopBottomLimit(newBottom corefoundation.CGFloat, oldTop float64 /* primitive/slice/pointer. */, oldBottom float64 /* primitive/slice/pointer. */, bottomLimit float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("adjustPageHeightNew:top:bottom:limit:"), newBottom, oldTop, oldBottom, bottomLimit)
 }
 
@@ -589,7 +589,7 @@ func (v_ View) AdjustPageHeightNewTopBottomLimit(newBottom coregraphics.float64 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/adjustPageWidthNew(_:left:right:limit:)
-func (v_ View) AdjustPageWidthNewLeftRightLimit(newRight coregraphics.float64 /* primitive/slice/pointer. */, oldLeft float64 /* primitive/slice/pointer. */, oldRight float64 /* primitive/slice/pointer. */, rightLimit float64 /* primitive/slice/pointer. */) {
+func (v_ View) AdjustPageWidthNewLeftRightLimit(newRight corefoundation.CGFloat, oldLeft float64 /* primitive/slice/pointer. */, oldRight float64 /* primitive/slice/pointer. */, rightLimit float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("adjustPageWidthNew:left:right:limit:"), newRight, oldLeft, oldRight, rightLimit)
 }
 
@@ -598,8 +598,8 @@ func (v_ View) AdjustPageWidthNewLeftRightLimit(newRight coregraphics.float64 /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/adjustScroll(_:)
-func (v_ View) AdjustScroll(newVisible coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("adjustScroll:"), newVisible)
+func (v_ View) AdjustScroll(newVisible objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("adjustScroll:"), newVisible)
 	return rv
 }
 
@@ -608,8 +608,8 @@ func (v_ View) AdjustScroll(newVisible coregraphics.CGRect) coregraphics.CGRect 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/alignmentRect(forFrame:)
-func (v_ View) AlignmentRectForFrame(frame coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("alignmentRectForFrame:"), frame)
+func (v_ View) AlignmentRectForFrame(frame objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("alignmentRectForFrame:"), frame)
 	return rv
 }
 
@@ -638,8 +638,8 @@ func (v_ View) Autoscroll(event IEvent) bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/backingAlignedRect(_:options:)
-func (v_ View) BackingAlignedRectOptions(rect coregraphics.CGRect, options AlignmentOptions /* not a class type */) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("backingAlignedRect:options:"), rect, options)
+func (v_ View) BackingAlignedRectOptions(rect objc.IObject /* cross-framework Rect */, options AlignmentOptions /* not a class type */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("backingAlignedRect:options:"), rect, options)
 	return rv
 }
 
@@ -667,7 +667,7 @@ func (v_ View) BeginDraggingSessionWithItemsEventSource(items []DraggingItem /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/beginPage(in:atPlacement:)
-func (v_ View) BeginPageInRectAtPlacement(rect coregraphics.CGRect, location coregraphics.CGPoint) {
+func (v_ View) BeginPageInRectAtPlacement(rect objc.IObject /* cross-framework Rect */, location objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("beginPageInRect:atPlacement:"), rect, location)
 }
 
@@ -676,7 +676,7 @@ func (v_ View) BeginPageInRectAtPlacement(rect coregraphics.CGRect, location cor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/bitmapImageRepForCachingDisplay(in:)
-func (v_ View) BitmapImageRepForCachingDisplayInRect(rect coregraphics.CGRect) IBitmapImageRep {
+func (v_ View) BitmapImageRepForCachingDisplayInRect(rect objc.IObject /* cross-framework Rect */) IBitmapImageRep {
 	rv := objc.Send[BitmapImageRep](v_.ID, objc.Sel("bitmapImageRepForCachingDisplayInRect:"), rect)
 	return rv
 }
@@ -686,7 +686,7 @@ func (v_ View) BitmapImageRepForCachingDisplayInRect(rect coregraphics.CGRect) I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/cacheDisplay(in:to:)
-func (v_ View) CacheDisplayInRectToBitmapImageRep(rect coregraphics.CGRect, bitmapImageRep IBitmapImageRep) {
+func (v_ View) CacheDisplayInRectToBitmapImageRep(rect objc.IObject /* cross-framework Rect */, bitmapImageRep IBitmapImageRep) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("cacheDisplayInRect:toBitmapImageRep:"), rect, bitmapImageRep)
 }
 
@@ -695,8 +695,8 @@ func (v_ View) CacheDisplayInRectToBitmapImageRep(rect coregraphics.CGRect, bitm
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/centerScanRect(_:)
-func (v_ View) CenterScanRect(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("centerScanRect:"), rect)
+func (v_ View) CenterScanRect(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("centerScanRect:"), rect)
 	return rv
 }
 
@@ -735,8 +735,8 @@ func (v_ View) ContentHuggingPriorityForOrientation(orientation LayoutConstraint
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convert(_:from:)-1dq9l
-func (v_ View) ConvertPointFromView(point coregraphics.CGPoint, view IView) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("convertPoint:fromView:"), point, view)
+func (v_ View) ConvertPointFromView(point objc.IObject /* cross-framework Point */, view IView) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](v_.ID, objc.Sel("convertPoint:fromView:"), point, view)
 	return rv
 }
 
@@ -745,8 +745,8 @@ func (v_ View) ConvertPointFromView(point coregraphics.CGPoint, view IView) core
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convert(_:from:)-40x0w
-func (v_ View) ConvertSizeFromView(size coregraphics.CGSize, view IView) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("convertSize:fromView:"), size, view)
+func (v_ View) ConvertSizeFromView(size objc.IObject /* cross-framework Size */, view IView) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](v_.ID, objc.Sel("convertSize:fromView:"), size, view)
 	return rv
 }
 
@@ -755,8 +755,8 @@ func (v_ View) ConvertSizeFromView(size coregraphics.CGSize, view IView) coregra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convert(_:from:)-7fbb6
-func (v_ View) ConvertRectFromView(rect coregraphics.CGRect, view IView) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("convertRect:fromView:"), rect, view)
+func (v_ View) ConvertRectFromView(rect objc.IObject /* cross-framework Rect */, view IView) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("convertRect:fromView:"), rect, view)
 	return rv
 }
 
@@ -765,8 +765,8 @@ func (v_ View) ConvertRectFromView(rect coregraphics.CGRect, view IView) coregra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convert(_:to:)-3cqqt
-func (v_ View) ConvertRectToView(rect coregraphics.CGRect, view IView) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("convertRect:toView:"), rect, view)
+func (v_ View) ConvertRectToView(rect objc.IObject /* cross-framework Rect */, view IView) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("convertRect:toView:"), rect, view)
 	return rv
 }
 
@@ -775,8 +775,8 @@ func (v_ View) ConvertRectToView(rect coregraphics.CGRect, view IView) coregraph
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convert(_:to:)-5nptx
-func (v_ View) ConvertSizeToView(size coregraphics.CGSize, view IView) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("convertSize:toView:"), size, view)
+func (v_ View) ConvertSizeToView(size objc.IObject /* cross-framework Size */, view IView) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](v_.ID, objc.Sel("convertSize:toView:"), size, view)
 	return rv
 }
 
@@ -785,8 +785,8 @@ func (v_ View) ConvertSizeToView(size coregraphics.CGSize, view IView) coregraph
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convert(_:to:)-6u9ir
-func (v_ View) ConvertPointToView(point coregraphics.CGPoint, view IView) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("convertPoint:toView:"), point, view)
+func (v_ View) ConvertPointToView(point objc.IObject /* cross-framework Point */, view IView) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](v_.ID, objc.Sel("convertPoint:toView:"), point, view)
 	return rv
 }
 
@@ -795,8 +795,8 @@ func (v_ View) ConvertPointToView(point coregraphics.CGPoint, view IView) coregr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertFromBacking(_:)-229ps
-func (v_ View) ConvertPointFromBacking(point coregraphics.CGPoint) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("convertPointFromBacking:"), point)
+func (v_ View) ConvertPointFromBacking(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](v_.ID, objc.Sel("convertPointFromBacking:"), point)
 	return rv
 }
 
@@ -805,8 +805,8 @@ func (v_ View) ConvertPointFromBacking(point coregraphics.CGPoint) coregraphics.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertFromBacking(_:)-2njpa
-func (v_ View) ConvertRectFromBacking(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("convertRectFromBacking:"), rect)
+func (v_ View) ConvertRectFromBacking(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("convertRectFromBacking:"), rect)
 	return rv
 }
 
@@ -815,8 +815,8 @@ func (v_ View) ConvertRectFromBacking(rect coregraphics.CGRect) coregraphics.CGR
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertFromBacking(_:)-4agf9
-func (v_ View) ConvertSizeFromBacking(size coregraphics.CGSize) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("convertSizeFromBacking:"), size)
+func (v_ View) ConvertSizeFromBacking(size objc.IObject /* cross-framework Size */) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](v_.ID, objc.Sel("convertSizeFromBacking:"), size)
 	return rv
 }
 
@@ -825,8 +825,8 @@ func (v_ View) ConvertSizeFromBacking(size coregraphics.CGSize) coregraphics.CGS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertFromLayer(_:)-3nsbu
-func (v_ View) ConvertPointFromLayer(point coregraphics.CGPoint) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("convertPointFromLayer:"), point)
+func (v_ View) ConvertPointFromLayer(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](v_.ID, objc.Sel("convertPointFromLayer:"), point)
 	return rv
 }
 
@@ -835,8 +835,8 @@ func (v_ View) ConvertPointFromLayer(point coregraphics.CGPoint) coregraphics.CG
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertFromLayer(_:)-3usqp
-func (v_ View) ConvertSizeFromLayer(size coregraphics.CGSize) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("convertSizeFromLayer:"), size)
+func (v_ View) ConvertSizeFromLayer(size objc.IObject /* cross-framework Size */) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](v_.ID, objc.Sel("convertSizeFromLayer:"), size)
 	return rv
 }
 
@@ -845,8 +845,8 @@ func (v_ View) ConvertSizeFromLayer(size coregraphics.CGSize) coregraphics.CGSiz
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertFromLayer(_:)-8s5bi
-func (v_ View) ConvertRectFromLayer(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("convertRectFromLayer:"), rect)
+func (v_ View) ConvertRectFromLayer(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("convertRectFromLayer:"), rect)
 	return rv
 }
 
@@ -855,8 +855,8 @@ func (v_ View) ConvertRectFromLayer(rect coregraphics.CGRect) coregraphics.CGRec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertToBacking(_:)-2xx45
-func (v_ View) ConvertPointToBacking(point coregraphics.CGPoint) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("convertPointToBacking:"), point)
+func (v_ View) ConvertPointToBacking(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](v_.ID, objc.Sel("convertPointToBacking:"), point)
 	return rv
 }
 
@@ -865,8 +865,8 @@ func (v_ View) ConvertPointToBacking(point coregraphics.CGPoint) coregraphics.CG
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertToBacking(_:)-3zors
-func (v_ View) ConvertRectToBacking(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("convertRectToBacking:"), rect)
+func (v_ View) ConvertRectToBacking(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("convertRectToBacking:"), rect)
 	return rv
 }
 
@@ -875,8 +875,8 @@ func (v_ View) ConvertRectToBacking(rect coregraphics.CGRect) coregraphics.CGRec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertToBacking(_:)-4ra9y
-func (v_ View) ConvertSizeToBacking(size coregraphics.CGSize) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("convertSizeToBacking:"), size)
+func (v_ View) ConvertSizeToBacking(size objc.IObject /* cross-framework Size */) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](v_.ID, objc.Sel("convertSizeToBacking:"), size)
 	return rv
 }
 
@@ -885,8 +885,8 @@ func (v_ View) ConvertSizeToBacking(size coregraphics.CGSize) coregraphics.CGSiz
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertToLayer(_:)-160pw
-func (v_ View) ConvertRectToLayer(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("convertRectToLayer:"), rect)
+func (v_ View) ConvertRectToLayer(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("convertRectToLayer:"), rect)
 	return rv
 }
 
@@ -895,8 +895,8 @@ func (v_ View) ConvertRectToLayer(rect coregraphics.CGRect) coregraphics.CGRect 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertToLayer(_:)-2vozx
-func (v_ View) ConvertSizeToLayer(size coregraphics.CGSize) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("convertSizeToLayer:"), size)
+func (v_ View) ConvertSizeToLayer(size objc.IObject /* cross-framework Size */) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](v_.ID, objc.Sel("convertSizeToLayer:"), size)
 	return rv
 }
 
@@ -905,8 +905,8 @@ func (v_ View) ConvertSizeToLayer(size coregraphics.CGSize) coregraphics.CGSize 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertToLayer(_:)-44u7d
-func (v_ View) ConvertPointToLayer(point coregraphics.CGPoint) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("convertPointToLayer:"), point)
+func (v_ View) ConvertPointToLayer(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](v_.ID, objc.Sel("convertPointToLayer:"), point)
 	return rv
 }
 
@@ -915,7 +915,7 @@ func (v_ View) ConvertPointToLayer(point coregraphics.CGPoint) coregraphics.CGPo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/dataWithEPS(inside:)
-func (v_ View) DataWithEPSInsideRect(rect coregraphics.CGRect) objc.IObject /* cross-framework: Data */ {
+func (v_ View) DataWithEPSInsideRect(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[Data](v_.ID, objc.Sel("dataWithEPSInsideRect:"), rect)
 	return rv
 }
@@ -925,7 +925,7 @@ func (v_ View) DataWithEPSInsideRect(rect coregraphics.CGRect) objc.IObject /* c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/dataWithPDF(inside:)
-func (v_ View) DataWithPDFInsideRect(rect coregraphics.CGRect) objc.IObject /* cross-framework: Data */ {
+func (v_ View) DataWithPDFInsideRect(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[Data](v_.ID, objc.Sel("dataWithPDFInsideRect:"), rect)
 	return rv
 }
@@ -971,7 +971,7 @@ func (v_ View) Display() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/display(_:)
-func (v_ View) DisplayRect(rect coregraphics.CGRect) {
+func (v_ View) DisplayRect(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("displayRect:"), rect)
 }
 
@@ -989,7 +989,7 @@ func (v_ View) DisplayIfNeeded() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/displayIfNeeded(_:)
-func (v_ View) DisplayIfNeededInRect(rect coregraphics.CGRect) {
+func (v_ View) DisplayIfNeededInRect(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("displayIfNeededInRect:"), rect)
 }
 
@@ -1007,7 +1007,7 @@ func (v_ View) DisplayIfNeededIgnoringOpacity() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/displayIfNeededIgnoringOpacity(_:)
-func (v_ View) DisplayIfNeededInRectIgnoringOpacity(rect coregraphics.CGRect) {
+func (v_ View) DisplayIfNeededInRectIgnoringOpacity(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("displayIfNeededInRectIgnoringOpacity:"), rect)
 }
 
@@ -1016,7 +1016,7 @@ func (v_ View) DisplayIfNeededInRectIgnoringOpacity(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/displayIgnoringOpacity(_:)
-func (v_ View) DisplayRectIgnoringOpacity(rect coregraphics.CGRect) {
+func (v_ View) DisplayRectIgnoringOpacity(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("displayRectIgnoringOpacity:"), rect)
 }
 
@@ -1025,7 +1025,7 @@ func (v_ View) DisplayRectIgnoringOpacity(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/displayIgnoringOpacity(_:in:)
-func (v_ View) DisplayRectIgnoringOpacityInContext(rect coregraphics.CGRect, context IGraphicsContext) {
+func (v_ View) DisplayRectIgnoringOpacityInContext(rect objc.IObject /* cross-framework Rect */, context IGraphicsContext) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("displayRectIgnoringOpacity:inContext:"), rect, context)
 }
 
@@ -1042,7 +1042,7 @@ func (v_ View) DisplayLinkWithTargetSelector(target objectivec.IObject, selector
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/draw(_:)
-func (v_ View) DrawRect(dirtyRect coregraphics.CGRect) {
+func (v_ View) DrawRect(dirtyRect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("drawRect:"), dirtyRect)
 }
 
@@ -1060,14 +1060,14 @@ func (v_ View) DrawFocusRingMask() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/drawPageBorder(with:)
-func (v_ View) DrawPageBorderWithSize(borderSize coregraphics.CGSize) {
+func (v_ View) DrawPageBorderWithSize(borderSize objc.IObject /* cross-framework Size */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("drawPageBorderWithSize:"), borderSize)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/edgeInsetsForLayoutRegion:
-func (v_ View) EdgeInsetsForLayoutRegion(layoutRegion IViewLayoutRegion) EdgeInsets /* not a class type */ {
+func (v_ View) EdgeInsetsForLayoutRegion(layoutRegion IViewLayoutRegion) objc.IObject /* cross-framework: EdgeInsets */ {
 	rv := objc.Send[EdgeInsets](v_.ID, objc.Sel("edgeInsetsForLayoutRegion:"), layoutRegion)
 	return rv
 }
@@ -1123,8 +1123,8 @@ func (v_ View) ExitFullScreenModeWithOptions(options foundation.IDictionary /* a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/frame(forAlignmentRect:)
-func (v_ View) FrameForAlignmentRect(alignmentRect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("frameForAlignmentRect:"), alignmentRect)
+func (v_ View) FrameForAlignmentRect(alignmentRect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("frameForAlignmentRect:"), alignmentRect)
 	return rv
 }
 
@@ -1133,7 +1133,7 @@ func (v_ View) FrameForAlignmentRect(alignmentRect coregraphics.CGRect) coregrap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/getRectsBeingDrawn(_:count:)
-func (v_ View) GetRectsBeingDrawnCount(rects coregraphics.CGRect, count Integer /* not a class type */) {
+func (v_ View) GetRectsBeingDrawnCount(rects unsafe.Pointer, count Integer /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("getRectsBeingDrawn:count:"), rects, count)
 }
 
@@ -1151,7 +1151,7 @@ func (v_ View) GetRectsExposedDuringLiveResizeCount(exposedRects Rect [ 4 ] /* n
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/hitTest(_:)
-func (v_ View) HitTest(point coregraphics.CGPoint) IView {
+func (v_ View) HitTest(point objc.IObject /* cross-framework Point */) IView {
 	rv := objc.Send[View](v_.ID, objc.Sel("hitTest:"), point)
 	return rv
 }
@@ -1180,7 +1180,7 @@ func (v_ View) IsDescendantOf(view IView) bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isMousePoint(_:in:)
-func (v_ View) MouseInRect(point coregraphics.CGPoint, rect coregraphics.CGRect) bool /* primitive/slice/pointer. */ {
+func (v_ View) MouseInRect(point objc.IObject /* cross-framework Point */, rect objc.IObject /* cross-framework Rect */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("mouse:inRect:"), point, rect)
 	return rv
 }
@@ -1226,8 +1226,8 @@ func (v_ View) LayoutSubtreeIfNeeded() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/locationOfPrintRect(_:)
-func (v_ View) LocationOfPrintRect(rect coregraphics.CGRect) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("locationOfPrintRect:"), rect)
+func (v_ View) LocationOfPrintRect(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](v_.ID, objc.Sel("locationOfPrintRect:"), rect)
 	return rv
 }
 
@@ -1256,7 +1256,7 @@ func (v_ View) MenuForEvent(event IEvent) IMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/needsToDraw(_:)
-func (v_ View) NeedsToDrawRect(rect coregraphics.CGRect) bool /* primitive/slice/pointer. */ {
+func (v_ View) NeedsToDrawRect(rect objc.IObject /* cross-framework Rect */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("needsToDrawRect:"), rect)
 	return rv
 }
@@ -1285,7 +1285,7 @@ func (v_ View) PerformKeyEquivalent(event IEvent) bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/prepareContent(in:)
-func (v_ View) PrepareContentInRect(rect coregraphics.CGRect) {
+func (v_ View) PrepareContentInRect(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("prepareContentInRect:"), rect)
 }
 
@@ -1310,8 +1310,8 @@ func (v_ View) Print(sender objectivec.IObject) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rectForLayoutRegion:
-func (v_ View) RectForLayoutRegion(layoutRegion IViewLayoutRegion) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("rectForLayoutRegion:"), layoutRegion)
+func (v_ View) RectForLayoutRegion(layoutRegion IViewLayoutRegion) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("rectForLayoutRegion:"), layoutRegion)
 	return rv
 }
 
@@ -1320,8 +1320,8 @@ func (v_ View) RectForLayoutRegion(layoutRegion IViewLayoutRegion) coregraphics.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rectForPage(_:)
-func (v_ View) RectForPage(page int /* primitive/slice/pointer. */) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("rectForPage:"), page)
+func (v_ View) RectForPage(page int /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("rectForPage:"), page)
 	return rv
 }
 
@@ -1330,8 +1330,8 @@ func (v_ View) RectForPage(page int /* primitive/slice/pointer. */) coregraphics
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rectForSmartMagnification(at:in:)
-func (v_ View) RectForSmartMagnificationAtPointInRect(location coregraphics.CGPoint, visibleRect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("rectForSmartMagnificationAtPoint:inRect:"), location, visibleRect)
+func (v_ View) RectForSmartMagnificationAtPointInRect(location objc.IObject /* cross-framework Point */, visibleRect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("rectForSmartMagnificationAtPoint:inRect:"), location, visibleRect)
 	return rv
 }
 
@@ -1385,7 +1385,7 @@ func (v_ View) RemoveConstraints(constraints []LayoutConstraint /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/removeCursorRect(_:cursor:)
-func (v_ View) RemoveCursorRectCursor(rect coregraphics.CGRect, object ICursor) {
+func (v_ View) RemoveCursorRectCursor(rect objc.IObject /* cross-framework Rect */, object ICursor) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeCursorRect:cursor:"), rect, object)
 }
 
@@ -1475,7 +1475,7 @@ func (v_ View) ResetCursorRects() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/resize(withOldSuperviewSize:)
-func (v_ View) ResizeWithOldSuperviewSize(oldSize coregraphics.CGSize) {
+func (v_ View) ResizeWithOldSuperviewSize(oldSize objc.IObject /* cross-framework Size */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("resizeWithOldSuperviewSize:"), oldSize)
 }
 
@@ -1484,7 +1484,7 @@ func (v_ View) ResizeWithOldSuperviewSize(oldSize coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/resizeSubviews(withOldSize:)
-func (v_ View) ResizeSubviewsWithOldSize(oldSize coregraphics.CGSize) {
+func (v_ View) ResizeSubviewsWithOldSize(oldSize objc.IObject /* cross-framework Size */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("resizeSubviewsWithOldSize:"), oldSize)
 }
 
@@ -1536,7 +1536,7 @@ func (v_ View) RulerViewHandleMouseDown(ruler IRulerView, event IEvent) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:locationFor:)
-func (v_ View) RulerViewLocationForPoint(ruler IRulerView, point coregraphics.CGPoint) float64 /* primitive/slice/pointer. */ {
+func (v_ View) RulerViewLocationForPoint(ruler IRulerView, point objc.IObject /* cross-framework Point */) float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("rulerView:locationForPoint:"), ruler, point)
 	return rv
 }
@@ -1544,8 +1544,8 @@ func (v_ View) RulerViewLocationForPoint(ruler IRulerView, point coregraphics.CG
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:pointForLocation:)
-func (v_ View) RulerViewPointForLocation(ruler IRulerView, point float64 /* primitive/slice/pointer. */) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("rulerView:pointForLocation:"), ruler, point)
+func (v_ View) RulerViewPointForLocation(ruler IRulerView, point float64 /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](v_.ID, objc.Sel("rulerView:pointForLocation:"), ruler, point)
 	return rv
 }
 
@@ -1613,7 +1613,7 @@ func (v_ View) RulerViewWillSetClientView(ruler IRulerView, newClient IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/scaleUnitSquare(to:)
-func (v_ View) ScaleUnitSquareToSize(newUnitSize coregraphics.CGSize) {
+func (v_ View) ScaleUnitSquareToSize(newUnitSize objc.IObject /* cross-framework Size */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("scaleUnitSquareToSize:"), newUnitSize)
 }
 
@@ -1622,7 +1622,7 @@ func (v_ View) ScaleUnitSquareToSize(newUnitSize coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/scroll(_:)
-func (v_ View) ScrollPoint(point coregraphics.CGPoint) {
+func (v_ View) ScrollPoint(point objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("scrollPoint:"), point)
 }
 
@@ -1631,7 +1631,7 @@ func (v_ View) ScrollPoint(point coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/scroll(_:to:)
-func (v_ View) ScrollClipViewToPoint(clipView IClipView, point coregraphics.CGPoint) {
+func (v_ View) ScrollClipViewToPoint(clipView IClipView, point objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("scrollClipView:toPoint:"), clipView, point)
 }
 
@@ -1640,7 +1640,7 @@ func (v_ View) ScrollClipViewToPoint(clipView IClipView, point coregraphics.CGPo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/scrollToVisible(_:)
-func (v_ View) ScrollRectToVisible(rect coregraphics.CGRect) bool /* primitive/slice/pointer. */ {
+func (v_ View) ScrollRectToVisible(rect objc.IObject /* cross-framework Rect */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("scrollRectToVisible:"), rect)
 	return rv
 }
@@ -1650,7 +1650,7 @@ func (v_ View) ScrollRectToVisible(rect coregraphics.CGRect) bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/setBoundsOrigin(_:)
-func (v_ View) SetBoundsOrigin(newOrigin coregraphics.CGPoint) {
+func (v_ View) SetBoundsOrigin(newOrigin objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setBoundsOrigin:"), newOrigin)
 }
 
@@ -1659,7 +1659,7 @@ func (v_ View) SetBoundsOrigin(newOrigin coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/setBoundsSize(_:)
-func (v_ View) SetBoundsSize(newSize coregraphics.CGSize) {
+func (v_ View) SetBoundsSize(newSize objc.IObject /* cross-framework Size */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setBoundsSize:"), newSize)
 }
 
@@ -1686,7 +1686,7 @@ func (v_ View) SetContentHuggingPriorityForOrientation(priority objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/setFrameOrigin(_:)
-func (v_ View) SetFrameOrigin(newOrigin coregraphics.CGPoint) {
+func (v_ View) SetFrameOrigin(newOrigin objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFrameOrigin:"), newOrigin)
 }
 
@@ -1695,7 +1695,7 @@ func (v_ View) SetFrameOrigin(newOrigin coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/setFrameSize(_:)
-func (v_ View) SetFrameSize(newSize coregraphics.CGSize) {
+func (v_ View) SetFrameSize(newSize objc.IObject /* cross-framework Size */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFrameSize:"), newSize)
 }
 
@@ -1704,7 +1704,7 @@ func (v_ View) SetFrameSize(newSize coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/setKeyboardFocusRingNeedsDisplay(_:)
-func (v_ View) SetKeyboardFocusRingNeedsDisplayInRect(rect coregraphics.CGRect) {
+func (v_ View) SetKeyboardFocusRingNeedsDisplayInRect(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setKeyboardFocusRingNeedsDisplayInRect:"), rect)
 }
 
@@ -1713,7 +1713,7 @@ func (v_ View) SetKeyboardFocusRingNeedsDisplayInRect(rect coregraphics.CGRect) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/setNeedsDisplay(_:)
-func (v_ View) SetNeedsDisplayInRect(invalidRect coregraphics.CGRect) {
+func (v_ View) SetNeedsDisplayInRect(invalidRect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setNeedsDisplayInRect:"), invalidRect)
 }
 
@@ -1732,7 +1732,7 @@ func (v_ View) ShouldDelayWindowOrderingForEvent(event IEvent) bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/showDefinition(for:at:)
-func (v_ View) ShowDefinitionForAttributedStringAtPoint(attrString objc.IObject /* cross-framework AttributedString */, textBaselineOrigin coregraphics.CGPoint) {
+func (v_ View) ShowDefinitionForAttributedStringAtPoint(attrString objc.IObject /* cross-framework AttributedString */, textBaselineOrigin objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("showDefinitionForAttributedString:atPoint:"), attrString, textBaselineOrigin)
 }
 
@@ -1741,7 +1741,7 @@ func (v_ View) ShowDefinitionForAttributedStringAtPoint(attrString objc.IObject 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/showDefinition(for:range:options:baselineOriginProvider:)
-func (v_ View) ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString objc.IObject /* cross-framework AttributedString */, targetRange foundation.objc.IObject /* cross-framework Range */, options foundation.IDictionary /* already interface */, originProvider Point  (^)( NSRange adjustedRange /* not a class type */) {
+func (v_ View) ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString objc.IObject /* cross-framework AttributedString */, targetRange objc.IObject /* cross-framework Range */, options foundation.IDictionary /* already interface */, originProvider Point  (^)( NSRange adjustedRange /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("showDefinitionForAttributedString:range:options:baselineOriginProvider:"), attrString, targetRange, options, originProvider)
 }
 
@@ -1759,7 +1759,7 @@ func (v_ View) SortSubviewsUsingFunctionContext(compare unsafe.Pointer, context 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/translateOrigin(to:)
-func (v_ View) TranslateOriginToPoint(translation coregraphics.CGPoint) {
+func (v_ View) TranslateOriginToPoint(translation objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("translateOriginToPoint:"), translation)
 }
 
@@ -1768,7 +1768,7 @@ func (v_ View) TranslateOriginToPoint(translation coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/translateRectsNeedingDisplay(in:by:)
-func (v_ View) TranslateRectsNeedingDisplayInRectBy(clipRect coregraphics.CGRect, delta coregraphics.CGSize) {
+func (v_ View) TranslateRectsNeedingDisplayInRectBy(clipRect objc.IObject /* cross-framework Rect */, delta objc.IObject /* cross-framework Size */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("translateRectsNeedingDisplayInRect:by:"), clipRect, delta)
 }
 
@@ -1949,7 +1949,7 @@ func (v_ View) WillRemoveSubview(subview IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/writeEPS(inside:to:)
-func (v_ View) WriteEPSInsideRectToPasteboard(rect coregraphics.CGRect, pasteboard IPasteboard) {
+func (v_ View) WriteEPSInsideRectToPasteboard(rect objc.IObject /* cross-framework Rect */, pasteboard IPasteboard) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("writeEPSInsideRect:toPasteboard:"), rect, pasteboard)
 }
 
@@ -1958,7 +1958,7 @@ func (v_ View) WriteEPSInsideRectToPasteboard(rect coregraphics.CGRect, pasteboa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/writePDF(inside:to:)
-func (v_ View) WritePDFInsideRectToPasteboard(rect coregraphics.CGRect, pasteboard IPasteboard) {
+func (v_ View) WritePDFInsideRectToPasteboard(rect objc.IObject /* cross-framework Rect */, pasteboard IPasteboard) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("writePDFInsideRect:toPasteboard:"), rect, pasteboard)
 }
 
@@ -1986,7 +1986,7 @@ func (v_ View) SetAcceptsTouchEvents(value bool /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/additionalSafeAreaInsets
-func (v_ View) AdditionalSafeAreaInsets() EdgeInsets /* not a class type */ {
+func (v_ View) AdditionalSafeAreaInsets() objc.IObject /* cross-framework: EdgeInsets */ {
 	rv := objc.Send[EdgeInsets](v_.ID, objc.Sel("additionalSafeAreaInsets"))
 	return rv
 }
@@ -1996,7 +1996,7 @@ func (v_ View) AdditionalSafeAreaInsets() EdgeInsets /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/additionalSafeAreaInsets
-func (v_ View) SetAdditionalSafeAreaInsets(value EdgeInsets /* not a class type */) {
+func (v_ View) SetAdditionalSafeAreaInsets(value objc.IObject /* cross-framework: EdgeInsets */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAdditionalSafeAreaInsets:"), value)
 }
 
@@ -2005,7 +2005,7 @@ func (v_ View) SetAdditionalSafeAreaInsets(value EdgeInsets /* not a class type 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/alignmentRectInsets
-func (v_ View) AlignmentRectInsets() EdgeInsets /* not a class type */ {
+func (v_ View) AlignmentRectInsets() objc.IObject /* cross-framework: EdgeInsets */ {
 	rv := objc.Send[EdgeInsets](v_.ID, objc.Sel("alignmentRectInsets"))
 	return rv
 }
@@ -2101,7 +2101,7 @@ func (v_ View) SetAutoresizingMask(value AutoresizingMaskOptions) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/backgroundFilters
-func (v_ View) BackgroundFilters() []coreimage.objc.IObject /* cross-framework: Filter */ {
+func (v_ View) BackgroundFilters() objc.IObject /* cross-framework: Filter */ {
 	rv := objc.Send[[]coreimage.Filter](v_.ID, objc.Sel("backgroundFilters"))
 	return rv
 }
@@ -2111,7 +2111,7 @@ func (v_ View) BackgroundFilters() []coreimage.objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/backgroundFilters
-func (v_ View) SetBackgroundFilters(value []coreimage.objc.IObject /* cross-framework: Filter */) {
+func (v_ View) SetBackgroundFilters(value objc.IObject /* cross-framework: Filter */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -2150,8 +2150,8 @@ func (v_ View) BottomAnchor() objc.IObject /* cross-framework: LayoutYAxisAnchor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/bounds
-func (v_ View) Bounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("bounds"))
+func (v_ View) Bounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("bounds"))
 	return rv
 }
 
@@ -2160,7 +2160,7 @@ func (v_ View) Bounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/bounds
-func (v_ View) SetBounds(value coregraphics.CGRect) {
+func (v_ View) SetBounds(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setBounds:"), value)
 }
 
@@ -2322,7 +2322,7 @@ func (v_ View) Constraints() []LayoutConstraint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentFilters
-func (v_ View) ContentFilters() []coreimage.objc.IObject /* cross-framework: Filter */ {
+func (v_ View) ContentFilters() objc.IObject /* cross-framework: Filter */ {
 	rv := objc.Send[[]coreimage.Filter](v_.ID, objc.Sel("contentFilters"))
 	return rv
 }
@@ -2332,7 +2332,7 @@ func (v_ View) ContentFilters() []coreimage.objc.IObject /* cross-framework: Fil
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentFilters
-func (v_ View) SetContentFilters(value []coreimage.objc.IObject /* cross-framework: Filter */) {
+func (v_ View) SetContentFilters(value objc.IObject /* cross-framework: Filter */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -2411,8 +2411,8 @@ func (v_ View) FirstBaselineOffsetFromTop() float64 /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/fittingSize
-func (v_ View) FittingSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("fittingSize"))
+func (v_ View) FittingSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](v_.ID, objc.Sel("fittingSize"))
 	return rv
 }
 
@@ -2421,8 +2421,8 @@ func (v_ View) FittingSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/focusRingMaskBounds
-func (v_ View) FocusRingMaskBounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("focusRingMaskBounds"))
+func (v_ View) FocusRingMaskBounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("focusRingMaskBounds"))
 	return rv
 }
 
@@ -2460,8 +2460,8 @@ func (v_ View) FocusView() IView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/frame
-func (v_ View) Frame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("frame"))
+func (v_ View) Frame() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("frame"))
 	return rv
 }
 
@@ -2470,7 +2470,7 @@ func (v_ View) Frame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/frame
-func (v_ View) SetFrame(value coregraphics.CGRect) {
+func (v_ View) SetFrame(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFrame:"), value)
 }
 
@@ -2596,8 +2596,8 @@ func (v_ View) InputContext() ITextInputContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/intrinsicContentSize
-func (v_ View) IntrinsicContentSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("intrinsicContentSize"))
+func (v_ View) IntrinsicContentSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](v_.ID, objc.Sel("intrinsicContentSize"))
 	return rv
 }
 
@@ -3072,8 +3072,8 @@ func (v_ View) SetPrefersCompactControlSizeMetrics(value bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/preparedContentRect
-func (v_ View) PreparedContentRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("preparedContentRect"))
+func (v_ View) PreparedContentRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("preparedContentRect"))
 	return rv
 }
 
@@ -3082,7 +3082,7 @@ func (v_ View) PreparedContentRect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/preparedContentRect
-func (v_ View) SetPreparedContentRect(value coregraphics.CGRect) {
+func (v_ View) SetPreparedContentRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPreparedContentRect:"), value)
 }
 
@@ -3140,8 +3140,8 @@ func (v_ View) PreviousValidKeyView() IView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/printJobTitle
-func (v_ View) PrintJobTitle() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](v_.ID, objc.Sel("printJobTitle"))
+func (v_ View) PrintJobTitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("printJobTitle"))
 	return rv
 }
 
@@ -3150,8 +3150,8 @@ func (v_ View) PrintJobTitle() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rectPreservedDuringLiveResize
-func (v_ View) RectPreservedDuringLiveResize() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("rectPreservedDuringLiveResize"))
+func (v_ View) RectPreservedDuringLiveResize() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("rectPreservedDuringLiveResize"))
 	return rv
 }
 
@@ -3190,7 +3190,7 @@ func (v_ View) RightAnchor() ILayoutXAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/safeAreaInsets
-func (v_ View) SafeAreaInsets() EdgeInsets /* not a class type */ {
+func (v_ View) SafeAreaInsets() objc.IObject /* cross-framework: EdgeInsets */ {
 	rv := objc.Send[EdgeInsets](v_.ID, objc.Sel("safeAreaInsets"))
 	return rv
 }
@@ -3210,8 +3210,8 @@ func (v_ View) SafeAreaLayoutGuide() ILayoutGuide {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/safeAreaRect
-func (v_ View) SafeAreaRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("safeAreaRect"))
+func (v_ View) SafeAreaRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("safeAreaRect"))
 	return rv
 }
 
@@ -3288,8 +3288,8 @@ func (v_ View) Tag() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/toolTip
-func (v_ View) ToolTip() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](v_.ID, objc.Sel("toolTip"))
+func (v_ View) ToolTip() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("toolTip"))
 	return rv
 }
 
@@ -3298,8 +3298,8 @@ func (v_ View) ToolTip() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/toolTip
-func (v_ View) SetToolTip(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setToolTip:"), objc.String(value))
+func (v_ View) SetToolTip(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setToolTip:"), value)
 }
 
 
@@ -3375,8 +3375,8 @@ func (v_ View) SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirectio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/visibleRect
-func (v_ View) VisibleRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("visibleRect"))
+func (v_ View) VisibleRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](v_.ID, objc.Sel("visibleRect"))
 	return rv
 }
 

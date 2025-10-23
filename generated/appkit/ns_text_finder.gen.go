@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +39,8 @@ type ITextFinder interface {
 	SetFindBarContainer(value TextFinderBarContainer /* not a class type */)
 	FindIndicatorNeedsUpdate() bool /* primitive/slice/pointer. */
 	SetFindIndicatorNeedsUpdate(value bool /* primitive/slice/pointer. */)
-	IncrementalMatchRanges() Value /* not a class type */
-	SetIncrementalMatchRanges(value Value /* not a class type */)
+	IncrementalMatchRanges() objc.IObject /* cross-framework: Value */
+	SetIncrementalMatchRanges(value objc.IObject /* cross-framework: Value */)
 	IncrementalSearchingShouldDimContentView() bool /* primitive/slice/pointer. */
 	SetIncrementalSearchingShouldDimContentView(value bool /* primitive/slice/pointer. */)
 	IsIncrementalSearchingEnabled() bool /* primitive/slice/pointer. */
@@ -52,14 +51,14 @@ type ITextFinder interface {
 	SetIsFindBarVisible(value bool /* primitive/slice/pointer. */)
 	AllowsMultipleSelection() bool /* primitive/slice/pointer. */
 	SetAllowsMultipleSelection(value bool /* primitive/slice/pointer. */)
-	FirstSelectedRange() foundation.objc.IObject /* cross-framework: Range */
-	SetFirstSelectedRange(value foundation.objc.IObject /* cross-framework: Range */)
+	FirstSelectedRange() objc.IObject /* cross-framework: Range */
+	SetFirstSelectedRange(value objc.IObject /* cross-framework: Range */)
 	IsSelectable() bool /* primitive/slice/pointer. */
 	SetIsSelectable(value bool /* primitive/slice/pointer. */)
-	SelectedRanges() Value /* not a class type */
-	SetSelectedRanges(value Value /* not a class type */)
-	VisibleCharacterRanges() Value /* not a class type */
-	SetVisibleCharacterRanges(value Value /* not a class type */)
+	SelectedRanges() objc.IObject /* cross-framework: Value */
+	SetSelectedRanges(value objc.IObject /* cross-framework: Value */)
+	VisibleCharacterRanges() objc.IObject /* cross-framework: Value */
+	SetVisibleCharacterRanges(value objc.IObject /* cross-framework: Value */)
 	UsesFindBar() bool /* primitive/slice/pointer. */
 	SetUsesFindBar(value bool /* primitive/slice/pointer. */)
 	// methods:
@@ -198,7 +197,7 @@ func (t_ TextFinder) SetFindIndicatorNeedsUpdate(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/incrementalmatchranges
-func (t_ TextFinder) IncrementalMatchRanges() Value /* not a class type */ {
+func (t_ TextFinder) IncrementalMatchRanges() objc.IObject /* cross-framework: Value */ {
 	rv := objc.Send[Value](t_.ID, objc.Sel("incrementalMatchRanges"))
 	return rv
 }
@@ -208,7 +207,7 @@ func (t_ TextFinder) IncrementalMatchRanges() Value /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinder/incrementalmatchranges
-func (t_ TextFinder) SetIncrementalMatchRanges(value Value /* not a class type */) {
+func (t_ TextFinder) SetIncrementalMatchRanges(value objc.IObject /* cross-framework: Value */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIncrementalMatchRanges:"), value)
 }
 
@@ -312,8 +311,8 @@ func (t_ TextFinder) SetAllowsMultipleSelection(value bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/firstselectedrange
-func (t_ TextFinder) FirstSelectedRange() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("firstSelectedRange"))
+func (t_ TextFinder) FirstSelectedRange() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[Range](t_.ID, objc.Sel("firstSelectedRange"))
 	return rv
 }
 
@@ -322,7 +321,7 @@ func (t_ TextFinder) FirstSelectedRange() foundation.objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/firstselectedrange
-func (t_ TextFinder) SetFirstSelectedRange(value foundation.objc.IObject /* cross-framework: Range */) {
+func (t_ TextFinder) SetFirstSelectedRange(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFirstSelectedRange:"), value)
 }
 
@@ -350,7 +349,7 @@ func (t_ TextFinder) SetIsSelectable(value bool /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/selectedranges
-func (t_ TextFinder) SelectedRanges() Value /* not a class type */ {
+func (t_ TextFinder) SelectedRanges() objc.IObject /* cross-framework: Value */ {
 	rv := objc.Send[Value](t_.ID, objc.Sel("selectedRanges"))
 	return rv
 }
@@ -360,7 +359,7 @@ func (t_ TextFinder) SelectedRanges() Value /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/selectedranges
-func (t_ TextFinder) SetSelectedRanges(value Value /* not a class type */) {
+func (t_ TextFinder) SetSelectedRanges(value objc.IObject /* cross-framework: Value */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedRanges:"), value)
 }
 
@@ -369,7 +368,7 @@ func (t_ TextFinder) SetSelectedRanges(value Value /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/visiblecharacterranges
-func (t_ TextFinder) VisibleCharacterRanges() Value /* not a class type */ {
+func (t_ TextFinder) VisibleCharacterRanges() objc.IObject /* cross-framework: Value */ {
 	rv := objc.Send[Value](t_.ID, objc.Sel("visibleCharacterRanges"))
 	return rv
 }
@@ -379,7 +378,7 @@ func (t_ TextFinder) VisibleCharacterRanges() Value /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfinderclient/visiblecharacterranges
-func (t_ TextFinder) SetVisibleCharacterRanges(value Value /* not a class type */) {
+func (t_ TextFinder) SetVisibleCharacterRanges(value objc.IObject /* cross-framework: Value */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibleCharacterRanges:"), value)
 }
 

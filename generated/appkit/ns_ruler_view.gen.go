@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -63,8 +62,8 @@ type IRulerView interface {
 	SetHasVerticalRuler(value bool /* primitive/slice/pointer. */)
 	// methods:
 	AddMarker(marker IRulerMarker)
-	DrawHashMarksAndLabelsInRect(rect coregraphics.CGRect)
-	DrawMarkersInRect(rect coregraphics.CGRect)
+	DrawHashMarksAndLabelsInRect(rect objc.IObject /* cross-framework Rect */)
+	DrawMarkersInRect(rect objc.IObject /* cross-framework Rect */)
 	InvalidateHashMarks()
 	MoveRulerlineFromLocationToLocation(oldLocation float64 /* primitive/slice/pointer. */, newLocation float64 /* primitive/slice/pointer. */)
 	RemoveMarker(marker IRulerMarker)
@@ -128,7 +127,7 @@ func NewRulerView() RulerView {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(coder:)
-func NewRulerViewWithCoder(coder Coder /* not a class type */) RulerView {
+func NewRulerViewWithCoder(coder objc.IObject /* cross-framework Coder */) RulerView {
 	instance := getRulerViewClass().Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -153,8 +152,8 @@ func NewRulerViewWithScrollViewOrientation(scrollView IScrollView, orientation R
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/registerUnit(withName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:)
-func (rc _RulerViewClass) RegisterUnitWithNameAbbreviationUnitToPointsConversionFactorStepUpCycleStepDownCycle(unitName objc.IObject /* cross-framework RulerViewUnitName */, abbreviation string /* primitive/slice/pointer. */, conversionFactor float64 /* primitive/slice/pointer. */, stepUpCycle []foundation.objc.IObject /* cross-framework Number */, stepDownCycle []foundation.objc.IObject /* cross-framework Number */) {
-	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:"), unitName, objc.String(abbreviation), conversionFactor, stepUpCycle, stepDownCycle)
+func (rc _RulerViewClass) RegisterUnitWithNameAbbreviationUnitToPointsConversionFactorStepUpCycleStepDownCycle(unitName objc.IObject /* cross-framework RulerViewUnitName */, abbreviation objc.IObject /* cross-framework NSString */, conversionFactor float64 /* primitive/slice/pointer. */, stepUpCycle objc.IObject /* cross-framework Number */, stepDownCycle objc.IObject /* cross-framework Number */) {
+	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:"), unitName, abbreviation, conversionFactor, stepUpCycle, stepDownCycle)
 }
 
 
@@ -171,7 +170,7 @@ func (r_ RulerView) AddMarker(marker IRulerMarker) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/drawHashMarksAndLabels(in:)
-func (r_ RulerView) DrawHashMarksAndLabelsInRect(rect coregraphics.CGRect) {
+func (r_ RulerView) DrawHashMarksAndLabelsInRect(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("drawHashMarksAndLabelsInRect:"), rect)
 }
 
@@ -180,7 +179,7 @@ func (r_ RulerView) DrawHashMarksAndLabelsInRect(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/drawMarkers(in:)
-func (r_ RulerView) DrawMarkersInRect(rect coregraphics.CGRect) {
+func (r_ RulerView) DrawMarkersInRect(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("drawMarkersInRect:"), rect)
 }
 

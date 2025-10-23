@@ -713,22 +713,32 @@ func ParseStructField(doc *appledocs.Document) (*ParsedStructField, error) {
 
 	field := &ParsedStructField{}
 
-	// Parse tokens: "CGFloat m11;"
+	// Parse tokens: "CGFloat m11;" or "void *info;"
 	// Find the field name (last identifier before semicolon)
-	// Find the type (typeIdentifier before field name)
+	// Find the type (typeIdentifier or keyword before field name)
 	var fieldName string
 	var fieldType string
 
 	for i := 0; i < len(tokens); i++ {
-		if tokens[i].Kind == "typeIdentifier" {
-			fieldType = tokens[i].Text
-		} else if tokens[i].Kind == "identifier" {
-			fieldName = tokens[i].Text
+		token := tokens[i]
+		if token.Kind == "typeIdentifier" {
+			fieldType = token.Text
+			// Check next token for pointer operator
+			if i+1 < len(tokens) && strings.Contains(tokens[i+1].Text, "*") {
+				fieldType += " *"
+			}
+		} else if token.Kind == "identifier" {
+			fieldName = token.Text
 		}
 	}
 
 	if fieldName == "" {
 		return nil, fmt.Errorf("could not extract field name from %s", externalID)
+	}
+
+	// If we still don't have a type, default to void* (unsafe.Pointer in Go)
+	if fieldType == "" {
+		fieldType = "void *"
 	}
 
 	// Capitalize field name for Go export (location → Location)

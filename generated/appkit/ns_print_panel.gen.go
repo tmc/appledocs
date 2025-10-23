@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -46,7 +47,7 @@ type IPrintPanel interface {
 	RemoveAccessoryController(accessoryController unsafe.Pointer)
 	RunModal() int /* primitive/slice/pointer. */
 	RunModalWithPrintInfo(printInfo IPrintInfo) int /* primitive/slice/pointer. */
-	SetDefaultButtonTitle(defaultButtonTitle string /* primitive/slice/pointer. */)
+	SetDefaultButtonTitle(defaultButtonTitle objc.IObject /* cross-framework NSString */)
 }
 
 // The Print panel that queries the user for information about a print job.
@@ -171,8 +172,8 @@ func (p_ PrintPanel) RunModalWithPrintInfo(printInfo IPrintInfo) int /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/setDefaultButtonTitle(_:)
-func (p_ PrintPanel) SetDefaultButtonTitle(defaultButtonTitle string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultButtonTitle:"), objc.String(defaultButtonTitle))
+func (p_ PrintPanel) SetDefaultButtonTitle(defaultButtonTitle objc.IObject /* cross-framework NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultButtonTitle:"), defaultButtonTitle)
 }
 
 

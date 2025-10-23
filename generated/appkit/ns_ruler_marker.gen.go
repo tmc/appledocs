@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,9 +33,9 @@ type IRulerMarker interface {
 	// properties:
 	Image() IImage
 	SetImage(value IImage)
-	ImageOrigin() coregraphics.CGPoint
-	SetImageOrigin(value coregraphics.CGPoint)
-	ImageRectInRuler() coregraphics.CGRect
+	ImageOrigin() objc.IObject /* cross-framework: Point */
+	SetImageOrigin(value objc.IObject /* cross-framework: Point */)
+	ImageRectInRuler() objc.IObject /* cross-framework: Rect */
 	Dragging() bool /* primitive/slice/pointer. */
 	Movable() bool /* primitive/slice/pointer. */
 	SetMovable(value bool /* primitive/slice/pointer. */)
@@ -55,7 +54,7 @@ type IRulerMarker interface {
 	IsRemovable() bool /* primitive/slice/pointer. */
 	SetIsRemovable(value bool /* primitive/slice/pointer. */)
 	// methods:
-	DrawRect(rect coregraphics.CGRect)
+	DrawRect(rect objc.IObject /* cross-framework Rect */)
 	TrackMouseAdding(mouseDownEvent IEvent, isAdding bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
 }
 
@@ -114,7 +113,7 @@ func NewRulerMarker() RulerMarker {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/init(coder:)
-func NewRulerMarkerWithCoder(coder Coder /* not a class type */) RulerMarker {
+func NewRulerMarkerWithCoder(coder objc.IObject /* cross-framework Coder */) RulerMarker {
 	instance := getRulerMarkerClass().Alloc()
 	rv := objc.Send[RulerMarker](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -126,7 +125,7 @@ func NewRulerMarkerWithCoder(coder Coder /* not a class type */) RulerMarker {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/init(rulerView:markerLocation:image:imageOrigin:)
-func NewRulerMarkerWithRulerViewMarkerLocationImageImageOrigin(ruler IRulerView, location float64 /* primitive/slice/pointer. */, image IImage, imageOrigin coregraphics.CGPoint) RulerMarker {
+func NewRulerMarkerWithRulerViewMarkerLocationImageImageOrigin(ruler IRulerView, location float64 /* primitive/slice/pointer. */, image IImage, imageOrigin objc.IObject /* cross-framework Point */) RulerMarker {
 	instance := getRulerMarkerClass().Alloc()
 	rv := objc.Send[RulerMarker](instance.ID, objc.Sel("initWithRulerView:markerLocation:image:imageOrigin:"), ruler, location, image, imageOrigin)
 	rv.Autorelease()
@@ -139,7 +138,7 @@ func NewRulerMarkerWithRulerViewMarkerLocationImageImageOrigin(ruler IRulerView,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/draw(_:)
-func (r_ RulerMarker) DrawRect(rect coregraphics.CGRect) {
+func (r_ RulerMarker) DrawRect(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("drawRect:"), rect)
 }
 
@@ -177,8 +176,8 @@ func (r_ RulerMarker) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/imageOrigin
-func (r_ RulerMarker) ImageOrigin() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("imageOrigin"))
+func (r_ RulerMarker) ImageOrigin() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](r_.ID, objc.Sel("imageOrigin"))
 	return rv
 }
 
@@ -187,7 +186,7 @@ func (r_ RulerMarker) ImageOrigin() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/imageOrigin
-func (r_ RulerMarker) SetImageOrigin(value coregraphics.CGPoint) {
+func (r_ RulerMarker) SetImageOrigin(value objc.IObject /* cross-framework: Point */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setImageOrigin:"), value)
 }
 
@@ -196,8 +195,8 @@ func (r_ RulerMarker) SetImageOrigin(value coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/imageRectInRuler
-func (r_ RulerMarker) ImageRectInRuler() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](r_.ID, objc.Sel("imageRectInRuler"))
+func (r_ RulerMarker) ImageRectInRuler() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](r_.ID, objc.Sel("imageRectInRuler"))
 	return rv
 }
 

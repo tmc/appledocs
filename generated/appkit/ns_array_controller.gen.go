@@ -35,8 +35,8 @@ type IArrayController interface {
 	SetAlwaysUsesMultipleValuesMarker(value bool /* primitive/slice/pointer. */)
 	ArrangedObjects() unsafe.Pointer
 	SetArrangedObjects(value unsafe.Pointer)
-	AutomaticRearrangementKeyPaths() string /* primitive/slice/pointer. */
-	SetAutomaticRearrangementKeyPaths(value string /* primitive/slice/pointer. */)
+	AutomaticRearrangementKeyPaths() objc.IObject /* cross-framework: NSString */
+	SetAutomaticRearrangementKeyPaths(value objc.IObject /* cross-framework: NSString */)
 	AutomaticallyRearrangesObjects() bool /* primitive/slice/pointer. */
 	SetAutomaticallyRearrangesObjects(value bool /* primitive/slice/pointer. */)
 	AvoidsEmptySelection() bool /* primitive/slice/pointer. */
@@ -57,12 +57,12 @@ type IArrayController interface {
 	SetSelectedObjects(value unsafe.Pointer)
 	SelectionIndex() int /* primitive/slice/pointer. */
 	SetSelectionIndex(value int /* primitive/slice/pointer. */)
-	SelectionIndexes() foundation.objc.IObject /* cross-framework: IndexSet */
-	SetSelectionIndexes(value foundation.objc.IObject /* cross-framework: IndexSet */)
+	SelectionIndexes() objc.IObject /* cross-framework: IndexSet */
+	SetSelectionIndexes(value objc.IObject /* cross-framework: IndexSet */)
 	SelectsInsertedObjects() bool /* primitive/slice/pointer. */
 	SetSelectsInsertedObjects(value bool /* primitive/slice/pointer. */)
-	SortDescriptors() SortDescriptor /* not a class type */
-	SetSortDescriptors(value SortDescriptor /* not a class type */)
+	SortDescriptors() objc.IObject /* cross-framework: SortDescriptor */
+	SetSortDescriptors(value objc.IObject /* cross-framework: SortDescriptor */)
 	// methods:
 }
 
@@ -163,8 +163,8 @@ func (a_ ArrayController) SetArrangedObjects(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/automaticrearrangementkeypaths
-func (a_ ArrayController) AutomaticRearrangementKeyPaths() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("automaticRearrangementKeyPaths"))
+func (a_ ArrayController) AutomaticRearrangementKeyPaths() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("automaticRearrangementKeyPaths"))
 	return rv
 }
 
@@ -173,8 +173,8 @@ func (a_ ArrayController) AutomaticRearrangementKeyPaths() string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/automaticrearrangementkeypaths
-func (a_ ArrayController) SetAutomaticRearrangementKeyPaths(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAutomaticRearrangementKeyPaths:"), objc.String(value))
+func (a_ ArrayController) SetAutomaticRearrangementKeyPaths(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAutomaticRearrangementKeyPaths:"), value)
 }
 
 
@@ -372,7 +372,7 @@ func (a_ ArrayController) SetSelectionIndex(value int /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectionindexes
-func (a_ ArrayController) SelectionIndexes() foundation.objc.IObject /* cross-framework: IndexSet */ {
+func (a_ ArrayController) SelectionIndexes() objc.IObject /* cross-framework: IndexSet */ {
 	rv := objc.Send[foundation.IndexSet](a_.ID, objc.Sel("selectionIndexes"))
 	return rv
 }
@@ -382,7 +382,7 @@ func (a_ ArrayController) SelectionIndexes() foundation.objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectionindexes
-func (a_ ArrayController) SetSelectionIndexes(value foundation.objc.IObject /* cross-framework: IndexSet */) {
+func (a_ ArrayController) SetSelectionIndexes(value objc.IObject /* cross-framework: IndexSet */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectionIndexes:"), value)
 }
 
@@ -410,7 +410,7 @@ func (a_ ArrayController) SetSelectsInsertedObjects(value bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/sortdescriptors
-func (a_ ArrayController) SortDescriptors() SortDescriptor /* not a class type */ {
+func (a_ ArrayController) SortDescriptors() objc.IObject /* cross-framework: SortDescriptor */ {
 	rv := objc.Send[SortDescriptor](a_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
@@ -420,7 +420,7 @@ func (a_ ArrayController) SortDescriptors() SortDescriptor /* not a class type *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/sortdescriptors
-func (a_ ArrayController) SetSortDescriptors(value SortDescriptor /* not a class type */) {
+func (a_ ArrayController) SetSortDescriptors(value objc.IObject /* cross-framework: SortDescriptor */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 

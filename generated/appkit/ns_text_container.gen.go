@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,8 +32,8 @@ type ITextContainer interface {
 	objectivec.IObject
 	// properties:
 	SimpleRectangularTextContainer() bool /* primitive/slice/pointer. */
-	ContainerSize() coregraphics.CGSize
-	SetContainerSize(value coregraphics.CGSize)
+	ContainerSize() objc.IObject /* cross-framework: Size */
+	SetContainerSize(value objc.IObject /* cross-framework: Size */)
 	ExclusionPaths() IBezierPath
 	SetExclusionPaths(value IBezierPath)
 	HeightTracksTextView() bool /* primitive/slice/pointer. */
@@ -49,8 +48,8 @@ type ITextContainer interface {
 	SetLineFragmentPadding(value float64 /* primitive/slice/pointer. */)
 	MaximumNumberOfLines() int /* primitive/slice/pointer. */
 	SetMaximumNumberOfLines(value int /* primitive/slice/pointer. */)
-	Size() coregraphics.CGSize
-	SetSize(value coregraphics.CGSize)
+	Size() objc.IObject /* cross-framework: Size */
+	SetSize(value objc.IObject /* cross-framework: Size */)
 	TextLayoutManager() ITextLayoutManager
 	SetTextLayoutManager(value ITextLayoutManager)
 	TextView() ITextView
@@ -137,8 +136,8 @@ func (t_ TextContainer) SimpleRectangularTextContainer() bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/containersize
-func (t_ TextContainer) ContainerSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("containerSize"))
+func (t_ TextContainer) ContainerSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](t_.ID, objc.Sel("containerSize"))
 	return rv
 }
 
@@ -147,7 +146,7 @@ func (t_ TextContainer) ContainerSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/containersize
-func (t_ TextContainer) SetContainerSize(value coregraphics.CGSize) {
+func (t_ TextContainer) SetContainerSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContainerSize:"), value)
 }
 
@@ -289,8 +288,8 @@ func (t_ TextContainer) SetMaximumNumberOfLines(value int /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/size
-func (t_ TextContainer) Size() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("size"))
+func (t_ TextContainer) Size() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](t_.ID, objc.Sel("size"))
 	return rv
 }
 
@@ -299,7 +298,7 @@ func (t_ TextContainer) Size() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/size
-func (t_ TextContainer) SetSize(value coregraphics.CGSize) {
+func (t_ TextContainer) SetSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSize:"), value)
 }
 

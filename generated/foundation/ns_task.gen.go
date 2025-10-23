@@ -55,8 +55,8 @@ type ITask interface {
 	SetStandardInput(value objc.ID)
 	StandardOutput() objc.ID
 	SetStandardOutput(value objc.ID)
-	TerminationHandler() unsafe.Pointer
-	SetTerminationHandler(value unsafe.Pointer)
+	TerminationHandler() func(unsafe.Pointer) /* not a class type */
+	SetTerminationHandler(value func(unsafe.Pointer) /* not a class type */)
 	TerminationReason() TaskTerminationReason
 	TerminationStatus() int /* primitive/slice/pointer. */
 	IsRunning() bool /* primitive/slice/pointer. */
@@ -442,8 +442,8 @@ func (t_ Task) SetStandardOutput(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/terminationHandler
-func (t_ Task) TerminationHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("terminationHandler"))
+func (t_ Task) TerminationHandler() func(unsafe.Pointer) /* not a class type */ {
+	rv := objc.Send[func(unsafe.Pointer)](t_.ID, objc.Sel("terminationHandler"))
 	return rv
 }
 
@@ -452,7 +452,7 @@ func (t_ Task) TerminationHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/terminationHandler
-func (t_ Task) SetTerminationHandler(value unsafe.Pointer) {
+func (t_ Task) SetTerminationHandler(value func(unsafe.Pointer) /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTerminationHandler:"), value)
 }
 

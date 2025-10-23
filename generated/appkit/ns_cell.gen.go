@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -49,7 +49,7 @@ type ICell interface {
 	SetBackgroundStyle(value BackgroundStyle)
 	BaseWritingDirection() WritingDirection
 	SetBaseWritingDirection(value WritingDirection)
-	CellSize() coregraphics.CGSize
+	CellSize() objc.IObject /* cross-framework: Size */
 	ControlSize() ControlSize
 	SetControlSize(value ControlSize)
 	ControlTint() ControlTint
@@ -93,7 +93,7 @@ type ICell interface {
 	SetScrollable(value bool /* primitive/slice/pointer. */)
 	Selectable() bool /* primitive/slice/pointer. */
 	SetSelectable(value bool /* primitive/slice/pointer. */)
-	KeyEquivalent() string /* primitive/slice/pointer. */
+	KeyEquivalent() objc.IObject /* cross-framework: NSString */
 	LineBreakMode() LineBreakMode
 	SetLineBreakMode(value LineBreakMode)
 	Menu() IMenu
@@ -112,14 +112,14 @@ type ICell interface {
 	SetShowsFirstResponder(value bool /* primitive/slice/pointer. */)
 	State() ControlStateValue /* not a class type */
 	SetState(value ControlStateValue /* not a class type */)
-	StringValue() string /* primitive/slice/pointer. */
-	SetStringValue(value string /* primitive/slice/pointer. */)
+	StringValue() objc.IObject /* cross-framework: NSString */
+	SetStringValue(value objc.IObject /* cross-framework: NSString */)
 	Tag() int /* primitive/slice/pointer. */
 	SetTag(value int /* primitive/slice/pointer. */)
 	Target() objc.ID
 	SetTarget(value objc.ID)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	TruncatesLastVisibleLine() bool /* primitive/slice/pointer. */
 	SetTruncatesLastVisibleLine(value bool /* primitive/slice/pointer. */)
 	Type() CellType
@@ -150,44 +150,44 @@ type ICell interface {
 	IsSelectable() bool /* primitive/slice/pointer. */
 	SetIsSelectable(value bool /* primitive/slice/pointer. */)
 	// methods:
-	CalcDrawInfo(rect coregraphics.CGRect)
+	CalcDrawInfo(rect objc.IObject /* cross-framework Rect */)
 	CellAttribute(parameter CellAttribute) int /* primitive/slice/pointer. */
-	CellSizeForBounds(rect coregraphics.CGRect) coregraphics.CGSize
+	CellSizeForBounds(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Size */
 	Compare(otherCell objectivec.IObject) ComparisonResult /* not a class type */
-	ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentPoint coregraphics.CGPoint, controlView IView) bool /* primitive/slice/pointer. */
-	DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect, view IView) []DraggingImageComponent /* primitive/slice/pointer. */
-	DrawWithExpansionFrameInView(cellFrame coregraphics.CGRect, view IView)
-	DrawWithFrameInView(cellFrame coregraphics.CGRect, controlView IView)
-	DrawFocusRingMaskWithFrameInView(cellFrame coregraphics.CGRect, controlView IView)
-	DrawInteriorWithFrameInView(cellFrame coregraphics.CGRect, controlView IView)
-	DrawingRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
-	EditWithFrameInViewEditorDelegateEvent(rect coregraphics.CGRect, controlView IView, textObj IText, delegate objectivec.IObject, event IEvent)
+	ContinueTrackingAtInView(lastPoint objc.IObject /* cross-framework Point */, currentPoint objc.IObject /* cross-framework Point */, controlView IView) bool /* primitive/slice/pointer. */
+	DraggingImageComponentsWithFrameInView(frame objc.IObject /* cross-framework Rect */, view IView) []DraggingImageComponent /* primitive/slice/pointer. */
+	DrawWithExpansionFrameInView(cellFrame objc.IObject /* cross-framework Rect */, view IView)
+	DrawWithFrameInView(cellFrame objc.IObject /* cross-framework Rect */, controlView IView)
+	DrawFocusRingMaskWithFrameInView(cellFrame objc.IObject /* cross-framework Rect */, controlView IView)
+	DrawInteriorWithFrameInView(cellFrame objc.IObject /* cross-framework Rect */, controlView IView)
+	DrawingRectForBounds(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	EditWithFrameInViewEditorDelegateEvent(rect objc.IObject /* cross-framework Rect */, controlView IView, textObj IText, delegate objectivec.IObject, event IEvent)
 	EndEditing(textObj IText)
-	ExpansionFrameWithFrameInView(cellFrame coregraphics.CGRect, view IView) coregraphics.CGRect
+	ExpansionFrameWithFrameInView(cellFrame objc.IObject /* cross-framework Rect */, view IView) objc.IObject /* cross-framework: Rect */
 	FieldEditorForView(controlView IView) ITextView
-	FocusRingMaskBoundsForFrameInView(cellFrame coregraphics.CGRect, controlView IView) coregraphics.CGRect
+	FocusRingMaskBoundsForFrameInView(cellFrame objc.IObject /* cross-framework Rect */, controlView IView) objc.IObject /* cross-framework: Rect */
 	GetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Pointer)
-	HighlightWithFrameInView(flag bool /* primitive/slice/pointer. */, cellFrame coregraphics.CGRect, controlView IView)
-	HighlightColorWithFrameInView(cellFrame coregraphics.CGRect, controlView IView) IColor
-	HitTestForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, controlView IView) CellHitResult
-	ImageRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
-	MenuForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, view IView) IMenu
+	HighlightWithFrameInView(flag bool /* primitive/slice/pointer. */, cellFrame objc.IObject /* cross-framework Rect */, controlView IView)
+	HighlightColorWithFrameInView(cellFrame objc.IObject /* cross-framework Rect */, controlView IView) IColor
+	HitTestForEventInRectOfView(event IEvent, cellFrame objc.IObject /* cross-framework Rect */, controlView IView) CellHitResult
+	ImageRectForBounds(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	MenuForEventInRectOfView(event IEvent, cellFrame objc.IObject /* cross-framework Rect */, view IView) IMenu
 	PerformClick(sender objectivec.IObject)
-	ResetCursorRectInView(cellFrame coregraphics.CGRect, controlView IView)
-	SelectWithFrameInViewEditorDelegateStartLength(rect coregraphics.CGRect, controlView IView, textObj IText, delegate objectivec.IObject, selStart int /* primitive/slice/pointer. */, selLength int /* primitive/slice/pointer. */)
+	ResetCursorRectInView(cellFrame objc.IObject /* cross-framework Rect */, controlView IView)
+	SelectWithFrameInViewEditorDelegateStartLength(rect objc.IObject /* cross-framework Rect */, controlView IView, textObj IText, delegate objectivec.IObject, selStart int /* primitive/slice/pointer. */, selLength int /* primitive/slice/pointer. */)
 	SendActionOn(mask EventMask) int /* primitive/slice/pointer. */
 	SetCellAttributeTo(parameter CellAttribute, value int /* primitive/slice/pointer. */)
 	SetUpFieldEditorAttributes(textObj IText) IText
-	StartTrackingAtInView(startPoint coregraphics.CGPoint, controlView IView) bool /* primitive/slice/pointer. */
-	StopTrackingAtInViewMouseIsUp(lastPoint coregraphics.CGPoint, stopPoint coregraphics.CGPoint, controlView IView, flag bool /* primitive/slice/pointer. */)
+	StartTrackingAtInView(startPoint objc.IObject /* cross-framework Point */, controlView IView) bool /* primitive/slice/pointer. */
+	StopTrackingAtInViewMouseIsUp(lastPoint objc.IObject /* cross-framework Point */, stopPoint objc.IObject /* cross-framework Point */, controlView IView, flag bool /* primitive/slice/pointer. */)
 	TakeDoubleValueFrom(sender objectivec.IObject)
 	TakeFloatValueFrom(sender objectivec.IObject)
 	TakeIntValueFrom(sender objectivec.IObject)
 	TakeIntegerValueFrom(sender objectivec.IObject)
 	TakeObjectValueFrom(sender objectivec.IObject)
 	TakeStringValueFrom(sender objectivec.IObject)
-	TitleRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
-	TrackMouseInRectOfViewUntilMouseUp(event IEvent, cellFrame coregraphics.CGRect, controlView IView, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	TitleRectForBounds(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	TrackMouseInRectOfViewUntilMouseUp(event IEvent, cellFrame objc.IObject /* cross-framework Rect */, controlView IView, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
 }
 
 // A mechanism for displaying text or images in a view object without the overhead of a full subclass.
@@ -259,9 +259,9 @@ func NewCellImageCell(image IImage) Cell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(textCell:)
-func NewCellTextCell(string_ string /* primitive/slice/pointer. */) Cell {
+func NewCellTextCell(string_ objc.IObject /* cross-framework NSString */) Cell {
 	instance := getCellClass().Alloc()
-	rv := objc.Send[Cell](instance.ID, objc.Sel("initTextCell:"), objc.String(string_))
+	rv := objc.Send[Cell](instance.ID, objc.Sel("initTextCell:"), string_)
 	rv.Autorelease()
 	return rv
 }
@@ -269,7 +269,7 @@ func NewCellTextCell(string_ string /* primitive/slice/pointer. */) Cell {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
-func NewCellWithCoder(coder Coder /* not a class type */) Cell {
+func NewCellWithCoder(coder objc.IObject /* cross-framework Coder */) Cell {
 	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -309,7 +309,7 @@ func (cc _CellClass) PrefersTrackingUntilMouseUp() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/calcDrawInfo(_:)
-func (c_ Cell) CalcDrawInfo(rect coregraphics.CGRect) {
+func (c_ Cell) CalcDrawInfo(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("calcDrawInfo:"), rect)
 }
 
@@ -328,8 +328,8 @@ func (c_ Cell) CellAttribute(parameter CellAttribute) int /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/cellSize(forBounds:)
-func (c_ Cell) CellSizeForBounds(rect coregraphics.CGRect) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("cellSizeForBounds:"), rect)
+func (c_ Cell) CellSizeForBounds(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](c_.ID, objc.Sel("cellSizeForBounds:"), rect)
 	return rv
 }
 
@@ -348,7 +348,7 @@ func (c_ Cell) Compare(otherCell objectivec.IObject) ComparisonResult /* not a c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/continueTracking(last:current:in:)
-func (c_ Cell) ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentPoint coregraphics.CGPoint, controlView IView) bool /* primitive/slice/pointer. */ {
+func (c_ Cell) ContinueTrackingAtInView(lastPoint objc.IObject /* cross-framework Point */, currentPoint objc.IObject /* cross-framework Point */, controlView IView) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("continueTracking:at:inView:"), lastPoint, currentPoint, controlView)
 	return rv
 }
@@ -358,7 +358,7 @@ func (c_ Cell) ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/draggingImageComponents(withFrame:in:)
-func (c_ Cell) DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect, view IView) []DraggingImageComponent /* primitive/slice/pointer. */ {
+func (c_ Cell) DraggingImageComponentsWithFrameInView(frame objc.IObject /* cross-framework Rect */, view IView) []DraggingImageComponent /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]DraggingImageComponent](c_.ID, objc.Sel("draggingImageComponentsWithFrame:inView:"), frame, view)
 	return rv
 }
@@ -368,7 +368,7 @@ func (c_ Cell) DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/draw(withExpansionFrame:in:)
-func (c_ Cell) DrawWithExpansionFrameInView(cellFrame coregraphics.CGRect, view IView) {
+func (c_ Cell) DrawWithExpansionFrameInView(cellFrame objc.IObject /* cross-framework Rect */, view IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("drawWithExpansionFrame:inView:"), cellFrame, view)
 }
 
@@ -377,7 +377,7 @@ func (c_ Cell) DrawWithExpansionFrameInView(cellFrame coregraphics.CGRect, view 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/draw(withFrame:in:)
-func (c_ Cell) DrawWithFrameInView(cellFrame coregraphics.CGRect, controlView IView) {
+func (c_ Cell) DrawWithFrameInView(cellFrame objc.IObject /* cross-framework Rect */, controlView IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("drawWithFrame:inView:"), cellFrame, controlView)
 }
 
@@ -386,7 +386,7 @@ func (c_ Cell) DrawWithFrameInView(cellFrame coregraphics.CGRect, controlView IV
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/drawFocusRingMask(withFrame:in:)
-func (c_ Cell) DrawFocusRingMaskWithFrameInView(cellFrame coregraphics.CGRect, controlView IView) {
+func (c_ Cell) DrawFocusRingMaskWithFrameInView(cellFrame objc.IObject /* cross-framework Rect */, controlView IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("drawFocusRingMaskWithFrame:inView:"), cellFrame, controlView)
 }
 
@@ -395,7 +395,7 @@ func (c_ Cell) DrawFocusRingMaskWithFrameInView(cellFrame coregraphics.CGRect, c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/drawInterior(withFrame:in:)
-func (c_ Cell) DrawInteriorWithFrameInView(cellFrame coregraphics.CGRect, controlView IView) {
+func (c_ Cell) DrawInteriorWithFrameInView(cellFrame objc.IObject /* cross-framework Rect */, controlView IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("drawInteriorWithFrame:inView:"), cellFrame, controlView)
 }
 
@@ -404,8 +404,8 @@ func (c_ Cell) DrawInteriorWithFrameInView(cellFrame coregraphics.CGRect, contro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/drawingRect(forBounds:)
-func (c_ Cell) DrawingRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("drawingRectForBounds:"), rect)
+func (c_ Cell) DrawingRectForBounds(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](c_.ID, objc.Sel("drawingRectForBounds:"), rect)
 	return rv
 }
 
@@ -414,7 +414,7 @@ func (c_ Cell) DrawingRectForBounds(rect coregraphics.CGRect) coregraphics.CGRec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/edit(withFrame:in:editor:delegate:event:)
-func (c_ Cell) EditWithFrameInViewEditorDelegateEvent(rect coregraphics.CGRect, controlView IView, textObj IText, delegate objectivec.IObject, event IEvent) {
+func (c_ Cell) EditWithFrameInViewEditorDelegateEvent(rect objc.IObject /* cross-framework Rect */, controlView IView, textObj IText, delegate objectivec.IObject, event IEvent) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("editWithFrame:inView:editor:delegate:event:"), rect, controlView, textObj, delegate, event)
 }
 
@@ -432,8 +432,8 @@ func (c_ Cell) EndEditing(textObj IText) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/expansionFrame(withFrame:in:)
-func (c_ Cell) ExpansionFrameWithFrameInView(cellFrame coregraphics.CGRect, view IView) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("expansionFrameWithFrame:inView:"), cellFrame, view)
+func (c_ Cell) ExpansionFrameWithFrameInView(cellFrame objc.IObject /* cross-framework Rect */, view IView) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](c_.ID, objc.Sel("expansionFrameWithFrame:inView:"), cellFrame, view)
 	return rv
 }
 
@@ -452,8 +452,8 @@ func (c_ Cell) FieldEditorForView(controlView IView) ITextView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/focusRingMaskBounds(forFrame:in:)
-func (c_ Cell) FocusRingMaskBoundsForFrameInView(cellFrame coregraphics.CGRect, controlView IView) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("focusRingMaskBoundsForFrame:inView:"), cellFrame, controlView)
+func (c_ Cell) FocusRingMaskBoundsForFrameInView(cellFrame objc.IObject /* cross-framework Rect */, controlView IView) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](c_.ID, objc.Sel("focusRingMaskBoundsForFrame:inView:"), cellFrame, controlView)
 	return rv
 }
 
@@ -471,7 +471,7 @@ func (c_ Cell) GetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/highlight(_:withFrame:in:)
-func (c_ Cell) HighlightWithFrameInView(flag bool /* primitive/slice/pointer. */, cellFrame coregraphics.CGRect, controlView IView) {
+func (c_ Cell) HighlightWithFrameInView(flag bool /* primitive/slice/pointer. */, cellFrame objc.IObject /* cross-framework Rect */, controlView IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("highlight:withFrame:inView:"), flag, cellFrame, controlView)
 }
 
@@ -480,7 +480,7 @@ func (c_ Cell) HighlightWithFrameInView(flag bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/highlightColor(withFrame:in:)
-func (c_ Cell) HighlightColorWithFrameInView(cellFrame coregraphics.CGRect, controlView IView) IColor {
+func (c_ Cell) HighlightColorWithFrameInView(cellFrame objc.IObject /* cross-framework Rect */, controlView IView) IColor {
 	rv := objc.Send[Color](c_.ID, objc.Sel("highlightColorWithFrame:inView:"), cellFrame, controlView)
 	return rv
 }
@@ -490,7 +490,7 @@ func (c_ Cell) HighlightColorWithFrameInView(cellFrame coregraphics.CGRect, cont
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/hitTest(for:in:of:)
-func (c_ Cell) HitTestForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, controlView IView) CellHitResult {
+func (c_ Cell) HitTestForEventInRectOfView(event IEvent, cellFrame objc.IObject /* cross-framework Rect */, controlView IView) CellHitResult {
 	rv := objc.Send[CellHitResult](c_.ID, objc.Sel("hitTestForEvent:inRect:ofView:"), event, cellFrame, controlView)
 	return rv
 }
@@ -500,8 +500,8 @@ func (c_ Cell) HitTestForEventInRectOfView(event IEvent, cellFrame coregraphics.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/imageRect(forBounds:)
-func (c_ Cell) ImageRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("imageRectForBounds:"), rect)
+func (c_ Cell) ImageRectForBounds(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](c_.ID, objc.Sel("imageRectForBounds:"), rect)
 	return rv
 }
 
@@ -510,7 +510,7 @@ func (c_ Cell) ImageRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/menu(for:in:of:)
-func (c_ Cell) MenuForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, view IView) IMenu {
+func (c_ Cell) MenuForEventInRectOfView(event IEvent, cellFrame objc.IObject /* cross-framework Rect */, view IView) IMenu {
 	rv := objc.Send[Menu](c_.ID, objc.Sel("menuForEvent:inRect:ofView:"), event, cellFrame, view)
 	return rv
 }
@@ -529,7 +529,7 @@ func (c_ Cell) PerformClick(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/resetCursorRect(_:in:)
-func (c_ Cell) ResetCursorRectInView(cellFrame coregraphics.CGRect, controlView IView) {
+func (c_ Cell) ResetCursorRectInView(cellFrame objc.IObject /* cross-framework Rect */, controlView IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("resetCursorRect:inView:"), cellFrame, controlView)
 }
 
@@ -538,7 +538,7 @@ func (c_ Cell) ResetCursorRectInView(cellFrame coregraphics.CGRect, controlView 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/select(withFrame:in:editor:delegate:start:length:)
-func (c_ Cell) SelectWithFrameInViewEditorDelegateStartLength(rect coregraphics.CGRect, controlView IView, textObj IText, delegate objectivec.IObject, selStart int /* primitive/slice/pointer. */, selLength int /* primitive/slice/pointer. */) {
+func (c_ Cell) SelectWithFrameInViewEditorDelegateStartLength(rect objc.IObject /* cross-framework Rect */, controlView IView, textObj IText, delegate objectivec.IObject, selStart int /* primitive/slice/pointer. */, selLength int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("selectWithFrame:inView:editor:delegate:start:length:"), rect, controlView, textObj, delegate, selStart, selLength)
 }
 
@@ -576,7 +576,7 @@ func (c_ Cell) SetUpFieldEditorAttributes(textObj IText) IText {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/startTracking(at:in:)
-func (c_ Cell) StartTrackingAtInView(startPoint coregraphics.CGPoint, controlView IView) bool /* primitive/slice/pointer. */ {
+func (c_ Cell) StartTrackingAtInView(startPoint objc.IObject /* cross-framework Point */, controlView IView) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("startTrackingAt:inView:"), startPoint, controlView)
 	return rv
 }
@@ -586,7 +586,7 @@ func (c_ Cell) StartTrackingAtInView(startPoint coregraphics.CGPoint, controlVie
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/stopTracking(last:current:in:mouseIsUp:)
-func (c_ Cell) StopTrackingAtInViewMouseIsUp(lastPoint coregraphics.CGPoint, stopPoint coregraphics.CGPoint, controlView IView, flag bool /* primitive/slice/pointer. */) {
+func (c_ Cell) StopTrackingAtInViewMouseIsUp(lastPoint objc.IObject /* cross-framework Point */, stopPoint objc.IObject /* cross-framework Point */, controlView IView, flag bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("stopTracking:at:inView:mouseIsUp:"), lastPoint, stopPoint, controlView, flag)
 }
 
@@ -649,8 +649,8 @@ func (c_ Cell) TakeStringValueFrom(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/titleRect(forBounds:)
-func (c_ Cell) TitleRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("titleRectForBounds:"), rect)
+func (c_ Cell) TitleRectForBounds(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](c_.ID, objc.Sel("titleRectForBounds:"), rect)
 	return rv
 }
 
@@ -659,7 +659,7 @@ func (c_ Cell) TitleRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/trackMouse(with:in:of:untilMouseUp:)
-func (c_ Cell) TrackMouseInRectOfViewUntilMouseUp(event IEvent, cellFrame coregraphics.CGRect, controlView IView, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (c_ Cell) TrackMouseInRectOfViewUntilMouseUp(event IEvent, cellFrame objc.IObject /* cross-framework Rect */, controlView IView, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("trackMouse:inRect:ofView:untilMouseUp:"), event, cellFrame, controlView, flag)
 	return rv
 }
@@ -831,8 +831,8 @@ func (c_ Cell) SetBaseWritingDirection(value WritingDirection) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/cellSize
-func (c_ Cell) CellSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("cellSize"))
+func (c_ Cell) CellSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](c_.ID, objc.Sel("cellSize"))
 	return rv
 }
 
@@ -1271,8 +1271,8 @@ func (c_ Cell) SetSelectable(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/keyEquivalent
-func (c_ Cell) KeyEquivalent() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("keyEquivalent"))
+func (c_ Cell) KeyEquivalent() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("keyEquivalent"))
 	return rv
 }
 
@@ -1463,8 +1463,8 @@ func (c_ Cell) SetState(value ControlStateValue /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/stringValue
-func (c_ Cell) StringValue() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("stringValue"))
+func (c_ Cell) StringValue() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
@@ -1473,8 +1473,8 @@ func (c_ Cell) StringValue() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/stringValue
-func (c_ Cell) SetStringValue(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStringValue:"), objc.String(value))
+func (c_ Cell) SetStringValue(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStringValue:"), value)
 }
 
 
@@ -1520,8 +1520,8 @@ func (c_ Cell) SetTarget(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/title
-func (c_ Cell) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("title"))
+func (c_ Cell) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -1530,8 +1530,8 @@ func (c_ Cell) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/title
-func (c_ Cell) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (c_ Cell) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
 }
 
 

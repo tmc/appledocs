@@ -1,0 +1,89 @@
+// Code generated from Apple documentation for AVFoundation. DO NOT EDIT.
+
+package avfoundation
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [MutableMediaSelection] class.
+var (
+	MutableMediaSelectionClass     _MutableMediaSelectionClass
+	MutableMediaSelectionClassOnce sync.Once
+)
+
+func getMutableMediaSelectionClass() _MutableMediaSelectionClass {
+	MutableMediaSelectionClassOnce.Do(func() {
+		MutableMediaSelectionClass = _MutableMediaSelectionClass{objc.GetClass("AVMutableMediaSelection")}
+	})
+	return MutableMediaSelectionClass
+}
+
+type _MutableMediaSelectionClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [MutableMediaSelection] class.
+type IMutableMediaSelection interface {
+	IMediaSelection
+	// properties:
+	// methods:
+}
+
+// A mutable object that represents a complete rendition of media selection options on an asset.
+
+
+// A mutable object that represents a complete rendition of media selection options on an asset.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableMediaSelection
+type MutableMediaSelection struct {
+	MediaSelection
+}
+
+// MutableMediaSelectionFrom constructs a [MutableMediaSelection] from an unsafe.Pointer.
+//
+// A mutable object that represents a complete rendition of media selection options on an asset.
+func MutableMediaSelectionFrom(ptr unsafe.Pointer) MutableMediaSelection {
+	return MutableMediaSelection{
+		MediaSelection: MediaSelectionFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (mc _MutableMediaSelectionClass) Alloc() MutableMediaSelection {
+	rv := objc.Send[MutableMediaSelection](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (mc _MutableMediaSelectionClass) New() MutableMediaSelection {
+	rv := objc.Send[MutableMediaSelection](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MutableMediaSelection) Init() MutableMediaSelection {
+	rv := objc.Send[MutableMediaSelection](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MutableMediaSelection) Autorelease() MutableMediaSelection {
+	rv := objc.Send[MutableMediaSelection](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMutableMediaSelection creates a new MutableMediaSelection instance.
+func NewMutableMediaSelection() MutableMediaSelection {
+	return getMutableMediaSelectionClass().New()
+}
+
+
+
+

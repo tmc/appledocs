@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,16 +34,16 @@ type IDockTile interface {
 	// properties:
 	ApplicationIconImage() IImage
 	SetApplicationIconImage(value IImage)
-	BadgeLabel() string /* primitive/slice/pointer. */
-	SetBadgeLabel(value string /* primitive/slice/pointer. */)
+	BadgeLabel() objc.IObject /* cross-framework: NSString */
+	SetBadgeLabel(value objc.IObject /* cross-framework: NSString */)
 	ContentView() IView
 	SetContentView(value IView)
 	Owner() unsafe.Pointer
 	SetOwner(value unsafe.Pointer)
 	ShowsApplicationBadge() bool /* primitive/slice/pointer. */
 	SetShowsApplicationBadge(value bool /* primitive/slice/pointer. */)
-	Size() coregraphics.CGSize
-	SetSize(value coregraphics.CGSize)
+	Size() objc.IObject /* cross-framework: Size */
+	SetSize(value objc.IObject /* cross-framework: Size */)
 	DockTile() IDockTile
 	SetDockTile(value IDockTile)
 	// methods:
@@ -125,8 +125,8 @@ func (d_ DockTile) SetApplicationIconImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/badgelabel
-func (d_ DockTile) BadgeLabel() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("badgeLabel"))
+func (d_ DockTile) BadgeLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("badgeLabel"))
 	return rv
 }
 
@@ -135,8 +135,8 @@ func (d_ DockTile) BadgeLabel() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/badgelabel
-func (d_ DockTile) SetBadgeLabel(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setBadgeLabel:"), objc.String(value))
+func (d_ DockTile) SetBadgeLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setBadgeLabel:"), value)
 }
 
 
@@ -201,8 +201,8 @@ func (d_ DockTile) SetShowsApplicationBadge(value bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/size
-func (d_ DockTile) Size() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](d_.ID, objc.Sel("size"))
+func (d_ DockTile) Size() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](d_.ID, objc.Sel("size"))
 	return rv
 }
 
@@ -211,7 +211,7 @@ func (d_ DockTile) Size() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/size
-func (d_ DockTile) SetSize(value coregraphics.CGSize) {
+func (d_ DockTile) SetSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSize:"), value)
 }
 

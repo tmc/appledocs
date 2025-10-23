@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ButtonCell] class.
@@ -34,8 +35,8 @@ type IButtonCell interface {
 	SetImageScaling(value ImageScaling)
 	AlternateImage() IImage
 	SetAlternateImage(value IImage)
-	AlternateTitle() string /* primitive/slice/pointer. */
-	SetAlternateTitle(value string /* primitive/slice/pointer. */)
+	AlternateTitle() objc.IObject /* cross-framework: NSString */
+	SetAlternateTitle(value objc.IObject /* cross-framework: NSString */)
 	AttributedAlternateTitle() objc.IObject /* cross-framework: AttributedString */
 	SetAttributedAlternateTitle(value objc.IObject /* cross-framework: AttributedString */)
 	AttributedTitle() objc.IObject /* cross-framework: AttributedString */
@@ -56,8 +57,8 @@ type IButtonCell interface {
 	SetIsOpaque(value bool /* primitive/slice/pointer. */)
 	IsTransparent() bool /* primitive/slice/pointer. */
 	SetIsTransparent(value bool /* primitive/slice/pointer. */)
-	KeyEquivalent() string /* primitive/slice/pointer. */
-	SetKeyEquivalent(value string /* primitive/slice/pointer. */)
+	KeyEquivalent() objc.IObject /* cross-framework: NSString */
+	SetKeyEquivalent(value objc.IObject /* cross-framework: NSString */)
 	KeyEquivalentFont() IFont
 	SetKeyEquivalentFont(value IFont)
 	KeyEquivalentModifierMask() unsafe.Pointer
@@ -68,8 +69,8 @@ type IButtonCell interface {
 	SetShowsStateBy(value unsafe.Pointer)
 	Sound() ISound
 	SetSound(value ISound)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	Font() IFont
 	SetFont(value IFont)
 	IntValue() unsafe.Pointer
@@ -180,8 +181,8 @@ func (b_ ButtonCell) SetAlternateImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttoncell/alternatetitle
-func (b_ ButtonCell) AlternateTitle() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](b_.ID, objc.Sel("alternateTitle"))
+func (b_ ButtonCell) AlternateTitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("alternateTitle"))
 	return rv
 }
 
@@ -190,8 +191,8 @@ func (b_ ButtonCell) AlternateTitle() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttoncell/alternatetitle
-func (b_ ButtonCell) SetAlternateTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setAlternateTitle:"), objc.String(value))
+func (b_ ButtonCell) SetAlternateTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setAlternateTitle:"), value)
 }
 
 
@@ -389,8 +390,8 @@ func (b_ ButtonCell) SetIsTransparent(value bool /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttoncell/keyequivalent
-func (b_ ButtonCell) KeyEquivalent() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](b_.ID, objc.Sel("keyEquivalent"))
+func (b_ ButtonCell) KeyEquivalent() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("keyEquivalent"))
 	return rv
 }
 
@@ -399,8 +400,8 @@ func (b_ ButtonCell) KeyEquivalent() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttoncell/keyequivalent
-func (b_ ButtonCell) SetKeyEquivalent(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setKeyEquivalent:"), objc.String(value))
+func (b_ ButtonCell) SetKeyEquivalent(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setKeyEquivalent:"), value)
 }
 
 
@@ -503,8 +504,8 @@ func (b_ ButtonCell) SetSound(value ISound) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttoncell/title
-func (b_ ButtonCell) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](b_.ID, objc.Sel("title"))
+func (b_ ButtonCell) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -513,8 +514,8 @@ func (b_ ButtonCell) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttoncell/title
-func (b_ ButtonCell) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (b_ ButtonCell) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), value)
 }
 
 

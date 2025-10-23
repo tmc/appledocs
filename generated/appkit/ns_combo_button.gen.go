@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -39,8 +40,8 @@ type IComboButton interface {
 	SetMenu(value IMenu)
 	Style() ComboButtonStyle
 	SetStyle(value ComboButtonStyle)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	Action() unsafe.Pointer
 	SetAction(value unsafe.Pointer)
 	Target() unsafe.Pointer
@@ -117,8 +118,8 @@ func NewComboButtonWithImageMenuTargetAction(image IImage, menu IMenu, target ob
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/init(title:image:menu:target:action:)
-func NewComboButtonWithTitleImageMenuTargetAction(title string /* primitive/slice/pointer. */, image IImage, menu IMenu, target objectivec.IObject, action objc.SEL) ComboButton {
-	rv := objc.Send[ComboButton](objc.ID(getComboButtonClass().class), objc.Sel("comboButtonWithTitle:image:menu:target:action:"), objc.String(title), image, menu, target, action)
+func NewComboButtonWithTitleImageMenuTargetAction(title objc.IObject /* cross-framework NSString */, image IImage, menu IMenu, target objectivec.IObject, action objc.SEL) ComboButton {
+	rv := objc.Send[ComboButton](objc.ID(getComboButtonClass().class), objc.Sel("comboButtonWithTitle:image:menu:target:action:"), title, image, menu, target, action)
 	return rv
 }
 
@@ -127,8 +128,8 @@ func NewComboButtonWithTitleImageMenuTargetAction(title string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/init(title:menu:target:action:)
-func NewComboButtonWithTitleMenuTargetAction(title string /* primitive/slice/pointer. */, menu IMenu, target objectivec.IObject, action objc.SEL) ComboButton {
-	rv := objc.Send[ComboButton](objc.ID(getComboButtonClass().class), objc.Sel("comboButtonWithTitle:menu:target:action:"), objc.String(title), menu, target, action)
+func NewComboButtonWithTitleMenuTargetAction(title objc.IObject /* cross-framework NSString */, menu IMenu, target objectivec.IObject, action objc.SEL) ComboButton {
+	rv := objc.Send[ComboButton](objc.ID(getComboButtonClass().class), objc.Sel("comboButtonWithTitle:menu:target:action:"), title, menu, target, action)
 	return rv
 }
 
@@ -148,8 +149,8 @@ func (cc _ComboButtonClass) ComboButtonWithImageMenuTargetAction(image IImage, m
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/init(title:image:menu:target:action:)
-func (cc _ComboButtonClass) ComboButtonWithTitleImageMenuTargetAction(title string /* primitive/slice/pointer. */, image IImage, menu IMenu, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("comboButtonWithTitle:image:menu:target:action:"), objc.String(title), image, menu, target, action)
+func (cc _ComboButtonClass) ComboButtonWithTitleImageMenuTargetAction(title objc.IObject /* cross-framework NSString */, image IImage, menu IMenu, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("comboButtonWithTitle:image:menu:target:action:"), title, image, menu, target, action)
 	return rv
 }
 
@@ -158,8 +159,8 @@ func (cc _ComboButtonClass) ComboButtonWithTitleImageMenuTargetAction(title stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/init(title:menu:target:action:)
-func (cc _ComboButtonClass) ComboButtonWithTitleMenuTargetAction(title string /* primitive/slice/pointer. */, menu IMenu, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("comboButtonWithTitle:menu:target:action:"), objc.String(title), menu, target, action)
+func (cc _ComboButtonClass) ComboButtonWithTitleMenuTargetAction(title objc.IObject /* cross-framework NSString */, menu IMenu, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("comboButtonWithTitle:menu:target:action:"), title, menu, target, action)
 	return rv
 }
 
@@ -244,8 +245,8 @@ func (c_ ComboButton) SetStyle(value ComboButtonStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/title
-func (c_ ComboButton) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("title"))
+func (c_ ComboButton) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -254,8 +255,8 @@ func (c_ ComboButton) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/title
-func (c_ ComboButton) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (c_ ComboButton) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
 }
 
 

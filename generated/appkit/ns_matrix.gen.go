@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Matrix] class.
@@ -43,8 +42,8 @@ type IMatrix interface {
 	SetCellBackgroundColor(value IColor)
 	CellClass() unsafe.Pointer
 	SetCellClass(value unsafe.Pointer)
-	CellSize() coregraphics.CGSize
-	SetCellSize(value coregraphics.CGSize)
+	CellSize() objc.IObject /* cross-framework: Size */
+	SetCellSize(value objc.IObject /* cross-framework: Size */)
 	Cells() ICell
 	SetCells(value ICell)
 	Delegate() MatrixDelegate /* not a class type */
@@ -55,8 +54,8 @@ type IMatrix interface {
 	SetDrawsBackground(value bool /* primitive/slice/pointer. */)
 	DrawsCellBackground() bool /* primitive/slice/pointer. */
 	SetDrawsCellBackground(value bool /* primitive/slice/pointer. */)
-	IntercellSpacing() coregraphics.CGSize
-	SetIntercellSpacing(value coregraphics.CGSize)
+	IntercellSpacing() objc.IObject /* cross-framework: Size */
+	SetIntercellSpacing(value objc.IObject /* cross-framework: Size */)
 	IsAutoscroll() bool /* primitive/slice/pointer. */
 	SetIsAutoscroll(value bool /* primitive/slice/pointer. */)
 	IsSelectionByRect() bool /* primitive/slice/pointer. */
@@ -257,8 +256,8 @@ func (m_ Matrix) SetCellClass(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmatrix/cellsize
-func (m_ Matrix) CellSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](m_.ID, objc.Sel("cellSize"))
+func (m_ Matrix) CellSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](m_.ID, objc.Sel("cellSize"))
 	return rv
 }
 
@@ -267,7 +266,7 @@ func (m_ Matrix) CellSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmatrix/cellsize
-func (m_ Matrix) SetCellSize(value coregraphics.CGSize) {
+func (m_ Matrix) SetCellSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCellSize:"), value)
 }
 
@@ -371,8 +370,8 @@ func (m_ Matrix) SetDrawsCellBackground(value bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmatrix/intercellspacing
-func (m_ Matrix) IntercellSpacing() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](m_.ID, objc.Sel("intercellSpacing"))
+func (m_ Matrix) IntercellSpacing() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](m_.ID, objc.Sel("intercellSpacing"))
 	return rv
 }
 
@@ -381,7 +380,7 @@ func (m_ Matrix) IntercellSpacing() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmatrix/intercellspacing
-func (m_ Matrix) SetIntercellSpacing(value coregraphics.CGSize) {
+func (m_ Matrix) SetIntercellSpacing(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIntercellSpacing:"), value)
 }
 

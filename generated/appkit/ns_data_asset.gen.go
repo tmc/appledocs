@@ -32,11 +32,11 @@ type _DataAssetClass struct {
 type IDataAsset interface {
 	objectivec.IObject
 	// properties:
-	Data() foundation.objc.IObject /* cross-framework: NSData */
+	Data() objc.IObject /* cross-framework: NSData */
 	Name() unsafe.Pointer
 	SetName(value unsafe.Pointer)
-	TypeIdentifier() string /* primitive/slice/pointer. */
-	SetTypeIdentifier(value string /* primitive/slice/pointer. */)
+	TypeIdentifier() objc.IObject /* cross-framework: NSString */
+	SetTypeIdentifier(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -110,7 +110,7 @@ func NewDataAssetWithNameBundle(name DataAssetName /* not a class type */, bundl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/data
-func (d_ DataAsset) Data() foundation.objc.IObject /* cross-framework: NSData */ {
+func (d_ DataAsset) Data() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("data"))
 	return rv
 }
@@ -139,8 +139,8 @@ func (d_ DataAsset) SetName(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/typeidentifier
-func (d_ DataAsset) TypeIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("typeIdentifier"))
+func (d_ DataAsset) TypeIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("typeIdentifier"))
 	return rv
 }
 
@@ -149,8 +149,8 @@ func (d_ DataAsset) TypeIdentifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/typeidentifier
-func (d_ DataAsset) SetTypeIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setTypeIdentifier:"), objc.String(value))
+func (d_ DataAsset) SetTypeIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setTypeIdentifier:"), value)
 }
 
 

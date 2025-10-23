@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/coreml"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -35,12 +34,12 @@ type ITextView interface {
 	IText
 	// properties:
 	LayoutManager() objc.IObject /* cross-framework: LayoutManager */
-	RangeForUserCompletion() foundation.objc.IObject /* cross-framework: Range */
-	SelectedRanges() []Value /* primitive/slice/pointer. */
-	SetSelectedRanges(value []Value /* primitive/slice/pointer. */)
+	RangeForUserCompletion() objc.IObject /* cross-framework: Range */
+	SelectedRanges() objc.IObject /* cross-framework: Value */
+	SetSelectedRanges(value objc.IObject /* cross-framework: Value */)
 	TextContainer() ITextContainer
 	SetTextContainer(value ITextContainer)
-	TextContainerOrigin() coregraphics.CGPoint
+	TextContainerOrigin() objc.IObject /* cross-framework: Point */
 	TextStorage() ITextStorage
 	TypingAttributes() foundation.IDictionary /* already interface */
 	SetTypingAttributes(value foundation.IDictionary /* already interface */)
@@ -48,8 +47,8 @@ type ITextView interface {
 	SetAcceptableDragTypes(value objc.IObject /* cross-framework: PasteboardType */)
 	AcceptsGlyphInfo() bool /* primitive/slice/pointer. */
 	SetAcceptsGlyphInfo(value bool /* primitive/slice/pointer. */)
-	AllowedInputSourceLocales() string /* primitive/slice/pointer. */
-	SetAllowedInputSourceLocales(value string /* primitive/slice/pointer. */)
+	AllowedInputSourceLocales() objc.IObject /* cross-framework: NSString */
+	SetAllowedInputSourceLocales(value objc.IObject /* cross-framework: NSString */)
 	AllowedWritingToolsResultOptions() WritingToolsResultOptions
 	SetAllowedWritingToolsResultOptions(value WritingToolsResultOptions)
 	AllowsCharacterPickerTouchBarItem() bool /* primitive/slice/pointer. */
@@ -114,28 +113,28 @@ type ITextView interface {
 	SetIsSelectable(value bool /* primitive/slice/pointer. */)
 	IsWritingToolsActive() bool /* primitive/slice/pointer. */
 	SetIsWritingToolsActive(value bool /* primitive/slice/pointer. */)
-	LinkTextAttributes() coreml.objc.IObject /* cross-framework: Key */
-	SetLinkTextAttributes(value coreml.objc.IObject /* cross-framework: Key */)
-	MarkedTextAttributes() coreml.objc.IObject /* cross-framework: Key */
-	SetMarkedTextAttributes(value coreml.objc.IObject /* cross-framework: Key */)
+	LinkTextAttributes() objc.IObject /* cross-framework: Key */
+	SetLinkTextAttributes(value objc.IObject /* cross-framework: Key */)
+	MarkedTextAttributes() objc.IObject /* cross-framework: Key */
+	SetMarkedTextAttributes(value objc.IObject /* cross-framework: Key */)
 	MathExpressionCompletionType() TextInputTraitType /* not a class type */
 	SetMathExpressionCompletionType(value TextInputTraitType /* not a class type */)
-	RangeForUserCharacterAttributeChange() foundation.objc.IObject /* cross-framework: Range */
-	SetRangeForUserCharacterAttributeChange(value foundation.objc.IObject /* cross-framework: Range */)
-	RangeForUserParagraphAttributeChange() foundation.objc.IObject /* cross-framework: Range */
-	SetRangeForUserParagraphAttributeChange(value foundation.objc.IObject /* cross-framework: Range */)
-	RangeForUserTextChange() foundation.objc.IObject /* cross-framework: Range */
-	SetRangeForUserTextChange(value foundation.objc.IObject /* cross-framework: Range */)
-	RangesForUserCharacterAttributeChange() Value /* not a class type */
-	SetRangesForUserCharacterAttributeChange(value Value /* not a class type */)
-	RangesForUserParagraphAttributeChange() Value /* not a class type */
-	SetRangesForUserParagraphAttributeChange(value Value /* not a class type */)
-	RangesForUserTextChange() Value /* not a class type */
-	SetRangesForUserTextChange(value Value /* not a class type */)
+	RangeForUserCharacterAttributeChange() objc.IObject /* cross-framework: Range */
+	SetRangeForUserCharacterAttributeChange(value objc.IObject /* cross-framework: Range */)
+	RangeForUserParagraphAttributeChange() objc.IObject /* cross-framework: Range */
+	SetRangeForUserParagraphAttributeChange(value objc.IObject /* cross-framework: Range */)
+	RangeForUserTextChange() objc.IObject /* cross-framework: Range */
+	SetRangeForUserTextChange(value objc.IObject /* cross-framework: Range */)
+	RangesForUserCharacterAttributeChange() objc.IObject /* cross-framework: Value */
+	SetRangesForUserCharacterAttributeChange(value objc.IObject /* cross-framework: Value */)
+	RangesForUserParagraphAttributeChange() objc.IObject /* cross-framework: Value */
+	SetRangesForUserParagraphAttributeChange(value objc.IObject /* cross-framework: Value */)
+	RangesForUserTextChange() objc.IObject /* cross-framework: Value */
+	SetRangesForUserTextChange(value objc.IObject /* cross-framework: Value */)
 	ReadablePasteboardTypes() objc.IObject /* cross-framework: PasteboardType */
 	SetReadablePasteboardTypes(value objc.IObject /* cross-framework: PasteboardType */)
-	SelectedTextAttributes() coreml.objc.IObject /* cross-framework: Key */
-	SetSelectedTextAttributes(value coreml.objc.IObject /* cross-framework: Key */)
+	SelectedTextAttributes() objc.IObject /* cross-framework: Key */
+	SetSelectedTextAttributes(value objc.IObject /* cross-framework: Key */)
 	SelectionAffinity() SelectionAffinity /* not a class type */
 	SetSelectionAffinity(value SelectionAffinity /* not a class type */)
 	SelectionGranularity() SelectionGranularity /* not a class type */
@@ -146,12 +145,12 @@ type ITextView interface {
 	SetSmartInsertDeleteEnabled(value bool /* primitive/slice/pointer. */)
 	SpellCheckerDocumentTag() int /* primitive/slice/pointer. */
 	SetSpellCheckerDocumentTag(value int /* primitive/slice/pointer. */)
-	TextContainerInset() coregraphics.CGSize
-	SetTextContainerInset(value coregraphics.CGSize)
+	TextContainerInset() objc.IObject /* cross-framework: Size */
+	SetTextContainerInset(value objc.IObject /* cross-framework: Size */)
 	TextContentStorage() ITextContentStorage
 	SetTextContentStorage(value ITextContentStorage)
-	TextHighlightAttributes() coreml.objc.IObject /* cross-framework: Key */
-	SetTextHighlightAttributes(value coreml.objc.IObject /* cross-framework: Key */)
+	TextHighlightAttributes() objc.IObject /* cross-framework: Key */
+	SetTextHighlightAttributes(value objc.IObject /* cross-framework: Key */)
 	TextLayoutManager() ITextLayoutManager
 	SetTextLayoutManager(value ITextLayoutManager)
 	UsesAdaptiveColorMappingForDarkAppearance() bool /* primitive/slice/pointer. */
@@ -176,13 +175,13 @@ type ITextView interface {
 	AlignJustified(sender objectivec.IObject)
 	ChangeAttributes(sender objectivec.IObject)
 	ChangeColor(sender objectivec.IObject)
-	HandleTextCheckingResultsForRangeTypesOptionsOrthographyWordCount(results []foundation.objc.IObject /* cross-framework TextCheckingResult */, range_ foundation.objc.IObject /* cross-framework Range */, checkingTypes TextCheckingTypes /* not a class type */, options foundation.IDictionary /* already interface */, orthography objc.IObject /* cross-framework Orthography */, wordCount int /* primitive/slice/pointer. */)
+	HandleTextCheckingResultsForRangeTypesOptionsOrthographyWordCount(results objc.IObject /* cross-framework TextCheckingResult */, range_ objc.IObject /* cross-framework Range */, checkingTypes TextCheckingTypes /* not a class type */, options foundation.IDictionary /* already interface */, orthography objc.IObject /* cross-framework Orthography */, wordCount int /* primitive/slice/pointer. */)
 	LoosenKerning(sender objectivec.IObject)
 	LowerBaseline(sender objectivec.IObject)
-	QuickLookPreviewableItemsInRanges(ranges []Value /* primitive/slice/pointer. */) []objc.ID /* already interface */
+	QuickLookPreviewableItemsInRanges(ranges objc.IObject /* cross-framework Value */) []objc.ID /* already interface */
 	RaiseBaseline(sender objectivec.IObject)
 	RulerViewShouldRemoveMarker(ruler IRulerView, marker IRulerMarker) bool /* primitive/slice/pointer. */
-	SetAlignmentRange(alignment TextAlignment, range_ foundation.objc.IObject /* cross-framework Range */)
+	SetAlignmentRange(alignment TextAlignment, range_ objc.IObject /* cross-framework Range */)
 	TightenKerning(sender objectivec.IObject)
 	ToggleAutomaticTextReplacement(sender objectivec.IObject)
 	ToggleSmartInsertDelete(sender objectivec.IObject)
@@ -279,7 +278,7 @@ func (t_ TextView) ChangeColor(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/handleTextCheckingResults(_:forRange:types:options:orthography:wordCount:)
-func (t_ TextView) HandleTextCheckingResultsForRangeTypesOptionsOrthographyWordCount(results []foundation.objc.IObject /* cross-framework TextCheckingResult */, range_ foundation.objc.IObject /* cross-framework Range */, checkingTypes TextCheckingTypes /* not a class type */, options foundation.IDictionary /* already interface */, orthography objc.IObject /* cross-framework Orthography */, wordCount int /* primitive/slice/pointer. */) {
+func (t_ TextView) HandleTextCheckingResultsForRangeTypesOptionsOrthographyWordCount(results objc.IObject /* cross-framework TextCheckingResult */, range_ objc.IObject /* cross-framework Range */, checkingTypes TextCheckingTypes /* not a class type */, options foundation.IDictionary /* already interface */, orthography objc.IObject /* cross-framework Orthography */, wordCount int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("handleTextCheckingResults:forRange:types:options:orthography:wordCount:"), results, range_, checkingTypes, options, orthography, wordCount)
 }
 
@@ -306,7 +305,7 @@ func (t_ TextView) LowerBaseline(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/quickLookPreviewableItems(inRanges:)
-func (t_ TextView) QuickLookPreviewableItemsInRanges(ranges []Value /* primitive/slice/pointer. */) []objc.ID /* already interface */ {
+func (t_ TextView) QuickLookPreviewableItemsInRanges(ranges objc.IObject /* cross-framework Value */) []objc.ID /* already interface */ {
 	rv := objc.Send[[]objc.ID](t_.ID, objc.Sel("quickLookPreviewableItemsInRanges:"), ranges)
 	return rv
 }
@@ -335,7 +334,7 @@ func (t_ TextView) RulerViewShouldRemoveMarker(ruler IRulerView, marker IRulerMa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/setAlignment(_:range:)
-func (t_ TextView) SetAlignmentRange(alignment TextAlignment, range_ foundation.objc.IObject /* cross-framework Range */) {
+func (t_ TextView) SetAlignmentRange(alignment TextAlignment, range_ objc.IObject /* cross-framework Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAlignment:range:"), alignment, range_)
 }
 
@@ -426,8 +425,8 @@ func (t_ TextView) LayoutManager() objc.IObject /* cross-framework: LayoutManage
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/rangeForUserCompletion
-func (t_ TextView) RangeForUserCompletion() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("rangeForUserCompletion"))
+func (t_ TextView) RangeForUserCompletion() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[Range](t_.ID, objc.Sel("rangeForUserCompletion"))
 	return rv
 }
 
@@ -436,8 +435,8 @@ func (t_ TextView) RangeForUserCompletion() foundation.objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/selectedRanges
-func (t_ TextView) SelectedRanges() []Value /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]Value](t_.ID, objc.Sel("selectedRanges"))
+func (t_ TextView) SelectedRanges() objc.IObject /* cross-framework: Value */ {
+	rv := objc.Send[[]foundation.Value](t_.ID, objc.Sel("selectedRanges"))
 	return rv
 }
 
@@ -446,7 +445,7 @@ func (t_ TextView) SelectedRanges() []Value /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/selectedRanges
-func (t_ TextView) SetSelectedRanges(value []Value /* primitive/slice/pointer. */) {
+func (t_ TextView) SetSelectedRanges(value objc.IObject /* cross-framework: Value */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -484,8 +483,8 @@ func (t_ TextView) SetTextContainer(value ITextContainer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/textContainerOrigin
-func (t_ TextView) TextContainerOrigin() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("textContainerOrigin"))
+func (t_ TextView) TextContainerOrigin() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](t_.ID, objc.Sel("textContainerOrigin"))
 	return rv
 }
 
@@ -561,8 +560,8 @@ func (t_ TextView) SetAcceptsGlyphInfo(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowedinputsourcelocales
-func (t_ TextView) AllowedInputSourceLocales() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("allowedInputSourceLocales"))
+func (t_ TextView) AllowedInputSourceLocales() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("allowedInputSourceLocales"))
 	return rv
 }
 
@@ -571,8 +570,8 @@ func (t_ TextView) AllowedInputSourceLocales() string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowedinputsourcelocales
-func (t_ TextView) SetAllowedInputSourceLocales(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedInputSourceLocales:"), objc.String(value))
+func (t_ TextView) SetAllowedInputSourceLocales(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedInputSourceLocales:"), value)
 }
 
 
@@ -1168,7 +1167,7 @@ func (t_ TextView) SetIsWritingToolsActive(value bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/linktextattributes
-func (t_ TextView) LinkTextAttributes() coreml.objc.IObject /* cross-framework: Key */ {
+func (t_ TextView) LinkTextAttributes() objc.IObject /* cross-framework: Key */ {
 	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("linkTextAttributes"))
 	return rv
 }
@@ -1178,7 +1177,7 @@ func (t_ TextView) LinkTextAttributes() coreml.objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/linktextattributes
-func (t_ TextView) SetLinkTextAttributes(value coreml.objc.IObject /* cross-framework: Key */) {
+func (t_ TextView) SetLinkTextAttributes(value objc.IObject /* cross-framework: Key */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLinkTextAttributes:"), value)
 }
 
@@ -1187,7 +1186,7 @@ func (t_ TextView) SetLinkTextAttributes(value coreml.objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/markedtextattributes
-func (t_ TextView) MarkedTextAttributes() coreml.objc.IObject /* cross-framework: Key */ {
+func (t_ TextView) MarkedTextAttributes() objc.IObject /* cross-framework: Key */ {
 	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("markedTextAttributes"))
 	return rv
 }
@@ -1197,7 +1196,7 @@ func (t_ TextView) MarkedTextAttributes() coreml.objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/markedtextattributes
-func (t_ TextView) SetMarkedTextAttributes(value coreml.objc.IObject /* cross-framework: Key */) {
+func (t_ TextView) SetMarkedTextAttributes(value objc.IObject /* cross-framework: Key */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMarkedTextAttributes:"), value)
 }
 
@@ -1221,8 +1220,8 @@ func (t_ TextView) SetMathExpressionCompletionType(value TextInputTraitType /* n
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforusercharacterattributechange
-func (t_ TextView) RangeForUserCharacterAttributeChange() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("rangeForUserCharacterAttributeChange"))
+func (t_ TextView) RangeForUserCharacterAttributeChange() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[Range](t_.ID, objc.Sel("rangeForUserCharacterAttributeChange"))
 	return rv
 }
 
@@ -1231,7 +1230,7 @@ func (t_ TextView) RangeForUserCharacterAttributeChange() foundation.objc.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforusercharacterattributechange
-func (t_ TextView) SetRangeForUserCharacterAttributeChange(value foundation.objc.IObject /* cross-framework: Range */) {
+func (t_ TextView) SetRangeForUserCharacterAttributeChange(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangeForUserCharacterAttributeChange:"), value)
 }
 
@@ -1240,8 +1239,8 @@ func (t_ TextView) SetRangeForUserCharacterAttributeChange(value foundation.objc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforuserparagraphattributechange
-func (t_ TextView) RangeForUserParagraphAttributeChange() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("rangeForUserParagraphAttributeChange"))
+func (t_ TextView) RangeForUserParagraphAttributeChange() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[Range](t_.ID, objc.Sel("rangeForUserParagraphAttributeChange"))
 	return rv
 }
 
@@ -1250,7 +1249,7 @@ func (t_ TextView) RangeForUserParagraphAttributeChange() foundation.objc.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforuserparagraphattributechange
-func (t_ TextView) SetRangeForUserParagraphAttributeChange(value foundation.objc.IObject /* cross-framework: Range */) {
+func (t_ TextView) SetRangeForUserParagraphAttributeChange(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangeForUserParagraphAttributeChange:"), value)
 }
 
@@ -1259,8 +1258,8 @@ func (t_ TextView) SetRangeForUserParagraphAttributeChange(value foundation.objc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforusertextchange
-func (t_ TextView) RangeForUserTextChange() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("rangeForUserTextChange"))
+func (t_ TextView) RangeForUserTextChange() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[Range](t_.ID, objc.Sel("rangeForUserTextChange"))
 	return rv
 }
 
@@ -1269,7 +1268,7 @@ func (t_ TextView) RangeForUserTextChange() foundation.objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforusertextchange
-func (t_ TextView) SetRangeForUserTextChange(value foundation.objc.IObject /* cross-framework: Range */) {
+func (t_ TextView) SetRangeForUserTextChange(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangeForUserTextChange:"), value)
 }
 
@@ -1278,7 +1277,7 @@ func (t_ TextView) SetRangeForUserTextChange(value foundation.objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusercharacterattributechange
-func (t_ TextView) RangesForUserCharacterAttributeChange() Value /* not a class type */ {
+func (t_ TextView) RangesForUserCharacterAttributeChange() objc.IObject /* cross-framework: Value */ {
 	rv := objc.Send[Value](t_.ID, objc.Sel("rangesForUserCharacterAttributeChange"))
 	return rv
 }
@@ -1288,7 +1287,7 @@ func (t_ TextView) RangesForUserCharacterAttributeChange() Value /* not a class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusercharacterattributechange
-func (t_ TextView) SetRangesForUserCharacterAttributeChange(value Value /* not a class type */) {
+func (t_ TextView) SetRangesForUserCharacterAttributeChange(value objc.IObject /* cross-framework: Value */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangesForUserCharacterAttributeChange:"), value)
 }
 
@@ -1297,7 +1296,7 @@ func (t_ TextView) SetRangesForUserCharacterAttributeChange(value Value /* not a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforuserparagraphattributechange
-func (t_ TextView) RangesForUserParagraphAttributeChange() Value /* not a class type */ {
+func (t_ TextView) RangesForUserParagraphAttributeChange() objc.IObject /* cross-framework: Value */ {
 	rv := objc.Send[Value](t_.ID, objc.Sel("rangesForUserParagraphAttributeChange"))
 	return rv
 }
@@ -1307,7 +1306,7 @@ func (t_ TextView) RangesForUserParagraphAttributeChange() Value /* not a class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforuserparagraphattributechange
-func (t_ TextView) SetRangesForUserParagraphAttributeChange(value Value /* not a class type */) {
+func (t_ TextView) SetRangesForUserParagraphAttributeChange(value objc.IObject /* cross-framework: Value */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangesForUserParagraphAttributeChange:"), value)
 }
 
@@ -1316,7 +1315,7 @@ func (t_ TextView) SetRangesForUserParagraphAttributeChange(value Value /* not a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusertextchange
-func (t_ TextView) RangesForUserTextChange() Value /* not a class type */ {
+func (t_ TextView) RangesForUserTextChange() objc.IObject /* cross-framework: Value */ {
 	rv := objc.Send[Value](t_.ID, objc.Sel("rangesForUserTextChange"))
 	return rv
 }
@@ -1326,7 +1325,7 @@ func (t_ TextView) RangesForUserTextChange() Value /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusertextchange
-func (t_ TextView) SetRangesForUserTextChange(value Value /* not a class type */) {
+func (t_ TextView) SetRangesForUserTextChange(value objc.IObject /* cross-framework: Value */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangesForUserTextChange:"), value)
 }
 
@@ -1354,7 +1353,7 @@ func (t_ TextView) SetReadablePasteboardTypes(value objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/selectedtextattributes
-func (t_ TextView) SelectedTextAttributes() coreml.objc.IObject /* cross-framework: Key */ {
+func (t_ TextView) SelectedTextAttributes() objc.IObject /* cross-framework: Key */ {
 	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("selectedTextAttributes"))
 	return rv
 }
@@ -1364,7 +1363,7 @@ func (t_ TextView) SelectedTextAttributes() coreml.objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/selectedtextattributes
-func (t_ TextView) SetSelectedTextAttributes(value coreml.objc.IObject /* cross-framework: Key */) {
+func (t_ TextView) SetSelectedTextAttributes(value objc.IObject /* cross-framework: Key */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedTextAttributes:"), value)
 }
 
@@ -1468,8 +1467,8 @@ func (t_ TextView) SetSpellCheckerDocumentTag(value int /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textcontainerinset
-func (t_ TextView) TextContainerInset() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("textContainerInset"))
+func (t_ TextView) TextContainerInset() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](t_.ID, objc.Sel("textContainerInset"))
 	return rv
 }
 
@@ -1478,7 +1477,7 @@ func (t_ TextView) TextContainerInset() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textcontainerinset
-func (t_ TextView) SetTextContainerInset(value coregraphics.CGSize) {
+func (t_ TextView) SetTextContainerInset(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContainerInset:"), value)
 }
 
@@ -1506,7 +1505,7 @@ func (t_ TextView) SetTextContentStorage(value ITextContentStorage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/texthighlightattributes
-func (t_ TextView) TextHighlightAttributes() coreml.objc.IObject /* cross-framework: Key */ {
+func (t_ TextView) TextHighlightAttributes() objc.IObject /* cross-framework: Key */ {
 	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("textHighlightAttributes"))
 	return rv
 }
@@ -1516,7 +1515,7 @@ func (t_ TextView) TextHighlightAttributes() coreml.objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/texthighlightattributes
-func (t_ TextView) SetTextHighlightAttributes(value coreml.objc.IObject /* cross-framework: Key */) {
+func (t_ TextView) SetTextHighlightAttributes(value objc.IObject /* cross-framework: Key */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextHighlightAttributes:"), value)
 }
 

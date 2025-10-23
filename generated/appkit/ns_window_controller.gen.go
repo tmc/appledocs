@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -49,7 +50,7 @@ type IWindowController interface {
 	WindowFrameAutosaveName() objc.IObject /* cross-framework: WindowFrameAutosaveName */
 	SetWindowFrameAutosaveName(value objc.IObject /* cross-framework: WindowFrameAutosaveName */)
 	WindowNibName() objc.IObject /* cross-framework: NibName */
-	WindowNibPath() string /* primitive/slice/pointer. */
+	WindowNibPath() objc.IObject /* cross-framework: NSString */
 	IsWindowLoaded() bool /* primitive/slice/pointer. */
 	SetIsWindowLoaded(value bool /* primitive/slice/pointer. */)
 	// methods:
@@ -60,7 +61,7 @@ type IWindowController interface {
 	ShowWindow(sender objectivec.IObject)
 	SynchronizeWindowTitleWithDocumentName()
 	WindowDidLoad()
-	WindowTitleForDocumentDisplayName(displayName string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
+	WindowTitleForDocumentDisplayName(displayName objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: String */
 	WindowWillLoad()
 }
 
@@ -121,7 +122,7 @@ func NewWindowController() WindowController {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/init(coder:)
-func NewWindowControllerWithCoder(coder Coder /* not a class type */) WindowController {
+func NewWindowControllerWithCoder(coder objc.IObject /* cross-framework Coder */) WindowController {
 	instance := getWindowControllerClass().Alloc()
 	rv := objc.Send[WindowController](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -169,9 +170,9 @@ func NewWindowControllerWithWindowNibNameOwner(windowNibName objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/init(windowNibPath:owner:)
-func NewWindowControllerWithWindowNibPathOwner(windowNibPath string /* primitive/slice/pointer. */, owner objectivec.IObject) WindowController {
+func NewWindowControllerWithWindowNibPathOwner(windowNibPath objc.IObject /* cross-framework NSString */, owner objectivec.IObject) WindowController {
 	instance := getWindowControllerClass().Alloc()
-	rv := objc.Send[WindowController](instance.ID, objc.Sel("initWithWindowNibPath:owner:"), objc.String(windowNibPath), owner)
+	rv := objc.Send[WindowController](instance.ID, objc.Sel("initWithWindowNibPath:owner:"), windowNibPath, owner)
 	rv.Autorelease()
 	return rv
 }
@@ -245,8 +246,8 @@ func (w_ WindowController) WindowDidLoad() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/windowTitle(forDocumentDisplayName:)
-func (w_ WindowController) WindowTitleForDocumentDisplayName(displayName string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](w_.ID, objc.Sel("windowTitleForDocumentDisplayName:"), objc.String(displayName))
+func (w_ WindowController) WindowTitleForDocumentDisplayName(displayName objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[String](w_.ID, objc.Sel("windowTitleForDocumentDisplayName:"), displayName)
 	return rv
 }
 
@@ -443,8 +444,8 @@ func (w_ WindowController) WindowNibName() objc.IObject /* cross-framework: NibN
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/windowNibPath
-func (w_ WindowController) WindowNibPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](w_.ID, objc.Sel("windowNibPath"))
+func (w_ WindowController) WindowNibPath() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("windowNibPath"))
 	return rv
 }
 

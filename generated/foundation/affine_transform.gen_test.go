@@ -9,3 +9,9 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewAffineTransform
 
+// ExampleNewAffineTransform demonstrates how to create a AffineTransform instance.
+// Initializes an affine transform matrix to the identity matrix.
+func ExampleNewAffineTransform() {
+	_ = foundation.NewAffineTransform()
+	// Output:
+}

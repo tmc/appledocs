@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ComboBox] class.
@@ -41,8 +40,8 @@ type IComboBox interface {
 	SetHasVerticalScroller(value bool /* primitive/slice/pointer. */)
 	IndexOfSelectedItem() int /* primitive/slice/pointer. */
 	SetIndexOfSelectedItem(value int /* primitive/slice/pointer. */)
-	IntercellSpacing() coregraphics.CGSize
-	SetIntercellSpacing(value coregraphics.CGSize)
+	IntercellSpacing() objc.IObject /* cross-framework: Size */
+	SetIntercellSpacing(value objc.IObject /* cross-framework: Size */)
 	IsButtonBordered() bool /* primitive/slice/pointer. */
 	SetIsButtonBordered(value bool /* primitive/slice/pointer. */)
 	ItemHeight() float64 /* primitive/slice/pointer. */
@@ -214,8 +213,8 @@ func (c_ ComboBox) SetIndexOfSelectedItem(value int /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/intercellspacing
-func (c_ ComboBox) IntercellSpacing() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("intercellSpacing"))
+func (c_ ComboBox) IntercellSpacing() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](c_.ID, objc.Sel("intercellSpacing"))
 	return rv
 }
 
@@ -224,7 +223,7 @@ func (c_ ComboBox) IntercellSpacing() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/intercellspacing
-func (c_ ComboBox) SetIntercellSpacing(value coregraphics.CGSize) {
+func (c_ ComboBox) SetIntercellSpacing(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIntercellSpacing:"), value)
 }
 

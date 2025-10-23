@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _PageControllerClass struct {
 type IPageController interface {
 	IViewController
 	// properties:
-	ArrangedObjects() objc.ID
-	SetArrangedObjects(value objc.ID)
+	ArrangedObjects() objc.IObject /* cross-framework: NSArray */
+	SetArrangedObjects(value objc.IObject /* cross-framework: NSArray */)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	SelectedIndex() int /* primitive/slice/pointer. */
@@ -152,8 +153,8 @@ func (p_ PageController) TakeSelectedIndexFrom(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/arrangedObjects
-func (p_ PageController) ArrangedObjects() objc.ID {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("arrangedObjects"))
+func (p_ PageController) ArrangedObjects() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](p_.ID, objc.Sel("arrangedObjects"))
 	return rv
 }
 
@@ -162,7 +163,7 @@ func (p_ PageController) ArrangedObjects() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/arrangedObjects
-func (p_ PageController) SetArrangedObjects(value objc.ID) {
+func (p_ PageController) SetArrangedObjects(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setArrangedObjects:"), value)
 }
 

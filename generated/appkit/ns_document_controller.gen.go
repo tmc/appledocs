@@ -33,48 +33,48 @@ type IDocumentController interface {
 	objectivec.IObject
 	// properties:
 	AllowsAutomaticShareMenu() bool /* primitive/slice/pointer. */
-	AutosavingDelay() float64 /* primitive/slice/pointer. */
-	SetAutosavingDelay(value float64 /* primitive/slice/pointer. */)
-	CurrentDirectory() string /* primitive/slice/pointer. */
+	AutosavingDelay() TimeInterval /* not a class type */
+	SetAutosavingDelay(value TimeInterval /* not a class type */)
+	CurrentDirectory() objc.IObject /* cross-framework: NSString */
 	CurrentDocument() objc.IObject /* cross-framework: Document */
-	DefaultType() string /* primitive/slice/pointer. */
+	DefaultType() objc.IObject /* cross-framework: NSString */
 	DocumentClassNames() []string /* primitive/slice/pointer. */
 	Documents() []Document /* primitive/slice/pointer. */
 	HasEditedDocuments() bool /* primitive/slice/pointer. */
 	MaximumRecentDocumentCount() uint /* primitive/slice/pointer. */
-	RecentDocumentURLs() []foundation.objc.IObject /* cross-framework: URL */
+	RecentDocumentURLs() objc.IObject /* cross-framework: URL */
 	// methods:
 	AddDocument(document objc.IObject /* cross-framework Document */)
 	BeginOpenPanelForTypesCompletionHandler(openPanel IOpenPanel, inTypes []string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer)
 	BeginOpenPanelWithCompletionHandler(completionHandler unsafe.Pointer)
 	ClearRecentDocuments(sender objectivec.IObject)
 	CloseAllDocumentsWithDelegateDidCloseAllSelectorContextInfo(delegate objectivec.IObject, didCloseAllSelector objc.SEL, contextInfo unsafe.Pointer)
-	DisplayNameForType(typeName string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
+	DisplayNameForType(typeName objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: String */
 	DocumentForWindow(window IWindow) objc.IObject /* cross-framework: Document */
-	DocumentForURL(url foundation.objc.IObject /* cross-framework URL */) objc.IObject /* cross-framework: Document */
-	DocumentClassForType(typeName string /* primitive/slice/pointer. */) objc.Class
-	DuplicateDocumentWithContentsOfURLCopyingDisplayNameError(url foundation.objc.IObject /* cross-framework URL */, duplicateByCopying bool /* primitive/slice/pointer. */, displayNameOrNil string /* primitive/slice/pointer. */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */
-	MakeDocumentForURLWithContentsOfURLOfTypeError(urlOrNil foundation.objc.IObject /* cross-framework URL */, contentsURL foundation.objc.IObject /* cross-framework URL */, typeName string /* primitive/slice/pointer. */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */
-	MakeDocumentWithContentsOfURLOfTypeError(url foundation.objc.IObject /* cross-framework URL */, typeName string /* primitive/slice/pointer. */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */
-	MakeUntitledDocumentOfTypeError(typeName string /* primitive/slice/pointer. */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */
+	DocumentForURL(url objc.IObject /* cross-framework NSURL */) objc.IObject /* cross-framework: Document */
+	DocumentClassForType(typeName objc.IObject /* cross-framework NSString */) objc.Class
+	DuplicateDocumentWithContentsOfURLCopyingDisplayNameError(url objc.IObject /* cross-framework NSURL */, duplicateByCopying bool /* primitive/slice/pointer. */, displayNameOrNil objc.IObject /* cross-framework NSString */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */
+	MakeDocumentForURLWithContentsOfURLOfTypeError(urlOrNil objc.IObject /* cross-framework NSURL */, contentsURL objc.IObject /* cross-framework NSURL */, typeName objc.IObject /* cross-framework NSString */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */
+	MakeDocumentWithContentsOfURLOfTypeError(url objc.IObject /* cross-framework NSURL */, typeName objc.IObject /* cross-framework NSString */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */
+	MakeUntitledDocumentOfTypeError(typeName objc.IObject /* cross-framework NSString */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */
 	NewDocument(sender objectivec.IObject)
 	NoteNewRecentDocument(document objc.IObject /* cross-framework Document */)
-	NoteNewRecentDocumentURL(url foundation.objc.IObject /* cross-framework URL */)
+	NoteNewRecentDocumentURL(url objc.IObject /* cross-framework NSURL */)
 	OpenDocument(sender objectivec.IObject)
-	OpenDocumentWithContentsOfURLDisplayCompletionHandler(url foundation.objc.IObject /* cross-framework URL */, displayDocument bool /* primitive/slice/pointer. */, completionHandler unsafe.Pointer)
+	OpenDocumentWithContentsOfURLDisplayCompletionHandler(url objc.IObject /* cross-framework NSURL */, displayDocument bool /* primitive/slice/pointer. */, completionHandler unsafe.Pointer)
 	OpenUntitledDocumentAndDisplayError(displayDocument bool /* primitive/slice/pointer. */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */
-	PresentError(error_ Error /* not a class type */) bool /* primitive/slice/pointer. */
-	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ Error /* not a class type */, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
+	PresentError(error_ objc.IObject /* cross-framework Error */) bool /* primitive/slice/pointer. */
+	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ objc.IObject /* cross-framework Error */, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
 	RemoveDocument(document objc.IObject /* cross-framework Document */)
-	ReopenDocumentForURLWithContentsOfURLDisplayCompletionHandler(urlOrNil foundation.objc.IObject /* cross-framework URL */, contentsURL foundation.objc.IObject /* cross-framework URL */, displayDocument bool /* primitive/slice/pointer. */, completionHandler unsafe.Pointer)
-	ReviewUnsavedDocumentsWithAlertTitleCancellableDelegateDidReviewAllSelectorContextInfo(title string /* primitive/slice/pointer. */, cancellable bool /* primitive/slice/pointer. */, delegate objectivec.IObject, didReviewAllSelector objc.SEL, contextInfo unsafe.Pointer)
+	ReopenDocumentForURLWithContentsOfURLDisplayCompletionHandler(urlOrNil objc.IObject /* cross-framework NSURL */, contentsURL objc.IObject /* cross-framework NSURL */, displayDocument bool /* primitive/slice/pointer. */, completionHandler unsafe.Pointer)
+	ReviewUnsavedDocumentsWithAlertTitleCancellableDelegateDidReviewAllSelectorContextInfo(title objc.IObject /* cross-framework NSString */, cancellable bool /* primitive/slice/pointer. */, delegate objectivec.IObject, didReviewAllSelector objc.SEL, contextInfo unsafe.Pointer)
 	RunModalOpenPanelForTypes(openPanel IOpenPanel, types []string /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */
 	SaveAllDocuments(sender objectivec.IObject)
 	StandardShareMenuItem() objc.IObject /* cross-framework: MenuItem */
-	TypeForContentsOfURLError(url foundation.objc.IObject /* cross-framework URL */, outError unsafe.Pointer) objc.IObject /* cross-framework: String */
-	URLsFromRunningOpenPanel() []foundation.objc.IObject /* cross-framework: URL */
+	TypeForContentsOfURLError(url objc.IObject /* cross-framework NSURL */, outError unsafe.Pointer) objc.IObject /* cross-framework: String */
+	URLsFromRunningOpenPanel() objc.IObject /* cross-framework: URL */
 	ValidateUserInterfaceItem(item objectivec.IObject) bool /* primitive/slice/pointer. */
-	WillPresentError(error_ Error /* not a class type */) Error /* not a class type */
+	WillPresentError(error_ objc.IObject /* cross-framework Error */) objc.IObject /* cross-framework: Error */
 }
 
 // An object that manages an app’s documents.
@@ -134,7 +134,7 @@ func NewDocumentController() DocumentController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/init(coder:)
-func NewDocumentControllerWithCoder(coder Coder /* not a class type */) DocumentController {
+func NewDocumentControllerWithCoder(coder objc.IObject /* cross-framework Coder */) DocumentController {
 	instance := getDocumentControllerClass().Alloc()
 	rv := objc.Send[DocumentController](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -201,8 +201,8 @@ func (d_ DocumentController) CloseAllDocumentsWithDelegateDidCloseAllSelectorCon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/displayName(forType:)
-func (d_ DocumentController) DisplayNameForType(typeName string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](d_.ID, objc.Sel("displayNameForType:"), objc.String(typeName))
+func (d_ DocumentController) DisplayNameForType(typeName objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[String](d_.ID, objc.Sel("displayNameForType:"), typeName)
 	return rv
 }
 
@@ -221,7 +221,7 @@ func (d_ DocumentController) DocumentForWindow(window IWindow) objc.IObject /* c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/document(for:)-i5zi
-func (d_ DocumentController) DocumentForURL(url foundation.objc.IObject /* cross-framework URL */) objc.IObject /* cross-framework: Document */ {
+func (d_ DocumentController) DocumentForURL(url objc.IObject /* cross-framework NSURL */) objc.IObject /* cross-framework: Document */ {
 	rv := objc.Send[Document](d_.ID, objc.Sel("documentForURL:"), url)
 	return rv
 }
@@ -231,8 +231,8 @@ func (d_ DocumentController) DocumentForURL(url foundation.objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/documentClass(forType:)
-func (d_ DocumentController) DocumentClassForType(typeName string /* primitive/slice/pointer. */) objc.Class {
-	rv := objc.Send[objc.Class](d_.ID, objc.Sel("documentClassForType:"), objc.String(typeName))
+func (d_ DocumentController) DocumentClassForType(typeName objc.IObject /* cross-framework NSString */) objc.Class {
+	rv := objc.Send[objc.Class](d_.ID, objc.Sel("documentClassForType:"), typeName)
 	return rv
 }
 
@@ -241,8 +241,8 @@ func (d_ DocumentController) DocumentClassForType(typeName string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/duplicateDocument(withContentsOf:copying:displayName:)
-func (d_ DocumentController) DuplicateDocumentWithContentsOfURLCopyingDisplayNameError(url foundation.objc.IObject /* cross-framework URL */, duplicateByCopying bool /* primitive/slice/pointer. */, displayNameOrNil string /* primitive/slice/pointer. */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */ {
-	rv := objc.Send[Document](d_.ID, objc.Sel("duplicateDocumentWithContentsOfURL:copying:displayName:error:"), url, duplicateByCopying, objc.String(displayNameOrNil), outError)
+func (d_ DocumentController) DuplicateDocumentWithContentsOfURLCopyingDisplayNameError(url objc.IObject /* cross-framework NSURL */, duplicateByCopying bool /* primitive/slice/pointer. */, displayNameOrNil objc.IObject /* cross-framework NSString */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */ {
+	rv := objc.Send[Document](d_.ID, objc.Sel("duplicateDocumentWithContentsOfURL:copying:displayName:error:"), url, duplicateByCopying, displayNameOrNil, outError)
 	return rv
 }
 
@@ -251,8 +251,8 @@ func (d_ DocumentController) DuplicateDocumentWithContentsOfURLCopyingDisplayNam
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/makeDocument(for:withContentsOf:ofType:)
-func (d_ DocumentController) MakeDocumentForURLWithContentsOfURLOfTypeError(urlOrNil foundation.objc.IObject /* cross-framework URL */, contentsURL foundation.objc.IObject /* cross-framework URL */, typeName string /* primitive/slice/pointer. */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */ {
-	rv := objc.Send[Document](d_.ID, objc.Sel("makeDocumentForURL:withContentsOfURL:ofType:error:"), urlOrNil, contentsURL, objc.String(typeName), outError)
+func (d_ DocumentController) MakeDocumentForURLWithContentsOfURLOfTypeError(urlOrNil objc.IObject /* cross-framework NSURL */, contentsURL objc.IObject /* cross-framework NSURL */, typeName objc.IObject /* cross-framework NSString */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */ {
+	rv := objc.Send[Document](d_.ID, objc.Sel("makeDocumentForURL:withContentsOfURL:ofType:error:"), urlOrNil, contentsURL, typeName, outError)
 	return rv
 }
 
@@ -261,8 +261,8 @@ func (d_ DocumentController) MakeDocumentForURLWithContentsOfURLOfTypeError(urlO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/makeDocument(withContentsOf:ofType:)
-func (d_ DocumentController) MakeDocumentWithContentsOfURLOfTypeError(url foundation.objc.IObject /* cross-framework URL */, typeName string /* primitive/slice/pointer. */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */ {
-	rv := objc.Send[Document](d_.ID, objc.Sel("makeDocumentWithContentsOfURL:ofType:error:"), url, objc.String(typeName), outError)
+func (d_ DocumentController) MakeDocumentWithContentsOfURLOfTypeError(url objc.IObject /* cross-framework NSURL */, typeName objc.IObject /* cross-framework NSString */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */ {
+	rv := objc.Send[Document](d_.ID, objc.Sel("makeDocumentWithContentsOfURL:ofType:error:"), url, typeName, outError)
 	return rv
 }
 
@@ -271,8 +271,8 @@ func (d_ DocumentController) MakeDocumentWithContentsOfURLOfTypeError(url founda
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/makeUntitledDocument(ofType:)
-func (d_ DocumentController) MakeUntitledDocumentOfTypeError(typeName string /* primitive/slice/pointer. */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */ {
-	rv := objc.Send[Document](d_.ID, objc.Sel("makeUntitledDocumentOfType:error:"), objc.String(typeName), outError)
+func (d_ DocumentController) MakeUntitledDocumentOfTypeError(typeName objc.IObject /* cross-framework NSString */, outError unsafe.Pointer) objc.IObject /* cross-framework: Document */ {
+	rv := objc.Send[Document](d_.ID, objc.Sel("makeUntitledDocumentOfType:error:"), typeName, outError)
 	return rv
 }
 
@@ -299,7 +299,7 @@ func (d_ DocumentController) NoteNewRecentDocument(document objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/noteNewRecentDocumentURL(_:)
-func (d_ DocumentController) NoteNewRecentDocumentURL(url foundation.objc.IObject /* cross-framework URL */) {
+func (d_ DocumentController) NoteNewRecentDocumentURL(url objc.IObject /* cross-framework NSURL */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("noteNewRecentDocumentURL:"), url)
 }
 
@@ -317,7 +317,7 @@ func (d_ DocumentController) OpenDocument(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/openDocument(withContentsOf:display:completionHandler:)
-func (d_ DocumentController) OpenDocumentWithContentsOfURLDisplayCompletionHandler(url foundation.objc.IObject /* cross-framework URL */, displayDocument bool /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) {
+func (d_ DocumentController) OpenDocumentWithContentsOfURLDisplayCompletionHandler(url objc.IObject /* cross-framework NSURL */, displayDocument bool /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("openDocumentWithContentsOfURL:display:completionHandler:"), url, displayDocument, completionHandler)
 }
 
@@ -336,7 +336,7 @@ func (d_ DocumentController) OpenUntitledDocumentAndDisplayError(displayDocument
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/presentError(_:)
-func (d_ DocumentController) PresentError(error_ Error /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (d_ DocumentController) PresentError(error_ objc.IObject /* cross-framework Error */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("presentError:"), error_)
 	return rv
 }
@@ -346,7 +346,7 @@ func (d_ DocumentController) PresentError(error_ Error /* not a class type */) b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/presentError(_:modalFor:delegate:didPresent:contextInfo:)
-func (d_ DocumentController) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ Error /* not a class type */, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
+func (d_ DocumentController) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ objc.IObject /* cross-framework Error */, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"), error_, window, delegate, didPresentSelector, contextInfo)
 }
 
@@ -364,7 +364,7 @@ func (d_ DocumentController) RemoveDocument(document objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/reopenDocument(for:withContentsOf:display:completionHandler:)
-func (d_ DocumentController) ReopenDocumentForURLWithContentsOfURLDisplayCompletionHandler(urlOrNil foundation.objc.IObject /* cross-framework URL */, contentsURL foundation.objc.IObject /* cross-framework URL */, displayDocument bool /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) {
+func (d_ DocumentController) ReopenDocumentForURLWithContentsOfURLDisplayCompletionHandler(urlOrNil objc.IObject /* cross-framework NSURL */, contentsURL objc.IObject /* cross-framework NSURL */, displayDocument bool /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("reopenDocumentForURL:withContentsOfURL:display:completionHandler:"), urlOrNil, contentsURL, displayDocument, completionHandler)
 }
 
@@ -373,8 +373,8 @@ func (d_ DocumentController) ReopenDocumentForURLWithContentsOfURLDisplayComplet
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/reviewUnsavedDocuments(withAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:)
-func (d_ DocumentController) ReviewUnsavedDocumentsWithAlertTitleCancellableDelegateDidReviewAllSelectorContextInfo(title string /* primitive/slice/pointer. */, cancellable bool /* primitive/slice/pointer. */, delegate objectivec.IObject, didReviewAllSelector objc.SEL, contextInfo unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("reviewUnsavedDocumentsWithAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:"), objc.String(title), cancellable, delegate, didReviewAllSelector, contextInfo)
+func (d_ DocumentController) ReviewUnsavedDocumentsWithAlertTitleCancellableDelegateDidReviewAllSelectorContextInfo(title objc.IObject /* cross-framework NSString */, cancellable bool /* primitive/slice/pointer. */, delegate objectivec.IObject, didReviewAllSelector objc.SEL, contextInfo unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("reviewUnsavedDocumentsWithAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:"), title, cancellable, delegate, didReviewAllSelector, contextInfo)
 }
 
 
@@ -411,7 +411,7 @@ func (d_ DocumentController) StandardShareMenuItem() objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/typeForContents(of:)
-func (d_ DocumentController) TypeForContentsOfURLError(url foundation.objc.IObject /* cross-framework URL */, outError unsafe.Pointer) objc.IObject /* cross-framework: String */ {
+func (d_ DocumentController) TypeForContentsOfURLError(url objc.IObject /* cross-framework NSURL */, outError unsafe.Pointer) objc.IObject /* cross-framework: String */ {
 	rv := objc.Send[String](d_.ID, objc.Sel("typeForContentsOfURL:error:"), url, outError)
 	return rv
 }
@@ -421,7 +421,7 @@ func (d_ DocumentController) TypeForContentsOfURLError(url foundation.objc.IObje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/urlsFromRunningOpenPanel()
-func (d_ DocumentController) URLsFromRunningOpenPanel() []foundation.objc.IObject /* cross-framework: URL */ {
+func (d_ DocumentController) URLsFromRunningOpenPanel() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[[]foundation.URL](d_.ID, objc.Sel("URLsFromRunningOpenPanel"))
 	return rv
 }
@@ -441,7 +441,7 @@ func (d_ DocumentController) ValidateUserInterfaceItem(item objectivec.IObject) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/willPresentError(_:)
-func (d_ DocumentController) WillPresentError(error_ Error /* not a class type */) Error /* not a class type */ {
+func (d_ DocumentController) WillPresentError(error_ objc.IObject /* cross-framework Error */) objc.IObject /* cross-framework: Error */ {
 	rv := objc.Send[Error](d_.ID, objc.Sel("willPresentError:"), error_)
 	return rv
 }
@@ -461,8 +461,8 @@ func (d_ DocumentController) AllowsAutomaticShareMenu() bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/autosavingDelay
-func (d_ DocumentController) AutosavingDelay() float64 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float64](d_.ID, objc.Sel("autosavingDelay"))
+func (d_ DocumentController) AutosavingDelay() TimeInterval /* not a class type */ {
+	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("autosavingDelay"))
 	return rv
 }
 
@@ -471,7 +471,7 @@ func (d_ DocumentController) AutosavingDelay() float64 /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/autosavingDelay
-func (d_ DocumentController) SetAutosavingDelay(value float64 /* primitive/slice/pointer. */) {
+func (d_ DocumentController) SetAutosavingDelay(value TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAutosavingDelay:"), value)
 }
 
@@ -480,8 +480,8 @@ func (d_ DocumentController) SetAutosavingDelay(value float64 /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/currentDirectory
-func (d_ DocumentController) CurrentDirectory() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("currentDirectory"))
+func (d_ DocumentController) CurrentDirectory() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("currentDirectory"))
 	return rv
 }
 
@@ -500,8 +500,8 @@ func (d_ DocumentController) CurrentDocument() objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/defaultType
-func (d_ DocumentController) DefaultType() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("defaultType"))
+func (d_ DocumentController) DefaultType() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("defaultType"))
 	return rv
 }
 
@@ -550,7 +550,7 @@ func (d_ DocumentController) MaximumRecentDocumentCount() uint /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/recentDocumentURLs
-func (d_ DocumentController) RecentDocumentURLs() []foundation.objc.IObject /* cross-framework: URL */ {
+func (d_ DocumentController) RecentDocumentURLs() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[[]foundation.URL](d_.ID, objc.Sel("recentDocumentURLs"))
 	return rv
 }

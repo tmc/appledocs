@@ -40,8 +40,8 @@ type IStackView interface {
 	SetDetachesHiddenViews(value bool /* primitive/slice/pointer. */)
 	Distribution() StackViewDistribution
 	SetDistribution(value StackViewDistribution)
-	EdgeInsets() EdgeInsets /* not a class type */
-	SetEdgeInsets(value EdgeInsets /* not a class type */)
+	EdgeInsets() objc.IObject /* cross-framework: EdgeInsets */
+	SetEdgeInsets(value objc.IObject /* cross-framework: EdgeInsets */)
 	HasEqualSpacing() bool /* primitive/slice/pointer. */
 	SetHasEqualSpacing(value bool /* primitive/slice/pointer. */)
 	Orientation() UserInterfaceLayoutOrientation /* not a class type */
@@ -393,7 +393,7 @@ func (s_ StackView) SetDistribution(value StackViewDistribution) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/edgeInsets
-func (s_ StackView) EdgeInsets() EdgeInsets /* not a class type */ {
+func (s_ StackView) EdgeInsets() objc.IObject /* cross-framework: EdgeInsets */ {
 	rv := objc.Send[EdgeInsets](s_.ID, objc.Sel("edgeInsets"))
 	return rv
 }
@@ -403,7 +403,7 @@ func (s_ StackView) EdgeInsets() EdgeInsets /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/edgeInsets
-func (s_ StackView) SetEdgeInsets(value EdgeInsets /* not a class type */) {
+func (s_ StackView) SetEdgeInsets(value objc.IObject /* cross-framework: EdgeInsets */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEdgeInsets:"), value)
 }
 

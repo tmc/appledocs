@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,8 +36,8 @@ type IMenuItemBadge interface {
 	SetBadge(value IMenuItemBadge)
 	ItemCount() int /* primitive/slice/pointer. */
 	SetItemCount(value int /* primitive/slice/pointer. */)
-	StringValue() string /* primitive/slice/pointer. */
-	SetStringValue(value string /* primitive/slice/pointer. */)
+	StringValue() objc.IObject /* cross-framework: NSString */
+	SetStringValue(value objc.IObject /* cross-framework: NSString */)
 	Type() unsafe.Pointer
 	SetType(value unsafe.Pointer)
 	// methods:
@@ -133,8 +134,8 @@ func (m_ MenuItemBadge) SetItemCount(value int /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/stringvalue-32sbt
-func (m_ MenuItemBadge) StringValue() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("stringValue"))
+func (m_ MenuItemBadge) StringValue() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
@@ -143,8 +144,8 @@ func (m_ MenuItemBadge) StringValue() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/stringvalue-32sbt
-func (m_ MenuItemBadge) SetStringValue(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), objc.String(value))
+func (m_ MenuItemBadge) SetStringValue(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), value)
 }
 
 

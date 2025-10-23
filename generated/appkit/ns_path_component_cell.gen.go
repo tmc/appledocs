@@ -33,8 +33,8 @@ type IPathComponentCell interface {
 	// properties:
 	Image() IImage
 	SetImage(value IImage)
-	Url() foundation.objc.IObject /* cross-framework: URL */
-	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	Url() objc.IObject /* cross-framework: URL */
+	SetUrl(value objc.IObject /* cross-framework: URL */)
 	// methods:
 }
 
@@ -116,7 +116,7 @@ func (p_ PathComponentCell) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/url
-func (p_ PathComponentCell) Url() foundation.objc.IObject /* cross-framework: URL */ {
+func (p_ PathComponentCell) Url() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
 	return rv
 }
@@ -126,7 +126,7 @@ func (p_ PathComponentCell) Url() foundation.objc.IObject /* cross-framework: UR
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/url
-func (p_ PathComponentCell) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
+func (p_ PathComponentCell) SetUrl(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 

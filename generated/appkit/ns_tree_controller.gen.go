@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TreeController] class.
@@ -42,28 +43,28 @@ type ITreeController interface {
 	SetCanInsert(value bool /* primitive/slice/pointer. */)
 	CanInsertChild() bool /* primitive/slice/pointer. */
 	SetCanInsertChild(value bool /* primitive/slice/pointer. */)
-	ChildrenKeyPath() string /* primitive/slice/pointer. */
-	SetChildrenKeyPath(value string /* primitive/slice/pointer. */)
+	ChildrenKeyPath() objc.IObject /* cross-framework: NSString */
+	SetChildrenKeyPath(value objc.IObject /* cross-framework: NSString */)
 	Content() unsafe.Pointer
 	SetContent(value unsafe.Pointer)
-	CountKeyPath() string /* primitive/slice/pointer. */
-	SetCountKeyPath(value string /* primitive/slice/pointer. */)
-	LeafKeyPath() string /* primitive/slice/pointer. */
-	SetLeafKeyPath(value string /* primitive/slice/pointer. */)
+	CountKeyPath() objc.IObject /* cross-framework: NSString */
+	SetCountKeyPath(value objc.IObject /* cross-framework: NSString */)
+	LeafKeyPath() objc.IObject /* cross-framework: NSString */
+	SetLeafKeyPath(value objc.IObject /* cross-framework: NSString */)
 	PreservesSelection() bool /* primitive/slice/pointer. */
 	SetPreservesSelection(value bool /* primitive/slice/pointer. */)
 	SelectedNodes() objc.IObject /* cross-framework: TreeNode */
 	SetSelectedNodes(value objc.IObject /* cross-framework: TreeNode */)
 	SelectedObjects() unsafe.Pointer
 	SetSelectedObjects(value unsafe.Pointer)
-	SelectionIndexPath() unsafe.Pointer
-	SetSelectionIndexPath(value unsafe.Pointer)
-	SelectionIndexPaths() unsafe.Pointer
-	SetSelectionIndexPaths(value unsafe.Pointer)
+	SelectionIndexPath() objc.IObject /* cross-framework: IndexPath */
+	SetSelectionIndexPath(value objc.IObject /* cross-framework: IndexPath */)
+	SelectionIndexPaths() objc.IObject /* cross-framework: IndexPath */
+	SetSelectionIndexPaths(value objc.IObject /* cross-framework: IndexPath */)
 	SelectsInsertedObjects() bool /* primitive/slice/pointer. */
 	SetSelectsInsertedObjects(value bool /* primitive/slice/pointer. */)
-	SortDescriptors() SortDescriptor /* not a class type */
-	SetSortDescriptors(value SortDescriptor /* not a class type */)
+	SortDescriptors() objc.IObject /* cross-framework: SortDescriptor */
+	SetSortDescriptors(value objc.IObject /* cross-framework: SortDescriptor */)
 	// methods:
 }
 
@@ -240,8 +241,8 @@ func (t_ TreeController) SetCanInsertChild(value bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/childrenkeypath
-func (t_ TreeController) ChildrenKeyPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("childrenKeyPath"))
+func (t_ TreeController) ChildrenKeyPath() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("childrenKeyPath"))
 	return rv
 }
 
@@ -250,8 +251,8 @@ func (t_ TreeController) ChildrenKeyPath() string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/childrenkeypath
-func (t_ TreeController) SetChildrenKeyPath(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setChildrenKeyPath:"), objc.String(value))
+func (t_ TreeController) SetChildrenKeyPath(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setChildrenKeyPath:"), value)
 }
 
 
@@ -278,8 +279,8 @@ func (t_ TreeController) SetContent(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/countkeypath
-func (t_ TreeController) CountKeyPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("countKeyPath"))
+func (t_ TreeController) CountKeyPath() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("countKeyPath"))
 	return rv
 }
 
@@ -288,8 +289,8 @@ func (t_ TreeController) CountKeyPath() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/countkeypath
-func (t_ TreeController) SetCountKeyPath(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCountKeyPath:"), objc.String(value))
+func (t_ TreeController) SetCountKeyPath(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCountKeyPath:"), value)
 }
 
 
@@ -297,8 +298,8 @@ func (t_ TreeController) SetCountKeyPath(value string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/leafkeypath
-func (t_ TreeController) LeafKeyPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("leafKeyPath"))
+func (t_ TreeController) LeafKeyPath() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("leafKeyPath"))
 	return rv
 }
 
@@ -307,8 +308,8 @@ func (t_ TreeController) LeafKeyPath() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/leafkeypath
-func (t_ TreeController) SetLeafKeyPath(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLeafKeyPath:"), objc.String(value))
+func (t_ TreeController) SetLeafKeyPath(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLeafKeyPath:"), value)
 }
 
 
@@ -373,8 +374,8 @@ func (t_ TreeController) SetSelectedObjects(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpath
-func (t_ TreeController) SelectionIndexPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectionIndexPath"))
+func (t_ TreeController) SelectionIndexPath() objc.IObject /* cross-framework: IndexPath */ {
+	rv := objc.Send[foundation.IndexPath](t_.ID, objc.Sel("selectionIndexPath"))
 	return rv
 }
 
@@ -383,7 +384,7 @@ func (t_ TreeController) SelectionIndexPath() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpath
-func (t_ TreeController) SetSelectionIndexPath(value unsafe.Pointer) {
+func (t_ TreeController) SetSelectionIndexPath(value objc.IObject /* cross-framework: IndexPath */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionIndexPath:"), value)
 }
 
@@ -392,8 +393,8 @@ func (t_ TreeController) SetSelectionIndexPath(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpaths
-func (t_ TreeController) SelectionIndexPaths() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectionIndexPaths"))
+func (t_ TreeController) SelectionIndexPaths() objc.IObject /* cross-framework: IndexPath */ {
+	rv := objc.Send[foundation.IndexPath](t_.ID, objc.Sel("selectionIndexPaths"))
 	return rv
 }
 
@@ -402,7 +403,7 @@ func (t_ TreeController) SelectionIndexPaths() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpaths
-func (t_ TreeController) SetSelectionIndexPaths(value unsafe.Pointer) {
+func (t_ TreeController) SetSelectionIndexPaths(value objc.IObject /* cross-framework: IndexPath */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionIndexPaths:"), value)
 }
 
@@ -430,7 +431,7 @@ func (t_ TreeController) SetSelectsInsertedObjects(value bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/sortdescriptors
-func (t_ TreeController) SortDescriptors() SortDescriptor /* not a class type */ {
+func (t_ TreeController) SortDescriptors() objc.IObject /* cross-framework: SortDescriptor */ {
 	rv := objc.Send[SortDescriptor](t_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
@@ -440,7 +441,7 @@ func (t_ TreeController) SortDescriptors() SortDescriptor /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/sortdescriptors
-func (t_ TreeController) SetSortDescriptors(value SortDescriptor /* not a class type */) {
+func (t_ TreeController) SetSortDescriptors(value objc.IObject /* cross-framework: SortDescriptor */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 

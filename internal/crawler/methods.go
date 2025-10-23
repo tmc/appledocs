@@ -338,7 +338,12 @@ func (c *Crawler) queueNewURLs(newURLs []string, parentURL string, urlQueue chan
 			// Check if URL is within entry point scope (only crawl children of entry point)
 			if c.entryPointPrefix != "" && parsedURL != nil {
 				urlPath := strings.ToLower(parsedURL.Path)
-				if !strings.HasPrefix(urlPath, c.entryPointPrefix) {
+				// URL must either be exact match or start with prefix followed by /
+				// This prevents matching /nszonerealloc when prefix is /nszone
+				isMatch := urlPath == c.entryPointPrefix ||
+				           strings.HasPrefix(urlPath, c.entryPointPrefix+"/") ||
+				           strings.HasPrefix(urlPath, c.entryPointPrefix+".")
+				if !isMatch {
 					if cfg.Verbose {
 						log.Printf("Skipping URL outside entry point scope: %s (prefix: %s)", parsedURL.Path, c.entryPointPrefix)
 					}
@@ -357,12 +362,16 @@ func (c *Crawler) queueNewURLs(newURLs []string, parentURL string, urlQueue chan
 			c.urlDepths[resolvedURL] = childDepth
 			c.depthMutex.Unlock()
 
+			// Track this new work item
+			c.activeWork.Add(1)
+
 			// Try to send to channel
 			select {
 			case urlQueue <- resolvedURL:
 				added++
 			default:
-				// Channel might be full or closed
+				// Channel might be full or closed - undo the Add
+				c.activeWork.Done()
 				if cfg.Verbose {
 					log.Printf("Skipping URL %s (channel full or closed)", resolvedURL)
 				}

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -44,7 +43,7 @@ type ITextAttachmentViewProvider interface {
 	TextLayoutManager() ITextLayoutManager
 	SetTextLayoutManager(value ITextLayoutManager)
 	// methods:
-	AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes foundation.IDictionary /* already interface */, location objectivec.IObject, textContainer ITextContainer, proposedLineFragment coregraphics.CGRect, position coregraphics.CGPoint) coregraphics.CGRect
+	AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes foundation.IDictionary /* already interface */, location objectivec.IObject, textContainer ITextContainer, proposedLineFragment objc.IObject /* cross-framework Rect */, position objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Rect */
 	LoadView()
 }
 
@@ -105,8 +104,8 @@ func NewTextAttachmentViewProvider() TextAttachmentViewProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider/attachmentBounds(for:location:textContainer:proposedLineFragment:position:)
-func (t_ TextAttachmentViewProvider) AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes foundation.IDictionary /* already interface */, location objectivec.IObject, textContainer ITextContainer, proposedLineFragment coregraphics.CGRect, position coregraphics.CGPoint) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:"), attributes, location, textContainer, proposedLineFragment, position)
+func (t_ TextAttachmentViewProvider) AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes foundation.IDictionary /* already interface */, location objectivec.IObject, textContainer ITextContainer, proposedLineFragment objc.IObject /* cross-framework Rect */, position objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](t_.ID, objc.Sel("attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:"), attributes, location, textContainer, proposedLineFragment, position)
 	return rv
 }
 

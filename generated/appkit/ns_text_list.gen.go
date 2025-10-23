@@ -100,7 +100,7 @@ func NewTextList() TextList {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList/init(coder:)
-func NewTextListWithCoder(coder Coder /* not a class type */) TextList {
+func NewTextListWithCoder(coder objc.IObject /* cross-framework Coder */) TextList {
 	instance := getTextListClass().Alloc()
 	rv := objc.Send[TextList](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

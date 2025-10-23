@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [TableRowView] class.
@@ -70,10 +69,10 @@ type ITableRowView interface {
 	IsTargetForDropOperation() bool /* primitive/slice/pointer. */
 	SetIsTargetForDropOperation(value bool /* primitive/slice/pointer. */)
 	// methods:
-	DrawBackgroundInRect(dirtyRect coregraphics.CGRect)
-	DrawDraggingDestinationFeedbackInRect(dirtyRect coregraphics.CGRect)
-	DrawSelectionInRect(dirtyRect coregraphics.CGRect)
-	DrawSeparatorInRect(dirtyRect coregraphics.CGRect)
+	DrawBackgroundInRect(dirtyRect objc.IObject /* cross-framework Rect */)
+	DrawDraggingDestinationFeedbackInRect(dirtyRect objc.IObject /* cross-framework Rect */)
+	DrawSelectionInRect(dirtyRect objc.IObject /* cross-framework Rect */)
+	DrawSeparatorInRect(dirtyRect objc.IObject /* cross-framework Rect */)
 	ViewAtColumn(column int /* primitive/slice/pointer. */) objc.ID
 }
 
@@ -136,7 +135,7 @@ func NewTableRowView() TableRowView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawBackground(in:)
-func (t_ TableRowView) DrawBackgroundInRect(dirtyRect coregraphics.CGRect) {
+func (t_ TableRowView) DrawBackgroundInRect(dirtyRect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("drawBackgroundInRect:"), dirtyRect)
 }
 
@@ -145,7 +144,7 @@ func (t_ TableRowView) DrawBackgroundInRect(dirtyRect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawDraggingDestinationFeedback(in:)
-func (t_ TableRowView) DrawDraggingDestinationFeedbackInRect(dirtyRect coregraphics.CGRect) {
+func (t_ TableRowView) DrawDraggingDestinationFeedbackInRect(dirtyRect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("drawDraggingDestinationFeedbackInRect:"), dirtyRect)
 }
 
@@ -154,7 +153,7 @@ func (t_ TableRowView) DrawDraggingDestinationFeedbackInRect(dirtyRect coregraph
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawSelection(in:)
-func (t_ TableRowView) DrawSelectionInRect(dirtyRect coregraphics.CGRect) {
+func (t_ TableRowView) DrawSelectionInRect(dirtyRect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("drawSelectionInRect:"), dirtyRect)
 }
 
@@ -163,7 +162,7 @@ func (t_ TableRowView) DrawSelectionInRect(dirtyRect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawSeparator(in:)
-func (t_ TableRowView) DrawSeparatorInRect(dirtyRect coregraphics.CGRect) {
+func (t_ TableRowView) DrawSeparatorInRect(dirtyRect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("drawSeparatorInRect:"), dirtyRect)
 }
 

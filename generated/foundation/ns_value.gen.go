@@ -81,8 +81,8 @@ type IValue interface {
 	SetTimeRangeValue(value TimeRange /* not a class type */)
 	TimeValue() Time /* not a class type */
 	SetTimeValue(value Time /* not a class type */)
-	UiEdgeInsetsValue() objc.IObject /* cross-framework: EdgeInsets */
-	SetUiEdgeInsetsValue(value objc.IObject /* cross-framework: EdgeInsets */)
+	UiEdgeInsetsValue() UIEdgeInsets /* not a class type */
+	SetUiEdgeInsetsValue(value UIEdgeInsets /* not a class type */)
 	UiOffsetValue() Offset /* not a class type */
 	SetUiOffsetValue(value Offset /* not a class type */)
 	VideoDimensionsValue() VideoDimensions /* not a class type */
@@ -610,7 +610,7 @@ func (v_ Value) SetTimeValue(value Time /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/uiedgeinsetsvalue
-func (v_ Value) UiEdgeInsetsValue() objc.IObject /* cross-framework: EdgeInsets */ {
+func (v_ Value) UiEdgeInsetsValue() UIEdgeInsets /* not a class type */ {
 	rv := objc.Send[EdgeInsets](v_.ID, objc.Sel("uiEdgeInsetsValue"))
 	return rv
 }
@@ -620,7 +620,7 @@ func (v_ Value) UiEdgeInsetsValue() objc.IObject /* cross-framework: EdgeInsets 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/uiedgeinsetsvalue
-func (v_ Value) SetUiEdgeInsetsValue(value objc.IObject /* cross-framework: EdgeInsets */) {
+func (v_ Value) SetUiEdgeInsetsValue(value UIEdgeInsets /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setUiEdgeInsetsValue:"), value)
 }
 

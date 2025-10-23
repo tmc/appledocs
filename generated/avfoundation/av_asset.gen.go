@@ -37,8 +37,8 @@ type IAsset interface {
 	Duration() Time /* not a class type */
 	AllMediaSelections() IAVMediaSelection
 	SetAllMediaSelections(value IAVMediaSelection)
-	AvailableChapterLocales() unsafe.Pointer
-	SetAvailableChapterLocales(value unsafe.Pointer)
+	AvailableChapterLocales() objc.IObject /* cross-framework: Locale */
+	SetAvailableChapterLocales(value objc.IObject /* cross-framework: Locale */)
 	AvailableMediaCharacteristicsWithMediaSelectionOptions() MediaCharacteristic /* not a class type */
 	SetAvailableMediaCharacteristicsWithMediaSelectionOptions(value MediaCharacteristic /* not a class type */)
 	AvailableMetadataFormats() MetadataFormat /* not a class type */
@@ -208,8 +208,8 @@ func (a_ Asset) SetAllMediaSelections(value IAVMediaSelection) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/availablechapterlocales
-func (a_ Asset) AvailableChapterLocales() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("availableChapterLocales"))
+func (a_ Asset) AvailableChapterLocales() objc.IObject /* cross-framework: Locale */ {
+	rv := objc.Send[foundation.Locale](a_.ID, objc.Sel("availableChapterLocales"))
 	return rv
 }
 
@@ -218,7 +218,7 @@ func (a_ Asset) AvailableChapterLocales() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/availablechapterlocales
-func (a_ Asset) SetAvailableChapterLocales(value unsafe.Pointer) {
+func (a_ Asset) SetAvailableChapterLocales(value objc.IObject /* cross-framework: Locale */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableChapterLocales:"), value)
 }
 

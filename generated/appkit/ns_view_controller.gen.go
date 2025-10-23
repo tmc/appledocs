@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -35,17 +34,17 @@ type IViewController interface {
 	// properties:
 	ChildViewControllers() []ViewController /* primitive/slice/pointer. */
 	SetChildViewControllers(value []ViewController /* primitive/slice/pointer. */)
-	ExtensionContext() foundation.objc.IObject /* cross-framework: NSExtensionContext */
+	ExtensionContext() objc.IObject /* cross-framework: NSExtensionContext */
 	ViewLoaded() bool /* primitive/slice/pointer. */
 	NibBundle() objc.IObject /* cross-framework: Bundle */
 	NibName() objc.IObject /* cross-framework: NibName */
 	ParentViewController() IViewController
-	PreferredContentSize() coregraphics.CGSize
-	SetPreferredContentSize(value coregraphics.CGSize)
-	PreferredMaximumSize() coregraphics.CGSize
-	PreferredMinimumSize() coregraphics.CGSize
-	PreferredScreenOrigin() coregraphics.CGPoint
-	SetPreferredScreenOrigin(value coregraphics.CGPoint)
+	PreferredContentSize() objc.IObject /* cross-framework: Size */
+	SetPreferredContentSize(value objc.IObject /* cross-framework: Size */)
+	PreferredMaximumSize() objc.IObject /* cross-framework: Size */
+	PreferredMinimumSize() objc.IObject /* cross-framework: Size */
+	PreferredScreenOrigin() objc.IObject /* cross-framework: Point */
+	SetPreferredScreenOrigin(value objc.IObject /* cross-framework: Point */)
 	PresentedViewControllers() []ViewController /* primitive/slice/pointer. */
 	PresentingViewController() IViewController
 	RepresentedObject() objc.ID
@@ -53,8 +52,8 @@ type IViewController interface {
 	SourceItemView() IView
 	SetSourceItemView(value IView)
 	Storyboard() IStoryboard
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	View() IView
 	SetView(value IView)
 	ViewIfLoaded() IView
@@ -76,8 +75,8 @@ type IViewController interface {
 	LoadViewIfNeeded()
 	PreferredContentSizeDidChangeForViewController(viewController IViewController)
 	PresentViewControllerAnimator(viewController IViewController, animator objectivec.IObject)
-	PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController IViewController, positioningRect coregraphics.CGRect, positioningView IView, preferredEdge int /* primitive/slice/pointer. */, behavior PopoverBehavior)
-	PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController IViewController, positioningRect coregraphics.CGRect, positioningView IView, preferredEdge int /* primitive/slice/pointer. */, behavior PopoverBehavior, hasFullSizeContent bool /* primitive/slice/pointer. */)
+	PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController IViewController, positioningRect objc.IObject /* cross-framework Rect */, positioningView IView, preferredEdge RectEdge /* not a class type */, behavior PopoverBehavior)
+	PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController IViewController, positioningRect objc.IObject /* cross-framework Rect */, positioningView IView, preferredEdge RectEdge /* not a class type */, behavior PopoverBehavior, hasFullSizeContent bool /* primitive/slice/pointer. */)
 	PresentViewControllerAsModalWindow(viewController IViewController)
 	PresentViewControllerAsSheet(viewController IViewController)
 	RemoveChildViewControllerAtIndex(index int /* primitive/slice/pointer. */)
@@ -91,7 +90,7 @@ type IViewController interface {
 	ViewWillAppear()
 	ViewWillDisappear()
 	ViewWillLayout()
-	ViewWillTransitionToSize(newSize coregraphics.CGSize)
+	ViewWillTransitionToSize(newSize objc.IObject /* cross-framework Size */)
 }
 
 // A controller that manages a view, typically loaded from a nib file.
@@ -151,7 +150,7 @@ func NewViewController() ViewController {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(coder:)
-func NewViewControllerWithCoder(coder Coder /* not a class type */) ViewController {
+func NewViewControllerWithCoder(coder objc.IObject /* cross-framework Coder */) ViewController {
 	instance := getViewControllerClass().Alloc()
 	rv := objc.Send[ViewController](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -272,14 +271,14 @@ func (v_ ViewController) PresentViewControllerAnimator(viewController IViewContr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:)
-func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController IViewController, positioningRect coregraphics.CGRect, positioningView IView, preferredEdge int /* primitive/slice/pointer. */, behavior PopoverBehavior) {
+func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController IViewController, positioningRect objc.IObject /* cross-framework Rect */, positioningView IView, preferredEdge RectEdge /* not a class type */, behavior PopoverBehavior) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:"), viewController, positioningRect, positioningView, preferredEdge, behavior)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:hasFullSizeContent:)
-func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController IViewController, positioningRect coregraphics.CGRect, positioningView IView, preferredEdge int /* primitive/slice/pointer. */, behavior PopoverBehavior, hasFullSizeContent bool /* primitive/slice/pointer. */) {
+func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController IViewController, positioningRect objc.IObject /* cross-framework Rect */, positioningView IView, preferredEdge RectEdge /* not a class type */, behavior PopoverBehavior, hasFullSizeContent bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:"), viewController, positioningRect, positioningView, preferredEdge, behavior, hasFullSizeContent)
 }
 
@@ -405,7 +404,7 @@ func (v_ ViewController) ViewWillLayout() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/viewWillTransition(to:)
-func (v_ ViewController) ViewWillTransitionToSize(newSize coregraphics.CGSize) {
+func (v_ ViewController) ViewWillTransitionToSize(newSize objc.IObject /* cross-framework Size */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("viewWillTransitionToSize:"), newSize)
 }
 
@@ -443,7 +442,7 @@ func (v_ ViewController) SetChildViewControllers(value []ViewController /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/extensionContext
-func (v_ ViewController) ExtensionContext() foundation.objc.IObject /* cross-framework: NSExtensionContext */ {
+func (v_ ViewController) ExtensionContext() objc.IObject /* cross-framework: NSExtensionContext */ {
 	rv := objc.Send[foundation.NSExtensionContext](v_.ID, objc.Sel("extensionContext"))
 	return rv
 }
@@ -493,8 +492,8 @@ func (v_ ViewController) ParentViewController() IViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/preferredContentSize
-func (v_ ViewController) PreferredContentSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("preferredContentSize"))
+func (v_ ViewController) PreferredContentSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](v_.ID, objc.Sel("preferredContentSize"))
 	return rv
 }
 
@@ -503,7 +502,7 @@ func (v_ ViewController) PreferredContentSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/preferredContentSize
-func (v_ ViewController) SetPreferredContentSize(value coregraphics.CGSize) {
+func (v_ ViewController) SetPreferredContentSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPreferredContentSize:"), value)
 }
 
@@ -512,8 +511,8 @@ func (v_ ViewController) SetPreferredContentSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/preferredMaximumSize
-func (v_ ViewController) PreferredMaximumSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("preferredMaximumSize"))
+func (v_ ViewController) PreferredMaximumSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](v_.ID, objc.Sel("preferredMaximumSize"))
 	return rv
 }
 
@@ -522,8 +521,8 @@ func (v_ ViewController) PreferredMaximumSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/preferredMinimumSize
-func (v_ ViewController) PreferredMinimumSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("preferredMinimumSize"))
+func (v_ ViewController) PreferredMinimumSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](v_.ID, objc.Sel("preferredMinimumSize"))
 	return rv
 }
 
@@ -532,8 +531,8 @@ func (v_ ViewController) PreferredMinimumSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/preferredScreenOrigin
-func (v_ ViewController) PreferredScreenOrigin() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("preferredScreenOrigin"))
+func (v_ ViewController) PreferredScreenOrigin() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](v_.ID, objc.Sel("preferredScreenOrigin"))
 	return rv
 }
 
@@ -542,7 +541,7 @@ func (v_ ViewController) PreferredScreenOrigin() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/preferredScreenOrigin
-func (v_ ViewController) SetPreferredScreenOrigin(value coregraphics.CGPoint) {
+func (v_ ViewController) SetPreferredScreenOrigin(value objc.IObject /* cross-framework: Point */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPreferredScreenOrigin:"), value)
 }
 
@@ -615,8 +614,8 @@ func (v_ ViewController) Storyboard() IStoryboard {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/title
-func (v_ ViewController) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](v_.ID, objc.Sel("title"))
+func (v_ ViewController) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -625,8 +624,8 @@ func (v_ ViewController) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/title
-func (v_ ViewController) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (v_ ViewController) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setTitle:"), value)
 }
 
 

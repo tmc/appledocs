@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -46,8 +45,8 @@ type IWindow interface {
 	AppearanceSource() unsafe.Pointer
 	SetAppearanceSource(value unsafe.Pointer)
 	AreCursorRectsEnabled() bool /* primitive/slice/pointer. */
-	AspectRatio() coregraphics.CGSize
-	SetAspectRatio(value coregraphics.CGSize)
+	AspectRatio() objc.IObject /* cross-framework: Size */
+	SetAspectRatio(value objc.IObject /* cross-framework: Size */)
 	AttachedSheet() IWindow
 	AutorecalculatesKeyViewLoop() bool /* primitive/slice/pointer. */
 	SetAutorecalculatesKeyViewLoop(value bool /* primitive/slice/pointer. */)
@@ -63,22 +62,22 @@ type IWindow interface {
 	SetCanBecomeVisibleWithoutLogin(value bool /* primitive/slice/pointer. */)
 	CanHide() bool /* primitive/slice/pointer. */
 	SetCanHide(value bool /* primitive/slice/pointer. */)
-	CascadingReferenceFrame() coregraphics.CGRect
+	CascadingReferenceFrame() objc.IObject /* cross-framework: Rect */
 	ChildWindows() []Window /* primitive/slice/pointer. */
 	CollectionBehavior() WindowCollectionBehavior
 	SetCollectionBehavior(value WindowCollectionBehavior)
 	ColorSpace() IColorSpace
 	SetColorSpace(value IColorSpace)
-	ContentAspectRatio() coregraphics.CGSize
-	SetContentAspectRatio(value coregraphics.CGSize)
+	ContentAspectRatio() objc.IObject /* cross-framework: Size */
+	SetContentAspectRatio(value objc.IObject /* cross-framework: Size */)
 	ContentLayoutGuide() objc.ID
-	ContentLayoutRect() coregraphics.CGRect
-	ContentMaxSize() coregraphics.CGSize
-	SetContentMaxSize(value coregraphics.CGSize)
-	ContentMinSize() coregraphics.CGSize
-	SetContentMinSize(value coregraphics.CGSize)
-	ContentResizeIncrements() coregraphics.CGSize
-	SetContentResizeIncrements(value coregraphics.CGSize)
+	ContentLayoutRect() objc.IObject /* cross-framework: Rect */
+	ContentMaxSize() objc.IObject /* cross-framework: Size */
+	SetContentMaxSize(value objc.IObject /* cross-framework: Size */)
+	ContentMinSize() objc.IObject /* cross-framework: Size */
+	SetContentMinSize(value objc.IObject /* cross-framework: Size */)
+	ContentResizeIncrements() objc.IObject /* cross-framework: Size */
+	SetContentResizeIncrements(value objc.IObject /* cross-framework: Size */)
 	ContentView() IView
 	SetContentView(value IView)
 	ContentViewController() IViewController
@@ -97,7 +96,7 @@ type IWindow interface {
 	DockTile() IDockTile
 	Drawers() []Drawer /* primitive/slice/pointer. */
 	FirstResponder() IResponder
-	Frame() coregraphics.CGRect
+	Frame() objc.IObject /* cross-framework: Rect */
 	FrameAutosaveName() objc.IObject /* cross-framework: WindowFrameAutosaveName */
 	StringWithSavedFrame() objc.IObject /* cross-framework: WindowPersistableFrameDescriptor */
 	GraphicsContext() IGraphicsContext
@@ -148,19 +147,19 @@ type IWindow interface {
 	KeyViewSelectionDirection() SelectionDirection
 	Level() objc.IObject /* cross-framework: WindowLevel */
 	SetLevel(value objc.IObject /* cross-framework: WindowLevel */)
-	MaxFullScreenContentSize() coregraphics.CGSize
-	SetMaxFullScreenContentSize(value coregraphics.CGSize)
-	MaxSize() coregraphics.CGSize
-	SetMaxSize(value coregraphics.CGSize)
-	MinFullScreenContentSize() coregraphics.CGSize
-	SetMinFullScreenContentSize(value coregraphics.CGSize)
-	MinSize() coregraphics.CGSize
-	SetMinSize(value coregraphics.CGSize)
+	MaxFullScreenContentSize() objc.IObject /* cross-framework: Size */
+	SetMaxFullScreenContentSize(value objc.IObject /* cross-framework: Size */)
+	MaxSize() objc.IObject /* cross-framework: Size */
+	SetMaxSize(value objc.IObject /* cross-framework: Size */)
+	MinFullScreenContentSize() objc.IObject /* cross-framework: Size */
+	SetMinFullScreenContentSize(value objc.IObject /* cross-framework: Size */)
+	MinSize() objc.IObject /* cross-framework: Size */
+	SetMinSize(value objc.IObject /* cross-framework: Size */)
 	MiniwindowImage() IImage
 	SetMiniwindowImage(value IImage)
-	MiniwindowTitle() string /* primitive/slice/pointer. */
-	SetMiniwindowTitle(value string /* primitive/slice/pointer. */)
-	MouseLocationOutsideOfEventStream() coregraphics.CGPoint
+	MiniwindowTitle() objc.IObject /* cross-framework: NSString */
+	SetMiniwindowTitle(value objc.IObject /* cross-framework: NSString */)
+	MouseLocationOutsideOfEventStream() objc.IObject /* cross-framework: Point */
 	OcclusionState() WindowOcclusionState
 	OrderedIndex() int /* primitive/slice/pointer. */
 	SetOrderedIndex(value int /* primitive/slice/pointer. */)
@@ -172,13 +171,13 @@ type IWindow interface {
 	SetPreservesContentDuringLiveResize(value bool /* primitive/slice/pointer. */)
 	PreventsApplicationTerminationWhenModal() bool /* primitive/slice/pointer. */
 	SetPreventsApplicationTerminationWhenModal(value bool /* primitive/slice/pointer. */)
-	RepresentedFilename() string /* primitive/slice/pointer. */
-	SetRepresentedFilename(value string /* primitive/slice/pointer. */)
-	RepresentedURL() foundation.objc.IObject /* cross-framework: URL */
-	SetRepresentedURL(value foundation.objc.IObject /* cross-framework: URL */)
+	RepresentedFilename() objc.IObject /* cross-framework: NSString */
+	SetRepresentedFilename(value objc.IObject /* cross-framework: NSString */)
+	RepresentedURL() objc.IObject /* cross-framework: NSURL */
+	SetRepresentedURL(value objc.IObject /* cross-framework: NSURL */)
 	ResizeFlags() EventModifierFlags
-	ResizeIncrements() coregraphics.CGSize
-	SetResizeIncrements(value coregraphics.CGSize)
+	ResizeIncrements() objc.IObject /* cross-framework: Size */
+	SetResizeIncrements(value objc.IObject /* cross-framework: Size */)
 	RestorationClass() unsafe.Pointer
 	SetRestorationClass(value unsafe.Pointer)
 	Screen() IScreen
@@ -192,8 +191,8 @@ type IWindow interface {
 	SetShowsToolbarButton(value bool /* primitive/slice/pointer. */)
 	StyleMask() WindowStyleMask
 	SetStyleMask(value WindowStyleMask)
-	Subtitle() string /* primitive/slice/pointer. */
-	SetSubtitle(value string /* primitive/slice/pointer. */)
+	Subtitle() objc.IObject /* cross-framework: NSString */
+	SetSubtitle(value objc.IObject /* cross-framework: NSString */)
 	Tab() IWindowTab
 	TabGroup() IWindowTabGroup
 	TabbedWindows() []Window /* primitive/slice/pointer. */
@@ -201,8 +200,8 @@ type IWindow interface {
 	SetTabbingIdentifier(value objc.IObject /* cross-framework: WindowTabbingIdentifier */)
 	TabbingMode() WindowTabbingMode
 	SetTabbingMode(value WindowTabbingMode)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	TitleVisibility() WindowTitleVisibility
 	SetTitleVisibility(value WindowTitleVisibility)
 	TitlebarAccessoryViewControllers() []TitlebarAccessoryViewController /* primitive/slice/pointer. */
@@ -284,31 +283,31 @@ type IWindow interface {
 	AddTabbedWindowOrdered(window IWindow, ordered WindowOrderingMode)
 	AddTitlebarAccessoryViewController(childViewController ITitlebarAccessoryViewController)
 	AnchorAttributeForOrientation(orientation LayoutConstraintOrientation) LayoutAttribute
-	AnimationResizeTime(newFrame coregraphics.CGRect) float64 /* primitive/slice/pointer. */
-	AutorecalculatesContentBorderThicknessForEdge(edge int /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	BackingAlignedRectOptions(rect coregraphics.CGRect, options AlignmentOptions /* not a class type */) coregraphics.CGRect
+	AnimationResizeTime(newFrame objc.IObject /* cross-framework Rect */) TimeInterval /* not a class type */
+	AutorecalculatesContentBorderThicknessForEdge(edge RectEdge /* not a class type */) bool /* primitive/slice/pointer. */
+	BackingAlignedRectOptions(rect objc.IObject /* cross-framework Rect */, options AlignmentOptions /* not a class type */) objc.IObject /* cross-framework: Rect */
 	BecomeKeyWindow()
 	BecomeMainWindow()
 	BeginCriticalSheetCompletionHandler(sheetWindow IWindow, handler unsafe.Pointer)
 	BeginDraggingSessionWithItemsEventSource(items []DraggingItem /* primitive/slice/pointer. */, event IEvent, source objectivec.IObject) IDraggingSession
 	BeginSheetCompletionHandler(sheetWindow IWindow, handler unsafe.Pointer)
 	CanRepresentDisplayGamut(displayGamut DisplayGamut) bool /* primitive/slice/pointer. */
-	CascadeTopLeftFromPoint(topLeftPoint coregraphics.CGPoint) coregraphics.CGPoint
+	CascadeTopLeftFromPoint(topLeftPoint objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */
 	Center()
 	Close()
-	ConstrainFrameRectToScreen(frameRect coregraphics.CGRect, screen IScreen) coregraphics.CGRect
-	ContentBorderThicknessForEdge(edge int /* primitive/slice/pointer. */) float64 /* primitive/slice/pointer. */
-	ContentRectForFrameRect(frameRect coregraphics.CGRect) coregraphics.CGRect
-	ConvertRectFromBacking(rect coregraphics.CGRect) coregraphics.CGRect
-	ConvertRectFromScreen(rect coregraphics.CGRect) coregraphics.CGRect
-	ConvertPointFromScreen(point coregraphics.CGPoint) coregraphics.CGPoint
-	ConvertPointToScreen(point coregraphics.CGPoint) coregraphics.CGPoint
-	ConvertPointFromBacking(point coregraphics.CGPoint) coregraphics.CGPoint
-	ConvertPointToBacking(point coregraphics.CGPoint) coregraphics.CGPoint
-	ConvertRectToBacking(rect coregraphics.CGRect) coregraphics.CGRect
-	ConvertRectToScreen(rect coregraphics.CGRect) coregraphics.CGRect
-	DataWithEPSInsideRect(rect coregraphics.CGRect) objc.IObject /* cross-framework: Data */
-	DataWithPDFInsideRect(rect coregraphics.CGRect) objc.IObject /* cross-framework: Data */
+	ConstrainFrameRectToScreen(frameRect objc.IObject /* cross-framework Rect */, screen IScreen) objc.IObject /* cross-framework: Rect */
+	ContentBorderThicknessForEdge(edge RectEdge /* not a class type */) float64 /* primitive/slice/pointer. */
+	ContentRectForFrameRect(frameRect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	ConvertRectFromBacking(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	ConvertRectFromScreen(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	ConvertPointFromScreen(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */
+	ConvertPointToScreen(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */
+	ConvertPointFromBacking(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */
+	ConvertPointToBacking(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */
+	ConvertRectToBacking(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	ConvertRectToScreen(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	DataWithEPSInsideRect(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Data */
+	DataWithPDFInsideRect(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Data */
 	Deminiaturize(sender objectivec.IObject)
 	DisableCursorRects()
 	DisableKeyEquivalentForDefaultButtonCell()
@@ -325,10 +324,10 @@ type IWindow interface {
 	EndSheet(sheetWindow IWindow)
 	EndSheetReturnCode(sheetWindow IWindow, returnCode objc.IObject /* cross-framework ModalResponse */)
 	FieldEditorForObject(createFlag bool /* primitive/slice/pointer. */, object objectivec.IObject) IText
-	FrameRectForContentRect(contentRect coregraphics.CGRect) coregraphics.CGRect
-	HandleCloseScriptCommand(command CloseCommand /* not a class type */) objc.ID
-	HandlePrintScriptCommand(command ScriptCommand /* not a class type */) objc.ID
-	HandleSaveScriptCommand(command ScriptCommand /* not a class type */) objc.ID
+	FrameRectForContentRect(contentRect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	HandleCloseScriptCommand(command objc.IObject /* cross-framework CloseCommand */) objc.ID
+	HandlePrintScriptCommand(command objc.IObject /* cross-framework ScriptCommand */) objc.ID
+	HandleSaveScriptCommand(command objc.IObject /* cross-framework ScriptCommand */) objc.ID
 	InsertTitlebarAccessoryViewControllerAtIndex(childViewController ITitlebarAccessoryViewController, index int /* primitive/slice/pointer. */)
 	InvalidateCursorRectsForView(view IView)
 	InvalidateShadow()
@@ -341,7 +340,7 @@ type IWindow interface {
 	Miniaturize(sender objectivec.IObject)
 	MoveTabToNewWindow(sender objectivec.IObject)
 	NextEventMatchingMask(mask EventMask) IEvent
-	NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration foundation.objc.IObject /* cross-framework NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool /* primitive/slice/pointer. */) IEvent
+	NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration objc.IObject /* cross-framework NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool /* primitive/slice/pointer. */) IEvent
 	OrderWindowRelativeTo(place WindowOrderingMode, otherWin int /* primitive/slice/pointer. */)
 	OrderBack(sender objectivec.IObject)
 	OrderFront(sender objectivec.IObject)
@@ -358,7 +357,7 @@ type IWindow interface {
 	RemoveChildWindow(childWin IWindow)
 	RemoveTitlebarAccessoryViewControllerAtIndex(index int /* primitive/slice/pointer. */)
 	RequestSharingOfWindowCompletionHandler(window IWindow, completionHandler unsafe.Pointer)
-	RequestSharingOfWindowUsingPreviewTitleCompletionHandler(image IImage, title string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer)
+	RequestSharingOfWindowUsingPreviewTitleCompletionHandler(image IImage, title objc.IObject /* cross-framework NSString */, completionHandler unsafe.Pointer)
 	ResetCursorRects()
 	ResignKeyWindow()
 	ResignMainWindow()
@@ -372,24 +371,24 @@ type IWindow interface {
 	SelectPreviousTab(sender objectivec.IObject)
 	SendEvent(event IEvent)
 	SetAnchorAttributeForOrientation(attr LayoutAttribute, orientation LayoutConstraintOrientation)
-	SetAutorecalculatesContentBorderThicknessForEdge(flag bool /* primitive/slice/pointer. */, edge int /* primitive/slice/pointer. */)
-	SetContentBorderThicknessForEdge(thickness float64 /* primitive/slice/pointer. */, edge int /* primitive/slice/pointer. */)
-	SetContentSize(size coregraphics.CGSize)
+	SetAutorecalculatesContentBorderThicknessForEdge(flag bool /* primitive/slice/pointer. */, edge RectEdge /* not a class type */)
+	SetContentBorderThicknessForEdge(thickness float64 /* primitive/slice/pointer. */, edge RectEdge /* not a class type */)
+	SetContentSize(size objc.IObject /* cross-framework Size */)
 	SetDynamicDepthLimit(flag bool /* primitive/slice/pointer. */)
-	SetFrameDisplay(frameRect coregraphics.CGRect, flag bool /* primitive/slice/pointer. */)
-	SetFrameDisplayAnimate(frameRect coregraphics.CGRect, displayFlag bool /* primitive/slice/pointer. */, animateFlag bool /* primitive/slice/pointer. */)
+	SetFrameDisplay(frameRect objc.IObject /* cross-framework Rect */, flag bool /* primitive/slice/pointer. */)
+	SetFrameDisplayAnimate(frameRect objc.IObject /* cross-framework Rect */, displayFlag bool /* primitive/slice/pointer. */, animateFlag bool /* primitive/slice/pointer. */)
 	SetFrameFromString(string_ objc.IObject /* cross-framework WindowPersistableFrameDescriptor */)
-	SetFrameOrigin(point coregraphics.CGPoint)
-	SetFrameTopLeftPoint(point coregraphics.CGPoint)
+	SetFrameOrigin(point objc.IObject /* cross-framework Point */)
+	SetFrameTopLeftPoint(point objc.IObject /* cross-framework Point */)
 	SetFrameUsingName(name objc.IObject /* cross-framework WindowFrameAutosaveName */) bool /* primitive/slice/pointer. */
 	SetFrameUsingNameForce(name objc.IObject /* cross-framework WindowFrameAutosaveName */, force bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	SetTitleWithRepresentedFilename(filename string /* primitive/slice/pointer. */)
+	SetTitleWithRepresentedFilename(filename objc.IObject /* cross-framework NSString */)
 	StandardWindowButton(b WindowButton) IButton
 	ToggleFullScreen(sender objectivec.IObject)
 	ToggleTabBar(sender objectivec.IObject)
 	ToggleTabOverview(sender objectivec.IObject)
 	ToggleToolbarShown(sender objectivec.IObject)
-	TrackEventsMatchingMaskTimeoutModeHandler(mask EventMask, timeout float64 /* primitive/slice/pointer. */, mode RunLoopMode /* not a class type */, trackingHandler unsafe.Pointer)
+	TrackEventsMatchingMaskTimeoutModeHandler(mask EventMask, timeout TimeInterval /* not a class type */, mode RunLoopMode /* not a class type */, trackingHandler unsafe.Pointer)
 	TransferWindowSharingToWindowCompletionHandler(window IWindow, completionHandler unsafe.Pointer)
 	TryToPerformWith(action objc.SEL, object objectivec.IObject) bool /* primitive/slice/pointer. */
 	UnregisterDraggedTypes()
@@ -459,7 +458,7 @@ func NewWindow() Window {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
-func NewWindowWithContentRectStyleMaskBackingDefer(contentRect coregraphics.CGRect, style WindowStyleMask, backingStoreType BackingStoreType, flag bool /* primitive/slice/pointer. */) Window {
+func NewWindowWithContentRectStyleMaskBackingDefer(contentRect objc.IObject /* cross-framework Rect */, style WindowStyleMask, backingStoreType BackingStoreType, flag bool /* primitive/slice/pointer. */) Window {
 	instance := getWindowClass().Alloc()
 	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:"), contentRect, style, backingStoreType, flag)
 	rv.Autorelease()
@@ -471,7 +470,7 @@ func NewWindowWithContentRectStyleMaskBackingDefer(contentRect coregraphics.CGRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:screen:)
-func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect coregraphics.CGRect, style WindowStyleMask, backingStoreType BackingStoreType, flag bool /* primitive/slice/pointer. */, screen IScreen) Window {
+func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect objc.IObject /* cross-framework Rect */, style WindowStyleMask, backingStoreType BackingStoreType, flag bool /* primitive/slice/pointer. */, screen IScreen) Window {
 	instance := getWindowClass().Alloc()
 	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:screen:"), contentRect, style, backingStoreType, flag, screen)
 	rv.Autorelease()
@@ -506,8 +505,8 @@ func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentRect(forFrameRect:styleMask:)
-func (wc _WindowClass) ContentRectForFrameRectStyleMask(fRect coregraphics.CGRect, style WindowStyleMask) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](objc.ID(wc.class), objc.Sel("contentRectForFrameRect:styleMask:"), fRect, style)
+func (wc _WindowClass) ContentRectForFrameRectStyleMask(fRect objc.IObject /* cross-framework Rect */, style WindowStyleMask) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](objc.ID(wc.class), objc.Sel("contentRectForFrameRect:styleMask:"), fRect, style)
 	return rv
 }
 
@@ -516,8 +515,8 @@ func (wc _WindowClass) ContentRectForFrameRectStyleMask(fRect coregraphics.CGRec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/frameRect(forContentRect:styleMask:)
-func (wc _WindowClass) FrameRectForContentRectStyleMask(cRect coregraphics.CGRect, style WindowStyleMask) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](objc.ID(wc.class), objc.Sel("frameRectForContentRect:styleMask:"), cRect, style)
+func (wc _WindowClass) FrameRectForContentRectStyleMask(cRect objc.IObject /* cross-framework Rect */, style WindowStyleMask) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](objc.ID(wc.class), objc.Sel("frameRectForContentRect:styleMask:"), cRect, style)
 	return rv
 }
 
@@ -545,8 +544,8 @@ func (wc _WindowClass) MenuChanged(menu IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/minFrameWidth(withTitle:styleMask:)
-func (wc _WindowClass) MinFrameWidthWithTitleStyleMask(title string /* primitive/slice/pointer. */, style WindowStyleMask) float64 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float64](objc.ID(wc.class), objc.Sel("minFrameWidthWithTitle:styleMask:"), objc.String(title), style)
+func (wc _WindowClass) MinFrameWidthWithTitleStyleMask(title objc.IObject /* cross-framework NSString */, style WindowStyleMask) float64 /* primitive/slice/pointer. */ {
+	rv := objc.Send[float64](objc.ID(wc.class), objc.Sel("minFrameWidthWithTitle:styleMask:"), title, style)
 	return rv
 }
 
@@ -574,7 +573,7 @@ func (wc _WindowClass) StandardWindowButtonForStyleMask(b WindowButton, styleMas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowNumber(at:belowWindowWithWindowNumber:)
-func (wc _WindowClass) WindowNumberAtPointBelowWindowWithWindowNumber(point coregraphics.CGPoint, windowNumber int /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
+func (wc _WindowClass) WindowNumberAtPointBelowWindowWithWindowNumber(point objc.IObject /* cross-framework Point */, windowNumber int /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](objc.ID(wc.class), objc.Sel("windowNumberAtPoint:belowWindowWithWindowNumber:"), point, windowNumber)
 	return rv
 }
@@ -584,7 +583,7 @@ func (wc _WindowClass) WindowNumberAtPointBelowWindowWithWindowNumber(point core
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowNumbers(options:)
-func (wc _WindowClass) WindowNumbersWithOptions(options WindowNumberListOptions) []foundation.objc.IObject /* cross-framework: Number */ {
+func (wc _WindowClass) WindowNumbersWithOptions(options WindowNumberListOptions) objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](objc.ID(wc.class), objc.Sel("windowNumbersWithOptions:"), options)
 	return rv
 }
@@ -658,8 +657,8 @@ func (w_ Window) AnchorAttributeForOrientation(orientation LayoutConstraintOrien
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/animationResizeTime(_:)
-func (w_ Window) AnimationResizeTime(newFrame coregraphics.CGRect) float64 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float64](w_.ID, objc.Sel("animationResizeTime:"), newFrame)
+func (w_ Window) AnimationResizeTime(newFrame objc.IObject /* cross-framework Rect */) TimeInterval /* not a class type */ {
+	rv := objc.Send[TimeInterval](w_.ID, objc.Sel("animationResizeTime:"), newFrame)
 	return rv
 }
 
@@ -668,7 +667,7 @@ func (w_ Window) AnimationResizeTime(newFrame coregraphics.CGRect) float64 /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/autorecalculatesContentBorderThickness(for:)
-func (w_ Window) AutorecalculatesContentBorderThicknessForEdge(edge int /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (w_ Window) AutorecalculatesContentBorderThicknessForEdge(edge RectEdge /* not a class type */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](w_.ID, objc.Sel("autorecalculatesContentBorderThicknessForEdge:"), edge)
 	return rv
 }
@@ -678,8 +677,8 @@ func (w_ Window) AutorecalculatesContentBorderThicknessForEdge(edge int /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/backingAlignedRect(_:options:)
-func (w_ Window) BackingAlignedRectOptions(rect coregraphics.CGRect, options AlignmentOptions /* not a class type */) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](w_.ID, objc.Sel("backingAlignedRect:options:"), rect, options)
+func (w_ Window) BackingAlignedRectOptions(rect objc.IObject /* cross-framework Rect */, options AlignmentOptions /* not a class type */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](w_.ID, objc.Sel("backingAlignedRect:options:"), rect, options)
 	return rv
 }
 
@@ -742,8 +741,8 @@ func (w_ Window) CanRepresentDisplayGamut(displayGamut DisplayGamut) bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/cascadeTopLeft(from:)
-func (w_ Window) CascadeTopLeftFromPoint(topLeftPoint coregraphics.CGPoint) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](w_.ID, objc.Sel("cascadeTopLeftFromPoint:"), topLeftPoint)
+func (w_ Window) CascadeTopLeftFromPoint(topLeftPoint objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](w_.ID, objc.Sel("cascadeTopLeftFromPoint:"), topLeftPoint)
 	return rv
 }
 
@@ -770,8 +769,8 @@ func (w_ Window) Close() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/constrainFrameRect(_:to:)
-func (w_ Window) ConstrainFrameRectToScreen(frameRect coregraphics.CGRect, screen IScreen) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](w_.ID, objc.Sel("constrainFrameRect:toScreen:"), frameRect, screen)
+func (w_ Window) ConstrainFrameRectToScreen(frameRect objc.IObject /* cross-framework Rect */, screen IScreen) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](w_.ID, objc.Sel("constrainFrameRect:toScreen:"), frameRect, screen)
 	return rv
 }
 
@@ -780,7 +779,7 @@ func (w_ Window) ConstrainFrameRectToScreen(frameRect coregraphics.CGRect, scree
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentBorderThickness(for:)
-func (w_ Window) ContentBorderThicknessForEdge(edge int /* primitive/slice/pointer. */) float64 /* primitive/slice/pointer. */ {
+func (w_ Window) ContentBorderThicknessForEdge(edge RectEdge /* not a class type */) float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](w_.ID, objc.Sel("contentBorderThicknessForEdge:"), edge)
 	return rv
 }
@@ -790,8 +789,8 @@ func (w_ Window) ContentBorderThicknessForEdge(edge int /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentRect(forFrameRect:)
-func (w_ Window) ContentRectForFrameRect(frameRect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](w_.ID, objc.Sel("contentRectForFrameRect:"), frameRect)
+func (w_ Window) ContentRectForFrameRect(frameRect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](w_.ID, objc.Sel("contentRectForFrameRect:"), frameRect)
 	return rv
 }
 
@@ -800,8 +799,8 @@ func (w_ Window) ContentRectForFrameRect(frameRect coregraphics.CGRect) coregrap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertFromBacking(_:)
-func (w_ Window) ConvertRectFromBacking(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](w_.ID, objc.Sel("convertRectFromBacking:"), rect)
+func (w_ Window) ConvertRectFromBacking(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](w_.ID, objc.Sel("convertRectFromBacking:"), rect)
 	return rv
 }
 
@@ -810,8 +809,8 @@ func (w_ Window) ConvertRectFromBacking(rect coregraphics.CGRect) coregraphics.C
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertFromScreen(_:)
-func (w_ Window) ConvertRectFromScreen(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](w_.ID, objc.Sel("convertRectFromScreen:"), rect)
+func (w_ Window) ConvertRectFromScreen(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](w_.ID, objc.Sel("convertRectFromScreen:"), rect)
 	return rv
 }
 
@@ -820,8 +819,8 @@ func (w_ Window) ConvertRectFromScreen(rect coregraphics.CGRect) coregraphics.CG
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertPoint(fromScreen:)
-func (w_ Window) ConvertPointFromScreen(point coregraphics.CGPoint) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](w_.ID, objc.Sel("convertPointFromScreen:"), point)
+func (w_ Window) ConvertPointFromScreen(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](w_.ID, objc.Sel("convertPointFromScreen:"), point)
 	return rv
 }
 
@@ -830,8 +829,8 @@ func (w_ Window) ConvertPointFromScreen(point coregraphics.CGPoint) coregraphics
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertPoint(toScreen:)
-func (w_ Window) ConvertPointToScreen(point coregraphics.CGPoint) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](w_.ID, objc.Sel("convertPointToScreen:"), point)
+func (w_ Window) ConvertPointToScreen(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](w_.ID, objc.Sel("convertPointToScreen:"), point)
 	return rv
 }
 
@@ -840,8 +839,8 @@ func (w_ Window) ConvertPointToScreen(point coregraphics.CGPoint) coregraphics.C
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertPointFromBacking(_:)
-func (w_ Window) ConvertPointFromBacking(point coregraphics.CGPoint) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](w_.ID, objc.Sel("convertPointFromBacking:"), point)
+func (w_ Window) ConvertPointFromBacking(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](w_.ID, objc.Sel("convertPointFromBacking:"), point)
 	return rv
 }
 
@@ -850,8 +849,8 @@ func (w_ Window) ConvertPointFromBacking(point coregraphics.CGPoint) coregraphic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertPointToBacking(_:)
-func (w_ Window) ConvertPointToBacking(point coregraphics.CGPoint) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](w_.ID, objc.Sel("convertPointToBacking:"), point)
+func (w_ Window) ConvertPointToBacking(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](w_.ID, objc.Sel("convertPointToBacking:"), point)
 	return rv
 }
 
@@ -860,8 +859,8 @@ func (w_ Window) ConvertPointToBacking(point coregraphics.CGPoint) coregraphics.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertToBacking(_:)
-func (w_ Window) ConvertRectToBacking(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](w_.ID, objc.Sel("convertRectToBacking:"), rect)
+func (w_ Window) ConvertRectToBacking(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](w_.ID, objc.Sel("convertRectToBacking:"), rect)
 	return rv
 }
 
@@ -870,8 +869,8 @@ func (w_ Window) ConvertRectToBacking(rect coregraphics.CGRect) coregraphics.CGR
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertToScreen(_:)
-func (w_ Window) ConvertRectToScreen(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](w_.ID, objc.Sel("convertRectToScreen:"), rect)
+func (w_ Window) ConvertRectToScreen(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](w_.ID, objc.Sel("convertRectToScreen:"), rect)
 	return rv
 }
 
@@ -880,7 +879,7 @@ func (w_ Window) ConvertRectToScreen(rect coregraphics.CGRect) coregraphics.CGRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/dataWithEPS(inside:)
-func (w_ Window) DataWithEPSInsideRect(rect coregraphics.CGRect) objc.IObject /* cross-framework: Data */ {
+func (w_ Window) DataWithEPSInsideRect(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[Data](w_.ID, objc.Sel("dataWithEPSInsideRect:"), rect)
 	return rv
 }
@@ -890,7 +889,7 @@ func (w_ Window) DataWithEPSInsideRect(rect coregraphics.CGRect) objc.IObject /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/dataWithPDF(inside:)
-func (w_ Window) DataWithPDFInsideRect(rect coregraphics.CGRect) objc.IObject /* cross-framework: Data */ {
+func (w_ Window) DataWithPDFInsideRect(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[Data](w_.ID, objc.Sel("dataWithPDFInsideRect:"), rect)
 	return rv
 }
@@ -1042,8 +1041,8 @@ func (w_ Window) FieldEditorForObject(createFlag bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/frameRect(forContentRect:)
-func (w_ Window) FrameRectForContentRect(contentRect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](w_.ID, objc.Sel("frameRectForContentRect:"), contentRect)
+func (w_ Window) FrameRectForContentRect(contentRect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](w_.ID, objc.Sel("frameRectForContentRect:"), contentRect)
 	return rv
 }
 
@@ -1052,7 +1051,7 @@ func (w_ Window) FrameRectForContentRect(contentRect coregraphics.CGRect) coregr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/handleClose(_:)
-func (w_ Window) HandleCloseScriptCommand(command CloseCommand /* not a class type */) objc.ID {
+func (w_ Window) HandleCloseScriptCommand(command objc.IObject /* cross-framework CloseCommand */) objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("handleCloseScriptCommand:"), command)
 	return rv
 }
@@ -1062,7 +1061,7 @@ func (w_ Window) HandleCloseScriptCommand(command CloseCommand /* not a class ty
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/handlePrint(_:)
-func (w_ Window) HandlePrintScriptCommand(command ScriptCommand /* not a class type */) objc.ID {
+func (w_ Window) HandlePrintScriptCommand(command objc.IObject /* cross-framework ScriptCommand */) objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("handlePrintScriptCommand:"), command)
 	return rv
 }
@@ -1072,7 +1071,7 @@ func (w_ Window) HandlePrintScriptCommand(command ScriptCommand /* not a class t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/handleSave(_:)
-func (w_ Window) HandleSaveScriptCommand(command ScriptCommand /* not a class type */) objc.ID {
+func (w_ Window) HandleSaveScriptCommand(command objc.IObject /* cross-framework ScriptCommand */) objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("handleSaveScriptCommand:"), command)
 	return rv
 }
@@ -1192,7 +1191,7 @@ func (w_ Window) NextEventMatchingMask(mask EventMask) IEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/nextEvent(matching:until:inMode:dequeue:)
-func (w_ Window) NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration foundation.objc.IObject /* cross-framework NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool /* primitive/slice/pointer. */) IEvent {
+func (w_ Window) NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration objc.IObject /* cross-framework NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool /* primitive/slice/pointer. */) IEvent {
 	rv := objc.Send[Event](w_.ID, objc.Sel("nextEventMatchingMask:untilDate:inMode:dequeue:"), mask, expiration, mode, deqFlag)
 	return rv
 }
@@ -1342,8 +1341,8 @@ func (w_ Window) RequestSharingOfWindowCompletionHandler(window IWindow, complet
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/requestSharingOfWindow(usingPreview:title:completionHandler:)
-func (w_ Window) RequestSharingOfWindowUsingPreviewTitleCompletionHandler(image IImage, title string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("requestSharingOfWindowUsingPreview:title:completionHandler:"), image, objc.String(title), completionHandler)
+func (w_ Window) RequestSharingOfWindowUsingPreviewTitleCompletionHandler(image IImage, title objc.IObject /* cross-framework NSString */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("requestSharingOfWindowUsingPreview:title:completionHandler:"), image, title, completionHandler)
 }
 
 
@@ -1468,7 +1467,7 @@ func (w_ Window) SetAnchorAttributeForOrientation(attr LayoutAttribute, orientat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setAutorecalculatesContentBorderThickness(_:for:)
-func (w_ Window) SetAutorecalculatesContentBorderThicknessForEdge(flag bool /* primitive/slice/pointer. */, edge int /* primitive/slice/pointer. */) {
+func (w_ Window) SetAutorecalculatesContentBorderThicknessForEdge(flag bool /* primitive/slice/pointer. */, edge RectEdge /* not a class type */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAutorecalculatesContentBorderThickness:forEdge:"), flag, edge)
 }
 
@@ -1477,7 +1476,7 @@ func (w_ Window) SetAutorecalculatesContentBorderThicknessForEdge(flag bool /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setContentBorderThickness(_:for:)
-func (w_ Window) SetContentBorderThicknessForEdge(thickness float64 /* primitive/slice/pointer. */, edge int /* primitive/slice/pointer. */) {
+func (w_ Window) SetContentBorderThicknessForEdge(thickness float64 /* primitive/slice/pointer. */, edge RectEdge /* not a class type */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentBorderThickness:forEdge:"), thickness, edge)
 }
 
@@ -1486,7 +1485,7 @@ func (w_ Window) SetContentBorderThicknessForEdge(thickness float64 /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setContentSize(_:)
-func (w_ Window) SetContentSize(size coregraphics.CGSize) {
+func (w_ Window) SetContentSize(size objc.IObject /* cross-framework Size */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentSize:"), size)
 }
 
@@ -1504,7 +1503,7 @@ func (w_ Window) SetDynamicDepthLimit(flag bool /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrame(_:display:)
-func (w_ Window) SetFrameDisplay(frameRect coregraphics.CGRect, flag bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetFrameDisplay(frameRect objc.IObject /* cross-framework Rect */, flag bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFrame:display:"), frameRect, flag)
 }
 
@@ -1513,7 +1512,7 @@ func (w_ Window) SetFrameDisplay(frameRect coregraphics.CGRect, flag bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrame(_:display:animate:)
-func (w_ Window) SetFrameDisplayAnimate(frameRect coregraphics.CGRect, displayFlag bool /* primitive/slice/pointer. */, animateFlag bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetFrameDisplayAnimate(frameRect objc.IObject /* cross-framework Rect */, displayFlag bool /* primitive/slice/pointer. */, animateFlag bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFrame:display:animate:"), frameRect, displayFlag, animateFlag)
 }
 
@@ -1531,7 +1530,7 @@ func (w_ Window) SetFrameFromString(string_ objc.IObject /* cross-framework Wind
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrameOrigin(_:)
-func (w_ Window) SetFrameOrigin(point coregraphics.CGPoint) {
+func (w_ Window) SetFrameOrigin(point objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFrameOrigin:"), point)
 }
 
@@ -1540,7 +1539,7 @@ func (w_ Window) SetFrameOrigin(point coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrameTopLeftPoint(_:)
-func (w_ Window) SetFrameTopLeftPoint(point coregraphics.CGPoint) {
+func (w_ Window) SetFrameTopLeftPoint(point objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFrameTopLeftPoint:"), point)
 }
 
@@ -1569,8 +1568,8 @@ func (w_ Window) SetFrameUsingNameForce(name objc.IObject /* cross-framework Win
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setTitleWithRepresentedFilename(_:)
-func (w_ Window) SetTitleWithRepresentedFilename(filename string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setTitleWithRepresentedFilename:"), objc.String(filename))
+func (w_ Window) SetTitleWithRepresentedFilename(filename objc.IObject /* cross-framework NSString */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTitleWithRepresentedFilename:"), filename)
 }
 
 
@@ -1624,7 +1623,7 @@ func (w_ Window) ToggleToolbarShown(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/trackEvents(matching:timeout:mode:handler:)
-func (w_ Window) TrackEventsMatchingMaskTimeoutModeHandler(mask EventMask, timeout float64 /* primitive/slice/pointer. */, mode RunLoopMode /* not a class type */, trackingHandler unsafe.Pointer) {
+func (w_ Window) TrackEventsMatchingMaskTimeoutModeHandler(mask EventMask, timeout TimeInterval /* not a class type */, mode RunLoopMode /* not a class type */, trackingHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("trackEventsMatchingMask:timeout:mode:handler:"), mask, timeout, mode, trackingHandler)
 }
 
@@ -1848,8 +1847,8 @@ func (w_ Window) AreCursorRectsEnabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/aspectRatio
-func (w_ Window) AspectRatio() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("aspectRatio"))
+func (w_ Window) AspectRatio() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](w_.ID, objc.Sel("aspectRatio"))
 	return rv
 }
 
@@ -1858,7 +1857,7 @@ func (w_ Window) AspectRatio() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/aspectRatio
-func (w_ Window) SetAspectRatio(value coregraphics.CGSize) {
+func (w_ Window) SetAspectRatio(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAspectRatio:"), value)
 }
 
@@ -2010,8 +2009,8 @@ func (w_ Window) SetCanHide(value bool /* primitive/slice/pointer. */) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/cascadingReferenceFrame
-func (w_ Window) CascadingReferenceFrame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](w_.ID, objc.Sel("cascadingReferenceFrame"))
+func (w_ Window) CascadingReferenceFrame() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](w_.ID, objc.Sel("cascadingReferenceFrame"))
 	return rv
 }
 
@@ -2068,8 +2067,8 @@ func (w_ Window) SetColorSpace(value IColorSpace) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentAspectRatio
-func (w_ Window) ContentAspectRatio() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("contentAspectRatio"))
+func (w_ Window) ContentAspectRatio() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](w_.ID, objc.Sel("contentAspectRatio"))
 	return rv
 }
 
@@ -2078,7 +2077,7 @@ func (w_ Window) ContentAspectRatio() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentAspectRatio
-func (w_ Window) SetContentAspectRatio(value coregraphics.CGSize) {
+func (w_ Window) SetContentAspectRatio(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentAspectRatio:"), value)
 }
 
@@ -2097,8 +2096,8 @@ func (w_ Window) ContentLayoutGuide() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentLayoutRect
-func (w_ Window) ContentLayoutRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](w_.ID, objc.Sel("contentLayoutRect"))
+func (w_ Window) ContentLayoutRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](w_.ID, objc.Sel("contentLayoutRect"))
 	return rv
 }
 
@@ -2107,8 +2106,8 @@ func (w_ Window) ContentLayoutRect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentMaxSize
-func (w_ Window) ContentMaxSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("contentMaxSize"))
+func (w_ Window) ContentMaxSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](w_.ID, objc.Sel("contentMaxSize"))
 	return rv
 }
 
@@ -2117,7 +2116,7 @@ func (w_ Window) ContentMaxSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentMaxSize
-func (w_ Window) SetContentMaxSize(value coregraphics.CGSize) {
+func (w_ Window) SetContentMaxSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentMaxSize:"), value)
 }
 
@@ -2126,8 +2125,8 @@ func (w_ Window) SetContentMaxSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentMinSize
-func (w_ Window) ContentMinSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("contentMinSize"))
+func (w_ Window) ContentMinSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](w_.ID, objc.Sel("contentMinSize"))
 	return rv
 }
 
@@ -2136,7 +2135,7 @@ func (w_ Window) ContentMinSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentMinSize
-func (w_ Window) SetContentMinSize(value coregraphics.CGSize) {
+func (w_ Window) SetContentMinSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentMinSize:"), value)
 }
 
@@ -2145,8 +2144,8 @@ func (w_ Window) SetContentMinSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentResizeIncrements
-func (w_ Window) ContentResizeIncrements() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("contentResizeIncrements"))
+func (w_ Window) ContentResizeIncrements() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](w_.ID, objc.Sel("contentResizeIncrements"))
 	return rv
 }
 
@@ -2155,7 +2154,7 @@ func (w_ Window) ContentResizeIncrements() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentResizeIncrements
-func (w_ Window) SetContentResizeIncrements(value coregraphics.CGSize) {
+func (w_ Window) SetContentResizeIncrements(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentResizeIncrements:"), value)
 }
 
@@ -2348,8 +2347,8 @@ func (w_ Window) FirstResponder() IResponder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/frame
-func (w_ Window) Frame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](w_.ID, objc.Sel("frame"))
+func (w_ Window) Frame() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](w_.ID, objc.Sel("frame"))
 	return rv
 }
 
@@ -2842,8 +2841,8 @@ func (w_ Window) SetLevel(value objc.IObject /* cross-framework: WindowLevel */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/maxFullScreenContentSize
-func (w_ Window) MaxFullScreenContentSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("maxFullScreenContentSize"))
+func (w_ Window) MaxFullScreenContentSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](w_.ID, objc.Sel("maxFullScreenContentSize"))
 	return rv
 }
 
@@ -2852,7 +2851,7 @@ func (w_ Window) MaxFullScreenContentSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/maxFullScreenContentSize
-func (w_ Window) SetMaxFullScreenContentSize(value coregraphics.CGSize) {
+func (w_ Window) SetMaxFullScreenContentSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMaxFullScreenContentSize:"), value)
 }
 
@@ -2861,8 +2860,8 @@ func (w_ Window) SetMaxFullScreenContentSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/maxSize
-func (w_ Window) MaxSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("maxSize"))
+func (w_ Window) MaxSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](w_.ID, objc.Sel("maxSize"))
 	return rv
 }
 
@@ -2871,7 +2870,7 @@ func (w_ Window) MaxSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/maxSize
-func (w_ Window) SetMaxSize(value coregraphics.CGSize) {
+func (w_ Window) SetMaxSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMaxSize:"), value)
 }
 
@@ -2880,8 +2879,8 @@ func (w_ Window) SetMaxSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/minFullScreenContentSize
-func (w_ Window) MinFullScreenContentSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("minFullScreenContentSize"))
+func (w_ Window) MinFullScreenContentSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](w_.ID, objc.Sel("minFullScreenContentSize"))
 	return rv
 }
 
@@ -2890,7 +2889,7 @@ func (w_ Window) MinFullScreenContentSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/minFullScreenContentSize
-func (w_ Window) SetMinFullScreenContentSize(value coregraphics.CGSize) {
+func (w_ Window) SetMinFullScreenContentSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMinFullScreenContentSize:"), value)
 }
 
@@ -2899,8 +2898,8 @@ func (w_ Window) SetMinFullScreenContentSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/minSize
-func (w_ Window) MinSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("minSize"))
+func (w_ Window) MinSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](w_.ID, objc.Sel("minSize"))
 	return rv
 }
 
@@ -2909,7 +2908,7 @@ func (w_ Window) MinSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/minSize
-func (w_ Window) SetMinSize(value coregraphics.CGSize) {
+func (w_ Window) SetMinSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMinSize:"), value)
 }
 
@@ -2937,8 +2936,8 @@ func (w_ Window) SetMiniwindowImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/miniwindowTitle
-func (w_ Window) MiniwindowTitle() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](w_.ID, objc.Sel("miniwindowTitle"))
+func (w_ Window) MiniwindowTitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("miniwindowTitle"))
 	return rv
 }
 
@@ -2947,8 +2946,8 @@ func (w_ Window) MiniwindowTitle() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/miniwindowTitle
-func (w_ Window) SetMiniwindowTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setMiniwindowTitle:"), objc.String(value))
+func (w_ Window) SetMiniwindowTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMiniwindowTitle:"), value)
 }
 
 
@@ -2956,8 +2955,8 @@ func (w_ Window) SetMiniwindowTitle(value string /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/mouseLocationOutsideOfEventStream
-func (w_ Window) MouseLocationOutsideOfEventStream() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](w_.ID, objc.Sel("mouseLocationOutsideOfEventStream"))
+func (w_ Window) MouseLocationOutsideOfEventStream() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](w_.ID, objc.Sel("mouseLocationOutsideOfEventStream"))
 	return rv
 }
 
@@ -3071,8 +3070,8 @@ func (w_ Window) SetPreventsApplicationTerminationWhenModal(value bool /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/representedFilename
-func (w_ Window) RepresentedFilename() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](w_.ID, objc.Sel("representedFilename"))
+func (w_ Window) RepresentedFilename() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("representedFilename"))
 	return rv
 }
 
@@ -3081,8 +3080,8 @@ func (w_ Window) RepresentedFilename() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/representedFilename
-func (w_ Window) SetRepresentedFilename(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setRepresentedFilename:"), objc.String(value))
+func (w_ Window) SetRepresentedFilename(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setRepresentedFilename:"), value)
 }
 
 
@@ -3090,8 +3089,8 @@ func (w_ Window) SetRepresentedFilename(value string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/representedURL
-func (w_ Window) RepresentedURL() foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](w_.ID, objc.Sel("representedURL"))
+func (w_ Window) RepresentedURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](w_.ID, objc.Sel("representedURL"))
 	return rv
 }
 
@@ -3100,7 +3099,7 @@ func (w_ Window) RepresentedURL() foundation.objc.IObject /* cross-framework: UR
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/representedURL
-func (w_ Window) SetRepresentedURL(value foundation.objc.IObject /* cross-framework: URL */) {
+func (w_ Window) SetRepresentedURL(value objc.IObject /* cross-framework: NSURL */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setRepresentedURL:"), value)
 }
 
@@ -3119,8 +3118,8 @@ func (w_ Window) ResizeFlags() EventModifierFlags {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/resizeIncrements
-func (w_ Window) ResizeIncrements() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](w_.ID, objc.Sel("resizeIncrements"))
+func (w_ Window) ResizeIncrements() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](w_.ID, objc.Sel("resizeIncrements"))
 	return rv
 }
 
@@ -3129,7 +3128,7 @@ func (w_ Window) ResizeIncrements() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/resizeIncrements
-func (w_ Window) SetResizeIncrements(value coregraphics.CGSize) {
+func (w_ Window) SetResizeIncrements(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setResizeIncrements:"), value)
 }
 
@@ -3263,8 +3262,8 @@ func (w_ Window) SetStyleMask(value WindowStyleMask) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/subtitle
-func (w_ Window) Subtitle() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](w_.ID, objc.Sel("subtitle"))
+func (w_ Window) Subtitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -3273,8 +3272,8 @@ func (w_ Window) Subtitle() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/subtitle
-func (w_ Window) SetSubtitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setSubtitle:"), objc.String(value))
+func (w_ Window) SetSubtitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setSubtitle:"), value)
 }
 
 
@@ -3350,8 +3349,8 @@ func (w_ Window) SetTabbingMode(value WindowTabbingMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/title
-func (w_ Window) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](w_.ID, objc.Sel("title"))
+func (w_ Window) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -3360,8 +3359,8 @@ func (w_ Window) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/title
-func (w_ Window) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (w_ Window) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), value)
 }
 
 

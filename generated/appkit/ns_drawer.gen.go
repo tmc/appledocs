@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Drawer] class.
@@ -31,24 +30,24 @@ type _DrawerClass struct {
 type IDrawer interface {
 	IResponder
 	// properties:
-	ContentSize() coregraphics.CGSize
-	SetContentSize(value coregraphics.CGSize)
+	ContentSize() objc.IObject /* cross-framework: Size */
+	SetContentSize(value objc.IObject /* cross-framework: Size */)
 	ContentView() IView
 	SetContentView(value IView)
 	Delegate() DrawerDelegate /* not a class type */
 	SetDelegate(value DrawerDelegate /* not a class type */)
-	Edge() int /* primitive/slice/pointer. */
-	SetEdge(value int /* primitive/slice/pointer. */)
+	Edge() RectEdge /* not a class type */
+	SetEdge(value RectEdge /* not a class type */)
 	LeadingOffset() float64 /* primitive/slice/pointer. */
 	SetLeadingOffset(value float64 /* primitive/slice/pointer. */)
-	MaxContentSize() coregraphics.CGSize
-	SetMaxContentSize(value coregraphics.CGSize)
-	MinContentSize() coregraphics.CGSize
-	SetMinContentSize(value coregraphics.CGSize)
+	MaxContentSize() objc.IObject /* cross-framework: Size */
+	SetMaxContentSize(value objc.IObject /* cross-framework: Size */)
+	MinContentSize() objc.IObject /* cross-framework: Size */
+	SetMinContentSize(value objc.IObject /* cross-framework: Size */)
 	ParentWindow() IWindow
 	SetParentWindow(value IWindow)
-	PreferredEdge() int /* primitive/slice/pointer. */
-	SetPreferredEdge(value int /* primitive/slice/pointer. */)
+	PreferredEdge() RectEdge /* not a class type */
+	SetPreferredEdge(value RectEdge /* not a class type */)
 	State() int /* primitive/slice/pointer. */
 	SetState(value int /* primitive/slice/pointer. */)
 	TrailingOffset() float64 /* primitive/slice/pointer. */
@@ -115,8 +114,8 @@ func NewDrawer() Drawer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/contentsize
-func (d_ Drawer) ContentSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](d_.ID, objc.Sel("contentSize"))
+func (d_ Drawer) ContentSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](d_.ID, objc.Sel("contentSize"))
 	return rv
 }
 
@@ -125,7 +124,7 @@ func (d_ Drawer) ContentSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/contentsize
-func (d_ Drawer) SetContentSize(value coregraphics.CGSize) {
+func (d_ Drawer) SetContentSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setContentSize:"), value)
 }
 
@@ -172,8 +171,8 @@ func (d_ Drawer) SetDelegate(value DrawerDelegate /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/edge
-func (d_ Drawer) Edge() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](d_.ID, objc.Sel("edge"))
+func (d_ Drawer) Edge() RectEdge /* not a class type */ {
+	rv := objc.Send[RectEdge](d_.ID, objc.Sel("edge"))
 	return rv
 }
 
@@ -182,7 +181,7 @@ func (d_ Drawer) Edge() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/edge
-func (d_ Drawer) SetEdge(value int /* primitive/slice/pointer. */) {
+func (d_ Drawer) SetEdge(value RectEdge /* not a class type */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setEdge:"), value)
 }
 
@@ -210,8 +209,8 @@ func (d_ Drawer) SetLeadingOffset(value float64 /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/maxcontentsize
-func (d_ Drawer) MaxContentSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](d_.ID, objc.Sel("maxContentSize"))
+func (d_ Drawer) MaxContentSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](d_.ID, objc.Sel("maxContentSize"))
 	return rv
 }
 
@@ -220,7 +219,7 @@ func (d_ Drawer) MaxContentSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/maxcontentsize
-func (d_ Drawer) SetMaxContentSize(value coregraphics.CGSize) {
+func (d_ Drawer) SetMaxContentSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaxContentSize:"), value)
 }
 
@@ -229,8 +228,8 @@ func (d_ Drawer) SetMaxContentSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/mincontentsize
-func (d_ Drawer) MinContentSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](d_.ID, objc.Sel("minContentSize"))
+func (d_ Drawer) MinContentSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](d_.ID, objc.Sel("minContentSize"))
 	return rv
 }
 
@@ -239,7 +238,7 @@ func (d_ Drawer) MinContentSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/mincontentsize
-func (d_ Drawer) SetMinContentSize(value coregraphics.CGSize) {
+func (d_ Drawer) SetMinContentSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinContentSize:"), value)
 }
 
@@ -267,8 +266,8 @@ func (d_ Drawer) SetParentWindow(value IWindow) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/preferrededge
-func (d_ Drawer) PreferredEdge() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](d_.ID, objc.Sel("preferredEdge"))
+func (d_ Drawer) PreferredEdge() RectEdge /* not a class type */ {
+	rv := objc.Send[RectEdge](d_.ID, objc.Sel("preferredEdge"))
 	return rv
 }
 
@@ -277,7 +276,7 @@ func (d_ Drawer) PreferredEdge() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/preferrededge
-func (d_ Drawer) SetPreferredEdge(value int /* primitive/slice/pointer. */) {
+func (d_ Drawer) SetPreferredEdge(value RectEdge /* not a class type */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPreferredEdge:"), value)
 }
 

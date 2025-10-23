@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ScrollView] class.
@@ -41,16 +40,16 @@ type IScrollView interface {
 	SetBackgroundColor(value IColor)
 	BorderType() BorderType
 	SetBorderType(value BorderType)
-	ContentInsets() EdgeInsets /* not a class type */
-	SetContentInsets(value EdgeInsets /* not a class type */)
-	ContentSize() coregraphics.CGSize
+	ContentInsets() objc.IObject /* cross-framework: EdgeInsets */
+	SetContentInsets(value objc.IObject /* cross-framework: EdgeInsets */)
+	ContentSize() objc.IObject /* cross-framework: Size */
 	ContentView() IClipView
 	SetContentView(value IClipView)
 	DocumentCursor() ICursor
 	SetDocumentCursor(value ICursor)
 	DocumentView() IView
 	SetDocumentView(value IView)
-	DocumentVisibleRect() coregraphics.CGRect
+	DocumentVisibleRect() objc.IObject /* cross-framework: Rect */
 	DrawsBackground() bool /* primitive/slice/pointer. */
 	SetDrawsBackground(value bool /* primitive/slice/pointer. */)
 	FindBarPosition() ScrollViewFindBarPosition
@@ -85,8 +84,8 @@ type IScrollView interface {
 	SetPageScroll(value float64 /* primitive/slice/pointer. */)
 	RulersVisible() bool /* primitive/slice/pointer. */
 	SetRulersVisible(value bool /* primitive/slice/pointer. */)
-	ScrollerInsets() EdgeInsets /* not a class type */
-	SetScrollerInsets(value EdgeInsets /* not a class type */)
+	ScrollerInsets() objc.IObject /* cross-framework: EdgeInsets */
+	SetScrollerInsets(value objc.IObject /* cross-framework: EdgeInsets */)
 	ScrollerKnobStyle() ScrollerKnobStyle
 	SetScrollerKnobStyle(value ScrollerKnobStyle)
 	ScrollerStyle() ScrollerStyle /* not a class type */
@@ -108,10 +107,10 @@ type IScrollView interface {
 	// methods:
 	AddFloatingSubviewForAxis(view IView, axis EventGestureAxis)
 	FlashScrollers()
-	MagnifyToFitRect(rect coregraphics.CGRect)
+	MagnifyToFitRect(rect objc.IObject /* cross-framework Rect */)
 	ReflectScrolledClipView(cView IClipView)
 	ScrollWheel(event IEvent)
-	SetMagnificationCenteredAtPoint(magnification float64 /* primitive/slice/pointer. */, point coregraphics.CGPoint)
+	SetMagnificationCenteredAtPoint(magnification float64 /* primitive/slice/pointer. */, point objc.IObject /* cross-framework Point */)
 	Tile()
 }
 
@@ -172,7 +171,7 @@ func NewScrollView() ScrollView {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/init(coder:)
-func NewScrollViewWithCoder(coder Coder /* not a class type */) ScrollView {
+func NewScrollViewWithCoder(coder objc.IObject /* cross-framework Coder */) ScrollView {
 	instance := getScrollViewClass().Alloc()
 	rv := objc.Send[ScrollView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -182,7 +181,7 @@ func NewScrollViewWithCoder(coder Coder /* not a class type */) ScrollView {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/init(frame:)
-func NewScrollViewWithFrame(frameRect coregraphics.CGRect) ScrollView {
+func NewScrollViewWithFrame(frameRect objc.IObject /* cross-framework Rect */) ScrollView {
 	instance := getScrollViewClass().Alloc()
 	rv := objc.Send[ScrollView](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()
@@ -195,8 +194,8 @@ func NewScrollViewWithFrame(frameRect coregraphics.CGRect) ScrollView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/contentSize(forFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:)
-func (sc _ScrollViewClass) ContentSizeForFrameSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle(fSize coregraphics.CGSize, horizontalScrollerClass objc.Class, verticalScrollerClass objc.Class, type_ BorderType, controlSize ControlSize, scrollerStyle ScrollerStyle /* not a class type */) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](objc.ID(sc.class), objc.Sel("contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:"), fSize, horizontalScrollerClass, verticalScrollerClass, type_, controlSize, scrollerStyle)
+func (sc _ScrollViewClass) ContentSizeForFrameSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle(fSize objc.IObject /* cross-framework Size */, horizontalScrollerClass objc.Class, verticalScrollerClass objc.Class, type_ BorderType, controlSize ControlSize, scrollerStyle ScrollerStyle /* not a class type */) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](objc.ID(sc.class), objc.Sel("contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:"), fSize, horizontalScrollerClass, verticalScrollerClass, type_, controlSize, scrollerStyle)
 	return rv
 }
 
@@ -205,8 +204,8 @@ func (sc _ScrollViewClass) ContentSizeForFrameSizeHorizontalScrollerClassVertica
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/contentSizeForFrameSize:hasHorizontalScroller:hasVerticalScroller:borderType:
-func (sc _ScrollViewClass) ContentSizeForFrameSizeHasHorizontalScrollerHasVerticalScrollerBorderType(fSize coregraphics.CGSize, hFlag bool /* primitive/slice/pointer. */, vFlag bool /* primitive/slice/pointer. */, type_ BorderType) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](objc.ID(sc.class), objc.Sel("contentSizeForFrameSize:hasHorizontalScroller:hasVerticalScroller:borderType:"), fSize, hFlag, vFlag, type_)
+func (sc _ScrollViewClass) ContentSizeForFrameSizeHasHorizontalScrollerHasVerticalScrollerBorderType(fSize objc.IObject /* cross-framework Size */, hFlag bool /* primitive/slice/pointer. */, vFlag bool /* primitive/slice/pointer. */, type_ BorderType) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](objc.ID(sc.class), objc.Sel("contentSizeForFrameSize:hasHorizontalScroller:hasVerticalScroller:borderType:"), fSize, hFlag, vFlag, type_)
 	return rv
 }
 
@@ -215,8 +214,8 @@ func (sc _ScrollViewClass) ContentSizeForFrameSizeHasHorizontalScrollerHasVertic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/frameSize(forContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:)
-func (sc _ScrollViewClass) FrameSizeForContentSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle(cSize coregraphics.CGSize, horizontalScrollerClass objc.Class, verticalScrollerClass objc.Class, type_ BorderType, controlSize ControlSize, scrollerStyle ScrollerStyle /* not a class type */) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](objc.ID(sc.class), objc.Sel("frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:"), cSize, horizontalScrollerClass, verticalScrollerClass, type_, controlSize, scrollerStyle)
+func (sc _ScrollViewClass) FrameSizeForContentSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle(cSize objc.IObject /* cross-framework Size */, horizontalScrollerClass objc.Class, verticalScrollerClass objc.Class, type_ BorderType, controlSize ControlSize, scrollerStyle ScrollerStyle /* not a class type */) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](objc.ID(sc.class), objc.Sel("frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:"), cSize, horizontalScrollerClass, verticalScrollerClass, type_, controlSize, scrollerStyle)
 	return rv
 }
 
@@ -225,8 +224,8 @@ func (sc _ScrollViewClass) FrameSizeForContentSizeHorizontalScrollerClassVertica
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/frameSizeForContentSize:hasHorizontalScroller:hasVerticalScroller:borderType:
-func (sc _ScrollViewClass) FrameSizeForContentSizeHasHorizontalScrollerHasVerticalScrollerBorderType(cSize coregraphics.CGSize, hFlag bool /* primitive/slice/pointer. */, vFlag bool /* primitive/slice/pointer. */, type_ BorderType) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](objc.ID(sc.class), objc.Sel("frameSizeForContentSize:hasHorizontalScroller:hasVerticalScroller:borderType:"), cSize, hFlag, vFlag, type_)
+func (sc _ScrollViewClass) FrameSizeForContentSizeHasHorizontalScrollerHasVerticalScrollerBorderType(cSize objc.IObject /* cross-framework Size */, hFlag bool /* primitive/slice/pointer. */, vFlag bool /* primitive/slice/pointer. */, type_ BorderType) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](objc.ID(sc.class), objc.Sel("frameSizeForContentSize:hasHorizontalScroller:hasVerticalScroller:borderType:"), cSize, hFlag, vFlag, type_)
 	return rv
 }
 
@@ -262,7 +261,7 @@ func (s_ ScrollView) FlashScrollers() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/magnify(toFit:)
-func (s_ ScrollView) MagnifyToFitRect(rect coregraphics.CGRect) {
+func (s_ ScrollView) MagnifyToFitRect(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("magnifyToFitRect:"), rect)
 }
 
@@ -289,7 +288,7 @@ func (s_ ScrollView) ScrollWheel(event IEvent) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/setMagnification(_:centeredAt:)
-func (s_ ScrollView) SetMagnificationCenteredAtPoint(magnification float64 /* primitive/slice/pointer. */, point coregraphics.CGPoint) {
+func (s_ ScrollView) SetMagnificationCenteredAtPoint(magnification float64 /* primitive/slice/pointer. */, point objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMagnification:centeredAtPoint:"), magnification, point)
 }
 
@@ -402,7 +401,7 @@ func (s_ ScrollView) SetBorderType(value BorderType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/contentInsets
-func (s_ ScrollView) ContentInsets() EdgeInsets /* not a class type */ {
+func (s_ ScrollView) ContentInsets() objc.IObject /* cross-framework: EdgeInsets */ {
 	rv := objc.Send[EdgeInsets](s_.ID, objc.Sel("contentInsets"))
 	return rv
 }
@@ -412,7 +411,7 @@ func (s_ ScrollView) ContentInsets() EdgeInsets /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/contentInsets
-func (s_ ScrollView) SetContentInsets(value EdgeInsets /* not a class type */) {
+func (s_ ScrollView) SetContentInsets(value objc.IObject /* cross-framework: EdgeInsets */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setContentInsets:"), value)
 }
 
@@ -421,8 +420,8 @@ func (s_ ScrollView) SetContentInsets(value EdgeInsets /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/contentSize
-func (s_ ScrollView) ContentSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("contentSize"))
+func (s_ ScrollView) ContentSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](s_.ID, objc.Sel("contentSize"))
 	return rv
 }
 
@@ -488,8 +487,8 @@ func (s_ ScrollView) SetDocumentView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/documentVisibleRect
-func (s_ ScrollView) DocumentVisibleRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("documentVisibleRect"))
+func (s_ ScrollView) DocumentVisibleRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](s_.ID, objc.Sel("documentVisibleRect"))
 	return rv
 }
 
@@ -840,7 +839,7 @@ func (s_ ScrollView) SetRulersVisible(value bool /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/scrollerInsets
-func (s_ ScrollView) ScrollerInsets() EdgeInsets /* not a class type */ {
+func (s_ ScrollView) ScrollerInsets() objc.IObject /* cross-framework: EdgeInsets */ {
 	rv := objc.Send[EdgeInsets](s_.ID, objc.Sel("scrollerInsets"))
 	return rv
 }
@@ -850,7 +849,7 @@ func (s_ ScrollView) ScrollerInsets() EdgeInsets /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/scrollerInsets
-func (s_ ScrollView) SetScrollerInsets(value EdgeInsets /* not a class type */) {
+func (s_ ScrollView) SetScrollerInsets(value objc.IObject /* cross-framework: EdgeInsets */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScrollerInsets:"), value)
 }
 

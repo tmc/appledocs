@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +37,8 @@ type IDraggingSession interface {
 	SetAnimatesToStartingPositionsOnCancelOrFail(value bool /* primitive/slice/pointer. */)
 	DraggingLeaderIndex() int /* primitive/slice/pointer. */
 	SetDraggingLeaderIndex(value int /* primitive/slice/pointer. */)
-	DraggingLocation() coregraphics.CGPoint
-	SetDraggingLocation(value coregraphics.CGPoint)
+	DraggingLocation() objc.IObject /* cross-framework: Point */
+	SetDraggingLocation(value objc.IObject /* cross-framework: Point */)
 	DraggingPasteboard() IPasteboard
 	SetDraggingPasteboard(value IPasteboard)
 	DraggingSequenceNumber() int /* primitive/slice/pointer. */
@@ -161,8 +160,8 @@ func (d_ DraggingSession) SetDraggingLeaderIndex(value int /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/dragginglocation
-func (d_ DraggingSession) DraggingLocation() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](d_.ID, objc.Sel("draggingLocation"))
+func (d_ DraggingSession) DraggingLocation() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](d_.ID, objc.Sel("draggingLocation"))
 	return rv
 }
 
@@ -171,7 +170,7 @@ func (d_ DraggingSession) DraggingLocation() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/dragginglocation
-func (d_ DraggingSession) SetDraggingLocation(value coregraphics.CGPoint) {
+func (d_ DraggingSession) SetDraggingLocation(value objc.IObject /* cross-framework: Point */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDraggingLocation:"), value)
 }
 

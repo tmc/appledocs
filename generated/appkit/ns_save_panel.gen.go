@@ -9,6 +9,7 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [SavePanel] class.
@@ -34,33 +35,33 @@ type ISavePanel interface {
 	// properties:
 	AccessoryView() IView
 	SetAccessoryView(value IView)
-	AllowedContentTypes() []objectivec.IObject /* already interface */
-	SetAllowedContentTypes(value []objectivec.IObject /* already interface */)
+	AllowedContentTypes() objc.IObject /* cross-framework: UTType */
+	SetAllowedContentTypes(value objc.IObject /* cross-framework: UTType */)
 	AllowsOtherFileTypes() bool /* primitive/slice/pointer. */
 	SetAllowsOtherFileTypes(value bool /* primitive/slice/pointer. */)
 	CanCreateDirectories() bool /* primitive/slice/pointer. */
 	SetCanCreateDirectories(value bool /* primitive/slice/pointer. */)
 	CanSelectHiddenExtension() bool /* primitive/slice/pointer. */
 	SetCanSelectHiddenExtension(value bool /* primitive/slice/pointer. */)
-	CurrentContentType() objectivec.IObject
-	SetCurrentContentType(value objectivec.IObject)
+	CurrentContentType() objc.IObject /* cross-framework: UTType */
+	SetCurrentContentType(value objc.IObject /* cross-framework: UTType */)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	DirectoryURL() foundation.objc.IObject /* cross-framework: URL */
-	SetDirectoryURL(value foundation.objc.IObject /* cross-framework: URL */)
+	DirectoryURL() objc.IObject /* cross-framework: NSURL */
+	SetDirectoryURL(value objc.IObject /* cross-framework: NSURL */)
 	Identifier() objc.IObject /* cross-framework: UserInterfaceItemIdentifier */
 	SetIdentifier(value objc.IObject /* cross-framework: UserInterfaceItemIdentifier */)
 	Expanded() bool /* primitive/slice/pointer. */
 	ExtensionHidden() bool /* primitive/slice/pointer. */
 	SetExtensionHidden(value bool /* primitive/slice/pointer. */)
-	Message() string /* primitive/slice/pointer. */
-	SetMessage(value string /* primitive/slice/pointer. */)
-	NameFieldLabel() string /* primitive/slice/pointer. */
-	SetNameFieldLabel(value string /* primitive/slice/pointer. */)
-	NameFieldStringValue() string /* primitive/slice/pointer. */
-	SetNameFieldStringValue(value string /* primitive/slice/pointer. */)
-	Prompt() string /* primitive/slice/pointer. */
-	SetPrompt(value string /* primitive/slice/pointer. */)
+	Message() objc.IObject /* cross-framework: NSString */
+	SetMessage(value objc.IObject /* cross-framework: NSString */)
+	NameFieldLabel() objc.IObject /* cross-framework: NSString */
+	SetNameFieldLabel(value objc.IObject /* cross-framework: NSString */)
+	NameFieldStringValue() objc.IObject /* cross-framework: NSString */
+	SetNameFieldStringValue(value objc.IObject /* cross-framework: NSString */)
+	Prompt() objc.IObject /* cross-framework: NSString */
+	SetPrompt(value objc.IObject /* cross-framework: NSString */)
 	ShowsContentTypes() bool /* primitive/slice/pointer. */
 	SetShowsContentTypes(value bool /* primitive/slice/pointer. */)
 	ShowsHiddenFiles() bool /* primitive/slice/pointer. */
@@ -69,11 +70,11 @@ type ISavePanel interface {
 	SetShowsTagField(value bool /* primitive/slice/pointer. */)
 	TagNames() []string /* primitive/slice/pointer. */
 	SetTagNames(value []string /* primitive/slice/pointer. */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	TreatsFilePackagesAsDirectories() bool /* primitive/slice/pointer. */
 	SetTreatsFilePackagesAsDirectories(value bool /* primitive/slice/pointer. */)
-	URL() foundation.objc.IObject /* cross-framework: URL */
+	URL() objc.IObject /* cross-framework: NSURL */
 	IsExpanded() bool /* primitive/slice/pointer. */
 	SetIsExpanded(value bool /* primitive/slice/pointer. */)
 	IsExtensionHidden() bool /* primitive/slice/pointer. */
@@ -230,8 +231,8 @@ func (s_ SavePanel) SetAccessoryView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedContentTypes
-func (s_ SavePanel) AllowedContentTypes() []objectivec.IObject /* already interface */ {
-	rv := objc.Send[[]objectivec.IObject](s_.ID, objc.Sel("allowedContentTypes"))
+func (s_ SavePanel) AllowedContentTypes() objc.IObject /* cross-framework: UTType */ {
+	rv := objc.Send[[]uniformtypeidentifiers.UTType](s_.ID, objc.Sel("allowedContentTypes"))
 	return rv
 }
 
@@ -240,7 +241,7 @@ func (s_ SavePanel) AllowedContentTypes() []objectivec.IObject /* already interf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedContentTypes
-func (s_ SavePanel) SetAllowedContentTypes(value []objectivec.IObject /* already interface */) {
+func (s_ SavePanel) SetAllowedContentTypes(value objc.IObject /* cross-framework: UTType */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -316,8 +317,8 @@ func (s_ SavePanel) SetCanSelectHiddenExtension(value bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/currentContentType
-func (s_ SavePanel) CurrentContentType() objectivec.IObject {
-	rv := objc.Send[objectivec.IObject](s_.ID, objc.Sel("currentContentType"))
+func (s_ SavePanel) CurrentContentType() objc.IObject /* cross-framework: UTType */ {
+	rv := objc.Send[uniformtypeidentifiers.UTType](s_.ID, objc.Sel("currentContentType"))
 	return rv
 }
 
@@ -326,7 +327,7 @@ func (s_ SavePanel) CurrentContentType() objectivec.IObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/currentContentType
-func (s_ SavePanel) SetCurrentContentType(value objectivec.IObject) {
+func (s_ SavePanel) SetCurrentContentType(value objc.IObject /* cross-framework: UTType */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentContentType:"), value)
 }
 
@@ -354,8 +355,8 @@ func (s_ SavePanel) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/directoryURL
-func (s_ SavePanel) DirectoryURL() foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("directoryURL"))
+func (s_ SavePanel) DirectoryURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](s_.ID, objc.Sel("directoryURL"))
 	return rv
 }
 
@@ -364,7 +365,7 @@ func (s_ SavePanel) DirectoryURL() foundation.objc.IObject /* cross-framework: U
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/directoryURL
-func (s_ SavePanel) SetDirectoryURL(value foundation.objc.IObject /* cross-framework: URL */) {
+func (s_ SavePanel) SetDirectoryURL(value objc.IObject /* cross-framework: NSURL */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDirectoryURL:"), value)
 }
 
@@ -417,8 +418,8 @@ func (s_ SavePanel) SetExtensionHidden(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/message
-func (s_ SavePanel) Message() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("message"))
+func (s_ SavePanel) Message() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("message"))
 	return rv
 }
 
@@ -427,8 +428,8 @@ func (s_ SavePanel) Message() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/message
-func (s_ SavePanel) SetMessage(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMessage:"), objc.String(value))
+func (s_ SavePanel) SetMessage(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMessage:"), value)
 }
 
 
@@ -436,8 +437,8 @@ func (s_ SavePanel) SetMessage(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/nameFieldLabel
-func (s_ SavePanel) NameFieldLabel() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("nameFieldLabel"))
+func (s_ SavePanel) NameFieldLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("nameFieldLabel"))
 	return rv
 }
 
@@ -446,8 +447,8 @@ func (s_ SavePanel) NameFieldLabel() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/nameFieldLabel
-func (s_ SavePanel) SetNameFieldLabel(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setNameFieldLabel:"), objc.String(value))
+func (s_ SavePanel) SetNameFieldLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setNameFieldLabel:"), value)
 }
 
 
@@ -455,8 +456,8 @@ func (s_ SavePanel) SetNameFieldLabel(value string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/nameFieldStringValue
-func (s_ SavePanel) NameFieldStringValue() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("nameFieldStringValue"))
+func (s_ SavePanel) NameFieldStringValue() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("nameFieldStringValue"))
 	return rv
 }
 
@@ -465,8 +466,8 @@ func (s_ SavePanel) NameFieldStringValue() string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/nameFieldStringValue
-func (s_ SavePanel) SetNameFieldStringValue(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setNameFieldStringValue:"), objc.String(value))
+func (s_ SavePanel) SetNameFieldStringValue(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setNameFieldStringValue:"), value)
 }
 
 
@@ -474,8 +475,8 @@ func (s_ SavePanel) SetNameFieldStringValue(value string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/prompt
-func (s_ SavePanel) Prompt() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("prompt"))
+func (s_ SavePanel) Prompt() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("prompt"))
 	return rv
 }
 
@@ -484,8 +485,8 @@ func (s_ SavePanel) Prompt() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/prompt
-func (s_ SavePanel) SetPrompt(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setPrompt:"), objc.String(value))
+func (s_ SavePanel) SetPrompt(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPrompt:"), value)
 }
 
 
@@ -579,8 +580,8 @@ func (s_ SavePanel) SetTagNames(value []string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/title
-func (s_ SavePanel) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("title"))
+func (s_ SavePanel) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -589,8 +590,8 @@ func (s_ SavePanel) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/title
-func (s_ SavePanel) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (s_ SavePanel) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), value)
 }
 
 
@@ -617,8 +618,8 @@ func (s_ SavePanel) SetTreatsFilePackagesAsDirectories(value bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/url
-func (s_ SavePanel) URL() foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("URL"))
+func (s_ SavePanel) URL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](s_.ID, objc.Sel("URL"))
 	return rv
 }
 

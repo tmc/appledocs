@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [UserDefaultsController] class.
@@ -36,8 +37,8 @@ type IUserDefaultsController interface {
 	SetDefaults(value objc.IObject /* cross-framework: UserDefaults */)
 	HasUnappliedChanges() bool /* primitive/slice/pointer. */
 	SetHasUnappliedChanges(value bool /* primitive/slice/pointer. */)
-	InitialValues() string /* primitive/slice/pointer. */
-	SetInitialValues(value string /* primitive/slice/pointer. */)
+	InitialValues() objc.IObject /* cross-framework: NSString */
+	SetInitialValues(value objc.IObject /* cross-framework: NSString */)
 	Values() unsafe.Pointer
 	SetValues(value unsafe.Pointer)
 	// methods:
@@ -159,8 +160,8 @@ func (u_ UserDefaultsController) SetHasUnappliedChanges(value bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/initialvalues
-func (u_ UserDefaultsController) InitialValues() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](u_.ID, objc.Sel("initialValues"))
+func (u_ UserDefaultsController) InitialValues() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("initialValues"))
 	return rv
 }
 
@@ -169,8 +170,8 @@ func (u_ UserDefaultsController) InitialValues() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/initialvalues
-func (u_ UserDefaultsController) SetInitialValues(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setInitialValues:"), objc.String(value))
+func (u_ UserDefaultsController) SetInitialValues(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setInitialValues:"), value)
 }
 
 

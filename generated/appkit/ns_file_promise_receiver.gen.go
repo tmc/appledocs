@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +32,10 @@ type _FilePromiseReceiverClass struct {
 type IFilePromiseReceiver interface {
 	objectivec.IObject
 	// properties:
-	FileNames() string /* primitive/slice/pointer. */
-	SetFileNames(value string /* primitive/slice/pointer. */)
-	FileTypes() string /* primitive/slice/pointer. */
-	SetFileTypes(value string /* primitive/slice/pointer. */)
+	FileNames() objc.IObject /* cross-framework: NSString */
+	SetFileNames(value objc.IObject /* cross-framework: NSString */)
+	FileTypes() objc.IObject /* cross-framework: NSString */
+	SetFileTypes(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -95,8 +96,8 @@ func NewFilePromiseReceiver() FilePromiseReceiver {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromisereceiver/filenames
-func (f_ FilePromiseReceiver) FileNames() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("fileNames"))
+func (f_ FilePromiseReceiver) FileNames() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("fileNames"))
 	return rv
 }
 
@@ -105,8 +106,8 @@ func (f_ FilePromiseReceiver) FileNames() string /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromisereceiver/filenames
-func (f_ FilePromiseReceiver) SetFileNames(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFileNames:"), objc.String(value))
+func (f_ FilePromiseReceiver) SetFileNames(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFileNames:"), value)
 }
 
 
@@ -114,8 +115,8 @@ func (f_ FilePromiseReceiver) SetFileNames(value string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromisereceiver/filetypes
-func (f_ FilePromiseReceiver) FileTypes() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("fileTypes"))
+func (f_ FilePromiseReceiver) FileTypes() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("fileTypes"))
 	return rv
 }
 
@@ -124,8 +125,8 @@ func (f_ FilePromiseReceiver) FileTypes() string /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromisereceiver/filetypes
-func (f_ FilePromiseReceiver) SetFileTypes(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFileTypes:"), objc.String(value))
+func (f_ FilePromiseReceiver) SetFileTypes(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFileTypes:"), value)
 }
 
 

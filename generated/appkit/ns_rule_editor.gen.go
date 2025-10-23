@@ -33,16 +33,16 @@ type IRuleEditor interface {
 	// properties:
 	CanRemoveAllRows() bool /* primitive/slice/pointer. */
 	SetCanRemoveAllRows(value bool /* primitive/slice/pointer. */)
-	CriteriaKeyPath() string /* primitive/slice/pointer. */
-	SetCriteriaKeyPath(value string /* primitive/slice/pointer. */)
+	CriteriaKeyPath() objc.IObject /* cross-framework: NSString */
+	SetCriteriaKeyPath(value objc.IObject /* cross-framework: NSString */)
 	Delegate() RuleEditorDelegate /* not a class type */
 	SetDelegate(value RuleEditorDelegate /* not a class type */)
-	DisplayValuesKeyPath() string /* primitive/slice/pointer. */
-	SetDisplayValuesKeyPath(value string /* primitive/slice/pointer. */)
-	FormattingDictionary() string /* primitive/slice/pointer. */
-	SetFormattingDictionary(value string /* primitive/slice/pointer. */)
-	FormattingStringsFilename() string /* primitive/slice/pointer. */
-	SetFormattingStringsFilename(value string /* primitive/slice/pointer. */)
+	DisplayValuesKeyPath() objc.IObject /* cross-framework: NSString */
+	SetDisplayValuesKeyPath(value objc.IObject /* cross-framework: NSString */)
+	FormattingDictionary() objc.IObject /* cross-framework: NSString */
+	SetFormattingDictionary(value objc.IObject /* cross-framework: NSString */)
+	FormattingStringsFilename() objc.IObject /* cross-framework: NSString */
+	SetFormattingStringsFilename(value objc.IObject /* cross-framework: NSString */)
 	IsEditable() bool /* primitive/slice/pointer. */
 	SetIsEditable(value bool /* primitive/slice/pointer. */)
 	NestingMode() unsafe.Pointer
@@ -55,12 +55,12 @@ type IRuleEditor interface {
 	SetRowClass(value unsafe.Pointer)
 	RowHeight() float64 /* primitive/slice/pointer. */
 	SetRowHeight(value float64 /* primitive/slice/pointer. */)
-	RowTypeKeyPath() string /* primitive/slice/pointer. */
-	SetRowTypeKeyPath(value string /* primitive/slice/pointer. */)
-	SelectedRowIndexes() foundation.objc.IObject /* cross-framework: IndexSet */
-	SetSelectedRowIndexes(value foundation.objc.IObject /* cross-framework: IndexSet */)
-	SubrowsKeyPath() string /* primitive/slice/pointer. */
-	SetSubrowsKeyPath(value string /* primitive/slice/pointer. */)
+	RowTypeKeyPath() objc.IObject /* cross-framework: NSString */
+	SetRowTypeKeyPath(value objc.IObject /* cross-framework: NSString */)
+	SelectedRowIndexes() objc.IObject /* cross-framework: IndexSet */
+	SetSelectedRowIndexes(value objc.IObject /* cross-framework: IndexSet */)
+	SubrowsKeyPath() objc.IObject /* cross-framework: NSString */
+	SetSubrowsKeyPath(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -142,8 +142,8 @@ func (r_ RuleEditor) SetCanRemoveAllRows(value bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/criteriakeypath
-func (r_ RuleEditor) CriteriaKeyPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](r_.ID, objc.Sel("criteriaKeyPath"))
+func (r_ RuleEditor) CriteriaKeyPath() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("criteriaKeyPath"))
 	return rv
 }
 
@@ -152,8 +152,8 @@ func (r_ RuleEditor) CriteriaKeyPath() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/criteriakeypath
-func (r_ RuleEditor) SetCriteriaKeyPath(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setCriteriaKeyPath:"), objc.String(value))
+func (r_ RuleEditor) SetCriteriaKeyPath(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setCriteriaKeyPath:"), value)
 }
 
 
@@ -180,8 +180,8 @@ func (r_ RuleEditor) SetDelegate(value RuleEditorDelegate /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/displayvalueskeypath
-func (r_ RuleEditor) DisplayValuesKeyPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](r_.ID, objc.Sel("displayValuesKeyPath"))
+func (r_ RuleEditor) DisplayValuesKeyPath() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("displayValuesKeyPath"))
 	return rv
 }
 
@@ -190,8 +190,8 @@ func (r_ RuleEditor) DisplayValuesKeyPath() string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/displayvalueskeypath
-func (r_ RuleEditor) SetDisplayValuesKeyPath(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setDisplayValuesKeyPath:"), objc.String(value))
+func (r_ RuleEditor) SetDisplayValuesKeyPath(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setDisplayValuesKeyPath:"), value)
 }
 
 
@@ -199,8 +199,8 @@ func (r_ RuleEditor) SetDisplayValuesKeyPath(value string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/formattingdictionary
-func (r_ RuleEditor) FormattingDictionary() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](r_.ID, objc.Sel("formattingDictionary"))
+func (r_ RuleEditor) FormattingDictionary() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("formattingDictionary"))
 	return rv
 }
 
@@ -209,8 +209,8 @@ func (r_ RuleEditor) FormattingDictionary() string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/formattingdictionary
-func (r_ RuleEditor) SetFormattingDictionary(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setFormattingDictionary:"), objc.String(value))
+func (r_ RuleEditor) SetFormattingDictionary(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setFormattingDictionary:"), value)
 }
 
 
@@ -218,8 +218,8 @@ func (r_ RuleEditor) SetFormattingDictionary(value string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/formattingstringsfilename
-func (r_ RuleEditor) FormattingStringsFilename() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](r_.ID, objc.Sel("formattingStringsFilename"))
+func (r_ RuleEditor) FormattingStringsFilename() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("formattingStringsFilename"))
 	return rv
 }
 
@@ -228,8 +228,8 @@ func (r_ RuleEditor) FormattingStringsFilename() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/formattingstringsfilename
-func (r_ RuleEditor) SetFormattingStringsFilename(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setFormattingStringsFilename:"), objc.String(value))
+func (r_ RuleEditor) SetFormattingStringsFilename(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setFormattingStringsFilename:"), value)
 }
 
 
@@ -351,8 +351,8 @@ func (r_ RuleEditor) SetRowHeight(value float64 /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/rowtypekeypath
-func (r_ RuleEditor) RowTypeKeyPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](r_.ID, objc.Sel("rowTypeKeyPath"))
+func (r_ RuleEditor) RowTypeKeyPath() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("rowTypeKeyPath"))
 	return rv
 }
 
@@ -361,8 +361,8 @@ func (r_ RuleEditor) RowTypeKeyPath() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/rowtypekeypath
-func (r_ RuleEditor) SetRowTypeKeyPath(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setRowTypeKeyPath:"), objc.String(value))
+func (r_ RuleEditor) SetRowTypeKeyPath(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setRowTypeKeyPath:"), value)
 }
 
 
@@ -370,7 +370,7 @@ func (r_ RuleEditor) SetRowTypeKeyPath(value string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/selectedrowindexes
-func (r_ RuleEditor) SelectedRowIndexes() foundation.objc.IObject /* cross-framework: IndexSet */ {
+func (r_ RuleEditor) SelectedRowIndexes() objc.IObject /* cross-framework: IndexSet */ {
 	rv := objc.Send[foundation.IndexSet](r_.ID, objc.Sel("selectedRowIndexes"))
 	return rv
 }
@@ -380,7 +380,7 @@ func (r_ RuleEditor) SelectedRowIndexes() foundation.objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/selectedrowindexes
-func (r_ RuleEditor) SetSelectedRowIndexes(value foundation.objc.IObject /* cross-framework: IndexSet */) {
+func (r_ RuleEditor) SetSelectedRowIndexes(value objc.IObject /* cross-framework: IndexSet */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSelectedRowIndexes:"), value)
 }
 
@@ -389,8 +389,8 @@ func (r_ RuleEditor) SetSelectedRowIndexes(value foundation.objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/subrowskeypath
-func (r_ RuleEditor) SubrowsKeyPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](r_.ID, objc.Sel("subrowsKeyPath"))
+func (r_ RuleEditor) SubrowsKeyPath() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("subrowsKeyPath"))
 	return rv
 }
 
@@ -399,8 +399,8 @@ func (r_ RuleEditor) SubrowsKeyPath() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/subrowskeypath
-func (r_ RuleEditor) SetSubrowsKeyPath(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setSubrowsKeyPath:"), objc.String(value))
+func (r_ RuleEditor) SetSubrowsKeyPath(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setSubrowsKeyPath:"), value)
 }
 
 

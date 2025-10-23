@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -68,16 +68,16 @@ type IMenu interface {
 	SetSelectionMode(value unsafe.Pointer)
 	ShowsStateColumn() bool /* primitive/slice/pointer. */
 	SetShowsStateColumn(value bool /* primitive/slice/pointer. */)
-	Size() coregraphics.CGSize
-	SetSize(value coregraphics.CGSize)
+	Size() objc.IObject /* cross-framework: Size */
+	SetSize(value objc.IObject /* cross-framework: Size */)
 	Supermenu() IMenu
 	SetSupermenu(value IMenu)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
 	SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection)
 	// methods:
-	PopUpMenuPositioningItemAtLocationInView(item objc.IObject /* cross-framework MenuItem */, location coregraphics.CGPoint, view IView) bool /* primitive/slice/pointer. */
+	PopUpMenuPositioningItemAtLocationInView(item objc.IObject /* cross-framework MenuItem */, location objc.IObject /* cross-framework Point */, view IView) bool /* primitive/slice/pointer. */
 }
 
 // An object that manages an app’s menus.
@@ -153,7 +153,7 @@ func (mc _MenuClass) PopUpContextMenuWithEventForViewWithFont(menu IMenu, event 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/popUp(positioning:at:in:)
-func (m_ Menu) PopUpMenuPositioningItemAtLocationInView(item objc.IObject /* cross-framework MenuItem */, location coregraphics.CGPoint, view IView) bool /* primitive/slice/pointer. */ {
+func (m_ Menu) PopUpMenuPositioningItemAtLocationInView(item objc.IObject /* cross-framework MenuItem */, location objc.IObject /* cross-framework Point */, view IView) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("popUpMenuPositioningItem:atLocation:inView:"), item, location, view)
 	return rv
 }
@@ -511,8 +511,8 @@ func (m_ Menu) SetShowsStateColumn(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/size
-func (m_ Menu) Size() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](m_.ID, objc.Sel("size"))
+func (m_ Menu) Size() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](m_.ID, objc.Sel("size"))
 	return rv
 }
 
@@ -521,7 +521,7 @@ func (m_ Menu) Size() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/size
-func (m_ Menu) SetSize(value coregraphics.CGSize) {
+func (m_ Menu) SetSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSize:"), value)
 }
 
@@ -549,8 +549,8 @@ func (m_ Menu) SetSupermenu(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/title
-func (m_ Menu) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("title"))
+func (m_ Menu) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -559,8 +559,8 @@ func (m_ Menu) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/title
-func (m_ Menu) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (m_ Menu) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), value)
 }
 
 

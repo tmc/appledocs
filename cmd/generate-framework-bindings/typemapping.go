@@ -42,6 +42,11 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 	// (geometry types from Foundation are used in AppKit, etc.)
 	for _, mapping := range typeRegistry {
 		if mapping.ObjCType == objcType {
+			Debug.TypeMap("typeRegistry match", objcType, mapping.GoType,
+				"objcType", objcType,
+				"goType", mapping.GoType,
+				"mappingFramework", mapping.Framework,
+				"currentFramework", framework)
 			// If the type is from a different framework, qualify it
 			if mapping.Framework != "" && mapping.Framework != framework {
 				// Check for framework hierarchy violations - if target framework is at a higher level,

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -39,8 +40,8 @@ type ILayoutConstraint interface {
 	SetFirstAttribute(value unsafe.Pointer)
 	FirstItem() unsafe.Pointer
 	SetFirstItem(value unsafe.Pointer)
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
 	IsActive() bool /* primitive/slice/pointer. */
 	SetIsActive(value bool /* primitive/slice/pointer. */)
 	Multiplier() float64 /* primitive/slice/pointer. */
@@ -193,8 +194,8 @@ func (l_ LayoutConstraint) SetFirstItem(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/identifier
-func (l_ LayoutConstraint) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](l_.ID, objc.Sel("identifier"))
+func (l_ LayoutConstraint) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](l_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -203,8 +204,8 @@ func (l_ LayoutConstraint) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/identifier
-func (l_ LayoutConstraint) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (l_ LayoutConstraint) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 

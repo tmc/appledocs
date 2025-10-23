@@ -69,8 +69,8 @@ type IToolbar interface {
 	SizeMode() ToolbarSizeMode
 	SetSizeMode(value ToolbarSizeMode)
 	VisibleItems() []ToolbarItem /* primitive/slice/pointer. */
-	Configuration() string /* primitive/slice/pointer. */
-	SetConfiguration(value string /* primitive/slice/pointer. */)
+	Configuration() objc.IObject /* cross-framework: NSString */
+	SetConfiguration(value objc.IObject /* cross-framework: NSString */)
 	IsVisible() bool /* primitive/slice/pointer. */
 	SetIsVisible(value bool /* primitive/slice/pointer. */)
 	// methods:
@@ -560,8 +560,8 @@ func (t_ Toolbar) VisibleItems() []ToolbarItem /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbar/configuration
-func (t_ Toolbar) Configuration() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("configuration"))
+func (t_ Toolbar) Configuration() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -570,8 +570,8 @@ func (t_ Toolbar) Configuration() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbar/configuration
-func (t_ Toolbar) SetConfiguration(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setConfiguration:"), objc.String(value))
+func (t_ Toolbar) SetConfiguration(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setConfiguration:"), value)
 }
 
 

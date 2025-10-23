@@ -91,7 +91,7 @@ type ICoder interface {
 	DecodeTopLevelObjectForKeyError(key IString, error_ IError) objc.ID
 	DecodeTopLevelObjectOfClassForKeyError(aClass objc.Class, key IString, error_ IError) objc.ID
 	DecodeTopLevelObjectOfClassesForKeyError(classes unsafe.Pointer, key IString, error_ IError) objc.ID
-	DecodeUIEdgeInsetsForKey(key IString) objc.IObject /* cross-framework: EdgeInsets */
+	DecodeUIEdgeInsetsForKey(key IString) UIEdgeInsets /* not a class type */
 	DecodeUIOffsetForKey(key IString) Offset /* not a class type */
 	DecodeValueOfObjCTypeAtSize(type_ unsafe.Pointer, data unsafe.Pointer, size uint /* primitive/slice/pointer. */)
 	DecodeValuesOfObjCTypes(types unsafe.Pointer)
@@ -107,7 +107,7 @@ type ICoder interface {
 	EncodeCGAffineTransformForKey(transform IAffineTransform, key IString)
 	EncodeIntegerForKey(value int /* primitive/slice/pointer. */, key IString)
 	EncodeRectForKey(rect objc.IObject /* cross-framework Rect */, key IString)
-	EncodeUIEdgeInsetsForKey(insets objc.IObject /* cross-framework EdgeInsets */, key IString)
+	EncodeUIEdgeInsetsForKey(insets EdgeInsets /* not a class type */, key IString)
 	EncodeCMTimeRangeForKey(timeRange TimeRange /* not a class type */, key IString)
 	EncodeInt32ForKey(value unsafe.Pointer, key IString)
 	EncodeCMTimeForKey(time Time /* not a class type */, key IString)
@@ -615,7 +615,7 @@ func (c_ Coder) DecodeTopLevelObjectOfClassesForKeyError(classes unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeUIEdgeInsets(forKey:)
-func (c_ Coder) DecodeUIEdgeInsetsForKey(key IString) objc.IObject /* cross-framework: EdgeInsets */ {
+func (c_ Coder) DecodeUIEdgeInsetsForKey(key IString) UIEdgeInsets /* not a class type */ {
 	rv := objc.Send[EdgeInsets](c_.ID, objc.Sel("decodeUIEdgeInsetsForKey:"), key)
 	return rv
 }
@@ -761,7 +761,7 @@ func (c_ Coder) EncodeRectForKey(rect objc.IObject /* cross-framework Rect */, k
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:forKey:)-44zsc
-func (c_ Coder) EncodeUIEdgeInsetsForKey(insets objc.IObject /* cross-framework EdgeInsets */, key IString) {
+func (c_ Coder) EncodeUIEdgeInsetsForKey(insets EdgeInsets /* not a class type */, key IString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeUIEdgeInsets:forKey:"), insets, key)
 }
 

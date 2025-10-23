@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -37,7 +36,7 @@ type IPrintInfo interface {
 	SetBottomMargin(value float64 /* primitive/slice/pointer. */)
 	HorizontalPagination() PrintingPaginationMode
 	SetHorizontalPagination(value PrintingPaginationMode)
-	ImageablePageBounds() coregraphics.CGRect
+	ImageablePageBounds() objc.IObject /* cross-framework: Rect */
 	HorizontallyCentered() bool /* primitive/slice/pointer. */
 	SetHorizontallyCentered(value bool /* primitive/slice/pointer. */)
 	SelectionOnly() bool /* primitive/slice/pointer. */
@@ -48,13 +47,13 @@ type IPrintInfo interface {
 	SetJobDisposition(value objc.IObject /* cross-framework: PrintJobDispositionValue */)
 	LeftMargin() float64 /* primitive/slice/pointer. */
 	SetLeftMargin(value float64 /* primitive/slice/pointer. */)
-	LocalizedPaperName() string /* primitive/slice/pointer. */
+	LocalizedPaperName() objc.IObject /* cross-framework: NSString */
 	Orientation() PaperOrientation
 	SetOrientation(value PaperOrientation)
 	PaperName() objc.IObject /* cross-framework: PrinterPaperName */
 	SetPaperName(value objc.IObject /* cross-framework: PrinterPaperName */)
-	PaperSize() coregraphics.CGSize
-	SetPaperSize(value coregraphics.CGSize)
+	PaperSize() objc.IObject /* cross-framework: Size */
+	SetPaperSize(value objc.IObject /* cross-framework: Size */)
 	PrintSettings() unsafe.Pointer
 	Printer() IPrinter
 	SetPrinter(value IPrinter)
@@ -140,7 +139,7 @@ func NewPrintInfo() PrintInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/init(coder:)
-func NewPrintInfoWithCoder(coder Coder /* not a class type */) PrintInfo {
+func NewPrintInfoWithCoder(coder objc.IObject /* cross-framework Coder */) PrintInfo {
 	instance := getPrintInfoClass().Alloc()
 	rv := objc.Send[PrintInfo](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -174,8 +173,8 @@ func (pc _PrintInfoClass) SetDefaultPrinter(printer IPrinter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/sizeForPaperName:
-func (pc _PrintInfoClass) SizeForPaperName(name objc.IObject /* cross-framework PrinterPaperName */) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](objc.ID(pc.class), objc.Sel("sizeForPaperName:"), name)
+func (pc _PrintInfoClass) SizeForPaperName(name objc.IObject /* cross-framework PrinterPaperName */) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](objc.ID(pc.class), objc.Sel("sizeForPaperName:"), name)
 	return rv
 }
 
@@ -323,8 +322,8 @@ func (p_ PrintInfo) SetHorizontalPagination(value PrintingPaginationMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/imageablePageBounds
-func (p_ PrintInfo) ImageablePageBounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("imageablePageBounds"))
+func (p_ PrintInfo) ImageablePageBounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](p_.ID, objc.Sel("imageablePageBounds"))
 	return rv
 }
 
@@ -428,8 +427,8 @@ func (p_ PrintInfo) SetLeftMargin(value float64 /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/localizedPaperName
-func (p_ PrintInfo) LocalizedPaperName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedPaperName"))
+func (p_ PrintInfo) LocalizedPaperName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("localizedPaperName"))
 	return rv
 }
 
@@ -476,8 +475,8 @@ func (p_ PrintInfo) SetPaperName(value objc.IObject /* cross-framework: PrinterP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/paperSize
-func (p_ PrintInfo) PaperSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("paperSize"))
+func (p_ PrintInfo) PaperSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](p_.ID, objc.Sel("paperSize"))
 	return rv
 }
 
@@ -486,7 +485,7 @@ func (p_ PrintInfo) PaperSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/paperSize
-func (p_ PrintInfo) SetPaperSize(value coregraphics.CGSize) {
+func (p_ PrintInfo) SetPaperSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPaperSize:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,8 +35,8 @@ type IContinuityDevice interface {
 	VideoDevices() []CaptureDevice /* primitive/slice/pointer. */
 	AudioSessionInputs() objc.IObject /* cross-framework: AudioSessionPortDescription */
 	SetAudioSessionInputs(value objc.IObject /* cross-framework: AudioSessionPortDescription */)
-	ConnectionID() unsafe.Pointer
-	SetConnectionID(value unsafe.Pointer)
+	ConnectionID() objc.IObject /* cross-framework: UUID */
+	SetConnectionID(value objc.IObject /* cross-framework: UUID */)
 	IsConnected() bool /* primitive/slice/pointer. */
 	SetIsConnected(value bool /* primitive/slice/pointer. */)
 	// methods:
@@ -127,8 +128,8 @@ func (c_ ContinuityDevice) SetAudioSessionInputs(value objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/connectionid
-func (c_ ContinuityDevice) ConnectionID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("connectionID"))
+func (c_ ContinuityDevice) ConnectionID() objc.IObject /* cross-framework: UUID */ {
+	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("connectionID"))
 	return rv
 }
 
@@ -137,7 +138,7 @@ func (c_ ContinuityDevice) ConnectionID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/connectionid
-func (c_ ContinuityDevice) SetConnectionID(value unsafe.Pointer) {
+func (c_ ContinuityDevice) SetConnectionID(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConnectionID:"), value)
 }
 

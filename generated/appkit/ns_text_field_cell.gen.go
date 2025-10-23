@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextFieldCell] class.
@@ -30,10 +31,10 @@ type _TextFieldCellClass struct {
 type ITextFieldCell interface {
 	IActionCell
 	// properties:
-	PlaceholderString() string /* primitive/slice/pointer. */
-	SetPlaceholderString(value string /* primitive/slice/pointer. */)
-	AllowedInputSourceLocales() string /* primitive/slice/pointer. */
-	SetAllowedInputSourceLocales(value string /* primitive/slice/pointer. */)
+	PlaceholderString() objc.IObject /* cross-framework: NSString */
+	SetPlaceholderString(value objc.IObject /* cross-framework: NSString */)
+	AllowedInputSourceLocales() objc.IObject /* cross-framework: NSString */
+	SetAllowedInputSourceLocales(value objc.IObject /* cross-framework: NSString */)
 	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
 	BezelStyle() unsafe.Pointer
@@ -106,8 +107,8 @@ func NewTextFieldCell() TextFieldCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/placeholderString
-func (t_ TextFieldCell) PlaceholderString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("placeholderString"))
+func (t_ TextFieldCell) PlaceholderString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("placeholderString"))
 	return rv
 }
 
@@ -116,8 +117,8 @@ func (t_ TextFieldCell) PlaceholderString() string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/placeholderString
-func (t_ TextFieldCell) SetPlaceholderString(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderString:"), objc.String(value))
+func (t_ TextFieldCell) SetPlaceholderString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderString:"), value)
 }
 
 
@@ -125,8 +126,8 @@ func (t_ TextFieldCell) SetPlaceholderString(value string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/allowedinputsourcelocales
-func (t_ TextFieldCell) AllowedInputSourceLocales() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("allowedInputSourceLocales"))
+func (t_ TextFieldCell) AllowedInputSourceLocales() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("allowedInputSourceLocales"))
 	return rv
 }
 
@@ -135,8 +136,8 @@ func (t_ TextFieldCell) AllowedInputSourceLocales() string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/allowedinputsourcelocales
-func (t_ TextFieldCell) SetAllowedInputSourceLocales(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedInputSourceLocales:"), objc.String(value))
+func (t_ TextFieldCell) SetAllowedInputSourceLocales(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedInputSourceLocales:"), value)
 }
 
 

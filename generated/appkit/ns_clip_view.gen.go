@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ClipView] class.
@@ -35,24 +34,24 @@ type IClipView interface {
 	SetAutomaticallyAdjustsContentInsets(value bool /* primitive/slice/pointer. */)
 	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
-	ContentInsets() EdgeInsets /* not a class type */
-	SetContentInsets(value EdgeInsets /* not a class type */)
+	ContentInsets() objc.IObject /* cross-framework: EdgeInsets */
+	SetContentInsets(value objc.IObject /* cross-framework: EdgeInsets */)
 	CopiesOnScroll() bool /* primitive/slice/pointer. */
 	SetCopiesOnScroll(value bool /* primitive/slice/pointer. */)
 	DocumentCursor() ICursor
 	SetDocumentCursor(value ICursor)
-	DocumentRect() coregraphics.CGRect
+	DocumentRect() objc.IObject /* cross-framework: Rect */
 	DocumentView() IView
 	SetDocumentView(value IView)
-	DocumentVisibleRect() coregraphics.CGRect
+	DocumentVisibleRect() objc.IObject /* cross-framework: Rect */
 	DrawsBackground() bool /* primitive/slice/pointer. */
 	SetDrawsBackground(value bool /* primitive/slice/pointer. */)
 	// methods:
 	Autoscroll(event IEvent) bool /* primitive/slice/pointer. */
-	ConstrainBoundsRect(proposedBounds coregraphics.CGRect) coregraphics.CGRect
-	ScrollToPoint(newOrigin coregraphics.CGPoint)
-	ViewBoundsChanged(notification Notification /* not a class type */)
-	ViewFrameChanged(notification Notification /* not a class type */)
+	ConstrainBoundsRect(proposedBounds objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	ScrollToPoint(newOrigin objc.IObject /* cross-framework Point */)
+	ViewBoundsChanged(notification objc.IObject /* cross-framework Notification */)
+	ViewFrameChanged(notification objc.IObject /* cross-framework Notification */)
 }
 
 // An object that clips a document view to a scroll view’s frame.
@@ -124,8 +123,8 @@ func (c_ ClipView) Autoscroll(event IEvent) bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/constrainBoundsRect(_:)
-func (c_ ClipView) ConstrainBoundsRect(proposedBounds coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("constrainBoundsRect:"), proposedBounds)
+func (c_ ClipView) ConstrainBoundsRect(proposedBounds objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](c_.ID, objc.Sel("constrainBoundsRect:"), proposedBounds)
 	return rv
 }
 
@@ -134,7 +133,7 @@ func (c_ ClipView) ConstrainBoundsRect(proposedBounds coregraphics.CGRect) coreg
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/scroll(to:)
-func (c_ ClipView) ScrollToPoint(newOrigin coregraphics.CGPoint) {
+func (c_ ClipView) ScrollToPoint(newOrigin objc.IObject /* cross-framework Point */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("scrollToPoint:"), newOrigin)
 }
 
@@ -143,7 +142,7 @@ func (c_ ClipView) ScrollToPoint(newOrigin coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/viewBoundsChanged(_:)
-func (c_ ClipView) ViewBoundsChanged(notification Notification /* not a class type */) {
+func (c_ ClipView) ViewBoundsChanged(notification objc.IObject /* cross-framework Notification */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("viewBoundsChanged:"), notification)
 }
 
@@ -152,7 +151,7 @@ func (c_ ClipView) ViewBoundsChanged(notification Notification /* not a class ty
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/viewFrameChanged(_:)
-func (c_ ClipView) ViewFrameChanged(notification Notification /* not a class type */) {
+func (c_ ClipView) ViewFrameChanged(notification objc.IObject /* cross-framework Notification */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("viewFrameChanged:"), notification)
 }
 
@@ -199,7 +198,7 @@ func (c_ ClipView) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/contentInsets
-func (c_ ClipView) ContentInsets() EdgeInsets /* not a class type */ {
+func (c_ ClipView) ContentInsets() objc.IObject /* cross-framework: EdgeInsets */ {
 	rv := objc.Send[EdgeInsets](c_.ID, objc.Sel("contentInsets"))
 	return rv
 }
@@ -209,7 +208,7 @@ func (c_ ClipView) ContentInsets() EdgeInsets /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/contentInsets
-func (c_ ClipView) SetContentInsets(value EdgeInsets /* not a class type */) {
+func (c_ ClipView) SetContentInsets(value objc.IObject /* cross-framework: EdgeInsets */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContentInsets:"), value)
 }
 
@@ -256,8 +255,8 @@ func (c_ ClipView) SetDocumentCursor(value ICursor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/documentRect
-func (c_ ClipView) DocumentRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("documentRect"))
+func (c_ ClipView) DocumentRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](c_.ID, objc.Sel("documentRect"))
 	return rv
 }
 
@@ -285,8 +284,8 @@ func (c_ ClipView) SetDocumentView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/documentVisibleRect
-func (c_ ClipView) DocumentVisibleRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("documentVisibleRect"))
+func (c_ ClipView) DocumentVisibleRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](c_.ID, objc.Sel("documentVisibleRect"))
 	return rv
 }
 

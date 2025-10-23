@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SearchFieldCell] class.
@@ -41,14 +41,14 @@ type ISearchFieldCell interface {
 	SetCancelButtonCell(value IButtonCell)
 	MaximumRecents() int /* primitive/slice/pointer. */
 	SetMaximumRecents(value int /* primitive/slice/pointer. */)
-	RecentSearches() string /* primitive/slice/pointer. */
-	SetRecentSearches(value string /* primitive/slice/pointer. */)
+	RecentSearches() objc.IObject /* cross-framework: NSString */
+	SetRecentSearches(value objc.IObject /* cross-framework: NSString */)
 	SearchButtonCell() IButtonCell
 	SetSearchButtonCell(value IButtonCell)
 	SendsSearchStringImmediately() bool /* primitive/slice/pointer. */
 	SetSendsSearchStringImmediately(value bool /* primitive/slice/pointer. */)
 	// methods:
-	SearchButtonRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
+	SearchButtonRectForBounds(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
 }
 
 // The programmatic interface for text fields that are used for text-based searches.
@@ -108,7 +108,7 @@ func NewSearchFieldCell() SearchFieldCell {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/init(coder:)
-func NewSearchFieldCellWithCoder(coder Coder /* not a class type */) SearchFieldCell {
+func NewSearchFieldCellWithCoder(coder objc.IObject /* cross-framework Coder */) SearchFieldCell {
 	instance := getSearchFieldCellClass().Alloc()
 	rv := objc.Send[SearchFieldCell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -121,8 +121,8 @@ func NewSearchFieldCellWithCoder(coder Coder /* not a class type */) SearchField
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchButtonRect(forBounds:)
-func (s_ SearchFieldCell) SearchButtonRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("searchButtonRectForBounds:"), rect)
+func (s_ SearchFieldCell) SearchButtonRectForBounds(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](s_.ID, objc.Sel("searchButtonRectForBounds:"), rect)
 	return rv
 }
 
@@ -226,8 +226,8 @@ func (s_ SearchFieldCell) SetMaximumRecents(value int /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchfieldcell/recentsearches
-func (s_ SearchFieldCell) RecentSearches() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("recentSearches"))
+func (s_ SearchFieldCell) RecentSearches() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("recentSearches"))
 	return rv
 }
 
@@ -236,8 +236,8 @@ func (s_ SearchFieldCell) RecentSearches() string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchfieldcell/recentsearches
-func (s_ SearchFieldCell) SetRecentSearches(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setRecentSearches:"), objc.String(value))
+func (s_ SearchFieldCell) SetRecentSearches(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRecentSearches:"), value)
 }
 
 

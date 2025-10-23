@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -35,10 +34,10 @@ type ITrackingArea interface {
 	// properties:
 	Options() TrackingAreaOptions
 	Owner() objc.ID
-	Rect() coregraphics.CGRect
+	Rect() objc.IObject /* cross-framework: Rect */
 	UserInfo() foundation.IDictionary /* already interface */
-	VisibleRect() coregraphics.CGRect
-	SetVisibleRect(value coregraphics.CGRect)
+	VisibleRect() objc.IObject /* cross-framework: Rect */
+	SetVisibleRect(value objc.IObject /* cross-framework: Rect */)
 	// methods:
 }
 
@@ -99,7 +98,7 @@ func NewTrackingArea() TrackingArea {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/init(rect:options:owner:userInfo:)
-func NewTrackingAreaWithRectOptionsOwnerUserInfo(rect coregraphics.CGRect, options TrackingAreaOptions, owner objectivec.IObject, userInfo foundation.IDictionary /* already interface */) TrackingArea {
+func NewTrackingAreaWithRectOptionsOwnerUserInfo(rect objc.IObject /* cross-framework Rect */, options TrackingAreaOptions, owner objectivec.IObject, userInfo foundation.IDictionary /* already interface */) TrackingArea {
 	instance := getTrackingAreaClass().Alloc()
 	rv := objc.Send[TrackingArea](instance.ID, objc.Sel("initWithRect:options:owner:userInfo:"), rect, options, owner, userInfo)
 	rv.Autorelease()
@@ -132,8 +131,8 @@ func (t_ TrackingArea) Owner() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/rect
-func (t_ TrackingArea) Rect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("rect"))
+func (t_ TrackingArea) Rect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](t_.ID, objc.Sel("rect"))
 	return rv
 }
 
@@ -152,8 +151,8 @@ func (t_ TrackingArea) UserInfo() foundation.IDictionary /* already interface */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/visiblerect
-func (t_ TrackingArea) VisibleRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("visibleRect"))
+func (t_ TrackingArea) VisibleRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](t_.ID, objc.Sel("visibleRect"))
 	return rv
 }
 
@@ -162,7 +161,7 @@ func (t_ TrackingArea) VisibleRect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/visiblerect
-func (t_ TrackingArea) SetVisibleRect(value coregraphics.CGRect) {
+func (t_ TrackingArea) SetVisibleRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibleRect:"), value)
 }
 

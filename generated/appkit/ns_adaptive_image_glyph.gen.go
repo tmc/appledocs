@@ -9,6 +9,7 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [AdaptiveImageGlyph] class.
@@ -32,9 +33,9 @@ type _AdaptiveImageGlyphClass struct {
 type IAdaptiveImageGlyph interface {
 	objectivec.IObject
 	// properties:
-	ContentDescription() string /* primitive/slice/pointer. */
-	ContentIdentifier() string /* primitive/slice/pointer. */
-	ImageContent() foundation.objc.IObject /* cross-framework: NSData */
+	ContentDescription() objc.IObject /* cross-framework: NSString */
+	ContentIdentifier() objc.IObject /* cross-framework: NSString */
+	ImageContent() objc.IObject /* cross-framework: NSData */
 	// methods:
 }
 
@@ -93,7 +94,7 @@ func NewAdaptiveImageGlyph() AdaptiveImageGlyph {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/init(coder:)
-func NewAdaptiveImageGlyphWithCoder(coder Coder /* not a class type */) AdaptiveImageGlyph {
+func NewAdaptiveImageGlyphWithCoder(coder objc.IObject /* cross-framework Coder */) AdaptiveImageGlyph {
 	instance := getAdaptiveImageGlyphClass().Alloc()
 	rv := objc.Send[AdaptiveImageGlyph](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -105,7 +106,7 @@ func NewAdaptiveImageGlyphWithCoder(coder Coder /* not a class type */) Adaptive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/init(imageContent:)
-func NewAdaptiveImageGlyphWithImageContent(imageContent foundation.objc.IObject /* cross-framework NSData */) AdaptiveImageGlyph {
+func NewAdaptiveImageGlyphWithImageContent(imageContent objc.IObject /* cross-framework NSData */) AdaptiveImageGlyph {
 	instance := getAdaptiveImageGlyphClass().Alloc()
 	rv := objc.Send[AdaptiveImageGlyph](instance.ID, objc.Sel("initWithImageContent:"), imageContent)
 	rv.Autorelease()
@@ -118,8 +119,8 @@ func NewAdaptiveImageGlyphWithImageContent(imageContent foundation.objc.IObject 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/contentType
-func (ac _AdaptiveImageGlyphClass) ContentType() objectivec.IObject {
-	rv := objc.Send[objectivec.IObject](objc.ID(ac.class), objc.Sel("contentType"))
+func (ac _AdaptiveImageGlyphClass) ContentType() objc.IObject /* cross-framework: UTType */ {
+	rv := objc.Send[uniformtypeidentifiers.UTType](objc.ID(ac.class), objc.Sel("contentType"))
 	return rv
 }
 
@@ -127,8 +128,8 @@ func (ac _AdaptiveImageGlyphClass) ContentType() objectivec.IObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/contentDescription
-func (a_ AdaptiveImageGlyph) ContentDescription() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("contentDescription"))
+func (a_ AdaptiveImageGlyph) ContentDescription() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("contentDescription"))
 	return rv
 }
 
@@ -137,8 +138,8 @@ func (a_ AdaptiveImageGlyph) ContentDescription() string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/contentIdentifier
-func (a_ AdaptiveImageGlyph) ContentIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("contentIdentifier"))
+func (a_ AdaptiveImageGlyph) ContentIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("contentIdentifier"))
 	return rv
 }
 
@@ -147,8 +148,8 @@ func (a_ AdaptiveImageGlyph) ContentIdentifier() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/contentType
-func (a_ AdaptiveImageGlyph) ContentType() objectivec.IObject {
-	rv := objc.Send[objectivec.IObject](a_.ID, objc.Sel("contentType"))
+func (a_ AdaptiveImageGlyph) ContentType() objc.IObject /* cross-framework: UTType */ {
+	rv := objc.Send[uniformtypeidentifiers.UTType](a_.ID, objc.Sel("contentType"))
 	return rv
 }
 
@@ -157,7 +158,7 @@ func (a_ AdaptiveImageGlyph) ContentType() objectivec.IObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/imageContent
-func (a_ AdaptiveImageGlyph) ImageContent() foundation.objc.IObject /* cross-framework: NSData */ {
+func (a_ AdaptiveImageGlyph) ImageContent() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("imageContent"))
 	return rv
 }

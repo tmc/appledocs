@@ -31,8 +31,8 @@ type _PathControlClass struct {
 type IPathControl interface {
 	IControl
 	// properties:
-	AllowedTypes() string /* primitive/slice/pointer. */
-	SetAllowedTypes(value string /* primitive/slice/pointer. */)
+	AllowedTypes() objc.IObject /* cross-framework: NSString */
+	SetAllowedTypes(value objc.IObject /* cross-framework: NSString */)
 	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
 	ClickedPathItem() IPathControlItem
@@ -51,10 +51,10 @@ type IPathControl interface {
 	SetPathStyle(value unsafe.Pointer)
 	PlaceholderAttributedString() objc.IObject /* cross-framework: AttributedString */
 	SetPlaceholderAttributedString(value objc.IObject /* cross-framework: AttributedString */)
-	PlaceholderString() string /* primitive/slice/pointer. */
-	SetPlaceholderString(value string /* primitive/slice/pointer. */)
-	Url() foundation.objc.IObject /* cross-framework: URL */
-	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	PlaceholderString() objc.IObject /* cross-framework: NSString */
+	SetPlaceholderString(value objc.IObject /* cross-framework: NSString */)
+	Url() objc.IObject /* cross-framework: URL */
+	SetUrl(value objc.IObject /* cross-framework: URL */)
 	// methods:
 }
 
@@ -115,16 +115,16 @@ func NewPathControl() PathControl {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/allowedtypes
-func (p_ PathControl) AllowedTypes() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("allowedTypes"))
+func (p_ PathControl) AllowedTypes() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("allowedTypes"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/allowedtypes
-func (p_ PathControl) SetAllowedTypes(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedTypes:"), objc.String(value))
+func (p_ PathControl) SetAllowedTypes(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedTypes:"), value)
 }
 
 
@@ -285,16 +285,16 @@ func (p_ PathControl) SetPlaceholderAttributedString(value objc.IObject /* cross
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/placeholderstring
-func (p_ PathControl) PlaceholderString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("placeholderString"))
+func (p_ PathControl) PlaceholderString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("placeholderString"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/placeholderstring
-func (p_ PathControl) SetPlaceholderString(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderString:"), objc.String(value))
+func (p_ PathControl) SetPlaceholderString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderString:"), value)
 }
 
 
@@ -302,7 +302,7 @@ func (p_ PathControl) SetPlaceholderString(value string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/url
-func (p_ PathControl) Url() foundation.objc.IObject /* cross-framework: URL */ {
+func (p_ PathControl) Url() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
 	return rv
 }
@@ -312,7 +312,7 @@ func (p_ PathControl) Url() foundation.objc.IObject /* cross-framework: URL */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/url
-func (p_ PathControl) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
+func (p_ PathControl) SetUrl(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 

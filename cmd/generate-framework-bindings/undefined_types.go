@@ -372,21 +372,21 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 		// They need to be generated as undefined type aliases
 	}
 
-	// Add framework-specific types that are defined in templates or as classes
-	// NOTE: These are commented out to allow undefined type handling to generate type aliases
-	// frameworkSpecificTypes := map[string][]string{
-	// 	"CoreGraphics": {"CGFloat", "CGPoint", "CGSize", "CGRect", "CGAffineTransform", "CGVector", "Range", "Size", "Point", "Rect"},
-	// 	"Foundation":   {"TimeInterval", "Point", "Size", "Rect", "Range", "RectEdge"},
-	// 	"AppKit":       {"WindowStyleMask", "BackingStoreType", "WindowOrderingMode", "WindowLevel", "EventType", "EventModifierFlags"},
-	// 	"QuartzCore":   {"CGFloat"},
-	// 	"ObjectiveC":   {"Protocol"}, // Protocol is a class, not a fallback type
-	// }
-	//
-	// if types, ok := frameworkSpecificTypes[g.Framework]; ok {
-	// 	for _, t := range types {
-	// 		defined[t] = true
-	// 	}
-	// }
+	// Add framework-specific types that are defined manually in non-generated files
+	// These types are provided in manually-written files like rect_types.go
+	frameworkSpecificTypes := map[string][]string{
+		"CoreGraphics": {"Float", "Point", "Size", "Rect", "AffineTransform", "AffineTransformComponents"},
+		"Foundation":   {"TimeInterval", "Point", "Size", "Rect", "Range", "RectEdge"},
+		"AppKit":       {"WindowStyleMask", "BackingStoreType", "WindowOrderingMode", "WindowLevel", "EventType", "EventModifierFlags"},
+		"QuartzCore":   {"CGFloat"},
+		"ObjectiveC":   {"Protocol"}, // Protocol is a class, not a fallback type
+	}
+
+	if types, ok := frameworkSpecificTypes[g.Framework]; ok {
+		for _, t := range types {
+			defined[t] = true
+		}
+	}
 
 	return defined
 }

@@ -1,0 +1,23 @@
+// Code generated from Apple documentation for Foundation. DO NOT EDIT.
+
+package foundation
+
+import "github.com/ebitengine/purego/objc"
+
+// connectionDidResumeDownloadingProtocol is the connectionDidResumeDownloading: protocol.
+//
+// Availability:
+//   - Mac Catalyst 13.1+
+//   - iOS 2.0+
+//   - iPadOS 2.0+
+//   - macOS 10.2+
+//   - tvOS 9.0+
+//   - visionOS 1.0+
+//   - watchOS 2.0+
+//
+// Use this protocol when registering custom classes that conform to connectionDidResumeDownloading:.
+var connectionDidResumeDownloadingProtocol *objc.Protocol
+
+func init() {
+	connectionDidResumeDownloadingProtocol = objc.GetProtocol("connectionDidResumeDownloading:")
+}

@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -38,7 +38,7 @@ type IColor interface {
 	BlueComponent() float64 /* primitive/slice/pointer. */
 	BrightnessComponent() float64 /* primitive/slice/pointer. */
 	CatalogNameComponent() objc.IObject /* cross-framework: ColorListName */
-	CGColor() coregraphics.ColorRef /* not a class type */
+	CGColor() ColorRef /* not a class type */
 	ColorNameComponent() objc.IObject /* cross-framework: ColorName */
 	ColorSpace() IColorSpace
 	ColorSpaceName() objc.IObject /* cross-framework: ColorSpaceName */
@@ -46,8 +46,8 @@ type IColor interface {
 	GreenComponent() float64 /* primitive/slice/pointer. */
 	HueComponent() float64 /* primitive/slice/pointer. */
 	LinearExposure() float64 /* primitive/slice/pointer. */
-	LocalizedCatalogNameComponent() string /* primitive/slice/pointer. */
-	LocalizedColorNameComponent() string /* primitive/slice/pointer. */
+	LocalizedCatalogNameComponent() objc.IObject /* cross-framework: NSString */
+	LocalizedColorNameComponent() objc.IObject /* cross-framework: NSString */
 	MagentaComponent() float64 /* primitive/slice/pointer. */
 	NumberOfComponents() int /* primitive/slice/pointer. */
 	PatternImage() IImage
@@ -62,12 +62,12 @@ type IColor interface {
 	// methods:
 	ColorByApplyingContentHeadroom(contentHeadroom float64 /* primitive/slice/pointer. */) IColor
 	BlendedColorWithFractionOfColor(fraction float64 /* primitive/slice/pointer. */, color IColor) IColor
-	DrawSwatchInRect(rect coregraphics.CGRect)
-	GetComponents(components coregraphics.float64 /* primitive/slice/pointer. */)
-	GetCyanMagentaYellowBlackAlpha(cyan coregraphics.float64 /* primitive/slice/pointer. */, magenta coregraphics.float64 /* primitive/slice/pointer. */, yellow coregraphics.float64 /* primitive/slice/pointer. */, black coregraphics.float64 /* primitive/slice/pointer. */, alpha coregraphics.float64 /* primitive/slice/pointer. */)
-	GetHueSaturationBrightnessAlpha(hue coregraphics.float64 /* primitive/slice/pointer. */, saturation coregraphics.float64 /* primitive/slice/pointer. */, brightness coregraphics.float64 /* primitive/slice/pointer. */, alpha coregraphics.float64 /* primitive/slice/pointer. */)
-	GetRedGreenBlueAlpha(red coregraphics.float64 /* primitive/slice/pointer. */, green coregraphics.float64 /* primitive/slice/pointer. */, blue coregraphics.float64 /* primitive/slice/pointer. */, alpha coregraphics.float64 /* primitive/slice/pointer. */)
-	GetWhiteAlpha(white coregraphics.float64 /* primitive/slice/pointer. */, alpha coregraphics.float64 /* primitive/slice/pointer. */)
+	DrawSwatchInRect(rect objc.IObject /* cross-framework Rect */)
+	GetComponents(components corefoundation.CGFloat)
+	GetCyanMagentaYellowBlackAlpha(cyan corefoundation.CGFloat, magenta corefoundation.CGFloat, yellow corefoundation.CGFloat, black corefoundation.CGFloat, alpha corefoundation.CGFloat)
+	GetHueSaturationBrightnessAlpha(hue corefoundation.CGFloat, saturation corefoundation.CGFloat, brightness corefoundation.CGFloat, alpha corefoundation.CGFloat)
+	GetRedGreenBlueAlpha(red corefoundation.CGFloat, green corefoundation.CGFloat, blue corefoundation.CGFloat, alpha corefoundation.CGFloat)
+	GetWhiteAlpha(white corefoundation.CGFloat, alpha corefoundation.CGFloat)
 	HighlightWithLevel(val float64 /* primitive/slice/pointer. */) IColor
 	Set()
 	SetFill()
@@ -157,7 +157,7 @@ func NewColorNamedBundle(name objc.IObject /* cross-framework ColorName */, bund
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(cgColor:)
-func NewColorWithCGColor(cgColor coregraphics.ColorRef /* not a class type */) Color {
+func NewColorWithCGColor(cgColor ColorRef /* not a class type */) Color {
 	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithCGColor:"), cgColor)
 	return rv
 }
@@ -177,7 +177,7 @@ func NewColorWithCatalogNameColorName(listName objc.IObject /* cross-framework C
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(coder:)
-func NewColorWithCoder(coder Coder /* not a class type */) Color {
+func NewColorWithCoder(coder objc.IObject /* cross-framework Coder */) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -300,7 +300,7 @@ func (cc _ColorClass) ColorWithCatalogNameColorName(listName objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(cgColor:)
-func (cc _ColorClass) ColorWithCGColor(cgColor coregraphics.ColorRef /* not a class type */) IColor {
+func (cc _ColorClass) ColorWithCGColor(cgColor ColorRef /* not a class type */) IColor {
 	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorWithCGColor:"), cgColor)
 	return rv
 }
@@ -653,7 +653,7 @@ func (c_ Color) BlendedColorWithFractionOfColor(fraction float64 /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/drawSwatch(in:)
-func (c_ Color) DrawSwatchInRect(rect coregraphics.CGRect) {
+func (c_ Color) DrawSwatchInRect(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("drawSwatchInRect:"), rect)
 }
 
@@ -662,7 +662,7 @@ func (c_ Color) DrawSwatchInRect(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/getComponents(_:)
-func (c_ Color) GetComponents(components coregraphics.float64 /* primitive/slice/pointer. */) {
+func (c_ Color) GetComponents(components corefoundation.CGFloat) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getComponents:"), components)
 }
 
@@ -671,7 +671,7 @@ func (c_ Color) GetComponents(components coregraphics.float64 /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/getCyan(_:magenta:yellow:black:alpha:)
-func (c_ Color) GetCyanMagentaYellowBlackAlpha(cyan coregraphics.float64 /* primitive/slice/pointer. */, magenta coregraphics.float64 /* primitive/slice/pointer. */, yellow coregraphics.float64 /* primitive/slice/pointer. */, black coregraphics.float64 /* primitive/slice/pointer. */, alpha coregraphics.float64 /* primitive/slice/pointer. */) {
+func (c_ Color) GetCyanMagentaYellowBlackAlpha(cyan corefoundation.CGFloat, magenta corefoundation.CGFloat, yellow corefoundation.CGFloat, black corefoundation.CGFloat, alpha corefoundation.CGFloat) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getCyan:magenta:yellow:black:alpha:"), cyan, magenta, yellow, black, alpha)
 }
 
@@ -680,7 +680,7 @@ func (c_ Color) GetCyanMagentaYellowBlackAlpha(cyan coregraphics.float64 /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/getHue(_:saturation:brightness:alpha:)
-func (c_ Color) GetHueSaturationBrightnessAlpha(hue coregraphics.float64 /* primitive/slice/pointer. */, saturation coregraphics.float64 /* primitive/slice/pointer. */, brightness coregraphics.float64 /* primitive/slice/pointer. */, alpha coregraphics.float64 /* primitive/slice/pointer. */) {
+func (c_ Color) GetHueSaturationBrightnessAlpha(hue corefoundation.CGFloat, saturation corefoundation.CGFloat, brightness corefoundation.CGFloat, alpha corefoundation.CGFloat) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getHue:saturation:brightness:alpha:"), hue, saturation, brightness, alpha)
 }
 
@@ -689,7 +689,7 @@ func (c_ Color) GetHueSaturationBrightnessAlpha(hue coregraphics.float64 /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/getRed(_:green:blue:alpha:)
-func (c_ Color) GetRedGreenBlueAlpha(red coregraphics.float64 /* primitive/slice/pointer. */, green coregraphics.float64 /* primitive/slice/pointer. */, blue coregraphics.float64 /* primitive/slice/pointer. */, alpha coregraphics.float64 /* primitive/slice/pointer. */) {
+func (c_ Color) GetRedGreenBlueAlpha(red corefoundation.CGFloat, green corefoundation.CGFloat, blue corefoundation.CGFloat, alpha corefoundation.CGFloat) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getRed:green:blue:alpha:"), red, green, blue, alpha)
 }
 
@@ -698,7 +698,7 @@ func (c_ Color) GetRedGreenBlueAlpha(red coregraphics.float64 /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/getWhite(_:alpha:)
-func (c_ Color) GetWhiteAlpha(white coregraphics.float64 /* primitive/slice/pointer. */, alpha coregraphics.float64 /* primitive/slice/pointer. */) {
+func (c_ Color) GetWhiteAlpha(white corefoundation.CGFloat, alpha corefoundation.CGFloat) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getWhite:alpha:"), white, alpha)
 }
 
@@ -883,8 +883,8 @@ func (c_ Color) CatalogNameComponent() objc.IObject /* cross-framework: ColorLis
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/cgColor
-func (c_ Color) CGColor() coregraphics.ColorRef /* not a class type */ {
-	rv := objc.Send[coregraphics.ColorRef](c_.ID, objc.Sel("CGColor"))
+func (c_ Color) CGColor() ColorRef /* not a class type */ {
+	rv := objc.Send[ColorRef](c_.ID, objc.Sel("CGColor"))
 	return rv
 }
 
@@ -1062,8 +1062,8 @@ func (c_ Color) LinkColor() IColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/localizedCatalogNameComponent
-func (c_ Color) LocalizedCatalogNameComponent() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("localizedCatalogNameComponent"))
+func (c_ Color) LocalizedCatalogNameComponent() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("localizedCatalogNameComponent"))
 	return rv
 }
 
@@ -1072,8 +1072,8 @@ func (c_ Color) LocalizedCatalogNameComponent() string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/localizedColorNameComponent
-func (c_ Color) LocalizedColorNameComponent() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("localizedColorNameComponent"))
+func (c_ Color) LocalizedColorNameComponent() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("localizedColorNameComponent"))
 	return rv
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -68,16 +67,16 @@ type IScrubber interface {
 	SetImageAlignment(value ImageAlignment)
 	ImageView() IImageView
 	SetImageView(value IImageView)
-	ScrubberContentSize() coregraphics.CGSize
-	SetScrubberContentSize(value coregraphics.CGSize)
+	ScrubberContentSize() objc.IObject /* cross-framework: Size */
+	SetScrubberContentSize(value objc.IObject /* cross-framework: Size */)
 	ShouldInvalidateLayoutForHighlightChange() bool /* primitive/slice/pointer. */
 	SetShouldInvalidateLayoutForHighlightChange(value bool /* primitive/slice/pointer. */)
 	ShouldInvalidateLayoutForSelectionChange() bool /* primitive/slice/pointer. */
 	SetShouldInvalidateLayoutForSelectionChange(value bool /* primitive/slice/pointer. */)
 	Alpha() float64 /* primitive/slice/pointer. */
 	SetAlpha(value float64 /* primitive/slice/pointer. */)
-	Frame() coregraphics.CGRect
-	SetFrame(value coregraphics.CGRect)
+	Frame() objc.IObject /* cross-framework: Rect */
+	SetFrame(value objc.IObject /* cross-framework: Rect */)
 	ItemIndex() int /* primitive/slice/pointer. */
 	SetItemIndex(value int /* primitive/slice/pointer. */)
 	TextField() objc.IObject /* cross-framework: TextField */
@@ -155,7 +154,7 @@ func NewScrubber() Scrubber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(coder:)
-func NewScrubberWithCoder(coder Coder /* not a class type */) Scrubber {
+func NewScrubberWithCoder(coder objc.IObject /* cross-framework Coder */) Scrubber {
 	instance := getScrubberClass().Alloc()
 	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -167,7 +166,7 @@ func NewScrubberWithCoder(coder Coder /* not a class type */) Scrubber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(frame:)
-func NewScrubberWithFrame(frameRect coregraphics.CGRect) Scrubber {
+func NewScrubberWithFrame(frameRect objc.IObject /* cross-framework Rect */) Scrubber {
 	instance := getScrubberClass().Alloc()
 	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()
@@ -624,8 +623,8 @@ func (s_ Scrubber) SetImageView(value IImageView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayout/scrubbercontentsize
-func (s_ Scrubber) ScrubberContentSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("scrubberContentSize"))
+func (s_ Scrubber) ScrubberContentSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](s_.ID, objc.Sel("scrubberContentSize"))
 	return rv
 }
 
@@ -634,7 +633,7 @@ func (s_ Scrubber) ScrubberContentSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayout/scrubbercontentsize
-func (s_ Scrubber) SetScrubberContentSize(value coregraphics.CGSize) {
+func (s_ Scrubber) SetScrubberContentSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScrubberContentSize:"), value)
 }
 
@@ -700,8 +699,8 @@ func (s_ Scrubber) SetAlpha(value float64 /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayoutattributes/frame
-func (s_ Scrubber) Frame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("frame"))
+func (s_ Scrubber) Frame() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](s_.ID, objc.Sel("frame"))
 	return rv
 }
 
@@ -710,7 +709,7 @@ func (s_ Scrubber) Frame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberlayoutattributes/frame
-func (s_ Scrubber) SetFrame(value coregraphics.CGRect) {
+func (s_ Scrubber) SetFrame(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setFrame:"), value)
 }
 

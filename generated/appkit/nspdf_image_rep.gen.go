@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -32,11 +31,11 @@ type _PDFImageRepClass struct {
 type IPDFImageRep interface {
 	IImageRep
 	// properties:
-	Bounds() coregraphics.CGRect
+	Bounds() objc.IObject /* cross-framework: Rect */
 	CurrentPage() int /* primitive/slice/pointer. */
 	SetCurrentPage(value int /* primitive/slice/pointer. */)
 	PageCount() int /* primitive/slice/pointer. */
-	PDFRepresentation() foundation.objc.IObject /* cross-framework: NSData */
+	PDFRepresentation() objc.IObject /* cross-framework: NSData */
 	// methods:
 }
 
@@ -97,7 +96,7 @@ func NewPDFImageRep() PDFImageRep {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFImageRep/init(data:)
-func NewPDFImageRepWithData(pdfData foundation.objc.IObject /* cross-framework NSData */) PDFImageRep {
+func NewPDFImageRepWithData(pdfData objc.IObject /* cross-framework NSData */) PDFImageRep {
 	instance := getPDFImageRepClass().Alloc()
 	rv := objc.Send[PDFImageRep](instance.ID, objc.Sel("initWithData:"), pdfData)
 	rv.Autorelease()
@@ -110,7 +109,7 @@ func NewPDFImageRepWithData(pdfData foundation.objc.IObject /* cross-framework N
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFImageRep/imageRepWithData:
-func (pc _PDFImageRepClass) ImageRepWithData(pdfData foundation.objc.IObject /* cross-framework NSData */) unsafe.Pointer {
+func (pc _PDFImageRepClass) ImageRepWithData(pdfData objc.IObject /* cross-framework NSData */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("imageRepWithData:"), pdfData)
 	return rv
 }
@@ -120,8 +119,8 @@ func (pc _PDFImageRepClass) ImageRepWithData(pdfData foundation.objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFImageRep/bounds
-func (p_ PDFImageRep) Bounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("bounds"))
+func (p_ PDFImageRep) Bounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](p_.ID, objc.Sel("bounds"))
 	return rv
 }
 
@@ -159,7 +158,7 @@ func (p_ PDFImageRep) PageCount() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFImageRep/pdfRepresentation
-func (p_ PDFImageRep) PDFRepresentation() foundation.objc.IObject /* cross-framework: NSData */ {
+func (p_ PDFImageRep) PDFRepresentation() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("PDFRepresentation"))
 	return rv
 }

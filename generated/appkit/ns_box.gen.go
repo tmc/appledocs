@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Box] class.
@@ -33,7 +33,7 @@ type IBox interface {
 	// properties:
 	BorderColor() IColor
 	SetBorderColor(value IColor)
-	BorderRect() coregraphics.CGRect
+	BorderRect() objc.IObject /* cross-framework: Rect */
 	BorderType() BorderType
 	SetBorderType(value BorderType)
 	BorderWidth() float64 /* primitive/slice/pointer. */
@@ -42,26 +42,26 @@ type IBox interface {
 	SetBoxType(value BoxType)
 	ContentView() IView
 	SetContentView(value IView)
-	ContentViewMargins() coregraphics.CGSize
-	SetContentViewMargins(value coregraphics.CGSize)
+	ContentViewMargins() objc.IObject /* cross-framework: Size */
+	SetContentViewMargins(value objc.IObject /* cross-framework: Size */)
 	CornerRadius() float64 /* primitive/slice/pointer. */
 	SetCornerRadius(value float64 /* primitive/slice/pointer. */)
 	FillColor() IColor
 	SetFillColor(value IColor)
 	Transparent() bool /* primitive/slice/pointer. */
 	SetTransparent(value bool /* primitive/slice/pointer. */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	TitleCell() objc.ID
 	TitleFont() IFont
 	SetTitleFont(value IFont)
 	TitlePosition() TitlePosition
 	SetTitlePosition(value TitlePosition)
-	TitleRect() coregraphics.CGRect
+	TitleRect() objc.IObject /* cross-framework: Rect */
 	IsTransparent() bool /* primitive/slice/pointer. */
 	SetIsTransparent(value bool /* primitive/slice/pointer. */)
 	// methods:
-	SetFrameFromContentFrame(contentFrame coregraphics.CGRect)
+	SetFrameFromContentFrame(contentFrame objc.IObject /* cross-framework Rect */)
 	SizeToFit()
 }
 
@@ -124,7 +124,7 @@ func NewBox() Box {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/setFrameFromContentFrame(_:)
-func (b_ Box) SetFrameFromContentFrame(contentFrame coregraphics.CGRect) {
+func (b_ Box) SetFrameFromContentFrame(contentFrame objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setFrameFromContentFrame:"), contentFrame)
 }
 
@@ -161,8 +161,8 @@ func (b_ Box) SetBorderColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/borderRect
-func (b_ Box) BorderRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](b_.ID, objc.Sel("borderRect"))
+func (b_ Box) BorderRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](b_.ID, objc.Sel("borderRect"))
 	return rv
 }
 
@@ -247,8 +247,8 @@ func (b_ Box) SetContentView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/contentViewMargins
-func (b_ Box) ContentViewMargins() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](b_.ID, objc.Sel("contentViewMargins"))
+func (b_ Box) ContentViewMargins() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](b_.ID, objc.Sel("contentViewMargins"))
 	return rv
 }
 
@@ -257,7 +257,7 @@ func (b_ Box) ContentViewMargins() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/contentViewMargins
-func (b_ Box) SetContentViewMargins(value coregraphics.CGSize) {
+func (b_ Box) SetContentViewMargins(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setContentViewMargins:"), value)
 }
 
@@ -323,8 +323,8 @@ func (b_ Box) SetTransparent(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/title
-func (b_ Box) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](b_.ID, objc.Sel("title"))
+func (b_ Box) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -333,8 +333,8 @@ func (b_ Box) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/title
-func (b_ Box) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (b_ Box) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), value)
 }
 
 
@@ -390,8 +390,8 @@ func (b_ Box) SetTitlePosition(value TitlePosition) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/titleRect
-func (b_ Box) TitleRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](b_.ID, objc.Sel("titleRect"))
+func (b_ Box) TitleRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](b_.ID, objc.Sel("titleRect"))
 	return rv
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,7 +33,7 @@ type IGraphicsContext interface {
 	objectivec.IObject
 	// properties:
 	Attributes() foundation.IDictionary /* already interface */
-	CGContext() coregraphics.CGContextRef
+	CGContext() ContextRef /* not a class type */
 	CIContext() objc.IObject /* cross-framework: Context */
 	ColorRenderingIntent() ColorRenderingIntent
 	SetColorRenderingIntent(value ColorRenderingIntent)
@@ -45,8 +44,8 @@ type IGraphicsContext interface {
 	SetImageInterpolation(value ImageInterpolation)
 	DrawingToScreen() bool /* primitive/slice/pointer. */
 	Flipped() bool /* primitive/slice/pointer. */
-	PatternPhase() coregraphics.CGPoint
-	SetPatternPhase(value coregraphics.CGPoint)
+	PatternPhase() objc.IObject /* cross-framework: Point */
+	SetPatternPhase(value objc.IObject /* cross-framework: Point */)
 	ShouldAntialias() bool /* primitive/slice/pointer. */
 	SetShouldAntialias(value bool /* primitive/slice/pointer. */)
 	IsDrawingToScreen() bool /* primitive/slice/pointer. */
@@ -136,7 +135,7 @@ func NewGraphicsContextWithBitmapImageRep(bitmapRep IBitmapImageRep) GraphicsCon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(cgContext:flipped:)
-func NewGraphicsContextWithCGContextFlipped(graphicsPort coregraphics.CGContextRef, initialFlippedState bool /* primitive/slice/pointer. */) GraphicsContext {
+func NewGraphicsContextWithCGContextFlipped(graphicsPort ContextRef /* not a class type */, initialFlippedState bool /* primitive/slice/pointer. */) GraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(getGraphicsContextClass().class), objc.Sel("graphicsContextWithCGContext:flipped:"), graphicsPort, initialFlippedState)
 	return rv
 }
@@ -197,7 +196,7 @@ func (gc _GraphicsContextClass) GraphicsContextWithBitmapImageRep(bitmapRep IBit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(cgContext:flipped:)
-func (gc _GraphicsContextClass) GraphicsContextWithCGContextFlipped(graphicsPort coregraphics.CGContextRef, initialFlippedState bool /* primitive/slice/pointer. */) IGraphicsContext {
+func (gc _GraphicsContextClass) GraphicsContextWithCGContextFlipped(graphicsPort ContextRef /* not a class type */, initialFlippedState bool /* primitive/slice/pointer. */) IGraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(gc.class), objc.Sel("graphicsContextWithCGContext:flipped:"), graphicsPort, initialFlippedState)
 	return rv
 }
@@ -300,8 +299,8 @@ func (g_ GraphicsContext) Attributes() foundation.IDictionary /* already interfa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/cgContext
-func (g_ GraphicsContext) CGContext() coregraphics.CGContextRef {
-	rv := objc.Send[coregraphics.CGContextRef](g_.ID, objc.Sel("CGContext"))
+func (g_ GraphicsContext) CGContext() ContextRef /* not a class type */ {
+	rv := objc.Send[ContextRef](g_.ID, objc.Sel("CGContext"))
 	return rv
 }
 
@@ -426,8 +425,8 @@ func (g_ GraphicsContext) Flipped() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/patternPhase
-func (g_ GraphicsContext) PatternPhase() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](g_.ID, objc.Sel("patternPhase"))
+func (g_ GraphicsContext) PatternPhase() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[Point](g_.ID, objc.Sel("patternPhase"))
 	return rv
 }
 
@@ -436,7 +435,7 @@ func (g_ GraphicsContext) PatternPhase() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/patternPhase
-func (g_ GraphicsContext) SetPatternPhase(value coregraphics.CGPoint) {
+func (g_ GraphicsContext) SetPatternPhase(value objc.IObject /* cross-framework: Point */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPatternPhase:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Control] class.
@@ -70,8 +71,8 @@ type IControl interface {
 	SetLineBreakMode(value LineBreakMode)
 	RefusesFirstResponder() bool /* primitive/slice/pointer. */
 	SetRefusesFirstResponder(value bool /* primitive/slice/pointer. */)
-	StringValue() string /* primitive/slice/pointer. */
-	SetStringValue(value string /* primitive/slice/pointer. */)
+	StringValue() objc.IObject /* cross-framework: NSString */
+	SetStringValue(value objc.IObject /* cross-framework: NSString */)
 	Tag() int /* primitive/slice/pointer. */
 	SetTag(value int /* primitive/slice/pointer. */)
 	UsesSingleLineMode() bool /* primitive/slice/pointer. */
@@ -518,8 +519,8 @@ func (c_ Control) SetRefusesFirstResponder(value bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/stringvalue
-func (c_ Control) StringValue() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("stringValue"))
+func (c_ Control) StringValue() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
@@ -528,8 +529,8 @@ func (c_ Control) StringValue() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/stringvalue
-func (c_ Control) SetStringValue(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStringValue:"), objc.String(value))
+func (c_ Control) SetStringValue(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStringValue:"), value)
 }
 
 

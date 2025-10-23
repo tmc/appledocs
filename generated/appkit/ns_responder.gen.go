@@ -38,14 +38,14 @@ type IResponder interface {
 	SetNextResponder(value IResponder)
 	TouchBar() ITouchBar
 	SetTouchBar(value ITouchBar)
-	UndoManager() UndoManager /* not a class type */
-	SetUndoManager(value UndoManager /* not a class type */)
-	UserActivity() UserActivity /* not a class type */
-	SetUserActivity(value UserActivity /* not a class type */)
+	UndoManager() objc.IObject /* cross-framework: UndoManager */
+	SetUndoManager(value objc.IObject /* cross-framework: UndoManager */)
+	UserActivity() objc.IObject /* cross-framework: UserActivity */
+	SetUserActivity(value objc.IObject /* cross-framework: UserActivity */)
 	// methods:
 	ChangeModeWithEvent(event IEvent)
 	CursorUpdate(event IEvent)
-	EncodeRestorableStateWithCoder(coder Coder /* not a class type */)
+	EncodeRestorableStateWithCoder(coder objc.IObject /* cross-framework Coder */)
 	FlagsChanged(event IEvent)
 	InterpretKeyEvents(eventArray []Event /* primitive/slice/pointer. */)
 	KeyDown(event IEvent)
@@ -59,10 +59,10 @@ type IResponder interface {
 	OtherMouseDown(event IEvent)
 	OtherMouseDragged(event IEvent)
 	OtherMouseUp(event IEvent)
-	PresentError(error_ Error /* not a class type */) bool /* primitive/slice/pointer. */
-	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ Error /* not a class type */, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
+	PresentError(error_ objc.IObject /* cross-framework Error */) bool /* primitive/slice/pointer. */
+	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ objc.IObject /* cross-framework Error */, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
 	QuickLookWithEvent(event IEvent)
-	RestoreStateWithCoder(coder Coder /* not a class type */)
+	RestoreStateWithCoder(coder objc.IObject /* cross-framework Coder */)
 	RightMouseDown(event IEvent)
 	RightMouseDragged(event IEvent)
 	RightMouseUp(event IEvent)
@@ -71,7 +71,7 @@ type IResponder interface {
 	TabletPoint(event IEvent)
 	TabletProximity(event IEvent)
 	TryToPerformWith(action objc.SEL, object objectivec.IObject) bool /* primitive/slice/pointer. */
-	UpdateUserActivityState(userActivity UserActivity /* not a class type */)
+	UpdateUserActivityState(userActivity objc.IObject /* cross-framework UserActivity */)
 	ValidRequestorForSendTypeReturnType(sendType objc.IObject /* cross-framework PasteboardType */, returnType objc.IObject /* cross-framework PasteboardType */) objc.ID
 }
 
@@ -150,7 +150,7 @@ func (r_ Responder) CursorUpdate(event IEvent) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/encodeRestorableState(with:)
-func (r_ Responder) EncodeRestorableStateWithCoder(coder Coder /* not a class type */) {
+func (r_ Responder) EncodeRestorableStateWithCoder(coder objc.IObject /* cross-framework Coder */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("encodeRestorableStateWithCoder:"), coder)
 }
 
@@ -276,7 +276,7 @@ func (r_ Responder) OtherMouseUp(event IEvent) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/presentError(_:)
-func (r_ Responder) PresentError(error_ Error /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (r_ Responder) PresentError(error_ objc.IObject /* cross-framework Error */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](r_.ID, objc.Sel("presentError:"), error_)
 	return rv
 }
@@ -286,7 +286,7 @@ func (r_ Responder) PresentError(error_ Error /* not a class type */) bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/presentError(_:modalFor:delegate:didPresent:contextInfo:)
-func (r_ Responder) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ Error /* not a class type */, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
+func (r_ Responder) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ objc.IObject /* cross-framework Error */, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"), error_, window, delegate, didPresentSelector, contextInfo)
 }
 
@@ -304,7 +304,7 @@ func (r_ Responder) QuickLookWithEvent(event IEvent) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/restoreState(with:)
-func (r_ Responder) RestoreStateWithCoder(coder Coder /* not a class type */) {
+func (r_ Responder) RestoreStateWithCoder(coder objc.IObject /* cross-framework Coder */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("restoreStateWithCoder:"), coder)
 }
 
@@ -387,7 +387,7 @@ func (r_ Responder) TryToPerformWith(action objc.SEL, object objectivec.IObject)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/updateUserActivityState(_:)
-func (r_ Responder) UpdateUserActivityState(userActivity UserActivity /* not a class type */) {
+func (r_ Responder) UpdateUserActivityState(userActivity objc.IObject /* cross-framework UserActivity */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("updateUserActivityState:"), userActivity)
 }
 
@@ -473,7 +473,7 @@ func (r_ Responder) SetTouchBar(value ITouchBar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsresponder/undomanager
-func (r_ Responder) UndoManager() UndoManager /* not a class type */ {
+func (r_ Responder) UndoManager() objc.IObject /* cross-framework: UndoManager */ {
 	rv := objc.Send[UndoManager](r_.ID, objc.Sel("undoManager"))
 	return rv
 }
@@ -483,7 +483,7 @@ func (r_ Responder) UndoManager() UndoManager /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsresponder/undomanager
-func (r_ Responder) SetUndoManager(value UndoManager /* not a class type */) {
+func (r_ Responder) SetUndoManager(value objc.IObject /* cross-framework: UndoManager */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setUndoManager:"), value)
 }
 
@@ -492,7 +492,7 @@ func (r_ Responder) SetUndoManager(value UndoManager /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsresponder/useractivity
-func (r_ Responder) UserActivity() UserActivity /* not a class type */ {
+func (r_ Responder) UserActivity() objc.IObject /* cross-framework: UserActivity */ {
 	rv := objc.Send[UserActivity](r_.ID, objc.Sel("userActivity"))
 	return rv
 }
@@ -502,7 +502,7 @@ func (r_ Responder) UserActivity() UserActivity /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsresponder/useractivity
-func (r_ Responder) SetUserActivity(value UserActivity /* not a class type */) {
+func (r_ Responder) SetUserActivity(value objc.IObject /* cross-framework: UserActivity */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setUserActivity:"), value)
 }
 

@@ -45,8 +45,8 @@ type IOpenPanel interface {
 	SetIsAccessoryViewDisclosed(value bool /* primitive/slice/pointer. */)
 	ResolvesAliases() bool /* primitive/slice/pointer. */
 	SetResolvesAliases(value bool /* primitive/slice/pointer. */)
-	Urls() foundation.objc.IObject /* cross-framework: URL */
-	SetUrls(value foundation.objc.IObject /* cross-framework: URL */)
+	Urls() objc.IObject /* cross-framework: URL */
+	SetUrls(value objc.IObject /* cross-framework: URL */)
 	// methods:
 }
 
@@ -242,7 +242,7 @@ func (o_ OpenPanel) SetResolvesAliases(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/urls
-func (o_ OpenPanel) Urls() foundation.objc.IObject /* cross-framework: URL */ {
+func (o_ OpenPanel) Urls() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](o_.ID, objc.Sel("urls"))
 	return rv
 }
@@ -252,7 +252,7 @@ func (o_ OpenPanel) Urls() foundation.objc.IObject /* cross-framework: URL */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/urls
-func (o_ OpenPanel) SetUrls(value foundation.objc.IObject /* cross-framework: URL */) {
+func (o_ OpenPanel) SetUrls(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setUrls:"), value)
 }
 

@@ -94,6 +94,7 @@ type (
 	TimeMapping = _undefined // referenced in Foundation
 	TimeRange = _undefined // referenced in Foundation
 	Transform3D = _undefined // referenced in Foundation
+	UIEdgeInsets = _undefined // referenced in Foundation
 	UInt16 = _undefined // referenced in Foundation
 	UInt32 = _undefined // referenced in Foundation
 	UInt8 = _undefined // referenced in Foundation

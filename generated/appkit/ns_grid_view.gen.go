@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -54,7 +53,7 @@ type IGridView interface {
 	IndexOfRow(row GridRow /* not a class type */) int /* primitive/slice/pointer. */
 	InsertColumnAtIndexWithViews(index int /* primitive/slice/pointer. */, views []View /* primitive/slice/pointer. */) objc.IObject /* cross-framework: GridColumn */
 	InsertRowAtIndexWithViews(index int /* primitive/slice/pointer. */, views []View /* primitive/slice/pointer. */) GridRow /* not a class type */
-	MergeCellsInHorizontalRangeVerticalRange(hRange foundation.objc.IObject /* cross-framework Range */, vRange foundation.objc.IObject /* cross-framework Range */)
+	MergeCellsInHorizontalRangeVerticalRange(hRange objc.IObject /* cross-framework Range */, vRange objc.IObject /* cross-framework Range */)
 	MoveColumnAtIndexToIndex(fromIndex int /* primitive/slice/pointer. */, toIndex int /* primitive/slice/pointer. */)
 	MoveRowAtIndexToIndex(fromIndex int /* primitive/slice/pointer. */, toIndex int /* primitive/slice/pointer. */)
 	RemoveColumnAtIndex(index int /* primitive/slice/pointer. */)
@@ -121,7 +120,7 @@ func NewGridView() GridView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(coder:)
-func NewGridViewWithCoder(coder Coder /* not a class type */) GridView {
+func NewGridViewWithCoder(coder objc.IObject /* cross-framework Coder */) GridView {
 	instance := getGridViewClass().Alloc()
 	rv := objc.Send[GridView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -133,7 +132,7 @@ func NewGridViewWithCoder(coder Coder /* not a class type */) GridView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(frame:)
-func NewGridViewWithFrame(frameRect coregraphics.CGRect) GridView {
+func NewGridViewWithFrame(frameRect objc.IObject /* cross-framework Rect */) GridView {
 	instance := getGridViewClass().Alloc()
 	rv := objc.Send[GridView](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()
@@ -155,7 +154,7 @@ func NewGridViewWithNumberOfColumnsRows(columnCount int /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(views:)
-func NewGridViewWithViews(rows []foundation.objc.IObject /* cross-framework Array */) GridView {
+func NewGridViewWithViews(rows objc.IObject /* cross-framework Array */) GridView {
 	rv := objc.Send[GridView](objc.ID(getGridViewClass().class), objc.Sel("gridViewWithViews:"), rows)
 	return rv
 }
@@ -176,7 +175,7 @@ func (gc _GridViewClass) GridViewWithNumberOfColumnsRows(columnCount int /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(views:)
-func (gc _GridViewClass) GridViewWithViews(rows []foundation.objc.IObject /* cross-framework Array */) unsafe.Pointer {
+func (gc _GridViewClass) GridViewWithViews(rows objc.IObject /* cross-framework Array */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("gridViewWithViews:"), rows)
 	return rv
 }
@@ -276,7 +275,7 @@ func (g_ GridView) InsertRowAtIndexWithViews(index int /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/mergeCells(inHorizontalRange:verticalRange:)
-func (g_ GridView) MergeCellsInHorizontalRangeVerticalRange(hRange foundation.objc.IObject /* cross-framework Range */, vRange foundation.objc.IObject /* cross-framework Range */) {
+func (g_ GridView) MergeCellsInHorizontalRangeVerticalRange(hRange objc.IObject /* cross-framework Range */, vRange objc.IObject /* cross-framework Range */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("mergeCellsInHorizontalRange:verticalRange:"), hRange, vRange)
 }
 

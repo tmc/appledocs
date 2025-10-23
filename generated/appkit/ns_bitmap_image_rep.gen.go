@@ -31,7 +31,7 @@ type _BitmapImageRepClass struct {
 type IBitmapImageRep interface {
 	IImageRep
 	// properties:
-	TIFFRepresentation() foundation.objc.IObject /* cross-framework: NSData */
+	TIFFRepresentation() objc.IObject /* cross-framework: NSData */
 	BitmapData() unsafe.Pointer
 	SetBitmapData(value unsafe.Pointer)
 	BitmapFormat() unsafe.Pointer
@@ -136,7 +136,7 @@ func (b_ BitmapImageRep) TIFFRepresentationUsingCompressionFactor(comp TIFFCompr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/tiffRepresentation
-func (b_ BitmapImageRep) TIFFRepresentation() foundation.objc.IObject /* cross-framework: NSData */ {
+func (b_ BitmapImageRep) TIFFRepresentation() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](b_.ID, objc.Sel("TIFFRepresentation"))
 	return rv
 }

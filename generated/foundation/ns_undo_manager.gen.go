@@ -60,7 +60,7 @@ type IUndoManager interface {
 	IsUndoing() bool /* primitive/slice/pointer. */
 	SetIsUndoing(value bool /* primitive/slice/pointer. */)
 	// methods:
-	RegisterUndoWithTargetHandler(target objectivec.IObject, undoHandler unsafe.Pointer)
+	RegisterUndoWithTargetHandler(target objectivec.IObject, undoHandler func(unsafe.Pointer) /* not a class type */)
 	BeginUndoGrouping()
 	DisableUndoRegistration()
 	EnableUndoRegistration()
@@ -138,7 +138,7 @@ func NewUndoManager() UndoManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUndoManager/registerUndoWithTarget:handler:
-func (u_ UndoManager) RegisterUndoWithTargetHandler(target objectivec.IObject, undoHandler unsafe.Pointer) {
+func (u_ UndoManager) RegisterUndoWithTargetHandler(target objectivec.IObject, undoHandler func(unsafe.Pointer) /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("registerUndoWithTarget:handler:"), target, undoHandler)
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,8 +33,8 @@ type IWritingToolsCoordinatorContext interface {
 	// properties:
 	AttributedString() objc.IObject /* cross-framework: AttributedString */
 	Identifier() objc.IObject /* cross-framework: UUID */
-	Range() foundation.objc.IObject /* cross-framework: Range */
-	ResolvedRange() foundation.objc.IObject /* cross-framework: Range */
+	Range() objc.IObject /* cross-framework: Range */
+	ResolvedRange() objc.IObject /* cross-framework: Range */
 	// methods:
 }
 
@@ -96,7 +95,7 @@ func NewWritingToolsCoordinatorContext() WritingToolsCoordinatorContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/Context/init(attributedString:range:)
-func NewWritingToolsCoordinatorContextWithAttributedStringRange(attributedString objc.IObject /* cross-framework AttributedString */, range_ foundation.objc.IObject /* cross-framework Range */) WritingToolsCoordinatorContext {
+func NewWritingToolsCoordinatorContextWithAttributedStringRange(attributedString objc.IObject /* cross-framework AttributedString */, range_ objc.IObject /* cross-framework Range */) WritingToolsCoordinatorContext {
 	instance := getWritingToolsCoordinatorContextClass().Alloc()
 	rv := objc.Send[WritingToolsCoordinatorContext](instance.ID, objc.Sel("initWithAttributedString:range:"), attributedString, range_)
 	rv.Autorelease()
@@ -129,8 +128,8 @@ func (w_ WritingToolsCoordinatorContext) Identifier() objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/Context/range
-func (w_ WritingToolsCoordinatorContext) Range() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](w_.ID, objc.Sel("range"))
+func (w_ WritingToolsCoordinatorContext) Range() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[Range](w_.ID, objc.Sel("range"))
 	return rv
 }
 
@@ -139,8 +138,8 @@ func (w_ WritingToolsCoordinatorContext) Range() foundation.objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/Context/resolvedRange
-func (w_ WritingToolsCoordinatorContext) ResolvedRange() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](w_.ID, objc.Sel("resolvedRange"))
+func (w_ WritingToolsCoordinatorContext) ResolvedRange() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[Range](w_.ID, objc.Sel("resolvedRange"))
 	return rv
 }
 

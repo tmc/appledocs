@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -51,16 +51,16 @@ type IToolbarItem interface {
 	ItemIdentifier() objc.IObject /* cross-framework: ToolbarItemIdentifier */
 	ItemMenuFormRepresentation() MenuElement /* not a class type */
 	SetItemMenuFormRepresentation(value MenuElement /* not a class type */)
-	Label() string /* primitive/slice/pointer. */
-	SetLabel(value string /* primitive/slice/pointer. */)
-	MaxSize() coregraphics.CGSize
-	SetMaxSize(value coregraphics.CGSize)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	MaxSize() objc.IObject /* cross-framework: Size */
+	SetMaxSize(value objc.IObject /* cross-framework: Size */)
 	MenuFormRepresentation() objc.IObject /* cross-framework: MenuItem */
 	SetMenuFormRepresentation(value objc.IObject /* cross-framework: MenuItem */)
-	MinSize() coregraphics.CGSize
-	SetMinSize(value coregraphics.CGSize)
-	PaletteLabel() string /* primitive/slice/pointer. */
-	SetPaletteLabel(value string /* primitive/slice/pointer. */)
+	MinSize() objc.IObject /* cross-framework: Size */
+	SetMinSize(value objc.IObject /* cross-framework: Size */)
+	PaletteLabel() objc.IObject /* cross-framework: NSString */
+	SetPaletteLabel(value objc.IObject /* cross-framework: NSString */)
 	PossibleLabels() unsafe.Pointer
 	SetPossibleLabels(value unsafe.Pointer)
 	Style() ToolbarItemStyle /* not a class type */
@@ -69,10 +69,10 @@ type IToolbarItem interface {
 	SetTag(value int /* primitive/slice/pointer. */)
 	Target() objc.ID
 	SetTarget(value objc.ID)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
-	ToolTip() string /* primitive/slice/pointer. */
-	SetToolTip(value string /* primitive/slice/pointer. */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	ToolTip() objc.IObject /* cross-framework: NSString */
+	SetToolTip(value objc.IObject /* cross-framework: NSString */)
 	Toolbar() IToolbar
 	View() IView
 	SetView(value IView)
@@ -375,8 +375,8 @@ func (t_ ToolbarItem) SetItemMenuFormRepresentation(value MenuElement /* not a c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/label
-func (t_ ToolbarItem) Label() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("label"))
+func (t_ ToolbarItem) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -385,8 +385,8 @@ func (t_ ToolbarItem) Label() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/label
-func (t_ ToolbarItem) SetLabel(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (t_ ToolbarItem) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), value)
 }
 
 
@@ -394,8 +394,8 @@ func (t_ ToolbarItem) SetLabel(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/maxSize
-func (t_ ToolbarItem) MaxSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("maxSize"))
+func (t_ ToolbarItem) MaxSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](t_.ID, objc.Sel("maxSize"))
 	return rv
 }
 
@@ -404,7 +404,7 @@ func (t_ ToolbarItem) MaxSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/maxSize
-func (t_ ToolbarItem) SetMaxSize(value coregraphics.CGSize) {
+func (t_ ToolbarItem) SetMaxSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxSize:"), value)
 }
 
@@ -432,8 +432,8 @@ func (t_ ToolbarItem) SetMenuFormRepresentation(value objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/minSize
-func (t_ ToolbarItem) MinSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("minSize"))
+func (t_ ToolbarItem) MinSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](t_.ID, objc.Sel("minSize"))
 	return rv
 }
 
@@ -442,7 +442,7 @@ func (t_ ToolbarItem) MinSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/minSize
-func (t_ ToolbarItem) SetMinSize(value coregraphics.CGSize) {
+func (t_ ToolbarItem) SetMinSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMinSize:"), value)
 }
 
@@ -451,8 +451,8 @@ func (t_ ToolbarItem) SetMinSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/paletteLabel
-func (t_ ToolbarItem) PaletteLabel() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("paletteLabel"))
+func (t_ ToolbarItem) PaletteLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("paletteLabel"))
 	return rv
 }
 
@@ -461,8 +461,8 @@ func (t_ ToolbarItem) PaletteLabel() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/paletteLabel
-func (t_ ToolbarItem) SetPaletteLabel(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setPaletteLabel:"), objc.String(value))
+func (t_ ToolbarItem) SetPaletteLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPaletteLabel:"), value)
 }
 
 
@@ -546,8 +546,8 @@ func (t_ ToolbarItem) SetTarget(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/title
-func (t_ ToolbarItem) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("title"))
+func (t_ ToolbarItem) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -556,8 +556,8 @@ func (t_ ToolbarItem) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/title
-func (t_ ToolbarItem) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (t_ ToolbarItem) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTitle:"), value)
 }
 
 
@@ -565,8 +565,8 @@ func (t_ ToolbarItem) SetTitle(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/toolTip
-func (t_ ToolbarItem) ToolTip() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("toolTip"))
+func (t_ ToolbarItem) ToolTip() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("toolTip"))
 	return rv
 }
 
@@ -575,8 +575,8 @@ func (t_ ToolbarItem) ToolTip() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/toolTip
-func (t_ ToolbarItem) SetToolTip(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setToolTip:"), objc.String(value))
+func (t_ ToolbarItem) SetToolTip(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setToolTip:"), value)
 }
 
 

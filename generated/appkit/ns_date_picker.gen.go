@@ -35,8 +35,8 @@ type IDatePicker interface {
 	SetBackgroundColor(value IColor)
 	DatePickerMode() DatePickerMode
 	SetDatePickerMode(value DatePickerMode)
-	DateValue() foundation.objc.IObject /* cross-framework: NSDate */
-	SetDateValue(value foundation.objc.IObject /* cross-framework: NSDate */)
+	DateValue() objc.IObject /* cross-framework: NSDate */
+	SetDateValue(value objc.IObject /* cross-framework: NSDate */)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Bezeled() bool /* primitive/slice/pointer. */
@@ -45,18 +45,18 @@ type IDatePicker interface {
 	SetBordered(value bool /* primitive/slice/pointer. */)
 	Locale() objc.IObject /* cross-framework: Locale */
 	SetLocale(value objc.IObject /* cross-framework: Locale */)
-	MaxDate() foundation.objc.IObject /* cross-framework: NSDate */
-	SetMaxDate(value foundation.objc.IObject /* cross-framework: NSDate */)
-	MinDate() foundation.objc.IObject /* cross-framework: NSDate */
-	SetMinDate(value foundation.objc.IObject /* cross-framework: NSDate */)
+	MaxDate() objc.IObject /* cross-framework: NSDate */
+	SetMaxDate(value objc.IObject /* cross-framework: NSDate */)
+	MinDate() objc.IObject /* cross-framework: NSDate */
+	SetMinDate(value objc.IObject /* cross-framework: NSDate */)
 	PresentsCalendarOverlay() bool /* primitive/slice/pointer. */
 	SetPresentsCalendarOverlay(value bool /* primitive/slice/pointer. */)
 	TextColor() IColor
 	SetTextColor(value IColor)
-	TimeInterval() float64 /* primitive/slice/pointer. */
-	SetTimeInterval(value float64 /* primitive/slice/pointer. */)
-	Calendar() foundation.objc.IObject /* cross-framework: Calendar */
-	SetCalendar(value foundation.objc.IObject /* cross-framework: Calendar */)
+	TimeInterval() TimeInterval /* not a class type */
+	SetTimeInterval(value TimeInterval /* not a class type */)
+	Calendar() objc.IObject /* cross-framework: Calendar */
+	SetCalendar(value objc.IObject /* cross-framework: Calendar */)
 	DatePickerElements() unsafe.Pointer
 	SetDatePickerElements(value unsafe.Pointer)
 	DatePickerStyle() unsafe.Pointer
@@ -67,8 +67,8 @@ type IDatePicker interface {
 	SetIsBezeled(value bool /* primitive/slice/pointer. */)
 	IsBordered() bool /* primitive/slice/pointer. */
 	SetIsBordered(value bool /* primitive/slice/pointer. */)
-	TimeZone() foundation.objc.IObject /* cross-framework: TimeZone */
-	SetTimeZone(value foundation.objc.IObject /* cross-framework: TimeZone */)
+	TimeZone() objc.IObject /* cross-framework: TimeZone */
+	SetTimeZone(value objc.IObject /* cross-framework: TimeZone */)
 	// methods:
 }
 
@@ -169,7 +169,7 @@ func (d_ DatePicker) SetDatePickerMode(value DatePickerMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/dateValue
-func (d_ DatePicker) DateValue() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (d_ DatePicker) DateValue() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("dateValue"))
 	return rv
 }
@@ -179,7 +179,7 @@ func (d_ DatePicker) DateValue() foundation.objc.IObject /* cross-framework: NSD
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/dateValue
-func (d_ DatePicker) SetDateValue(value foundation.objc.IObject /* cross-framework: NSDate */) {
+func (d_ DatePicker) SetDateValue(value objc.IObject /* cross-framework: NSDate */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateValue:"), value)
 }
 
@@ -264,7 +264,7 @@ func (d_ DatePicker) SetLocale(value objc.IObject /* cross-framework: Locale */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/maxDate
-func (d_ DatePicker) MaxDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (d_ DatePicker) MaxDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("maxDate"))
 	return rv
 }
@@ -274,7 +274,7 @@ func (d_ DatePicker) MaxDate() foundation.objc.IObject /* cross-framework: NSDat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/maxDate
-func (d_ DatePicker) SetMaxDate(value foundation.objc.IObject /* cross-framework: NSDate */) {
+func (d_ DatePicker) SetMaxDate(value objc.IObject /* cross-framework: NSDate */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaxDate:"), value)
 }
 
@@ -283,7 +283,7 @@ func (d_ DatePicker) SetMaxDate(value foundation.objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/minDate
-func (d_ DatePicker) MinDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (d_ DatePicker) MinDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("minDate"))
 	return rv
 }
@@ -293,7 +293,7 @@ func (d_ DatePicker) MinDate() foundation.objc.IObject /* cross-framework: NSDat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/minDate
-func (d_ DatePicker) SetMinDate(value foundation.objc.IObject /* cross-framework: NSDate */) {
+func (d_ DatePicker) SetMinDate(value objc.IObject /* cross-framework: NSDate */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinDate:"), value)
 }
 
@@ -340,8 +340,8 @@ func (d_ DatePicker) SetTextColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/timeInterval
-func (d_ DatePicker) TimeInterval() float64 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float64](d_.ID, objc.Sel("timeInterval"))
+func (d_ DatePicker) TimeInterval() TimeInterval /* not a class type */ {
+	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeInterval"))
 	return rv
 }
 
@@ -350,7 +350,7 @@ func (d_ DatePicker) TimeInterval() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/timeInterval
-func (d_ DatePicker) SetTimeInterval(value float64 /* primitive/slice/pointer. */) {
+func (d_ DatePicker) SetTimeInterval(value TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeInterval:"), value)
 }
 
@@ -359,7 +359,7 @@ func (d_ DatePicker) SetTimeInterval(value float64 /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/calendar
-func (d_ DatePicker) Calendar() foundation.objc.IObject /* cross-framework: Calendar */ {
+func (d_ DatePicker) Calendar() objc.IObject /* cross-framework: Calendar */ {
 	rv := objc.Send[foundation.Calendar](d_.ID, objc.Sel("calendar"))
 	return rv
 }
@@ -369,7 +369,7 @@ func (d_ DatePicker) Calendar() foundation.objc.IObject /* cross-framework: Cale
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/calendar
-func (d_ DatePicker) SetCalendar(value foundation.objc.IObject /* cross-framework: Calendar */) {
+func (d_ DatePicker) SetCalendar(value objc.IObject /* cross-framework: Calendar */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCalendar:"), value)
 }
 
@@ -473,7 +473,7 @@ func (d_ DatePicker) SetIsBordered(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/timezone
-func (d_ DatePicker) TimeZone() foundation.objc.IObject /* cross-framework: TimeZone */ {
+func (d_ DatePicker) TimeZone() objc.IObject /* cross-framework: TimeZone */ {
 	rv := objc.Send[foundation.TimeZone](d_.ID, objc.Sel("timeZone"))
 	return rv
 }
@@ -483,7 +483,7 @@ func (d_ DatePicker) TimeZone() foundation.objc.IObject /* cross-framework: Time
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/timezone
-func (d_ DatePicker) SetTimeZone(value foundation.objc.IObject /* cross-framework: TimeZone */) {
+func (d_ DatePicker) SetTimeZone(value objc.IObject /* cross-framework: TimeZone */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeZone:"), value)
 }
 

@@ -7,8 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextTable] class.
@@ -41,7 +39,7 @@ type ITextTable interface {
 	CollapsesBorders() bool /* primitive/slice/pointer. */
 	SetCollapsesBorders(value bool /* primitive/slice/pointer. */)
 	// methods:
-	RectForBlockLayoutAtPointInRectTextContainerCharacterRange(block ITextTableBlock, startingPoint coregraphics.CGPoint, rect coregraphics.CGRect, textContainer ITextContainer, charRange foundation.objc.IObject /* cross-framework Range */) coregraphics.CGRect
+	RectForBlockLayoutAtPointInRectTextContainerCharacterRange(block ITextTableBlock, startingPoint objc.IObject /* cross-framework Point */, rect objc.IObject /* cross-framework Rect */, textContainer ITextContainer, charRange objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Rect */
 }
 
 // An object that represents a text table as a whole.
@@ -103,8 +101,8 @@ func NewTextTable() TextTable {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable/rect(for:layoutAt:in:textContainer:characterRange:)
-func (t_ TextTable) RectForBlockLayoutAtPointInRectTextContainerCharacterRange(block ITextTableBlock, startingPoint coregraphics.CGPoint, rect coregraphics.CGRect, textContainer ITextContainer, charRange foundation.objc.IObject /* cross-framework Range */) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("rectForBlock:layoutAtPoint:inRect:textContainer:characterRange:"), block, startingPoint, rect, textContainer, charRange)
+func (t_ TextTable) RectForBlockLayoutAtPointInRectTextContainerCharacterRange(block ITextTableBlock, startingPoint objc.IObject /* cross-framework Point */, rect objc.IObject /* cross-framework Rect */, textContainer ITextContainer, charRange objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](t_.ID, objc.Sel("rectForBlock:layoutAtPoint:inRect:textContainer:characterRange:"), block, startingPoint, rect, textContainer, charRange)
 	return rv
 }
 

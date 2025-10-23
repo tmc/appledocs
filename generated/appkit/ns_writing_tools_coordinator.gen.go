@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -52,7 +51,7 @@ type IWritingToolsCoordinator interface {
 	// methods:
 	StopWritingTools()
 	UpdateForReflowedTextInContextWithIdentifier(contextID objc.IObject /* cross-framework UUID */)
-	UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.objc.IObject /* cross-framework Range */, replacementText objc.IObject /* cross-framework AttributedString */, reason WritingToolsCoordinatorTextUpdateReason, contextID objc.IObject /* cross-framework UUID */)
+	UpdateRangeWithTextReasonForContextWithIdentifier(range_ objc.IObject /* cross-framework Range */, replacementText objc.IObject /* cross-framework AttributedString */, reason WritingToolsCoordinatorTextUpdateReason, contextID objc.IObject /* cross-framework UUID */)
 }
 
 // An object that manages interactions between Writing Tools and your custom text view.
@@ -152,7 +151,7 @@ func (w_ WritingToolsCoordinator) UpdateForReflowedTextInContextWithIdentifier(c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/updateRange(_:with:reason:forContextWithIdentifier:)
-func (w_ WritingToolsCoordinator) UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.objc.IObject /* cross-framework Range */, replacementText objc.IObject /* cross-framework AttributedString */, reason WritingToolsCoordinatorTextUpdateReason, contextID objc.IObject /* cross-framework UUID */) {
+func (w_ WritingToolsCoordinator) UpdateRangeWithTextReasonForContextWithIdentifier(range_ objc.IObject /* cross-framework Range */, replacementText objc.IObject /* cross-framework AttributedString */, reason WritingToolsCoordinatorTextUpdateReason, contextID objc.IObject /* cross-framework UUID */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("updateRange:withText:reason:forContextWithIdentifier:"), range_, replacementText, reason, contextID)
 }
 

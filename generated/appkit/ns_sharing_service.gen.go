@@ -34,28 +34,28 @@ type ISharingService interface {
 	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	AccountName() string /* primitive/slice/pointer. */
-	SetAccountName(value string /* primitive/slice/pointer. */)
+	AccountName() objc.IObject /* cross-framework: NSString */
+	SetAccountName(value objc.IObject /* cross-framework: NSString */)
 	AlternateImage() IImage
 	SetAlternateImage(value IImage)
-	AttachmentFileURLs() foundation.objc.IObject /* cross-framework: URL */
-	SetAttachmentFileURLs(value foundation.objc.IObject /* cross-framework: URL */)
+	AttachmentFileURLs() objc.IObject /* cross-framework: URL */
+	SetAttachmentFileURLs(value objc.IObject /* cross-framework: URL */)
 	Image() IImage
 	SetImage(value IImage)
-	MenuItemTitle() string /* primitive/slice/pointer. */
-	SetMenuItemTitle(value string /* primitive/slice/pointer. */)
-	MessageBody() string /* primitive/slice/pointer. */
-	SetMessageBody(value string /* primitive/slice/pointer. */)
-	PermanentLink() foundation.objc.IObject /* cross-framework: URL */
-	SetPermanentLink(value foundation.objc.IObject /* cross-framework: URL */)
-	Recipients() string /* primitive/slice/pointer. */
-	SetRecipients(value string /* primitive/slice/pointer. */)
-	Subject() string /* primitive/slice/pointer. */
-	SetSubject(value string /* primitive/slice/pointer. */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	MenuItemTitle() objc.IObject /* cross-framework: NSString */
+	SetMenuItemTitle(value objc.IObject /* cross-framework: NSString */)
+	MessageBody() objc.IObject /* cross-framework: NSString */
+	SetMessageBody(value objc.IObject /* cross-framework: NSString */)
+	PermanentLink() objc.IObject /* cross-framework: URL */
+	SetPermanentLink(value objc.IObject /* cross-framework: URL */)
+	Recipients() objc.IObject /* cross-framework: NSString */
+	SetRecipients(value objc.IObject /* cross-framework: NSString */)
+	Subject() objc.IObject /* cross-framework: NSString */
+	SetSubject(value objc.IObject /* cross-framework: NSString */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	// methods:
-	CanPerformWithItems(items objectivec.IObject) bool /* primitive/slice/pointer. */
+	CanPerformWithItems(items objc.IObject /* cross-framework NSArray */) bool /* primitive/slice/pointer. */
 }
 
 // An object that facilitates the sharing of content with social media services, or with apps like Mail or Safari.
@@ -115,7 +115,7 @@ func NewSharingService() SharingService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/canPerform(withItems:)
-func (s_ SharingService) CanPerformWithItems(items objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (s_ SharingService) CanPerformWithItems(items objc.IObject /* cross-framework NSArray */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canPerformWithItems:"), items)
 	return rv
 }
@@ -144,8 +144,8 @@ func (s_ SharingService) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/accountname
-func (s_ SharingService) AccountName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("accountName"))
+func (s_ SharingService) AccountName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("accountName"))
 	return rv
 }
 
@@ -154,8 +154,8 @@ func (s_ SharingService) AccountName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/accountname
-func (s_ SharingService) SetAccountName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAccountName:"), objc.String(value))
+func (s_ SharingService) SetAccountName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAccountName:"), value)
 }
 
 
@@ -182,7 +182,7 @@ func (s_ SharingService) SetAlternateImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/attachmentfileurls
-func (s_ SharingService) AttachmentFileURLs() foundation.objc.IObject /* cross-framework: URL */ {
+func (s_ SharingService) AttachmentFileURLs() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("attachmentFileURLs"))
 	return rv
 }
@@ -192,7 +192,7 @@ func (s_ SharingService) AttachmentFileURLs() foundation.objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/attachmentfileurls
-func (s_ SharingService) SetAttachmentFileURLs(value foundation.objc.IObject /* cross-framework: URL */) {
+func (s_ SharingService) SetAttachmentFileURLs(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAttachmentFileURLs:"), value)
 }
 
@@ -220,8 +220,8 @@ func (s_ SharingService) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/menuitemtitle
-func (s_ SharingService) MenuItemTitle() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("menuItemTitle"))
+func (s_ SharingService) MenuItemTitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("menuItemTitle"))
 	return rv
 }
 
@@ -230,8 +230,8 @@ func (s_ SharingService) MenuItemTitle() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/menuitemtitle
-func (s_ SharingService) SetMenuItemTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMenuItemTitle:"), objc.String(value))
+func (s_ SharingService) SetMenuItemTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMenuItemTitle:"), value)
 }
 
 
@@ -239,8 +239,8 @@ func (s_ SharingService) SetMenuItemTitle(value string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/messagebody
-func (s_ SharingService) MessageBody() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("messageBody"))
+func (s_ SharingService) MessageBody() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("messageBody"))
 	return rv
 }
 
@@ -249,8 +249,8 @@ func (s_ SharingService) MessageBody() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/messagebody
-func (s_ SharingService) SetMessageBody(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMessageBody:"), objc.String(value))
+func (s_ SharingService) SetMessageBody(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMessageBody:"), value)
 }
 
 
@@ -258,7 +258,7 @@ func (s_ SharingService) SetMessageBody(value string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/permanentlink
-func (s_ SharingService) PermanentLink() foundation.objc.IObject /* cross-framework: URL */ {
+func (s_ SharingService) PermanentLink() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("permanentLink"))
 	return rv
 }
@@ -268,7 +268,7 @@ func (s_ SharingService) PermanentLink() foundation.objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/permanentlink
-func (s_ SharingService) SetPermanentLink(value foundation.objc.IObject /* cross-framework: URL */) {
+func (s_ SharingService) SetPermanentLink(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPermanentLink:"), value)
 }
 
@@ -277,8 +277,8 @@ func (s_ SharingService) SetPermanentLink(value foundation.objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/recipients
-func (s_ SharingService) Recipients() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("recipients"))
+func (s_ SharingService) Recipients() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("recipients"))
 	return rv
 }
 
@@ -287,8 +287,8 @@ func (s_ SharingService) Recipients() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/recipients
-func (s_ SharingService) SetRecipients(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setRecipients:"), objc.String(value))
+func (s_ SharingService) SetRecipients(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRecipients:"), value)
 }
 
 
@@ -296,8 +296,8 @@ func (s_ SharingService) SetRecipients(value string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/subject
-func (s_ SharingService) Subject() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("subject"))
+func (s_ SharingService) Subject() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("subject"))
 	return rv
 }
 
@@ -306,8 +306,8 @@ func (s_ SharingService) Subject() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/subject
-func (s_ SharingService) SetSubject(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSubject:"), objc.String(value))
+func (s_ SharingService) SetSubject(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSubject:"), value)
 }
 
 
@@ -315,8 +315,8 @@ func (s_ SharingService) SetSubject(value string /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/title
-func (s_ SharingService) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("title"))
+func (s_ SharingService) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -325,8 +325,8 @@ func (s_ SharingService) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/title
-func (s_ SharingService) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (s_ SharingService) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), value)
 }
 
 

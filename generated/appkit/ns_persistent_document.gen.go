@@ -38,14 +38,14 @@ type IPersistentDocument interface {
 	SetHasUndoManager(value bool /* primitive/slice/pointer. */)
 	IsDocumentEdited() bool /* primitive/slice/pointer. */
 	SetIsDocumentEdited(value bool /* primitive/slice/pointer. */)
-	UndoManager() UndoManager /* not a class type */
-	SetUndoManager(value UndoManager /* not a class type */)
+	UndoManager() objc.IObject /* cross-framework: UndoManager */
+	SetUndoManager(value objc.IObject /* cross-framework: UndoManager */)
 	// methods:
-	ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url foundation.objc.IObject /* cross-framework URL */, fileType string /* primitive/slice/pointer. */, configuration string /* primitive/slice/pointer. */, storeOptions foundation.IDictionary /* already interface */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
-	PersistentStoreTypeForFileType(fileType string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
-	ReadFromURLOfTypeError(absoluteURL foundation.objc.IObject /* cross-framework URL */, typeName string /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
-	RevertToContentsOfURLOfTypeError(inAbsoluteURL foundation.objc.IObject /* cross-framework URL */, inTypeName string /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
-	WriteToURLOfTypeForSaveOperationOriginalContentsURLError(absoluteURL foundation.objc.IObject /* cross-framework URL */, typeName string /* primitive/slice/pointer. */, saveOperation SaveOperationType, absoluteOriginalContentsURL foundation.objc.IObject /* cross-framework URL */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url objc.IObject /* cross-framework NSURL */, fileType objc.IObject /* cross-framework NSString */, configuration objc.IObject /* cross-framework NSString */, storeOptions foundation.IDictionary /* already interface */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	PersistentStoreTypeForFileType(fileType objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: String */
+	ReadFromURLOfTypeError(absoluteURL objc.IObject /* cross-framework NSURL */, typeName objc.IObject /* cross-framework NSString */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	RevertToContentsOfURLOfTypeError(inAbsoluteURL objc.IObject /* cross-framework NSURL */, inTypeName objc.IObject /* cross-framework NSString */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	WriteToURLOfTypeForSaveOperationOriginalContentsURLError(absoluteURL objc.IObject /* cross-framework NSURL */, typeName objc.IObject /* cross-framework NSString */, saveOperation SaveOperationType, absoluteOriginalContentsURL objc.IObject /* cross-framework NSURL */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
 }
 
 // A document object that can integrate with Core Data.
@@ -107,8 +107,8 @@ func NewPersistentDocument() PersistentDocument {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/configurePersistentStoreCoordinator(for:ofType:modelConfiguration:storeOptions:)
-func (p_ PersistentDocument) ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url foundation.objc.IObject /* cross-framework URL */, fileType string /* primitive/slice/pointer. */, configuration string /* primitive/slice/pointer. */, storeOptions foundation.IDictionary /* already interface */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:"), url, objc.String(fileType), objc.String(configuration), storeOptions, error_)
+func (p_ PersistentDocument) ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url objc.IObject /* cross-framework NSURL */, fileType objc.IObject /* cross-framework NSString */, configuration objc.IObject /* cross-framework NSString */, storeOptions foundation.IDictionary /* already interface */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](p_.ID, objc.Sel("configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:"), url, fileType, configuration, storeOptions, error_)
 	return rv
 }
 
@@ -117,8 +117,8 @@ func (p_ PersistentDocument) ConfigurePersistentStoreCoordinatorForURLOfTypeMode
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/persistentStoreType(forFileType:)
-func (p_ PersistentDocument) PersistentStoreTypeForFileType(fileType string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](p_.ID, objc.Sel("persistentStoreTypeForFileType:"), objc.String(fileType))
+func (p_ PersistentDocument) PersistentStoreTypeForFileType(fileType objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[String](p_.ID, objc.Sel("persistentStoreTypeForFileType:"), fileType)
 	return rv
 }
 
@@ -127,8 +127,8 @@ func (p_ PersistentDocument) PersistentStoreTypeForFileType(fileType string /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/read(from:ofType:)
-func (p_ PersistentDocument) ReadFromURLOfTypeError(absoluteURL foundation.objc.IObject /* cross-framework URL */, typeName string /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("readFromURL:ofType:error:"), absoluteURL, objc.String(typeName), error_)
+func (p_ PersistentDocument) ReadFromURLOfTypeError(absoluteURL objc.IObject /* cross-framework NSURL */, typeName objc.IObject /* cross-framework NSString */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](p_.ID, objc.Sel("readFromURL:ofType:error:"), absoluteURL, typeName, error_)
 	return rv
 }
 
@@ -137,8 +137,8 @@ func (p_ PersistentDocument) ReadFromURLOfTypeError(absoluteURL foundation.objc.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/revert(toContentsOf:ofType:)
-func (p_ PersistentDocument) RevertToContentsOfURLOfTypeError(inAbsoluteURL foundation.objc.IObject /* cross-framework URL */, inTypeName string /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("revertToContentsOfURL:ofType:error:"), inAbsoluteURL, objc.String(inTypeName), outError)
+func (p_ PersistentDocument) RevertToContentsOfURLOfTypeError(inAbsoluteURL objc.IObject /* cross-framework NSURL */, inTypeName objc.IObject /* cross-framework NSString */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](p_.ID, objc.Sel("revertToContentsOfURL:ofType:error:"), inAbsoluteURL, inTypeName, outError)
 	return rv
 }
 
@@ -147,8 +147,8 @@ func (p_ PersistentDocument) RevertToContentsOfURLOfTypeError(inAbsoluteURL foun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/write(to:ofType:for:originalContentsURL:)
-func (p_ PersistentDocument) WriteToURLOfTypeForSaveOperationOriginalContentsURLError(absoluteURL foundation.objc.IObject /* cross-framework URL */, typeName string /* primitive/slice/pointer. */, saveOperation SaveOperationType, absoluteOriginalContentsURL foundation.objc.IObject /* cross-framework URL */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("writeToURL:ofType:forSaveOperation:originalContentsURL:error:"), absoluteURL, objc.String(typeName), saveOperation, absoluteOriginalContentsURL, error_)
+func (p_ PersistentDocument) WriteToURLOfTypeForSaveOperationOriginalContentsURLError(absoluteURL objc.IObject /* cross-framework NSURL */, typeName objc.IObject /* cross-framework NSString */, saveOperation SaveOperationType, absoluteOriginalContentsURL objc.IObject /* cross-framework NSURL */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](p_.ID, objc.Sel("writeToURL:ofType:forSaveOperation:originalContentsURL:error:"), absoluteURL, typeName, saveOperation, absoluteOriginalContentsURL, error_)
 	return rv
 }
 
@@ -224,7 +224,7 @@ func (p_ PersistentDocument) SetIsDocumentEdited(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/undomanager
-func (p_ PersistentDocument) UndoManager() UndoManager /* not a class type */ {
+func (p_ PersistentDocument) UndoManager() objc.IObject /* cross-framework: UndoManager */ {
 	rv := objc.Send[UndoManager](p_.ID, objc.Sel("undoManager"))
 	return rv
 }
@@ -234,7 +234,7 @@ func (p_ PersistentDocument) UndoManager() UndoManager /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/undomanager
-func (p_ PersistentDocument) SetUndoManager(value UndoManager /* not a class type */) {
+func (p_ PersistentDocument) SetUndoManager(value objc.IObject /* cross-framework: UndoManager */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUndoManager:"), value)
 }
 

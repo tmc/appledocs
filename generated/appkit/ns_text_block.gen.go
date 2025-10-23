@@ -7,8 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +40,8 @@ type ITextBlock interface {
 	VerticalAlignment() unsafe.Pointer
 	SetVerticalAlignment(value unsafe.Pointer)
 	// methods:
-	BorderColorForEdge(edge int /* primitive/slice/pointer. */) IColor
-	RectForLayoutAtPointInRectTextContainerCharacterRange(startingPoint coregraphics.CGPoint, rect coregraphics.CGRect, textContainer ITextContainer, charRange foundation.objc.IObject /* cross-framework Range */) coregraphics.CGRect
+	BorderColorForEdge(edge RectEdge /* not a class type */) IColor
+	RectForLayoutAtPointInRectTextContainerCharacterRange(startingPoint objc.IObject /* cross-framework Point */, rect objc.IObject /* cross-framework Rect */, textContainer ITextContainer, charRange objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Rect */
 	SetValueTypeForDimension(val float64 /* primitive/slice/pointer. */, type_ TextBlockValueType /* not a class type */, dimension TextBlockDimension)
 	ValueForDimension(dimension TextBlockDimension) float64 /* primitive/slice/pointer. */
 	ValueTypeForDimension(dimension TextBlockDimension) TextBlockValueType /* not a class type */
@@ -106,7 +104,7 @@ func NewTextBlock() TextBlock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock/borderColor(for:)
-func (t_ TextBlock) BorderColorForEdge(edge int /* primitive/slice/pointer. */) IColor {
+func (t_ TextBlock) BorderColorForEdge(edge RectEdge /* not a class type */) IColor {
 	rv := objc.Send[Color](t_.ID, objc.Sel("borderColorForEdge:"), edge)
 	return rv
 }
@@ -116,8 +114,8 @@ func (t_ TextBlock) BorderColorForEdge(edge int /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock/rectForLayout(at:in:textContainer:characterRange:)
-func (t_ TextBlock) RectForLayoutAtPointInRectTextContainerCharacterRange(startingPoint coregraphics.CGPoint, rect coregraphics.CGRect, textContainer ITextContainer, charRange foundation.objc.IObject /* cross-framework Range */) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("rectForLayoutAtPoint:inRect:textContainer:characterRange:"), startingPoint, rect, textContainer, charRange)
+func (t_ TextBlock) RectForLayoutAtPointInRectTextContainerCharacterRange(startingPoint objc.IObject /* cross-framework Point */, rect objc.IObject /* cross-framework Rect */, textContainer ITextContainer, charRange objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](t_.ID, objc.Sel("rectForLayoutAtPoint:inRect:textContainer:characterRange:"), startingPoint, rect, textContainer, charRange)
 	return rv
 }
 

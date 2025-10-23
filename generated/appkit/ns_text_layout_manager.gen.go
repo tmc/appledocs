@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -53,8 +52,8 @@ type ITextLayoutManager interface {
 	SetTextSelections(value objc.IObject /* cross-framework: TextSelection */)
 	TextViewportLayoutController() objc.IObject /* cross-framework: TextViewportLayoutController */
 	SetTextViewportLayoutController(value objc.IObject /* cross-framework: TextViewportLayoutController */)
-	UsageBoundsForTextContainer() coregraphics.CGRect
-	SetUsageBoundsForTextContainer(value coregraphics.CGRect)
+	UsageBoundsForTextContainer() objc.IObject /* cross-framework: Rect */
+	SetUsageBoundsForTextContainer(value objc.IObject /* cross-framework: Rect */)
 	UsesFontLeading() bool /* primitive/slice/pointer. */
 	SetUsesFontLeading(value bool /* primitive/slice/pointer. */)
 	UsesHyphenation() bool /* primitive/slice/pointer. */
@@ -319,8 +318,8 @@ func (t_ TextLayoutManager) SetTextViewportLayoutController(value objc.IObject /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/usageboundsfortextcontainer
-func (t_ TextLayoutManager) UsageBoundsForTextContainer() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("usageBoundsForTextContainer"))
+func (t_ TextLayoutManager) UsageBoundsForTextContainer() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](t_.ID, objc.Sel("usageBoundsForTextContainer"))
 	return rv
 }
 
@@ -329,7 +328,7 @@ func (t_ TextLayoutManager) UsageBoundsForTextContainer() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/usageboundsfortextcontainer
-func (t_ TextLayoutManager) SetUsageBoundsForTextContainer(value coregraphics.CGRect) {
+func (t_ TextLayoutManager) SetUsageBoundsForTextContainer(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsageBoundsForTextContainer:"), value)
 }
 

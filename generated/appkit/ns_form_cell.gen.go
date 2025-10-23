@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FormCell] class.
@@ -38,12 +39,12 @@ type IFormCell interface {
 	SetIsOpaque(value bool /* primitive/slice/pointer. */)
 	PlaceholderAttributedString() objc.IObject /* cross-framework: AttributedString */
 	SetPlaceholderAttributedString(value objc.IObject /* cross-framework: AttributedString */)
-	PlaceholderString() string /* primitive/slice/pointer. */
-	SetPlaceholderString(value string /* primitive/slice/pointer. */)
+	PlaceholderString() objc.IObject /* cross-framework: NSString */
+	SetPlaceholderString(value objc.IObject /* cross-framework: NSString */)
 	PreferredTextFieldWidth() float64 /* primitive/slice/pointer. */
 	SetPreferredTextFieldWidth(value float64 /* primitive/slice/pointer. */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	TitleAlignment() TextAlignment
 	SetTitleAlignment(value TextAlignment)
 	TitleBaseWritingDirection() WritingDirection
@@ -188,8 +189,8 @@ func (f_ FormCell) SetPlaceholderAttributedString(value objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/placeholderstring
-func (f_ FormCell) PlaceholderString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("placeholderString"))
+func (f_ FormCell) PlaceholderString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("placeholderString"))
 	return rv
 }
 
@@ -198,8 +199,8 @@ func (f_ FormCell) PlaceholderString() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/placeholderstring
-func (f_ FormCell) SetPlaceholderString(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setPlaceholderString:"), objc.String(value))
+func (f_ FormCell) SetPlaceholderString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPlaceholderString:"), value)
 }
 
 
@@ -226,8 +227,8 @@ func (f_ FormCell) SetPreferredTextFieldWidth(value float64 /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/title
-func (f_ FormCell) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("title"))
+func (f_ FormCell) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -236,8 +237,8 @@ func (f_ FormCell) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsformcell/title
-func (f_ FormCell) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (f_ FormCell) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setTitle:"), value)
 }
 
 

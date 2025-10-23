@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,8 +31,8 @@ type _DraggingItemClass struct {
 type IDraggingItem interface {
 	objectivec.IObject
 	// properties:
-	DraggingFrame() coregraphics.CGRect
-	SetDraggingFrame(value coregraphics.CGRect)
+	DraggingFrame() objc.IObject /* cross-framework: Rect */
+	SetDraggingFrame(value objc.IObject /* cross-framework: Rect */)
 	ImageComponents() IDraggingImageComponent
 	SetImageComponents(value IDraggingImageComponent)
 	ImageComponentsProvider() IDraggingImageComponent
@@ -100,8 +99,8 @@ func NewDraggingItem() DraggingItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/draggingframe
-func (d_ DraggingItem) DraggingFrame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](d_.ID, objc.Sel("draggingFrame"))
+func (d_ DraggingItem) DraggingFrame() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](d_.ID, objc.Sel("draggingFrame"))
 	return rv
 }
 
@@ -110,7 +109,7 @@ func (d_ DraggingItem) DraggingFrame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/draggingframe
-func (d_ DraggingItem) SetDraggingFrame(value coregraphics.CGRect) {
+func (d_ DraggingItem) SetDraggingFrame(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDraggingFrame:"), value)
 }
 

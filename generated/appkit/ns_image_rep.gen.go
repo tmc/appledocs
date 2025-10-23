@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -51,13 +50,13 @@ type IImageRep interface {
 	SetIsOpaque(value bool /* primitive/slice/pointer. */)
 	PixelsWide() int /* primitive/slice/pointer. */
 	SetPixelsWide(value int /* primitive/slice/pointer. */)
-	Size() coregraphics.CGSize
-	SetSize(value coregraphics.CGSize)
+	Size() objc.IObject /* cross-framework: Size */
+	SetSize(value objc.IObject /* cross-framework: Size */)
 	// methods:
 	Draw() bool /* primitive/slice/pointer. */
-	DrawAtPoint(point coregraphics.CGPoint) bool /* primitive/slice/pointer. */
-	DrawInRect(rect coregraphics.CGRect) bool /* primitive/slice/pointer. */
-	DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect coregraphics.CGRect, srcSpacePortionRect coregraphics.CGRect, op CompositingOperation, requestedAlpha float64 /* primitive/slice/pointer. */, respectContextIsFlipped bool /* primitive/slice/pointer. */, hints foundation.IDictionary /* already interface */) bool /* primitive/slice/pointer. */
+	DrawAtPoint(point objc.IObject /* cross-framework Point */) bool /* primitive/slice/pointer. */
+	DrawInRect(rect objc.IObject /* cross-framework Rect */) bool /* primitive/slice/pointer. */
+	DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect objc.IObject /* cross-framework Rect */, srcSpacePortionRect objc.IObject /* cross-framework Rect */, op CompositingOperation, requestedAlpha float64 /* primitive/slice/pointer. */, respectContextIsFlipped bool /* primitive/slice/pointer. */, hints foundation.IDictionary /* already interface */) bool /* primitive/slice/pointer. */
 }
 
 // A semiabstract superclass that provides subclasses that you use to draw an image from a particular type of source data.
@@ -117,7 +116,7 @@ func NewImageRep() ImageRep {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/init(coder:)
-func NewImageRepWithCoder(coder Coder /* not a class type */) ImageRep {
+func NewImageRepWithCoder(coder objc.IObject /* cross-framework Coder */) ImageRep {
 	instance := getImageRepClass().Alloc()
 	rv := objc.Send[ImageRep](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -129,7 +128,7 @@ func NewImageRepWithCoder(coder Coder /* not a class type */) ImageRep {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/init(contentsOf:)
-func NewImageRepWithContentsOfURL(url foundation.objc.IObject /* cross-framework URL */) ImageRep {
+func NewImageRepWithContentsOfURL(url objc.IObject /* cross-framework NSURL */) ImageRep {
 	rv := objc.Send[ImageRep](objc.ID(getImageRepClass().class), objc.Sel("imageRepWithContentsOfURL:"), url)
 	return rv
 }
@@ -160,7 +159,7 @@ func (ic _ImageRepClass) CanInitWithPasteboard(pasteboard IPasteboard) bool /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/canInit(with:)-6zv56
-func (ic _ImageRepClass) CanInitWithData(data foundation.objc.IObject /* cross-framework NSData */) bool /* primitive/slice/pointer. */ {
+func (ic _ImageRepClass) CanInitWithData(data objc.IObject /* cross-framework NSData */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("canInitWithData:"), data)
 	return rv
 }
@@ -170,7 +169,7 @@ func (ic _ImageRepClass) CanInitWithData(data foundation.objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/class(for:)
-func (ic _ImageRepClass) ImageRepClassForData(data foundation.objc.IObject /* cross-framework NSData */) objc.Class {
+func (ic _ImageRepClass) ImageRepClassForData(data objc.IObject /* cross-framework NSData */) objc.Class {
 	rv := objc.Send[objc.Class](objc.ID(ic.class), objc.Sel("imageRepClassForData:"), data)
 	return rv
 }
@@ -180,8 +179,8 @@ func (ic _ImageRepClass) ImageRepClassForData(data foundation.objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/class(forFileType:)
-func (ic _ImageRepClass) ImageRepClassForFileType(type_ string /* primitive/slice/pointer. */) objc.Class {
-	rv := objc.Send[objc.Class](objc.ID(ic.class), objc.Sel("imageRepClassForFileType:"), objc.String(type_))
+func (ic _ImageRepClass) ImageRepClassForFileType(type_ objc.IObject /* cross-framework NSString */) objc.Class {
+	rv := objc.Send[objc.Class](objc.ID(ic.class), objc.Sel("imageRepClassForFileType:"), type_)
 	return rv
 }
 
@@ -200,8 +199,8 @@ func (ic _ImageRepClass) ImageRepClassForPasteboardType(type_ objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/class(forType:)
-func (ic _ImageRepClass) ImageRepClassForType(type_ string /* primitive/slice/pointer. */) objc.Class {
-	rv := objc.Send[objc.Class](objc.ID(ic.class), objc.Sel("imageRepClassForType:"), objc.String(type_))
+func (ic _ImageRepClass) ImageRepClassForType(type_ objc.IObject /* cross-framework NSString */) objc.Class {
+	rv := objc.Send[objc.Class](objc.ID(ic.class), objc.Sel("imageRepClassForType:"), type_)
 	return rv
 }
 
@@ -230,8 +229,8 @@ func (ic _ImageRepClass) ImageRepsWithPasteboard(pasteboard IPasteboard) []Image
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/imageReps(withContentsOfFile:)
-func (ic _ImageRepClass) ImageRepsWithContentsOfFile(filename string /* primitive/slice/pointer. */) []ImageRep /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]ImageRep](objc.ID(ic.class), objc.Sel("imageRepsWithContentsOfFile:"), objc.String(filename))
+func (ic _ImageRepClass) ImageRepsWithContentsOfFile(filename objc.IObject /* cross-framework NSString */) []ImageRep /* primitive/slice/pointer. */ {
+	rv := objc.Send[[]ImageRep](objc.ID(ic.class), objc.Sel("imageRepsWithContentsOfFile:"), filename)
 	return rv
 }
 
@@ -260,7 +259,7 @@ func (ic _ImageRepClass) ImageUnfilteredPasteboardTypes() []string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/init(contentsOf:)
-func (ic _ImageRepClass) ImageRepWithContentsOfURL(url foundation.objc.IObject /* cross-framework URL */) IImageRep {
+func (ic _ImageRepClass) ImageRepWithContentsOfURL(url objc.IObject /* cross-framework NSURL */) IImageRep {
 	rv := objc.Send[ImageRep](objc.ID(ic.class), objc.Sel("imageRepWithContentsOfURL:"), url)
 	return rv
 }
@@ -299,7 +298,7 @@ func (i_ ImageRep) Draw() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/draw(at:)
-func (i_ ImageRep) DrawAtPoint(point coregraphics.CGPoint) bool /* primitive/slice/pointer. */ {
+func (i_ ImageRep) DrawAtPoint(point objc.IObject /* cross-framework Point */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("drawAtPoint:"), point)
 	return rv
 }
@@ -309,7 +308,7 @@ func (i_ ImageRep) DrawAtPoint(point coregraphics.CGPoint) bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/draw(in:)
-func (i_ ImageRep) DrawInRect(rect coregraphics.CGRect) bool /* primitive/slice/pointer. */ {
+func (i_ ImageRep) DrawInRect(rect objc.IObject /* cross-framework Rect */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("drawInRect:"), rect)
 	return rv
 }
@@ -319,7 +318,7 @@ func (i_ ImageRep) DrawInRect(rect coregraphics.CGRect) bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/draw(in:from:operation:fraction:respectFlipped:hints:)
-func (i_ ImageRep) DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect coregraphics.CGRect, srcSpacePortionRect coregraphics.CGRect, op CompositingOperation, requestedAlpha float64 /* primitive/slice/pointer. */, respectContextIsFlipped bool /* primitive/slice/pointer. */, hints foundation.IDictionary /* already interface */) bool /* primitive/slice/pointer. */ {
+func (i_ ImageRep) DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect objc.IObject /* cross-framework Rect */, srcSpacePortionRect objc.IObject /* cross-framework Rect */, op CompositingOperation, requestedAlpha float64 /* primitive/slice/pointer. */, respectContextIsFlipped bool /* primitive/slice/pointer. */, hints foundation.IDictionary /* already interface */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("drawInRect:fromRect:operation:fraction:respectFlipped:hints:"), dstSpacePortionRect, srcSpacePortionRect, op, requestedAlpha, respectContextIsFlipped, hints)
 	return rv
 }
@@ -510,8 +509,8 @@ func (i_ ImageRep) SetPixelsWide(value int /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/size
-func (i_ ImageRep) Size() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](i_.ID, objc.Sel("size"))
+func (i_ ImageRep) Size() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](i_.ID, objc.Sel("size"))
 	return rv
 }
 
@@ -520,7 +519,7 @@ func (i_ ImageRep) Size() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/size
-func (i_ ImageRep) SetSize(value coregraphics.CGSize) {
+func (i_ ImageRep) SetSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSize:"), value)
 }
 

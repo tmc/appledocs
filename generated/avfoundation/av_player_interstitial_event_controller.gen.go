@@ -33,8 +33,8 @@ type IPlayerInterstitialEventController interface {
 	// properties:
 	Events() IAVPlayerInterstitialEvent
 	SetEvents(value IAVPlayerInterstitialEvent)
-	LocalizedStringsBundle() Bundle /* not a class type */
-	SetLocalizedStringsBundle(value Bundle /* not a class type */)
+	LocalizedStringsBundle() objc.IObject /* cross-framework: Bundle */
+	SetLocalizedStringsBundle(value objc.IObject /* cross-framework: Bundle */)
 	LocalizedStringsTableName() objc.IObject /* cross-framework: NSString */
 	SetLocalizedStringsTableName(value objc.IObject /* cross-framework: NSString */)
 	// methods:
@@ -118,7 +118,7 @@ func (p_ PlayerInterstitialEventController) SetEvents(value IAVPlayerInterstitia
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/localizedstringsbundle
-func (p_ PlayerInterstitialEventController) LocalizedStringsBundle() Bundle /* not a class type */ {
+func (p_ PlayerInterstitialEventController) LocalizedStringsBundle() objc.IObject /* cross-framework: Bundle */ {
 	rv := objc.Send[Bundle](p_.ID, objc.Sel("localizedStringsBundle"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (p_ PlayerInterstitialEventController) LocalizedStringsBundle() Bundle /* n
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/localizedstringsbundle
-func (p_ PlayerInterstitialEventController) SetLocalizedStringsBundle(value Bundle /* not a class type */) {
+func (p_ PlayerInterstitialEventController) SetLocalizedStringsBundle(value objc.IObject /* cross-framework: Bundle */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedStringsBundle:"), value)
 }
 

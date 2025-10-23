@@ -6,7 +6,6 @@ import (
 	"unsafe"
 
 	"github.com/ebitengine/purego"
-	coregraphics "github.com/tmc/appledocs/generated/coregraphics"
 )
 
 
@@ -16,13 +15,13 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_NSAccessibilityActionDescription func(unsafe.Pointer) unsafe.Pointer
+	_NSAccessibilityActionDescription func(AccessibilityActionName) unsafe.Pointer
 	_NSAccessibilityRoleDescriptionForUIElement func(unsafe.Pointer) unsafe.Pointer
 	_NSAccessibilityRoleDescription func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSAccessibilityPostNotification func(unsafe.Pointer, unsafe.Pointer)
-	_NSAccessibilityPostNotificationWithUserInfo func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_NSAccessibilityPointInView func(unsafe.Pointer, coregraphics.CGPoint) coregraphics.CGPoint
-	_NSAccessibilityFrameInView func(unsafe.Pointer, coregraphics.CGRect) coregraphics.CGRect
+	_NSAccessibilityPostNotification func(unsafe.Pointer, AccessibilityNotificationName)
+	_NSAccessibilityPostNotificationWithUserInfo func(unsafe.Pointer, AccessibilityNotificationName, unsafe.Pointer)
+	_NSAccessibilityPointInView func(unsafe.Pointer, Point) Point
+	_NSAccessibilityFrameInView func(unsafe.Pointer, Rect) Rect
 	_NSAccessibilityUnignoredDescendant func(unsafe.Pointer) unsafe.Pointer
 	_NSApplicationLoad func() bool
 	_NSAvailableWindowDepths func() unsafe.Pointer
@@ -30,62 +29,62 @@ var (
 	_NSBeginAlertSheet func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_NSBeginCriticalAlertSheet func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_NSBeginInformationalAlertSheet func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_NSBestDepth func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool, unsafe.Pointer) unsafe.Pointer
-	_NSNumberOfColorComponents func(unsafe.Pointer) unsafe.Pointer
-	_NSConvertGlyphsToPackedGlyphs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSCopyBits func(unsafe.Pointer, coregraphics.CGRect, coregraphics.CGPoint)
+	_NSBestDepth func(ColorSpaceName, int64, int64, bool, unsafe.Pointer) unsafe.Pointer
+	_NSNumberOfColorComponents func(ColorSpaceName) int64
+	_NSConvertGlyphsToPackedGlyphs func(unsafe.Pointer, int64, unsafe.Pointer, unsafe.Pointer) int64
+	_NSCopyBits func(int64, Rect, Point)
 	_NSDisableScreenUpdates func()
-	_NSDottedFrameRect func(coregraphics.CGRect)
-	_NSDrawButton func(coregraphics.CGRect, coregraphics.CGRect)
-	_NSDrawColorTiledRects func(coregraphics.CGRect, coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) coregraphics.CGRect
-	_NSDrawDarkBezel func(coregraphics.CGRect, coregraphics.CGRect)
-	_NSDrawGrayBezel func(coregraphics.CGRect, coregraphics.CGRect)
-	_NSDrawGroove func(coregraphics.CGRect, coregraphics.CGRect)
-	_NSDrawLightBezel func(coregraphics.CGRect, coregraphics.CGRect)
-	_NSDrawNinePartImage func(coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, float64, bool)
-	_NSDrawThreePartImage func(coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool, unsafe.Pointer, float64, bool)
-	_NSDrawTiledRects func(coregraphics.CGRect, coregraphics.CGRect, unsafe.Pointer, []float64, unsafe.Pointer) coregraphics.CGRect
-	_NSDrawWhiteBezel func(coregraphics.CGRect, coregraphics.CGRect)
-	_NSDrawWindowBackground func(coregraphics.CGRect)
+	_NSDottedFrameRect func(Rect)
+	_NSDrawButton func(Rect, Rect)
+	_NSDrawColorTiledRects func(Rect, Rect, unsafe.Pointer, unsafe.Pointer, int64) Rect
+	_NSDrawDarkBezel func(Rect, Rect)
+	_NSDrawGrayBezel func(Rect, Rect)
+	_NSDrawGroove func(Rect, Rect)
+	_NSDrawLightBezel func(Rect, Rect)
+	_NSDrawNinePartImage func(Rect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, float64, bool)
+	_NSDrawThreePartImage func(Rect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool, unsafe.Pointer, float64, bool)
+	_NSDrawTiledRects func(Rect, Rect, unsafe.Pointer, []float64, int64) Rect
+	_NSDrawWhiteBezel func(Rect, Rect)
+	_NSDrawWindowBackground func(Rect)
 	_NSEnableScreenUpdates func()
-	_NSEraseRect func(coregraphics.CGRect)
+	_NSEraseRect func(Rect)
 	_NSSetFocusRingStyle func(unsafe.Pointer)
-	_NSFrameRect func(coregraphics.CGRect)
-	_NSFrameRectWithWidth func(coregraphics.CGRect, float64)
-	_NSFrameRectWithWidthUsingOperation func(coregraphics.CGRect, float64, unsafe.Pointer)
+	_NSFrameRect func(Rect)
+	_NSFrameRectWithWidth func(Rect, float64)
+	_NSFrameRectWithWidthUsingOperation func(Rect, float64, unsafe.Pointer)
 	_NSGetCriticalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSGetInformationalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSGetWindowServerMemory func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSHighlightRect func(coregraphics.CGRect)
+	_NSGetWindowServerMemory func(int64, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int64
+	_NSHighlightRect func(Rect)
 	_NSIsControllerMarker func(unsafe.Pointer) bool
 	_NSOpenGLGetOption func(unsafe.Pointer, unsafe.Pointer)
 	_NSOpenGLGetVersion func(unsafe.Pointer, unsafe.Pointer)
 	_NSOpenGLSetOption func(unsafe.Pointer, unsafe.Pointer)
-	_NSCreateFileContentsPboardType func(unsafe.Pointer) unsafe.Pointer
-	_NSCreateFilenamePboardType func(unsafe.Pointer) unsafe.Pointer
-	_NSGetFileType func(unsafe.Pointer) unsafe.Pointer
-	_NSGetFileTypes func(unsafe.Pointer) unsafe.Pointer
-	_NSReadPixel func(coregraphics.CGPoint) unsafe.Pointer
-	_NSRectClip func(coregraphics.CGRect)
-	_NSRectClipList func(unsafe.Pointer, unsafe.Pointer)
-	_NSRectFill func(coregraphics.CGRect)
-	_NSRectFillList func(unsafe.Pointer, unsafe.Pointer)
-	_NSRectFillListUsingOperation func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_NSRectFillListWithColors func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_NSRectFillListWithColorsUsingOperation func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_NSRectFillListWithGrays func(unsafe.Pointer, []float64, unsafe.Pointer)
-	_NSRectFillUsingOperation func(coregraphics.CGRect, unsafe.Pointer)
+	_NSCreateFileContentsPboardType func(unsafe.Pointer) PasteboardType
+	_NSCreateFilenamePboardType func(unsafe.Pointer) PasteboardType
+	_NSGetFileType func(PasteboardType) unsafe.Pointer
+	_NSGetFileTypes func([]unsafe.Pointer) []unsafe.Pointer
+	_NSReadPixel func(Point) unsafe.Pointer
+	_NSRectClip func(Rect)
+	_NSRectClipList func(unsafe.Pointer, int64)
+	_NSRectFill func(Rect)
+	_NSRectFillList func(unsafe.Pointer, int64)
+	_NSRectFillListUsingOperation func(unsafe.Pointer, int64, unsafe.Pointer)
+	_NSRectFillListWithColors func(unsafe.Pointer, unsafe.Pointer, int64)
+	_NSRectFillListWithColorsUsingOperation func(unsafe.Pointer, unsafe.Pointer, int64, unsafe.Pointer)
+	_NSRectFillListWithGrays func(unsafe.Pointer, []float64, int64)
+	_NSRectFillUsingOperation func(Rect, unsafe.Pointer)
 	_NSReleaseAlertPanel func(unsafe.Pointer)
-	_NSRunCriticalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSRunInformationalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSSetShowsServicesMenuItem func(unsafe.Pointer, bool) unsafe.Pointer
+	_NSRunCriticalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int64
+	_NSRunInformationalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int64
+	_NSSetShowsServicesMenuItem func(unsafe.Pointer, bool) int64
 	_NSShowsServicesMenuItem func(unsafe.Pointer) bool
 	_NSUpdateDynamicServices func()
-	_NSBitsPerPixelFromDepth func(unsafe.Pointer) unsafe.Pointer
-	_NSBitsPerSampleFromDepth func(unsafe.Pointer) unsafe.Pointer
-	_NSColorSpaceFromDepth func(unsafe.Pointer) unsafe.Pointer
+	_NSBitsPerPixelFromDepth func(unsafe.Pointer) int64
+	_NSBitsPerSampleFromDepth func(unsafe.Pointer) int64
+	_NSColorSpaceFromDepth func(unsafe.Pointer) ColorSpaceName
 	_NSPlanarFromDepth func(unsafe.Pointer) bool
-	_NSWindowList func(unsafe.Pointer, unsafe.Pointer)
+	_NSWindowList func(int64, int64)
 )
 
 func init() {
@@ -185,7 +184,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/Action/description
-func NSAccessibilityActionDescription(action unsafe.Pointer) unsafe.Pointer {
+func NSAccessibilityActionDescription(action AccessibilityActionName) unsafe.Pointer {
 	return _NSAccessibilityActionDescription(action)
 }
 
@@ -215,7 +214,7 @@ func NSAccessibilityRoleDescription(role unsafe.Pointer, subrole unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/post(element:notification:)
-func NSAccessibilityPostNotification(element unsafe.Pointer, notification unsafe.Pointer) {
+func NSAccessibilityPostNotification(element unsafe.Pointer, notification AccessibilityNotificationName) {
 	_NSAccessibilityPostNotification(element, notification)
 }
 
@@ -226,7 +225,7 @@ func NSAccessibilityPostNotification(element unsafe.Pointer, notification unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/post(element:notification:userInfo:)
-func NSAccessibilityPostNotificationWithUserInfo(element unsafe.Pointer, notification unsafe.Pointer, userInfo unsafe.Pointer) {
+func NSAccessibilityPostNotificationWithUserInfo(element unsafe.Pointer, notification AccessibilityNotificationName, userInfo unsafe.Pointer) {
 	_NSAccessibilityPostNotificationWithUserInfo(element, notification, userInfo)
 }
 
@@ -237,7 +236,7 @@ func NSAccessibilityPostNotificationWithUserInfo(element unsafe.Pointer, notific
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/screenPoint(fromView:point:)
-func NSAccessibilityPointInView(parentView unsafe.Pointer, point coregraphics.CGPoint) coregraphics.CGPoint {
+func NSAccessibilityPointInView(parentView unsafe.Pointer, point Point) Point {
 	return _NSAccessibilityPointInView(parentView, point)
 }
 
@@ -248,7 +247,7 @@ func NSAccessibilityPointInView(parentView unsafe.Pointer, point coregraphics.CG
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/screenRect(fromView:rect:)
-func NSAccessibilityFrameInView(parentView unsafe.Pointer, frame coregraphics.CGRect) coregraphics.CGRect {
+func NSAccessibilityFrameInView(parentView unsafe.Pointer, frame Rect) Rect {
 	return _NSAccessibilityFrameInView(parentView, frame)
 }
 
@@ -337,7 +336,7 @@ func NSBeginInformationalAlertSheet(title unsafe.Pointer, defaultButton unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBestDepth
-func NSBestDepth(colorSpace unsafe.Pointer, bps unsafe.Pointer, bpp unsafe.Pointer, planar bool, exactMatch unsafe.Pointer) unsafe.Pointer {
+func NSBestDepth(colorSpace ColorSpaceName, bps int64, bpp int64, planar bool, exactMatch unsafe.Pointer) unsafe.Pointer {
 	return _NSBestDepth(colorSpace, bps, bpp, planar, exactMatch)
 }
 
@@ -347,7 +346,7 @@ func NSBestDepth(colorSpace unsafe.Pointer, bps unsafe.Pointer, bpp unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpaceName/numberOfColorComponents
-func NSNumberOfColorComponents(colorSpaceName unsafe.Pointer) unsafe.Pointer {
+func NSNumberOfColorComponents(colorSpaceName ColorSpaceName) int64 {
 	return _NSNumberOfColorComponents(colorSpaceName)
 }
 
@@ -360,7 +359,7 @@ func NSNumberOfColorComponents(colorSpaceName unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSConvertGlyphsToPackedGlyphs(_:_:_:_:)
-func NSConvertGlyphsToPackedGlyphs(glBuf unsafe.Pointer, count unsafe.Pointer, packing unsafe.Pointer, packedGlyphs unsafe.Pointer) unsafe.Pointer {
+func NSConvertGlyphsToPackedGlyphs(glBuf unsafe.Pointer, count int64, packing unsafe.Pointer, packedGlyphs unsafe.Pointer) int64 {
 	return _NSConvertGlyphsToPackedGlyphs(glBuf, count, packing, packedGlyphs)
 }
 
@@ -373,7 +372,7 @@ func NSConvertGlyphsToPackedGlyphs(glBuf unsafe.Pointer, count unsafe.Pointer, p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCopyBits(_:_:_:)
-func NSCopyBits(srcGState unsafe.Pointer, srcRect coregraphics.CGRect, destPoint coregraphics.CGPoint) {
+func NSCopyBits(srcGState int64, srcRect Rect, destPoint Point) {
 	_NSCopyBits(srcGState, srcRect, destPoint)
 }
 
@@ -396,7 +395,7 @@ func NSDisableScreenUpdates() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDottedFrameRect(_:)
-func NSDottedFrameRect(rect coregraphics.CGRect) {
+func NSDottedFrameRect(rect Rect) {
 	_NSDottedFrameRect(rect)
 }
 
@@ -406,7 +405,7 @@ func NSDottedFrameRect(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawButton(_:_:)
-func NSDrawButton(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
+func NSDrawButton(rect Rect, clipRect Rect) {
 	_NSDrawButton(rect, clipRect)
 }
 
@@ -416,7 +415,7 @@ func NSDrawButton(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawColorTiledRects(_:_:_:_:_:)
-func NSDrawColorTiledRects(boundsRect coregraphics.CGRect, clipRect coregraphics.CGRect, sides unsafe.Pointer, colors unsafe.Pointer, count unsafe.Pointer) coregraphics.CGRect {
+func NSDrawColorTiledRects(boundsRect Rect, clipRect Rect, sides unsafe.Pointer, colors unsafe.Pointer, count int64) Rect {
 	return _NSDrawColorTiledRects(boundsRect, clipRect, sides, colors, count)
 }
 
@@ -426,7 +425,7 @@ func NSDrawColorTiledRects(boundsRect coregraphics.CGRect, clipRect coregraphics
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawDarkBezel(_:_:)
-func NSDrawDarkBezel(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
+func NSDrawDarkBezel(rect Rect, clipRect Rect) {
 	_NSDrawDarkBezel(rect, clipRect)
 }
 
@@ -436,7 +435,7 @@ func NSDrawDarkBezel(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawGrayBezel(_:_:)
-func NSDrawGrayBezel(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
+func NSDrawGrayBezel(rect Rect, clipRect Rect) {
 	_NSDrawGrayBezel(rect, clipRect)
 }
 
@@ -446,7 +445,7 @@ func NSDrawGrayBezel(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawGroove(_:_:)
-func NSDrawGroove(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
+func NSDrawGroove(rect Rect, clipRect Rect) {
 	_NSDrawGroove(rect, clipRect)
 }
 
@@ -456,7 +455,7 @@ func NSDrawGroove(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawLightBezel(_:_:)
-func NSDrawLightBezel(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
+func NSDrawLightBezel(rect Rect, clipRect Rect) {
 	_NSDrawLightBezel(rect, clipRect)
 }
 
@@ -467,7 +466,7 @@ func NSDrawLightBezel(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawNinePartImage(_:_:_:_:_:_:_:_:_:_:_:_:_:)
-func NSDrawNinePartImage(frame coregraphics.CGRect, topLeftCorner unsafe.Pointer, topEdgeFill unsafe.Pointer, topRightCorner unsafe.Pointer, leftEdgeFill unsafe.Pointer, centerFill unsafe.Pointer, rightEdgeFill unsafe.Pointer, bottomLeftCorner unsafe.Pointer, bottomEdgeFill unsafe.Pointer, bottomRightCorner unsafe.Pointer, op unsafe.Pointer, alphaFraction float64, flipped bool) {
+func NSDrawNinePartImage(frame Rect, topLeftCorner unsafe.Pointer, topEdgeFill unsafe.Pointer, topRightCorner unsafe.Pointer, leftEdgeFill unsafe.Pointer, centerFill unsafe.Pointer, rightEdgeFill unsafe.Pointer, bottomLeftCorner unsafe.Pointer, bottomEdgeFill unsafe.Pointer, bottomRightCorner unsafe.Pointer, op unsafe.Pointer, alphaFraction float64, flipped bool) {
 	_NSDrawNinePartImage(frame, topLeftCorner, topEdgeFill, topRightCorner, leftEdgeFill, centerFill, rightEdgeFill, bottomLeftCorner, bottomEdgeFill, bottomRightCorner, op, alphaFraction, flipped)
 }
 
@@ -478,7 +477,7 @@ func NSDrawNinePartImage(frame coregraphics.CGRect, topLeftCorner unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawThreePartImage(_:_:_:_:_:_:_:_:)
-func NSDrawThreePartImage(frame coregraphics.CGRect, startCap unsafe.Pointer, centerFill unsafe.Pointer, endCap unsafe.Pointer, vertical bool, op unsafe.Pointer, alphaFraction float64, flipped bool) {
+func NSDrawThreePartImage(frame Rect, startCap unsafe.Pointer, centerFill unsafe.Pointer, endCap unsafe.Pointer, vertical bool, op unsafe.Pointer, alphaFraction float64, flipped bool) {
 	_NSDrawThreePartImage(frame, startCap, centerFill, endCap, vertical, op, alphaFraction, flipped)
 }
 
@@ -488,7 +487,7 @@ func NSDrawThreePartImage(frame coregraphics.CGRect, startCap unsafe.Pointer, ce
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawTiledRects(_:_:_:_:_:)
-func NSDrawTiledRects(boundsRect coregraphics.CGRect, clipRect coregraphics.CGRect, sides unsafe.Pointer, grays []float64, count unsafe.Pointer) coregraphics.CGRect {
+func NSDrawTiledRects(boundsRect Rect, clipRect Rect, sides unsafe.Pointer, grays []float64, count int64) Rect {
 	return _NSDrawTiledRects(boundsRect, clipRect, sides, grays, count)
 }
 
@@ -498,7 +497,7 @@ func NSDrawTiledRects(boundsRect coregraphics.CGRect, clipRect coregraphics.CGRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawWhiteBezel(_:_:)
-func NSDrawWhiteBezel(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
+func NSDrawWhiteBezel(rect Rect, clipRect Rect) {
 	_NSDrawWhiteBezel(rect, clipRect)
 }
 
@@ -508,7 +507,7 @@ func NSDrawWhiteBezel(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawWindowBackground(_:)
-func NSDrawWindowBackground(rect coregraphics.CGRect) {
+func NSDrawWindowBackground(rect Rect) {
 	_NSDrawWindowBackground(rect)
 }
 
@@ -531,7 +530,7 @@ func NSEnableScreenUpdates() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEraseRect(_:)
-func NSEraseRect(rect coregraphics.CGRect) {
+func NSEraseRect(rect Rect) {
 	_NSEraseRect(rect)
 }
 
@@ -551,7 +550,7 @@ func NSSetFocusRingStyle(placement unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFrameRect
-func NSFrameRect(rect coregraphics.CGRect) {
+func NSFrameRect(rect Rect) {
 	_NSFrameRect(rect)
 }
 
@@ -561,7 +560,7 @@ func NSFrameRect(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFrameRectWithWidth
-func NSFrameRectWithWidth(rect coregraphics.CGRect, frameWidth float64) {
+func NSFrameRectWithWidth(rect Rect, frameWidth float64) {
 	_NSFrameRectWithWidth(rect, frameWidth)
 }
 
@@ -571,7 +570,7 @@ func NSFrameRectWithWidth(rect coregraphics.CGRect, frameWidth float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFrameRectWithWidthUsingOperation
-func NSFrameRectWithWidthUsingOperation(rect coregraphics.CGRect, frameWidth float64, op unsafe.Pointer) {
+func NSFrameRectWithWidthUsingOperation(rect Rect, frameWidth float64, op unsafe.Pointer) {
 	_NSFrameRectWithWidthUsingOperation(rect, frameWidth, op)
 }
 
@@ -610,7 +609,7 @@ func NSGetInformationalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGetWindowServerMemory(_:_:_:_:)
-func NSGetWindowServerMemory(context unsafe.Pointer, virtualMemory unsafe.Pointer, windowBackingMemory unsafe.Pointer, windowDumpString unsafe.Pointer) unsafe.Pointer {
+func NSGetWindowServerMemory(context int64, virtualMemory unsafe.Pointer, windowBackingMemory unsafe.Pointer, windowDumpString unsafe.Pointer) int64 {
 	return _NSGetWindowServerMemory(context, virtualMemory, windowBackingMemory, windowDumpString)
 }
 
@@ -623,7 +622,7 @@ func NSGetWindowServerMemory(context unsafe.Pointer, virtualMemory unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHighlightRect
-func NSHighlightRect(rect coregraphics.CGRect) {
+func NSHighlightRect(rect Rect) {
 	_NSHighlightRect(rect)
 }
 
@@ -682,7 +681,7 @@ func NSOpenGLSetOption(pname unsafe.Pointer, param unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/PasteboardType/fileContentsType(forPathExtension:)
-func NSCreateFileContentsPboardType(fileType unsafe.Pointer) unsafe.Pointer {
+func NSCreateFileContentsPboardType(fileType unsafe.Pointer) PasteboardType {
 	return _NSCreateFileContentsPboardType(fileType)
 }
 
@@ -692,7 +691,7 @@ func NSCreateFileContentsPboardType(fileType unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/PasteboardType/fileNameType(forPathExtension:)
-func NSCreateFilenamePboardType(fileType unsafe.Pointer) unsafe.Pointer {
+func NSCreateFilenamePboardType(fileType unsafe.Pointer) PasteboardType {
 	return _NSCreateFilenamePboardType(fileType)
 }
 
@@ -702,7 +701,7 @@ func NSCreateFilenamePboardType(fileType unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/PasteboardType/representedPathExtension
-func NSGetFileType(pboardType unsafe.Pointer) unsafe.Pointer {
+func NSGetFileType(pboardType PasteboardType) unsafe.Pointer {
 	return _NSGetFileType(pboardType)
 }
 
@@ -712,7 +711,7 @@ func NSGetFileType(pboardType unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/PasteboardType/representedPathExtensions(from:)
-func NSGetFileTypes(pboardTypes unsafe.Pointer) unsafe.Pointer {
+func NSGetFileTypes(pboardTypes []unsafe.Pointer) []unsafe.Pointer {
 	return _NSGetFileTypes(pboardTypes)
 }
 
@@ -725,7 +724,7 @@ func NSGetFileTypes(pboardTypes unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSReadPixel(_:)
-func NSReadPixel(passedPoint coregraphics.CGPoint) unsafe.Pointer {
+func NSReadPixel(passedPoint Point) unsafe.Pointer {
 	return _NSReadPixel(passedPoint)
 }
 
@@ -735,7 +734,7 @@ func NSReadPixel(passedPoint coregraphics.CGPoint) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectClip
-func NSRectClip(rect coregraphics.CGRect) {
+func NSRectClip(rect Rect) {
 	_NSRectClip(rect)
 }
 
@@ -745,7 +744,7 @@ func NSRectClip(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectClipList
-func NSRectClipList(rects unsafe.Pointer, count unsafe.Pointer) {
+func NSRectClipList(rects unsafe.Pointer, count int64) {
 	_NSRectClipList(rects, count)
 }
 
@@ -755,7 +754,7 @@ func NSRectClipList(rects unsafe.Pointer, count unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectFill
-func NSRectFill(rect coregraphics.CGRect) {
+func NSRectFill(rect Rect) {
 	_NSRectFill(rect)
 }
 
@@ -765,7 +764,7 @@ func NSRectFill(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectFillList
-func NSRectFillList(rects unsafe.Pointer, count unsafe.Pointer) {
+func NSRectFillList(rects unsafe.Pointer, count int64) {
 	_NSRectFillList(rects, count)
 }
 
@@ -775,7 +774,7 @@ func NSRectFillList(rects unsafe.Pointer, count unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectFillListUsingOperation
-func NSRectFillListUsingOperation(rects unsafe.Pointer, count unsafe.Pointer, op unsafe.Pointer) {
+func NSRectFillListUsingOperation(rects unsafe.Pointer, count int64, op unsafe.Pointer) {
 	_NSRectFillListUsingOperation(rects, count, op)
 }
 
@@ -785,7 +784,7 @@ func NSRectFillListUsingOperation(rects unsafe.Pointer, count unsafe.Pointer, op
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectFillListWithColors
-func NSRectFillListWithColors(rects unsafe.Pointer, colors unsafe.Pointer, num unsafe.Pointer) {
+func NSRectFillListWithColors(rects unsafe.Pointer, colors unsafe.Pointer, num int64) {
 	_NSRectFillListWithColors(rects, colors, num)
 }
 
@@ -795,7 +794,7 @@ func NSRectFillListWithColors(rects unsafe.Pointer, colors unsafe.Pointer, num u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectFillListWithColorsUsingOperation
-func NSRectFillListWithColorsUsingOperation(rects unsafe.Pointer, colors unsafe.Pointer, num unsafe.Pointer, op unsafe.Pointer) {
+func NSRectFillListWithColorsUsingOperation(rects unsafe.Pointer, colors unsafe.Pointer, num int64, op unsafe.Pointer) {
 	_NSRectFillListWithColorsUsingOperation(rects, colors, num, op)
 }
 
@@ -805,7 +804,7 @@ func NSRectFillListWithColorsUsingOperation(rects unsafe.Pointer, colors unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectFillListWithGrays
-func NSRectFillListWithGrays(rects unsafe.Pointer, grays []float64, num unsafe.Pointer) {
+func NSRectFillListWithGrays(rects unsafe.Pointer, grays []float64, num int64) {
 	_NSRectFillListWithGrays(rects, grays, num)
 }
 
@@ -815,7 +814,7 @@ func NSRectFillListWithGrays(rects unsafe.Pointer, grays []float64, num unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectFillUsingOperation
-func NSRectFillUsingOperation(rect coregraphics.CGRect, op unsafe.Pointer) {
+func NSRectFillUsingOperation(rect Rect, op unsafe.Pointer) {
 	_NSRectFillUsingOperation(rect, op)
 }
 
@@ -841,7 +840,7 @@ func NSReleaseAlertPanel(panel unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunCriticalAlertPanel
-func NSRunCriticalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) unsafe.Pointer {
+func NSRunCriticalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) int64 {
 	return _NSRunCriticalAlertPanel(title, msgFormat, defaultButton, alternateButton, otherButton)
 }
 
@@ -854,7 +853,7 @@ func NSRunCriticalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, def
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunInformationalAlertPanel
-func NSRunInformationalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) unsafe.Pointer {
+func NSRunInformationalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) int64 {
 	return _NSRunInformationalAlertPanel(title, msgFormat, defaultButton, alternateButton, otherButton)
 }
 
@@ -864,7 +863,7 @@ func NSRunInformationalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSetShowsServicesMenuItem(_:_:)
-func NSSetShowsServicesMenuItem(itemName unsafe.Pointer, enabled bool) unsafe.Pointer {
+func NSSetShowsServicesMenuItem(itemName unsafe.Pointer, enabled bool) int64 {
 	return _NSSetShowsServicesMenuItem(itemName, enabled)
 }
 
@@ -894,7 +893,7 @@ func NSUpdateDynamicServices() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/Depth/bitsPerPixel
-func NSBitsPerPixelFromDepth(depth unsafe.Pointer) unsafe.Pointer {
+func NSBitsPerPixelFromDepth(depth unsafe.Pointer) int64 {
 	return _NSBitsPerPixelFromDepth(depth)
 }
 
@@ -904,7 +903,7 @@ func NSBitsPerPixelFromDepth(depth unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/Depth/bitsPerSample
-func NSBitsPerSampleFromDepth(depth unsafe.Pointer) unsafe.Pointer {
+func NSBitsPerSampleFromDepth(depth unsafe.Pointer) int64 {
 	return _NSBitsPerSampleFromDepth(depth)
 }
 
@@ -914,7 +913,7 @@ func NSBitsPerSampleFromDepth(depth unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/Depth/colorSpaceName
-func NSColorSpaceFromDepth(depth unsafe.Pointer) unsafe.Pointer {
+func NSColorSpaceFromDepth(depth unsafe.Pointer) ColorSpaceName {
 	return _NSColorSpaceFromDepth(depth)
 }
 
@@ -937,7 +936,7 @@ func NSPlanarFromDepth(depth unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowList
-func NSWindowList(size unsafe.Pointer, list unsafe.Pointer) {
+func NSWindowList(size int64, list int64) {
 	_NSWindowList(size, list)
 }
 

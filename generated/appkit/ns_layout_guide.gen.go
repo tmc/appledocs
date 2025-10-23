@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -39,8 +38,8 @@ type ILayoutGuide interface {
 	SetBottomAnchor(value objc.IObject /* cross-framework: LayoutYAxisAnchor */)
 	CenterYAnchor() objc.IObject /* cross-framework: LayoutYAxisAnchor */
 	SetCenterYAnchor(value objc.IObject /* cross-framework: LayoutYAxisAnchor */)
-	Frame() coregraphics.CGRect
-	SetFrame(value coregraphics.CGRect)
+	Frame() objc.IObject /* cross-framework: Rect */
+	SetFrame(value objc.IObject /* cross-framework: Rect */)
 	HasAmbiguousLayout() bool /* primitive/slice/pointer. */
 	SetHasAmbiguousLayout(value bool /* primitive/slice/pointer. */)
 	HeightAnchor() objc.IObject /* cross-framework: LayoutDimension */
@@ -186,8 +185,8 @@ func (l_ LayoutGuide) SetCenterYAnchor(value objc.IObject /* cross-framework: La
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/frame
-func (l_ LayoutGuide) Frame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](l_.ID, objc.Sel("frame"))
+func (l_ LayoutGuide) Frame() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](l_.ID, objc.Sel("frame"))
 	return rv
 }
 
@@ -196,7 +195,7 @@ func (l_ LayoutGuide) Frame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/frame
-func (l_ LayoutGuide) SetFrame(value coregraphics.CGRect) {
+func (l_ LayoutGuide) SetFrame(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setFrame:"), value)
 }
 

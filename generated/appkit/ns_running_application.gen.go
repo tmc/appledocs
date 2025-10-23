@@ -33,17 +33,17 @@ type IRunningApplication interface {
 	objectivec.IObject
 	// properties:
 	ActivationPolicy() ApplicationActivationPolicy
-	BundleIdentifier() string /* primitive/slice/pointer. */
-	BundleURL() foundation.objc.IObject /* cross-framework: URL */
+	BundleIdentifier() objc.IObject /* cross-framework: NSString */
+	BundleURL() objc.IObject /* cross-framework: NSURL */
 	ExecutableArchitecture() int /* primitive/slice/pointer. */
-	ExecutableURL() foundation.objc.IObject /* cross-framework: URL */
+	ExecutableURL() objc.IObject /* cross-framework: NSURL */
 	Icon() IImage
 	Active() bool /* primitive/slice/pointer. */
 	FinishedLaunching() bool /* primitive/slice/pointer. */
 	Hidden() bool /* primitive/slice/pointer. */
 	Terminated() bool /* primitive/slice/pointer. */
-	LaunchDate() foundation.objc.IObject /* cross-framework: NSDate */
-	LocalizedName() string /* primitive/slice/pointer. */
+	LaunchDate() objc.IObject /* cross-framework: NSDate */
+	LocalizedName() objc.IObject /* cross-framework: NSString */
 	OwnsMenuBar() bool /* primitive/slice/pointer. */
 	ProcessIdentifier() unsafe.Pointer
 	IsActive() bool /* primitive/slice/pointer. */
@@ -143,8 +143,8 @@ func (rc _RunningApplicationClass) RunningApplicationWithProcessIdentifier(pid u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/runningApplications(withBundleIdentifier:)
-func (rc _RunningApplicationClass) RunningApplicationsWithBundleIdentifier(bundleIdentifier string /* primitive/slice/pointer. */) []RunningApplication /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]RunningApplication](objc.ID(rc.class), objc.Sel("runningApplicationsWithBundleIdentifier:"), objc.String(bundleIdentifier))
+func (rc _RunningApplicationClass) RunningApplicationsWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework NSString */) []RunningApplication /* primitive/slice/pointer. */ {
+	rv := objc.Send[[]RunningApplication](objc.ID(rc.class), objc.Sel("runningApplicationsWithBundleIdentifier:"), bundleIdentifier)
 	return rv
 }
 
@@ -241,8 +241,8 @@ func (r_ RunningApplication) ActivationPolicy() ApplicationActivationPolicy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/bundleIdentifier
-func (r_ RunningApplication) BundleIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](r_.ID, objc.Sel("bundleIdentifier"))
+func (r_ RunningApplication) BundleIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
@@ -251,8 +251,8 @@ func (r_ RunningApplication) BundleIdentifier() string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/bundleURL
-func (r_ RunningApplication) BundleURL() foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](r_.ID, objc.Sel("bundleURL"))
+func (r_ RunningApplication) BundleURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](r_.ID, objc.Sel("bundleURL"))
 	return rv
 }
 
@@ -281,8 +281,8 @@ func (r_ RunningApplication) ExecutableArchitecture() int /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/executableURL
-func (r_ RunningApplication) ExecutableURL() foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](r_.ID, objc.Sel("executableURL"))
+func (r_ RunningApplication) ExecutableURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](r_.ID, objc.Sel("executableURL"))
 	return rv
 }
 
@@ -341,7 +341,7 @@ func (r_ RunningApplication) Terminated() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/launchDate
-func (r_ RunningApplication) LaunchDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (r_ RunningApplication) LaunchDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](r_.ID, objc.Sel("launchDate"))
 	return rv
 }
@@ -351,8 +351,8 @@ func (r_ RunningApplication) LaunchDate() foundation.objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/localizedName
-func (r_ RunningApplication) LocalizedName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](r_.ID, objc.Sel("localizedName"))
+func (r_ RunningApplication) LocalizedName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("localizedName"))
 	return rv
 }
 

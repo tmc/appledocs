@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _CoordinatedPlaybackParticipantClass struct {
 type ICoordinatedPlaybackParticipant interface {
 	objectivec.IObject
 	// properties:
-	Identifier() unsafe.Pointer
-	SetIdentifier(value unsafe.Pointer)
+	Identifier() objc.IObject /* cross-framework: UUID */
+	SetIdentifier(value objc.IObject /* cross-framework: UUID */)
 	IsReadyToPlay() bool /* primitive/slice/pointer. */
 	SetIsReadyToPlay(value bool /* primitive/slice/pointer. */)
 	SuspensionReasons() unsafe.Pointer
@@ -99,8 +100,8 @@ func NewCoordinatedPlaybackParticipant() CoordinatedPlaybackParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/identifier
-func (c_ CoordinatedPlaybackParticipant) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("identifier"))
+func (c_ CoordinatedPlaybackParticipant) Identifier() objc.IObject /* cross-framework: UUID */ {
+	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -109,7 +110,7 @@ func (c_ CoordinatedPlaybackParticipant) Identifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/identifier
-func (c_ CoordinatedPlaybackParticipant) SetIdentifier(value unsafe.Pointer) {
+func (c_ CoordinatedPlaybackParticipant) SetIdentifier(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
 }
 

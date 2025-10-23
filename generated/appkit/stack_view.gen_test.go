@@ -9,11 +9,3 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewStackView
 
-// ExampleNewStackViewWithViews demonstrates how to create a StackView instance using NewStackViewWithViews.
-// Creates and returns a stack view with a specified array of views.
-func ExampleNewStackViewWithViews() {
-	_ = appkit.NewStackViewWithViews(
-		[]appkit.View{}, // views []View
-	)
-	// Output:
-}

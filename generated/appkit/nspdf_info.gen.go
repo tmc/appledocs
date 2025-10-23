@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,18 +32,18 @@ type _PDFInfoClass struct {
 type IPDFInfo interface {
 	objectivec.IObject
 	// properties:
-	Attributes() MutableDictionary /* not a class type */
-	SetAttributes(value MutableDictionary /* not a class type */)
+	Attributes() objc.IObject /* cross-framework: MutableDictionary */
+	SetAttributes(value objc.IObject /* cross-framework: MutableDictionary */)
 	IsFileExtensionHidden() bool /* primitive/slice/pointer. */
 	SetIsFileExtensionHidden(value bool /* primitive/slice/pointer. */)
 	Orientation() PaperOrientation
 	SetOrientation(value PaperOrientation)
-	PaperSize() coregraphics.CGSize
-	SetPaperSize(value coregraphics.CGSize)
-	TagNames() string /* primitive/slice/pointer. */
-	SetTagNames(value string /* primitive/slice/pointer. */)
-	Url() foundation.objc.IObject /* cross-framework: URL */
-	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	PaperSize() objc.IObject /* cross-framework: Size */
+	SetPaperSize(value objc.IObject /* cross-framework: Size */)
+	TagNames() objc.IObject /* cross-framework: NSString */
+	SetTagNames(value objc.IObject /* cross-framework: NSString */)
+	Url() objc.IObject /* cross-framework: URL */
+	SetUrl(value objc.IObject /* cross-framework: URL */)
 	// methods:
 }
 
@@ -105,7 +104,7 @@ func NewPDFInfo() PDFInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/attributes
-func (p_ PDFInfo) Attributes() MutableDictionary /* not a class type */ {
+func (p_ PDFInfo) Attributes() objc.IObject /* cross-framework: MutableDictionary */ {
 	rv := objc.Send[MutableDictionary](p_.ID, objc.Sel("attributes"))
 	return rv
 }
@@ -115,7 +114,7 @@ func (p_ PDFInfo) Attributes() MutableDictionary /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/attributes
-func (p_ PDFInfo) SetAttributes(value MutableDictionary /* not a class type */) {
+func (p_ PDFInfo) SetAttributes(value objc.IObject /* cross-framework: MutableDictionary */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAttributes:"), value)
 }
 
@@ -162,8 +161,8 @@ func (p_ PDFInfo) SetOrientation(value PaperOrientation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/papersize
-func (p_ PDFInfo) PaperSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("paperSize"))
+func (p_ PDFInfo) PaperSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](p_.ID, objc.Sel("paperSize"))
 	return rv
 }
 
@@ -172,7 +171,7 @@ func (p_ PDFInfo) PaperSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/papersize
-func (p_ PDFInfo) SetPaperSize(value coregraphics.CGSize) {
+func (p_ PDFInfo) SetPaperSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPaperSize:"), value)
 }
 
@@ -181,8 +180,8 @@ func (p_ PDFInfo) SetPaperSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/tagnames
-func (p_ PDFInfo) TagNames() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("tagNames"))
+func (p_ PDFInfo) TagNames() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("tagNames"))
 	return rv
 }
 
@@ -191,8 +190,8 @@ func (p_ PDFInfo) TagNames() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/tagnames
-func (p_ PDFInfo) SetTagNames(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTagNames:"), objc.String(value))
+func (p_ PDFInfo) SetTagNames(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTagNames:"), value)
 }
 
 
@@ -200,7 +199,7 @@ func (p_ PDFInfo) SetTagNames(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/url
-func (p_ PDFInfo) Url() foundation.objc.IObject /* cross-framework: URL */ {
+func (p_ PDFInfo) Url() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
 	return rv
 }
@@ -210,7 +209,7 @@ func (p_ PDFInfo) Url() foundation.objc.IObject /* cross-framework: URL */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/url
-func (p_ PDFInfo) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
+func (p_ PDFInfo) SetUrl(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 

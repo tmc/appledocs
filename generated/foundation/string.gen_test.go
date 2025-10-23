@@ -15,4 +15,3 @@ func ExampleNewString() {
 	_ = foundation.NewString()
 	// Output:
 }
-

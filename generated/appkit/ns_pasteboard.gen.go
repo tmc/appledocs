@@ -51,16 +51,16 @@ type IPasteboard interface {
 	IndexOfPasteboardItem(pasteboardItem IPasteboardItem) uint /* primitive/slice/pointer. */
 	PrepareForNewContentsWithOptions(options PasteboardContentsOptions) int /* primitive/slice/pointer. */
 	PropertyListForType(dataType objc.IObject /* cross-framework PasteboardType */) objc.ID
-	ReadFileContentsTypeToFile(type_ objc.IObject /* cross-framework PasteboardType */, filename string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
-	ReadFileWrapper() FileWrapper /* not a class type */
+	ReadFileContentsTypeToFile(type_ objc.IObject /* cross-framework PasteboardType */, filename objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: String */
+	ReadFileWrapper() objc.IObject /* cross-framework: FileWrapper */
 	ReadObjectsForClassesOptions(classArray []objc.Class /* not a class type */, options foundation.IDictionary /* already interface */) objc.IObject /* cross-framework: Array */
 	ReleaseGlobally()
-	SetDataForType(data foundation.objc.IObject /* cross-framework NSData */, dataType objc.IObject /* cross-framework PasteboardType */) bool /* primitive/slice/pointer. */
+	SetDataForType(data objc.IObject /* cross-framework NSData */, dataType objc.IObject /* cross-framework PasteboardType */) bool /* primitive/slice/pointer. */
 	SetPropertyListForType(plist objectivec.IObject, dataType objc.IObject /* cross-framework PasteboardType */) bool /* primitive/slice/pointer. */
-	SetStringForType(string_ string /* primitive/slice/pointer. */, dataType objc.IObject /* cross-framework PasteboardType */) bool /* primitive/slice/pointer. */
+	SetStringForType(string_ objc.IObject /* cross-framework NSString */, dataType objc.IObject /* cross-framework PasteboardType */) bool /* primitive/slice/pointer. */
 	StringForType(dataType objc.IObject /* cross-framework PasteboardType */) objc.IObject /* cross-framework: String */
-	WriteFileWrapper(wrapper FileWrapper /* not a class type */) bool /* primitive/slice/pointer. */
-	WriteFileContents(filename string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	WriteFileWrapper(wrapper objc.IObject /* cross-framework FileWrapper */) bool /* primitive/slice/pointer. */
+	WriteFileContents(filename objc.IObject /* cross-framework NSString */) bool /* primitive/slice/pointer. */
 	WriteObjects(objects []objc.ID /* already interface */) bool /* primitive/slice/pointer. */
 }
 
@@ -121,7 +121,7 @@ func NewPasteboard() Pasteboard {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/init(byFilteringData:ofType:)
-func NewPasteboardByFilteringDataOfType(data foundation.objc.IObject /* cross-framework NSData */, type_ objc.IObject /* cross-framework PasteboardType */) Pasteboard {
+func NewPasteboardByFilteringDataOfType(data objc.IObject /* cross-framework NSData */, type_ objc.IObject /* cross-framework PasteboardType */) Pasteboard {
 	rv := objc.Send[Pasteboard](objc.ID(getPasteboardClass().class), objc.Sel("pasteboardByFilteringData:ofType:"), data, type_)
 	return rv
 }
@@ -131,8 +131,8 @@ func NewPasteboardByFilteringDataOfType(data foundation.objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/init(byFilteringFile:)
-func NewPasteboardByFilteringFile(filename string /* primitive/slice/pointer. */) Pasteboard {
-	rv := objc.Send[Pasteboard](objc.ID(getPasteboardClass().class), objc.Sel("pasteboardByFilteringFile:"), objc.String(filename))
+func NewPasteboardByFilteringFile(filename objc.IObject /* cross-framework NSString */) Pasteboard {
+	rv := objc.Send[Pasteboard](objc.ID(getPasteboardClass().class), objc.Sel("pasteboardByFilteringFile:"), filename)
 	return rv
 }
 
@@ -162,7 +162,7 @@ func NewPasteboardWithName(name objc.IObject /* cross-framework PasteboardName *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/init(byFilteringData:ofType:)
-func (pc _PasteboardClass) PasteboardByFilteringDataOfType(data foundation.objc.IObject /* cross-framework NSData */, type_ objc.IObject /* cross-framework PasteboardType */) IPasteboard {
+func (pc _PasteboardClass) PasteboardByFilteringDataOfType(data objc.IObject /* cross-framework NSData */, type_ objc.IObject /* cross-framework PasteboardType */) IPasteboard {
 	rv := objc.Send[Pasteboard](objc.ID(pc.class), objc.Sel("pasteboardByFilteringData:ofType:"), data, type_)
 	return rv
 }
@@ -172,8 +172,8 @@ func (pc _PasteboardClass) PasteboardByFilteringDataOfType(data foundation.objc.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/init(byFilteringFile:)
-func (pc _PasteboardClass) PasteboardByFilteringFile(filename string /* primitive/slice/pointer. */) IPasteboard {
-	rv := objc.Send[Pasteboard](objc.ID(pc.class), objc.Sel("pasteboardByFilteringFile:"), objc.String(filename))
+func (pc _PasteboardClass) PasteboardByFilteringFile(filename objc.IObject /* cross-framework NSString */) IPasteboard {
+	rv := objc.Send[Pasteboard](objc.ID(pc.class), objc.Sel("pasteboardByFilteringFile:"), filename)
 	return rv
 }
 
@@ -358,8 +358,8 @@ func (p_ Pasteboard) PropertyListForType(dataType objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/readFileContentsType(_:toFile:)
-func (p_ Pasteboard) ReadFileContentsTypeToFile(type_ objc.IObject /* cross-framework PasteboardType */, filename string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](p_.ID, objc.Sel("readFileContentsType:toFile:"), type_, objc.String(filename))
+func (p_ Pasteboard) ReadFileContentsTypeToFile(type_ objc.IObject /* cross-framework PasteboardType */, filename objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[String](p_.ID, objc.Sel("readFileContentsType:toFile:"), type_, filename)
 	return rv
 }
 
@@ -368,7 +368,7 @@ func (p_ Pasteboard) ReadFileContentsTypeToFile(type_ objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/readFileWrapper()
-func (p_ Pasteboard) ReadFileWrapper() FileWrapper /* not a class type */ {
+func (p_ Pasteboard) ReadFileWrapper() objc.IObject /* cross-framework: FileWrapper */ {
 	rv := objc.Send[FileWrapper](p_.ID, objc.Sel("readFileWrapper"))
 	return rv
 }
@@ -397,7 +397,7 @@ func (p_ Pasteboard) ReleaseGlobally() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/setData(_:forType:)
-func (p_ Pasteboard) SetDataForType(data foundation.objc.IObject /* cross-framework NSData */, dataType objc.IObject /* cross-framework PasteboardType */) bool /* primitive/slice/pointer. */ {
+func (p_ Pasteboard) SetDataForType(data objc.IObject /* cross-framework NSData */, dataType objc.IObject /* cross-framework PasteboardType */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("setData:forType:"), data, dataType)
 	return rv
 }
@@ -417,8 +417,8 @@ func (p_ Pasteboard) SetPropertyListForType(plist objectivec.IObject, dataType o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/setString(_:forType:)
-func (p_ Pasteboard) SetStringForType(string_ string /* primitive/slice/pointer. */, dataType objc.IObject /* cross-framework PasteboardType */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("setString:forType:"), objc.String(string_), dataType)
+func (p_ Pasteboard) SetStringForType(string_ objc.IObject /* cross-framework NSString */, dataType objc.IObject /* cross-framework PasteboardType */) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](p_.ID, objc.Sel("setString:forType:"), string_, dataType)
 	return rv
 }
 
@@ -437,7 +437,7 @@ func (p_ Pasteboard) StringForType(dataType objc.IObject /* cross-framework Past
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/write(_:)
-func (p_ Pasteboard) WriteFileWrapper(wrapper FileWrapper /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (p_ Pasteboard) WriteFileWrapper(wrapper objc.IObject /* cross-framework FileWrapper */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("writeFileWrapper:"), wrapper)
 	return rv
 }
@@ -447,8 +447,8 @@ func (p_ Pasteboard) WriteFileWrapper(wrapper FileWrapper /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/writeFileContents(_:)
-func (p_ Pasteboard) WriteFileContents(filename string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("writeFileContents:"), objc.String(filename))
+func (p_ Pasteboard) WriteFileContents(filename objc.IObject /* cross-framework NSString */) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](p_.ID, objc.Sel("writeFileContents:"), filename)
 	return rv
 }
 

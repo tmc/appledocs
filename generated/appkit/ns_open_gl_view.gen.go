@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [OpenGLView] class.
@@ -101,7 +100,7 @@ func NewOpenGLView() OpenGLView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/init(frame:pixelFormat:)
-func NewOpenGLViewWithFramePixelFormat(frameRect coregraphics.CGRect, format IOpenGLPixelFormat) OpenGLView {
+func NewOpenGLViewWithFramePixelFormat(frameRect objc.IObject /* cross-framework Rect */, format IOpenGLPixelFormat) OpenGLView {
 	instance := getOpenGLViewClass().Alloc()
 	rv := objc.Send[OpenGLView](instance.ID, objc.Sel("initWithFrame:pixelFormat:"), frameRect, format)
 	rv.Autorelease()

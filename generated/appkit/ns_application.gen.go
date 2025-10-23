@@ -83,7 +83,7 @@ type IApplication interface {
 	EndModalSession(session objc.IObject /* cross-framework ModalSession */)
 	FinishLaunching()
 	Hide(sender objectivec.IObject)
-	NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration foundation.objc.IObject /* cross-framework NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool /* primitive/slice/pointer. */) IEvent
+	NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration objc.IObject /* cross-framework NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool /* primitive/slice/pointer. */) IEvent
 	OrderFrontStandardAboutPanel(sender objectivec.IObject)
 	PostEventAtStart(event IEvent, atStart bool /* primitive/slice/pointer. */)
 	PreventWindowOrdering()
@@ -96,7 +96,7 @@ type IApplication interface {
 	Run()
 	RunModalForWindow(window IWindow) objc.IObject /* cross-framework: ModalResponse */
 	RunModalSession(session objc.IObject /* cross-framework ModalSession */) objc.IObject /* cross-framework: ModalResponse */
-	SearchStringInUserInterfaceItemStringSearchRangeFoundRange(searchString string /* primitive/slice/pointer. */, stringToSearch string /* primitive/slice/pointer. */, searchRange foundation.objc.IObject /* cross-framework Range */, foundRange foundation.objc.IObject /* cross-framework Range */) bool /* primitive/slice/pointer. */
+	SearchStringInUserInterfaceItemStringSearchRangeFoundRange(searchString objc.IObject /* cross-framework NSString */, stringToSearch objc.IObject /* cross-framework NSString */, searchRange objc.IObject /* cross-framework Range */, foundRange objc.IObject /* cross-framework Range */) bool /* primitive/slice/pointer. */
 	SendActionToFrom(action objc.SEL, target objectivec.IObject, sender objectivec.IObject) bool /* primitive/slice/pointer. */
 	SendEvent(event IEvent)
 	SetWindowsNeedUpdate(needUpdate bool /* primitive/slice/pointer. */)
@@ -114,7 +114,7 @@ type IApplication interface {
 	UpdateWindows()
 	ValidRequestorForSendTypeReturnType(sendType objc.IObject /* cross-framework PasteboardType */, returnType objc.IObject /* cross-framework PasteboardType */) objc.ID
 	YieldActivationToApplication(application IRunningApplication)
-	YieldActivationToApplicationWithBundleIdentifier(bundleIdentifier string /* primitive/slice/pointer. */)
+	YieldActivationToApplicationWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework NSString */)
 }
 
 // An object that manages an app’s main event loop and resources used by all of that app’s objects.
@@ -285,7 +285,7 @@ func (a_ Application) Hide(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/nextEvent(matching:until:inMode:dequeue:)
-func (a_ Application) NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration foundation.objc.IObject /* cross-framework NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool /* primitive/slice/pointer. */) IEvent {
+func (a_ Application) NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration objc.IObject /* cross-framework NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool /* primitive/slice/pointer. */) IEvent {
 	rv := objc.Send[Event](a_.ID, objc.Sel("nextEventMatchingMask:untilDate:inMode:dequeue:"), mask, expiration, mode, deqFlag)
 	return rv
 }
@@ -406,8 +406,8 @@ func (a_ Application) RunModalSession(session objc.IObject /* cross-framework Mo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/searchString(_:inUserInterfaceItemString:range:found:)
-func (a_ Application) SearchStringInUserInterfaceItemStringSearchRangeFoundRange(searchString string /* primitive/slice/pointer. */, stringToSearch string /* primitive/slice/pointer. */, searchRange foundation.objc.IObject /* cross-framework Range */, foundRange foundation.objc.IObject /* cross-framework Range */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](a_.ID, objc.Sel("searchString:inUserInterfaceItemString:searchRange:foundRange:"), objc.String(searchString), objc.String(stringToSearch), searchRange, foundRange)
+func (a_ Application) SearchStringInUserInterfaceItemStringSearchRangeFoundRange(searchString objc.IObject /* cross-framework NSString */, stringToSearch objc.IObject /* cross-framework NSString */, searchRange objc.IObject /* cross-framework Range */, foundRange objc.IObject /* cross-framework Range */) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](a_.ID, objc.Sel("searchString:inUserInterfaceItemString:searchRange:foundRange:"), searchString, stringToSearch, searchRange, foundRange)
 	return rv
 }
 
@@ -574,8 +574,8 @@ func (a_ Application) YieldActivationToApplication(application IRunningApplicati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/yieldActivation(toApplicationWithBundleIdentifier:)
-func (a_ Application) YieldActivationToApplicationWithBundleIdentifier(bundleIdentifier string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("yieldActivationToApplicationWithBundleIdentifier:"), objc.String(bundleIdentifier))
+func (a_ Application) YieldActivationToApplicationWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("yieldActivationToApplicationWithBundleIdentifier:"), bundleIdentifier)
 }
 
 

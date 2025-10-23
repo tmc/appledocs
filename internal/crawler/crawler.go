@@ -11,6 +11,7 @@ import (
 	"path/filepath"
 	"strings"
 	"sync"
+	"sync/atomic"
 	"time"
 
 	"golang.org/x/time/rate"
@@ -41,6 +42,10 @@ type Crawler struct {
 	depthMutex       sync.RWMutex    // Mutex for urlDepths
 	rateLimiter      *rate.Limiter   // Rate limiter for HTTP requests
 	entryPointPrefix string          // Path prefix to restrict crawling scope
+
+	// Work tracking for graceful shutdown
+	activeWork   sync.WaitGroup // Tracks active URL processing
+	queueClosed  atomic.Bool    // Flag indicating queue is closed
 
 	// Status tracking metrics
 	cacheHits      int
@@ -169,13 +174,43 @@ func (c *Crawler) Run(ctx context.Context, cfg *Config) error {
 		go c.worker(workerCtx, &wg, i, urlQueue, cfg)
 	}
 
-	// Add the initial URLs to the queue
+	// Add the initial URLs to the queue and track them
 	for _, startURL := range startURLs {
+		c.activeWork.Add(1)
 		urlQueue <- startURL
 	}
 
-	// Wait for context cancellation or completion
-	<-ctx.Done()
+	// Launch goroutine to close queue when all work is done
+	go func() {
+		c.activeWork.Wait()
+		c.queueClosed.Store(true)
+		close(urlQueue)
+		if cfg.Verbose {
+			log.Printf("All work completed, closed URL queue")
+		}
+	}()
+
+	// Wait for context cancellation or queue closure
+	select {
+	case <-ctx.Done():
+		// Context cancelled (timeout or interrupt)
+	case <-func() chan struct{} {
+		// Wait for queue to close (all work done)
+		ch := make(chan struct{})
+		go func() {
+			// Monitor queueClosed flag
+			for !c.queueClosed.Load() {
+				time.Sleep(100 * time.Millisecond)
+			}
+			close(ch)
+		}()
+		return ch
+	}():
+		// All work completed naturally
+		if cfg.Verbose {
+			log.Printf("Crawl completed - all URLs processed")
+		}
+	}
 
 	// Cancel worker context
 	cancelWorkers()
@@ -197,8 +232,7 @@ func (c *Crawler) Run(ctx context.Context, cfg *Config) error {
 		log.Printf("Some workers still running after timeout")
 	}
 
-	// Now it's safe to close the channel
-	close(urlQueue)
+	// Note: urlQueue is already closed by the work tracker goroutine
 
 	// Write bad URLs file
 	if badURLCount := len(c.badURLs); badURLCount > 0 {
@@ -268,6 +302,9 @@ func (c *Crawler) worker(ctx context.Context, wg *sync.WaitGroup, workerID int, 
 					log.Printf("Error processing %q: %v", u, err)
 				}
 			}
+
+			// Mark this URL as processed
+			c.activeWork.Done()
 		}
 	}
 }

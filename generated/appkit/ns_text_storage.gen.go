@@ -44,8 +44,8 @@ type ITextStorage interface {
 	SetDelegate(value TextStorageDelegate /* not a class type */)
 	EditedMask() TextStorageEditActions /* not a class type */
 	SetEditedMask(value TextStorageEditActions /* not a class type */)
-	EditedRange() foundation.objc.IObject /* cross-framework: Range */
-	SetEditedRange(value foundation.objc.IObject /* cross-framework: Range */)
+	EditedRange() objc.IObject /* cross-framework: Range */
+	SetEditedRange(value objc.IObject /* cross-framework: Range */)
 	Font() IFont
 	SetFont(value IFont)
 	ForegroundColor() IColor
@@ -56,8 +56,8 @@ type ITextStorage interface {
 	SetParagraphs(value ITextStorage)
 	TextStorageObserver() TextStorageObserving /* not a class type */
 	SetTextStorageObserver(value TextStorageObserving /* not a class type */)
-	String() string /* primitive/slice/pointer. */
-	SetString(value string /* primitive/slice/pointer. */)
+	String() objc.IObject /* cross-framework: NSString */
+	SetString(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 	ProcessEditing()
 }
@@ -274,8 +274,8 @@ func (t_ TextStorage) SetEditedMask(value TextStorageEditActions /* not a class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/editedrange
-func (t_ TextStorage) EditedRange() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("editedRange"))
+func (t_ TextStorage) EditedRange() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[Range](t_.ID, objc.Sel("editedRange"))
 	return rv
 }
 
@@ -284,7 +284,7 @@ func (t_ TextStorage) EditedRange() foundation.objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/editedrange
-func (t_ TextStorage) SetEditedRange(value foundation.objc.IObject /* cross-framework: Range */) {
+func (t_ TextStorage) SetEditedRange(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEditedRange:"), value)
 }
 
@@ -388,8 +388,8 @@ func (t_ TextStorage) SetTextStorageObserver(value TextStorageObserving /* not a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/string
-func (t_ TextStorage) String() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("string"))
+func (t_ TextStorage) String() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("string"))
 	return rv
 }
 
@@ -398,8 +398,8 @@ func (t_ TextStorage) String() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/string
-func (t_ TextStorage) SetString(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), objc.String(value))
+func (t_ TextStorage) SetString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), value)
 }
 
 

@@ -32,7 +32,7 @@ type IFontAssetRequest interface {
 	objectivec.IObject
 	// properties:
 	DownloadedFontDescriptors() []FontDescriptor /* primitive/slice/pointer. */
-	Progress() Progress /* not a class type */
+	Progress() objc.IObject /* cross-framework: Progress */
 	// methods:
 	DownloadFontAssetsWithCompletionHandler(completionHandler unsafe.Pointer)
 }
@@ -111,7 +111,7 @@ func (f_ FontAssetRequest) DownloadedFontDescriptors() []FontDescriptor /* primi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontAssetRequest/progress
-func (f_ FontAssetRequest) Progress() Progress /* not a class type */ {
+func (f_ FontAssetRequest) Progress() objc.IObject /* cross-framework: Progress */ {
 	rv := objc.Send[Progress](f_.ID, objc.Sel("progress"))
 	return rv
 }

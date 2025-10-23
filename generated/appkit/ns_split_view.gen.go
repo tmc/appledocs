@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [SplitView] class.
@@ -49,7 +48,7 @@ type ISplitView interface {
 	// methods:
 	AddArrangedSubview(view IView)
 	AdjustSubviews()
-	DrawDividerInRect(rect coregraphics.CGRect)
+	DrawDividerInRect(rect objc.IObject /* cross-framework Rect */)
 	HoldingPriorityForSubviewAtIndex(subviewIndex int /* primitive/slice/pointer. */) objc.IObject /* cross-framework: LayoutPriority */
 	InsertArrangedSubviewAtIndex(view IView, index int /* primitive/slice/pointer. */)
 	IsSubviewCollapsed(subview IView) bool /* primitive/slice/pointer. */
@@ -137,7 +136,7 @@ func (s_ SplitView) AdjustSubviews() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/drawDivider(in:)
-func (s_ SplitView) DrawDividerInRect(rect coregraphics.CGRect) {
+func (s_ SplitView) DrawDividerInRect(rect objc.IObject /* cross-framework Rect */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawDividerInRect:"), rect)
 }
 
