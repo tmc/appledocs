@@ -13,23 +13,22 @@ import (
 
 // FS provides filesystem access to Apple documentation.
 type FS struct {
-	root string
 	fsys fs.FS
 }
 
 // Open creates a new FS rooted at the given directory.
 // The directory should contain Apple documentation JSON files.
+// Returns an error if the path does not exist or is not a directory.
 func Open(root string) (*FS, error) {
 	info, err := os.Stat(root)
 	if err != nil {
-		return nil, fmt.Errorf("open documentation: %w", err)
+		return nil, fmt.Errorf("appledocs.Open: %w", err)
 	}
 	if !info.IsDir() {
-		return nil, fmt.Errorf("open documentation: %s is not a directory", root)
+		return nil, fmt.Errorf("appledocs.Open: %s is not a directory", root)
 	}
 
 	return &FS{
-		root: root,
 		fsys: os.DirFS(root),
 	}, nil
 }
@@ -79,15 +78,16 @@ func (f *FS) Stat(name string) (fs.FileInfo, error) {
 }
 
 // ReadDocument reads and parses a documentation JSON file.
+// Returns an error if the file cannot be read or contains invalid JSON.
 func (f *FS) ReadDocument(path string) (*Document, error) {
 	data, err := f.ReadFile(path)
 	if err != nil {
-		return nil, fmt.Errorf("read document %s: %w", path, err)
+		return nil, fmt.Errorf("appledocs: read document %s: %w", path, err)
 	}
 
 	var doc Document
 	if err := json.Unmarshal(data, &doc); err != nil {
-		return nil, fmt.Errorf("parse document %s: %w", path, err)
+		return nil, fmt.Errorf("appledocs: parse JSON in %s: %w", path, err)
 	}
 
 	return &doc, nil
@@ -120,10 +120,11 @@ func GetFramework(fsys *FS, name string) (*Document, error) {
 }
 
 // ListFrameworks returns a sorted list of all available frameworks.
+// A framework is identified by a .json file at the root level.
 func ListFrameworks(fsys *FS) ([]string, error) {
 	entries, err := fs.ReadDir(fsys, ".")
 	if err != nil {
-		return nil, fmt.Errorf("list frameworks: %w", err)
+		return nil, fmt.Errorf("appledocs.ListFrameworks: %w", err)
 	}
 
 	var frameworks []string
@@ -168,10 +169,11 @@ func GetSymbolByURL(fsys *FS, url string) (*Document, error) {
 
 // ListSymbols returns all symbols in a framework.
 // The framework parameter should be the framework name (e.g., "Foundation").
+// Returns an error if the framework directory does not exist.
 func ListSymbols(fsys *FS, framework string) ([]string, error) {
 	// Check if framework directory exists
 	if _, err := fsys.Stat(framework); err != nil {
-		return nil, fmt.Errorf("list symbols for %s: %w", framework, err)
+		return nil, fmt.Errorf("appledocs.ListSymbols(%s): %w", framework, err)
 	}
 
 	// Use a map to deduplicate symbols (in case both .json and language variants exist)
@@ -199,7 +201,7 @@ func ListSymbols(fsys *FS, framework string) ([]string, error) {
 		return nil
 	})
 	if err != nil {
-		return nil, fmt.Errorf("list symbols for %s: %w", framework, err)
+		return nil, fmt.Errorf("appledocs.ListSymbols(%s): walk directory: %w", framework, err)
 	}
 
 	// Convert map to sorted slice
@@ -315,6 +317,9 @@ func SearchSymbols(fsys *FS, framework, query string) ([]string, error) {
 
 // Symbols returns an iterator over all symbols in a framework.
 // The iterator yields (symbolPath, Document) pairs.
+// Symbols that cannot be read are silently skipped.
+//
+// Requires Go 1.23+ for range-over-func support.
 //
 // Example:
 //
@@ -353,6 +358,9 @@ type SymbolEntry struct {
 
 // AllSymbols returns an iterator over all symbols in all frameworks.
 // The iterator yields SymbolEntry structs containing framework, path, and document.
+// Frameworks and symbols that cannot be read are silently skipped.
+//
+// Requires Go 1.23+ for range-over-func support.
 //
 // Example:
 //

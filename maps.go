@@ -21,13 +21,14 @@ import (
 )
 
 // Load unmarshals a JSON file into v.
+// Returns an error if the file cannot be read or contains invalid JSON.
 func Load(fsys fs.FS, path string, v interface{}) error {
 	data, err := fs.ReadFile(fsys, path)
 	if err != nil {
-		return fmt.Errorf("read %s: %w", path, err)
+		return fmt.Errorf("appledocs.Load: read %s: %w", path, err)
 	}
 	if err := json.Unmarshal(data, v); err != nil {
-		return fmt.Errorf("parse %s: %w", path, err)
+		return fmt.Errorf("appledocs.Load: parse JSON in %s: %w", path, err)
 	}
 	return nil
 }

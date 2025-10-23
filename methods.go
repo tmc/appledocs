@@ -97,6 +97,9 @@ func parseExternalID(externalID string) (symbolType, className, memberType, memb
 // The fsys parameter should point to the root of cached Apple documentation,
 // typically ~/.appledocs/cache/developer.apple.com/tutorials/data/documentation
 //
+// Files that cannot be parsed are silently skipped. Only symbols with c:objc external IDs
+// are included in the results.
+//
 // Returns a map of className -> ClassMethods.
 func DiscoverMethods(fsys *FS) (map[string]*ClassMethods, error) {
 	classes := make(map[string]*ClassMethods)
@@ -190,7 +193,7 @@ func DiscoverMethods(fsys *FS) (map[string]*ClassMethods, error) {
 	})
 
 	if err != nil {
-		return nil, fmt.Errorf("walk directory: %w", err)
+		return nil, fmt.Errorf("appledocs.DiscoverMethods: walk directory: %w", err)
 	}
 
 	return classes, nil
