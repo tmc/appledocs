@@ -26,14 +26,15 @@ var crossFrameworkTypeRegistry = make(map[string]string)
 // This is the central registration point for all template helper functions
 var templateFuncs = template.FuncMap{
 	// String utilities
-	"join":        joinStrings,
-	"lower":       lowerString,
-	"trimspace":   trimSpaceString,
-	"trimRight":   trimRightString,
-	"trimPrefix":  trimPrefixString,
-	"hasPrefix":   hasPrefixString,
-	"commentLine": commentLine,
-	"dict":        dict,
+	"join":                joinStrings,
+	"lower":               lowerString,
+	"trimspace":           trimSpaceString,
+	"trimRight":           trimRightString,
+	"trimPrefix":          trimPrefixString,
+	"hasPrefix":           hasPrefixString,
+	"commentLine":         commentLine,
+	"dict":                dict,
+	"isValidGoIdentifier": isValidGoIdentifier,
 
 	// occ2go type mapping (wrapped to apply framework-specific mappings)
 	"mapCTypeToGo": mapCTypeToGoWithFramework,
@@ -231,4 +232,30 @@ func stringsContains(s, substr string) bool {
 // The real implementation is provided by GeneratorFuncs.formatMethodParams at runtime.
 func formatMethodParamsStub(gen interface{}, method interface{}) string {
 	panic("formatMethodParamsStub called - should be overridden by GeneratorFuncs.Funcs()")
+}
+
+// isValidGoIdentifier checks if a string is a valid Go identifier.
+// Valid Go identifiers must:
+// - Start with a letter (a-z, A-Z) or underscore
+// - Contain only letters, digits, or underscores
+// - Not be empty
+func isValidGoIdentifier(s string) bool {
+	if s == "" {
+		return false
+	}
+
+	// First character must be letter or underscore
+	first := rune(s[0])
+	if !((first >= 'a' && first <= 'z') || (first >= 'A' && first <= 'Z') || first == '_') {
+		return false
+	}
+
+	// Remaining characters must be letter, digit, or underscore
+	for _, r := range s[1:] {
+		if !((r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') || (r >= '0' && r <= '9') || r == '_') {
+			return false
+		}
+	}
+
+	return true
 }

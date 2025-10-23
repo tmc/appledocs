@@ -1255,27 +1255,6 @@ func BenchmarkString(b *testing.B) {
 package {{.PackageName}}
 
 // Enum types and constants
-{{if eq .Framework "Foundation" -}}
-// HARDCODED FOUNDATION ENUMS
-// NSEnumerationOptions - Options for block enumeration operations.
-// Defined in NSObjCRuntime.h (not in Apple documentation)
-type NSEnumerationOptions uint
-
-const (
-	NSEnumerationConcurrent NSEnumerationOptions = 1
-	NSEnumerationReverse    NSEnumerationOptions = 2
-)
-
-// NSSortOptions - Options for sorting operations.
-// Defined in NSObjCRuntime.h (not in Apple documentation)
-type NSSortOptions uint
-
-const (
-	NSSortConcurrent NSSortOptions = 1
-	NSSortStable     NSSortOptions = 16
-)
-
-{{end -}}
 {{range $enum := .Enums -}}
 {{if $enum.Abstract -}}
 // {{$enum.Name}} - {{$enum.Abstract}}
@@ -1329,33 +1308,39 @@ package {{.PackageName}}
 // Type aliases and typedefs
 {{range $typedef := .Typedefs -}}
 {{if ne $typedef.Name "" -}}
+{{$typeName := stripObjCPrefix $typedef.Name -}}
+{{if isValidGoIdentifier $typeName -}}
 {{if $typedef.Abstract -}}
-// {{stripObjCPrefix $typedef.Name}} - {{$typedef.Abstract}}
+// {{$typeName}} - {{$typedef.Abstract}}
 {{else -}}
-// {{stripObjCPrefix $typedef.Name}} type alias
+// {{$typeName}} type alias
 {{end -}}
 {{if $typedef.DocURL -}}
 //
 // [Full Topic]: {{convertDocURL $typedef.DocURL}}
 {{end -}}
 {{if eq $typedef.BaseType "int" -}}
-type {{stripObjCPrefix $typedef.Name}} int32
+type {{$typeName}} int32
 {{else if eq $typedef.BaseType "unsigned int" -}}
-type {{stripObjCPrefix $typedef.Name}} uint32
+type {{$typeName}} uint32
 {{else if eq $typedef.BaseType "NSInteger" -}}
-type {{stripObjCPrefix $typedef.Name}} int
+type {{$typeName}} int
 {{else if eq $typedef.BaseType "NSUInteger" -}}
-type {{stripObjCPrefix $typedef.Name}} uint
+type {{$typeName}} uint
 {{else if or (eq $typedef.BaseType "NSString *") (eq $typedef.BaseType "NSString*") -}}
 // {{$typedef.Name}} is a string typedef
-type {{stripObjCPrefix $typedef.Name}} = string
+type {{$typeName}} = string
 {{else if strContains $typedef.BaseType "^" -}}
 // {{$typedef.Name}} is a block type: {{$typedef.BaseType}}
 // Block types are not yet fully supported in Go bindings
-type {{stripObjCPrefix $typedef.Name}} uintptr
+type {{$typeName}} uintptr
 {{else -}}
 // {{$typedef.Name}} has base type: {{$typedef.BaseType}}
-type {{stripObjCPrefix $typedef.Name}} uintptr
+type {{$typeName}} uintptr
+{{end -}}
+{{else -}}
+// SKIPPED: {{$typedef.Name}} - invalid Go identifier "{{$typeName}}"
+// Original type: {{$typedef.BaseType}}
 {{end -}}
 
 {{end -}}
