@@ -17,7 +17,6 @@ type (
 	KeyValueObservingOptions = _undefined // referenced in ObjectiveC
 	KeyValueSetMutationKind = _undefined // referenced in ObjectiveC
 	Return = _undefined // referenced in ObjectiveC
-	Set = _undefined // referenced in ObjectiveC
 )
 
 
