@@ -15,7 +15,7 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_class_addIvar func(unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer) bool
+	_class_addIvar func(unsafe.Pointer, unsafe.Pointer, uintptr, uint8, unsafe.Pointer) bool
 	_class_addMethod func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_class_addProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_class_addProtocol func(unsafe.Pointer, unsafe.Pointer) bool
@@ -281,7 +281,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_addIvar(_:_:_:_:_:)
-func class_addIvar(cls unsafe.Pointer, name unsafe.Pointer, size uintptr, alignment unsafe.Pointer, types unsafe.Pointer) bool {
+func class_addIvar(cls unsafe.Pointer, name unsafe.Pointer, size uintptr, alignment uint8, types unsafe.Pointer) bool {
 	return _class_addIvar(cls, name, size, alignment, types)
 }
 

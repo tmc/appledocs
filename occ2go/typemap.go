@@ -187,6 +187,18 @@ func MapCTypeToGo(cType, framework string) string {
 		return "uint64"
 	case cType == "size_t":
 		return "uintptr"
+	case cType == "int8_t":
+		return "int8"
+	case cType == "int16_t":
+		return "int16"
+	case cType == "int32_t":
+		return "int32"
+	case cType == "int64_t":
+		return "int64"
+	case cType == "uint8_t":
+		return "uint8"
+	case cType == "uint16_t":
+		return "uint16"
 	case cType == "uint32_t":
 		return "uint32"
 	case cType == "uint64_t":
@@ -197,10 +209,21 @@ func MapCTypeToGo(cType, framework string) string {
 		return "float64"
 	case cType == "bool", cType == "BOOL":
 		return "bool"
+	case cType == "Class":
+		return "unsafe.Pointer" // Class is an opaque pointer in Objective-C runtime
 	case strings.Contains(cType, "*"):
-		// Handle pointer-to-primitive types as slices
-		// e.g., "const CGFloat *" -> []float64, "const float *" -> []float32
+		// Handle pointer types
+		// Remove const and * to get base type
 		baseType := strings.TrimSpace(strings.ReplaceAll(strings.ReplaceAll(cType, "const", ""), "*", ""))
+
+		// Special case: char * is commonly used for C strings
+		// Map to *byte for better type safety (can convert to string when needed)
+		if baseType == "char" || baseType == "CChar" {
+			return "unsafe.Pointer" // Keep as unsafe.Pointer for compatibility with purego
+		}
+
+		// Handle pointer-to-primitive types as slices for array parameters
+		// e.g., "const CGFloat *" -> []float64, "const float *" -> []float32
 		switch baseType {
 		case "CGFloat":
 			return "[]float64"
