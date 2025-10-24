@@ -1,0 +1,357 @@
+# Safe Objective-C template variant
+# Adds recover() handling to gracefully handle Objective-C SIGABRTs
+# Use with: -variant safe-objc
+
+-- class.gen.go --
+{{- $className := .Class.Name}}
+{{- $structName := classToStructName .Class.Name}}
+{{- $classTypeName := print "_" (classToStructName .Class.Name) "Class"}}
+{{- $classReceiver := receiverName $structName true}}
+{{- $instReceiver := receiverName $structName false}}
+{{- $interfaceName := classToInterfaceName $className}}
+{{- $framework := .Framework}}
+{{- $classImports := getRequiredImports (prepareClassMethods .Class.Methods) $framework }}
+{{- $instImports := getRequiredImports (prepareInstanceMethods .Class.Methods) $framework }}
+{{- $allImports := mergeImports $classImports $instImports }}
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}
+
+import (
+	"fmt"
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+{{- range sortedImportPaths $allImports }}
+	"{{.}}"
+{{- end}}
+)
+
+// The class instance for the [{{$structName}}] class.
+var (
+	{{classToVarName $className}}Class     {{$classTypeName}}
+	{{classToVarName $className}}ClassOnce sync.Once
+)
+
+func get{{classToVarName $className}}Class() {{$classTypeName}} {
+	{{classToVarName $className}}ClassOnce.Do(func() {
+		{{classToVarName $className}}Class = {{$classTypeName}}{objc.GetClass("{{$className}}")}
+	})
+	return {{classToVarName $className}}Class
+}
+
+type {{$classTypeName}} struct {
+	class objc.Class
+}
+
+// An interface definition for the [{{$structName}}] class.
+type {{$interfaceName}} interface {
+	{{getInterfaceParent .Class $.Framework}}
+	// methods:
+{{- range sortMethodsByName (prepareClassMethods .Class.Methods)}}
+	{{- if not (isEssentialSelector .Selector)}}
+	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+	{{- $interfaceType := typeToInterfaceType $goType}}
+	{{- if ne $goType ""}}
+	{{.Name}}({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$interfaceType}}{{end}}
+	{{- end}}
+	{{- end}}
+{{- end}}
+{{- range sortMethodsByName (filterPropertyMethods .Class)}}
+	{{- if and (not (isEssentialSelector .Selector)) (eq (len .Availability.DeprecatedAt) 0)}}
+	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+	{{- $interfaceType := typeToInterfaceType $goType}}
+	{{- $isInitMethod := hasPrefix .Selector "init"}}
+	{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
+	{{- if $hasValidReturnType}}
+	{{.Name}}({{formatMethodParams .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$interfaceType}}{{end}}{{end}}
+	{{- end}}
+	{{- end}}
+{{- end}}
+
+	// properties:
+{{- range .Class.Properties}}
+{{- if not .IsClassProperty}}
+{{- $goType := mapObjCTypeToGo .Type $framework}}
+{{- $interfaceType := typeToInterfaceType $goType}}
+{{- if ne $goType ""}}
+	{{capitalize .Name}}() {{$interfaceType}}
+{{- if .CanWrite}}
+	Set{{capitalize .Name}}(value {{$interfaceType}})
+{{- end}}
+{{- end}}
+{{- end}}
+{{- end}}
+}
+
+{{if .Class.Abstract -}}
+// {{commentLine .Class.Abstract}}
+{{if .Class.Overview}}//
+// {{commentLine .Class.Overview}}
+{{end -}}
+{{end -}}
+{{if or .Class.Abstract .Class.DocURL}}
+{{template "doc_comment" .Class}}
+{{end -}}
+type {{$structName}} struct {
+	{{getStructEmbeddedField .Class $.Framework}}
+}
+
+// {{$structName}}From constructs a [{{$structName}}] from an unsafe.Pointer.
+{{if .Class.Abstract -}}
+//
+// {{commentLine .Class.Abstract}}
+{{end -}}
+func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
+	{{getFromConstructorBody .Class $.Framework}}
+}
+
+// safeObjcCall wraps Objective-C calls with panic recovery to handle SIGABRTs gracefully.
+// Returns (result, error) where error is non-nil if a panic occurred.
+func safeObjcCall[T any](fn func() T) (result T, err error) {
+	defer func() {
+		if r := recover(); r != nil {
+			err = fmt.Errorf("Objective-C runtime error: %v", r)
+		}
+	}()
+	result = fn()
+	return result, nil
+}
+
+// Alloc allocates a new instance without initialization.
+func ({{$classReceiver}} {{$classTypeName}}) Alloc() {{$structName}} {
+	rv, err := safeObjcCall(func() {{$structName}} {
+		return objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.class), objc.Sel("alloc"))
+	})
+	if err != nil {
+		panic(err)
+	}
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func ({{$classReceiver}} {{$classTypeName}}) New() {{$structName}} {
+	rv, err := safeObjcCall(func() {{$structName}} {
+		obj := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.class), objc.Sel("new"))
+		obj.Autorelease()
+		return obj
+	})
+	if err != nil {
+		panic(err)
+	}
+	return rv
+}
+
+// Init initializes the instance.
+func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
+	rv, err := safeObjcCall(func() {{$structName}} {
+		return objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("init"))
+	})
+	if err != nil {
+		panic(err)
+	}
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func ({{$instReceiver}} {{$structName}}) Autorelease() {{$structName}} {
+	rv, err := safeObjcCall(func() {{$structName}} {
+		return objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("autorelease"))
+	})
+	if err != nil {
+		panic(err)
+	}
+	return rv
+}
+
+// New{{$structName}} creates a new {{$structName}} instance.
+func New{{$structName}}() {{$structName}} {
+	return get{{classToVarName $className}}Class().New()
+}
+
+{{if .Class.HasInitMethods -}}
+{{- range prepareInitMethodsWithClassName $className .Class.Methods}}
+{{- if ne .Selector "init"}}
+{{- $constructorName := initMethodToConstructorName $className .Selector}}
+{{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
+{{- if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
+{{end -}}
+func {{$constructorName}}({{formatMethodParams .}}) {{$structName}} {
+	rv, err := safeObjcCall(func() {{$structName}} {
+		{{getConstructorBody . $structName $paramNames}}
+	})
+	if err != nil {
+		panic(err)
+	}
+	return rv
+}
+{{end}}
+{{- end}}
+{{end -}}
+{{- range prepareClassMethods .Class.Methods}}
+{{- if not (isEssentialSelector .Selector)}}
+{{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
+{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+{{- /* If the method returns the same type as the class, use the wrapper type instead of the underlying struct */}}
+{{- $returnType := $goType}}
+{{- if eq $goType $className}}{{$returnType = $structName}}{{else}}{{$returnType = typeToInterfaceType $goType}}{{end}}
+{{- if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
+{{end -}}
+func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
+	rv, err := safeObjcCall(func() {{concreteReturnType $goType}} {
+		return objc.Send[{{concreteReturnType $goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	})
+	if err != nil {
+		panic(err)
+	}
+	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
+	return Object{ID: rv}
+	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (eq $returnType "[]IObject")}}
+	result := make([]IObject, len(rv))
+	for i, id := range rv {
+		result[i] = Object{ID: id}
+	}
+	return result
+	{{- else}}
+	return rv
+	{{- end}}
+	{{- else}}
+	_, err := safeObjcCall(func() objc.ID {
+		objc.Send[objc.ID](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+		return objc.ID(0)
+	})
+	if err != nil {
+		panic(err)
+	}
+	{{- end}}
+}
+{{end}}
+{{- end}}
+{{- range .Class.Properties}}
+{{- if .IsClassProperty}}
+{{- $goType := mapObjCTypeToGo .Type $framework}}
+{{- /* If the property returns the same type as the class, use the wrapper type instead of the underlying struct */}}
+{{- $returnType := $goType}}
+{{- if eq $goType $className}}{{$returnType = $structName}}{{else}}{{$returnType = typeToInterfaceType $goType}}{{end}}
+{{- $capitalizedName := capitalize .Name}}
+{{- $conflictsWithParent := propertyConflictsWithParent $className $.Class.SuperClass .Name}}
+{{- if and (ne $goType "") (not $conflictsWithParent)}}
+
+{{- if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
+{{end -}}
+func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnType}} {
+	rv, err := safeObjcCall(func() {{concreteReturnType $goType}} {
+		return objc.Send[{{concreteReturnType $goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Name}}"))
+	})
+	if err != nil {
+		panic(err)
+	}
+	return rv
+}
+{{- end}}
+{{- end}}
+{{- end}}
+{{- range filterPropertyMethods .Class}}
+{{- if and (not (isEssentialSelector .Selector)) (eq (len .Availability.DeprecatedAt) 0)}}
+{{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
+{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+{{- /* If the method returns the same type as the class, use the wrapper type instead of the underlying struct */}}
+{{- $returnType := $goType}}
+{{- if eq $goType $className}}{{$returnType = $structName}}{{else}}{{$returnType = typeToInterfaceType $goType}}{{end}}
+{{- $isInitMethod := hasPrefix .Selector "init"}}
+{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
+{{- if $hasValidReturnType}}
+{{- if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
+{{end -}}
+{{- /* Check if any parameters were relaxed due to hierarchy violations */}}
+{{- $methodSelector := .Selector}}
+{{- range .Parameters}}
+{{- $relaxedInfo := getRelaxedParamInfo $className $methodSelector .Name}}
+{{- if $relaxedInfo}}
+// Note: {{.Name}} parameter relaxed to objectivec.IObject due to cross-framework reference.
+// Expected type: {{$relaxedInfo.ExpectedGoType}} (originally {{$relaxedInfo.OriginalType}})
+{{- end}}
+{{- end -}}
+func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}}{{end}} {
+	{{- if $isInitMethod}}
+	rv, err := safeObjcCall(func() {{$structName}} {
+		return objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	})
+	if err != nil {
+		panic(err)
+	}
+	return rv
+	{{- else if and (ne .ReturnType "") (ne .ReturnType "void")}}
+	rv, err := safeObjcCall(func() {{concreteReturnType $goType}} {
+		return objc.Send[{{concreteReturnType $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	})
+	if err != nil {
+		panic(err)
+	}
+	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
+	return Object{ID: rv}
+	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (eq $returnType "[]IObject")}}
+	result := make([]IObject, len(rv))
+	for i, id := range rv {
+		result[i] = Object{ID: id}
+	}
+	return result
+	{{- else}}
+	return rv
+	{{- end}}
+	{{- else}}
+	_, err := safeObjcCall(func() objc.ID {
+		objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+		return objc.ID(0)
+	})
+	if err != nil {
+		panic(err)
+	}
+	{{- end}}
+}
+{{end}}
+{{- end}}
+{{- end}}
+{{- range .Class.Properties}}
+{{- if not .IsClassProperty}}
+{{- $goType := mapObjCTypeToGo .Type $framework}}
+{{- $returnType := $goType}}
+{{- if eq $goType $className}}{{$returnType = $structName}}{{else}}{{$returnType = typeToInterfaceType $goType}}{{end}}
+{{- $capitalizedName := capitalize .Name}}
+{{- $conflictsWithParent := propertyConflictsWithParent $className $.Class.SuperClass .Name}}
+{{- if and (ne $goType "") (not $conflictsWithParent)}}
+
+{{- if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
+{{end -}}
+func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$returnType}} {
+	rv, err := safeObjcCall(func() {{concreteReturnType $goType}} {
+		return objc.Send[{{concreteReturnType $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Name}}"))
+	})
+	if err != nil {
+		panic(err)
+	}
+	return rv
+}
+
+{{- if .CanWrite}}
+func ({{$instReceiver}} {{$structName}}) Set{{$capitalizedName}}(value {{$returnType}}) {
+	_, err := safeObjcCall(func() objc.ID {
+		objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("set{{$capitalizedName}}:"), value)
+		return objc.ID(0)
+	})
+	if err != nil {
+		panic(err)
+	}
+}
+{{- end}}
+{{- end}}
+{{- end}}
+{{- end}}

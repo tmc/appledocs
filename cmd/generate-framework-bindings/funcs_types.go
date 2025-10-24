@@ -103,6 +103,10 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		"objcType", objcType,
 		"framework", framework)
 
+	// Strip type qualifiers (__kindof, const, etc.) FIRST before any typedef checking
+	// This is critical for types like "const unichar *" to be recognized as typedef pointers
+	objcType = occ2go.StripTypeQualifiers(objcType)
+
 	// Early check: if this is a typedef in the current framework, return the title-cased name immediately
 	// This prevents occ2go.MapCTypeToGo from mapping unknown types to unsafe.Pointer
 	strippedObjCType := stripObjCPrefix(objcType)
@@ -146,9 +150,6 @@ func mapObjCTypeToGo(objcType, framework string) string {
 			}
 		}
 	}
-
-	// Strip type qualifiers (__kindof, const, etc.) using occ2go utility
-	objcType = occ2go.StripTypeQualifiers(objcType)
 
 	// Handle id<Protocol> pattern (e.g., "id<NSFetchRequestResult>" -> "objc.ID")
 	// This is Objective-C's protocol conformance syntax

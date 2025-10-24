@@ -29,6 +29,11 @@ var currentFrameworkStructs = make(map[string]bool)
 // Format: map[typeName]frameworkPackage (e.g., "Window" -> "appkit", "String" -> "foundation")
 var crossFrameworkTypeRegistry = make(map[string]string)
 
+// crossFrameworkStructRegistry tracks which qualified types are structs (not classes/interfaces).
+// This allows TypeToInterfaceType to make data-driven decisions about struct vs interface conversion.
+// Format: map[qualifiedType]isStruct (e.g., "coregraphics.AffineTransform" -> true)
+var crossFrameworkStructRegistry = make(map[string]bool)
+
 // templateFuncs is the FuncMap available to all templates
 // This is the central registration point for all template helper functions
 var templateFuncs = template.FuncMap{

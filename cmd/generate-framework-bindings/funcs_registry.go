@@ -52,7 +52,8 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 		// Extract type definitions (e.g., "type Window struct")
 		// Match struct and interface types, but NOT unsafe.Pointer aliases
 		// unsafe.Pointer aliases are forward declarations for types in other frameworks
-		typeRegex := regexp.MustCompile(`(?m)^type\s+([A-Z][A-Za-z0-9_]*)\s+(?:struct|interface)(?:\s|{)`)
+		// Capture group 1 is the type name, group 2 is whether it's "struct" or "interface"
+		typeRegex := regexp.MustCompile(`(?m)^type\s+([A-Z][A-Za-z0-9_]*)\s+(struct|interface)(?:\s|{)`)
 
 		for _, genFile := range genFiles {
 			// Parse each .gen.go file to extract type names
@@ -64,13 +65,26 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 			matches := typeRegex.FindAllSubmatch(data, -1)
 
 			for _, match := range matches {
-				if len(match) > 1 {
+				if len(match) > 2 {
 					typeName := string(match[1])
+					typeKind := string(match[2]) // "struct" or "interface"
+
 					// Add to registry if not already present (first framework wins)
 					if _, exists := crossFrameworkTypeRegistry[typeName]; !exists {
 						crossFrameworkTypeRegistry[typeName] = frameworkPkg
 						Debug.TypeMap("registry: added type", typeName, frameworkPkg,
 							"typeName", typeName,
+							"framework", frameworkPkg,
+							"typeKind", typeKind,
+							"file", filepath.Base(genFile))
+					}
+
+					// If it's a struct, also add to the struct registry
+					if typeKind == "struct" {
+						qualifiedType := frameworkPkg + "." + typeName
+						crossFrameworkStructRegistry[qualifiedType] = true
+						Debug.TypeMap("registry: added struct", qualifiedType, "true",
+							"qualifiedType", qualifiedType,
 							"framework", frameworkPkg,
 							"file", filepath.Base(genFile))
 					}
@@ -208,6 +222,35 @@ func buildTypeRegistryFromParsedData(framework string, classes []*occ2go.ParsedC
 		if _, exists := crossFrameworkTypeRegistry[typedef.Name]; !exists {
 			crossFrameworkTypeRegistry[typedef.Name] = frameworkLower
 		}
+		if _, exists := crossFrameworkTypeRegistry[goTypeName]; !exists {
+			crossFrameworkTypeRegistry[goTypeName] = frameworkLower
+		}
+	}
+}
+
+// buildStructRegistryFromParsedData populates a registry tracking which types are structs vs classes.
+// This allows TypeToInterfaceType to make data-driven decisions instead of hardcoding package names.
+//
+// Structs should NOT be converted to interfaces (AffineTransform stays AffineTransform).
+// Classes should be converted to interfaces (Window becomes IWindow).
+func buildStructRegistryFromParsedData(framework string, structs []*occ2go.ParsedStruct) {
+	frameworkLower := strings.ToLower(framework)
+
+	// Register struct types so TypeToInterfaceType can detect them
+	for _, strct := range structs {
+		if strct.Name == "" {
+			continue
+		}
+		// Strip NS/CG/CA prefix to get Go type name
+		goTypeName := occ2go.StripObjCPrefix(strct.Name)
+
+		// Store in a separate struct-specific registry
+		// Format: "coregraphics.AffineTransform" → true (is a struct)
+		qualifiedType := frameworkLower + "." + goTypeName
+		crossFrameworkStructRegistry[qualifiedType] = true
+
+		// Also register the unqualified name for current-framework lookups
+		// This allows intra-framework lookups (e.g., AffineTransform in coregraphics → coregraphics.AffineTransform)
 		if _, exists := crossFrameworkTypeRegistry[goTypeName]; !exists {
 			crossFrameworkTypeRegistry[goTypeName] = frameworkLower
 		}

@@ -237,13 +237,8 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 				return goType
 			}
 
-			// Don't convert CoreGraphics types (structs and refs)
-			// Check both CG-prefixed names (CGRect) and stripped names (AffineTransform)
-			if pkg == "coregraphics" || pkg == "corefoundation" || strings.HasPrefix(typeName, "CG") || strings.HasPrefix(typeName, "CF") {
-				return goType
-			}
-
 			// Check for framework hierarchy violations (lower-level importing higher-level)
+			// This must come BEFORE struct check to ensure hierarchy violations fall back to IObject
 			// For ObjectiveC framework (level 0), use IObject (unqualified) for ANY other framework
 			currentLevel := getFrameworkLevel(strings.ToLower(g.Framework))
 			targetLevel := getFrameworkLevel(pkg)
@@ -269,6 +264,18 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 					"targetLevel", targetLevel,
 					"objcType", goType)
 				return fallbackType
+			}
+
+			// After hierarchy violation checks pass, check if this is a struct type
+			// Structs should remain as structs, not become interfaces (e.g., coregraphics.AffineTransform)
+			// Use the struct registry for data-driven decision making
+			if crossFrameworkStructRegistry[goType] {
+				// This is a registered struct type
+				// Don't convert to interface
+				Debug.TypeMap("TypeToInterfaceType: struct type, not converting", goType, goType,
+					"goType", goType,
+					"reason", "registered as struct")
+				return goType
 			}
 
 			// Recursively convert the type part

@@ -825,9 +825,10 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	//   NSWindow → appkit.Window
 	phaseStart = time.Now()
 	buildTypeRegistryFromParsedData(framework, classes, enums, typedefs)
+	buildStructRegistryFromParsedData(framework, structs)
 	if verbose {
-		fmt.Fprintf(os.Stderr, "Built type registry from parsed data: %d classes, %d enums, %d typedefs\n",
-			len(classes), len(enums), len(typedefs))
+		fmt.Fprintf(os.Stderr, "Built type registry from parsed data: %d classes, %d enums, %d typedefs, %d structs\n",
+			len(classes), len(enums), len(typedefs), len(structs))
 		fmt.Fprintf(os.Stderr, "[%s] Built type registry in %.2fs\n", framework, time.Since(phaseStart).Seconds())
 	}
 
