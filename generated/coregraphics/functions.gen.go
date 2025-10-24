@@ -16,7 +16,7 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_CGAcquireDisplayFadeReservation func(CGDisplayReservationInterval, unsafe.Pointer) Error
+	_CGAcquireDisplayFadeReservation func(DisplayReservationInterval, unsafe.Pointer) Error
 	_CGAffineTransformConcat func(AffineTransform, AffineTransform) AffineTransform
 	_CGAffineTransformDecompose func(AffineTransform) AffineTransformComponents
 	_CGAffineTransformEqualToTransform func(AffineTransform, AffineTransform) bool
@@ -53,7 +53,7 @@ var (
 	_CGColorGetNumberOfComponents func(ColorRef) uintptr
 	_CGColorGetPattern func(ColorRef) PatternRef
 	_CGColorGetTypeID func() TypeID
-	_CGColorConversionInfoConvertData func(ColorConversionInfoRef, uintptr, uintptr, unsafe.Pointer, CGColorBufferFormat, unsafe.Pointer, CGColorBufferFormat, DictionaryRef) bool
+	_CGColorConversionInfoConvertData func(ColorConversionInfoRef, uintptr, uintptr, unsafe.Pointer, ColorBufferFormat, unsafe.Pointer, ColorBufferFormat, DictionaryRef) bool
 	_CGColorConversionInfoCreateWithOptions func(ColorSpaceRef, ColorSpaceRef, DictionaryRef) ColorConversionInfoRef
 	_CGColorConversionInfoCreate func(ColorSpaceRef, ColorSpaceRef) ColorConversionInfoRef
 	_CGColorConversionInfoCreateForToneMapping func(ColorSpaceRef, float32, ColorSpaceRef, float32, ToneMapping, DictionaryRef, unsafe.Pointer) ColorConversionInfoRef
@@ -106,12 +106,12 @@ var (
 	_CGColorSpaceUsesExtendedRange func(ColorSpaceRef) bool
 	_CGColorSpaceUsesITUR_2100TF func(ColorSpaceRef) bool
 	_CGCompleteDisplayConfiguration func(DisplayConfigRef, ConfigureOption) Error
-	_CGConfigureDisplayFadeEffect func(DisplayConfigRef, CGDisplayFadeInterval, CGDisplayFadeInterval, float32, float32, float32) Error
-	_CGConfigureDisplayMirrorOfDisplay func(DisplayConfigRef, CGDirectDisplayID, CGDirectDisplayID) Error
-	_CGConfigureDisplayMode func(DisplayConfigRef, CGDirectDisplayID, DictionaryRef) Error
-	_CGConfigureDisplayOrigin func(DisplayConfigRef, CGDirectDisplayID, int32, int32) Error
-	_CGConfigureDisplayStereoOperation func(DisplayConfigRef, CGDirectDisplayID, unsafe.Pointer, unsafe.Pointer) Error
-	_CGConfigureDisplayWithDisplayMode func(DisplayConfigRef, CGDirectDisplayID, DisplayModeRef, DictionaryRef) Error
+	_CGConfigureDisplayFadeEffect func(DisplayConfigRef, DisplayFadeInterval, DisplayFadeInterval, float32, float32, float32) Error
+	_CGConfigureDisplayMirrorOfDisplay func(DisplayConfigRef, DirectDisplayID, DirectDisplayID) Error
+	_CGConfigureDisplayMode func(DisplayConfigRef, DirectDisplayID, DictionaryRef) Error
+	_CGConfigureDisplayOrigin func(DisplayConfigRef, DirectDisplayID, int32, int32) Error
+	_CGConfigureDisplayStereoOperation func(DisplayConfigRef, DirectDisplayID, unsafe.Pointer, unsafe.Pointer) Error
+	_CGConfigureDisplayWithDisplayMode func(DisplayConfigRef, DirectDisplayID, DisplayModeRef, DictionaryRef) Error
 	_CGPDFContextAddDestinationAtPoint func(ContextRef, StringRef, Point)
 	_CGPDFContextAddDocumentMetadata func(ContextRef, DataRef)
 	_CGContextAddEllipseInRect func(ContextRef, Rect)
@@ -249,20 +249,20 @@ var (
 	_CGContextEOFillPath func(ContextRef)
 	_CGContextFillPath func(ContextRef)
 	_CGContextFillRects func(ContextRef, unsafe.Pointer, uintptr)
-	_CGContextGetContentToneMappingInfo func(ContextRef) CGContentToneMappingInfo
+	_CGContextGetContentToneMappingInfo func(ContextRef) ContentToneMappingInfo
 	_CGContextGetEDRTargetHeadroom func(ContextRef) float32
 	_CGContextGetTextPosition func(ContextRef) Point
 	_CGContextMoveToPoint func(ContextRef, float64, float64)
 	_CGContextRelease func(ContextRef)
 	_CGContextRetain func(ContextRef) ContextRef
-	_CGContextSetContentToneMappingInfo func(ContextRef, CGContentToneMappingInfo)
+	_CGContextSetContentToneMappingInfo func(ContextRef, ContentToneMappingInfo)
 	_CGContextSetInterpolationQuality func(ContextRef, InterpolationQuality)
 	_CGContextSetLineDash func(ContextRef, float64, []float64, uintptr)
 	_CGContextSetTextMatrix func(ContextRef, AffineTransform)
 	_CGContextSetTextPosition func(ContextRef, float64, float64)
 	_CGContextShowGlyphsAtPositions func(ContextRef, unsafe.Pointer, unsafe.Pointer, uintptr)
 	_CGContextStrokeLineSegments func(ContextRef, unsafe.Pointer, uintptr)
-	_CGConvertColorDataWithFormat func(uintptr, uintptr, unsafe.Pointer, CGColorDataFormat, unsafe.Pointer, CGColorDataFormat, DictionaryRef) bool
+	_CGConvertColorDataWithFormat func(uintptr, uintptr, unsafe.Pointer, ColorDataFormat, unsafe.Pointer, ColorDataFormat, DictionaryRef) bool
 	_CGCursorIsDrawnInFramebuffer func() unsafe.Pointer
 	_CGCursorIsVisible func() unsafe.Pointer
 	_CGDataConsumerCreateWithCFData func(MutableDataRef) DataConsumerRef
@@ -282,37 +282,37 @@ var (
 	_CGDataProviderGetTypeID func() TypeID
 	_CGDataProviderRelease func(DataProviderRef)
 	_CGDataProviderRetain func(DataProviderRef) DataProviderRef
-	_CGDirectDisplayCopyCurrentMetalDevice func(CGDirectDisplayID) unsafe.Pointer
-	_CGDisplayAvailableModes func(CGDirectDisplayID) ArrayRef
-	_CGDisplayBestModeForParameters func(CGDirectDisplayID, uintptr, uintptr, uintptr, unsafe.Pointer) DictionaryRef
-	_CGDisplayBestModeForParametersAndRefreshRate func(CGDirectDisplayID, uintptr, uintptr, uintptr, CGRefreshRate, unsafe.Pointer) DictionaryRef
-	_CGDisplayBounds func(CGDirectDisplayID) Rect
-	_CGDisplayCapture func(CGDirectDisplayID) Error
-	_CGDisplayCaptureWithOptions func(CGDirectDisplayID, CaptureOptions) Error
-	_CGDisplayCopyAllDisplayModes func(CGDirectDisplayID, DictionaryRef) ArrayRef
-	_CGDisplayCopyColorSpace func(CGDirectDisplayID) ColorSpaceRef
-	_CGDisplayCopyDisplayMode func(CGDirectDisplayID) DisplayModeRef
-	_CGDisplayCreateImage func(CGDirectDisplayID) ImageRef
-	_CGDisplayCreateImageForRect func(CGDirectDisplayID, Rect) ImageRef
-	_CGDisplayCurrentMode func(CGDirectDisplayID) DictionaryRef
-	_CGDisplayFade func(CGDisplayFadeReservationToken, CGDisplayFadeInterval, CGDisplayBlendFraction, CGDisplayBlendFraction, float32, float32, float32, unsafe.Pointer) Error
+	_CGDirectDisplayCopyCurrentMetalDevice func(DirectDisplayID) unsafe.Pointer
+	_CGDisplayAvailableModes func(DirectDisplayID) ArrayRef
+	_CGDisplayBestModeForParameters func(DirectDisplayID, uintptr, uintptr, uintptr, unsafe.Pointer) DictionaryRef
+	_CGDisplayBestModeForParametersAndRefreshRate func(DirectDisplayID, uintptr, uintptr, uintptr, RefreshRate, unsafe.Pointer) DictionaryRef
+	_CGDisplayBounds func(DirectDisplayID) Rect
+	_CGDisplayCapture func(DirectDisplayID) Error
+	_CGDisplayCaptureWithOptions func(DirectDisplayID, CaptureOptions) Error
+	_CGDisplayCopyAllDisplayModes func(DirectDisplayID, DictionaryRef) ArrayRef
+	_CGDisplayCopyColorSpace func(DirectDisplayID) ColorSpaceRef
+	_CGDisplayCopyDisplayMode func(DirectDisplayID) DisplayModeRef
+	_CGDisplayCreateImage func(DirectDisplayID) ImageRef
+	_CGDisplayCreateImageForRect func(DirectDisplayID, Rect) ImageRef
+	_CGDisplayCurrentMode func(DirectDisplayID) DictionaryRef
+	_CGDisplayFade func(DisplayFadeReservationToken, DisplayFadeInterval, DisplayBlendFraction, DisplayBlendFraction, float32, float32, float32, unsafe.Pointer) Error
 	_CGDisplayFadeOperationInProgress func() unsafe.Pointer
-	_CGDisplayGammaTableCapacity func(CGDirectDisplayID) uint32
-	_CGDisplayGetDrawingContext func(CGDirectDisplayID) ContextRef
-	_CGDisplayHideCursor func(CGDirectDisplayID) Error
-	_CGDisplayIDToOpenGLDisplayMask func(CGDirectDisplayID) CGOpenGLDisplayMask
-	_CGDisplayIOServicePort func(CGDirectDisplayID) unsafe.Pointer
-	_CGDisplayIsActive func(CGDirectDisplayID) unsafe.Pointer
-	_CGDisplayIsAlwaysInMirrorSet func(CGDirectDisplayID) unsafe.Pointer
-	_CGDisplayIsAsleep func(CGDirectDisplayID) unsafe.Pointer
-	_CGDisplayIsBuiltin func(CGDirectDisplayID) unsafe.Pointer
-	_CGDisplayIsCaptured func(CGDirectDisplayID) unsafe.Pointer
-	_CGDisplayIsInHWMirrorSet func(CGDirectDisplayID) unsafe.Pointer
-	_CGDisplayIsInMirrorSet func(CGDirectDisplayID) unsafe.Pointer
-	_CGDisplayIsMain func(CGDirectDisplayID) unsafe.Pointer
-	_CGDisplayIsOnline func(CGDirectDisplayID) unsafe.Pointer
-	_CGDisplayIsStereo func(CGDirectDisplayID) unsafe.Pointer
-	_CGDisplayMirrorsDisplay func(CGDirectDisplayID) CGDirectDisplayID
+	_CGDisplayGammaTableCapacity func(DirectDisplayID) uint32
+	_CGDisplayGetDrawingContext func(DirectDisplayID) ContextRef
+	_CGDisplayHideCursor func(DirectDisplayID) Error
+	_CGDisplayIDToOpenGLDisplayMask func(DirectDisplayID) OpenGLDisplayMask
+	_CGDisplayIOServicePort func(DirectDisplayID) unsafe.Pointer
+	_CGDisplayIsActive func(DirectDisplayID) unsafe.Pointer
+	_CGDisplayIsAlwaysInMirrorSet func(DirectDisplayID) unsafe.Pointer
+	_CGDisplayIsAsleep func(DirectDisplayID) unsafe.Pointer
+	_CGDisplayIsBuiltin func(DirectDisplayID) unsafe.Pointer
+	_CGDisplayIsCaptured func(DirectDisplayID) unsafe.Pointer
+	_CGDisplayIsInHWMirrorSet func(DirectDisplayID) unsafe.Pointer
+	_CGDisplayIsInMirrorSet func(DirectDisplayID) unsafe.Pointer
+	_CGDisplayIsMain func(DirectDisplayID) unsafe.Pointer
+	_CGDisplayIsOnline func(DirectDisplayID) unsafe.Pointer
+	_CGDisplayIsStereo func(DirectDisplayID) unsafe.Pointer
+	_CGDisplayMirrorsDisplay func(DirectDisplayID) DirectDisplayID
 	_CGDisplayModeGetHeight func(DisplayModeRef) uintptr
 	_CGDisplayModeGetIODisplayModeID func(DisplayModeRef) int32
 	_CGDisplayModeGetIOFlags func(DisplayModeRef) uint32
@@ -325,23 +325,23 @@ var (
 	_CGDisplayModeGetWidth func(DisplayModeRef) uintptr
 	_CGDisplayModeRelease func(DisplayModeRef)
 	_CGDisplayModeRetain func(DisplayModeRef) DisplayModeRef
-	_CGDisplayModelNumber func(CGDirectDisplayID) uint32
-	_CGDisplayMoveCursorToPoint func(CGDirectDisplayID, Point) Error
-	_CGDisplayPixelsHigh func(CGDirectDisplayID) uintptr
-	_CGDisplayPixelsWide func(CGDirectDisplayID) uintptr
-	_CGDisplayPrimaryDisplay func(CGDirectDisplayID) CGDirectDisplayID
+	_CGDisplayModelNumber func(DirectDisplayID) uint32
+	_CGDisplayMoveCursorToPoint func(DirectDisplayID, Point) Error
+	_CGDisplayPixelsHigh func(DirectDisplayID) uintptr
+	_CGDisplayPixelsWide func(DirectDisplayID) uintptr
+	_CGDisplayPrimaryDisplay func(DirectDisplayID) DirectDisplayID
 	_CGDisplayRegisterReconfigurationCallback func(DisplayReconfigurationCallBack, unsafe.Pointer) Error
-	_CGDisplayRelease func(CGDirectDisplayID) Error
+	_CGDisplayRelease func(DirectDisplayID) Error
 	_CGDisplayRemoveReconfigurationCallback func(DisplayReconfigurationCallBack, unsafe.Pointer) Error
 	_CGDisplayRestoreColorSyncSettings func()
-	_CGDisplayRotation func(CGDirectDisplayID) float64
-	_CGDisplayScreenSize func(CGDirectDisplayID) Size
-	_CGDisplaySerialNumber func(CGDirectDisplayID) uint32
-	_CGDisplaySetDisplayMode func(CGDirectDisplayID, DisplayModeRef, DictionaryRef) Error
-	_CGDisplaySetStereoOperation func(CGDirectDisplayID, unsafe.Pointer, unsafe.Pointer, ConfigureOption) Error
-	_CGDisplayShowCursor func(CGDirectDisplayID) Error
-	_CGDisplayStreamCreateWithDispatchQueue func(CGDirectDisplayID, uintptr, uintptr, int32, DictionaryRef, unsafe.Pointer, DisplayStreamFrameAvailableHandler) DisplayStreamRef
-	_CGDisplayStreamCreate func(CGDirectDisplayID, uintptr, uintptr, int32, DictionaryRef, DisplayStreamFrameAvailableHandler) DisplayStreamRef
+	_CGDisplayRotation func(DirectDisplayID) float64
+	_CGDisplayScreenSize func(DirectDisplayID) Size
+	_CGDisplaySerialNumber func(DirectDisplayID) uint32
+	_CGDisplaySetDisplayMode func(DirectDisplayID, DisplayModeRef, DictionaryRef) Error
+	_CGDisplaySetStereoOperation func(DirectDisplayID, unsafe.Pointer, unsafe.Pointer, ConfigureOption) Error
+	_CGDisplayShowCursor func(DirectDisplayID) Error
+	_CGDisplayStreamCreateWithDispatchQueue func(DirectDisplayID, uintptr, uintptr, int32, DictionaryRef, unsafe.Pointer, DisplayStreamFrameAvailableHandler) DisplayStreamRef
+	_CGDisplayStreamCreate func(DirectDisplayID, uintptr, uintptr, int32, DictionaryRef, DisplayStreamFrameAvailableHandler) DisplayStreamRef
 	_CGDisplayStreamGetRunLoopSource func(DisplayStreamRef) RunLoopSourceRef
 	_CGDisplayStreamStart func(DisplayStreamRef) Error
 	_CGDisplayStreamStop func(DisplayStreamRef) Error
@@ -351,10 +351,10 @@ var (
 	_CGDisplayStreamUpdateGetRects func(DisplayStreamUpdateRef, DisplayStreamUpdateRectType, unsafe.Pointer) unsafe.Pointer
 	_CGDisplayStreamUpdateCreateMergedUpdate func(DisplayStreamUpdateRef, DisplayStreamUpdateRef) DisplayStreamUpdateRef
 	_CGDisplayStreamUpdateGetTypeID func() TypeID
-	_CGDisplaySwitchToMode func(CGDirectDisplayID, DictionaryRef) Error
-	_CGDisplayUnitNumber func(CGDirectDisplayID) uint32
-	_CGDisplayUsesOpenGLAcceleration func(CGDirectDisplayID) unsafe.Pointer
-	_CGDisplayVendorNumber func(CGDirectDisplayID) uint32
+	_CGDisplaySwitchToMode func(DirectDisplayID, DictionaryRef) Error
+	_CGDisplayUnitNumber func(DirectDisplayID) uint32
+	_CGDisplayUsesOpenGLAcceleration func(DirectDisplayID) unsafe.Pointer
+	_CGDisplayVendorNumber func(DirectDisplayID) uint32
 	_CGEXRToneMappingGammaGetDefaultOptions func() DictionaryRef
 	_CGEnableEventStateCombining func(unsafe.Pointer) Error
 	_CGErrorSetCallback func(ErrorCallback)
@@ -362,7 +362,7 @@ var (
 	_CGEventGetFlags func(EventRef) EventFlags
 	_CGEventGetDoubleValueField func(EventRef, EventField) float64
 	_CGEventGetIntegerValueField func(EventRef, EventField) int64
-	_CGEventCreateKeyboardEvent func(EventSourceRef, CGKeyCode, bool) EventRef
+	_CGEventCreateKeyboardEvent func(EventSourceRef, KeyCode, bool) EventRef
 	_CGEventCreateMouseEvent func(EventSourceRef, EventType, Point, MouseButton) EventRef
 	_CGEventCreateScrollWheelEvent2 func(EventSourceRef, ScrollEventUnit, uint32, int32, int32, int32) EventRef
 	_CGEventCreate func(EventSourceRef) EventRef
@@ -376,13 +376,13 @@ var (
 	_CGEventSetDoubleValueField func(EventRef, EventField, float64)
 	_CGEventSetIntegerValueField func(EventRef, EventField, int64)
 	_CGEventSetSource func(EventRef, EventSourceRef)
-	_CGEventTapCreate func(EventTapLocation, EventTapPlacement, EventTapOptions, CGEventMask, EventTapCallBack, unsafe.Pointer) MachPortRef
-	_CGEventTapCreateForPSN func(unsafe.Pointer, EventTapPlacement, EventTapOptions, CGEventMask, EventTapCallBack, unsafe.Pointer) MachPortRef
-	_CGEventTapCreateForPid func(unsafe.Pointer, EventTapPlacement, EventTapOptions, CGEventMask, EventTapCallBack, unsafe.Pointer) MachPortRef
+	_CGEventTapCreate func(EventTapLocation, EventTapPlacement, EventTapOptions, EventMask, EventTapCallBack, unsafe.Pointer) MachPortRef
+	_CGEventTapCreateForPSN func(unsafe.Pointer, EventTapPlacement, EventTapOptions, EventMask, EventTapCallBack, unsafe.Pointer) MachPortRef
+	_CGEventTapCreateForPid func(unsafe.Pointer, EventTapPlacement, EventTapOptions, EventMask, EventTapCallBack, unsafe.Pointer) MachPortRef
 	_CGEventTapEnable func(MachPortRef, bool)
 	_CGEventTapIsEnabled func(MachPortRef) bool
-	_CGEventTapPostEvent func(CGEventTapProxy, EventRef)
-	_CGEventGetTimestamp func(EventRef) CGEventTimestamp
+	_CGEventTapPostEvent func(EventTapProxy, EventRef)
+	_CGEventGetTimestamp func(EventRef) EventTimestamp
 	_CGEventGetType func(EventRef) EventType
 	_CGEventGetTypeID func() TypeID
 	_CGEventGetUnflippedLocation func(EventRef) Point
@@ -390,7 +390,7 @@ var (
 	_CGEventCreateScrollWheelEvent func(EventSourceRef, ScrollEventUnit, uint32, int32) EventRef
 	_CGEventSetFlags func(EventRef, EventFlags)
 	_CGEventSetLocation func(EventRef, Point)
-	_CGEventSetTimestamp func(EventRef, CGEventTimestamp)
+	_CGEventSetTimestamp func(EventRef, EventTimestamp)
 	_CGEventSetType func(EventRef, EventType)
 	_CGEventSourceButtonState func(EventSourceStateID, MouseButton) bool
 	_CGEventSourceCounterForEventType func(EventSourceStateID, EventType) uint32
@@ -398,8 +398,8 @@ var (
 	_CGEventSourceGetLocalEventsFilterDuringSuppressionState func(EventSourceRef, EventSuppressionState) EventFilterMask
 	_CGEventCreateSourceFromEvent func(EventRef) EventSourceRef
 	_CGEventSourceCreate func(EventSourceStateID) EventSourceRef
-	_CGEventSourceKeyState func(EventSourceStateID, CGKeyCode) bool
-	_CGEventSourceGetKeyboardType func(EventSourceRef) CGEventSourceKeyboardType
+	_CGEventSourceKeyState func(EventSourceStateID, KeyCode) bool
+	_CGEventSourceGetKeyboardType func(EventSourceRef) EventSourceKeyboardType
 	_CGEventSourceGetLocalEventsSuppressionInterval func(EventSourceRef) TimeInterval
 	_CGEventSourceGetPixelsPerLine func(EventSourceRef) float64
 	_CGEventSourceSecondsSinceLastEventType func(EventSourceStateID, EventType) TimeInterval
@@ -407,7 +407,7 @@ var (
 	_CGEventSourceGetSourceStateID func(EventSourceRef) EventSourceStateID
 	_CGEventSourceGetTypeID func() TypeID
 	_CGEventSourceGetUserData func(EventSourceRef) int64
-	_CGEventSourceSetKeyboardType func(EventSourceRef, CGEventSourceKeyboardType)
+	_CGEventSourceSetKeyboardType func(EventSourceRef, EventSourceKeyboardType)
 	_CGEventSourceSetLocalEventsSuppressionInterval func(EventSourceRef, TimeInterval)
 	_CGEventSourceSetPixelsPerLine func(EventSourceRef, float64)
 	_CGEventSourceSetUserData func(EventSourceRef, int64)
@@ -422,12 +422,12 @@ var (
 	_CGFontCopyFullName func(FontRef) StringRef
 	_CGFontGetGlyphAdvances func(FontRef, unsafe.Pointer, uintptr, []int) bool
 	_CGFontGetGlyphBBoxes func(FontRef, unsafe.Pointer, uintptr, unsafe.Pointer) bool
-	_CGFontGetGlyphWithGlyphName func(FontRef, StringRef) CGGlyph
+	_CGFontGetGlyphWithGlyphName func(FontRef, StringRef) Glyph
 	_CGFontCreateWithFontName func(StringRef) FontRef
 	_CGFontCreateWithDataProvider func(DataProviderRef) FontRef
 	_CGFontGetItalicAngle func(FontRef) float64
 	_CGFontGetLeading func(FontRef) int
-	_CGFontCopyGlyphNameForGlyph func(FontRef, CGGlyph) StringRef
+	_CGFontCopyGlyphNameForGlyph func(FontRef, Glyph) StringRef
 	_CGFontGetNumberOfGlyphs func(FontRef) uintptr
 	_CGFontCopyPostScriptName func(FontRef) StringRef
 	_CGFontGetStemV func(FontRef) float64
@@ -446,9 +446,9 @@ var (
 	_CGFunctionRelease func(FunctionRef)
 	_CGFunctionRetain func(FunctionRef) FunctionRef
 	_CGGetActiveDisplayList func(uint32, unsafe.Pointer, []uint32) Error
-	_CGGetDisplayTransferByFormula func(CGDirectDisplayID, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) Error
-	_CGGetDisplayTransferByTable func(CGDirectDisplayID, uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, []uint32) Error
-	_CGGetDisplaysWithOpenGLDisplayMask func(CGOpenGLDisplayMask, uint32, unsafe.Pointer, []uint32) Error
+	_CGGetDisplayTransferByFormula func(DirectDisplayID, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) Error
+	_CGGetDisplayTransferByTable func(DirectDisplayID, uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, []uint32) Error
+	_CGGetDisplaysWithOpenGLDisplayMask func(OpenGLDisplayMask, uint32, unsafe.Pointer, []uint32) Error
 	_CGGetDisplaysWithPoint func(Point, uint32, unsafe.Pointer, []uint32) Error
 	_CGGetDisplaysWithRect func(Rect, uint32, unsafe.Pointer, []uint32) Error
 	_CGGetEventTapList func(uint32, unsafe.Pointer, []uint32) Error
@@ -507,10 +507,10 @@ var (
 	_CGLayerGetTypeID func() TypeID
 	_CGLayerRelease func(LayerRef)
 	_CGLayerRetain func(LayerRef) LayerRef
-	_CGMainDisplayID func() CGDirectDisplayID
+	_CGMainDisplayID func() DirectDisplayID
 	_CGPathCloseSubpath func(MutablePathRef)
 	_CGPathCreateMutable func() MutablePathRef
-	_CGOpenGLDisplayMaskToDisplayID func(CGOpenGLDisplayMask) CGDirectDisplayID
+	_CGOpenGLDisplayMaskToDisplayID func(OpenGLDisplayMask) DirectDisplayID
 	_CGPDFArrayApplyBlock func(PDFArrayRef, PDFArrayApplierBlock, unsafe.Pointer)
 	_CGPDFArrayGetArray func(PDFArrayRef, uintptr, unsafe.Pointer) bool
 	_CGPDFArrayGetBoolean func(PDFArrayRef, uintptr, unsafe.Pointer) bool
@@ -536,7 +536,7 @@ var (
 	_CGPDFContextSetPageTagStructureTree func(ContextRef, DictionaryRef)
 	_CGPDFContextSetParentTree func(ContextRef, PDFDictionaryRef)
 	_CGPDFDictionaryApplyBlock func(PDFDictionaryRef, PDFDictionaryApplierBlock, unsafe.Pointer)
-	_CGPDFDictionaryApplyFunction func(PDFDictionaryRef, CGPDFDictionaryApplierFunction, unsafe.Pointer)
+	_CGPDFDictionaryApplyFunction func(PDFDictionaryRef, PDFDictionaryApplierFunction, unsafe.Pointer)
 	_CGPDFDictionaryGetArray func(PDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
 	_CGPDFDictionaryGetBoolean func(PDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
 	_CGPDFDictionaryGetCount func(PDFDictionaryRef) uintptr
@@ -613,7 +613,7 @@ var (
 	_CGPSConverterCreate func(unsafe.Pointer, unsafe.Pointer, DictionaryRef) PSConverterRef
 	_CGPSConverterIsConverting func(PSConverterRef) bool
 	_CGPSConverterGetTypeID func() TypeID
-	_CGPathApply func(PathRef, unsafe.Pointer, CGPathApplierFunction)
+	_CGPathApply func(PathRef, unsafe.Pointer, PathApplierFunction)
 	_CGPathApplyWithBlock func(PathRef, PathApplyBlock)
 	_CGPathGetBoundingBox func(PathRef) Rect
 	_CGPathGetPathBoundingBox func(PathRef) Rect
@@ -665,9 +665,9 @@ var (
 	_CGPointCreateDictionaryRepresentation func(Point) DictionaryRef
 	_CGPointEqualToPoint func(Point, Point) bool
 	_CGPointMakeWithDictionaryRepresentation func(DictionaryRef, unsafe.Pointer) bool
-	_CGPostKeyboardEvent func(CGCharCode, CGKeyCode, unsafe.Pointer) Error
-	_CGPostMouseEvent func(Point, unsafe.Pointer, CGButtonCount, unsafe.Pointer) Error
-	_CGPostScrollWheelEvent func(CGWheelCount, int32) Error
+	_CGPostKeyboardEvent func(CharCode, KeyCode, unsafe.Pointer) Error
+	_CGPostMouseEvent func(Point, unsafe.Pointer, ButtonCount, unsafe.Pointer) Error
+	_CGPostScrollWheelEvent func(WheelCount, int32) Error
 	_CGPreflightListenEventAccess func() bool
 	_CGPreflightPostEventAccess func() bool
 	_CGPreflightScreenCaptureAccess func() bool
@@ -698,7 +698,7 @@ var (
 	_CGRectUnion func(Rect, Rect) Rect
 	_CGRegisterScreenRefreshCallback func(ScreenRefreshCallback, unsafe.Pointer) Error
 	_CGReleaseAllDisplays func() Error
-	_CGReleaseDisplayFadeReservation func(CGDisplayFadeReservationToken) Error
+	_CGReleaseDisplayFadeReservation func(DisplayFadeReservationToken) Error
 	_CGReleaseScreenRefreshRects func(unsafe.Pointer)
 	_CGRenderingBufferLockBytePtr func(RenderingBufferProviderRef) unsafe.Pointer
 	_CGRenderingBufferProviderCreate func(unsafe.Pointer, uintptr) RenderingBufferProviderRef
@@ -713,9 +713,9 @@ var (
 	_CGScreenRegisterMoveCallback func(ScreenUpdateMoveCallback, unsafe.Pointer) Error
 	_CGScreenUnregisterMoveCallback func(ScreenUpdateMoveCallback, unsafe.Pointer)
 	_CGSessionCopyCurrentDictionary func() DictionaryRef
-	_CGSetDisplayTransferByByteTable func(CGDirectDisplayID, uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) Error
-	_CGSetDisplayTransferByFormula func(CGDirectDisplayID, CGGammaValue, CGGammaValue, CGGammaValue, CGGammaValue, CGGammaValue, CGGammaValue, CGGammaValue, CGGammaValue, CGGammaValue) Error
-	_CGSetDisplayTransferByTable func(CGDirectDisplayID, uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) Error
+	_CGSetDisplayTransferByByteTable func(DirectDisplayID, uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) Error
+	_CGSetDisplayTransferByFormula func(DirectDisplayID, GammaValue, GammaValue, GammaValue, GammaValue, GammaValue, GammaValue, GammaValue, GammaValue, GammaValue) Error
+	_CGSetDisplayTransferByTable func(DirectDisplayID, uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) Error
 	_CGSetLocalEventsFilterDuringSuppressionState func(EventFilterMask, EventSuppressionState) Error
 	_CGSetLocalEventsSuppressionInterval func(TimeInterval) Error
 	_CGShadingGetContentHeadroom func(ShadingRef) float32
@@ -726,8 +726,8 @@ var (
 	_CGShadingGetTypeID func() TypeID
 	_CGShadingRelease func(ShadingRef)
 	_CGShadingRetain func(ShadingRef) ShadingRef
-	_CGShieldingWindowID func(CGDirectDisplayID) CGWindowID
-	_CGShieldingWindowLevel func() CGWindowLevel
+	_CGShieldingWindowID func(DirectDisplayID) WindowID
+	_CGShieldingWindowLevel func() WindowLevel
 	_CGSizeApplyAffineTransform func(Size, AffineTransform) Size
 	_CGSizeCreateDictionaryRepresentation func(Size) DictionaryRef
 	_CGSizeEqualToSize func(Size, Size) bool
@@ -736,11 +736,11 @@ var (
 	_CGWaitForScreenRefreshRects func(unsafe.Pointer, []uint32) Error
 	_CGWaitForScreenUpdateRects func(ScreenUpdateOperation, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) Error
 	_CGWarpMouseCursorPosition func(Point) Error
-	_CGWindowLevelForKey func(WindowLevelKey) CGWindowLevel
-	_CGWindowListCopyWindowInfo func(WindowListOption, CGWindowID) ArrayRef
-	_CGWindowListCreate func(WindowListOption, CGWindowID) ArrayRef
+	_CGWindowLevelForKey func(WindowLevelKey) WindowLevel
+	_CGWindowListCopyWindowInfo func(WindowListOption, WindowID) ArrayRef
+	_CGWindowListCreate func(WindowListOption, WindowID) ArrayRef
 	_CGWindowListCreateDescriptionFromArray func(ArrayRef) ArrayRef
-	_CGWindowListCreateImage func(Rect, WindowListOption, CGWindowID, WindowImageOption) ImageRef
+	_CGWindowListCreateImage func(Rect, WindowListOption, WindowID, WindowImageOption) ImageRef
 	_CGWindowServerCFMachPort func() MachPortRef
 	_CGWindowServerCreateServerPort func() MachPortRef
 )
@@ -1500,7 +1500,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAcquireDisplayFadeReservation(_:_:)
-func CGAcquireDisplayFadeReservation(seconds CGDisplayReservationInterval, token unsafe.Pointer) Error {
+func CGAcquireDisplayFadeReservation(seconds DisplayReservationInterval, token unsafe.Pointer) Error {
 	return _CGAcquireDisplayFadeReservation(seconds, token)
 }
 
@@ -1895,7 +1895,7 @@ func CGColorGetTypeID() TypeID {
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/convert(width:height:to:format:from:format:options:)
-func CGColorConversionInfoConvertData(info ColorConversionInfoRef, width uintptr, height uintptr, dst_data unsafe.Pointer, dst_format CGColorBufferFormat, src_data unsafe.Pointer, src_format CGColorBufferFormat, options DictionaryRef) bool {
+func CGColorConversionInfoConvertData(info ColorConversionInfoRef, width uintptr, height uintptr, dst_data unsafe.Pointer, dst_format ColorBufferFormat, src_data unsafe.Pointer, src_format ColorBufferFormat, options DictionaryRef) bool {
 	return _CGColorConversionInfoConvertData(info, width, height, dst_data, dst_format, src_data, src_format, options)
 }
 
@@ -2454,7 +2454,7 @@ func CGCompleteDisplayConfiguration(config DisplayConfigRef, option ConfigureOpt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayFadeEffect(_:_:_:_:_:_:)
-func CGConfigureDisplayFadeEffect(config DisplayConfigRef, fadeOutSeconds CGDisplayFadeInterval, fadeInSeconds CGDisplayFadeInterval, fadeRed float32, fadeGreen float32, fadeBlue float32) Error {
+func CGConfigureDisplayFadeEffect(config DisplayConfigRef, fadeOutSeconds DisplayFadeInterval, fadeInSeconds DisplayFadeInterval, fadeRed float32, fadeGreen float32, fadeBlue float32) Error {
 	return _CGConfigureDisplayFadeEffect(config, fadeOutSeconds, fadeInSeconds, fadeRed, fadeGreen, fadeBlue)
 }
 
@@ -2465,7 +2465,7 @@ func CGConfigureDisplayFadeEffect(config DisplayConfigRef, fadeOutSeconds CGDisp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayMirrorOfDisplay(_:_:_:)
-func CGConfigureDisplayMirrorOfDisplay(config DisplayConfigRef, display CGDirectDisplayID, master CGDirectDisplayID) Error {
+func CGConfigureDisplayMirrorOfDisplay(config DisplayConfigRef, display DirectDisplayID, master DirectDisplayID) Error {
 	return _CGConfigureDisplayMirrorOfDisplay(config, display, master)
 }
 
@@ -2475,7 +2475,7 @@ func CGConfigureDisplayMirrorOfDisplay(config DisplayConfigRef, display CGDirect
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayMode(_:_:_:)
-func CGConfigureDisplayMode(config DisplayConfigRef, display CGDirectDisplayID, mode DictionaryRef) Error {
+func CGConfigureDisplayMode(config DisplayConfigRef, display DirectDisplayID, mode DictionaryRef) Error {
 	return _CGConfigureDisplayMode(config, display, mode)
 }
 
@@ -2486,7 +2486,7 @@ func CGConfigureDisplayMode(config DisplayConfigRef, display CGDirectDisplayID, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayOrigin(_:_:_:_:)
-func CGConfigureDisplayOrigin(config DisplayConfigRef, display CGDirectDisplayID, x int32, y int32) Error {
+func CGConfigureDisplayOrigin(config DisplayConfigRef, display DirectDisplayID, x int32, y int32) Error {
 	return _CGConfigureDisplayOrigin(config, display, x, y)
 }
 
@@ -2497,7 +2497,7 @@ func CGConfigureDisplayOrigin(config DisplayConfigRef, display CGDirectDisplayID
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayStereoOperation(_:_:_:_:)
-func CGConfigureDisplayStereoOperation(config DisplayConfigRef, display CGDirectDisplayID, stereo unsafe.Pointer, forceBlueLine unsafe.Pointer) Error {
+func CGConfigureDisplayStereoOperation(config DisplayConfigRef, display DirectDisplayID, stereo unsafe.Pointer, forceBlueLine unsafe.Pointer) Error {
 	return _CGConfigureDisplayStereoOperation(config, display, stereo, forceBlueLine)
 }
 
@@ -2508,7 +2508,7 @@ func CGConfigureDisplayStereoOperation(config DisplayConfigRef, display CGDirect
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayWithDisplayMode(_:_:_:_:)
-func CGConfigureDisplayWithDisplayMode(config DisplayConfigRef, display CGDirectDisplayID, mode DisplayModeRef, options DictionaryRef) Error {
+func CGConfigureDisplayWithDisplayMode(config DisplayConfigRef, display DirectDisplayID, mode DisplayModeRef, options DictionaryRef) Error {
 	return _CGConfigureDisplayWithDisplayMode(config, display, mode, options)
 }
 
@@ -4004,7 +4004,7 @@ func CGContextFillRects(c ContextRef, rects unsafe.Pointer, count uintptr) {
 // Added in macOS 26.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextGetContentToneMappingInfo
-func CGContextGetContentToneMappingInfo(c ContextRef) CGContentToneMappingInfo {
+func CGContextGetContentToneMappingInfo(c ContextRef) ContentToneMappingInfo {
 	return _CGContextGetContentToneMappingInfo(c)
 }
 
@@ -4064,7 +4064,7 @@ func CGContextRetain(c ContextRef) ContextRef {
 // Added in macOS 26.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextSetContentToneMappingInfo
-func CGContextSetContentToneMappingInfo(c ContextRef, info CGContentToneMappingInfo) {
+func CGContextSetContentToneMappingInfo(c ContextRef, info ContentToneMappingInfo) {
 	_CGContextSetContentToneMappingInfo(c, info)
 }
 
@@ -4139,7 +4139,7 @@ func CGContextStrokeLineSegments(c ContextRef, points unsafe.Pointer, count uint
 // Added in macOS .
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConvertColorDataWithFormat(_:_:_:_:_:_:_:)
-func CGConvertColorDataWithFormat(width uintptr, height uintptr, dst_data unsafe.Pointer, dst_format CGColorDataFormat, src_data unsafe.Pointer, src_format CGColorDataFormat, options DictionaryRef) bool {
+func CGConvertColorDataWithFormat(width uintptr, height uintptr, dst_data unsafe.Pointer, dst_format ColorDataFormat, src_data unsafe.Pointer, src_format ColorDataFormat, options DictionaryRef) bool {
 	return _CGConvertColorDataWithFormat(width, height, dst_data, dst_format, src_data, src_format, options)
 }
 
@@ -4355,7 +4355,7 @@ func CGDataProviderRetain(provider DataProviderRef) DataProviderRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDirectDisplayCopyCurrentMetalDevice(_:)
-func CGDirectDisplayCopyCurrentMetalDevice(display CGDirectDisplayID) unsafe.Pointer {
+func CGDirectDisplayCopyCurrentMetalDevice(display DirectDisplayID) unsafe.Pointer {
 	return _CGDirectDisplayCopyCurrentMetalDevice(display)
 }
 
@@ -4365,7 +4365,7 @@ func CGDirectDisplayCopyCurrentMetalDevice(display CGDirectDisplayID) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayAvailableModes(_:)
-func CGDisplayAvailableModes(dsp CGDirectDisplayID) ArrayRef {
+func CGDisplayAvailableModes(dsp DirectDisplayID) ArrayRef {
 	return _CGDisplayAvailableModes(dsp)
 }
 
@@ -4375,7 +4375,7 @@ func CGDisplayAvailableModes(dsp CGDirectDisplayID) ArrayRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayBestModeForParameters(_:_:_:_:_:)
-func CGDisplayBestModeForParameters(display CGDirectDisplayID, bitsPerPixel uintptr, width uintptr, height uintptr, exactMatch unsafe.Pointer) DictionaryRef {
+func CGDisplayBestModeForParameters(display DirectDisplayID, bitsPerPixel uintptr, width uintptr, height uintptr, exactMatch unsafe.Pointer) DictionaryRef {
 	return _CGDisplayBestModeForParameters(display, bitsPerPixel, width, height, exactMatch)
 }
 
@@ -4385,7 +4385,7 @@ func CGDisplayBestModeForParameters(display CGDirectDisplayID, bitsPerPixel uint
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayBestModeForParametersAndRefreshRate(_:_:_:_:_:_:)
-func CGDisplayBestModeForParametersAndRefreshRate(display CGDirectDisplayID, bitsPerPixel uintptr, width uintptr, height uintptr, refreshRate CGRefreshRate, exactMatch unsafe.Pointer) DictionaryRef {
+func CGDisplayBestModeForParametersAndRefreshRate(display DirectDisplayID, bitsPerPixel uintptr, width uintptr, height uintptr, refreshRate RefreshRate, exactMatch unsafe.Pointer) DictionaryRef {
 	return _CGDisplayBestModeForParametersAndRefreshRate(display, bitsPerPixel, width, height, refreshRate, exactMatch)
 }
 
@@ -4396,7 +4396,7 @@ func CGDisplayBestModeForParametersAndRefreshRate(display CGDirectDisplayID, bit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayBounds(_:)
-func CGDisplayBounds(display CGDirectDisplayID) Rect {
+func CGDisplayBounds(display DirectDisplayID) Rect {
 	return _CGDisplayBounds(display)
 }
 
@@ -4407,7 +4407,7 @@ func CGDisplayBounds(display CGDirectDisplayID) Rect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCapture(_:)
-func CGDisplayCapture(display CGDirectDisplayID) Error {
+func CGDisplayCapture(display DirectDisplayID) Error {
 	return _CGDisplayCapture(display)
 }
 
@@ -4418,7 +4418,7 @@ func CGDisplayCapture(display CGDirectDisplayID) Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCaptureWithOptions(_:_:)
-func CGDisplayCaptureWithOptions(display CGDirectDisplayID, options CaptureOptions) Error {
+func CGDisplayCaptureWithOptions(display DirectDisplayID, options CaptureOptions) Error {
 	return _CGDisplayCaptureWithOptions(display, options)
 }
 
@@ -4429,7 +4429,7 @@ func CGDisplayCaptureWithOptions(display CGDirectDisplayID, options CaptureOptio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCopyAllDisplayModes(_:_:)
-func CGDisplayCopyAllDisplayModes(display CGDirectDisplayID, options DictionaryRef) ArrayRef {
+func CGDisplayCopyAllDisplayModes(display DirectDisplayID, options DictionaryRef) ArrayRef {
 	return _CGDisplayCopyAllDisplayModes(display, options)
 }
 
@@ -4440,7 +4440,7 @@ func CGDisplayCopyAllDisplayModes(display CGDirectDisplayID, options DictionaryR
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCopyColorSpace(_:)
-func CGDisplayCopyColorSpace(display CGDirectDisplayID) ColorSpaceRef {
+func CGDisplayCopyColorSpace(display DirectDisplayID) ColorSpaceRef {
 	return _CGDisplayCopyColorSpace(display)
 }
 
@@ -4451,7 +4451,7 @@ func CGDisplayCopyColorSpace(display CGDirectDisplayID) ColorSpaceRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCopyDisplayMode(_:)
-func CGDisplayCopyDisplayMode(display CGDirectDisplayID) DisplayModeRef {
+func CGDisplayCopyDisplayMode(display DirectDisplayID) DisplayModeRef {
 	return _CGDisplayCopyDisplayMode(display)
 }
 
@@ -4461,7 +4461,7 @@ func CGDisplayCopyDisplayMode(display CGDirectDisplayID) DisplayModeRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCreateImage(_:)
-func CGDisplayCreateImage(displayID CGDirectDisplayID) ImageRef {
+func CGDisplayCreateImage(displayID DirectDisplayID) ImageRef {
 	return _CGDisplayCreateImage(displayID)
 }
 
@@ -4471,7 +4471,7 @@ func CGDisplayCreateImage(displayID CGDirectDisplayID) ImageRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCreateImage(_:rect:)
-func CGDisplayCreateImageForRect(display CGDirectDisplayID, rect Rect) ImageRef {
+func CGDisplayCreateImageForRect(display DirectDisplayID, rect Rect) ImageRef {
 	return _CGDisplayCreateImageForRect(display, rect)
 }
 
@@ -4481,7 +4481,7 @@ func CGDisplayCreateImageForRect(display CGDirectDisplayID, rect Rect) ImageRef 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCurrentMode(_:)
-func CGDisplayCurrentMode(display CGDirectDisplayID) DictionaryRef {
+func CGDisplayCurrentMode(display DirectDisplayID) DictionaryRef {
 	return _CGDisplayCurrentMode(display)
 }
 
@@ -4492,7 +4492,7 @@ func CGDisplayCurrentMode(display CGDirectDisplayID) DictionaryRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayFade(_:_:_:_:_:_:_:_:)
-func CGDisplayFade(token CGDisplayFadeReservationToken, duration CGDisplayFadeInterval, startBlend CGDisplayBlendFraction, endBlend CGDisplayBlendFraction, redBlend float32, greenBlend float32, blueBlend float32, synchronous unsafe.Pointer) Error {
+func CGDisplayFade(token DisplayFadeReservationToken, duration DisplayFadeInterval, startBlend DisplayBlendFraction, endBlend DisplayBlendFraction, redBlend float32, greenBlend float32, blueBlend float32, synchronous unsafe.Pointer) Error {
 	return _CGDisplayFade(token, duration, startBlend, endBlend, redBlend, greenBlend, blueBlend, synchronous)
 }
 
@@ -4513,7 +4513,7 @@ func CGDisplayFadeOperationInProgress() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayGammaTableCapacity(_:)
-func CGDisplayGammaTableCapacity(display CGDirectDisplayID) uint32 {
+func CGDisplayGammaTableCapacity(display DirectDisplayID) uint32 {
 	return _CGDisplayGammaTableCapacity(display)
 }
 
@@ -4524,7 +4524,7 @@ func CGDisplayGammaTableCapacity(display CGDirectDisplayID) uint32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayGetDrawingContext(_:)
-func CGDisplayGetDrawingContext(display CGDirectDisplayID) ContextRef {
+func CGDisplayGetDrawingContext(display DirectDisplayID) ContextRef {
 	return _CGDisplayGetDrawingContext(display)
 }
 
@@ -4535,7 +4535,7 @@ func CGDisplayGetDrawingContext(display CGDirectDisplayID) ContextRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayHideCursor(_:)
-func CGDisplayHideCursor(display CGDirectDisplayID) Error {
+func CGDisplayHideCursor(display DirectDisplayID) Error {
 	return _CGDisplayHideCursor(display)
 }
 
@@ -4546,7 +4546,7 @@ func CGDisplayHideCursor(display CGDirectDisplayID) Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIDToOpenGLDisplayMask(_:)
-func CGDisplayIDToOpenGLDisplayMask(display CGDirectDisplayID) CGOpenGLDisplayMask {
+func CGDisplayIDToOpenGLDisplayMask(display DirectDisplayID) OpenGLDisplayMask {
 	return _CGDisplayIDToOpenGLDisplayMask(display)
 }
 
@@ -4556,7 +4556,7 @@ func CGDisplayIDToOpenGLDisplayMask(display CGDirectDisplayID) CGOpenGLDisplayMa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIOServicePort(_:)
-func CGDisplayIOServicePort(display CGDirectDisplayID) unsafe.Pointer {
+func CGDisplayIOServicePort(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIOServicePort(display)
 }
 
@@ -4567,7 +4567,7 @@ func CGDisplayIOServicePort(display CGDirectDisplayID) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsActive(_:)
-func CGDisplayIsActive(display CGDirectDisplayID) unsafe.Pointer {
+func CGDisplayIsActive(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsActive(display)
 }
 
@@ -4578,7 +4578,7 @@ func CGDisplayIsActive(display CGDirectDisplayID) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsAlwaysInMirrorSet(_:)
-func CGDisplayIsAlwaysInMirrorSet(display CGDirectDisplayID) unsafe.Pointer {
+func CGDisplayIsAlwaysInMirrorSet(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsAlwaysInMirrorSet(display)
 }
 
@@ -4589,7 +4589,7 @@ func CGDisplayIsAlwaysInMirrorSet(display CGDirectDisplayID) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsAsleep(_:)
-func CGDisplayIsAsleep(display CGDirectDisplayID) unsafe.Pointer {
+func CGDisplayIsAsleep(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsAsleep(display)
 }
 
@@ -4600,7 +4600,7 @@ func CGDisplayIsAsleep(display CGDirectDisplayID) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsBuiltin(_:)
-func CGDisplayIsBuiltin(display CGDirectDisplayID) unsafe.Pointer {
+func CGDisplayIsBuiltin(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsBuiltin(display)
 }
 
@@ -4610,7 +4610,7 @@ func CGDisplayIsBuiltin(display CGDirectDisplayID) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsCaptured(_:)
-func CGDisplayIsCaptured(display CGDirectDisplayID) unsafe.Pointer {
+func CGDisplayIsCaptured(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsCaptured(display)
 }
 
@@ -4621,7 +4621,7 @@ func CGDisplayIsCaptured(display CGDirectDisplayID) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsInHWMirrorSet(_:)
-func CGDisplayIsInHWMirrorSet(display CGDirectDisplayID) unsafe.Pointer {
+func CGDisplayIsInHWMirrorSet(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsInHWMirrorSet(display)
 }
 
@@ -4632,7 +4632,7 @@ func CGDisplayIsInHWMirrorSet(display CGDirectDisplayID) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsInMirrorSet(_:)
-func CGDisplayIsInMirrorSet(display CGDirectDisplayID) unsafe.Pointer {
+func CGDisplayIsInMirrorSet(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsInMirrorSet(display)
 }
 
@@ -4643,7 +4643,7 @@ func CGDisplayIsInMirrorSet(display CGDirectDisplayID) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsMain(_:)
-func CGDisplayIsMain(display CGDirectDisplayID) unsafe.Pointer {
+func CGDisplayIsMain(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsMain(display)
 }
 
@@ -4654,7 +4654,7 @@ func CGDisplayIsMain(display CGDirectDisplayID) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsOnline(_:)
-func CGDisplayIsOnline(display CGDirectDisplayID) unsafe.Pointer {
+func CGDisplayIsOnline(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsOnline(display)
 }
 
@@ -4665,7 +4665,7 @@ func CGDisplayIsOnline(display CGDirectDisplayID) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsStereo(_:)
-func CGDisplayIsStereo(display CGDirectDisplayID) unsafe.Pointer {
+func CGDisplayIsStereo(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsStereo(display)
 }
 
@@ -4676,7 +4676,7 @@ func CGDisplayIsStereo(display CGDirectDisplayID) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMirrorsDisplay(_:)
-func CGDisplayMirrorsDisplay(display CGDirectDisplayID) CGDirectDisplayID {
+func CGDisplayMirrorsDisplay(display DirectDisplayID) DirectDisplayID {
 	return _CGDisplayMirrorsDisplay(display)
 }
 
@@ -4817,7 +4817,7 @@ func CGDisplayModeRetain(mode DisplayModeRef) DisplayModeRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayModelNumber(_:)
-func CGDisplayModelNumber(display CGDirectDisplayID) uint32 {
+func CGDisplayModelNumber(display DirectDisplayID) uint32 {
 	return _CGDisplayModelNumber(display)
 }
 
@@ -4828,7 +4828,7 @@ func CGDisplayModelNumber(display CGDirectDisplayID) uint32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMoveCursorToPoint(_:_:)
-func CGDisplayMoveCursorToPoint(display CGDirectDisplayID, point Point) Error {
+func CGDisplayMoveCursorToPoint(display DirectDisplayID, point Point) Error {
 	return _CGDisplayMoveCursorToPoint(display, point)
 }
 
@@ -4839,7 +4839,7 @@ func CGDisplayMoveCursorToPoint(display CGDirectDisplayID, point Point) Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayPixelsHigh(_:)
-func CGDisplayPixelsHigh(display CGDirectDisplayID) uintptr {
+func CGDisplayPixelsHigh(display DirectDisplayID) uintptr {
 	return _CGDisplayPixelsHigh(display)
 }
 
@@ -4850,7 +4850,7 @@ func CGDisplayPixelsHigh(display CGDirectDisplayID) uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayPixelsWide(_:)
-func CGDisplayPixelsWide(display CGDirectDisplayID) uintptr {
+func CGDisplayPixelsWide(display DirectDisplayID) uintptr {
 	return _CGDisplayPixelsWide(display)
 }
 
@@ -4861,7 +4861,7 @@ func CGDisplayPixelsWide(display CGDirectDisplayID) uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayPrimaryDisplay(_:)
-func CGDisplayPrimaryDisplay(display CGDirectDisplayID) CGDirectDisplayID {
+func CGDisplayPrimaryDisplay(display DirectDisplayID) DirectDisplayID {
 	return _CGDisplayPrimaryDisplay(display)
 }
 
@@ -4883,7 +4883,7 @@ func CGDisplayRegisterReconfigurationCallback(callback DisplayReconfigurationCal
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayRelease(_:)
-func CGDisplayRelease(display CGDirectDisplayID) Error {
+func CGDisplayRelease(display DirectDisplayID) Error {
 	return _CGDisplayRelease(display)
 }
 
@@ -4916,7 +4916,7 @@ func CGDisplayRestoreColorSyncSettings() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayRotation(_:)
-func CGDisplayRotation(display CGDirectDisplayID) float64 {
+func CGDisplayRotation(display DirectDisplayID) float64 {
 	return _CGDisplayRotation(display)
 }
 
@@ -4927,7 +4927,7 @@ func CGDisplayRotation(display CGDirectDisplayID) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayScreenSize(_:)
-func CGDisplayScreenSize(display CGDirectDisplayID) Size {
+func CGDisplayScreenSize(display DirectDisplayID) Size {
 	return _CGDisplayScreenSize(display)
 }
 
@@ -4938,7 +4938,7 @@ func CGDisplayScreenSize(display CGDirectDisplayID) Size {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplaySerialNumber(_:)
-func CGDisplaySerialNumber(display CGDirectDisplayID) uint32 {
+func CGDisplaySerialNumber(display DirectDisplayID) uint32 {
 	return _CGDisplaySerialNumber(display)
 }
 
@@ -4949,7 +4949,7 @@ func CGDisplaySerialNumber(display CGDirectDisplayID) uint32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplaySetDisplayMode(_:_:_:)
-func CGDisplaySetDisplayMode(display CGDirectDisplayID, mode DisplayModeRef, options DictionaryRef) Error {
+func CGDisplaySetDisplayMode(display DirectDisplayID, mode DisplayModeRef, options DictionaryRef) Error {
 	return _CGDisplaySetDisplayMode(display, mode, options)
 }
 
@@ -4960,7 +4960,7 @@ func CGDisplaySetDisplayMode(display CGDirectDisplayID, mode DisplayModeRef, opt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplaySetStereoOperation(_:_:_:_:)
-func CGDisplaySetStereoOperation(display CGDirectDisplayID, stereo unsafe.Pointer, forceBlueLine unsafe.Pointer, option ConfigureOption) Error {
+func CGDisplaySetStereoOperation(display DirectDisplayID, stereo unsafe.Pointer, forceBlueLine unsafe.Pointer, option ConfigureOption) Error {
 	return _CGDisplaySetStereoOperation(display, stereo, forceBlueLine, option)
 }
 
@@ -4971,7 +4971,7 @@ func CGDisplaySetStereoOperation(display CGDirectDisplayID, stereo unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayShowCursor(_:)
-func CGDisplayShowCursor(display CGDirectDisplayID) Error {
+func CGDisplayShowCursor(display DirectDisplayID) Error {
 	return _CGDisplayShowCursor(display)
 }
 
@@ -4981,7 +4981,7 @@ func CGDisplayShowCursor(display CGDirectDisplayID) Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStream/init(dispatchQueueDisplay:outputWidth:outputHeight:pixelFormat:properties:queue:handler:)
-func CGDisplayStreamCreateWithDispatchQueue(display CGDirectDisplayID, outputWidth uintptr, outputHeight uintptr, pixelFormat int32, properties DictionaryRef, queue unsafe.Pointer, handler DisplayStreamFrameAvailableHandler) DisplayStreamRef {
+func CGDisplayStreamCreateWithDispatchQueue(display DirectDisplayID, outputWidth uintptr, outputHeight uintptr, pixelFormat int32, properties DictionaryRef, queue unsafe.Pointer, handler DisplayStreamFrameAvailableHandler) DisplayStreamRef {
 	return _CGDisplayStreamCreateWithDispatchQueue(display, outputWidth, outputHeight, pixelFormat, properties, queue, handler)
 }
 
@@ -4991,7 +4991,7 @@ func CGDisplayStreamCreateWithDispatchQueue(display CGDirectDisplayID, outputWid
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStream/init(display:outputWidth:outputHeight:pixelFormat:properties:handler:)
-func CGDisplayStreamCreate(display CGDirectDisplayID, outputWidth uintptr, outputHeight uintptr, pixelFormat int32, properties DictionaryRef, handler DisplayStreamFrameAvailableHandler) DisplayStreamRef {
+func CGDisplayStreamCreate(display DirectDisplayID, outputWidth uintptr, outputHeight uintptr, pixelFormat int32, properties DictionaryRef, handler DisplayStreamFrameAvailableHandler) DisplayStreamRef {
 	return _CGDisplayStreamCreate(display, outputWidth, outputHeight, pixelFormat, properties, handler)
 }
 
@@ -5091,7 +5091,7 @@ func CGDisplayStreamUpdateGetTypeID() TypeID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplaySwitchToMode(_:_:)
-func CGDisplaySwitchToMode(display CGDirectDisplayID, mode DictionaryRef) Error {
+func CGDisplaySwitchToMode(display DirectDisplayID, mode DictionaryRef) Error {
 	return _CGDisplaySwitchToMode(display, mode)
 }
 
@@ -5102,7 +5102,7 @@ func CGDisplaySwitchToMode(display CGDirectDisplayID, mode DictionaryRef) Error 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayUnitNumber(_:)
-func CGDisplayUnitNumber(display CGDirectDisplayID) uint32 {
+func CGDisplayUnitNumber(display DirectDisplayID) uint32 {
 	return _CGDisplayUnitNumber(display)
 }
 
@@ -5113,7 +5113,7 @@ func CGDisplayUnitNumber(display CGDirectDisplayID) uint32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayUsesOpenGLAcceleration(_:)
-func CGDisplayUsesOpenGLAcceleration(display CGDirectDisplayID) unsafe.Pointer {
+func CGDisplayUsesOpenGLAcceleration(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayUsesOpenGLAcceleration(display)
 }
 
@@ -5124,7 +5124,7 @@ func CGDisplayUsesOpenGLAcceleration(display CGDirectDisplayID) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayVendorNumber(_:)
-func CGDisplayVendorNumber(display CGDirectDisplayID) uint32 {
+func CGDisplayVendorNumber(display DirectDisplayID) uint32 {
 	return _CGDisplayVendorNumber(display)
 }
 
@@ -5207,7 +5207,7 @@ func CGEventGetIntegerValueField(event EventRef, field EventField) int64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/init(keyboardEventSource:virtualKey:keyDown:)
-func CGEventCreateKeyboardEvent(source EventSourceRef, virtualKey CGKeyCode, keyDown bool) EventRef {
+func CGEventCreateKeyboardEvent(source EventSourceRef, virtualKey KeyCode, keyDown bool) EventRef {
 	return _CGEventCreateKeyboardEvent(source, virtualKey, keyDown)
 }
 
@@ -5357,7 +5357,7 @@ func CGEventSetSource(event EventRef, source EventSourceRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/tapCreate(tap:place:options:eventsOfInterest:callback:userInfo:)
-func CGEventTapCreate(tap EventTapLocation, place EventTapPlacement, options EventTapOptions, eventsOfInterest CGEventMask, callback EventTapCallBack, userInfo unsafe.Pointer) MachPortRef {
+func CGEventTapCreate(tap EventTapLocation, place EventTapPlacement, options EventTapOptions, eventsOfInterest EventMask, callback EventTapCallBack, userInfo unsafe.Pointer) MachPortRef {
 	return _CGEventTapCreate(tap, place, options, eventsOfInterest, callback, userInfo)
 }
 
@@ -5368,7 +5368,7 @@ func CGEventTapCreate(tap EventTapLocation, place EventTapPlacement, options Eve
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/tapCreateForPSN(processSerialNumber:place:options:eventsOfInterest:callback:userInfo:)
-func CGEventTapCreateForPSN(processSerialNumber unsafe.Pointer, place EventTapPlacement, options EventTapOptions, eventsOfInterest CGEventMask, callback EventTapCallBack, userInfo unsafe.Pointer) MachPortRef {
+func CGEventTapCreateForPSN(processSerialNumber unsafe.Pointer, place EventTapPlacement, options EventTapOptions, eventsOfInterest EventMask, callback EventTapCallBack, userInfo unsafe.Pointer) MachPortRef {
 	return _CGEventTapCreateForPSN(processSerialNumber, place, options, eventsOfInterest, callback, userInfo)
 }
 
@@ -5377,7 +5377,7 @@ func CGEventTapCreateForPSN(processSerialNumber unsafe.Pointer, place EventTapPl
 // Added in macOS 10.11.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/tapCreateForPid(pid:place:options:eventsOfInterest:callback:userInfo:)
-func CGEventTapCreateForPid(pid unsafe.Pointer, place EventTapPlacement, options EventTapOptions, eventsOfInterest CGEventMask, callback EventTapCallBack, userInfo unsafe.Pointer) MachPortRef {
+func CGEventTapCreateForPid(pid unsafe.Pointer, place EventTapPlacement, options EventTapOptions, eventsOfInterest EventMask, callback EventTapCallBack, userInfo unsafe.Pointer) MachPortRef {
 	return _CGEventTapCreateForPid(pid, place, options, eventsOfInterest, callback, userInfo)
 }
 
@@ -5410,7 +5410,7 @@ func CGEventTapIsEnabled(tap MachPortRef) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/tapPostEvent(_:)
-func CGEventTapPostEvent(proxy CGEventTapProxy, event EventRef) {
+func CGEventTapPostEvent(proxy EventTapProxy, event EventRef) {
 	_CGEventTapPostEvent(proxy, event)
 }
 
@@ -5421,7 +5421,7 @@ func CGEventTapPostEvent(proxy CGEventTapProxy, event EventRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/timestamp
-func CGEventGetTimestamp(event EventRef) CGEventTimestamp {
+func CGEventGetTimestamp(event EventRef) EventTimestamp {
 	return _CGEventGetTimestamp(event)
 }
 
@@ -5509,7 +5509,7 @@ func CGEventSetLocation(event EventRef, location Point) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSetTimestamp
-func CGEventSetTimestamp(event EventRef, timestamp CGEventTimestamp) {
+func CGEventSetTimestamp(event EventRef, timestamp EventTimestamp) {
 	_CGEventSetTimestamp(event, timestamp)
 }
 
@@ -5597,7 +5597,7 @@ func CGEventSourceCreate(stateID EventSourceStateID) EventSourceRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/keyState(_:key:)
-func CGEventSourceKeyState(stateID EventSourceStateID, key CGKeyCode) bool {
+func CGEventSourceKeyState(stateID EventSourceStateID, key KeyCode) bool {
 	return _CGEventSourceKeyState(stateID, key)
 }
 
@@ -5608,7 +5608,7 @@ func CGEventSourceKeyState(stateID EventSourceStateID, key CGKeyCode) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/keyboardType
-func CGEventSourceGetKeyboardType(source EventSourceRef) CGEventSourceKeyboardType {
+func CGEventSourceGetKeyboardType(source EventSourceRef) EventSourceKeyboardType {
 	return _CGEventSourceGetKeyboardType(source)
 }
 
@@ -5696,7 +5696,7 @@ func CGEventSourceGetUserData(source EventSourceRef) int64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSourceSetKeyboardType
-func CGEventSourceSetKeyboardType(source EventSourceRef, keyboardType CGEventSourceKeyboardType) {
+func CGEventSourceSetKeyboardType(source EventSourceRef, keyboardType EventSourceKeyboardType) {
 	_CGEventSourceSetKeyboardType(source, keyboardType)
 }
 
@@ -5861,7 +5861,7 @@ func CGFontGetGlyphBBoxes(font FontRef, glyphs unsafe.Pointer, count uintptr, bb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/getGlyphWithGlyphName(name:)
-func CGFontGetGlyphWithGlyphName(font FontRef, name StringRef) CGGlyph {
+func CGFontGetGlyphWithGlyphName(font FontRef, name StringRef) Glyph {
 	return _CGFontGetGlyphWithGlyphName(font, name)
 }
 
@@ -5916,7 +5916,7 @@ func CGFontGetLeading(font FontRef) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/name(for:)
-func CGFontCopyGlyphNameForGlyph(font FontRef, glyph CGGlyph) StringRef {
+func CGFontCopyGlyphNameForGlyph(font FontRef, glyph Glyph) StringRef {
 	return _CGFontCopyGlyphNameForGlyph(font, glyph)
 }
 
@@ -6127,7 +6127,7 @@ func CGGetActiveDisplayList(maxDisplays uint32, activeDisplays unsafe.Pointer, d
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetDisplayTransferByFormula(_:_:_:_:_:_:_:_:_:_:)
-func CGGetDisplayTransferByFormula(display CGDirectDisplayID, redMin unsafe.Pointer, redMax unsafe.Pointer, redGamma unsafe.Pointer, greenMin unsafe.Pointer, greenMax unsafe.Pointer, greenGamma unsafe.Pointer, blueMin unsafe.Pointer, blueMax unsafe.Pointer, blueGamma unsafe.Pointer) Error {
+func CGGetDisplayTransferByFormula(display DirectDisplayID, redMin unsafe.Pointer, redMax unsafe.Pointer, redGamma unsafe.Pointer, greenMin unsafe.Pointer, greenMax unsafe.Pointer, greenGamma unsafe.Pointer, blueMin unsafe.Pointer, blueMax unsafe.Pointer, blueGamma unsafe.Pointer) Error {
 	return _CGGetDisplayTransferByFormula(display, redMin, redMax, redGamma, greenMin, greenMax, greenGamma, blueMin, blueMax, blueGamma)
 }
 
@@ -6138,7 +6138,7 @@ func CGGetDisplayTransferByFormula(display CGDirectDisplayID, redMin unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetDisplayTransferByTable(_:_:_:_:_:_:)
-func CGGetDisplayTransferByTable(display CGDirectDisplayID, capacity uint32, redTable unsafe.Pointer, greenTable unsafe.Pointer, blueTable unsafe.Pointer, sampleCount []uint32) Error {
+func CGGetDisplayTransferByTable(display DirectDisplayID, capacity uint32, redTable unsafe.Pointer, greenTable unsafe.Pointer, blueTable unsafe.Pointer, sampleCount []uint32) Error {
 	return _CGGetDisplayTransferByTable(display, capacity, redTable, greenTable, blueTable, sampleCount)
 }
 
@@ -6149,7 +6149,7 @@ func CGGetDisplayTransferByTable(display CGDirectDisplayID, capacity uint32, red
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetDisplaysWithOpenGLDisplayMask(_:_:_:_:)
-func CGGetDisplaysWithOpenGLDisplayMask(mask CGOpenGLDisplayMask, maxDisplays uint32, displays unsafe.Pointer, matchingDisplayCount []uint32) Error {
+func CGGetDisplaysWithOpenGLDisplayMask(mask OpenGLDisplayMask, maxDisplays uint32, displays unsafe.Pointer, matchingDisplayCount []uint32) Error {
 	return _CGGetDisplaysWithOpenGLDisplayMask(mask, maxDisplays, displays, matchingDisplayCount)
 }
 
@@ -6768,7 +6768,7 @@ func CGLayerRetain(layer LayerRef) LayerRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGMainDisplayID()
-func CGMainDisplayID() CGDirectDisplayID {
+func CGMainDisplayID() DirectDisplayID {
 	return _CGMainDisplayID()
 }
 
@@ -6801,7 +6801,7 @@ func CGPathCreateMutable() MutablePathRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGOpenGLDisplayMaskToDisplayID(_:)
-func CGOpenGLDisplayMaskToDisplayID(mask CGOpenGLDisplayMask) CGDirectDisplayID {
+func CGOpenGLDisplayMaskToDisplayID(mask OpenGLDisplayMask) DirectDisplayID {
 	return _CGOpenGLDisplayMaskToDisplayID(mask)
 }
 
@@ -7071,7 +7071,7 @@ func CGPDFDictionaryApplyBlock(dict PDFDictionaryRef, block PDFDictionaryApplier
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryApplyFunction(_:_:_:)
-func CGPDFDictionaryApplyFunction(dict PDFDictionaryRef, function CGPDFDictionaryApplierFunction, info unsafe.Pointer) {
+func CGPDFDictionaryApplyFunction(dict PDFDictionaryRef, function PDFDictionaryApplierFunction, info unsafe.Pointer) {
 	_CGPDFDictionaryApplyFunction(dict, function, info)
 }
 
@@ -7922,7 +7922,7 @@ func CGPSConverterGetTypeID() TypeID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/apply(info:function:)
-func CGPathApply(path PathRef, info unsafe.Pointer, function CGPathApplierFunction) {
+func CGPathApply(path PathRef, info unsafe.Pointer, function PathApplierFunction) {
 	_CGPathApply(path, info, function)
 }
 
@@ -8471,7 +8471,7 @@ func CGPointMakeWithDictionaryRepresentation(dict DictionaryRef, point unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPostKeyboardEvent(_:_:_:)
-func CGPostKeyboardEvent(keyChar CGCharCode, virtualKey CGKeyCode, keyDown unsafe.Pointer) Error {
+func CGPostKeyboardEvent(keyChar CharCode, virtualKey KeyCode, keyDown unsafe.Pointer) Error {
 	return _CGPostKeyboardEvent(keyChar, virtualKey, keyDown)
 }
 
@@ -8484,7 +8484,7 @@ func CGPostKeyboardEvent(keyChar CGCharCode, virtualKey CGKeyCode, keyDown unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPostMouseEvent
-func CGPostMouseEvent(mouseCursorPosition Point, updateMouseCursorPosition unsafe.Pointer, buttonCount CGButtonCount, mouseButtonDown unsafe.Pointer) Error {
+func CGPostMouseEvent(mouseCursorPosition Point, updateMouseCursorPosition unsafe.Pointer, buttonCount ButtonCount, mouseButtonDown unsafe.Pointer) Error {
 	return _CGPostMouseEvent(mouseCursorPosition, updateMouseCursorPosition, buttonCount, mouseButtonDown)
 }
 
@@ -8497,7 +8497,7 @@ func CGPostMouseEvent(mouseCursorPosition Point, updateMouseCursorPosition unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPostScrollWheelEvent
-func CGPostScrollWheelEvent(wheelCount CGWheelCount, wheel1 int32) Error {
+func CGPostScrollWheelEvent(wheelCount WheelCount, wheel1 int32) Error {
 	return _CGPostScrollWheelEvent(wheelCount, wheel1)
 }
 
@@ -8831,7 +8831,7 @@ func CGReleaseAllDisplays() Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGReleaseDisplayFadeReservation(_:)
-func CGReleaseDisplayFadeReservation(token CGDisplayFadeReservationToken) Error {
+func CGReleaseDisplayFadeReservation(token DisplayFadeReservationToken) Error {
 	return _CGReleaseDisplayFadeReservation(token)
 }
 
@@ -8975,7 +8975,7 @@ func CGSessionCopyCurrentDictionary() DictionaryRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSetDisplayTransferByByteTable(_:_:_:_:_:)
-func CGSetDisplayTransferByByteTable(display CGDirectDisplayID, tableSize uint32, redTable unsafe.Pointer, greenTable unsafe.Pointer, blueTable unsafe.Pointer) Error {
+func CGSetDisplayTransferByByteTable(display DirectDisplayID, tableSize uint32, redTable unsafe.Pointer, greenTable unsafe.Pointer, blueTable unsafe.Pointer) Error {
 	return _CGSetDisplayTransferByByteTable(display, tableSize, redTable, greenTable, blueTable)
 }
 
@@ -8986,7 +8986,7 @@ func CGSetDisplayTransferByByteTable(display CGDirectDisplayID, tableSize uint32
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSetDisplayTransferByFormula(_:_:_:_:_:_:_:_:_:_:)
-func CGSetDisplayTransferByFormula(display CGDirectDisplayID, redMin CGGammaValue, redMax CGGammaValue, redGamma CGGammaValue, greenMin CGGammaValue, greenMax CGGammaValue, greenGamma CGGammaValue, blueMin CGGammaValue, blueMax CGGammaValue, blueGamma CGGammaValue) Error {
+func CGSetDisplayTransferByFormula(display DirectDisplayID, redMin GammaValue, redMax GammaValue, redGamma GammaValue, greenMin GammaValue, greenMax GammaValue, greenGamma GammaValue, blueMin GammaValue, blueMax GammaValue, blueGamma GammaValue) Error {
 	return _CGSetDisplayTransferByFormula(display, redMin, redMax, redGamma, greenMin, greenMax, greenGamma, blueMin, blueMax, blueGamma)
 }
 
@@ -8997,7 +8997,7 @@ func CGSetDisplayTransferByFormula(display CGDirectDisplayID, redMin CGGammaValu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSetDisplayTransferByTable(_:_:_:_:_:)
-func CGSetDisplayTransferByTable(display CGDirectDisplayID, tableSize uint32, redTable unsafe.Pointer, greenTable unsafe.Pointer, blueTable unsafe.Pointer) Error {
+func CGSetDisplayTransferByTable(display DirectDisplayID, tableSize uint32, redTable unsafe.Pointer, greenTable unsafe.Pointer, blueTable unsafe.Pointer) Error {
 	return _CGSetDisplayTransferByTable(display, tableSize, redTable, greenTable, blueTable)
 }
 
@@ -9110,7 +9110,7 @@ func CGShadingRetain(shading ShadingRef) ShadingRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShieldingWindowID(_:)
-func CGShieldingWindowID(display CGDirectDisplayID) CGWindowID {
+func CGShieldingWindowID(display DirectDisplayID) WindowID {
 	return _CGShieldingWindowID(display)
 }
 
@@ -9121,7 +9121,7 @@ func CGShieldingWindowID(display CGDirectDisplayID) CGWindowID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShieldingWindowLevel()
-func CGShieldingWindowLevel() CGWindowLevel {
+func CGShieldingWindowLevel() WindowLevel {
 	return _CGShieldingWindowLevel()
 }
 
@@ -9217,7 +9217,7 @@ func CGWarpMouseCursorPosition(newCursorPosition Point) Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowLevelForKey(_:)
-func CGWindowLevelForKey(key WindowLevelKey) CGWindowLevel {
+func CGWindowLevelForKey(key WindowLevelKey) WindowLevel {
 	return _CGWindowLevelForKey(key)
 }
 
@@ -9228,7 +9228,7 @@ func CGWindowLevelForKey(key WindowLevelKey) CGWindowLevel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowListCopyWindowInfo(_:_:)
-func CGWindowListCopyWindowInfo(option WindowListOption, relativeToWindow CGWindowID) ArrayRef {
+func CGWindowListCopyWindowInfo(option WindowListOption, relativeToWindow WindowID) ArrayRef {
 	return _CGWindowListCopyWindowInfo(option, relativeToWindow)
 }
 
@@ -9239,7 +9239,7 @@ func CGWindowListCopyWindowInfo(option WindowListOption, relativeToWindow CGWind
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowListCreate
-func CGWindowListCreate(option WindowListOption, relativeToWindow CGWindowID) ArrayRef {
+func CGWindowListCreate(option WindowListOption, relativeToWindow WindowID) ArrayRef {
 	return _CGWindowListCreate(option, relativeToWindow)
 }
 
@@ -9260,7 +9260,7 @@ func CGWindowListCreateDescriptionFromArray(windowArray ArrayRef) ArrayRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowListCreateImage(_:_:_:_:)
-func CGWindowListCreateImage(screenBounds Rect, listOption WindowListOption, windowID CGWindowID, imageOption WindowImageOption) ImageRef {
+func CGWindowListCreateImage(screenBounds Rect, listOption WindowListOption, windowID WindowID, imageOption WindowImageOption) ImageRef {
 	return _CGWindowListCreateImage(screenBounds, listOption, windowID, imageOption)
 }
 
