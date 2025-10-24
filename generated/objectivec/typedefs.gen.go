@@ -28,11 +28,11 @@ type Ivar uintptr
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/Method
 // Method has base type: struct objc_method *
 type Method uintptr
-// Integer - Describes an integer.
+// NSInteger - Describes an integer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSInteger
 // NSInteger has base type: long
-type Integer uintptr
+type NSInteger uintptr
 // objc_exception_handler type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_exception_handler

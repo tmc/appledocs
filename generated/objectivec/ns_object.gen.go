@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/ebitengine/purego/objc"
 )
 
 // The class instance for the [Object] class.
@@ -309,8 +308,8 @@ type IObject interface {
 	OriginalString(sender IObject) IObject /* already interface */
 	PerformSelectorOnThreadWithObjectWaitUntilDone(aSelector objc.SEL, thr IObject /* already interface */, arg IObject, wait bool /* primitive/slice/pointer. */)
 	PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, thr IObject /* already interface */, arg IObject, wait bool /* primitive/slice/pointer. */, array []string /* primitive/slice/pointer. */)
-	PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgument IObject, delay TimeInterval /* not a class type */)
-	PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, anArgument IObject, delay TimeInterval /* not a class type */, modes []string /* primitive/slice/pointer. */)
+	PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgument IObject, delay float64)
+	PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, anArgument IObject, delay float64, modes []string /* primitive/slice/pointer. */)
 	PerformActionForPersonIdentifier(person IObject, identifier IObject)
 	PerformSelectorOnMainThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, arg IObject, wait bool /* primitive/slice/pointer. */, array []string /* primitive/slice/pointer. */)
 	ProvideImageToMTLTextureCommandBufferOriginxOriginyWidthHeightUserInfo(texture IObject, commandBuffer IObject, originx uintptr /* not a class type */, originy uintptr /* not a class type */, width uintptr /* not a class type */, height uintptr /* not a class type */, info IObject)
@@ -1937,7 +1936,7 @@ func (o_ Object) PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/perform(_:with:afterDelay:)
-func (o_ Object) PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgument IObject, delay TimeInterval /* not a class type */) {
+func (o_ Object) PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgument IObject, delay float64) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelector:withObject:afterDelay:"), aSelector, anArgument, delay)
 }
 
@@ -1946,7 +1945,7 @@ func (o_ Object) PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgum
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/perform(_:with:afterDelay:inModes:)
-func (o_ Object) PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, anArgument IObject, delay TimeInterval /* not a class type */, modes []string /* primitive/slice/pointer. */) {
+func (o_ Object) PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, anArgument IObject, delay float64, modes []string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelector:withObject:afterDelay:inModes:"), aSelector, anArgument, delay, modes)
 }
 

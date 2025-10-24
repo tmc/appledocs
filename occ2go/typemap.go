@@ -185,6 +185,8 @@ func MapCTypeToGo(cType, framework string) string {
 		return "int64"
 	case cType == "NSUInteger":
 		return "uint64"
+	case cType == "NSTimeInterval", cType == "TimeInterval":
+		return "float64" // NSTimeInterval is typedef for double
 	case cType == "size_t":
 		return "uintptr"
 	case cType == "int8_t":
@@ -219,6 +221,28 @@ func MapCTypeToGo(cType, framework string) string {
 		return "Ivar" // Objective-C instance variable type - defined as typedef
 	case cType == "Category":
 		return "Category" // Objective-C category type - defined as typedef
+	case cType == "objc_property_t":
+		return "Objc_property_t" // Objective-C property type - defined as typedef
+	case cType == "objc_exception_handler":
+		return "Objc_exception_handler"
+	case cType == "objc_exception_matcher":
+		return "Objc_exception_matcher"
+	case cType == "objc_exception_preprocessor":
+		return "Objc_exception_preprocessor"
+	case cType == "objc_func_loadImage":
+		return "Objc_func_loadImage"
+	case cType == "objc_hook_getClass":
+		return "Objc_hook_getClass"
+	case cType == "objc_hook_getImageName":
+		return "Objc_hook_getImageName"
+	case cType == "objc_hook_lazyClassNamer":
+		return "Objc_hook_lazyClassNamer"
+	case cType == "objc_uncaught_exception_handler":
+		return "Objc_uncaught_exception_handler"
+	case cType == "objc_objectptr_t":
+		return "Objc_objectptr_t"
+	case cType == "objc_zone_t":
+		return "Objc_zone_t"
 	case cType == "IMP":
 		return "IMP" // Objective-C method implementation pointer - defined as typedef
 	case cType == "id":

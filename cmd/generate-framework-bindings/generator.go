@@ -233,6 +233,12 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		return goType + " /* malformed qualified type */"
 	}
 
+	// Foundation types that should map to primitives
+	// TimeInterval is NSTimeInterval which is typedef for double
+	if goType == "TimeInterval" || goType == "NSTimeInterval" {
+		return "float64"
+	}
+
 	// Don't convert primitives, slices, pointers
 	if strings.HasPrefix(goType, "[]") ||
 		strings.HasPrefix(goType, "*") ||

@@ -407,10 +407,10 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 		}
 	}
 
-	// Filter out objc import - it's hardcoded in class.gen.go template
+	// Filter out objc imports - class.gen.go template hardcodes generated/objc
 	// to avoid duplicate imports
-	objcImportPath := outputModule + "/objc"
-	delete(imports, objcImportPath)
+	delete(imports, outputModule+"/objc")                // generated wrapper
+	delete(imports, "github.com/ebitengine/purego/objc") // underlying purego
 
 	return imports
 }

@@ -34,6 +34,7 @@ var templateFuncs = template.FuncMap{
 	// String utilities
 	"join":                joinStrings,
 	"lower":               lowerString,
+	"title":               titleString,
 	"trimspace":           trimSpaceString,
 	"trimRight":           trimRightString,
 	"trimPrefix":          trimPrefixString,
@@ -105,6 +106,7 @@ var templateFuncs = template.FuncMap{
 	"isEssentialSelector":                 isEssentialSelector,
 	"convertDocURL":                       convertDocURL,
 	"structsUseUnsafe":                    structsUseUnsafe,
+	"structsUseObjc":                      structsUseObjc,
 
 	// Property generation helpers
 	"propertyToGoName":            propertyToGoName,
@@ -220,6 +222,13 @@ func lowerString(s string) string {
 	return strings.ToLower(s)
 }
 
+func titleString(s string) string {
+	if s == "" {
+		return s
+	}
+	return strings.ToUpper(s[:1]) + s[1:]
+}
+
 func trimSpaceString(s string) string {
 	return strings.TrimSpace(s)
 }
@@ -258,6 +267,20 @@ func structsUseUnsafe(structs []*occ2go.ParsedStruct, framework string) bool {
 			// Map the C type to Go type to check if it uses unsafe.Pointer
 			mappedType := mapCTypeToGoWithFramework(field.Type, framework)
 			if strings.Contains(mappedType, "unsafe.Pointer") {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+// structsUseObjc checks if any struct fields use objc types (objc.ID, objc.Class, objc.SEL, etc.)
+func structsUseObjc(structs []*occ2go.ParsedStruct, framework string) bool {
+	for _, s := range structs {
+		for _, field := range s.Fields {
+			// Map the C type to Go type to check if it uses objc.* types
+			mappedType := mapCTypeToGoWithFramework(field.Type, framework)
+			if strings.Contains(mappedType, "objc.") {
 				return true
 			}
 		}

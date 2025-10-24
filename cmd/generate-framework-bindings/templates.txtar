@@ -121,14 +121,19 @@ func init() {
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
 package {{.PackageName}}
-
 {{- $needsUnsafe := or .WithRefMethods (gt (len .RefTypes) 0) (structsUseUnsafe .Structs .Framework)}}
-{{if $needsUnsafe -}}
+{{- $needsObjc := structsUseObjc .Structs .Framework}}
+{{- if or $needsUnsafe $needsObjc}}
 import (
+{{- if $needsUnsafe}}
 	"unsafe"
+{{- end}}
+{{- if $needsObjc}}
+	"github.com/ebitengine/purego/objc"
+{{- end}}
 )
 
-{{end -}}
+{{- end}}
 {{if .WithRefMethods -}}
 {{range .RefTypes -}}
 // {{.}} is a CoreGraphics opaque type.
@@ -1018,7 +1023,12 @@ import (
 // Type aliases and typedefs
 {{range $typedef := .Typedefs -}}
 {{if ne $typedef.Name "" -}}
-{{$typeName := stripObjCPrefix $typedef.Name -}}
+{{$typeName := "" -}}
+{{if eq $.Framework "ObjectiveC" -}}
+{{$typeName = $typedef.Name -}}
+{{else -}}
+{{$typeName = title (stripObjCPrefix $typedef.Name) -}}
+{{end -}}
 {{if not (isValidGoIdentifier $typeName) -}}
 // SKIPPED: {{$typedef.Name}} - invalid Go identifier "{{$typeName}}"
 // Original type: {{$typedef.BaseType}}

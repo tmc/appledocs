@@ -3,8 +3,8 @@
 package objectivec
 import (
 	"unsafe"
+	"github.com/ebitengine/purego/objc"
 )
-
 
 
 // C struct types
