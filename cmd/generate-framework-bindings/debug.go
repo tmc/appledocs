@@ -5,7 +5,9 @@ import (
 	"log/slog"
 	"os"
 	"regexp"
+	"runtime"
 	"strings"
+	"time"
 )
 
 // Debug categories - use these constants throughout the codebase
@@ -335,4 +337,37 @@ func PrintDebugHelp() {
 	fmt.Println("  - imports: importPath and className")
 	fmt.Println("  - enum-*: enumName")
 	fmt.Println("  - parser: docPath and symbolName")
+}
+
+// LogWithFunc logs a message with a custom function name for better traceability in template functions.
+func LogWithFunc(logger *slog.Logger, level slog.Level, funcName, msg string, args ...any) {
+	if logger == nil {
+		return
+	}
+	var pcs [1]uintptr
+	runtime.Callers(2, pcs[:])
+	r := slog.NewRecord(time.Now(), level, msg, pcs[0])
+	r.AddAttrs(slog.String("func", funcName))
+	for i := 0; i < len(args); i += 2 {
+		if i+1 < len(args) {
+			if key, ok := args[i].(string); ok {
+				r.AddAttrs(slog.Any(key, args[i+1]))
+			}
+		}
+	}
+	_ = logger.Handler().Handle(nil, r)
+}
+
+// DebugWithFunc logs a debug message with a custom function name for template functions.
+func DebugWithFunc(funcName, msg string, args ...any) {
+	if VerboseLogger != nil {
+		LogWithFunc(VerboseLogger, slog.LevelDebug, funcName, msg, args...)
+	}
+}
+
+// InfoWithFunc logs an info message with a custom function name for template functions.
+func InfoWithFunc(funcName, msg string, args ...any) {
+	if Logger != nil {
+		LogWithFunc(Logger, slog.LevelInfo, funcName, msg, args...)
+	}
 }

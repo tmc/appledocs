@@ -7,15 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/addressbook"
-	"github.com/tmc/appledocs/generated/automator"
-	"github.com/tmc/appledocs/generated/coredata"
-	"github.com/tmc/appledocs/generated/exceptionhandling"
-	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/iobluetooth"
-	"github.com/tmc/appledocs/generated/quartz"
-	"github.com/tmc/appledocs/generated/quicklookui"
-	"github.com/tmc/appledocs/generated/securityinterface"
 )
 
 // The class instance for the [Object] class.
@@ -51,14 +42,14 @@ type IObject interface {
 	SetAccessibilityAttributedUserInputLabelsBlock(value unsafe.Pointer)
 	AccessibilityAttributedValueBlock() unsafe.Pointer
 	SetAccessibilityAttributedValueBlock(value unsafe.Pointer)
-	AccessibilityContainerType() objectivec.IObject
-	SetAccessibilityContainerType(value objectivec.IObject)
+	AccessibilityContainerType() IObject /* already interface */
+	SetAccessibilityContainerType(value IObject /* already interface */)
 	AccessibilityContainerTypeBlock() unsafe.Pointer
 	SetAccessibilityContainerTypeBlock(value unsafe.Pointer)
 	AccessibilityCustomActionsBlock() unsafe.Pointer
 	SetAccessibilityCustomActionsBlock(value unsafe.Pointer)
-	AccessibilityCustomRotors() objectivec.IObject
-	SetAccessibilityCustomRotors(value objectivec.IObject)
+	AccessibilityCustomRotors() IObject /* already interface */
+	SetAccessibilityCustomRotors(value IObject /* already interface */)
 	AccessibilityCustomRotorsBlock() unsafe.Pointer
 	SetAccessibilityCustomRotorsBlock(value unsafe.Pointer)
 	AccessibilityDecrementBlock() unsafe.Pointer
@@ -97,8 +88,8 @@ type IObject interface {
 	SetAccessibilityLanguageBlock(value unsafe.Pointer)
 	AccessibilityMagicTapBlock() unsafe.Pointer
 	SetAccessibilityMagicTapBlock(value unsafe.Pointer)
-	AccessibilityNavigationStyle() objectivec.IObject
-	SetAccessibilityNavigationStyle(value objectivec.IObject)
+	AccessibilityNavigationStyle() IObject /* already interface */
+	SetAccessibilityNavigationStyle(value IObject /* already interface */)
 	AccessibilityNavigationStyleBlock() unsafe.Pointer
 	SetAccessibilityNavigationStyleBlock(value unsafe.Pointer)
 	AccessibilityNextTextNavigationElement() unsafe.Pointer
@@ -121,16 +112,16 @@ type IObject interface {
 	SetAccessibilityRespondsToUserInteractionBlock(value unsafe.Pointer)
 	AccessibilityShouldGroupAccessibilityChildrenBlock() unsafe.Pointer
 	SetAccessibilityShouldGroupAccessibilityChildrenBlock(value unsafe.Pointer)
-	AccessibilityTextInputResponder() objectivec.IObject
-	SetAccessibilityTextInputResponder(value objectivec.IObject)
+	AccessibilityTextInputResponder() IObject /* already interface */
+	SetAccessibilityTextInputResponder(value IObject /* already interface */)
 	AccessibilityTextInputResponderBlock() unsafe.Pointer
 	SetAccessibilityTextInputResponderBlock(value unsafe.Pointer)
-	AccessibilityTextualContext() objectivec.IObject
-	SetAccessibilityTextualContext(value objectivec.IObject)
+	AccessibilityTextualContext() IObject /* already interface */
+	SetAccessibilityTextualContext(value IObject /* already interface */)
 	AccessibilityTextualContextBlock() unsafe.Pointer
 	SetAccessibilityTextualContextBlock(value unsafe.Pointer)
-	AccessibilityTraits() objectivec.IObject
-	SetAccessibilityTraits(value objectivec.IObject)
+	AccessibilityTraits() IObject /* already interface */
+	SetAccessibilityTraits(value IObject /* already interface */)
 	AccessibilityTraitsBlock() unsafe.Pointer
 	SetAccessibilityTraitsBlock(value unsafe.Pointer)
 	AccessibilityUserInputLabelsBlock() unsafe.Pointer
@@ -172,7 +163,7 @@ type IObject interface {
 	ShouldGroupAccessibilityChildren() bool /* primitive/slice/pointer. */
 	SetShouldGroupAccessibilityChildren(value bool /* primitive/slice/pointer. */)
 	// methods:
-	AcceptsPreviewPanelControl(panel objc.IObject /* cross-framework: PreviewPanel */) bool /* primitive/slice/pointer. */
+	AcceptsPreviewPanelControl(panel IObject /* already interface */) bool /* primitive/slice/pointer. */
 	AccessibilityActivate() bool /* primitive/slice/pointer. */
 	AccessibilityArrayAttributeCount(attribute AccessibilityAttributeName /* not a class type */) uint /* primitive/slice/pointer. */
 	AccessibilityAssistiveTechnologyFocusedIdentifiers() unsafe.Pointer
@@ -182,149 +173,149 @@ type IObject interface {
 	AccessibilityElementDidBecomeFocused()
 	AccessibilityElementDidLoseFocus()
 	AccessibilityElementIsFocused() bool /* primitive/slice/pointer. */
-	AccessibilityHitTest(point objectivec.IObject) objc.ID
-	AccessibilityHitTestWithEvent(point objectivec.IObject, event objectivec.IObject) objc.ID
+	AccessibilityHitTest(point IObject) objc.ID
+	AccessibilityHitTestWithEvent(point IObject, event IObject) objc.ID
 	AccessibilityIncrement()
-	AccessibilityIndexOfChild(child objectivec.IObject) uint /* primitive/slice/pointer. */
+	AccessibilityIndexOfChild(child IObject) uint /* primitive/slice/pointer. */
 	AccessibilityLineEndPositionFromCurrentSelection() int /* primitive/slice/pointer. */
 	AccessibilityLineStartPositionFromCurrentSelection() int /* primitive/slice/pointer. */
 	AccessibilityPerformEscape() bool /* primitive/slice/pointer. */
 	AccessibilityPerformMagicTap() bool /* primitive/slice/pointer. */
-	AccessibilityScroll(direction objectivec.IObject) bool /* primitive/slice/pointer. */
-	AccessibilityZoomInAtPoint(point objectivec.IObject) bool /* primitive/slice/pointer. */
-	AccessibilityZoomOutAtPoint(point objectivec.IObject) bool /* primitive/slice/pointer. */
-	AttemptRecoveryFromErrorOptionIndex(error_ objectivec.IObject, recoveryOptionIndex uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	AttemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorContextInfo(error_ objectivec.IObject, recoveryOptionIndex uint /* primitive/slice/pointer. */, delegate objectivec.IObject, didRecoverSelector objc.SEL, contextInfo unsafe.Pointer)
-	AuthorizationViewCreatedAuthorization(view objc.IObject /* cross-framework: SFAuthorizationView */)
-	AuthorizationViewDidAuthorize(view objc.IObject /* cross-framework: SFAuthorizationView */)
-	AuthorizationViewDidDeauthorize(view objc.IObject /* cross-framework: SFAuthorizationView */)
-	AuthorizationViewDidHide(view objc.IObject /* cross-framework: SFAuthorizationView */)
-	AuthorizationViewReleasedAuthorization(view objc.IObject /* cross-framework: SFAuthorizationView */)
-	AuthorizationViewShouldDeauthorize(view objc.IObject /* cross-framework: SFAuthorizationView */) bool /* primitive/slice/pointer. */
-	BeginPreviewPanelControl(panel objc.IObject /* cross-framework: PreviewPanel */)
-	BindToObjectWithKeyPathOptions(binding BindingName /* not a class type */, observable objectivec.IObject, keyPath objectivec.IObject, options objectivec.IObject)
+	AccessibilityScroll(direction IObject /* already interface */) bool /* primitive/slice/pointer. */
+	AccessibilityZoomInAtPoint(point IObject) bool /* primitive/slice/pointer. */
+	AccessibilityZoomOutAtPoint(point IObject) bool /* primitive/slice/pointer. */
+	AttemptRecoveryFromErrorOptionIndex(error_ IObject, recoveryOptionIndex uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	AttemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorContextInfo(error_ IObject, recoveryOptionIndex uint /* primitive/slice/pointer. */, delegate IObject, didRecoverSelector objc.SEL, contextInfo unsafe.Pointer)
+	AuthorizationViewCreatedAuthorization(view IObject)
+	AuthorizationViewDidAuthorize(view IObject)
+	AuthorizationViewDidDeauthorize(view IObject)
+	AuthorizationViewDidHide(view IObject)
+	AuthorizationViewReleasedAuthorization(view IObject)
+	AuthorizationViewShouldDeauthorize(view IObject) bool /* primitive/slice/pointer. */
+	BeginPreviewPanelControl(panel IObject /* already interface */)
+	BindToObjectWithKeyPathOptions(binding BindingName /* not a class type */, observable IObject, keyPath IObject, options IObject)
 	BrowserAccessibilityDeleteTextAtCursor(numberOfCharacters int /* primitive/slice/pointer. */)
-	BrowserAccessibilityInsertTextAtCursor(text objectivec.IObject)
-	BrowserAccessibilitySetSelectedTextRange(range_ objectivec.IObject)
+	BrowserAccessibilityInsertTextAtCursor(text IObject)
+	BrowserAccessibilitySetSelectedTextRange(range_ IObject)
 	BurnProgressPanelBurnDidFinish(theBurnPanel unsafe.Pointer, burn unsafe.Pointer) bool /* primitive/slice/pointer. */
-	BurnProgressPanelDidFinish(aNotification objectivec.IObject)
-	BurnProgressPanelWillBegin(aNotification objectivec.IObject)
-	CertificatePanelShowHelp(sender objc.IObject /* cross-framework: SFCertificatePanel */) bool /* primitive/slice/pointer. */
-	ChooseIdentityPanelShowHelp(sender objc.IObject /* cross-framework: SFChooseIdentityPanel */) bool /* primitive/slice/pointer. */
-	CoerceValueForKey(value objectivec.IObject, key objectivec.IObject) objc.ID
-	CommitComposition(sender objectivec.IObject)
-	ComposedString(sender objectivec.IObject) objc.ID
-	CopyScriptingValueForKeyWithProperties(value objectivec.IObject, key objectivec.IObject, properties objectivec.IObject) objc.ID
-	DidChangeValueForKeyWithSetMutationUsingObjects(key objectivec.IObject, mutationKind KeyValueSetMutationKind /* not a class type */, objects objectivec.IObject)
-	DidCommandBySelectorClient(aSelector objc.SEL, sender objectivec.IObject) bool /* primitive/slice/pointer. */
-	DoesContain(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	BurnProgressPanelDidFinish(aNotification IObject)
+	BurnProgressPanelWillBegin(aNotification IObject)
+	CertificatePanelShowHelp(sender IObject) bool /* primitive/slice/pointer. */
+	ChooseIdentityPanelShowHelp(sender IObject) bool /* primitive/slice/pointer. */
+	CoerceValueForKey(value IObject, key IObject) objc.ID
+	CommitComposition(sender IObject)
+	ComposedString(sender IObject) objc.ID
+	CopyScriptingValueForKeyWithProperties(value IObject, key IObject, properties IObject) objc.ID
+	DidChangeValueForKeyWithSetMutationUsingObjects(key IObject, mutationKind KeyValueSetMutationKind /* not a class type */, objects IObject)
+	DidCommandBySelectorClient(aSelector objc.SEL, sender IObject) bool /* primitive/slice/pointer. */
+	DoesContain(object IObject) bool /* primitive/slice/pointer. */
 	DoesNotRecognizeSelector(aSelector objc.SEL)
-	EndPreviewPanelControl(panel objc.IObject /* cross-framework: PreviewPanel */)
+	EndPreviewPanelControl(panel IObject /* already interface */)
 	EraseProgressPanelEraseDidFinish(theErasePanel unsafe.Pointer, erase unsafe.Pointer) bool /* primitive/slice/pointer. */
-	EraseProgressPanelDidFinish(aNotification objectivec.IObject)
-	EraseProgressPanelWillBegin(aNotification objectivec.IObject)
-	ExceptionHandlerShouldHandleExceptionMask(sender objc.IObject /* cross-framework: ExceptionHandler */, exception objectivec.IObject, aMask uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	ExceptionHandlerShouldLogExceptionMask(sender objc.IObject /* cross-framework: ExceptionHandler */, exception objectivec.IObject, aMask uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	FileTransferServicesAbortCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer)
-	FileTransferServicesConnectionCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer)
-	FileTransferServicesCopyRemoteFileCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer)
-	FileTransferServicesCopyRemoteFileProgressTransferProgress(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inProgressDescription objectivec.IObject)
-	FileTransferServicesCreateFolderCompleteErrorFolder(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer, inFolderName objectivec.IObject)
-	FileTransferServicesDisconnectionCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer)
-	FileTransferServicesFilePreparationCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer)
-	FileTransferServicesPathChangeCompleteErrorFinalPath(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer, inPath objectivec.IObject)
-	FileTransferServicesRemoveItemCompleteErrorRemovedItem(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer, inItemName objectivec.IObject)
-	FileTransferServicesRetrieveFolderListingCompleteErrorListing(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer, inListing objectivec.IObject)
-	FileTransferServicesSendFileCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer)
-	FileTransferServicesSendFileProgressTransferProgress(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inProgressDescription objectivec.IObject)
+	EraseProgressPanelDidFinish(aNotification IObject)
+	EraseProgressPanelWillBegin(aNotification IObject)
+	ExceptionHandlerShouldHandleExceptionMask(sender IObject /* already interface */, exception IObject, aMask uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	ExceptionHandlerShouldLogExceptionMask(sender IObject /* already interface */, exception IObject, aMask uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	FileTransferServicesAbortCompleteError(inServices IObject, inError unsafe.Pointer)
+	FileTransferServicesConnectionCompleteError(inServices IObject, inError unsafe.Pointer)
+	FileTransferServicesCopyRemoteFileCompleteError(inServices IObject, inError unsafe.Pointer)
+	FileTransferServicesCopyRemoteFileProgressTransferProgress(inServices IObject, inProgressDescription IObject)
+	FileTransferServicesCreateFolderCompleteErrorFolder(inServices IObject, inError unsafe.Pointer, inFolderName IObject)
+	FileTransferServicesDisconnectionCompleteError(inServices IObject, inError unsafe.Pointer)
+	FileTransferServicesFilePreparationCompleteError(inServices IObject, inError unsafe.Pointer)
+	FileTransferServicesPathChangeCompleteErrorFinalPath(inServices IObject, inError unsafe.Pointer, inPath IObject)
+	FileTransferServicesRemoveItemCompleteErrorRemovedItem(inServices IObject, inError unsafe.Pointer, inItemName IObject)
+	FileTransferServicesRetrieveFolderListingCompleteErrorListing(inServices IObject, inError unsafe.Pointer, inListing IObject)
+	FileTransferServicesSendFileCompleteError(inServices IObject, inError unsafe.Pointer)
+	FileTransferServicesSendFileProgressTransferProgress(inServices IObject, inProgressDescription IObject)
 	Finalize()
 	FinalizeForWebScript()
 	ForwardingTargetForSelector(aSelector objc.SEL) objc.ID
-	HandleEventClient(event objectivec.IObject, sender objectivec.IObject) bool /* primitive/slice/pointer. */
-	ImageBrowserBackgroundWasRightClickedWithEvent(aBrowser quartz.IKImageBrowserView /* already interface */, event objectivec.IObject)
-	ImageBrowserCellWasDoubleClickedAtIndex(aBrowser quartz.IKImageBrowserView /* already interface */, index uint /* primitive/slice/pointer. */)
-	ImageBrowserCellWasRightClickedAtIndexWithEvent(aBrowser quartz.IKImageBrowserView /* already interface */, index uint /* primitive/slice/pointer. */, event objectivec.IObject)
-	ImageBrowserItemAtIndex(aBrowser quartz.IKImageBrowserView /* already interface */, index uint /* primitive/slice/pointer. */) objc.ID
-	ImageBrowserMoveItemsAtIndexesToIndex(aBrowser quartz.IKImageBrowserView /* already interface */, indexes objectivec.IObject, destinationIndex uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	ImageBrowserRemoveItemsAtIndexes(aBrowser quartz.IKImageBrowserView /* already interface */, indexes objectivec.IObject)
-	ImageBrowserWriteItemsAtIndexesToPasteboard(aBrowser quartz.IKImageBrowserView /* already interface */, itemIndexes objectivec.IObject, pasteboard objectivec.IObject) uint /* primitive/slice/pointer. */
-	ImageBrowserSelectionDidChange(aBrowser quartz.IKImageBrowserView /* already interface */)
+	HandleEventClient(event IObject, sender IObject) bool /* primitive/slice/pointer. */
+	ImageBrowserBackgroundWasRightClickedWithEvent(aBrowser IObject, event IObject)
+	ImageBrowserCellWasDoubleClickedAtIndex(aBrowser IObject, index uint /* primitive/slice/pointer. */)
+	ImageBrowserCellWasRightClickedAtIndexWithEvent(aBrowser IObject, index uint /* primitive/slice/pointer. */, event IObject)
+	ImageBrowserItemAtIndex(aBrowser IObject, index uint /* primitive/slice/pointer. */) objc.ID
+	ImageBrowserMoveItemsAtIndexesToIndex(aBrowser IObject, indexes IObject, destinationIndex uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	ImageBrowserRemoveItemsAtIndexes(aBrowser IObject, indexes IObject)
+	ImageBrowserWriteItemsAtIndexesToPasteboard(aBrowser IObject, itemIndexes IObject, pasteboard IObject) uint /* primitive/slice/pointer. */
+	ImageBrowserSelectionDidChange(aBrowser IObject)
 	ImageRepresentation() objc.ID
 	ImageVersion() uint /* primitive/slice/pointer. */
-	IndexOfAccessibilityElement(element objectivec.IObject) int /* primitive/slice/pointer. */
-	IndicesOfObjectsByEvaluatingObjectSpecifier(specifier objectivec.IObject) objc.IObject /* cross-framework: Number */
-	InputTextClient(string_ objectivec.IObject, sender objectivec.IObject) bool /* primitive/slice/pointer. */
-	InputTextKeyModifiersClient(string_ objectivec.IObject, keyCode int /* primitive/slice/pointer. */, flags uint /* primitive/slice/pointer. */, sender objectivec.IObject) bool /* primitive/slice/pointer. */
-	InsertValueAtIndexInPropertyWithKey(value objectivec.IObject, index uint /* primitive/slice/pointer. */, key objectivec.IObject)
-	InsertValueInPropertyWithKey(value objectivec.IObject, key objectivec.IObject)
-	InvokeDefaultMethodWithArguments(arguments objectivec.IObject) objc.ID
-	InvokeUndefinedMethodFromWebScriptWithArguments(name objectivec.IObject, arguments objectivec.IObject) objc.ID
-	IsCaseInsensitiveLike(object objectivec.IObject) bool /* primitive/slice/pointer. */
-	IsGreaterThan(object objectivec.IObject) bool /* primitive/slice/pointer. */
-	IsGreaterThanOrEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */
-	IsLessThan(object objectivec.IObject) bool /* primitive/slice/pointer. */
-	IsLessThanOrEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */
-	IsLike(object objectivec.IObject) bool /* primitive/slice/pointer. */
-	IsNotEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	IndexOfAccessibilityElement(element IObject) int /* primitive/slice/pointer. */
+	IndicesOfObjectsByEvaluatingObjectSpecifier(specifier IObject) IObject
+	InputTextClient(string_ IObject, sender IObject) bool /* primitive/slice/pointer. */
+	InputTextKeyModifiersClient(string_ IObject, keyCode int /* primitive/slice/pointer. */, flags uint /* primitive/slice/pointer. */, sender IObject) bool /* primitive/slice/pointer. */
+	InsertValueAtIndexInPropertyWithKey(value IObject, index uint /* primitive/slice/pointer. */, key IObject)
+	InsertValueInPropertyWithKey(value IObject, key IObject)
+	InvokeDefaultMethodWithArguments(arguments IObject) objc.ID
+	InvokeUndefinedMethodFromWebScriptWithArguments(name IObject, arguments IObject) objc.ID
+	IsCaseInsensitiveLike(object IObject) bool /* primitive/slice/pointer. */
+	IsGreaterThan(object IObject) bool /* primitive/slice/pointer. */
+	IsGreaterThanOrEqualTo(object IObject) bool /* primitive/slice/pointer. */
+	IsLessThan(object IObject) bool /* primitive/slice/pointer. */
+	IsLessThanOrEqualTo(object IObject) bool /* primitive/slice/pointer. */
+	IsLike(object IObject) bool /* primitive/slice/pointer. */
+	IsNotEqualTo(object IObject) bool /* primitive/slice/pointer. */
 	MethodForSelector(aSelector objc.SEL) unsafe.Pointer
-	NewScriptingObjectOfClassForValueForKeyWithContentsValueProperties(objectClass objc.Class, key objectivec.IObject, contentsValue objectivec.IObject, properties objectivec.IObject) objc.ID
-	NumberOfGroupsInImageBrowser(aBrowser quartz.IKImageBrowserView /* already interface */) uint /* primitive/slice/pointer. */
-	NumberOfItemsInImageBrowser(aBrowser quartz.IKImageBrowserView /* already interface */) uint /* primitive/slice/pointer. */
-	OptionDescriptionsForBinding(binding BindingName /* not a class type */) objc.IObject /* cross-framework: AttributeDescription */
-	PerformSelectorOnThreadWithObjectWaitUntilDone(aSelector objc.SEL, thr objectivec.IObject, arg objectivec.IObject, wait bool /* primitive/slice/pointer. */)
-	PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, thr objectivec.IObject, arg objectivec.IObject, wait bool /* primitive/slice/pointer. */, array []string /* primitive/slice/pointer. */)
-	PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgument objectivec.IObject, delay TimeInterval /* not a class type */)
-	PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, anArgument objectivec.IObject, delay TimeInterval /* not a class type */, modes []string /* primitive/slice/pointer. */)
-	PerformActionForPersonIdentifier(person objc.IObject /* cross-framework: ABPerson */, identifier objectivec.IObject)
-	PerformSelectorOnMainThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, arg objectivec.IObject, wait bool /* primitive/slice/pointer. */, array []string /* primitive/slice/pointer. */)
-	ProvideImageToMTLTextureCommandBufferOriginxOriginyWidthHeightUserInfo(texture objectivec.IObject, commandBuffer objectivec.IObject, originx uintptr /* not a class type */, originy uintptr /* not a class type */, width uintptr /* not a class type */, height uintptr /* not a class type */, info objectivec.IObject)
-	ProvideImageDataBytesPerRowOriginSizeUserInfo(data unsafe.Pointer, rowbytes uintptr /* not a class type */, originx uintptr /* not a class type */, originy uintptr /* not a class type */, width uintptr /* not a class type */, height uintptr /* not a class type */, info objectivec.IObject)
-	QuartzFilterManagerDidAddFilter(sender objc.IObject /* cross-framework: QuartzFilterManager */, filter objc.IObject /* cross-framework: QuartzFilter */)
-	QuartzFilterManagerDidModifyFilter(sender objc.IObject /* cross-framework: QuartzFilterManager */, filter objc.IObject /* cross-framework: QuartzFilter */)
-	QuartzFilterManagerDidRemoveFilter(sender objc.IObject /* cross-framework: QuartzFilterManager */, filter objc.IObject /* cross-framework: QuartzFilter */)
-	QuartzFilterManagerDidSelectFilter(sender objc.IObject /* cross-framework: QuartzFilterManager */, filter objc.IObject /* cross-framework: QuartzFilter */)
-	ReadLinkQualityForDeviceCompleteDeviceInfoError(controller objectivec.IObject, device objc.IObject /* cross-framework: BluetoothDevice */, info unsafe.Pointer, error_ Return /* not a class type */)
-	ReadRSSIForDeviceCompleteDeviceInfoError(controller objectivec.IObject, device objc.IObject /* cross-framework: BluetoothDevice */, info unsafe.Pointer, error_ Return /* not a class type */)
-	RemoveValueAtIndexFromPropertyWithKey(index uint /* primitive/slice/pointer. */, key objectivec.IObject)
-	ReplaceValueAtIndexInPropertyWithKeyWithValue(index uint /* primitive/slice/pointer. */, key objectivec.IObject, value objectivec.IObject)
-	ReplacementObjectForCoder(coder objectivec.IObject) objc.ID
-	ReplacementObjectForKeyedArchiver(archiver objectivec.IObject) objc.ID
-	SaveOptionsShouldShowUTType(saveOptions quartz.IKSaveOptions /* already interface */, utType objectivec.IObject) bool /* primitive/slice/pointer. */
-	ScriptingBeginsWith(object objectivec.IObject) bool /* primitive/slice/pointer. */
-	ScriptingContains(object objectivec.IObject) bool /* primitive/slice/pointer. */
-	ScriptingEndsWith(object objectivec.IObject) bool /* primitive/slice/pointer. */
-	ScriptingIsEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */
-	ScriptingIsGreaterThan(object objectivec.IObject) bool /* primitive/slice/pointer. */
-	ScriptingIsGreaterThanOrEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */
-	ScriptingIsLessThan(object objectivec.IObject) bool /* primitive/slice/pointer. */
-	ScriptingIsLessThanOrEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */
-	ScriptingValueForSpecifier(objectSpecifier objectivec.IObject) objc.ID
-	SetSharedObservers(sharedObservers objectivec.IObject)
+	NewScriptingObjectOfClassForValueForKeyWithContentsValueProperties(objectClass objc.Class, key IObject, contentsValue IObject, properties IObject) objc.ID
+	NumberOfGroupsInImageBrowser(aBrowser IObject) uint /* primitive/slice/pointer. */
+	NumberOfItemsInImageBrowser(aBrowser IObject) uint /* primitive/slice/pointer. */
+	OptionDescriptionsForBinding(binding BindingName /* not a class type */) IObject
+	PerformSelectorOnThreadWithObjectWaitUntilDone(aSelector objc.SEL, thr IObject, arg IObject, wait bool /* primitive/slice/pointer. */)
+	PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, thr IObject, arg IObject, wait bool /* primitive/slice/pointer. */, array []string /* primitive/slice/pointer. */)
+	PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgument IObject, delay TimeInterval /* not a class type */)
+	PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, anArgument IObject, delay TimeInterval /* not a class type */, modes []string /* primitive/slice/pointer. */)
+	PerformActionForPersonIdentifier(person IObject, identifier IObject)
+	PerformSelectorOnMainThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, arg IObject, wait bool /* primitive/slice/pointer. */, array []string /* primitive/slice/pointer. */)
+	ProvideImageToMTLTextureCommandBufferOriginxOriginyWidthHeightUserInfo(texture IObject, commandBuffer IObject, originx uintptr /* not a class type */, originy uintptr /* not a class type */, width uintptr /* not a class type */, height uintptr /* not a class type */, info IObject)
+	ProvideImageDataBytesPerRowOriginSizeUserInfo(data unsafe.Pointer, rowbytes uintptr /* not a class type */, originx uintptr /* not a class type */, originy uintptr /* not a class type */, width uintptr /* not a class type */, height uintptr /* not a class type */, info IObject)
+	QuartzFilterManagerDidAddFilter(sender IObject, filter IObject)
+	QuartzFilterManagerDidModifyFilter(sender IObject, filter IObject)
+	QuartzFilterManagerDidRemoveFilter(sender IObject, filter IObject)
+	QuartzFilterManagerDidSelectFilter(sender IObject, filter IObject)
+	ReadLinkQualityForDeviceCompleteDeviceInfoError(controller IObject, device IObject /* already interface */, info unsafe.Pointer, error_ Return /* not a class type */)
+	ReadRSSIForDeviceCompleteDeviceInfoError(controller IObject, device IObject /* already interface */, info unsafe.Pointer, error_ Return /* not a class type */)
+	RemoveValueAtIndexFromPropertyWithKey(index uint /* primitive/slice/pointer. */, key IObject)
+	ReplaceValueAtIndexInPropertyWithKeyWithValue(index uint /* primitive/slice/pointer. */, key IObject, value IObject)
+	ReplacementObjectForCoder(coder IObject) objc.ID
+	ReplacementObjectForKeyedArchiver(archiver IObject) objc.ID
+	SaveOptionsShouldShowUTType(saveOptions IObject, utType IObject) bool /* primitive/slice/pointer. */
+	ScriptingBeginsWith(object IObject) bool /* primitive/slice/pointer. */
+	ScriptingContains(object IObject) bool /* primitive/slice/pointer. */
+	ScriptingEndsWith(object IObject) bool /* primitive/slice/pointer. */
+	ScriptingIsEqualTo(object IObject) bool /* primitive/slice/pointer. */
+	ScriptingIsGreaterThan(object IObject) bool /* primitive/slice/pointer. */
+	ScriptingIsGreaterThanOrEqualTo(object IObject) bool /* primitive/slice/pointer. */
+	ScriptingIsLessThan(object IObject) bool /* primitive/slice/pointer. */
+	ScriptingIsLessThanOrEqualTo(object IObject) bool /* primitive/slice/pointer. */
+	ScriptingValueForSpecifier(objectSpecifier IObject) objc.ID
+	SetSharedObservers(sharedObservers IObject)
 	SetupPanelDetermineBestDeviceOfAOrB(aPanel unsafe.Pointer, deviceA unsafe.Pointer, device unsafe.Pointer) unsafe.Pointer
-	SetupPanelDeviceContainsSuitableMediaPromptString(aPanel unsafe.Pointer, device unsafe.Pointer, prompt objectivec.IObject) bool /* primitive/slice/pointer. */
+	SetupPanelDeviceContainsSuitableMediaPromptString(aPanel unsafe.Pointer, device unsafe.Pointer, prompt IObject) bool /* primitive/slice/pointer. */
 	SetupPanelDeviceCouldBeTarget(aPanel unsafe.Pointer, device unsafe.Pointer) bool /* primitive/slice/pointer. */
-	SetupPanelDeviceSelectionChanged(aNotification objectivec.IObject)
+	SetupPanelDeviceSelectionChanged(aNotification IObject)
 	SetupPanelShouldHandleMediaReservations(aPanel unsafe.Pointer) bool /* primitive/slice/pointer. */
-	ShouldEnableActionForPersonIdentifier(person objc.IObject /* cross-framework: ABPerson */, identifier objectivec.IObject) bool /* primitive/slice/pointer. */
+	ShouldEnableActionForPersonIdentifier(person IObject, identifier IObject) bool /* primitive/slice/pointer. */
 	Unbind(binding BindingName /* not a class type */)
-	ValidateValueForKeyError(ioValue unsafe.Pointer, inKey objectivec.IObject, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
-	ValidateValueForKeyPathError(ioValue unsafe.Pointer, inKeyPath objectivec.IObject, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
-	ValueAtIndexInPropertyWithKey(index uint /* primitive/slice/pointer. */, key objectivec.IObject) objc.ID
-	ValueWithNameInPropertyWithKey(name objectivec.IObject, key objectivec.IObject) objc.ID
-	ValueWithUniqueIDInPropertyWithKey(uniqueID objectivec.IObject, key objectivec.IObject) objc.ID
+	ValidateValueForKeyError(ioValue unsafe.Pointer, inKey IObject, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	ValidateValueForKeyPathError(ioValue unsafe.Pointer, inKeyPath IObject, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	ValueAtIndexInPropertyWithKey(index uint /* primitive/slice/pointer. */, key IObject) objc.ID
+	ValueWithNameInPropertyWithKey(name IObject, key IObject) objc.ID
+	ValueWithUniqueIDInPropertyWithKey(uniqueID IObject, key IObject) objc.ID
 	ValueClassForBinding(binding BindingName /* not a class type */) objc.Class
-	WebPlugInContainerLoadRequestInFrame(request objectivec.IObject, target objectivec.IObject)
-	WebPlugInContainerShowStatus(message objectivec.IObject)
+	WebPlugInContainerLoadRequestInFrame(request IObject, target IObject)
+	WebPlugInContainerShowStatus(message IObject)
 	WebPlugInDestroy()
 	WebPlugInInitialize()
-	WebPlugInMainResourceDidFailWithError(error_ objectivec.IObject)
+	WebPlugInMainResourceDidFailWithError(error_ IObject)
 	WebPlugInMainResourceDidFinishLoading()
-	WebPlugInMainResourceDidReceiveData(data objectivec.IObject)
-	WebPlugInMainResourceDidReceiveResponse(response objectivec.IObject)
+	WebPlugInMainResourceDidReceiveData(data IObject)
+	WebPlugInMainResourceDidReceiveResponse(response IObject)
 	WebPlugInSetIsSelected(isSelected bool /* primitive/slice/pointer. */)
 	WebPlugInStart()
 	WebPlugInStop()
-	WillChangeValueForKeyWithSetMutationUsingObjects(key objectivec.IObject, mutationKind KeyValueSetMutationKind /* not a class type */, objects objectivec.IObject)
+	WillChangeValueForKeyWithSetMutationUsingObjects(key IObject, mutationKind KeyValueSetMutationKind /* not a class type */, objects IObject)
 }
 
 // The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.
@@ -383,7 +374,7 @@ func NewObject() Object {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/automaticallyNotifiesObservers(forKey:)
-func (oc _ObjectClass) AutomaticallyNotifiesObserversForKey(key objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (oc _ObjectClass) AutomaticallyNotifiesObserversForKey(key IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("automaticallyNotifiesObserversForKey:"), key)
 	return rv
 }
@@ -393,7 +384,7 @@ func (oc _ObjectClass) AutomaticallyNotifiesObserversForKey(key objectivec.IObje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/cancelPreviousPerformRequests(withTarget:)
-func (oc _ObjectClass) CancelPreviousPerformRequestsWithTarget(aTarget objectivec.IObject) {
+func (oc _ObjectClass) CancelPreviousPerformRequestsWithTarget(aTarget IObject) {
 	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("cancelPreviousPerformRequestsWithTarget:"), aTarget)
 }
 
@@ -402,7 +393,7 @@ func (oc _ObjectClass) CancelPreviousPerformRequestsWithTarget(aTarget objective
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/cancelPreviousPerformRequests(withTarget:selector:object:)
-func (oc _ObjectClass) CancelPreviousPerformRequestsWithTargetSelectorObject(aTarget objectivec.IObject, aSelector objc.SEL, anArgument objectivec.IObject) {
+func (oc _ObjectClass) CancelPreviousPerformRequestsWithTargetSelectorObject(aTarget IObject, aSelector objc.SEL, anArgument IObject) {
 	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("cancelPreviousPerformRequestsWithTarget:selector:object:"), aTarget, aSelector, anArgument)
 }
 
@@ -441,7 +432,7 @@ func (oc _ObjectClass) ConformsToProtocol(protocol_ objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/defaultPlaceholder(for:with:)
-func (oc _ObjectClass) DefaultPlaceholderForMarkerWithBinding(marker objectivec.IObject, binding BindingName /* not a class type */) objc.ID {
+func (oc _ObjectClass) DefaultPlaceholderForMarkerWithBinding(marker IObject, binding BindingName /* not a class type */) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("defaultPlaceholderForMarker:withBinding:"), marker, binding)
 	return rv
 }
@@ -527,7 +518,7 @@ func (oc _ObjectClass) IsSubclassOfClass(aClass objc.Class) bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/keyPathsForValuesAffectingValue(forKey:)
-func (oc _ObjectClass) KeyPathsForValuesAffectingValueForKey(key objectivec.IObject) unsafe.Pointer {
+func (oc _ObjectClass) KeyPathsForValuesAffectingValueForKey(key IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("keyPathsForValuesAffectingValueForKey:"), key)
 	return rv
 }
@@ -566,7 +557,7 @@ func (oc _ObjectClass) ResolveInstanceMethod(sel objc.SEL) bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setDefaultPlaceholder(_:for:with:)
-func (oc _ObjectClass) SetDefaultPlaceholderForMarkerWithBinding(placeholder objectivec.IObject, marker objectivec.IObject, binding BindingName /* not a class type */) {
+func (oc _ObjectClass) SetDefaultPlaceholderForMarkerWithBinding(placeholder IObject, marker IObject, binding BindingName /* not a class type */) {
 	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("setDefaultPlaceholder:forMarker:withBinding:"), placeholder, marker, binding)
 }
 
@@ -612,7 +603,7 @@ func (oc _ObjectClass) Version() int /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/acceptsPreviewPanelControl(_:)
-func (o_ Object) AcceptsPreviewPanelControl(panel objc.IObject /* cross-framework: PreviewPanel */) bool /* primitive/slice/pointer. */ {
+func (o_ Object) AcceptsPreviewPanelControl(panel IObject /* already interface */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("acceptsPreviewPanelControl:"), panel)
 	return rv
 }
@@ -703,7 +694,7 @@ func (o_ Object) AccessibilityElementIsFocused() bool /* primitive/slice/pointer
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHitTest(_:)
-func (o_ Object) AccessibilityHitTest(point objectivec.IObject) objc.ID {
+func (o_ Object) AccessibilityHitTest(point IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityHitTest:"), point)
 	return rv
 }
@@ -711,7 +702,7 @@ func (o_ Object) AccessibilityHitTest(point objectivec.IObject) objc.ID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHitTest(_:event:)
-func (o_ Object) AccessibilityHitTestWithEvent(point objectivec.IObject, event objectivec.IObject) objc.ID {
+func (o_ Object) AccessibilityHitTestWithEvent(point IObject, event IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityHitTest:withEvent:"), point, event)
 	return rv
 }
@@ -730,7 +721,7 @@ func (o_ Object) AccessibilityIncrement() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityIndex(ofChild:)
-func (o_ Object) AccessibilityIndexOfChild(child objectivec.IObject) uint /* primitive/slice/pointer. */ {
+func (o_ Object) AccessibilityIndexOfChild(child IObject) uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](o_.ID, objc.Sel("accessibilityIndexOfChild:"), child)
 	return rv
 }
@@ -776,7 +767,7 @@ func (o_ Object) AccessibilityPerformMagicTap() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityScroll(_:)
-func (o_ Object) AccessibilityScroll(direction objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) AccessibilityScroll(direction IObject /* already interface */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityScroll:"), direction)
 	return rv
 }
@@ -786,7 +777,7 @@ func (o_ Object) AccessibilityScroll(direction objectivec.IObject) bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityZoomIn(at:)
-func (o_ Object) AccessibilityZoomInAtPoint(point objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) AccessibilityZoomInAtPoint(point IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityZoomInAtPoint:"), point)
 	return rv
 }
@@ -796,7 +787,7 @@ func (o_ Object) AccessibilityZoomInAtPoint(point objectivec.IObject) bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityZoomOut(at:)
-func (o_ Object) AccessibilityZoomOutAtPoint(point objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) AccessibilityZoomOutAtPoint(point IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityZoomOutAtPoint:"), point)
 	return rv
 }
@@ -806,7 +797,7 @@ func (o_ Object) AccessibilityZoomOutAtPoint(point objectivec.IObject) bool /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/addObserver(_:forKeyPath:options:context:)
-func (o_ Object) AddObserverForKeyPathOptionsContext(observer objectivec.IObject, keyPath objectivec.IObject, options KeyValueObservingOptions /* not a class type */, context unsafe.Pointer) {
+func (o_ Object) AddObserverForKeyPathOptionsContext(observer IObject, keyPath IObject, options KeyValueObservingOptions /* not a class type */, context unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, keyPath, options, context)
 }
 
@@ -815,7 +806,7 @@ func (o_ Object) AddObserverForKeyPathOptionsContext(observer objectivec.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/attemptRecovery(fromError:optionIndex:)
-func (o_ Object) AttemptRecoveryFromErrorOptionIndex(error_ objectivec.IObject, recoveryOptionIndex uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (o_ Object) AttemptRecoveryFromErrorOptionIndex(error_ IObject, recoveryOptionIndex uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("attemptRecoveryFromError:optionIndex:"), error_, recoveryOptionIndex)
 	return rv
 }
@@ -825,7 +816,7 @@ func (o_ Object) AttemptRecoveryFromErrorOptionIndex(error_ objectivec.IObject, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/attemptRecovery(fromError:optionIndex:delegate:didRecoverSelector:contextInfo:)
-func (o_ Object) AttemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorContextInfo(error_ objectivec.IObject, recoveryOptionIndex uint /* primitive/slice/pointer. */, delegate objectivec.IObject, didRecoverSelector objc.SEL, contextInfo unsafe.Pointer) {
+func (o_ Object) AttemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorContextInfo(error_ IObject, recoveryOptionIndex uint /* primitive/slice/pointer. */, delegate IObject, didRecoverSelector objc.SEL, contextInfo unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:"), error_, recoveryOptionIndex, delegate, didRecoverSelector, contextInfo)
 }
 
@@ -834,7 +825,7 @@ func (o_ Object) AttemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorCo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewCreatedAuthorization(_:)
-func (o_ Object) AuthorizationViewCreatedAuthorization(view objc.IObject /* cross-framework: SFAuthorizationView */) {
+func (o_ Object) AuthorizationViewCreatedAuthorization(view IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("authorizationViewCreatedAuthorization:"), view)
 }
 
@@ -843,7 +834,7 @@ func (o_ Object) AuthorizationViewCreatedAuthorization(view objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewDidAuthorize(_:)
-func (o_ Object) AuthorizationViewDidAuthorize(view objc.IObject /* cross-framework: SFAuthorizationView */) {
+func (o_ Object) AuthorizationViewDidAuthorize(view IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("authorizationViewDidAuthorize:"), view)
 }
 
@@ -852,7 +843,7 @@ func (o_ Object) AuthorizationViewDidAuthorize(view objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewDidDeauthorize(_:)
-func (o_ Object) AuthorizationViewDidDeauthorize(view objc.IObject /* cross-framework: SFAuthorizationView */) {
+func (o_ Object) AuthorizationViewDidDeauthorize(view IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("authorizationViewDidDeauthorize:"), view)
 }
 
@@ -861,7 +852,7 @@ func (o_ Object) AuthorizationViewDidDeauthorize(view objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewDidHide(_:)
-func (o_ Object) AuthorizationViewDidHide(view objc.IObject /* cross-framework: SFAuthorizationView */) {
+func (o_ Object) AuthorizationViewDidHide(view IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("authorizationViewDidHide:"), view)
 }
 
@@ -870,7 +861,7 @@ func (o_ Object) AuthorizationViewDidHide(view objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewReleasedAuthorization(_:)
-func (o_ Object) AuthorizationViewReleasedAuthorization(view objc.IObject /* cross-framework: SFAuthorizationView */) {
+func (o_ Object) AuthorizationViewReleasedAuthorization(view IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("authorizationViewReleasedAuthorization:"), view)
 }
 
@@ -879,7 +870,7 @@ func (o_ Object) AuthorizationViewReleasedAuthorization(view objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewShouldDeauthorize(_:)
-func (o_ Object) AuthorizationViewShouldDeauthorize(view objc.IObject /* cross-framework: SFAuthorizationView */) bool /* primitive/slice/pointer. */ {
+func (o_ Object) AuthorizationViewShouldDeauthorize(view IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("authorizationViewShouldDeauthorize:"), view)
 	return rv
 }
@@ -889,7 +880,7 @@ func (o_ Object) AuthorizationViewShouldDeauthorize(view objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/awakeAfter(using:)
-func (o_ Object) AwakeAfterUsingCoder(coder objectivec.IObject) objc.ID {
+func (o_ Object) AwakeAfterUsingCoder(coder IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("awakeAfterUsingCoder:"), coder)
 	return rv
 }
@@ -897,7 +888,7 @@ func (o_ Object) AwakeAfterUsingCoder(coder objectivec.IObject) objc.ID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/beginPreviewPanelControl(_:)
-func (o_ Object) BeginPreviewPanelControl(panel objc.IObject /* cross-framework: PreviewPanel */) {
+func (o_ Object) BeginPreviewPanelControl(panel IObject /* already interface */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("beginPreviewPanelControl:"), panel)
 }
 
@@ -906,7 +897,7 @@ func (o_ Object) BeginPreviewPanelControl(panel objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/bind(_:to:withKeyPath:options:)
-func (o_ Object) BindToObjectWithKeyPathOptions(binding BindingName /* not a class type */, observable objectivec.IObject, keyPath objectivec.IObject, options objectivec.IObject) {
+func (o_ Object) BindToObjectWithKeyPathOptions(binding BindingName /* not a class type */, observable IObject, keyPath IObject, options IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("bind:toObject:withKeyPath:options:"), binding, observable, keyPath, options)
 }
 
@@ -924,7 +915,7 @@ func (o_ Object) BrowserAccessibilityDeleteTextAtCursor(numberOfCharacters int /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityInsertTextAtCursor(text:)
-func (o_ Object) BrowserAccessibilityInsertTextAtCursor(text objectivec.IObject) {
+func (o_ Object) BrowserAccessibilityInsertTextAtCursor(text IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilityInsertTextAtCursor:"), text)
 }
 
@@ -933,7 +924,7 @@ func (o_ Object) BrowserAccessibilityInsertTextAtCursor(text objectivec.IObject)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilitySetSelectedTextRange(_:)
-func (o_ Object) BrowserAccessibilitySetSelectedTextRange(range_ objectivec.IObject) {
+func (o_ Object) BrowserAccessibilitySetSelectedTextRange(range_ IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilitySetSelectedTextRange:"), range_)
 }
 
@@ -952,7 +943,7 @@ func (o_ Object) BurnProgressPanelBurnDidFinish(theBurnPanel unsafe.Pointer, bur
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/burnProgressPanelDidFinish(_:)
-func (o_ Object) BurnProgressPanelDidFinish(aNotification objectivec.IObject) {
+func (o_ Object) BurnProgressPanelDidFinish(aNotification IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("burnProgressPanelDidFinish:"), aNotification)
 }
 
@@ -961,7 +952,7 @@ func (o_ Object) BurnProgressPanelDidFinish(aNotification objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/burnProgressPanelWillBegin(_:)
-func (o_ Object) BurnProgressPanelWillBegin(aNotification objectivec.IObject) {
+func (o_ Object) BurnProgressPanelWillBegin(aNotification IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("burnProgressPanelWillBegin:"), aNotification)
 }
 
@@ -970,7 +961,7 @@ func (o_ Object) BurnProgressPanelWillBegin(aNotification objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/certificatePanelShowHelp(_:)
-func (o_ Object) CertificatePanelShowHelp(sender objc.IObject /* cross-framework: SFCertificatePanel */) bool /* primitive/slice/pointer. */ {
+func (o_ Object) CertificatePanelShowHelp(sender IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("certificatePanelShowHelp:"), sender)
 	return rv
 }
@@ -980,7 +971,7 @@ func (o_ Object) CertificatePanelShowHelp(sender objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/chooseIdentityPanelShowHelp(_:)
-func (o_ Object) ChooseIdentityPanelShowHelp(sender objc.IObject /* cross-framework: SFChooseIdentityPanel */) bool /* primitive/slice/pointer. */ {
+func (o_ Object) ChooseIdentityPanelShowHelp(sender IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("chooseIdentityPanelShowHelp:"), sender)
 	return rv
 }
@@ -990,7 +981,7 @@ func (o_ Object) ChooseIdentityPanelShowHelp(sender objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/coerceValue(_:forKey:)
-func (o_ Object) CoerceValueForKey(value objectivec.IObject, key objectivec.IObject) objc.ID {
+func (o_ Object) CoerceValueForKey(value IObject, key IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("coerceValue:forKey:"), value, key)
 	return rv
 }
@@ -1000,7 +991,7 @@ func (o_ Object) CoerceValueForKey(value objectivec.IObject, key objectivec.IObj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/commitComposition(_:)
-func (o_ Object) CommitComposition(sender objectivec.IObject) {
+func (o_ Object) CommitComposition(sender IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("commitComposition:"), sender)
 }
 
@@ -1009,7 +1000,7 @@ func (o_ Object) CommitComposition(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/composedString(_:)
-func (o_ Object) ComposedString(sender objectivec.IObject) objc.ID {
+func (o_ Object) ComposedString(sender IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("composedString:"), sender)
 	return rv
 }
@@ -1019,7 +1010,7 @@ func (o_ Object) ComposedString(sender objectivec.IObject) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/copyScriptingValue(_:forKey:withProperties:)
-func (o_ Object) CopyScriptingValueForKeyWithProperties(value objectivec.IObject, key objectivec.IObject, properties objectivec.IObject) objc.ID {
+func (o_ Object) CopyScriptingValueForKeyWithProperties(value IObject, key IObject, properties IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("copyScriptingValue:forKey:withProperties:"), value, key, properties)
 	return rv
 }
@@ -1029,7 +1020,7 @@ func (o_ Object) CopyScriptingValueForKeyWithProperties(value objectivec.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/didChange(_:valuesAt:forKey:)
-func (o_ Object) DidChangeValuesAtIndexesForKey(changeKind KeyValueChange /* not a class type */, indexes objectivec.IObject, key objectivec.IObject) {
+func (o_ Object) DidChangeValuesAtIndexesForKey(changeKind KeyValueChange /* not a class type */, indexes IObject, key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("didChange:valuesAtIndexes:forKey:"), changeKind, indexes, key)
 }
 
@@ -1038,7 +1029,7 @@ func (o_ Object) DidChangeValuesAtIndexesForKey(changeKind KeyValueChange /* not
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/didChangeValue(forKey:)
-func (o_ Object) DidChangeValueForKey(key objectivec.IObject) {
+func (o_ Object) DidChangeValueForKey(key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("didChangeValueForKey:"), key)
 }
 
@@ -1047,7 +1038,7 @@ func (o_ Object) DidChangeValueForKey(key objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/didChangeValue(forKey:withSetMutation:using:)
-func (o_ Object) DidChangeValueForKeyWithSetMutationUsingObjects(key objectivec.IObject, mutationKind KeyValueSetMutationKind /* not a class type */, objects objectivec.IObject) {
+func (o_ Object) DidChangeValueForKeyWithSetMutationUsingObjects(key IObject, mutationKind KeyValueSetMutationKind /* not a class type */, objects IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("didChangeValueForKey:withSetMutation:usingObjects:"), key, mutationKind, objects)
 }
 
@@ -1056,7 +1047,7 @@ func (o_ Object) DidChangeValueForKeyWithSetMutationUsingObjects(key objectivec.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/didCommand(by:client:)
-func (o_ Object) DidCommandBySelectorClient(aSelector objc.SEL, sender objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) DidCommandBySelectorClient(aSelector objc.SEL, sender IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("didCommandBySelector:client:"), aSelector, sender)
 	return rv
 }
@@ -1066,7 +1057,7 @@ func (o_ Object) DidCommandBySelectorClient(aSelector objc.SEL, sender objective
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/doesContain(_:)
-func (o_ Object) DoesContain(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) DoesContain(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("doesContain:"), object)
 	return rv
 }
@@ -1083,7 +1074,7 @@ func (o_ Object) DoesNotRecognizeSelector(aSelector objc.SEL) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/endPreviewPanelControl(_:)
-func (o_ Object) EndPreviewPanelControl(panel objc.IObject /* cross-framework: PreviewPanel */) {
+func (o_ Object) EndPreviewPanelControl(panel IObject /* already interface */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("endPreviewPanelControl:"), panel)
 }
 
@@ -1102,7 +1093,7 @@ func (o_ Object) EraseProgressPanelEraseDidFinish(theErasePanel unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/eraseProgressPanelDidFinish(_:)
-func (o_ Object) EraseProgressPanelDidFinish(aNotification objectivec.IObject) {
+func (o_ Object) EraseProgressPanelDidFinish(aNotification IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("eraseProgressPanelDidFinish:"), aNotification)
 }
 
@@ -1111,7 +1102,7 @@ func (o_ Object) EraseProgressPanelDidFinish(aNotification objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/eraseProgressPanelWillBegin(_:)
-func (o_ Object) EraseProgressPanelWillBegin(aNotification objectivec.IObject) {
+func (o_ Object) EraseProgressPanelWillBegin(aNotification IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("eraseProgressPanelWillBegin:"), aNotification)
 }
 
@@ -1120,7 +1111,7 @@ func (o_ Object) EraseProgressPanelWillBegin(aNotification objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/exceptionHandler(_:shouldHandle:mask:)
-func (o_ Object) ExceptionHandlerShouldHandleExceptionMask(sender objc.IObject /* cross-framework: ExceptionHandler */, exception objectivec.IObject, aMask uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (o_ Object) ExceptionHandlerShouldHandleExceptionMask(sender IObject /* already interface */, exception IObject, aMask uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("exceptionHandler:shouldHandleException:mask:"), sender, exception, aMask)
 	return rv
 }
@@ -1130,7 +1121,7 @@ func (o_ Object) ExceptionHandlerShouldHandleExceptionMask(sender objc.IObject /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/exceptionHandler(_:shouldLogException:mask:)
-func (o_ Object) ExceptionHandlerShouldLogExceptionMask(sender objc.IObject /* cross-framework: ExceptionHandler */, exception objectivec.IObject, aMask uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (o_ Object) ExceptionHandlerShouldLogExceptionMask(sender IObject /* already interface */, exception IObject, aMask uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("exceptionHandler:shouldLogException:mask:"), sender, exception, aMask)
 	return rv
 }
@@ -1138,84 +1129,84 @@ func (o_ Object) ExceptionHandlerShouldLogExceptionMask(sender objc.IObject /* c
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesAbortComplete(_:error:)
-func (o_ Object) FileTransferServicesAbortCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer) {
+func (o_ Object) FileTransferServicesAbortCompleteError(inServices IObject, inError unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesAbortComplete:error:"), inServices, inError)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesConnectionComplete(_:error:)
-func (o_ Object) FileTransferServicesConnectionCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer) {
+func (o_ Object) FileTransferServicesConnectionCompleteError(inServices IObject, inError unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesConnectionComplete:error:"), inServices, inError)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesCopyRemoteFileComplete(_:error:)
-func (o_ Object) FileTransferServicesCopyRemoteFileCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer) {
+func (o_ Object) FileTransferServicesCopyRemoteFileCompleteError(inServices IObject, inError unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesCopyRemoteFileComplete:error:"), inServices, inError)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesCopyRemoteFileProgress(_:transferProgress:)
-func (o_ Object) FileTransferServicesCopyRemoteFileProgressTransferProgress(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inProgressDescription objectivec.IObject) {
+func (o_ Object) FileTransferServicesCopyRemoteFileProgressTransferProgress(inServices IObject, inProgressDescription IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesCopyRemoteFileProgress:transferProgress:"), inServices, inProgressDescription)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesCreateFolderComplete(_:error:folder:)
-func (o_ Object) FileTransferServicesCreateFolderCompleteErrorFolder(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer, inFolderName objectivec.IObject) {
+func (o_ Object) FileTransferServicesCreateFolderCompleteErrorFolder(inServices IObject, inError unsafe.Pointer, inFolderName IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesCreateFolderComplete:error:folder:"), inServices, inError, inFolderName)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesDisconnectionComplete(_:error:)
-func (o_ Object) FileTransferServicesDisconnectionCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer) {
+func (o_ Object) FileTransferServicesDisconnectionCompleteError(inServices IObject, inError unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesDisconnectionComplete:error:"), inServices, inError)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesFilePreparationComplete(_:error:)
-func (o_ Object) FileTransferServicesFilePreparationCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer) {
+func (o_ Object) FileTransferServicesFilePreparationCompleteError(inServices IObject, inError unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesFilePreparationComplete:error:"), inServices, inError)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesPathChangeComplete(_:error:finalPath:)
-func (o_ Object) FileTransferServicesPathChangeCompleteErrorFinalPath(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer, inPath objectivec.IObject) {
+func (o_ Object) FileTransferServicesPathChangeCompleteErrorFinalPath(inServices IObject, inError unsafe.Pointer, inPath IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesPathChangeComplete:error:finalPath:"), inServices, inError, inPath)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesRemoveItemComplete(_:error:removedItem:)
-func (o_ Object) FileTransferServicesRemoveItemCompleteErrorRemovedItem(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer, inItemName objectivec.IObject) {
+func (o_ Object) FileTransferServicesRemoveItemCompleteErrorRemovedItem(inServices IObject, inError unsafe.Pointer, inItemName IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesRemoveItemComplete:error:removedItem:"), inServices, inError, inItemName)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesRetrieveFolderListingComplete(_:error:listing:)
-func (o_ Object) FileTransferServicesRetrieveFolderListingCompleteErrorListing(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer, inListing objectivec.IObject) {
+func (o_ Object) FileTransferServicesRetrieveFolderListingCompleteErrorListing(inServices IObject, inError unsafe.Pointer, inListing IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesRetrieveFolderListingComplete:error:listing:"), inServices, inError, inListing)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesSendFileComplete(_:error:)
-func (o_ Object) FileTransferServicesSendFileCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer) {
+func (o_ Object) FileTransferServicesSendFileCompleteError(inServices IObject, inError unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesSendFileComplete:error:"), inServices, inError)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesSendFileProgress(_:transferProgress:)
-func (o_ Object) FileTransferServicesSendFileProgressTransferProgress(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inProgressDescription objectivec.IObject) {
+func (o_ Object) FileTransferServicesSendFileProgressTransferProgress(inServices IObject, inProgressDescription IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesSendFileProgress:transferProgress:"), inServices, inProgressDescription)
 }
 
@@ -1252,7 +1243,7 @@ func (o_ Object) ForwardingTargetForSelector(aSelector objc.SEL) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/handle(_:client:)
-func (o_ Object) HandleEventClient(event objectivec.IObject, sender objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) HandleEventClient(event IObject, sender IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("handleEvent:client:"), event, sender)
 	return rv
 }
@@ -1262,7 +1253,7 @@ func (o_ Object) HandleEventClient(event objectivec.IObject, sender objectivec.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:backgroundWasRightClickedWith:)
-func (o_ Object) ImageBrowserBackgroundWasRightClickedWithEvent(aBrowser quartz.IKImageBrowserView /* already interface */, event objectivec.IObject) {
+func (o_ Object) ImageBrowserBackgroundWasRightClickedWithEvent(aBrowser IObject, event IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowser:backgroundWasRightClickedWithEvent:"), aBrowser, event)
 }
 
@@ -1271,7 +1262,7 @@ func (o_ Object) ImageBrowserBackgroundWasRightClickedWithEvent(aBrowser quartz.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:cellWasDoubleClickedAt:)
-func (o_ Object) ImageBrowserCellWasDoubleClickedAtIndex(aBrowser quartz.IKImageBrowserView /* already interface */, index uint /* primitive/slice/pointer. */) {
+func (o_ Object) ImageBrowserCellWasDoubleClickedAtIndex(aBrowser IObject, index uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowser:cellWasDoubleClickedAtIndex:"), aBrowser, index)
 }
 
@@ -1280,7 +1271,7 @@ func (o_ Object) ImageBrowserCellWasDoubleClickedAtIndex(aBrowser quartz.IKImage
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:cellWasRightClickedAt:with:)
-func (o_ Object) ImageBrowserCellWasRightClickedAtIndexWithEvent(aBrowser quartz.IKImageBrowserView /* already interface */, index uint /* primitive/slice/pointer. */, event objectivec.IObject) {
+func (o_ Object) ImageBrowserCellWasRightClickedAtIndexWithEvent(aBrowser IObject, index uint /* primitive/slice/pointer. */, event IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowser:cellWasRightClickedAtIndex:withEvent:"), aBrowser, index, event)
 }
 
@@ -1289,7 +1280,7 @@ func (o_ Object) ImageBrowserCellWasRightClickedAtIndexWithEvent(aBrowser quartz
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:itemAt:)
-func (o_ Object) ImageBrowserItemAtIndex(aBrowser quartz.IKImageBrowserView /* already interface */, index uint /* primitive/slice/pointer. */) objc.ID {
+func (o_ Object) ImageBrowserItemAtIndex(aBrowser IObject, index uint /* primitive/slice/pointer. */) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowser:itemAtIndex:"), aBrowser, index)
 	return rv
 }
@@ -1299,7 +1290,7 @@ func (o_ Object) ImageBrowserItemAtIndex(aBrowser quartz.IKImageBrowserView /* a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:moveItemsAt:to:)
-func (o_ Object) ImageBrowserMoveItemsAtIndexesToIndex(aBrowser quartz.IKImageBrowserView /* already interface */, indexes objectivec.IObject, destinationIndex uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (o_ Object) ImageBrowserMoveItemsAtIndexesToIndex(aBrowser IObject, indexes IObject, destinationIndex uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("imageBrowser:moveItemsAtIndexes:toIndex:"), aBrowser, indexes, destinationIndex)
 	return rv
 }
@@ -1309,7 +1300,7 @@ func (o_ Object) ImageBrowserMoveItemsAtIndexesToIndex(aBrowser quartz.IKImageBr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:removeItemsAt:)
-func (o_ Object) ImageBrowserRemoveItemsAtIndexes(aBrowser quartz.IKImageBrowserView /* already interface */, indexes objectivec.IObject) {
+func (o_ Object) ImageBrowserRemoveItemsAtIndexes(aBrowser IObject, indexes IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowser:removeItemsAtIndexes:"), aBrowser, indexes)
 }
 
@@ -1318,7 +1309,7 @@ func (o_ Object) ImageBrowserRemoveItemsAtIndexes(aBrowser quartz.IKImageBrowser
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:writeItemsAt:to:)
-func (o_ Object) ImageBrowserWriteItemsAtIndexesToPasteboard(aBrowser quartz.IKImageBrowserView /* already interface */, itemIndexes objectivec.IObject, pasteboard objectivec.IObject) uint /* primitive/slice/pointer. */ {
+func (o_ Object) ImageBrowserWriteItemsAtIndexesToPasteboard(aBrowser IObject, itemIndexes IObject, pasteboard IObject) uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](o_.ID, objc.Sel("imageBrowser:writeItemsAtIndexes:toPasteboard:"), aBrowser, itemIndexes, pasteboard)
 	return rv
 }
@@ -1328,7 +1319,7 @@ func (o_ Object) ImageBrowserWriteItemsAtIndexesToPasteboard(aBrowser quartz.IKI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowserSelectionDidChange(_:)
-func (o_ Object) ImageBrowserSelectionDidChange(aBrowser quartz.IKImageBrowserView /* already interface */) {
+func (o_ Object) ImageBrowserSelectionDidChange(aBrowser IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowserSelectionDidChange:"), aBrowser)
 }
 
@@ -1355,7 +1346,7 @@ func (o_ Object) ImageVersion() uint /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/index(ofAccessibilityElement:)
-func (o_ Object) IndexOfAccessibilityElement(element objectivec.IObject) int /* primitive/slice/pointer. */ {
+func (o_ Object) IndexOfAccessibilityElement(element IObject) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](o_.ID, objc.Sel("indexOfAccessibilityElement:"), element)
 	return rv
 }
@@ -1365,7 +1356,7 @@ func (o_ Object) IndexOfAccessibilityElement(element objectivec.IObject) int /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/indicesOfObjects(byEvaluatingObjectSpecifier:)
-func (o_ Object) IndicesOfObjectsByEvaluatingObjectSpecifier(specifier objectivec.IObject) objc.IObject /* cross-framework: Number */ {
+func (o_ Object) IndicesOfObjectsByEvaluatingObjectSpecifier(specifier IObject) IObject {
 	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("indicesOfObjectsByEvaluatingObjectSpecifier:"), specifier)
 	return rv
 }
@@ -1375,7 +1366,7 @@ func (o_ Object) IndicesOfObjectsByEvaluatingObjectSpecifier(specifier objective
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/inputText(_:client:)
-func (o_ Object) InputTextClient(string_ objectivec.IObject, sender objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) InputTextClient(string_ IObject, sender IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("inputText:client:"), string_, sender)
 	return rv
 }
@@ -1385,7 +1376,7 @@ func (o_ Object) InputTextClient(string_ objectivec.IObject, sender objectivec.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/inputText(_:key:modifiers:client:)
-func (o_ Object) InputTextKeyModifiersClient(string_ objectivec.IObject, keyCode int /* primitive/slice/pointer. */, flags uint /* primitive/slice/pointer. */, sender objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) InputTextKeyModifiersClient(string_ IObject, keyCode int /* primitive/slice/pointer. */, flags uint /* primitive/slice/pointer. */, sender IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("inputText:key:modifiers:client:"), string_, keyCode, flags, sender)
 	return rv
 }
@@ -1395,7 +1386,7 @@ func (o_ Object) InputTextKeyModifiersClient(string_ objectivec.IObject, keyCode
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/insertValue(_:at:inPropertyWithKey:)
-func (o_ Object) InsertValueAtIndexInPropertyWithKey(value objectivec.IObject, index uint /* primitive/slice/pointer. */, key objectivec.IObject) {
+func (o_ Object) InsertValueAtIndexInPropertyWithKey(value IObject, index uint /* primitive/slice/pointer. */, key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("insertValue:atIndex:inPropertyWithKey:"), value, index, key)
 }
 
@@ -1404,7 +1395,7 @@ func (o_ Object) InsertValueAtIndexInPropertyWithKey(value objectivec.IObject, i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/insertValue(_:inPropertyWithKey:)
-func (o_ Object) InsertValueInPropertyWithKey(value objectivec.IObject, key objectivec.IObject) {
+func (o_ Object) InsertValueInPropertyWithKey(value IObject, key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("insertValue:inPropertyWithKey:"), value, key)
 }
 
@@ -1413,7 +1404,7 @@ func (o_ Object) InsertValueInPropertyWithKey(value objectivec.IObject, key obje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/invokeDefaultMethod(withArguments:)
-func (o_ Object) InvokeDefaultMethodWithArguments(arguments objectivec.IObject) objc.ID {
+func (o_ Object) InvokeDefaultMethodWithArguments(arguments IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("invokeDefaultMethodWithArguments:"), arguments)
 	return rv
 }
@@ -1423,7 +1414,7 @@ func (o_ Object) InvokeDefaultMethodWithArguments(arguments objectivec.IObject) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/invokeUndefinedMethod(fromWebScript:withArguments:)
-func (o_ Object) InvokeUndefinedMethodFromWebScriptWithArguments(name objectivec.IObject, arguments objectivec.IObject) objc.ID {
+func (o_ Object) InvokeUndefinedMethodFromWebScriptWithArguments(name IObject, arguments IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("invokeUndefinedMethodFromWebScript:withArguments:"), name, arguments)
 	return rv
 }
@@ -1433,7 +1424,7 @@ func (o_ Object) InvokeUndefinedMethodFromWebScriptWithArguments(name objectivec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isCaseInsensitiveLike(_:)
-func (o_ Object) IsCaseInsensitiveLike(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) IsCaseInsensitiveLike(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isCaseInsensitiveLike:"), object)
 	return rv
 }
@@ -1443,7 +1434,7 @@ func (o_ Object) IsCaseInsensitiveLike(object objectivec.IObject) bool /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isEqual(to:)
-func (o_ Object) IsEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) IsEqualTo(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isEqualTo:"), object)
 	return rv
 }
@@ -1453,7 +1444,7 @@ func (o_ Object) IsEqualTo(object objectivec.IObject) bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isGreaterThan(_:)
-func (o_ Object) IsGreaterThan(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) IsGreaterThan(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isGreaterThan:"), object)
 	return rv
 }
@@ -1463,7 +1454,7 @@ func (o_ Object) IsGreaterThan(object objectivec.IObject) bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isGreaterThanOrEqual(to:)
-func (o_ Object) IsGreaterThanOrEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) IsGreaterThanOrEqualTo(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isGreaterThanOrEqualTo:"), object)
 	return rv
 }
@@ -1473,7 +1464,7 @@ func (o_ Object) IsGreaterThanOrEqualTo(object objectivec.IObject) bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isLessThan(_:)
-func (o_ Object) IsLessThan(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) IsLessThan(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isLessThan:"), object)
 	return rv
 }
@@ -1483,7 +1474,7 @@ func (o_ Object) IsLessThan(object objectivec.IObject) bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isLessThanOrEqual(to:)
-func (o_ Object) IsLessThanOrEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) IsLessThanOrEqualTo(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isLessThanOrEqualTo:"), object)
 	return rv
 }
@@ -1493,7 +1484,7 @@ func (o_ Object) IsLessThanOrEqualTo(object objectivec.IObject) bool /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isLike(_:)
-func (o_ Object) IsLike(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) IsLike(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isLike:"), object)
 	return rv
 }
@@ -1503,7 +1494,7 @@ func (o_ Object) IsLike(object objectivec.IObject) bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isNotEqual(to:)
-func (o_ Object) IsNotEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) IsNotEqualTo(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isNotEqualTo:"), object)
 	return rv
 }
@@ -1523,7 +1514,7 @@ func (o_ Object) MethodForSelector(aSelector objc.SEL) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/newScriptingObject(of:forValueForKey:withContentsValue:properties:)
-func (o_ Object) NewScriptingObjectOfClassForValueForKeyWithContentsValueProperties(objectClass objc.Class, key objectivec.IObject, contentsValue objectivec.IObject, properties objectivec.IObject) objc.ID {
+func (o_ Object) NewScriptingObjectOfClassForValueForKeyWithContentsValueProperties(objectClass objc.Class, key IObject, contentsValue IObject, properties IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:"), objectClass, key, contentsValue, properties)
 	return rv
 }
@@ -1533,7 +1524,7 @@ func (o_ Object) NewScriptingObjectOfClassForValueForKeyWithContentsValuePropert
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/numberOfGroups(inImageBrowser:)
-func (o_ Object) NumberOfGroupsInImageBrowser(aBrowser quartz.IKImageBrowserView /* already interface */) uint /* primitive/slice/pointer. */ {
+func (o_ Object) NumberOfGroupsInImageBrowser(aBrowser IObject) uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](o_.ID, objc.Sel("numberOfGroupsInImageBrowser:"), aBrowser)
 	return rv
 }
@@ -1543,7 +1534,7 @@ func (o_ Object) NumberOfGroupsInImageBrowser(aBrowser quartz.IKImageBrowserView
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/numberOfItems(inImageBrowser:)
-func (o_ Object) NumberOfItemsInImageBrowser(aBrowser quartz.IKImageBrowserView /* already interface */) uint /* primitive/slice/pointer. */ {
+func (o_ Object) NumberOfItemsInImageBrowser(aBrowser IObject) uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](o_.ID, objc.Sel("numberOfItemsInImageBrowser:"), aBrowser)
 	return rv
 }
@@ -1553,7 +1544,7 @@ func (o_ Object) NumberOfItemsInImageBrowser(aBrowser quartz.IKImageBrowserView 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/observeValue(forKeyPath:of:change:context:)
-func (o_ Object) ObserveValueForKeyPathOfObjectChangeContext(keyPath objectivec.IObject, object objectivec.IObject, change objectivec.IObject, context unsafe.Pointer) {
+func (o_ Object) ObserveValueForKeyPathOfObjectChangeContext(keyPath IObject, object IObject, change IObject, context unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("observeValueForKeyPath:ofObject:change:context:"), keyPath, object, change, context)
 }
 
@@ -1562,7 +1553,7 @@ func (o_ Object) ObserveValueForKeyPathOfObjectChangeContext(keyPath objectivec.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/optionDescriptionsForBinding(_:)
-func (o_ Object) OptionDescriptionsForBinding(binding BindingName /* not a class type */) objc.IObject /* cross-framework: AttributeDescription */ {
+func (o_ Object) OptionDescriptionsForBinding(binding BindingName /* not a class type */) IObject {
 	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("optionDescriptionsForBinding:"), binding)
 	return rv
 }
@@ -1572,7 +1563,7 @@ func (o_ Object) OptionDescriptionsForBinding(binding BindingName /* not a class
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/perform(_:on:with:waitUntilDone:)
-func (o_ Object) PerformSelectorOnThreadWithObjectWaitUntilDone(aSelector objc.SEL, thr objectivec.IObject, arg objectivec.IObject, wait bool /* primitive/slice/pointer. */) {
+func (o_ Object) PerformSelectorOnThreadWithObjectWaitUntilDone(aSelector objc.SEL, thr IObject, arg IObject, wait bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelector:onThread:withObject:waitUntilDone:"), aSelector, thr, arg, wait)
 }
 
@@ -1581,7 +1572,7 @@ func (o_ Object) PerformSelectorOnThreadWithObjectWaitUntilDone(aSelector objc.S
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/perform(_:on:with:waitUntilDone:modes:)
-func (o_ Object) PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, thr objectivec.IObject, arg objectivec.IObject, wait bool /* primitive/slice/pointer. */, array []string /* primitive/slice/pointer. */) {
+func (o_ Object) PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, thr IObject, arg IObject, wait bool /* primitive/slice/pointer. */, array []string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelector:onThread:withObject:waitUntilDone:modes:"), aSelector, thr, arg, wait, array)
 }
 
@@ -1590,7 +1581,7 @@ func (o_ Object) PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/perform(_:with:afterDelay:)
-func (o_ Object) PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgument objectivec.IObject, delay TimeInterval /* not a class type */) {
+func (o_ Object) PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgument IObject, delay TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelector:withObject:afterDelay:"), aSelector, anArgument, delay)
 }
 
@@ -1599,7 +1590,7 @@ func (o_ Object) PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgum
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/perform(_:with:afterDelay:inModes:)
-func (o_ Object) PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, anArgument objectivec.IObject, delay TimeInterval /* not a class type */, modes []string /* primitive/slice/pointer. */) {
+func (o_ Object) PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, anArgument IObject, delay TimeInterval /* not a class type */, modes []string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelector:withObject:afterDelay:inModes:"), aSelector, anArgument, delay, modes)
 }
 
@@ -1608,7 +1599,7 @@ func (o_ Object) PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/performAction(for:identifier:)
-func (o_ Object) PerformActionForPersonIdentifier(person objc.IObject /* cross-framework: ABPerson */, identifier objectivec.IObject) {
+func (o_ Object) PerformActionForPersonIdentifier(person IObject, identifier IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performActionForPerson:identifier:"), person, identifier)
 }
 
@@ -1617,7 +1608,7 @@ func (o_ Object) PerformActionForPersonIdentifier(person objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/performSelector(inBackground:with:)
-func (o_ Object) PerformSelectorInBackgroundWithObject(aSelector objc.SEL, arg objectivec.IObject) {
+func (o_ Object) PerformSelectorInBackgroundWithObject(aSelector objc.SEL, arg IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelectorInBackground:withObject:"), aSelector, arg)
 }
 
@@ -1626,7 +1617,7 @@ func (o_ Object) PerformSelectorInBackgroundWithObject(aSelector objc.SEL, arg o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/performSelector(onMainThread:with:waitUntilDone:)
-func (o_ Object) PerformSelectorOnMainThreadWithObjectWaitUntilDone(aSelector objc.SEL, arg objectivec.IObject, wait bool /* primitive/slice/pointer. */) {
+func (o_ Object) PerformSelectorOnMainThreadWithObjectWaitUntilDone(aSelector objc.SEL, arg IObject, wait bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelectorOnMainThread:withObject:waitUntilDone:"), aSelector, arg, wait)
 }
 
@@ -1635,7 +1626,7 @@ func (o_ Object) PerformSelectorOnMainThreadWithObjectWaitUntilDone(aSelector ob
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/performSelector(onMainThread:with:waitUntilDone:modes:)
-func (o_ Object) PerformSelectorOnMainThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, arg objectivec.IObject, wait bool /* primitive/slice/pointer. */, array []string /* primitive/slice/pointer. */) {
+func (o_ Object) PerformSelectorOnMainThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, arg IObject, wait bool /* primitive/slice/pointer. */, array []string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelectorOnMainThread:withObject:waitUntilDone:modes:"), aSelector, arg, wait, array)
 }
 
@@ -1644,7 +1635,7 @@ func (o_ Object) PerformSelectorOnMainThreadWithObjectWaitUntilDoneModes(aSelect
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/provideImage(to:commandBuffer:originx:originy:width:height:userInfo:)
-func (o_ Object) ProvideImageToMTLTextureCommandBufferOriginxOriginyWidthHeightUserInfo(texture objectivec.IObject, commandBuffer objectivec.IObject, originx uintptr /* not a class type */, originy uintptr /* not a class type */, width uintptr /* not a class type */, height uintptr /* not a class type */, info objectivec.IObject) {
+func (o_ Object) ProvideImageToMTLTextureCommandBufferOriginxOriginyWidthHeightUserInfo(texture IObject, commandBuffer IObject, originx uintptr /* not a class type */, originy uintptr /* not a class type */, width uintptr /* not a class type */, height uintptr /* not a class type */, info IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("provideImageToMTLTexture:commandBuffer:originx:originy:width:height:userInfo:"), texture, commandBuffer, originx, originy, width, height, info)
 }
 
@@ -1653,49 +1644,49 @@ func (o_ Object) ProvideImageToMTLTextureCommandBufferOriginxOriginyWidthHeightU
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/provideImageData(_:bytesPerRow:origin:_:size:_:userInfo:)
-func (o_ Object) ProvideImageDataBytesPerRowOriginSizeUserInfo(data unsafe.Pointer, rowbytes uintptr /* not a class type */, originx uintptr /* not a class type */, originy uintptr /* not a class type */, width uintptr /* not a class type */, height uintptr /* not a class type */, info objectivec.IObject) {
+func (o_ Object) ProvideImageDataBytesPerRowOriginSizeUserInfo(data unsafe.Pointer, rowbytes uintptr /* not a class type */, originx uintptr /* not a class type */, originy uintptr /* not a class type */, width uintptr /* not a class type */, height uintptr /* not a class type */, info IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("provideImageData:bytesPerRow:origin::size::userInfo:"), data, rowbytes, originx, originy, width, height, info)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/quartzFilterManager(_:didAdd:)
-func (o_ Object) QuartzFilterManagerDidAddFilter(sender objc.IObject /* cross-framework: QuartzFilterManager */, filter objc.IObject /* cross-framework: QuartzFilter */) {
+func (o_ Object) QuartzFilterManagerDidAddFilter(sender IObject, filter IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("quartzFilterManager:didAddFilter:"), sender, filter)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/quartzFilterManager(_:didModifyFilter:)
-func (o_ Object) QuartzFilterManagerDidModifyFilter(sender objc.IObject /* cross-framework: QuartzFilterManager */, filter objc.IObject /* cross-framework: QuartzFilter */) {
+func (o_ Object) QuartzFilterManagerDidModifyFilter(sender IObject, filter IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("quartzFilterManager:didModifyFilter:"), sender, filter)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/quartzFilterManager(_:didRemove:)
-func (o_ Object) QuartzFilterManagerDidRemoveFilter(sender objc.IObject /* cross-framework: QuartzFilterManager */, filter objc.IObject /* cross-framework: QuartzFilter */) {
+func (o_ Object) QuartzFilterManagerDidRemoveFilter(sender IObject, filter IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("quartzFilterManager:didRemoveFilter:"), sender, filter)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/quartzFilterManager(_:didSelect:)
-func (o_ Object) QuartzFilterManagerDidSelectFilter(sender objc.IObject /* cross-framework: QuartzFilterManager */, filter objc.IObject /* cross-framework: QuartzFilter */) {
+func (o_ Object) QuartzFilterManagerDidSelectFilter(sender IObject, filter IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("quartzFilterManager:didSelectFilter:"), sender, filter)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/readLinkQuality(forDeviceComplete:device:info:error:)
-func (o_ Object) ReadLinkQualityForDeviceCompleteDeviceInfoError(controller objectivec.IObject, device objc.IObject /* cross-framework: BluetoothDevice */, info unsafe.Pointer, error_ Return /* not a class type */) {
+func (o_ Object) ReadLinkQualityForDeviceCompleteDeviceInfoError(controller IObject, device IObject /* already interface */, info unsafe.Pointer, error_ Return /* not a class type */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("readLinkQualityForDeviceComplete:device:info:error:"), controller, device, info, error_)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/readRSSI(forDeviceComplete:device:info:error:)
-func (o_ Object) ReadRSSIForDeviceCompleteDeviceInfoError(controller objectivec.IObject, device objc.IObject /* cross-framework: BluetoothDevice */, info unsafe.Pointer, error_ Return /* not a class type */) {
+func (o_ Object) ReadRSSIForDeviceCompleteDeviceInfoError(controller IObject, device IObject /* already interface */, info unsafe.Pointer, error_ Return /* not a class type */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("readRSSIForDeviceComplete:device:info:error:"), controller, device, info, error_)
 }
 
@@ -1704,7 +1695,7 @@ func (o_ Object) ReadRSSIForDeviceCompleteDeviceInfoError(controller objectivec.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/removeObserver(_:forKeyPath:)
-func (o_ Object) RemoveObserverForKeyPath(observer objectivec.IObject, keyPath objectivec.IObject) {
+func (o_ Object) RemoveObserverForKeyPath(observer IObject, keyPath IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("removeObserver:forKeyPath:"), observer, keyPath)
 }
 
@@ -1713,7 +1704,7 @@ func (o_ Object) RemoveObserverForKeyPath(observer objectivec.IObject, keyPath o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/removeObserver(_:forKeyPath:context:)
-func (o_ Object) RemoveObserverForKeyPathContext(observer objectivec.IObject, keyPath objectivec.IObject, context unsafe.Pointer) {
+func (o_ Object) RemoveObserverForKeyPathContext(observer IObject, keyPath IObject, context unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, keyPath, context)
 }
 
@@ -1722,7 +1713,7 @@ func (o_ Object) RemoveObserverForKeyPathContext(observer objectivec.IObject, ke
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/removeValue(at:fromPropertyWithKey:)
-func (o_ Object) RemoveValueAtIndexFromPropertyWithKey(index uint /* primitive/slice/pointer. */, key objectivec.IObject) {
+func (o_ Object) RemoveValueAtIndexFromPropertyWithKey(index uint /* primitive/slice/pointer. */, key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("removeValueAtIndex:fromPropertyWithKey:"), index, key)
 }
 
@@ -1731,7 +1722,7 @@ func (o_ Object) RemoveValueAtIndexFromPropertyWithKey(index uint /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/replaceValue(at:inPropertyWithKey:withValue:)
-func (o_ Object) ReplaceValueAtIndexInPropertyWithKeyWithValue(index uint /* primitive/slice/pointer. */, key objectivec.IObject, value objectivec.IObject) {
+func (o_ Object) ReplaceValueAtIndexInPropertyWithKeyWithValue(index uint /* primitive/slice/pointer. */, key IObject, value IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("replaceValueAtIndex:inPropertyWithKey:withValue:"), index, key, value)
 }
 
@@ -1740,7 +1731,7 @@ func (o_ Object) ReplaceValueAtIndexInPropertyWithKeyWithValue(index uint /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/replacementObject(for:)-2l8ox
-func (o_ Object) ReplacementObjectForCoder(coder objectivec.IObject) objc.ID {
+func (o_ Object) ReplacementObjectForCoder(coder IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("replacementObjectForCoder:"), coder)
 	return rv
 }
@@ -1750,7 +1741,7 @@ func (o_ Object) ReplacementObjectForCoder(coder objectivec.IObject) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/replacementObject(for:)-60vwc
-func (o_ Object) ReplacementObjectForKeyedArchiver(archiver objectivec.IObject) objc.ID {
+func (o_ Object) ReplacementObjectForKeyedArchiver(archiver IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("replacementObjectForKeyedArchiver:"), archiver)
 	return rv
 }
@@ -1760,7 +1751,7 @@ func (o_ Object) ReplacementObjectForKeyedArchiver(archiver objectivec.IObject) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/saveOptions(_:shouldShowUTType:)
-func (o_ Object) SaveOptionsShouldShowUTType(saveOptions quartz.IKSaveOptions /* already interface */, utType objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) SaveOptionsShouldShowUTType(saveOptions IObject, utType IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("saveOptions:shouldShowUTType:"), saveOptions, utType)
 	return rv
 }
@@ -1770,7 +1761,7 @@ func (o_ Object) SaveOptionsShouldShowUTType(saveOptions quartz.IKSaveOptions /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingBegins(with:)
-func (o_ Object) ScriptingBeginsWith(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) ScriptingBeginsWith(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingBeginsWith:"), object)
 	return rv
 }
@@ -1780,7 +1771,7 @@ func (o_ Object) ScriptingBeginsWith(object objectivec.IObject) bool /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingContains(_:)
-func (o_ Object) ScriptingContains(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) ScriptingContains(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingContains:"), object)
 	return rv
 }
@@ -1790,7 +1781,7 @@ func (o_ Object) ScriptingContains(object objectivec.IObject) bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingEnds(with:)
-func (o_ Object) ScriptingEndsWith(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) ScriptingEndsWith(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingEndsWith:"), object)
 	return rv
 }
@@ -1800,7 +1791,7 @@ func (o_ Object) ScriptingEndsWith(object objectivec.IObject) bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingIsEqual(to:)
-func (o_ Object) ScriptingIsEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) ScriptingIsEqualTo(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingIsEqualTo:"), object)
 	return rv
 }
@@ -1810,7 +1801,7 @@ func (o_ Object) ScriptingIsEqualTo(object objectivec.IObject) bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingIsGreaterThan(_:)
-func (o_ Object) ScriptingIsGreaterThan(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) ScriptingIsGreaterThan(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingIsGreaterThan:"), object)
 	return rv
 }
@@ -1820,7 +1811,7 @@ func (o_ Object) ScriptingIsGreaterThan(object objectivec.IObject) bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingIsGreaterThanOrEqual(to:)
-func (o_ Object) ScriptingIsGreaterThanOrEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) ScriptingIsGreaterThanOrEqualTo(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingIsGreaterThanOrEqualTo:"), object)
 	return rv
 }
@@ -1830,7 +1821,7 @@ func (o_ Object) ScriptingIsGreaterThanOrEqualTo(object objectivec.IObject) bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingIsLessThan(_:)
-func (o_ Object) ScriptingIsLessThan(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) ScriptingIsLessThan(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingIsLessThan:"), object)
 	return rv
 }
@@ -1840,7 +1831,7 @@ func (o_ Object) ScriptingIsLessThan(object objectivec.IObject) bool /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingIsLessThanOrEqual(to:)
-func (o_ Object) ScriptingIsLessThanOrEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) ScriptingIsLessThanOrEqualTo(object IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingIsLessThanOrEqualTo:"), object)
 	return rv
 }
@@ -1850,7 +1841,7 @@ func (o_ Object) ScriptingIsLessThanOrEqualTo(object objectivec.IObject) bool /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingValue(for:)
-func (o_ Object) ScriptingValueForSpecifier(objectSpecifier objectivec.IObject) objc.ID {
+func (o_ Object) ScriptingValueForSpecifier(objectSpecifier IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("scriptingValueForSpecifier:"), objectSpecifier)
 	return rv
 }
@@ -1860,14 +1851,14 @@ func (o_ Object) ScriptingValueForSpecifier(objectSpecifier objectivec.IObject) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setNilValueForKey(_:)
-func (o_ Object) SetNilValueForKey(key objectivec.IObject) {
+func (o_ Object) SetNilValueForKey(key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setNilValueForKey:"), key)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setSharedObservers(_:)
-func (o_ Object) SetSharedObservers(sharedObservers objectivec.IObject) {
+func (o_ Object) SetSharedObservers(sharedObservers IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSharedObservers:"), sharedObservers)
 }
 
@@ -1876,7 +1867,7 @@ func (o_ Object) SetSharedObservers(sharedObservers objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setValue(_:forKey:)
-func (o_ Object) SetValueForKey(value objectivec.IObject, key objectivec.IObject) {
+func (o_ Object) SetValueForKey(value IObject, key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forKey:"), value, key)
 }
 
@@ -1885,7 +1876,7 @@ func (o_ Object) SetValueForKey(value objectivec.IObject, key objectivec.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setValue(_:forKeyPath:)
-func (o_ Object) SetValueForKeyPath(value objectivec.IObject, keyPath objectivec.IObject) {
+func (o_ Object) SetValueForKeyPath(value IObject, keyPath IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forKeyPath:"), value, keyPath)
 }
 
@@ -1894,7 +1885,7 @@ func (o_ Object) SetValueForKeyPath(value objectivec.IObject, keyPath objectivec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setValue(_:forUndefinedKey:)
-func (o_ Object) SetValueForUndefinedKey(value objectivec.IObject, key objectivec.IObject) {
+func (o_ Object) SetValueForUndefinedKey(value IObject, key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forUndefinedKey:"), value, key)
 }
 
@@ -1903,7 +1894,7 @@ func (o_ Object) SetValueForUndefinedKey(value objectivec.IObject, key objective
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setValuesForKeys(_:)
-func (o_ Object) SetValuesForKeysWithDictionary(keyedValues objectivec.IObject) {
+func (o_ Object) SetValuesForKeysWithDictionary(keyedValues IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setValuesForKeysWithDictionary:"), keyedValues)
 }
 
@@ -1922,7 +1913,7 @@ func (o_ Object) SetupPanelDetermineBestDeviceOfAOrB(aPanel unsafe.Pointer, devi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setupPanel(_:deviceContainsSuitableMedia:promptString:)
-func (o_ Object) SetupPanelDeviceContainsSuitableMediaPromptString(aPanel unsafe.Pointer, device unsafe.Pointer, prompt objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) SetupPanelDeviceContainsSuitableMediaPromptString(aPanel unsafe.Pointer, device unsafe.Pointer, prompt IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("setupPanel:deviceContainsSuitableMedia:promptString:"), aPanel, device, prompt)
 	return rv
 }
@@ -1942,7 +1933,7 @@ func (o_ Object) SetupPanelDeviceCouldBeTarget(aPanel unsafe.Pointer, device uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setupPanelDeviceSelectionChanged(_:)
-func (o_ Object) SetupPanelDeviceSelectionChanged(aNotification objectivec.IObject) {
+func (o_ Object) SetupPanelDeviceSelectionChanged(aNotification IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setupPanelDeviceSelectionChanged:"), aNotification)
 }
 
@@ -1961,7 +1952,7 @@ func (o_ Object) SetupPanelShouldHandleMediaReservations(aPanel unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/shouldEnableAction(for:identifier:)
-func (o_ Object) ShouldEnableActionForPersonIdentifier(person objc.IObject /* cross-framework: ABPerson */, identifier objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (o_ Object) ShouldEnableActionForPersonIdentifier(person IObject, identifier IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("shouldEnableActionForPerson:identifier:"), person, identifier)
 	return rv
 }
@@ -1980,7 +1971,7 @@ func (o_ Object) Unbind(binding BindingName /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/validateValue(_:forKey:)
-func (o_ Object) ValidateValueForKeyError(ioValue unsafe.Pointer, inKey objectivec.IObject, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (o_ Object) ValidateValueForKeyError(ioValue unsafe.Pointer, inKey IObject, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("validateValue:forKey:error:"), ioValue, inKey, outError)
 	return rv
 }
@@ -1990,7 +1981,7 @@ func (o_ Object) ValidateValueForKeyError(ioValue unsafe.Pointer, inKey objectiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/validateValue(_:forKeyPath:)
-func (o_ Object) ValidateValueForKeyPathError(ioValue unsafe.Pointer, inKeyPath objectivec.IObject, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (o_ Object) ValidateValueForKeyPathError(ioValue unsafe.Pointer, inKeyPath IObject, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("validateValue:forKeyPath:error:"), ioValue, inKeyPath, outError)
 	return rv
 }
@@ -2000,7 +1991,7 @@ func (o_ Object) ValidateValueForKeyPathError(ioValue unsafe.Pointer, inKeyPath 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/value(at:inPropertyWithKey:)
-func (o_ Object) ValueAtIndexInPropertyWithKey(index uint /* primitive/slice/pointer. */, key objectivec.IObject) objc.ID {
+func (o_ Object) ValueAtIndexInPropertyWithKey(index uint /* primitive/slice/pointer. */, key IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueAtIndex:inPropertyWithKey:"), index, key)
 	return rv
 }
@@ -2010,7 +2001,7 @@ func (o_ Object) ValueAtIndexInPropertyWithKey(index uint /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/value(forKey:)
-func (o_ Object) ValueForKey(key objectivec.IObject) objc.ID {
+func (o_ Object) ValueForKey(key IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForKey:"), key)
 	return rv
 }
@@ -2020,7 +2011,7 @@ func (o_ Object) ValueForKey(key objectivec.IObject) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/value(forKeyPath:)
-func (o_ Object) ValueForKeyPath(keyPath objectivec.IObject) objc.ID {
+func (o_ Object) ValueForKeyPath(keyPath IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForKeyPath:"), keyPath)
 	return rv
 }
@@ -2030,7 +2021,7 @@ func (o_ Object) ValueForKeyPath(keyPath objectivec.IObject) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/value(forUndefinedKey:)
-func (o_ Object) ValueForUndefinedKey(key objectivec.IObject) objc.ID {
+func (o_ Object) ValueForUndefinedKey(key IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForUndefinedKey:"), key)
 	return rv
 }
@@ -2040,7 +2031,7 @@ func (o_ Object) ValueForUndefinedKey(key objectivec.IObject) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/value(withName:inPropertyWithKey:)
-func (o_ Object) ValueWithNameInPropertyWithKey(name objectivec.IObject, key objectivec.IObject) objc.ID {
+func (o_ Object) ValueWithNameInPropertyWithKey(name IObject, key IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueWithName:inPropertyWithKey:"), name, key)
 	return rv
 }
@@ -2050,7 +2041,7 @@ func (o_ Object) ValueWithNameInPropertyWithKey(name objectivec.IObject, key obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/value(withUniqueID:inPropertyWithKey:)
-func (o_ Object) ValueWithUniqueIDInPropertyWithKey(uniqueID objectivec.IObject, key objectivec.IObject) objc.ID {
+func (o_ Object) ValueWithUniqueIDInPropertyWithKey(uniqueID IObject, key IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueWithUniqueID:inPropertyWithKey:"), uniqueID, key)
 	return rv
 }
@@ -2070,7 +2061,7 @@ func (o_ Object) ValueClassForBinding(binding BindingName /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInContainerLoad(_:inFrame:)
-func (o_ Object) WebPlugInContainerLoadRequestInFrame(request objectivec.IObject, target objectivec.IObject) {
+func (o_ Object) WebPlugInContainerLoadRequestInFrame(request IObject, target IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInContainerLoadRequest:inFrame:"), request, target)
 }
 
@@ -2079,7 +2070,7 @@ func (o_ Object) WebPlugInContainerLoadRequestInFrame(request objectivec.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInContainerShowStatus(_:)
-func (o_ Object) WebPlugInContainerShowStatus(message objectivec.IObject) {
+func (o_ Object) WebPlugInContainerShowStatus(message IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInContainerShowStatus:"), message)
 }
 
@@ -2106,7 +2097,7 @@ func (o_ Object) WebPlugInInitialize() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInMainResourceDidFailWithError(_:)
-func (o_ Object) WebPlugInMainResourceDidFailWithError(error_ objectivec.IObject) {
+func (o_ Object) WebPlugInMainResourceDidFailWithError(error_ IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInMainResourceDidFailWithError:"), error_)
 }
 
@@ -2124,7 +2115,7 @@ func (o_ Object) WebPlugInMainResourceDidFinishLoading() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInMainResourceDidReceive(_:)-5b6f6
-func (o_ Object) WebPlugInMainResourceDidReceiveData(data objectivec.IObject) {
+func (o_ Object) WebPlugInMainResourceDidReceiveData(data IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInMainResourceDidReceiveData:"), data)
 }
 
@@ -2133,7 +2124,7 @@ func (o_ Object) WebPlugInMainResourceDidReceiveData(data objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInMainResourceDidReceive(_:)-6x7b9
-func (o_ Object) WebPlugInMainResourceDidReceiveResponse(response objectivec.IObject) {
+func (o_ Object) WebPlugInMainResourceDidReceiveResponse(response IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInMainResourceDidReceiveResponse:"), response)
 }
 
@@ -2169,7 +2160,7 @@ func (o_ Object) WebPlugInStop() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/willChange(_:valuesAt:forKey:)
-func (o_ Object) WillChangeValuesAtIndexesForKey(changeKind KeyValueChange /* not a class type */, indexes objectivec.IObject, key objectivec.IObject) {
+func (o_ Object) WillChangeValuesAtIndexesForKey(changeKind KeyValueChange /* not a class type */, indexes IObject, key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("willChange:valuesAtIndexes:forKey:"), changeKind, indexes, key)
 }
 
@@ -2178,7 +2169,7 @@ func (o_ Object) WillChangeValuesAtIndexesForKey(changeKind KeyValueChange /* no
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/willChangeValue(forKey:)
-func (o_ Object) WillChangeValueForKey(key objectivec.IObject) {
+func (o_ Object) WillChangeValueForKey(key IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("willChangeValueForKey:"), key)
 }
 
@@ -2187,7 +2178,7 @@ func (o_ Object) WillChangeValueForKey(key objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/willChangeValue(forKey:withSetMutation:using:)
-func (o_ Object) WillChangeValueForKeyWithSetMutationUsingObjects(key objectivec.IObject, mutationKind KeyValueSetMutationKind /* not a class type */, objects objectivec.IObject) {
+func (o_ Object) WillChangeValueForKeyWithSetMutationUsingObjects(key IObject, mutationKind KeyValueSetMutationKind /* not a class type */, objects IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("willChangeValueForKey:withSetMutation:usingObjects:"), key, mutationKind, objects)
 }
 
@@ -2284,7 +2275,7 @@ func (o_ Object) SetAccessibilityAttributedValueBlock(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitycontainertype
-func (o_ Object) AccessibilityContainerType() objectivec.IObject {
+func (o_ Object) AccessibilityContainerType() IObject /* already interface */ {
 	rv := objc.Send[IObject](o_.ID, objc.Sel("accessibilityContainerType"))
 	return rv
 }
@@ -2292,7 +2283,7 @@ func (o_ Object) AccessibilityContainerType() objectivec.IObject {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitycontainertype
-func (o_ Object) SetAccessibilityContainerType(value objectivec.IObject) {
+func (o_ Object) SetAccessibilityContainerType(value IObject /* already interface */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityContainerType:"), value)
 }
 
@@ -2329,7 +2320,7 @@ func (o_ Object) SetAccessibilityCustomActionsBlock(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitycustomrotors
-func (o_ Object) AccessibilityCustomRotors() objectivec.IObject {
+func (o_ Object) AccessibilityCustomRotors() IObject /* already interface */ {
 	rv := objc.Send[IObject](o_.ID, objc.Sel("accessibilityCustomRotors"))
 	return rv
 }
@@ -2337,7 +2328,7 @@ func (o_ Object) AccessibilityCustomRotors() objectivec.IObject {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitycustomrotors
-func (o_ Object) SetAccessibilityCustomRotors(value objectivec.IObject) {
+func (o_ Object) SetAccessibilityCustomRotors(value IObject /* already interface */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityCustomRotors:"), value)
 }
 
@@ -2629,7 +2620,7 @@ func (o_ Object) SetAccessibilityMagicTapBlock(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitynavigationstyle
-func (o_ Object) AccessibilityNavigationStyle() objectivec.IObject {
+func (o_ Object) AccessibilityNavigationStyle() IObject /* already interface */ {
 	rv := objc.Send[IObject](o_.ID, objc.Sel("accessibilityNavigationStyle"))
 	return rv
 }
@@ -2637,7 +2628,7 @@ func (o_ Object) AccessibilityNavigationStyle() objectivec.IObject {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitynavigationstyle
-func (o_ Object) SetAccessibilityNavigationStyle(value objectivec.IObject) {
+func (o_ Object) SetAccessibilityNavigationStyle(value IObject /* already interface */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityNavigationStyle:"), value)
 }
 
@@ -2813,7 +2804,7 @@ func (o_ Object) SetAccessibilityShouldGroupAccessibilityChildrenBlock(value uns
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytextinputresponder
-func (o_ Object) AccessibilityTextInputResponder() objectivec.IObject {
+func (o_ Object) AccessibilityTextInputResponder() IObject /* already interface */ {
 	rv := objc.Send[IObject](o_.ID, objc.Sel("accessibilityTextInputResponder"))
 	return rv
 }
@@ -2821,7 +2812,7 @@ func (o_ Object) AccessibilityTextInputResponder() objectivec.IObject {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytextinputresponder
-func (o_ Object) SetAccessibilityTextInputResponder(value objectivec.IObject) {
+func (o_ Object) SetAccessibilityTextInputResponder(value IObject /* already interface */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityTextInputResponder:"), value)
 }
 
@@ -2843,7 +2834,7 @@ func (o_ Object) SetAccessibilityTextInputResponderBlock(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytextualcontext
-func (o_ Object) AccessibilityTextualContext() objectivec.IObject {
+func (o_ Object) AccessibilityTextualContext() IObject /* already interface */ {
 	rv := objc.Send[IObject](o_.ID, objc.Sel("accessibilityTextualContext"))
 	return rv
 }
@@ -2851,7 +2842,7 @@ func (o_ Object) AccessibilityTextualContext() objectivec.IObject {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytextualcontext
-func (o_ Object) SetAccessibilityTextualContext(value objectivec.IObject) {
+func (o_ Object) SetAccessibilityTextualContext(value IObject /* already interface */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityTextualContext:"), value)
 }
 
@@ -2873,7 +2864,7 @@ func (o_ Object) SetAccessibilityTextualContextBlock(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytraits
-func (o_ Object) AccessibilityTraits() objectivec.IObject {
+func (o_ Object) AccessibilityTraits() IObject /* already interface */ {
 	rv := objc.Send[IObject](o_.ID, objc.Sel("accessibilityTraits"))
 	return rv
 }
@@ -2881,7 +2872,7 @@ func (o_ Object) AccessibilityTraits() objectivec.IObject {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytraits
-func (o_ Object) SetAccessibilityTraits(value objectivec.IObject) {
+func (o_ Object) SetAccessibilityTraits(value IObject /* already interface */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityTraits:"), value)
 }
 

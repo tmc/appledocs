@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"strings"
 
 	"github.com/tmc/appledocs/occ2go"
@@ -531,19 +530,19 @@ func convertDocURL(url string) string {
 //   - Any instance init method (selector starting with "init")
 //   - Any class method marked as an initializer in docs (IsInitializer = true)
 func classHasInit(methods []*occ2go.ParsedMethod) bool {
-	fmt.Fprintf(os.Stderr, "DEBUG classHasInit: checking %d methods\n", len(methods))
+	DebugWithFunc("classHasInit", "Checking methods", "method_count", len(methods))
 	for _, m := range methods {
 		// Instance init methods
 		if !m.IsClassMethod && strings.HasPrefix(m.Selector, "init") {
-			fmt.Fprintf(os.Stderr, "DEBUG classHasInit: found init method: %s (IsClassMethod=%v)\n", m.Selector, m.IsClassMethod)
+			DebugWithFunc("classHasInit", "Found init method", "selector", m.Selector, "is_class_method", m.IsClassMethod)
 			return true
 		}
 		// Class factory methods marked as initializers
 		if m.IsClassMethod && m.IsInitializer {
-			fmt.Fprintf(os.Stderr, "DEBUG classHasInit: found class initializer: %s\n", m.Selector)
+			DebugWithFunc("classHasInit", "Found class initializer", "selector", m.Selector)
 			return true
 		}
 	}
-	fmt.Fprintf(os.Stderr, "DEBUG classHasInit: no init methods found\n")
+	DebugWithFunc("classHasInit", "No init methods found")
 	return false
 }

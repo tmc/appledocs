@@ -21,7 +21,6 @@ type (
 	DRDevice = _undefined // referenced in ObjectiveC
 	DirectTouchOptions = _undefined // referenced in ObjectiveC
 	ExpandedStatus = _undefined // referenced in ObjectiveC
-	IMP = _undefined // referenced in ObjectiveC
 	KeyValueChange = _undefined // referenced in ObjectiveC
 	KeyValueObservingOptions = _undefined // referenced in ObjectiveC
 	KeyValueSetMutationKind = _undefined // referenced in ObjectiveC
