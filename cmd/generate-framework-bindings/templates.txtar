@@ -874,33 +874,34 @@ package {{.PackageName}}
 {{- with .Protocol}}
 {{- $hasUnsafePointer := false}}
 {{- $hasObjc := false}}
+{{- $isDelegate := or (hasSuffix .Name "Delegate") (hasSuffix .Name "DataSource")}}
 {{- range .RequiredMethods}}
   {{- $goType := mapObjCTypeToGo .ReturnType $.Framework}}
   {{- if eq $goType "unsafe.Pointer"}}{{$hasUnsafePointer = true}}{{end}}
-  {{- if or (hasPrefix $goType "objc.") (hasPrefix $goType "IObject")}}{{$hasObjc = true}}{{end}}
+  {{- if or (strContains $goType "objc.") (hasPrefix $goType "IObject") (eq $goType "objc.ID")}}{{$hasObjc = true}}{{end}}
   {{- range .Parameters}}
     {{- $paramGoType := mapObjCTypeToGo .Type $.Framework}}
     {{- if eq $paramGoType "unsafe.Pointer"}}{{$hasUnsafePointer = true}}{{end}}
-    {{- if or (hasPrefix $paramGoType "objc.") (hasPrefix $paramGoType "IObject")}}{{$hasObjc = true}}{{end}}
+    {{- if or (strContains $paramGoType "objc.") (hasPrefix $paramGoType "IObject") (eq $paramGoType "objc.ID")}}{{$hasObjc = true}}{{end}}
   {{- end}}
 {{- end}}
 {{- range .OptionalMethods}}
   {{- $goType := mapObjCTypeToGo .ReturnType $.Framework}}
   {{- if eq $goType "unsafe.Pointer"}}{{$hasUnsafePointer = true}}{{end}}
-  {{- if or (hasPrefix $goType "objc.") (hasPrefix $goType "IObject")}}{{$hasObjc = true}}{{end}}
+  {{- if or (strContains $goType "objc.") (hasPrefix $goType "IObject") (eq $goType "objc.ID")}}{{$hasObjc = true}}{{end}}
   {{- range .Parameters}}
     {{- $paramGoType := mapObjCTypeToGo .Type $.Framework}}
     {{- if eq $paramGoType "unsafe.Pointer"}}{{$hasUnsafePointer = true}}{{end}}
-    {{- if or (hasPrefix $paramGoType "objc.") (hasPrefix $paramGoType "IObject")}}{{$hasObjc = true}}{{end}}
+    {{- if or (strContains $paramGoType "objc.") (hasPrefix $paramGoType "IObject") (eq $paramGoType "objc.ID")}}{{$hasObjc = true}}{{end}}
   {{- end}}
 {{- end}}
-{{- if or $hasUnsafePointer $hasObjc}}
+{{- if or $hasUnsafePointer $hasObjc $isDelegate}}
 
 import (
 {{- if $hasUnsafePointer}}
 	"unsafe"
 {{- end}}
-{{- if $hasObjc}}
+{{- if or $hasObjc $isDelegate}}
 
 	"github.com/tmc/appledocs/generated/objc"
 {{- end}}

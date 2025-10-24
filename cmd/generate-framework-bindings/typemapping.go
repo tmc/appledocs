@@ -31,6 +31,9 @@ var staticTypeRegistry = []TypeMapping{
 	{ObjCType: "NSInteger", GoType: "int", Framework: ""},
 	{ObjCType: "NSUInteger", GoType: "uint", Framework: ""},
 
+	// Foundation struct types
+	{ObjCType: "NSRange", GoType: "Range", Framework: "Foundation"},
+
 	// Objective-C runtime types
 	{ObjCType: "Class", GoType: "objc.Class", Framework: ""},
 
@@ -59,21 +62,31 @@ var staticTypeRegistry = []TypeMapping{
 	{ObjCType: "CGSize", GoType: "corefoundation.CGSize", Framework: ""},
 	{ObjCType: "CGRect", GoType: "corefoundation.CGRect", Framework: ""},
 	{ObjCType: "CGAffineTransform", GoType: "corefoundation.CGAffineTransform", Framework: ""},
-	{ObjCType: "CGFloat", GoType: "corefoundation.CGFloat", Framework: ""},
+	{ObjCType: "CGFloat", GoType: "float64", Framework: ""}, // Direct mapping - CGFloat is always 64-bit on modern macOS
+	{ObjCType: "CFByteOrder", GoType: "corefoundation.ByteOrder", Framework: ""},
+	{ObjCType: "ByteOrder", GoType: "corefoundation.ByteOrder", Framework: ""},
 
 	// When IN CoreFoundation, use unqualified names
 	{ObjCType: "CGPoint", GoType: "CGPoint", Framework: "CoreFoundation"},
 	{ObjCType: "CGSize", GoType: "CGSize", Framework: "CoreFoundation"},
 	{ObjCType: "CGRect", GoType: "CGRect", Framework: "CoreFoundation"},
 	{ObjCType: "CGAffineTransform", GoType: "CGAffineTransform", Framework: "CoreFoundation"},
-	{ObjCType: "CGFloat", GoType: "CGFloat", Framework: "CoreFoundation"}, // Uses synthetic typedef: type CGFloat = float64
+	{ObjCType: "CGFloat", GoType: "float64", Framework: "CoreFoundation"}, // Direct mapping - no typedef needed
+	{ObjCType: "CFByteOrder", GoType: "ByteOrder", Framework: "CoreFoundation"},
+	{ObjCType: "ByteOrder", GoType: "ByteOrder", Framework: "CoreFoundation"},
 
 	// When IN CoreGraphics, also use the local names (they may be type aliases)
 	{ObjCType: "CGPoint", GoType: "Point", Framework: "CoreGraphics"},
 	{ObjCType: "CGSize", GoType: "Size", Framework: "CoreGraphics"},
 	{ObjCType: "CGRect", GoType: "Rect", Framework: "CoreGraphics"},
 	{ObjCType: "CGAffineTransform", GoType: "AffineTransform", Framework: "CoreGraphics"},
-	{ObjCType: "CGFloat", GoType: "Float", Framework: "CoreGraphics"},
+	{ObjCType: "CGFloat", GoType: "float64", Framework: "CoreGraphics"}, // Direct mapping
+	{ObjCType: "CFByteOrder", GoType: "int32", Framework: "CoreGraphics"}, // Use primitive type
+	{ObjCType: "ByteOrder", GoType: "int32", Framework: "CoreGraphics"}, // Use primitive type
+	{ObjCType: "CGDisplayReservationInterval", GoType: "float32", Framework: "CoreGraphics"}, // Display fade interval
+	{ObjCType: "CGDisplayFadeInterval", GoType: "float32", Framework: "CoreGraphics"}, // Display fade interval
+	{ObjCType: "CGDirectDisplayID", GoType: "uint32", Framework: "CoreGraphics"}, // Display ID
+	{ObjCType: "AffineTransformComponents", GoType: "AffineTransformComponents", Framework: "CoreGraphics"}, // Local struct
 
 	// Foundation time types
 	// NSTimeInterval is a typedef for double (seconds since reference date)
@@ -93,22 +106,29 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 	objcType = strings.TrimSpace(objcType)
 
 	// Debug entry
-	if strings.Contains(objcType, "HashTableCallBacks") {
-		fmt.Fprintf(os.Stderr, "[DEBUG] lookupTypeMapping ENTRY: objcType=%q framework=%q\n", objcType, framework)
-	}
+	// if strings.Contains(objcType, "HashTableCallBacks") {
+	// 	fmt.Fprintf(os.Stderr, "[DEBUG] lookupTypeMapping ENTRY: objcType=%q framework=%q\n", objcType, framework)
+	// }
 
 	// Check static type registry first (framework-specific overrides)
 	// First check for exact framework match
 	for _, mapping := range staticTypeRegistry {
 		if mapping.ObjCType == objcType && strings.EqualFold(mapping.Framework, framework) {
 			// Debug for our types
-			if strings.Contains(objcType, "HashTable") || strings.Contains(objcType, "MapTable") || strings.Contains(objcType, "EdgeInsets") {
-				fmt.Fprintf(os.Stderr, "[DEBUG] static registry framework-specific: objcType=%q mapping.GoType=%q equal=%v\n",
-					objcType, mapping.GoType, mapping.GoType == objcType)
-			}
-			// If GoType equals ObjCType (identity mapping), strip the prefix
-			// This handles cases like NSHashTableCallBacks → HashTableCallBacks
+			// if strings.Contains(objcType, "HashTable") || strings.Contains(objcType, "MapTable") || strings.Contains(objcType, "EdgeInsets") {
+			// 	// fmt.Fprintf(os.Stderr, "[DEBUG] static registry framework-specific: objcType=%q mapping.GoType=%q equal=%v\n",
+			// 	// 	objcType, mapping.GoType, mapping.GoType == objcType)
+			// }
+			// If GoType equals ObjCType (identity mapping), check if we should strip the prefix
+			// CG-prefixed geometry types (CGPoint, CGSize, CGRect, etc.) keep their prefix
+			// NS-prefixed types like NSHashTableCallBacks → HashTableCallBacks (strip prefix)
 			if mapping.GoType == objcType {
+				// Preserve CG prefix for geometry types
+				if strings.HasPrefix(objcType, "CG") && !strings.HasSuffix(objcType, "Ref") && !strings.HasSuffix(objcType, "Callback") {
+					// Keep CG prefix for geometry types (CGPoint, CGSize, CGRect, CGAffineTransform, etc.)
+					return objcType, true
+				}
+				// For other types, strip the prefix
 				stripped := occ2go.StripObjCPrefix(objcType)
 				if stripped != objcType {
 					// Debug
@@ -178,10 +198,10 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 	for _, mapping := range typeRegistry {
 		if mapping.ObjCType == objcType {
 			// Debug for our types
-			if strings.Contains(objcType, "HashTable") || strings.Contains(objcType, "MapTable") || strings.Contains(objcType, "EdgeInsets") {
-				fmt.Fprintf(os.Stderr, "[DEBUG] typeRegistry loop: objcType=%q mapping.GoType=%q mapping.Framework=%q currentFramework=%q equal=%v\n",
-					objcType, mapping.GoType, mapping.Framework, framework, mapping.GoType == objcType)
-			}
+			// if strings.Contains(objcType, "HashTable") || strings.Contains(objcType, "MapTable") || strings.Contains(objcType, "EdgeInsets") {
+			// 	fmt.Fprintf(os.Stderr, "[DEBUG] typeRegistry loop: objcType=%q mapping.GoType=%q mapping.Framework=%q currentFramework=%q equal=%v\n",
+			// 		objcType, mapping.GoType, mapping.Framework, framework, mapping.GoType == objcType)
+			// }
 			// If GoType equals ObjCType (identity mapping), strip the prefix
 			if mapping.GoType == objcType {
 				stripped := occ2go.StripObjCPrefix(objcType)
@@ -314,9 +334,9 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 		// Structs keep their full names with prefix (e.g., CGSize not Size)
 		if currentFrameworkStructs[strippedType] {
 			// Debug for our types
-			if strings.Contains(objcType, "HashTable") || strings.Contains(objcType, "MapTable") || strings.Contains(objcType, "EdgeInsets") {
-				fmt.Fprintf(os.Stderr, "[DEBUG] found in currentFrameworkStructs: objcType=%q strippedType=%q\n", objcType, strippedType)
-			}
+			// if strings.Contains(objcType, "HashTable") || strings.Contains(objcType, "MapTable") || strings.Contains(objcType, "EdgeInsets") {
+			// 	fmt.Fprintf(os.Stderr, "[DEBUG] found in currentFrameworkStructs: objcType=%q strippedType=%q\n", objcType, strippedType)
+			// }
 			Debug.TypeMap("found in current framework structs", objcType, objcType,
 				"framework", framework,
 				"returning", "ORIGINAL name with prefix")
@@ -543,16 +563,17 @@ func getTypeImportPath(objcType, framework string) string {
 
 // getAllAppKitEnumTypes returns all AppKit enum type names that we can generate.
 // This helps in determining which types are available for generation.
+// Note: This queries crossFrameworkTypeRegistry which is populated at runtime.
 func getAllAppKitEnumTypes() []string {
 	var result []string
 	seen := make(map[string]bool)
 
-	for _, mapping := range typeRegistry {
-		if mapping.Framework == "AppKit" && !strings.Contains(mapping.GoType, ".") {
-			if !seen[mapping.GoType] {
-				result = append(result, mapping.GoType)
-				seen[mapping.GoType] = true
-			}
+	// Query the cross-framework registry for AppKit types
+	for typeName, framework := range crossFrameworkTypeRegistry {
+		if framework == "appkit" && !seen[typeName] {
+			// Return the Go-style name (already stripped of NS prefix in registry)
+			result = append(result, typeName)
+			seen[typeName] = true
 		}
 	}
 
@@ -570,8 +591,48 @@ func debugLogTypeMapping(objcType, framework string, result string) {
 */
 
 // getAllMappedTypes returns all ObjC types in the registry for debugging
+// Note: This queries crossFrameworkTypeRegistry which is populated at runtime.
 func getAllMappedTypes() []TypeMapping {
-	return typeRegistry
+	var result []TypeMapping
+	seen := make(map[string]bool) // To avoid duplicates
+
+	// Convert crossFrameworkTypeRegistry to TypeMapping structs
+	// The registry contains both ObjC names (NSWindow) and Go names (Window)
+	for typeName, framework := range crossFrameworkTypeRegistry {
+		// Check if this looks like an ObjC name (has NS/CG/CA/etc prefix)
+		stripped := stripObjCPrefix(typeName)
+		if stripped != typeName {
+			// This is an ObjC name
+			objcName := typeName
+			goName := stripped
+
+			// Create a TypeMapping with both names
+			key := objcName + ":" + framework
+			if !seen[key] {
+				result = append(result, TypeMapping{
+					ObjCType:  objcName,
+					GoType:    goName,
+					Framework: framework,
+				})
+				seen[key] = true
+			}
+		} else {
+			// This is already a Go name, check if we haven't already added it
+			// via its ObjC counterpart
+			key := typeName + ":" + framework
+			if !seen[key] {
+				// Add it as both ObjC and Go name (for types without prefix)
+				result = append(result, TypeMapping{
+					ObjCType:  typeName,
+					GoType:    typeName,
+					Framework: framework,
+				})
+				seen[key] = true
+			}
+		}
+	}
+
+	return result
 }
 
 // lookupTypeMappingDetails finds the full TypeMapping for a given Objective-C type.
