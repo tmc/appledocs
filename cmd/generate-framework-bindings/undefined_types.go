@@ -304,6 +304,31 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 		defined[name] = true
 	}
 
+	// Add common ObjectiveC runtime typedefs that are generated in typedefs.gen.go
+	// These are function pointer types and opaque types that should not be duplicated
+	// in undefined_types.gen.go (fixes duplicate IMP issue)
+	if g.Framework == "ObjectiveC" || g.Framework == "objectivec" {
+		for _, name := range []string{
+			"IMP",                            // function pointer: void (*)(void)
+			"Category",                       // opaque type
+			"Ivar",                           // opaque type
+			"Method",                         // opaque type
+			"objc_exception_handler",         // function pointer
+			"objc_exception_matcher",         // function pointer
+			"objc_exception_preprocessor",    // function pointer
+			"objc_func_loadImage",            // function pointer
+			"objc_hook_getClass",             // function pointer
+			"objc_hook_getImageName",         // function pointer
+			"objc_hook_lazyClassNamer",       // function pointer
+			"objc_objectptr_t",               // pointer type
+			"objc_property_t",                // opaque type
+			"objc_uncaught_exception_handler", // function pointer
+			"objc_zone_t",                    // pointer type
+		} {
+			defined[name] = true
+		}
+	}
+
 	// Add types from current framework's classes and protocols
 	for _, cls := range g.Classes {
 		defined[cls.Name] = true
@@ -346,6 +371,19 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 		Debug.Undefined("marking struct as defined", strct.Name, g.Framework,
 			"framework", g.Framework,
 			"structName", strct.Name,
+			"stripped", stripped)
+	}
+
+	// Add typedef types from typedefIndex - these are being generated in typedefs.gen.go
+	// so they should not appear in undefined_types.gen.go
+	for typedefName := range g.typedefIndex {
+		defined[typedefName] = true
+		// Also add the stripped version (e.g., "NSInteger" becomes "Integer")
+		stripped := stripObjCPrefix(typedefName)
+		defined[stripped] = true
+		Debug.Undefined("marking typedef from index as defined", typedefName, g.Framework,
+			"framework", g.Framework,
+			"typedefName", typedefName,
 			"stripped", stripped)
 	}
 
