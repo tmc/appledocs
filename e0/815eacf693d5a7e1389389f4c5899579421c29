@@ -1,0 +1,15 @@
+commit_hash: e0815eacf6
+date: 2025-10-24T04:07:47-07:00
+claude_code_version: e0815eacf6
+model: claude-sonnet-4-5-20250929
+tty: not a tty
+unknown
+pid: 33837
+iterm_session_id: w0t0p14:BE5F5254-27E6-46B5-9D4F-BA7984C43965
+
+Root cause: filterUnusedUndefinedTypes was scanning comments for type names
+False positive: '// Set the function' matched 'Set' type
+Fix: Added stripGoComments() to remove comments before scanning
+Result: Filter now correctly removes unused types like 'Set'
+
+Testing: ObjectiveC regenerated - Set type properly filtered out
