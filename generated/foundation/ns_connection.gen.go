@@ -389,7 +389,7 @@ func (c_ Connection) SendPort() IPort {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/statistics-c.property
 func (c_ Connection) Statistics() IDictionary {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("statistics"))
+	rv := objc.Send[Dictionary](c_.ID, objc.Sel("statistics"))
 	return rv
 }
 

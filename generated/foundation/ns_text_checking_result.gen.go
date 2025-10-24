@@ -287,7 +287,7 @@ func (t_ TextCheckingResult) RangeWithName(name IString) objc.IObject /* cross-f
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/addressComponents
 func (t_ TextCheckingResult) AddressComponents() IDictionary {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("addressComponents"))
+	rv := objc.Send[Dictionary](t_.ID, objc.Sel("addressComponents"))
 	return rv
 }
 
@@ -305,7 +305,7 @@ func (t_ TextCheckingResult) AlternativeStrings() []string {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/components
 func (t_ TextCheckingResult) Components() IDictionary {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("components"))
+	rv := objc.Send[Dictionary](t_.ID, objc.Sel("components"))
 	return rv
 }
 
@@ -335,7 +335,7 @@ func (t_ TextCheckingResult) Duration() float64 {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/grammarDetails
 func (t_ TextCheckingResult) GrammarDetails() IDictionary {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("grammarDetails"))
+	rv := objc.Send[Dictionary](t_.ID, objc.Sel("grammarDetails"))
 	return rv
 }
 

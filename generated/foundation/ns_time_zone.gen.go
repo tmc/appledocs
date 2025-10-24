@@ -203,7 +203,7 @@ func (tc _TimeZoneClass) TimeZoneWithNameData(tzName IString, aData IData) unsaf
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/abbreviationDictionary
 func (tc _TimeZoneClass) AbbreviationDictionary() IDictionary {
-	rv := objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("abbreviationDictionary"))
+	rv := objc.Send[Dictionary](objc.ID(tc.class), objc.Sel("abbreviationDictionary"))
 	return rv
 }
 
@@ -337,7 +337,7 @@ func (t_ TimeZone) Abbreviation() IString {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/abbreviationDictionary
 func (t_ TimeZone) AbbreviationDictionary() IDictionary {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("abbreviationDictionary"))
+	rv := objc.Send[Dictionary](t_.ID, objc.Sel("abbreviationDictionary"))
 	return rv
 }
 

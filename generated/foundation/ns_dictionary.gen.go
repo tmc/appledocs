@@ -261,7 +261,7 @@ func (dc _DictionaryClass) Dictionary() unsafe.Pointer {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/dictionaryWithContentsOfFile:
 func (dc _DictionaryClass) DictionaryWithContentsOfFile(path IString) IDictionary {
-	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfFile:"), path)
+	rv := objc.Send[Dictionary](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfFile:"), path)
 	return rv
 }
 
@@ -271,7 +271,7 @@ func (dc _DictionaryClass) DictionaryWithContentsOfFile(path IString) IDictionar
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/dictionaryWithContentsOfURL:error:
 func (dc _DictionaryClass) DictionaryWithContentsOfURLError(url IURL, error_ IError) IDictionary {
-	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfURL:error:"), url, error_)
+	rv := objc.Send[Dictionary](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfURL:error:"), url, error_)
 	return rv
 }
 
@@ -321,7 +321,7 @@ func (dc _DictionaryClass) DictionaryWithObjectsAndKeys(firstObject objectivec.I
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:)-98pl3
 func (dc _DictionaryClass) DictionaryWithContentsOfURL(url IURL) IDictionary {
-	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfURL:"), url)
+	rv := objc.Send[Dictionary](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfURL:"), url)
 	return rv
 }
 

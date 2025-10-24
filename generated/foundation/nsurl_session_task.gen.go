@@ -62,6 +62,8 @@ type IURLSessionTask interface {
 	SetProgress(value IProgress)
 	Response() IURLResponse
 	SetResponse(value IURLResponse)
+	State() objectivec.IObject
+	SetState(value objectivec.IObject)
 	TaskDescription() IString
 	SetTaskDescription(value IString)
 	TaskIdentifier() int
@@ -424,6 +426,25 @@ func (u_ URLSessionTask) Response() IURLResponse {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/response
 func (u_ URLSessionTask) SetResponse(value IURLResponse) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResponse:"), value)
+}
+
+
+// The current state of the task—active, suspended, in the process of being canceled, or completed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/state-swift.property
+func (u_ URLSessionTask) State() objectivec.IObject {
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("state"))
+	return rv
+}
+
+
+// The current state of the task—active, suspended, in the process of being canceled, or completed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/state-swift.property
+func (u_ URLSessionTask) SetState(value objectivec.IObject) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setState:"), value)
 }
 
 

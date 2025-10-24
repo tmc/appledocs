@@ -1332,7 +1332,7 @@ func (n_ NumberFormatter) SetSecondaryGroupingSize(value uint) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForNegativeInfinity
 func (n_ NumberFormatter) TextAttributesForNegativeInfinity() IDictionary {
-	rv := objc.Send[objc.ID](n_.ID, objc.Sel("textAttributesForNegativeInfinity"))
+	rv := objc.Send[Dictionary](n_.ID, objc.Sel("textAttributesForNegativeInfinity"))
 	return rv
 }
 
@@ -1351,7 +1351,7 @@ func (n_ NumberFormatter) SetTextAttributesForNegativeInfinity(value IDictionary
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForNegativeValues
 func (n_ NumberFormatter) TextAttributesForNegativeValues() IDictionary {
-	rv := objc.Send[objc.ID](n_.ID, objc.Sel("textAttributesForNegativeValues"))
+	rv := objc.Send[Dictionary](n_.ID, objc.Sel("textAttributesForNegativeValues"))
 	return rv
 }
 
@@ -1370,7 +1370,7 @@ func (n_ NumberFormatter) SetTextAttributesForNegativeValues(value IDictionary) 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForNil
 func (n_ NumberFormatter) TextAttributesForNil() IDictionary {
-	rv := objc.Send[objc.ID](n_.ID, objc.Sel("textAttributesForNil"))
+	rv := objc.Send[Dictionary](n_.ID, objc.Sel("textAttributesForNil"))
 	return rv
 }
 
@@ -1389,7 +1389,7 @@ func (n_ NumberFormatter) SetTextAttributesForNil(value IDictionary) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForNotANumber
 func (n_ NumberFormatter) TextAttributesForNotANumber() IDictionary {
-	rv := objc.Send[objc.ID](n_.ID, objc.Sel("textAttributesForNotANumber"))
+	rv := objc.Send[Dictionary](n_.ID, objc.Sel("textAttributesForNotANumber"))
 	return rv
 }
 
@@ -1408,7 +1408,7 @@ func (n_ NumberFormatter) SetTextAttributesForNotANumber(value IDictionary) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForPositiveInfinity
 func (n_ NumberFormatter) TextAttributesForPositiveInfinity() IDictionary {
-	rv := objc.Send[objc.ID](n_.ID, objc.Sel("textAttributesForPositiveInfinity"))
+	rv := objc.Send[Dictionary](n_.ID, objc.Sel("textAttributesForPositiveInfinity"))
 	return rv
 }
 
@@ -1427,7 +1427,7 @@ func (n_ NumberFormatter) SetTextAttributesForPositiveInfinity(value IDictionary
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForPositiveValues
 func (n_ NumberFormatter) TextAttributesForPositiveValues() IDictionary {
-	rv := objc.Send[objc.ID](n_.ID, objc.Sel("textAttributesForPositiveValues"))
+	rv := objc.Send[Dictionary](n_.ID, objc.Sel("textAttributesForPositiveValues"))
 	return rv
 }
 
@@ -1446,7 +1446,7 @@ func (n_ NumberFormatter) SetTextAttributesForPositiveValues(value IDictionary) 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForZero
 func (n_ NumberFormatter) TextAttributesForZero() IDictionary {
-	rv := objc.Send[objc.ID](n_.ID, objc.Sel("textAttributesForZero"))
+	rv := objc.Send[Dictionary](n_.ID, objc.Sel("textAttributesForZero"))
 	return rv
 }
 

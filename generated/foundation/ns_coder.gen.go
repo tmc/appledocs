@@ -55,9 +55,9 @@ type ICoder interface {
 	DecodeArrayOfObjectsOfClassesForKey(classes unsafe.Pointer, key IString) IArray
 	DecodeBoolForKey(key IString) bool
 	DecodeBytesForKeyMinimumLength(key IString, length uint) uint8 /* not a class type */
-	DecodeBytesForKeyReturnedLength(key IString, lengthp UInteger /* not a class type */) uint8 /* not a class type */
+	DecodeBytesForKeyReturnedLength(key IString, lengthp uint) uint8 /* not a class type */
 	DecodeBytesWithMinimumLength(length uint)
-	DecodeBytesWithReturnedLength(lengthp UInteger /* not a class type */)
+	DecodeBytesWithReturnedLength(lengthp uint)
 	DecodeIntForKey(key IString) int
 	DecodeDataObject() IData
 	DecodeDictionaryWithKeysOfClassObjectsOfClassForKey(keyCls objc.Class, objectCls objc.Class, key IString) IDictionary
@@ -236,7 +236,7 @@ func (c_ Coder) DecodeBytesForKeyMinimumLength(key IString, length uint) uint8 /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeBytes(forKey:returnedLength:)
-func (c_ Coder) DecodeBytesForKeyReturnedLength(key IString, lengthp UInteger /* not a class type */) uint8 /* not a class type */ {
+func (c_ Coder) DecodeBytesForKeyReturnedLength(key IString, lengthp uint) uint8 /* not a class type */ {
 	rv := objc.Send[uint8](c_.ID, objc.Sel("decodeBytesForKey:returnedLength:"), key, lengthp)
 	return rv
 }
@@ -255,7 +255,7 @@ func (c_ Coder) DecodeBytesWithMinimumLength(length uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeBytes(withReturnedLength:)
-func (c_ Coder) DecodeBytesWithReturnedLength(lengthp UInteger /* not a class type */) {
+func (c_ Coder) DecodeBytesWithReturnedLength(lengthp uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("decodeBytesWithReturnedLength:"), lengthp)
 }
 

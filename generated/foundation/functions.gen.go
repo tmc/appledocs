@@ -7,6 +7,7 @@ import (
 
 	"github.com/ebitengine/purego"
 	objc "github.com/ebitengine/purego/objc"
+	corefoundation "github.com/tmc/appledocs/generated/corefoundation"
 )
 
 
@@ -19,52 +20,52 @@ var (
 	_NSAllHashTableObjects func(unsafe.Pointer) unsafe.Pointer
 	_NSAllMapTableKeys func(unsafe.Pointer) unsafe.Pointer
 	_NSAllMapTableValues func(unsafe.Pointer) unsafe.Pointer
-	_NSAllocateCollectable func(uint64, uint64) unsafe.Pointer
-	_NSAllocateMemoryPages func(uint64) unsafe.Pointer
-	_NSAllocateObject func(objc.Class, uint64, unsafe.Pointer) objc.ID
+	_NSAllocateCollectable func(uint, uint) unsafe.Pointer
+	_NSAllocateMemoryPages func(uint) unsafe.Pointer
+	_NSAllocateObject func(objc.Class, uint, unsafe.Pointer) objc.ID
 	_NSClassFromString func(unsafe.Pointer) objc.Class
 	_NSCompareHashTables func(unsafe.Pointer, unsafe.Pointer) bool
 	_NSCompareMapTables func(unsafe.Pointer, unsafe.Pointer) bool
 	_NSContainsRect func(Rect, Rect) bool
 	_NSCopyHashTableWithZone func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSCopyMapTableWithZone func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSCopyMemoryPages func(unsafe.Pointer, unsafe.Pointer, uint64)
-	_NSCopyObject func(objc.ID, uint64, unsafe.Pointer) objc.ID
-	_NSCountFrames func() uint64
-	_NSCountHashTable func(unsafe.Pointer) uint64
-	_NSCountMapTable func(unsafe.Pointer) uint64
-	_NSCreateHashTable func(unsafe.Pointer, uint64) unsafe.Pointer
-	_NSCreateHashTableWithZone func(unsafe.Pointer, uint64, unsafe.Pointer) unsafe.Pointer
-	_NSCreateMapTable func(unsafe.Pointer, unsafe.Pointer, uint64) unsafe.Pointer
-	_NSCreateMapTableWithZone func(unsafe.Pointer, unsafe.Pointer, uint64, unsafe.Pointer) unsafe.Pointer
-	_NSCreateZone func(uint64, uint64, bool) unsafe.Pointer
-	_NSDeallocateMemoryPages func(unsafe.Pointer, uint64)
+	_NSCopyMemoryPages func(unsafe.Pointer, unsafe.Pointer, uint)
+	_NSCopyObject func(objc.ID, uint, unsafe.Pointer) objc.ID
+	_NSCountFrames func() uint
+	_NSCountHashTable func(unsafe.Pointer) uint
+	_NSCountMapTable func(unsafe.Pointer) uint
+	_NSCreateHashTable func(NSHashTableCallBacks, uint) unsafe.Pointer
+	_NSCreateHashTableWithZone func(NSHashTableCallBacks, uint, unsafe.Pointer) unsafe.Pointer
+	_NSCreateMapTable func(NSMapTableKeyCallBacks, NSMapTableValueCallBacks, uint) unsafe.Pointer
+	_NSCreateMapTableWithZone func(NSMapTableKeyCallBacks, NSMapTableValueCallBacks, uint, unsafe.Pointer) unsafe.Pointer
+	_NSCreateZone func(uint, uint, bool) unsafe.Pointer
+	_NSDeallocateMemoryPages func(unsafe.Pointer, uint)
 	_NSDeallocateObject func(objc.ID)
-	_NSDecimalAdd func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSDecimalAdd func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, RoundingMode) CalculationError
 	_NSDecimalCompact func(unsafe.Pointer)
-	_NSDecimalCompare func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSDecimalCompare func(unsafe.Pointer, unsafe.Pointer) ComparisonResult
 	_NSDecimalCopy func(unsafe.Pointer, unsafe.Pointer)
-	_NSDecimalDivide func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSDecimalMultiply func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSDecimalMultiplyByPowerOf10 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSDecimalNormalize func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSDecimalPower func(unsafe.Pointer, unsafe.Pointer, uint64, unsafe.Pointer) unsafe.Pointer
-	_NSDecimalRound func(unsafe.Pointer, unsafe.Pointer, int64, unsafe.Pointer)
+	_NSDecimalDivide func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, RoundingMode) CalculationError
+	_NSDecimalMultiply func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, RoundingMode) CalculationError
+	_NSDecimalMultiplyByPowerOf10 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, RoundingMode) CalculationError
+	_NSDecimalNormalize func(unsafe.Pointer, unsafe.Pointer, RoundingMode) CalculationError
+	_NSDecimalPower func(unsafe.Pointer, unsafe.Pointer, uint, RoundingMode) CalculationError
+	_NSDecimalRound func(unsafe.Pointer, unsafe.Pointer, int, RoundingMode)
 	_NSDecimalString func(unsafe.Pointer, objc.ID) unsafe.Pointer
-	_NSDecimalSubtract func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSDecimalSubtract func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, RoundingMode) CalculationError
 	_NSDecrementExtraRefCountWasZero func(objc.ID) bool
 	_NSDefaultMallocZone func() unsafe.Pointer
-	_NSDivideRect func(Rect, unsafe.Pointer, unsafe.Pointer, float64, unsafe.Pointer)
-	_NSEdgeInsetsEqual func(unsafe.Pointer, unsafe.Pointer) bool
+	_NSDivideRect func(Rect, unsafe.Pointer, unsafe.Pointer, corefoundation.CGFloat, RectEdge)
+	_NSEdgeInsetsEqual func(NSEdgeInsets, NSEdgeInsets) bool
 	_NSEndHashTableEnumeration func(unsafe.Pointer)
 	_NSEndMapTableEnumeration func(unsafe.Pointer)
-	_NSEnumerateHashTable func(unsafe.Pointer) unsafe.Pointer
-	_NSEnumerateMapTable func(unsafe.Pointer) unsafe.Pointer
+	_NSEnumerateHashTable func(unsafe.Pointer) NSHashEnumerator
+	_NSEnumerateMapTable func(unsafe.Pointer) NSMapEnumerator
 	_NSEqualPoints func(Point, Point) bool
 	_NSEqualRects func(Rect, Rect) bool
 	_NSEqualSizes func(Size, Size) bool
-	_NSExtraRefCount func(objc.ID) uint64
-	_NSFrameAddress func(uint64) unsafe.Pointer
+	_NSExtraRefCount func(objc.ID) uint
+	_NSFrameAddress func(uint) unsafe.Pointer
 	_NSFreeHashTable func(unsafe.Pointer)
 	_NSFreeMapTable func(unsafe.Pointer)
 	_NSGetSizeAndAlignment func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -74,16 +75,16 @@ var (
 	_NSHashInsertKnownAbsent func(unsafe.Pointer, unsafe.Pointer)
 	_NSHashRemove func(unsafe.Pointer, unsafe.Pointer)
 	_NSIncrementExtraRefCount func(objc.ID)
-	_NSInsetRect func(Rect, float64, float64) Rect
+	_NSInsetRect func(Rect, corefoundation.CGFloat, corefoundation.CGFloat) Rect
 	_NSIntegralRect func(Rect) Rect
-	_NSIntegralRectWithOptions func(Rect, unsafe.Pointer) Rect
-	_NSIntersectionRange func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSIntegralRectWithOptions func(Rect, AlignmentOptions) Rect
+	_NSIntersectionRange func(NSRange, NSRange) NSRange
 	_NSIntersectionRect func(Rect, Rect) Rect
 	_NSIntersectsRect func(Rect, Rect) bool
 	_NSIsEmptyRect func(Rect) bool
 	_NSIsFreedObject func(objc.ID) bool
 	_NSLog func(unsafe.Pointer)
-	_NSLogPageSize func() uint64
+	_NSLogPageSize func() uint
 	_NSLogv func(unsafe.Pointer, unsafe.Pointer)
 	_NSMapGet func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSMapInsert func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
@@ -94,22 +95,22 @@ var (
 	_NSMouseInRect func(Point, Rect, bool) bool
 	_NSNextHashEnumeratorItem func(unsafe.Pointer) unsafe.Pointer
 	_NSNextMapEnumeratorPair func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
-	_NSOffsetRect func(Rect, float64, float64) Rect
-	_NSPageSize func() uint64
+	_NSOffsetRect func(Rect, corefoundation.CGFloat, corefoundation.CGFloat) Rect
+	_NSPageSize func() uint
 	_NSPointFromString func(unsafe.Pointer) Point
 	_NSPointInRect func(Point, Rect) bool
 	_NSProtocolFromString func(unsafe.Pointer) unsafe.Pointer
-	_NSRangeFromString func(unsafe.Pointer) unsafe.Pointer
-	_NSRealMemoryAvailable func() uint64
-	_NSReallocateCollectable func(unsafe.Pointer, uint64, uint64) unsafe.Pointer
+	_NSRangeFromString func(unsafe.Pointer) NSRange
+	_NSRealMemoryAvailable func() uint
+	_NSReallocateCollectable func(unsafe.Pointer, uint, uint) unsafe.Pointer
 	_NSRecordAllocationEvent func(int, objc.ID)
 	_NSRectFromString func(unsafe.Pointer) Rect
 	_NSRecycleZone func(unsafe.Pointer)
 	_NSResetHashTable func(unsafe.Pointer)
 	_NSResetMapTable func(unsafe.Pointer)
-	_NSReturnAddress func(uint64) unsafe.Pointer
-	_NSRoundDownToMultipleOfPageSize func(uint64) uint64
-	_NSRoundUpToMultipleOfPageSize func(uint64) uint64
+	_NSReturnAddress func(uint) unsafe.Pointer
+	_NSRoundDownToMultipleOfPageSize func(uint) uint
+	_NSRoundUpToMultipleOfPageSize func(uint) uint
 	_NSSelectorFromString func(unsafe.Pointer) objc.SEL
 	_NSSetZoneName func(unsafe.Pointer, unsafe.Pointer)
 	_NSShouldRetainWithZone func(objc.ID, unsafe.Pointer) bool
@@ -119,18 +120,18 @@ var (
 	_NSStringFromMapTable func(unsafe.Pointer) unsafe.Pointer
 	_NSStringFromPoint func(Point) unsafe.Pointer
 	_NSStringFromProtocol func(unsafe.Pointer) unsafe.Pointer
-	_NSStringFromRange func(unsafe.Pointer) unsafe.Pointer
+	_NSStringFromRange func(NSRange) unsafe.Pointer
 	_NSStringFromRect func(Rect) unsafe.Pointer
 	_NSStringFromSelector func(objc.SEL) unsafe.Pointer
 	_NSStringFromSize func(Size) unsafe.Pointer
-	_NSUnionRange func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSUnionRange func(NSRange, NSRange) NSRange
 	_NSUnionRect func(Rect, Rect) Rect
-	_NSZoneCalloc func(unsafe.Pointer, uint64, uint64) unsafe.Pointer
+	_NSZoneCalloc func(unsafe.Pointer, uint, uint) unsafe.Pointer
 	_NSZoneFree func(unsafe.Pointer, unsafe.Pointer)
 	_NSZoneFromPointer func(unsafe.Pointer) unsafe.Pointer
-	_NSZoneMalloc func(unsafe.Pointer, uint64) unsafe.Pointer
+	_NSZoneMalloc func(unsafe.Pointer, uint) unsafe.Pointer
 	_NSZoneName func(unsafe.Pointer) unsafe.Pointer
-	_NSZoneRealloc func(unsafe.Pointer, unsafe.Pointer, uint64) unsafe.Pointer
+	_NSZoneRealloc func(unsafe.Pointer, unsafe.Pointer, uint) unsafe.Pointer
 	_NXReadNSObjectFromCoder func(unsafe.Pointer) unsafe.Pointer
 )
 
@@ -311,7 +312,7 @@ func NSAllMapTableValues(table unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAllocateCollectable
-func NSAllocateCollectable(size uint64, options uint64) unsafe.Pointer {
+func NSAllocateCollectable(size uint, options uint) unsafe.Pointer {
 	return _NSAllocateCollectable(size, options)
 }
 
@@ -322,7 +323,7 @@ func NSAllocateCollectable(size uint64, options uint64) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAllocateMemoryPages(_:)
-func NSAllocateMemoryPages(bytes uint64) unsafe.Pointer {
+func NSAllocateMemoryPages(bytes uint) unsafe.Pointer {
 	return _NSAllocateMemoryPages(bytes)
 }
 
@@ -333,7 +334,7 @@ func NSAllocateMemoryPages(bytes uint64) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAllocateObject
-func NSAllocateObject(aClass objc.Class, extraBytes uint64, zone unsafe.Pointer) objc.ID {
+func NSAllocateObject(aClass objc.Class, extraBytes uint, zone unsafe.Pointer) objc.ID {
 	return _NSAllocateObject(aClass, extraBytes, zone)
 }
 
@@ -410,7 +411,7 @@ func NSCopyMapTableWithZone(table unsafe.Pointer, zone unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCopyMemoryPages(_:_:_:)
-func NSCopyMemoryPages(source unsafe.Pointer, dest unsafe.Pointer, bytes uint64) {
+func NSCopyMemoryPages(source unsafe.Pointer, dest unsafe.Pointer, bytes uint) {
 	_NSCopyMemoryPages(source, dest, bytes)
 }
 
@@ -423,7 +424,7 @@ func NSCopyMemoryPages(source unsafe.Pointer, dest unsafe.Pointer, bytes uint64)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCopyObject
-func NSCopyObject(object objc.ID, extraBytes uint64, zone unsafe.Pointer) objc.ID {
+func NSCopyObject(object objc.ID, extraBytes uint, zone unsafe.Pointer) objc.ID {
 	return _NSCopyObject(object, extraBytes, zone)
 }
 
@@ -434,7 +435,7 @@ func NSCopyObject(object objc.ID, extraBytes uint64, zone unsafe.Pointer) objc.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountFrames
-func NSCountFrames() uint64 {
+func NSCountFrames() uint {
 	return _NSCountFrames()
 }
 
@@ -445,7 +446,7 @@ func NSCountFrames() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountHashTable(_:)
-func NSCountHashTable(table unsafe.Pointer) uint64 {
+func NSCountHashTable(table unsafe.Pointer) uint {
 	return _NSCountHashTable(table)
 }
 
@@ -456,7 +457,7 @@ func NSCountHashTable(table unsafe.Pointer) uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountMapTable(_:)
-func NSCountMapTable(table unsafe.Pointer) uint64 {
+func NSCountMapTable(table unsafe.Pointer) uint {
 	return _NSCountMapTable(table)
 }
 
@@ -467,7 +468,7 @@ func NSCountMapTable(table unsafe.Pointer) uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateHashTable(_:_:)
-func NSCreateHashTable(callBacks unsafe.Pointer, capacity uint64) unsafe.Pointer {
+func NSCreateHashTable(callBacks NSHashTableCallBacks, capacity uint) unsafe.Pointer {
 	return _NSCreateHashTable(callBacks, capacity)
 }
 
@@ -478,7 +479,7 @@ func NSCreateHashTable(callBacks unsafe.Pointer, capacity uint64) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateHashTableWithZone(_:_:_:)
-func NSCreateHashTableWithZone(callBacks unsafe.Pointer, capacity uint64, zone unsafe.Pointer) unsafe.Pointer {
+func NSCreateHashTableWithZone(callBacks NSHashTableCallBacks, capacity uint, zone unsafe.Pointer) unsafe.Pointer {
 	return _NSCreateHashTableWithZone(callBacks, capacity, zone)
 }
 
@@ -489,7 +490,7 @@ func NSCreateHashTableWithZone(callBacks unsafe.Pointer, capacity uint64, zone u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateMapTable(_:_:_:)
-func NSCreateMapTable(keyCallBacks unsafe.Pointer, valueCallBacks unsafe.Pointer, capacity uint64) unsafe.Pointer {
+func NSCreateMapTable(keyCallBacks NSMapTableKeyCallBacks, valueCallBacks NSMapTableValueCallBacks, capacity uint) unsafe.Pointer {
 	return _NSCreateMapTable(keyCallBacks, valueCallBacks, capacity)
 }
 
@@ -500,7 +501,7 @@ func NSCreateMapTable(keyCallBacks unsafe.Pointer, valueCallBacks unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateMapTableWithZone(_:_:_:_:)
-func NSCreateMapTableWithZone(keyCallBacks unsafe.Pointer, valueCallBacks unsafe.Pointer, capacity uint64, zone unsafe.Pointer) unsafe.Pointer {
+func NSCreateMapTableWithZone(keyCallBacks NSMapTableKeyCallBacks, valueCallBacks NSMapTableValueCallBacks, capacity uint, zone unsafe.Pointer) unsafe.Pointer {
 	return _NSCreateMapTableWithZone(keyCallBacks, valueCallBacks, capacity, zone)
 }
 
@@ -511,7 +512,7 @@ func NSCreateMapTableWithZone(keyCallBacks unsafe.Pointer, valueCallBacks unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateZone
-func NSCreateZone(startSize uint64, granularity uint64, canFree bool) unsafe.Pointer {
+func NSCreateZone(startSize uint, granularity uint, canFree bool) unsafe.Pointer {
 	return _NSCreateZone(startSize, granularity, canFree)
 }
 
@@ -522,7 +523,7 @@ func NSCreateZone(startSize uint64, granularity uint64, canFree bool) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDeallocateMemoryPages(_:_:)
-func NSDeallocateMemoryPages(ptr unsafe.Pointer, bytes uint64) {
+func NSDeallocateMemoryPages(ptr unsafe.Pointer, bytes uint) {
 	_NSDeallocateMemoryPages(ptr, bytes)
 }
 
@@ -544,7 +545,7 @@ func NSDeallocateObject(object objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalAdd(_:_:_:_:)
-func NSDecimalAdd(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperand unsafe.Pointer, roundingMode unsafe.Pointer) unsafe.Pointer {
+func NSDecimalAdd(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperand unsafe.Pointer, roundingMode RoundingMode) CalculationError {
 	return _NSDecimalAdd(result, leftOperand, rightOperand, roundingMode)
 }
 
@@ -566,7 +567,7 @@ func NSDecimalCompact(number unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalCompare(_:_:)
-func NSDecimalCompare(leftOperand unsafe.Pointer, rightOperand unsafe.Pointer) unsafe.Pointer {
+func NSDecimalCompare(leftOperand unsafe.Pointer, rightOperand unsafe.Pointer) ComparisonResult {
 	return _NSDecimalCompare(leftOperand, rightOperand)
 }
 
@@ -588,7 +589,7 @@ func NSDecimalCopy(destination unsafe.Pointer, source unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalDivide(_:_:_:_:)
-func NSDecimalDivide(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperand unsafe.Pointer, roundingMode unsafe.Pointer) unsafe.Pointer {
+func NSDecimalDivide(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperand unsafe.Pointer, roundingMode RoundingMode) CalculationError {
 	return _NSDecimalDivide(result, leftOperand, rightOperand, roundingMode)
 }
 
@@ -599,7 +600,7 @@ func NSDecimalDivide(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOpe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalMultiply(_:_:_:_:)
-func NSDecimalMultiply(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperand unsafe.Pointer, roundingMode unsafe.Pointer) unsafe.Pointer {
+func NSDecimalMultiply(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperand unsafe.Pointer, roundingMode RoundingMode) CalculationError {
 	return _NSDecimalMultiply(result, leftOperand, rightOperand, roundingMode)
 }
 
@@ -610,7 +611,7 @@ func NSDecimalMultiply(result unsafe.Pointer, leftOperand unsafe.Pointer, rightO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalMultiplyByPowerOf10(_:_:_:_:)
-func NSDecimalMultiplyByPowerOf10(result unsafe.Pointer, number unsafe.Pointer, power unsafe.Pointer, roundingMode unsafe.Pointer) unsafe.Pointer {
+func NSDecimalMultiplyByPowerOf10(result unsafe.Pointer, number unsafe.Pointer, power unsafe.Pointer, roundingMode RoundingMode) CalculationError {
 	return _NSDecimalMultiplyByPowerOf10(result, number, power, roundingMode)
 }
 
@@ -621,7 +622,7 @@ func NSDecimalMultiplyByPowerOf10(result unsafe.Pointer, number unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNormalize(_:_:_:)
-func NSDecimalNormalize(number1 unsafe.Pointer, number2 unsafe.Pointer, roundingMode unsafe.Pointer) unsafe.Pointer {
+func NSDecimalNormalize(number1 unsafe.Pointer, number2 unsafe.Pointer, roundingMode RoundingMode) CalculationError {
 	return _NSDecimalNormalize(number1, number2, roundingMode)
 }
 
@@ -632,7 +633,7 @@ func NSDecimalNormalize(number1 unsafe.Pointer, number2 unsafe.Pointer, rounding
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalPower(_:_:_:_:)
-func NSDecimalPower(result unsafe.Pointer, number unsafe.Pointer, power uint64, roundingMode unsafe.Pointer) unsafe.Pointer {
+func NSDecimalPower(result unsafe.Pointer, number unsafe.Pointer, power uint, roundingMode RoundingMode) CalculationError {
 	return _NSDecimalPower(result, number, power, roundingMode)
 }
 
@@ -643,7 +644,7 @@ func NSDecimalPower(result unsafe.Pointer, number unsafe.Pointer, power uint64, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalRound(_:_:_:_:)
-func NSDecimalRound(result unsafe.Pointer, number unsafe.Pointer, scale int64, roundingMode unsafe.Pointer) {
+func NSDecimalRound(result unsafe.Pointer, number unsafe.Pointer, scale int, roundingMode RoundingMode) {
 	_NSDecimalRound(result, number, scale, roundingMode)
 }
 
@@ -665,7 +666,7 @@ func NSDecimalString(dcm unsafe.Pointer, locale objc.ID) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalSubtract(_:_:_:_:)
-func NSDecimalSubtract(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperand unsafe.Pointer, roundingMode unsafe.Pointer) unsafe.Pointer {
+func NSDecimalSubtract(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperand unsafe.Pointer, roundingMode RoundingMode) CalculationError {
 	return _NSDecimalSubtract(result, leftOperand, rightOperand, roundingMode)
 }
 
@@ -698,7 +699,7 @@ func NSDefaultMallocZone() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDivideRect(_:_:_:_:_:)
-func NSDivideRect(inRect Rect, slice unsafe.Pointer, rem unsafe.Pointer, amount float64, edge unsafe.Pointer) {
+func NSDivideRect(inRect Rect, slice unsafe.Pointer, rem unsafe.Pointer, amount corefoundation.CGFloat, edge RectEdge) {
 	_NSDivideRect(inRect, slice, rem, amount, edge)
 }
 
@@ -709,7 +710,7 @@ func NSDivideRect(inRect Rect, slice unsafe.Pointer, rem unsafe.Pointer, amount 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEdgeInsetsEqual(_:_:)
-func NSEdgeInsetsEqual(aInsets unsafe.Pointer, bInsets unsafe.Pointer) bool {
+func NSEdgeInsetsEqual(aInsets NSEdgeInsets, bInsets NSEdgeInsets) bool {
 	return _NSEdgeInsetsEqual(aInsets, bInsets)
 }
 
@@ -742,7 +743,7 @@ func NSEndMapTableEnumeration(enumerator unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerateHashTable(_:)
-func NSEnumerateHashTable(table unsafe.Pointer) unsafe.Pointer {
+func NSEnumerateHashTable(table unsafe.Pointer) NSHashEnumerator {
 	return _NSEnumerateHashTable(table)
 }
 
@@ -753,7 +754,7 @@ func NSEnumerateHashTable(table unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerateMapTable(_:)
-func NSEnumerateMapTable(table unsafe.Pointer) unsafe.Pointer {
+func NSEnumerateMapTable(table unsafe.Pointer) NSMapEnumerator {
 	return _NSEnumerateMapTable(table)
 }
 
@@ -797,7 +798,7 @@ func NSEqualSizes(aSize Size, bSize Size) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtraRefCount
-func NSExtraRefCount(object objc.ID) uint64 {
+func NSExtraRefCount(object objc.ID) uint {
 	return _NSExtraRefCount(object)
 }
 
@@ -808,7 +809,7 @@ func NSExtraRefCount(object objc.ID) uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFrameAddress
-func NSFrameAddress(frame uint64) unsafe.Pointer {
+func NSFrameAddress(frame uint) unsafe.Pointer {
 	return _NSFrameAddress(frame)
 }
 
@@ -918,7 +919,7 @@ func NSIncrementExtraRefCount(object objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInsetRect(_:_:_:)
-func NSInsetRect(aRect Rect, dX float64, dY float64) Rect {
+func NSInsetRect(aRect Rect, dX corefoundation.CGFloat, dY corefoundation.CGFloat) Rect {
 	return _NSInsetRect(aRect, dX, dY)
 }
 
@@ -940,7 +941,7 @@ func NSIntegralRect(aRect Rect) Rect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIntegralRectWithOptions(_:_:)
-func NSIntegralRectWithOptions(aRect Rect, opts unsafe.Pointer) Rect {
+func NSIntegralRectWithOptions(aRect Rect, opts AlignmentOptions) Rect {
 	return _NSIntegralRectWithOptions(aRect, opts)
 }
 
@@ -951,7 +952,7 @@ func NSIntegralRectWithOptions(aRect Rect, opts unsafe.Pointer) Rect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIntersectionRange(_:_:)
-func NSIntersectionRange(range1 unsafe.Pointer, range2 unsafe.Pointer) unsafe.Pointer {
+func NSIntersectionRange(range1 NSRange, range2 NSRange) NSRange {
 	return _NSIntersectionRange(range1, range2)
 }
 
@@ -1017,7 +1018,7 @@ func NSLog(format unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogPageSize()
-func NSLogPageSize() uint64 {
+func NSLogPageSize() uint {
 	return _NSLogPageSize()
 }
 
@@ -1138,7 +1139,7 @@ func NSNextMapEnumeratorPair(enumerator unsafe.Pointer, key unsafe.Pointer, valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOffsetRect(_:_:_:)
-func NSOffsetRect(aRect Rect, dX float64, dY float64) Rect {
+func NSOffsetRect(aRect Rect, dX corefoundation.CGFloat, dY corefoundation.CGFloat) Rect {
 	return _NSOffsetRect(aRect, dX, dY)
 }
 
@@ -1149,7 +1150,7 @@ func NSOffsetRect(aRect Rect, dX float64, dY float64) Rect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPageSize()
-func NSPageSize() uint64 {
+func NSPageSize() uint {
 	return _NSPageSize()
 }
 
@@ -1193,7 +1194,7 @@ func NSProtocolFromString(namestr unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeFromString(_:)
-func NSRangeFromString(aString unsafe.Pointer) unsafe.Pointer {
+func NSRangeFromString(aString unsafe.Pointer) NSRange {
 	return _NSRangeFromString(aString)
 }
 
@@ -1203,7 +1204,7 @@ func NSRangeFromString(aString unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRealMemoryAvailable()
-func NSRealMemoryAvailable() uint64 {
+func NSRealMemoryAvailable() uint {
 	return _NSRealMemoryAvailable()
 }
 
@@ -1214,7 +1215,7 @@ func NSRealMemoryAvailable() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSReallocateCollectable
-func NSReallocateCollectable(ptr unsafe.Pointer, size uint64, options uint64) unsafe.Pointer {
+func NSReallocateCollectable(ptr unsafe.Pointer, size uint, options uint) unsafe.Pointer {
 	return _NSReallocateCollectable(ptr, size, options)
 }
 
@@ -1280,7 +1281,7 @@ func NSResetMapTable(table unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSReturnAddress
-func NSReturnAddress(frame uint64) unsafe.Pointer {
+func NSReturnAddress(frame uint) unsafe.Pointer {
 	return _NSReturnAddress(frame)
 }
 
@@ -1291,7 +1292,7 @@ func NSReturnAddress(frame uint64) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRoundDownToMultipleOfPageSize(_:)
-func NSRoundDownToMultipleOfPageSize(bytes uint64) uint64 {
+func NSRoundDownToMultipleOfPageSize(bytes uint) uint {
 	return _NSRoundDownToMultipleOfPageSize(bytes)
 }
 
@@ -1302,7 +1303,7 @@ func NSRoundDownToMultipleOfPageSize(bytes uint64) uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRoundUpToMultipleOfPageSize(_:)
-func NSRoundUpToMultipleOfPageSize(bytes uint64) uint64 {
+func NSRoundUpToMultipleOfPageSize(bytes uint) uint {
 	return _NSRoundUpToMultipleOfPageSize(bytes)
 }
 
@@ -1412,7 +1413,7 @@ func NSStringFromProtocol(proto unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromRange(_:)
-func NSStringFromRange(range_ unsafe.Pointer) unsafe.Pointer {
+func NSStringFromRange(range_ NSRange) unsafe.Pointer {
 	return _NSStringFromRange(range_)
 }
 
@@ -1456,7 +1457,7 @@ func NSStringFromSize(aSize Size) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnionRange(_:_:)
-func NSUnionRange(range1 unsafe.Pointer, range2 unsafe.Pointer) unsafe.Pointer {
+func NSUnionRange(range1 NSRange, range2 NSRange) NSRange {
 	return _NSUnionRange(range1, range2)
 }
 
@@ -1478,7 +1479,7 @@ func NSUnionRect(aRect Rect, bRect Rect) Rect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSZoneCalloc
-func NSZoneCalloc(zone unsafe.Pointer, numElems uint64, byteSize uint64) unsafe.Pointer {
+func NSZoneCalloc(zone unsafe.Pointer, numElems uint, byteSize uint) unsafe.Pointer {
 	return _NSZoneCalloc(zone, numElems, byteSize)
 }
 
@@ -1511,7 +1512,7 @@ func NSZoneFromPointer(ptr unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSZoneMalloc
-func NSZoneMalloc(zone unsafe.Pointer, size uint64) unsafe.Pointer {
+func NSZoneMalloc(zone unsafe.Pointer, size uint) unsafe.Pointer {
 	return _NSZoneMalloc(zone, size)
 }
 
@@ -1533,7 +1534,7 @@ func NSZoneName(zone unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSZoneRealloc
-func NSZoneRealloc(zone unsafe.Pointer, ptr unsafe.Pointer, size uint64) unsafe.Pointer {
+func NSZoneRealloc(zone unsafe.Pointer, ptr unsafe.Pointer, size uint) unsafe.Pointer {
 	return _NSZoneRealloc(zone, ptr, size)
 }
 

@@ -618,7 +618,7 @@ func (a_ AttributedString) AttributedSubstringFromRange(range_ objc.IObject /* c
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/attributes(at:effectiveRange:)
 func (a_ AttributedString) AttributesAtIndexEffectiveRange(location uint, range_ objc.IObject /* cross-framework: RangePointer */) IDictionary {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("attributesAtIndex:effectiveRange:"), location, range_)
+	rv := objc.Send[Dictionary](a_.ID, objc.Sel("attributesAtIndex:effectiveRange:"), location, range_)
 	return rv
 }
 
@@ -628,7 +628,7 @@ func (a_ AttributedString) AttributesAtIndexEffectiveRange(location uint, range_
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/attributes(at:longestEffectiveRange:in:)
 func (a_ AttributedString) AttributesAtIndexLongestEffectiveRangeInRange(location uint, range_ objc.IObject /* cross-framework: RangePointer */, rangeLimit objc.IObject /* cross-framework: Range */) IDictionary {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("attributesAtIndex:longestEffectiveRange:inRange:"), location, range_, rangeLimit)
+	rv := objc.Send[Dictionary](a_.ID, objc.Sel("attributesAtIndex:longestEffectiveRange:inRange:"), location, range_, rangeLimit)
 	return rv
 }
 
@@ -762,7 +762,7 @@ func (a_ AttributedString) FileWrapperFromRangeDocumentAttributesError(range_ ob
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/fontAttributes(in:)
 func (a_ AttributedString) FontAttributesInRange(range_ objc.IObject /* cross-framework: Range */) IDictionary {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("fontAttributesInRange:"), range_)
+	rv := objc.Send[Dictionary](a_.ID, objc.Sel("fontAttributesInRange:"), range_)
 	return rv
 }
 
@@ -900,7 +900,7 @@ func (a_ AttributedString) RTFDFileWrapperFromRangeDocumentAttributes(range_ obj
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/rulerAttributes(in:)
 func (a_ AttributedString) RulerAttributesInRange(range_ objc.IObject /* cross-framework: Range */) IDictionary {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("rulerAttributesInRange:"), range_)
+	rv := objc.Send[Dictionary](a_.ID, objc.Sel("rulerAttributesInRange:"), range_)
 	return rv
 }
 

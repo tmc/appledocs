@@ -50,7 +50,7 @@ type IScanner interface {
 	ScanHexDouble(result unsafe.Pointer) bool
 	ScanHexFloat(result unsafe.Pointer) bool
 	ScanHexLongLong(result unsafe.Pointer) bool
-	ScanInteger(result Integer /* not a class type */) bool
+	ScanInteger(result int) bool
 	ScanLongLong(result unsafe.Pointer) bool
 	ScanUnsignedLongLong(result unsafe.Pointer) bool
 }
@@ -175,7 +175,7 @@ func (s_ Scanner) ScanHexLongLong(result unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanInt(_:)
-func (s_ Scanner) ScanInteger(result Integer /* not a class type */) bool {
+func (s_ Scanner) ScanInteger(result int) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanInteger:"), result)
 	return rv
 }

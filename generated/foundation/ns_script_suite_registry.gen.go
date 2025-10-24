@@ -95,7 +95,7 @@ func NewScriptSuiteRegistry() ScriptSuiteRegistry {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/commandDescriptions(inSuite:)
 func (s_ ScriptSuiteRegistry) CommandDescriptionsInSuite(suiteName IString) IDictionary {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("commandDescriptionsInSuite:"), suiteName)
+	rv := objc.Send[Dictionary](s_.ID, objc.Sel("commandDescriptionsInSuite:"), suiteName)
 	return rv
 }
 

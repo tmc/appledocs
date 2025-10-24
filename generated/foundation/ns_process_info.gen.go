@@ -274,7 +274,7 @@ func (p_ ProcessInfo) SetAutomaticTerminationSupportEnabled(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/environment
 func (p_ ProcessInfo) Environment() IDictionary {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("environment"))
+	rv := objc.Send[Dictionary](p_.ID, objc.Sel("environment"))
 	return rv
 }
 

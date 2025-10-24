@@ -227,7 +227,7 @@ func (mc _MapTableClass) WeakToWeakObjectsMapTable() unsafe.Pointer {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/dictionaryRepresentation()
 func (m_ MapTable) DictionaryRepresentation() IDictionary {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("dictionaryRepresentation"))
+	rv := objc.Send[Dictionary](m_.ID, objc.Sel("dictionaryRepresentation"))
 	return rv
 }
 

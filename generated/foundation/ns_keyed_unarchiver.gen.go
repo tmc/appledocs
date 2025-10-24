@@ -40,7 +40,7 @@ type IKeyedUnarchiver interface {
 	ClassForClassName(codedName IString) objc.Class
 	ContainsValueForKey(key IString) bool
 	DecodeBoolForKey(key IString) bool
-	DecodeBytesForKeyReturnedLength(key IString, lengthp UInteger /* not a class type */) uint8 /* not a class type */
+	DecodeBytesForKeyReturnedLength(key IString, lengthp uint) uint8 /* not a class type */
 	DecodeDoubleForKey(key IString) float64
 	DecodeFloatForKey(key IString) float32
 	DecodeInt32ForKey(key IString) int32 /* not a class type */
@@ -266,7 +266,7 @@ func (k_ KeyedUnarchiver) DecodeBoolForKey(key IString) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodeBytes(forKey:returnedLength:)
-func (k_ KeyedUnarchiver) DecodeBytesForKeyReturnedLength(key IString, lengthp UInteger /* not a class type */) uint8 /* not a class type */ {
+func (k_ KeyedUnarchiver) DecodeBytesForKeyReturnedLength(key IString, lengthp uint) uint8 /* not a class type */ {
 	rv := objc.Send[uint8](k_.ID, objc.Sel("decodeBytesForKey:returnedLength:"), key, lengthp)
 	return rv
 }

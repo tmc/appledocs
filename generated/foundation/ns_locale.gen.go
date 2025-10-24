@@ -180,7 +180,7 @@ func (lc _LocaleClass) CharacterDirectionForLanguage(isoLangCode IString) Locale
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/components(fromLocaleIdentifier:)
 func (lc _LocaleClass) ComponentsFromLocaleIdentifier(string_ IString) IDictionary {
-	rv := objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("componentsFromLocaleIdentifier:"), string_)
+	rv := objc.Send[Dictionary](objc.ID(lc.class), objc.Sel("componentsFromLocaleIdentifier:"), string_)
 	return rv
 }
 

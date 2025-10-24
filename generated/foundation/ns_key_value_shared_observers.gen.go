@@ -32,7 +32,7 @@ type IKeyValueSharedObservers interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	AddSharedObserverForKeyOptionsContext(observer objc.IObject /* cross-framework: NSObject */, key IString, options KeyValueObservingOptions, context unsafe.Pointer)
+	AddSharedObserverForKeyOptionsContext(observer objc.IObject /* cross-framework: NSObject */, key IString, options uint, context unsafe.Pointer)
 	Snapshot() IKeyValueSharedObserversSnapshot
 }
 
@@ -95,7 +95,7 @@ func NewKeyValueSharedObserversWithObservableClass(observableClass objc.Class) K
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueSharedObservers/addSharedObserver(_:forKey:options:context:)
-func (k_ KeyValueSharedObservers) AddSharedObserverForKeyOptionsContext(observer objc.IObject /* cross-framework: NSObject */, key IString, options KeyValueObservingOptions, context unsafe.Pointer) {
+func (k_ KeyValueSharedObservers) AddSharedObserverForKeyOptionsContext(observer objc.IObject /* cross-framework: NSObject */, key IString, options uint, context unsafe.Pointer) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("addSharedObserver:forKey:options:context:"), observer, key, options, context)
 }
 

@@ -32,16 +32,14 @@ type IURLProtocol interface {
 	objectivec.IObject
 	// properties:
 	CachedResponse() ICachedURLResponse
-	SetCachedResponse(value ICachedURLResponse)
-	Client() unsafe.Pointer
-	SetClient(value unsafe.Pointer)
+	Client() objc.ID
 	Request() IURLRequest
-	SetRequest(value IURLRequest)
 	Task() IURLSessionTask
-	SetTask(value IURLSessionTask)
 	ProtocolClasses() objc.Class
 	SetProtocolClasses(value objc.Class)
 	// methods:
+	StartLoading()
+	StopLoading()
 }
 
 // An abstract class that handles the loading of protocol-specific URL data.
@@ -97,79 +95,154 @@ func NewURLProtocol() URLProtocol {
 
 
 
+// Creates a URL protocol instance to handle the request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/init(request:cachedResponse:client:)
+func NewURLProtocolWithRequestCachedResponseClient(request IURLRequest, cachedResponse ICachedURLResponse, client objectivec.IObject) URLProtocol {
+	instance := getURLProtocolClass().Alloc()
+	rv := objc.Send[URLProtocol](instance.ID, objc.Sel("initWithRequest:cachedResponse:client:"), request, cachedResponse, client)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates a URL protocol instance to handle the task.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/init(task:cachedResponse:client:)
+func NewURLProtocolWithTaskCachedResponseClient(task IURLSessionTask, cachedResponse ICachedURLResponse, client objectivec.IObject) URLProtocol {
+	instance := getURLProtocolClass().Alloc()
+	rv := objc.Send[URLProtocol](instance.ID, objc.Sel("initWithTask:cachedResponse:client:"), task, cachedResponse, client)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Determines whether the protocol subclass can handle the specified task.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/canInit(with:)-18gbo
+func (uc _URLProtocolClass) CanInitWithTask(task IURLSessionTask) bool {
+	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canInitWithTask:"), task)
+	return rv
+}
+
+
+// Determines whether the protocol subclass can handle the specified request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/canInit(with:)-76brg
+func (uc _URLProtocolClass) CanInitWithRequest(request IURLRequest) bool {
+	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canInitWithRequest:"), request)
+	return rv
+}
+
+
+// Returns a canonical version of the specified request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/canonicalRequest(for:)
+func (uc _URLProtocolClass) CanonicalRequestForRequest(request IURLRequest) IURLRequest {
+	rv := objc.Send[URLRequest](objc.ID(uc.class), objc.Sel("canonicalRequestForRequest:"), request)
+	return rv
+}
+
+
+// Attempts to register a subclass of , making it visible to the URL loading system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/registerClass(_:)
+func (uc _URLProtocolClass) RegisterClass(protocolClass objc.Class) bool {
+	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("registerClass:"), protocolClass)
+	return rv
+}
+
+
+// Removes the property associated with the specified key in the specified request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/removeProperty(forKey:in:)
+func (uc _URLProtocolClass) RemovePropertyForKeyInRequest(key IString, request IMutableURLRequest) {
+	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("removePropertyForKey:inRequest:"), key, request)
+}
+
+
+// A Boolean value indicating whether two requests are equivalent for cache purposes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/requestIsCacheEquivalent(_:to:)
+func (uc _URLProtocolClass) RequestIsCacheEquivalentToRequest(a IURLRequest, b IURLRequest) bool {
+	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("requestIsCacheEquivalent:toRequest:"), a, b)
+	return rv
+}
+
+
+// Unregisters the specified subclass of .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/unregisterClass(_:)
+func (uc _URLProtocolClass) UnregisterClass(protocolClass objc.Class) {
+	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unregisterClass:"), protocolClass)
+}
+
+
+// Starts protocol-specific loading of the request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/startLoading()
+func (u_ URLProtocol) StartLoading() {
+	objc.Send[objc.ID](u_.ID, objc.Sel("startLoading"))
+}
+
+
+// Stops protocol-specific loading of the request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/stopLoading()
+func (u_ URLProtocol) StopLoading() {
+	objc.Send[objc.ID](u_.ID, objc.Sel("stopLoading"))
+}
+
+
 // The protocol’s cached response.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/cachedresponse
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/cachedResponse
 func (u_ URLProtocol) CachedResponse() ICachedURLResponse {
 	rv := objc.Send[CachedURLResponse](u_.ID, objc.Sel("cachedResponse"))
 	return rv
 }
 
 
-// The protocol’s cached response.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/cachedresponse
-func (u_ URLProtocol) SetCachedResponse(value ICachedURLResponse) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setCachedResponse:"), value)
-}
-
-
 // The object the protocol uses to communicate with the URL loading system.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/client
-func (u_ URLProtocol) Client() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("client"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/client
+func (u_ URLProtocol) Client() objc.ID {
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("client"))
 	return rv
-}
-
-
-// The object the protocol uses to communicate with the URL loading system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/client
-func (u_ URLProtocol) SetClient(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setClient:"), value)
 }
 
 
 // The protocol’s request.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/request
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/request
 func (u_ URLProtocol) Request() IURLRequest {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("request"))
 	return rv
 }
 
 
-// The protocol’s request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/request
-func (u_ URLProtocol) SetRequest(value IURLRequest) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setRequest:"), value)
-}
-
-
 // The protocol’s task.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/task
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/task
 func (u_ URLProtocol) Task() IURLSessionTask {
 	rv := objc.Send[URLSessionTask](u_.ID, objc.Sel("task"))
 	return rv
-}
-
-
-// The protocol’s task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/task
-func (u_ URLProtocol) SetTask(value IURLSessionTask) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTask:"), value)
 }
 
 
@@ -190,6 +263,5 @@ func (u_ URLProtocol) ProtocolClasses() objc.Class {
 func (u_ URLProtocol) SetProtocolClasses(value objc.Class) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setProtocolClasses:"), value)
 }
-
 
 

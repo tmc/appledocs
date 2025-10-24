@@ -37,7 +37,7 @@ type IArray interface {
 	LastObject() unsafe.Pointer
 	SortedArrayHint() IData
 	// methods:
-	AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer objc.IObject /* cross-framework: NSObject */, indexes IIndexSet, keyPath IString, options KeyValueObservingOptions, context unsafe.Pointer)
+	AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer objc.IObject /* cross-framework: NSObject */, indexes IIndexSet, keyPath IString, options uint, context unsafe.Pointer)
 	ArrayByAddingObject(anObject unsafe.Pointer) []objc.ID
 	ArrayByAddingObjectsFromArray(otherArray []objc.ID) []objc.ID
 	ArrayByApplyingDifference(difference unsafe.Pointer) []objc.ID
@@ -326,7 +326,7 @@ func (ac _ArrayClass) ArrayWithObjectsCount(objects []unsafe.Pointer, cnt uint) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/addObserver(_:forKeyPath:options:context:)
-func (a_ Array) AddObserverForKeyPathOptionsContext(observer objc.IObject /* cross-framework: NSObject */, keyPath IString, options KeyValueObservingOptions, context unsafe.Pointer) {
+func (a_ Array) AddObserverForKeyPathOptionsContext(observer objc.IObject /* cross-framework: NSObject */, keyPath IString, options uint, context unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, keyPath, options, context)
 }
 
@@ -335,7 +335,7 @@ func (a_ Array) AddObserverForKeyPathOptionsContext(observer objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/addObserver(_:toObjectsAt:forKeyPath:options:context:)
-func (a_ Array) AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer objc.IObject /* cross-framework: NSObject */, indexes IIndexSet, keyPath IString, options KeyValueObservingOptions, context unsafe.Pointer) {
+func (a_ Array) AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer objc.IObject /* cross-framework: NSObject */, indexes IIndexSet, keyPath IString, options uint, context unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("addObserver:toObjectsAtIndexes:forKeyPath:options:context:"), observer, indexes, keyPath, options, context)
 }
 

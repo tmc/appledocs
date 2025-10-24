@@ -128,13 +128,13 @@ type IString interface {
 	EnumerateLinesUsingBlock(block unsafe.Pointer)
 	EnumerateSubstringsInRangeOptionsUsingBlock(range_ objc.IObject /* cross-framework: Range */, opts StringEnumerationOptions, block unsafe.Pointer)
 	StringByFoldingWithOptionsLocale(options StringCompareOptions, locale ILocale) IString
-	GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint, usedBufferCount UInteger /* not a class type */, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions, range_ objc.IObject /* cross-framework: Range */, leftover objc.IObject /* cross-framework: RangePointer */) bool
+	GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint, usedBufferCount uint, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions, range_ objc.IObject /* cross-framework: Range */, leftover objc.IObject /* cross-framework: RangePointer */) bool
 	GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCount uint, encoding StringEncoding /* not a class type */) bool
 	GetCharacters(buffer Unichar /* typedef */)
 	GetCharactersRange(buffer Unichar /* typedef */, range_ objc.IObject /* cross-framework: Range */)
 	GetFileSystemRepresentationMaxLength(cname unsafe.Pointer, max uint) bool
-	GetLineStartEndContentsEndForRange(startPtr UInteger /* not a class type */, lineEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ objc.IObject /* cross-framework: Range */)
-	GetParagraphStartEndContentsEndForRange(startPtr UInteger /* not a class type */, parEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ objc.IObject /* cross-framework: Range */)
+	GetLineStartEndContentsEndForRange(startPtr uint, lineEndPtr uint, contentsEndPtr uint, range_ objc.IObject /* cross-framework: Range */)
+	GetParagraphStartEndContentsEndForRange(startPtr uint, parEndPtr uint, contentsEndPtr uint, range_ objc.IObject /* cross-framework: Range */)
 	HasPrefix(str IString) bool
 	HasSuffix(str IString) bool
 	IsEqualToString(aString IString) bool
@@ -316,7 +316,7 @@ func NewStringWithCStringNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(characters:length:)
-func NewStringWithCharactersLength(characters unichar /* typedef */, length uint) String {
+func NewStringWithCharactersLength(characters Unichar /* typedef */, length uint) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharacters:length:"), characters, length)
 	rv.Autorelease()
@@ -1115,7 +1115,7 @@ func (s_ String) StringByFoldingWithOptionsLocale(options StringCompareOptions, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getBytes(_:maxLength:usedLength:encoding:options:range:remaining:)
-func (s_ String) GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint, usedBufferCount UInteger /* not a class type */, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions, range_ objc.IObject /* cross-framework: Range */, leftover objc.IObject /* cross-framework: RangePointer */) bool {
+func (s_ String) GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint, usedBufferCount uint, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions, range_ objc.IObject /* cross-framework: Range */, leftover objc.IObject /* cross-framework: RangePointer */) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("getBytes:maxLength:usedLength:encoding:options:range:remainingRange:"), buffer, maxBufferCount, usedBufferCount, encoding, options, range_, leftover)
 	return rv
 }
@@ -1163,7 +1163,7 @@ func (s_ String) GetFileSystemRepresentationMaxLength(cname unsafe.Pointer, max 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getLineStart(_:end:contentsEnd:for:)
-func (s_ String) GetLineStartEndContentsEndForRange(startPtr UInteger /* not a class type */, lineEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ objc.IObject /* cross-framework: Range */) {
+func (s_ String) GetLineStartEndContentsEndForRange(startPtr uint, lineEndPtr uint, contentsEndPtr uint, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getLineStart:end:contentsEnd:forRange:"), startPtr, lineEndPtr, contentsEndPtr, range_)
 }
 
@@ -1172,7 +1172,7 @@ func (s_ String) GetLineStartEndContentsEndForRange(startPtr UInteger /* not a c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getParagraphStart(_:end:contentsEnd:for:)
-func (s_ String) GetParagraphStartEndContentsEndForRange(startPtr UInteger /* not a class type */, parEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ objc.IObject /* cross-framework: Range */) {
+func (s_ String) GetParagraphStartEndContentsEndForRange(startPtr uint, parEndPtr uint, contentsEndPtr uint, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getParagraphStart:end:contentsEnd:forRange:"), startPtr, parEndPtr, contentsEndPtr, range_)
 }
 

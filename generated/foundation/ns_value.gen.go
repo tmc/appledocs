@@ -145,7 +145,7 @@ func NewValueWithCATransform3D(t objectivec.IObject) Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(CGAffineTransform:)
-func NewValueWithCGAffineTransform(transform IAffineTransform) Value {
+func NewValueWithCGAffineTransform(transform corefoundation.CGAffineTransform) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithCGAffineTransform:"), transform)
 	return rv
 }
@@ -418,7 +418,7 @@ func (vc _ValueClass) ValueWithCATransform3D(t objectivec.IObject) IValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(CGAffineTransform:)
-func (vc _ValueClass) ValueWithCGAffineTransform(transform IAffineTransform) IValue {
+func (vc _ValueClass) ValueWithCGAffineTransform(transform corefoundation.CGAffineTransform) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithCGAffineTransform:"), transform)
 	return rv
 }

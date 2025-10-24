@@ -202,7 +202,7 @@ func (o_ Orthography) DominantScript() IString {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/languageMap
 func (o_ Orthography) LanguageMap() IDictionary {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("languageMap"))
+	rv := objc.Send[Dictionary](o_.ID, objc.Sel("languageMap"))
 	return rv
 }
 

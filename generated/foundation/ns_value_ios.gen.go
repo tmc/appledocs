@@ -1,0 +1,92 @@
+//go:build darwin && ios
+
+// Code generated from Apple documentation for Foundation. DO NOT EDIT.
+
+package foundation
+
+import (
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// iOS-only methods for Value
+
+
+// iOS-only properties
+
+// Returns the CoreGraphics affine transform representation of the value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/cgAffineTransformValue
+func (v_ Value) CGAffineTransformValue() corefoundation.CGAffineTransform {
+	rv := objc.Send[corefoundation.CGAffineTransform](v_.ID, objc.Sel("CGAffineTransformValue"))
+	return rv
+}
+
+// Returns the CoreGraphics point structure representation of the value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/cgPointValue
+func (v_ Value) CGPointValue() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[objc.ID](v_.ID, objc.Sel("CGPointValue"))
+	return rv
+}
+
+// Returns the CoreGraphics rectangle structure representation of the value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/cgRectValue
+func (v_ Value) CGRectValue() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[objc.ID](v_.ID, objc.Sel("CGRectValue"))
+	return rv
+}
+
+// Returns the CoreGraphics size structure representation of the value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/cgSizeValue
+func (v_ Value) CGSizeValue() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[objc.ID](v_.ID, objc.Sel("CGSizeValue"))
+	return rv
+}
+
+// Returns the CoreGraphics vector structure representation of the value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/cgVectorValue
+func (v_ Value) CGVectorValue() objc.IObject /* cross-framework: Vector */ {
+	rv := objc.Send[corefoundation.Vector](v_.ID, objc.Sel("CGVectorValue"))
+	return rv
+}
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/directionalEdgeInsetsValue
+func (v_ Value) DirectionalEdgeInsetsValue() DirectionalEdgeInsets /* not a class type */ {
+	rv := objc.Send[DirectionalEdgeInsets](v_.ID, objc.Sel("directionalEdgeInsetsValue"))
+	return rv
+}
+
+// Returns the UIKit edge insets structure representation of the value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/uiEdgeInsetsValue
+func (v_ Value) UIEdgeInsetsValue() UIEdgeInsets /* not a class type */ {
+	rv := objc.Send[EdgeInsets](v_.ID, objc.Sel("UIEdgeInsetsValue"))
+	return rv
+}
+
+// Returns the UIKit offset structure representation of the value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/uiOffsetValue
+func (v_ Value) UIOffsetValue() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](v_.ID, objc.Sel("UIOffsetValue"))
+	return rv
+}
+
+
+
+

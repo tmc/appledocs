@@ -29,7 +29,7 @@ type _InvocationOperationClass struct {
 
 // An interface definition for the [InvocationOperation] class.
 type IInvocationOperation interface {
-	objectivec.IIObject
+	objectivec.IObject
 	// properties:
 	Invocation() IInvocation
 	Result() objc.ID

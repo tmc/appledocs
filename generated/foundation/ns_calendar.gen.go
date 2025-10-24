@@ -76,9 +76,9 @@ type ICalendar interface {
 	DateWithEraYearForWeekOfYearWeekOfYearWeekdayHourMinuteSecondNanosecond(eraValue int, yearValue int, weekValue int, weekdayValue int, hourValue int, minuteValue int, secondValue int, nanosecondValue int) IDate
 	DateFromComponents(comps IDateComponents) IDate
 	EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsingBlock(start IDate, comps IDateComponents, opts CalendarOptions, block unsafe.Pointer)
-	GetEraYearMonthDayFromDate(eraValuePointer Integer /* not a class type */, yearValuePointer Integer /* not a class type */, monthValuePointer Integer /* not a class type */, dayValuePointer Integer /* not a class type */, date IDate)
-	GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePointer Integer /* not a class type */, yearValuePointer Integer /* not a class type */, weekValuePointer Integer /* not a class type */, weekdayValuePointer Integer /* not a class type */, date IDate)
-	GetHourMinuteSecondNanosecondFromDate(hourValuePointer Integer /* not a class type */, minuteValuePointer Integer /* not a class type */, secondValuePointer Integer /* not a class type */, nanosecondValuePointer Integer /* not a class type */, date IDate)
+	GetEraYearMonthDayFromDate(eraValuePointer int, yearValuePointer int, monthValuePointer int, dayValuePointer int, date IDate)
+	GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePointer int, yearValuePointer int, weekValuePointer int, weekdayValuePointer int, date IDate)
+	GetHourMinuteSecondNanosecondFromDate(hourValuePointer int, minuteValuePointer int, secondValuePointer int, nanosecondValuePointer int, date IDate)
 	IsDateEqualToDateToUnitGranularity(date1 IDate, date2 IDate, unit CalendarUnit) bool
 	IsDateInSameDayAsDate(date1 IDate, date2 IDate) bool
 	IsDateInToday(date IDate) bool
@@ -355,7 +355,7 @@ func (c_ Calendar) EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsing
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/getEra(_:year:month:day:from:)
-func (c_ Calendar) GetEraYearMonthDayFromDate(eraValuePointer Integer /* not a class type */, yearValuePointer Integer /* not a class type */, monthValuePointer Integer /* not a class type */, dayValuePointer Integer /* not a class type */, date IDate) {
+func (c_ Calendar) GetEraYearMonthDayFromDate(eraValuePointer int, yearValuePointer int, monthValuePointer int, dayValuePointer int, date IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getEra:year:month:day:fromDate:"), eraValuePointer, yearValuePointer, monthValuePointer, dayValuePointer, date)
 }
 
@@ -364,7 +364,7 @@ func (c_ Calendar) GetEraYearMonthDayFromDate(eraValuePointer Integer /* not a c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/getEra(_:yearForWeekOfYear:weekOfYear:weekday:from:)
-func (c_ Calendar) GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePointer Integer /* not a class type */, yearValuePointer Integer /* not a class type */, weekValuePointer Integer /* not a class type */, weekdayValuePointer Integer /* not a class type */, date IDate) {
+func (c_ Calendar) GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePointer int, yearValuePointer int, weekValuePointer int, weekdayValuePointer int, date IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getEra:yearForWeekOfYear:weekOfYear:weekday:fromDate:"), eraValuePointer, yearValuePointer, weekValuePointer, weekdayValuePointer, date)
 }
 
@@ -373,7 +373,7 @@ func (c_ Calendar) GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePoin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/getHour(_:minute:second:nanosecond:from:)
-func (c_ Calendar) GetHourMinuteSecondNanosecondFromDate(hourValuePointer Integer /* not a class type */, minuteValuePointer Integer /* not a class type */, secondValuePointer Integer /* not a class type */, nanosecondValuePointer Integer /* not a class type */, date IDate) {
+func (c_ Calendar) GetHourMinuteSecondNanosecondFromDate(hourValuePointer int, minuteValuePointer int, secondValuePointer int, nanosecondValuePointer int, date IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getHour:minute:second:nanosecond:fromDate:"), hourValuePointer, minuteValuePointer, secondValuePointer, nanosecondValuePointer, date)
 }
 

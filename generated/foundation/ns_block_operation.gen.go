@@ -29,7 +29,7 @@ type _BlockOperationClass struct {
 
 // An interface definition for the [BlockOperation] class.
 type IBlockOperation interface {
-	objectivec.IIObject
+	objectivec.IObject
 	// properties:
 	ExecutionBlocks() []func()
 	// methods:

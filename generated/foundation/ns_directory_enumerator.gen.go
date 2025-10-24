@@ -117,7 +117,7 @@ func (d_ DirectoryEnumerator) SkipDescendents() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator/directoryAttributes
 func (d_ DirectoryEnumerator) DirectoryAttributes() IDictionary {
-	rv := objc.Send[objc.ID](d_.ID, objc.Sel("directoryAttributes"))
+	rv := objc.Send[Dictionary](d_.ID, objc.Sel("directoryAttributes"))
 	return rv
 }
 
@@ -127,7 +127,7 @@ func (d_ DirectoryEnumerator) DirectoryAttributes() IDictionary {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator/fileAttributes
 func (d_ DirectoryEnumerator) FileAttributes() IDictionary {
-	rv := objc.Send[objc.ID](d_.ID, objc.Sel("fileAttributes"))
+	rv := objc.Send[Dictionary](d_.ID, objc.Sel("fileAttributes"))
 	return rv
 }
 

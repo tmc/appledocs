@@ -105,7 +105,7 @@ func (c_ CreateCommand) CreateClassDescription() IScriptClassDescription {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand/resolvedKeyDictionary
 func (c_ CreateCommand) ResolvedKeyDictionary() IDictionary {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("resolvedKeyDictionary"))
+	rv := objc.Send[Dictionary](c_.ID, objc.Sel("resolvedKeyDictionary"))
 	return rv
 }
 

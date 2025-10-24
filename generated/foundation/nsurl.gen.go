@@ -456,7 +456,7 @@ func (uc _URLClass) URLByResolvingAliasFileAtURLOptionsError(url IURL, options U
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/resourceValues(forKeys:fromBookmarkData:)
 func (uc _URLClass) ResourceValuesForKeysFromBookmarkData(keys []string, bookmarkData IData) IDictionary {
-	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("resourceValuesForKeys:fromBookmarkData:"), keys, bookmarkData)
+	rv := objc.Send[Dictionary](objc.ID(uc.class), objc.Sel("resourceValuesForKeys:fromBookmarkData:"), keys, bookmarkData)
 	return rv
 }
 
@@ -606,7 +606,7 @@ func (u_ URL) IsFileReferenceURL() bool {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/promisedItemResourceValues(forKeys:)
 func (u_ URL) PromisedItemResourceValuesForKeysError(keys []string, error_ IError) IDictionary {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("promisedItemResourceValuesForKeys:error:"), keys, error_)
+	rv := objc.Send[Dictionary](u_.ID, objc.Sel("promisedItemResourceValuesForKeys:error:"), keys, error_)
 	return rv
 }
 
@@ -634,7 +634,7 @@ func (u_ URL) RemoveCachedResourceValueForKey(key objc.IObject /* cross-framewor
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/resourceValues(forKeys:)
 func (u_ URL) ResourceValuesForKeysError(keys []string, error_ IError) IDictionary {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("resourceValuesForKeys:error:"), keys, error_)
+	rv := objc.Send[Dictionary](u_.ID, objc.Sel("resourceValuesForKeys:error:"), keys, error_)
 	return rv
 }
 

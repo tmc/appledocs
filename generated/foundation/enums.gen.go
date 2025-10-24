@@ -84,7 +84,7 @@ const (
 	// AlignRectFlipped - This option should be included  if the rectangle is in a flipped coordinate system. This allows 0.5 to be treated in a visually consistent way.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/AlignmentOptions/alignRectFlipped
-	AlignRectFlipped AlignmentOptions = -9223372036854775808
+	AlignRectFlipped AlignmentOptions = 1 << 63
 	// AlignWidthInward - Specifies that alignment of the width should be to the nearest inward integral value.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/AlignmentOptions/alignWidthInward
@@ -863,8 +863,14 @@ type SpellingState uint
 type AttributedStringFormattingOptions uint
 
 const (
-	AttributedStringFormattingInsertArgumentAttributesWithoutMerging AttributedStringFormattingOptions = 0
+	// AttributedStringFormattingApplyReplacementIndexAttribute - An option to apply to the replaced portions of text in a format string.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringFormattingOptions/NSAttributedStringFormattingApplyReplacementIndexAttribute
 	AttributedStringFormattingApplyReplacementIndexAttribute AttributedStringFormattingOptions = 1
+	// AttributedStringFormattingInsertArgumentAttributesWithoutMerging - An option to replace the attributes in a substituted string with those of the provided attributed string.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringFormattingOptions/NSAttributedStringFormattingInsertArgumentAttributesWithoutMerging
+	AttributedStringFormattingInsertArgumentAttributesWithoutMerging AttributedStringFormattingOptions = 0
 )
 
 // AttributedStringMarkdownInterpretedSyntax - A type that represents the syntax for intepreting a Markdown string.
@@ -873,8 +879,17 @@ const (
 type AttributedStringMarkdownInterpretedSyntax int
 
 const (
+	// AttributedStringMarkdownInterpretedSyntaxFull - A syntax value that interprets the full Markdown syntax and produces all relevant attributes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownInterpretedSyntax/NSAttributedStringMarkdownInterpretedSyntaxFull
 	AttributedStringMarkdownInterpretedSyntaxFull AttributedStringMarkdownInterpretedSyntax = 0
+	// AttributedStringMarkdownInterpretedSyntaxInlineOnly - A syntax value that parses all Markdown text, but interprets only attributes that apply to inline spans.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownInterpretedSyntax/NSAttributedStringMarkdownInterpretedSyntaxInlineOnly
 	AttributedStringMarkdownInterpretedSyntaxInlineOnly AttributedStringMarkdownInterpretedSyntax = 1
+	// AttributedStringMarkdownInterpretedSyntaxInlineOnlyPreservingWhitespace - A syntax value that parses all Markdown text, but interprets only attributes that apply to inline spans, perserving white space.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownInterpretedSyntax/NSAttributedStringMarkdownInterpretedSyntaxInlineOnlyPreservingWhitespace
 	AttributedStringMarkdownInterpretedSyntaxInlineOnlyPreservingWhitespace AttributedStringMarkdownInterpretedSyntax = 2
 )
 
@@ -884,7 +899,13 @@ const (
 type AttributedStringMarkdownParsingFailurePolicy int
 
 const (
+	// AttributedStringMarkdownParsingFailureReturnError - A policy to return an error from the initializer if parsing fails.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingFailurePolicy/NSAttributedStringMarkdownParsingFailureReturnError
 	AttributedStringMarkdownParsingFailureReturnError AttributedStringMarkdownParsingFailurePolicy = 0
+	// AttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible - A policy to return a partially parsed string, if possible.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingFailurePolicy/NSAttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible
 	AttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible AttributedStringMarkdownParsingFailurePolicy = 1
 )
 
@@ -1115,7 +1136,13 @@ const (
 type CollectionChangeType uint
 
 const (
+	// CollectionChangeInsert - A change type that represents the insertion of an object into an ordered collection.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCollectionChangeType/insert
 	CollectionChangeInsert CollectionChangeType = 0
+	// CollectionChangeRemove - A change type that represents the removal of an object from an ordered collection.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCollectionChangeType/remove
 	CollectionChangeRemove CollectionChangeType = 1
 )
 
@@ -1914,9 +1941,18 @@ const (
 type MachPortOptions uint
 
 const (
-	MachPortDeallocateNone MachPortOptions = 0
-	MachPortDeallocateSendRight MachPortOptions = 1
+	// MachPortDeallocateReceiveRight - Remove a receive right when the   object is invalidated or destroyed.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/Options/deallocateReceiveRight
 	MachPortDeallocateReceiveRight MachPortOptions = 2
+	// MachPortDeallocateSendRight - Deallocate a send right when the   object is invalidated or destroyed.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/Options/deallocateSendRight
+	MachPortDeallocateSendRight MachPortOptions = 1
+	// MachPortDeallocateNone - Do not remove any send or receive rights.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPortOptions/NSMachPortDeallocateNone
+	MachPortDeallocateNone MachPortOptions = 0
 )
 
 // OrderedCollectionDifferenceCalculationOptions - Constants that specify the options to use when creating an ordered collection difference.
@@ -2225,10 +2261,34 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/TestComparisonOperation/beginsWith
 	BeginsWithComparison TestComparisonOperation = 5
+	// ContainsComparison - Binary containment operator that results in true if the test object is a list or string that matches the other object (which is also a list or string) at any location.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/TestComparisonOperation/contains
+	ContainsComparison TestComparisonOperation = 7
+	// EndsWithComparison - Binary containment operator that results in true if the test object is a list or string that matches the end of the other object (which is also a list or string).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/TestComparisonOperation/endsWith
+	EndsWithComparison TestComparisonOperation = 6
+	// EqualToComparison - Binary comparison operator that results in true if the two objects are equal.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/TestComparisonOperation/equal
+	EqualToComparison TestComparisonOperation = 0
 	// GreaterThanComparison - Binary comparison operator that results in true if the value of the test object is greater than the value of the other object.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/TestComparisonOperation/greaterThan
 	GreaterThanComparison TestComparisonOperation = 4
+	// GreaterThanOrEqualToComparison - Binary comparison operator that results in true if the value of the test object is greater than or equal to the value of the other object.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/TestComparisonOperation/greaterThanOrEqual
+	GreaterThanOrEqualToComparison TestComparisonOperation = 3
+	// LessThanComparison - Binary comparison operator that results in true if the value of the test object is less than the value of the other object.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/TestComparisonOperation/lessThan
+	LessThanComparison TestComparisonOperation = 2
+	// LessThanOrEqualToComparison - Binary comparison operator that results in true if the value of the test object is equal to or less than the value of the other object.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/TestComparisonOperation/lessThanOrEqual
+	LessThanOrEqualToComparison TestComparisonOperation = 1
 )
 
 // StringCompareOptions - These values represent the options available to many of the string classes’ search and comparison methods.
@@ -2520,7 +2580,11 @@ const (
 type URLSessionWebSocketMessageType int
 
 const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessageType/NSURLSessionWebSocketMessageTypeData
 	URLSessionWebSocketMessageTypeData URLSessionWebSocketMessageType = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessageType/NSURLSessionWebSocketMessageTypeString
 	URLSessionWebSocketMessageTypeString URLSessionWebSocketMessageType = 1
 )
 
@@ -3037,10 +3101,109 @@ const (
 type URLCredentialPersistence uint
 
 const (
+	// URLCredentialPersistenceNone - The credential should not be stored.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/Persistence-swift.enum/none
 	URLCredentialPersistenceNone URLCredentialPersistence = 0
-	URLCredentialPersistenceForSession URLCredentialPersistence = 1
+	// URLCredentialPersistencePermanent - The credential should be stored in the keychain.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/Persistence-swift.enum/permanent
 	URLCredentialPersistencePermanent URLCredentialPersistence = 2
+	// URLCredentialPersistenceSynchronizable - The credential should be stored permanently in the keychain, and in addition should be distributed to other devices based on the owning Apple ID.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/Persistence-swift.enum/synchronizable
 	URLCredentialPersistenceSynchronizable URLCredentialPersistence = 3
+)
+
+// URLSessionDelayedRequestDisposition - The action to take on a delayed URL session task.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/DelayedRequestDisposition
+type URLSessionDelayedRequestDisposition uint
+
+const (
+	// URLSessionDelayedRequestCancel - A disposition indicating that the task should be canceled.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/DelayedRequestDisposition/cancel
+	URLSessionDelayedRequestCancel URLSessionDelayedRequestDisposition = 2
+	// URLSessionDelayedRequestContinueLoading - A disposition indicating that the task should proceed with the original request.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/DelayedRequestDisposition/continueLoading
+	URLSessionDelayedRequestContinueLoading URLSessionDelayedRequestDisposition = 0
+	// URLSessionDelayedRequestUseNewRequest - A disposition indicating that the task should use a new request to perform the network load.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/DelayedRequestDisposition/useNewRequest
+	URLSessionDelayedRequestUseNewRequest URLSessionDelayedRequestDisposition = 1
+)
+
+// URLSessionResponseDisposition - Constants indicating how a data or upload session should proceed after receiving the initial headers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/ResponseDisposition
+type URLSessionResponseDisposition uint
+
+const (
+	// URLSessionResponseAllow - Allow the load operation to continue.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/ResponseDisposition/allow
+	URLSessionResponseAllow URLSessionResponseDisposition = 1
+	// URLSessionResponseBecomeDownload - Convert the response for this request to use a  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/ResponseDisposition/becomeDownload
+	URLSessionResponseBecomeDownload URLSessionResponseDisposition = 2
+	// URLSessionResponseBecomeStream - Convert the response for this request to use a  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/ResponseDisposition/becomeStream
+	URLSessionResponseBecomeStream URLSessionResponseDisposition = 3
+	// URLSessionResponseCancel - Cancel the load.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/ResponseDisposition/cancel
+	URLSessionResponseCancel URLSessionResponseDisposition = 0
+)
+
+// URLSessionTaskMetricsDomainResolutionProtocol enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/DomainResolutionProtocol
+type URLSessionTaskMetricsDomainResolutionProtocol uint
+
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/DomainResolutionProtocol/https
+	URLSessionTaskMetricsDomainResolutionProtocolHTTPS URLSessionTaskMetricsDomainResolutionProtocol = 4
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/DomainResolutionProtocol/tcp
+	URLSessionTaskMetricsDomainResolutionProtocolTCP URLSessionTaskMetricsDomainResolutionProtocol = 2
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/DomainResolutionProtocol/tls
+	URLSessionTaskMetricsDomainResolutionProtocolTLS URLSessionTaskMetricsDomainResolutionProtocol = 3
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/DomainResolutionProtocol/udp
+	URLSessionTaskMetricsDomainResolutionProtocolUDP URLSessionTaskMetricsDomainResolutionProtocol = 1
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/DomainResolutionProtocol/unknown
+	URLSessionTaskMetricsDomainResolutionProtocolUnknown URLSessionTaskMetricsDomainResolutionProtocol = 0
+)
+
+// URLSessionTaskMetricsResourceFetchType - The manner in which a resource is fetched.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/ResourceFetchType
+type URLSessionTaskMetricsResourceFetchType uint
+
+const (
+	// URLSessionTaskMetricsResourceFetchTypeLocalCache - The resource was retrieved from the local storage.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/ResourceFetchType/localCache
+	URLSessionTaskMetricsResourceFetchTypeLocalCache URLSessionTaskMetricsResourceFetchType = 3
+	// URLSessionTaskMetricsResourceFetchTypeNetworkLoad - The resource was loaded over the network.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/ResourceFetchType/networkLoad
+	URLSessionTaskMetricsResourceFetchTypeNetworkLoad URLSessionTaskMetricsResourceFetchType = 1
+	// URLSessionTaskMetricsResourceFetchTypeServerPush - The resource was pushed by the server to the client.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/ResourceFetchType/serverPush
+	URLSessionTaskMetricsResourceFetchTypeServerPush URLSessionTaskMetricsResourceFetchType = 2
+	// URLSessionTaskMetricsResourceFetchTypeUnknown - The manner in which the resource was fetched could not be determined.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/ResourceFetchType/unknown
+	URLSessionTaskMetricsResourceFetchTypeUnknown URLSessionTaskMetricsResourceFetchType = 0
 )
 
 // URLSessionWebSocketCloseCode - A code that indicates why a WebSocket connection closed.
@@ -3049,19 +3212,58 @@ const (
 type URLSessionWebSocketCloseCode uint
 
 const (
-	URLSessionWebSocketCloseCodeInvalid URLSessionWebSocketCloseCode = 0
-	URLSessionWebSocketCloseCodeNormalClosure URLSessionWebSocketCloseCode = 1000
-	URLSessionWebSocketCloseCodeGoingAway URLSessionWebSocketCloseCode = 1001
-	URLSessionWebSocketCloseCodeProtocolError URLSessionWebSocketCloseCode = 1002
-	URLSessionWebSocketCloseCodeUnsupportedData URLSessionWebSocketCloseCode = 1003
-	URLSessionWebSocketCloseCodeNoStatusReceived URLSessionWebSocketCloseCode = 1005
+	// URLSessionWebSocketCloseCodeAbnormalClosure - A reserved code that indicates the connection closed without a close control frame.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/abnormalClosure
 	URLSessionWebSocketCloseCodeAbnormalClosure URLSessionWebSocketCloseCode = 1006
-	URLSessionWebSocketCloseCodeInvalidFramePayloadData URLSessionWebSocketCloseCode = 1007
-	URLSessionWebSocketCloseCodePolicyViolation URLSessionWebSocketCloseCode = 1008
-	URLSessionWebSocketCloseCodeMessageTooBig URLSessionWebSocketCloseCode = 1009
-	URLSessionWebSocketCloseCodeMandatoryExtensionMissing URLSessionWebSocketCloseCode = 1010
+	// URLSessionWebSocketCloseCodeGoingAway - A code that indicates an endpoint is going away.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/goingAway
+	URLSessionWebSocketCloseCodeGoingAway URLSessionWebSocketCloseCode = 1001
+	// URLSessionWebSocketCloseCodeInternalServerError - A code that indicates the server terminated the connection because it encountered an unexpected condition.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/internalServerError
 	URLSessionWebSocketCloseCodeInternalServerError URLSessionWebSocketCloseCode = 1011
+	// URLSessionWebSocketCloseCodeInvalid - A code that indicates the connection is still open.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/invalid
+	URLSessionWebSocketCloseCodeInvalid URLSessionWebSocketCloseCode = 0
+	// URLSessionWebSocketCloseCodeInvalidFramePayloadData - A code that indicates the server terminated the connection because it received data inconsistent with the message’s type.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/invalidFramePayloadData
+	URLSessionWebSocketCloseCodeInvalidFramePayloadData URLSessionWebSocketCloseCode = 1007
+	// URLSessionWebSocketCloseCodeMandatoryExtensionMissing - A code that indicates the client terminated the connection because the server didn’t negotiate a required extension.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/mandatoryExtensionMissing
+	URLSessionWebSocketCloseCodeMandatoryExtensionMissing URLSessionWebSocketCloseCode = 1010
+	// URLSessionWebSocketCloseCodeMessageTooBig - A code that indicates an endpoint is terminating the connection because it received a message too big for it to process.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/messageTooBig
+	URLSessionWebSocketCloseCodeMessageTooBig URLSessionWebSocketCloseCode = 1009
+	// URLSessionWebSocketCloseCodeNoStatusReceived - A reserved code that indicates an endpoint expected a status code and didn’t receive one.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/noStatusReceived
+	URLSessionWebSocketCloseCodeNoStatusReceived URLSessionWebSocketCloseCode = 1005
+	// URLSessionWebSocketCloseCodeNormalClosure - A code that indicates normal connection closure.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/normalClosure
+	URLSessionWebSocketCloseCodeNormalClosure URLSessionWebSocketCloseCode = 1000
+	// URLSessionWebSocketCloseCodePolicyViolation - A code that indicates an endpoint terminated the connection because it received a message that violates its policy.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/policyViolation
+	URLSessionWebSocketCloseCodePolicyViolation URLSessionWebSocketCloseCode = 1008
+	// URLSessionWebSocketCloseCodeProtocolError - A code that indicates an endpoint terminated the connection due to a protocol error.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/protocolError
+	URLSessionWebSocketCloseCodeProtocolError URLSessionWebSocketCloseCode = 1002
+	// URLSessionWebSocketCloseCodeTLSHandshakeFailure - A reserved code that indicates the connection closed due to the failure to perform a TLS handshake.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/tlsHandshakeFailure
 	URLSessionWebSocketCloseCodeTLSHandshakeFailure URLSessionWebSocketCloseCode = 1015
+	// URLSessionWebSocketCloseCodeUnsupportedData - A code that indicates an endpoint terminated the connection after receiving a type of data it can’t accept.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/CloseCode-swift.enum/unsupportedData
+	URLSessionWebSocketCloseCodeUnsupportedData URLSessionWebSocketCloseCode = 1003
 )
 
 // XMLDTDNodeKind - The type defined for the constants that specify the kind and subkind of DTD declaration represented by an 
@@ -3070,10 +3272,82 @@ const (
 type XMLDTDNodeKind uint
 
 const (
+	// XMLElementDeclarationAnyKind - Identifies an   element declaration.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/anyDeclaration
+	XMLElementDeclarationAnyKind XMLDTDNodeKind = 18
+	// XMLAttributeCDATAKind - Identifies an attribute-list declaration with a   (character data) value type.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/cdataAttribute
+	XMLAttributeCDATAKind XMLDTDNodeKind = 6
+	// XMLElementDeclarationElementKind - Identifies a declaration of an element with child elements.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/elementDeclaration
+	XMLElementDeclarationElementKind XMLDTDNodeKind = 20
+	// XMLElementDeclarationEmptyKind - Identifies a declaration ( ) of an empty element.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/emptyDeclaration
+	XMLElementDeclarationEmptyKind XMLDTDNodeKind = 17
+	// XMLAttributeEntitiesKind - Identifies an attribute-list declaration with an   value type (refers to multiple unparsed entities declared elsewhere in document).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/entitiesAttribute
+	XMLAttributeEntitiesKind XMLDTDNodeKind = 11
+	// XMLAttributeEntityKind - Identifies an attribute-list declaration with an   value type (refers to unparsed entity declared in document).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/entityAttribute
+	XMLAttributeEntityKind XMLDTDNodeKind = 10
+	// XMLAttributeEnumerationKind - Identifies an attribute-list declaration with an enumeration value type (list of all possible values).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/enumerationAttribute
+	XMLAttributeEnumerationKind XMLDTDNodeKind = 14
+	// XMLEntityGeneralKind - Identifies a general entity declaration.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/general
+	XMLEntityGeneralKind XMLDTDNodeKind = 1
+	// XMLAttributeIDKind - Identifies an attribute-list declaration with an   value type (per-document unique element name).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/idAttribute
+	XMLAttributeIDKind XMLDTDNodeKind = 7
+	// XMLAttributeIDRefKind - Identifies an attribute-list declaration with an   value type (refers to element   type).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/idRefAttribute
+	XMLAttributeIDRefKind XMLDTDNodeKind = 8
+	// XMLAttributeIDRefsKind - Identifies an attribute-list declaration with an   value type (refers to multiple elements of   type).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/idRefsAttribute
+	XMLAttributeIDRefsKind XMLDTDNodeKind = 9
+	// XMLElementDeclarationMixedKind - Identifies a declaration of an element with mixed content ( ).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/mixedDeclaration
+	XMLElementDeclarationMixedKind XMLDTDNodeKind = 19
+	// XMLAttributeNMTokenKind - Identifies an attribute-list declaration with a   value type (name token).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/nmTokenAttribute
+	XMLAttributeNMTokenKind XMLDTDNodeKind = 12
+	// XMLAttributeNMTokensKind - Identifies an attribute-list declaration with a   value type (multiple name tokens)
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/nmTokensAttribute
+	XMLAttributeNMTokensKind XMLDTDNodeKind = 13
+	// XMLAttributeNotationKind - Identifies an attribute-list declaration with a   value type (name of declared notation).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/notationAttribute
+	XMLAttributeNotationKind XMLDTDNodeKind = 15
 	// XMLEntityParameterKind - Identifies a parameter entity declaration.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/parameter
 	XMLEntityParameterKind XMLDTDNodeKind = 4
+	// XMLEntityParsedKind - Identifies a parsed entity declaration.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/parsed
+	XMLEntityParsedKind XMLDTDNodeKind = 2
+	// XMLEntityPredefined - Identifies a predefined entity declaration.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/predefined
+	XMLEntityPredefined XMLDTDNodeKind = 5
+	// XMLElementDeclarationUndefinedKind - Identifies an undefined element declaration.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/undefinedDeclaration
+	XMLElementDeclarationUndefinedKind XMLDTDNodeKind = 16
 	// XMLEntityUnparsedKind - Identifies an unparsed entity declaration.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/unparsed
@@ -3090,6 +3364,114 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXMLNodeOptions/NSXMLNodeOptionsNone
 	XMLNodeOptionsNone XMLNodeOptions = 0
+	// XMLDocumentIncludeContentTypeDeclaration - Includes a content type declaration for HTML or XHTML in the output of the document.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/documentIncludeContentTypeDeclaration
+	XMLDocumentIncludeContentTypeDeclaration XMLNodeOptions = 262144
+	// XMLDocumentTidyHTML - Formats HTML into valid XHTML during processing of the document.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/documentTidyHTML
+	XMLDocumentTidyHTML XMLNodeOptions = 512
+	// XMLDocumentTidyXML - Changes malformed XML into valid XML during processing of the document.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/documentTidyXML
+	XMLDocumentTidyXML XMLNodeOptions = 1024
+	// XMLDocumentValidate - Validates this document against its DTD (internal or external) or XML Schema.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/documentValidate
+	XMLDocumentValidate XMLNodeOptions = 8192
+	// XMLDocumentXInclude - Replaces all XInclude nodes in the document with the nodes referred to.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/documentXInclude
+	XMLDocumentXInclude XMLNodeOptions = 65536
+	// XMLNodeCompactEmptyElement - Requests that an element should be contracted when empty; for example,  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodeCompactEmptyElement
+	XMLNodeCompactEmptyElement XMLNodeOptions = 4
+	// XMLNodeExpandEmptyElement - Requests that an element should be expanded when empty; for example,  . This is the default.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodeExpandEmptyElement
+	XMLNodeExpandEmptyElement XMLNodeOptions = 2
+	// XMLNodeIsCDATA - Specifies that a text node contains and is written out as a CDATA section.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodeIsCDATA
+	XMLNodeIsCDATA XMLNodeOptions = 1
+	// XMLNodeLoadExternalEntitiesAlways - Requests that external entities are always loaded.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodeLoadExternalEntitiesAlways
+	XMLNodeLoadExternalEntitiesAlways XMLNodeOptions = 16384
+	// XMLNodeLoadExternalEntitiesNever - Requests that external entities are never loaded.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodeLoadExternalEntitiesNever
+	XMLNodeLoadExternalEntitiesNever XMLNodeOptions = 524288
+	// XMLNodeLoadExternalEntitiesSameOriginOnly - Requests that external entities are always loaded and only applies when a URL has been provided.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodeLoadExternalEntitiesSameOriginOnly
+	XMLNodeLoadExternalEntitiesSameOriginOnly XMLNodeOptions = 32768
+	// XMLNodeNeverEscapeContents - Requests that NSXML does not escape the reserved characters   and   in text nodes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodeNeverEscapeContents
+	XMLNodeNeverEscapeContents XMLNodeOptions = 32
+	// XMLNodePreserveAll - Turns on all preservation options: attribute and namespace order, entities, prefixes, CDATA, whitespace, quotes, and empty elements. You should try to turn on preservation options selectively because turning on all preservation options significantly affects performance.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePreserveAll
+	XMLNodePreserveAll XMLNodeOptions = 0
+	// XMLNodePreserveAttributeOrder - Requests that NSXMLNode preserve the order of attributes as in the source XML.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePreserveAttributeOrder
+	XMLNodePreserveAttributeOrder XMLNodeOptions = 2097152
+	// XMLNodePreserveCDATA - Requests that NSXMLNode preserve CDATA blocks where defined in the input XML.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePreserveCDATA
+	XMLNodePreserveCDATA XMLNodeOptions = 16777216
+	// XMLNodePreserveCharacterReferences - Specifies that character references ( ) should not be resolved for XML output of this node.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePreserveCharacterReferences
+	XMLNodePreserveCharacterReferences XMLNodeOptions = 134217728
+	// XMLNodePreserveDTD - Specifies that declarations in a DTD should be preserved until it the DTD is modified. For example, parameter entities are by default expanded; with this option, they are written out as they originally occur in the DTD.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePreserveDTD
+	XMLNodePreserveDTD XMLNodeOptions = 67108864
+	// XMLNodePreserveEmptyElements - Specifies that empty elements in the input XML be preserved in their contracted or expanded form.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePreserveEmptyElements
+	XMLNodePreserveEmptyElements XMLNodeOptions = 0
+	// XMLNodePreserveEntities - Specifies that entities ( ) should not be resolved for XML output of this node.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePreserveEntities
+	XMLNodePreserveEntities XMLNodeOptions = 4194304
+	// XMLNodePreserveNamespaceOrder - Requests NSXML to preserve the order of namespace URI definitions as in the source XML.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePreserveNamespaceOrder
+	XMLNodePreserveNamespaceOrder XMLNodeOptions = 1048576
+	// XMLNodePreservePrefixes - Requests NSXMLNode not to choose prefixes based on the closest namespace URI definition.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePreservePrefixes
+	XMLNodePreservePrefixes XMLNodeOptions = 8388608
+	// XMLNodePreserveQuotes - Specifies that the quoting style used in the input XML (single or double quotes) be preserved.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePreserveQuotes
+	XMLNodePreserveQuotes XMLNodeOptions = 0
+	// XMLNodePreserveWhitespace - Requests NSXMLNode to preserve whitespace characters (such as tabs and carriage returns) in the XML source that are not part of node content.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePreserveWhitespace
+	XMLNodePreserveWhitespace XMLNodeOptions = 33554432
+	// XMLNodePrettyPrint - Print this node with extra space for readability. (Output)
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePrettyPrint
+	XMLNodePrettyPrint XMLNodeOptions = 131072
+	// XMLNodePromoteSignificantWhitespace - Specifies that significant whitespace should be represented by text nodes. If   is also specified, this option has no effect.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePromoteSignificantWhitespace
+	XMLNodePromoteSignificantWhitespace XMLNodeOptions = 268435456
+	// XMLNodeUseDoubleQuotes - Requests that NSXML use double quotes for the value of an attribute or namespace node. This is the default.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodeUseDoubleQuotes
+	XMLNodeUseDoubleQuotes XMLNodeOptions = 16
+	// XMLNodeUseSingleQuotes - Requests that NSXML use single quotes for the value of an attribute or namespace node.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodeUseSingleQuotes
+	XMLNodeUseSingleQuotes XMLNodeOptions = 8
 )
 
 // XMLParserError - The following error codes are defined by 
@@ -3098,99 +3480,378 @@ const (
 type XMLParserError uint
 
 const (
-	XMLParserInternalError XMLParserError = 1
-	XMLParserOutOfMemoryError XMLParserError = 2
-	XMLParserDocumentStartError XMLParserError = 3
-	XMLParserEmptyDocumentError XMLParserError = 4
-	XMLParserPrematureDocumentEndError XMLParserError = 5
-	XMLParserInvalidHexCharacterRefError XMLParserError = 6
-	XMLParserInvalidDecimalCharacterRefError XMLParserError = 7
-	XMLParserInvalidCharacterRefError XMLParserError = 8
-	XMLParserInvalidCharacterError XMLParserError = 9
-	XMLParserCharacterRefAtEOFError XMLParserError = 10
-	XMLParserCharacterRefInPrologError XMLParserError = 11
-	XMLParserCharacterRefInEpilogError XMLParserError = 12
-	XMLParserCharacterRefInDTDError XMLParserError = 13
-	XMLParserEntityRefAtEOFError XMLParserError = 14
-	XMLParserEntityRefInPrologError XMLParserError = 15
-	XMLParserEntityRefInEpilogError XMLParserError = 16
-	XMLParserEntityRefInDTDError XMLParserError = 17
-	XMLParserParsedEntityRefAtEOFError XMLParserError = 18
-	XMLParserParsedEntityRefInPrologError XMLParserError = 19
-	XMLParserParsedEntityRefInEpilogError XMLParserError = 20
-	XMLParserParsedEntityRefInInternalSubsetError XMLParserError = 21
-	XMLParserEntityReferenceWithoutNameError XMLParserError = 22
-	XMLParserEntityReferenceMissingSemiError XMLParserError = 23
-	XMLParserParsedEntityRefNoNameError XMLParserError = 24
-	XMLParserParsedEntityRefMissingSemiError XMLParserError = 25
-	XMLParserUndeclaredEntityError XMLParserError = 26
-	XMLParserUnparsedEntityError XMLParserError = 28
-	XMLParserEntityIsExternalError XMLParserError = 29
-	XMLParserEntityIsParameterError XMLParserError = 30
-	XMLParserUnknownEncodingError XMLParserError = 31
-	XMLParserEncodingNotSupportedError XMLParserError = 32
-	XMLParserStringNotStartedError XMLParserError = 33
-	XMLParserStringNotClosedError XMLParserError = 34
-	XMLParserNamespaceDeclarationError XMLParserError = 35
-	XMLParserEntityNotStartedError XMLParserError = 36
-	XMLParserEntityNotFinishedError XMLParserError = 37
-	XMLParserLessThanSymbolInAttributeError XMLParserError = 38
-	XMLParserAttributeNotStartedError XMLParserError = 39
-	XMLParserAttributeNotFinishedError XMLParserError = 40
+	// XMLParserAttributeHasNoValueError - Attribute doesn’t contain a value.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/attributeHasNoValueError
 	XMLParserAttributeHasNoValueError XMLParserError = 41
-	XMLParserAttributeRedefinedError XMLParserError = 42
-	XMLParserLiteralNotStartedError XMLParserError = 43
-	XMLParserLiteralNotFinishedError XMLParserError = 44
-	XMLParserCommentNotFinishedError XMLParserError = 45
-	XMLParserProcessingInstructionNotStartedError XMLParserError = 46
-	XMLParserProcessingInstructionNotFinishedError XMLParserError = 47
-	XMLParserNotationNotStartedError XMLParserError = 48
-	XMLParserNotationNotFinishedError XMLParserError = 49
-	XMLParserAttributeListNotStartedError XMLParserError = 50
+	// XMLParserAttributeListNotFinishedError - Attribute list is not finished.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/attributeListNotFinishedError
 	XMLParserAttributeListNotFinishedError XMLParserError = 51
-	XMLParserMixedContentDeclNotStartedError XMLParserError = 52
-	XMLParserMixedContentDeclNotFinishedError XMLParserError = 53
-	XMLParserElementContentDeclNotStartedError XMLParserError = 54
-	XMLParserElementContentDeclNotFinishedError XMLParserError = 55
-	XMLParserXMLDeclNotStartedError XMLParserError = 56
-	XMLParserXMLDeclNotFinishedError XMLParserError = 57
-	XMLParserConditionalSectionNotStartedError XMLParserError = 58
-	XMLParserConditionalSectionNotFinishedError XMLParserError = 59
-	XMLParserExternalSubsetNotFinishedError XMLParserError = 60
-	XMLParserDOCTYPEDeclNotFinishedError XMLParserError = 61
-	XMLParserMisplacedCDATAEndStringError XMLParserError = 62
+	// XMLParserAttributeListNotStartedError - Attribute list is not started.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/attributeListNotStartedError
+	XMLParserAttributeListNotStartedError XMLParserError = 50
+	// XMLParserAttributeNotFinishedError - Attribute is not finished.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/attributeNotFinishedError
+	XMLParserAttributeNotFinishedError XMLParserError = 40
+	// XMLParserAttributeNotStartedError - Attribute is not started.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/attributeNotStartedError
+	XMLParserAttributeNotStartedError XMLParserError = 39
+	// XMLParserAttributeRedefinedError - Attribute is redefined.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/attributeRedefinedError
+	XMLParserAttributeRedefinedError XMLParserError = 42
+	// XMLParserCDATANotFinishedError - CDATA block is not finished.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/cdataNotFinishedError
 	XMLParserCDATANotFinishedError XMLParserError = 63
-	XMLParserMisplacedXMLDeclarationError XMLParserError = 64
-	XMLParserSpaceRequiredError XMLParserError = 65
-	XMLParserSeparatorRequiredError XMLParserError = 66
-	XMLParserNMTOKENRequiredError XMLParserError = 67
-	XMLParserNAMERequiredError XMLParserError = 68
-	XMLParserPCDATARequiredError XMLParserError = 69
-	XMLParserURIRequiredError XMLParserError = 70
-	XMLParserPublicIdentifierRequiredError XMLParserError = 71
-	XMLParserLTRequiredError XMLParserError = 72
-	XMLParserGTRequiredError XMLParserError = 73
-	XMLParserLTSlashRequiredError XMLParserError = 74
-	XMLParserEqualExpectedError XMLParserError = 75
-	XMLParserTagNameMismatchError XMLParserError = 76
-	XMLParserUnfinishedTagError XMLParserError = 77
-	XMLParserStandaloneValueError XMLParserError = 78
-	XMLParserInvalidEncodingNameError XMLParserError = 79
+	// XMLParserCharacterRefAtEOFError - Target of character reference cannot be found.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/characterRefAtEOFError
+	XMLParserCharacterRefAtEOFError XMLParserError = 10
+	// XMLParserCharacterRefInDTDError - Invalid character encountered in the DTD.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/characterRefInDTDError
+	XMLParserCharacterRefInDTDError XMLParserError = 13
+	// XMLParserCharacterRefInEpilogError - Invalid character found in the epilog.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/characterRefInEpilogError
+	XMLParserCharacterRefInEpilogError XMLParserError = 12
+	// XMLParserCharacterRefInPrologError - Invalid character found in the prolog.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/characterRefInPrologError
+	XMLParserCharacterRefInPrologError XMLParserError = 11
+	// XMLParserCommentContainsDoubleHyphenError - Comment contains double hyphen.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/commentContainsDoubleHyphenError
 	XMLParserCommentContainsDoubleHyphenError XMLParserError = 80
-	XMLParserInvalidEncodingError XMLParserError = 81
-	XMLParserExternalStandaloneEntityError XMLParserError = 82
-	XMLParserInvalidConditionalSectionError XMLParserError = 83
-	XMLParserEntityValueRequiredError XMLParserError = 84
-	XMLParserNotWellBalancedError XMLParserError = 85
-	XMLParserExtraContentError XMLParserError = 86
-	XMLParserInvalidCharacterInEntityError XMLParserError = 87
-	XMLParserParsedEntityRefInInternalError XMLParserError = 88
-	XMLParserEntityRefLoopError XMLParserError = 89
-	XMLParserEntityBoundaryError XMLParserError = 90
-	XMLParserInvalidURIError XMLParserError = 91
-	XMLParserURIFragmentError XMLParserError = 92
-	XMLParserNoDTDError XMLParserError = 94
+	// XMLParserCommentNotFinishedError - Comment is not finished.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/commentNotFinishedError
+	XMLParserCommentNotFinishedError XMLParserError = 45
+	// XMLParserConditionalSectionNotFinishedError - Conditional section is not finished.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/conditionalSectionNotFinishedError
+	XMLParserConditionalSectionNotFinishedError XMLParserError = 59
+	// XMLParserConditionalSectionNotStartedError - Conditional section is not started.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/conditionalSectionNotStartedError
+	XMLParserConditionalSectionNotStartedError XMLParserError = 58
+	// XMLParserDelegateAbortedParseError - Delegate aborted parse.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/delegateAbortedParseError
 	XMLParserDelegateAbortedParseError XMLParserError = 512
+	// XMLParserDOCTYPEDeclNotFinishedError - Document type declaration is not finished.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/doctypeDeclNotFinishedError
+	XMLParserDOCTYPEDeclNotFinishedError XMLParserError = 61
+	// XMLParserDocumentStartError - The parser object is unable to start parsing.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/documentStartError
+	XMLParserDocumentStartError XMLParserError = 3
+	// XMLParserElementContentDeclNotFinishedError - Element content declaration is not finished.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/elementContentDeclNotFinishedError
+	XMLParserElementContentDeclNotFinishedError XMLParserError = 55
+	// XMLParserElementContentDeclNotStartedError - Element content declaration is not started.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/elementContentDeclNotStartedError
+	XMLParserElementContentDeclNotStartedError XMLParserError = 54
+	// XMLParserEmptyDocumentError - The document is empty.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/emptyDocumentError
+	XMLParserEmptyDocumentError XMLParserError = 4
+	// XMLParserEncodingNotSupportedError - Document encoding is not supported.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/encodingNotSupportedError
+	XMLParserEncodingNotSupportedError XMLParserError = 32
+	// XMLParserEntityBoundaryError - Entity boundary error.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/entityBoundaryError
+	XMLParserEntityBoundaryError XMLParserError = 90
+	// XMLParserEntityIsExternalError - Cannot parse external entity.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/entityIsExternalError
+	XMLParserEntityIsExternalError XMLParserError = 29
+	// XMLParserEntityIsParameterError - Entity is a parameter.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/entityIsParameterError
+	XMLParserEntityIsParameterError XMLParserError = 30
+	// XMLParserEntityNotFinishedError - Entity is not finished.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/entityNotFinishedError
+	XMLParserEntityNotFinishedError XMLParserError = 37
+	// XMLParserEntityNotStartedError - Entity is not started.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/entityNotStartedError
+	XMLParserEntityNotStartedError XMLParserError = 36
+	// XMLParserEntityRefAtEOFError - Target of entity reference is not found.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/entityRefAtEOFError
+	XMLParserEntityRefAtEOFError XMLParserError = 14
+	// XMLParserEntityRefInDTDError - Invalid entity reference found in the DTD.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/entityRefInDTDError
+	XMLParserEntityRefInDTDError XMLParserError = 17
+	// XMLParserEntityRefInEpilogError - Invalid entity reference found in the epilog.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/entityRefInEpilogError
+	XMLParserEntityRefInEpilogError XMLParserError = 16
+	// XMLParserEntityRefInPrologError - Invalid entity reference found in the prolog.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/entityRefInPrologError
+	XMLParserEntityRefInPrologError XMLParserError = 15
+	// XMLParserEntityRefLoopError - Entity reference loop encountered.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/entityRefLoopError
+	XMLParserEntityRefLoopError XMLParserError = 89
+	// XMLParserEntityReferenceMissingSemiError - Entity reference is missing semicolon.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/entityReferenceMissingSemiError
+	XMLParserEntityReferenceMissingSemiError XMLParserError = 23
+	// XMLParserEntityReferenceWithoutNameError - Entity reference is without name.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/entityReferenceWithoutNameError
+	XMLParserEntityReferenceWithoutNameError XMLParserError = 22
+	// XMLParserEntityValueRequiredError - Entity value is required.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/entityValueRequiredError
+	XMLParserEntityValueRequiredError XMLParserError = 84
+	// XMLParserEqualExpectedError - Equal sign expected.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/equalExpectedError
+	XMLParserEqualExpectedError XMLParserError = 75
+	// XMLParserExternalStandaloneEntityError - External standalone entity.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/externalStandaloneEntityError
+	XMLParserExternalStandaloneEntityError XMLParserError = 82
+	// XMLParserExternalSubsetNotFinishedError - External subset is not finished.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/externalSubsetNotFinishedError
+	XMLParserExternalSubsetNotFinishedError XMLParserError = 60
+	// XMLParserExtraContentError - Error in content found.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/extraContentError
+	XMLParserExtraContentError XMLParserError = 86
+	// XMLParserGTRequiredError - Right angle bracket is required.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/gtRequiredError
+	XMLParserGTRequiredError XMLParserError = 73
+	// XMLParserInternalError - The parser object encountered an internal error.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/internalError
+	XMLParserInternalError XMLParserError = 1
+	// XMLParserInvalidCharacterError - Invalid character encountered.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/invalidCharacterError
+	XMLParserInvalidCharacterError XMLParserError = 9
+	// XMLParserInvalidCharacterInEntityError - Invalid character in entity found.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/invalidCharacterInEntityError
+	XMLParserInvalidCharacterInEntityError XMLParserError = 87
+	// XMLParserInvalidCharacterRefError - Invalid character reference encountered.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/invalidCharacterRefError
+	XMLParserInvalidCharacterRefError XMLParserError = 8
+	// XMLParserInvalidConditionalSectionError - Invalid conditional section.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/invalidConditionalSectionError
+	XMLParserInvalidConditionalSectionError XMLParserError = 83
+	// XMLParserInvalidDecimalCharacterRefError - Invalid decimal character reference encountered.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/invalidDecimalCharacterRefError
+	XMLParserInvalidDecimalCharacterRefError XMLParserError = 7
+	// XMLParserInvalidEncodingError - Invalid encoding.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/invalidEncodingError
+	XMLParserInvalidEncodingError XMLParserError = 81
+	// XMLParserInvalidEncodingNameError - Invalid encoding name found.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/invalidEncodingNameError
+	XMLParserInvalidEncodingNameError XMLParserError = 79
+	// XMLParserInvalidHexCharacterRefError - Invalid hexadecimal character reference encountered.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/invalidHexCharacterRefError
+	XMLParserInvalidHexCharacterRefError XMLParserError = 6
+	// XMLParserInvalidURIError - Invalid URI specified.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/invalidURIError
+	XMLParserInvalidURIError XMLParserError = 91
+	// XMLParserLessThanSymbolInAttributeError - Angle bracket is used in attribute.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/lessThanSymbolInAttributeError
+	XMLParserLessThanSymbolInAttributeError XMLParserError = 38
+	// XMLParserLiteralNotFinishedError - Literal is not finished.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/literalNotFinishedError
+	XMLParserLiteralNotFinishedError XMLParserError = 44
+	// XMLParserLiteralNotStartedError - Literal is not started.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/literalNotStartedError
+	XMLParserLiteralNotStartedError XMLParserError = 43
+	// XMLParserLTRequiredError - Left angle bracket is required.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/ltRequiredError
+	XMLParserLTRequiredError XMLParserError = 72
+	// XMLParserLTSlashRequiredError - Left angle bracket slash is required.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/ltSlashRequiredError
+	XMLParserLTSlashRequiredError XMLParserError = 74
+	// XMLParserMisplacedCDATAEndStringError - Misplaced CDATA end string.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/misplacedCDATAEndStringError
+	XMLParserMisplacedCDATAEndStringError XMLParserError = 62
+	// XMLParserMisplacedXMLDeclarationError - Misplaced XML declaration.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/misplacedXMLDeclarationError
+	XMLParserMisplacedXMLDeclarationError XMLParserError = 64
+	// XMLParserMixedContentDeclNotFinishedError - Mixed content declaration is not finished.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/mixedContentDeclNotFinishedError
+	XMLParserMixedContentDeclNotFinishedError XMLParserError = 53
+	// XMLParserMixedContentDeclNotStartedError - Mixed content declaration is not started.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/mixedContentDeclNotStartedError
+	XMLParserMixedContentDeclNotStartedError XMLParserError = 52
+	// XMLParserNAMERequiredError - Name is required.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/nameRequiredError
+	XMLParserNAMERequiredError XMLParserError = 68
+	// XMLParserNamespaceDeclarationError - Invalid namespace declaration encountered.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/namespaceDeclarationError
+	XMLParserNamespaceDeclarationError XMLParserError = 35
+	// XMLParserNMTOKENRequiredError - Name token is required.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/nmtokenRequiredError
+	XMLParserNMTOKENRequiredError XMLParserError = 67
+	// XMLParserNoDTDError - Missing DTD.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/noDTDError
+	XMLParserNoDTDError XMLParserError = 94
+	// XMLParserNotWellBalancedError - Document is not well balanced.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/notWellBalancedError
+	XMLParserNotWellBalancedError XMLParserError = 85
+	// XMLParserNotationNotFinishedError - Notation is not finished.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/notationNotFinishedError
+	XMLParserNotationNotFinishedError XMLParserError = 49
+	// XMLParserNotationNotStartedError - Notation is not started.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/notationNotStartedError
+	XMLParserNotationNotStartedError XMLParserError = 48
+	// XMLParserOutOfMemoryError - The parser object ran out of memory.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/outOfMemoryError
+	XMLParserOutOfMemoryError XMLParserError = 2
+	// XMLParserParsedEntityRefAtEOFError - Target of parsed entity reference is not found.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/parsedEntityRefAtEOFError
+	XMLParserParsedEntityRefAtEOFError XMLParserError = 18
+	// XMLParserParsedEntityRefInEpilogError - Target of parsed entity reference is not found in epilog.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/parsedEntityRefInEpilogError
+	XMLParserParsedEntityRefInEpilogError XMLParserError = 20
+	// XMLParserParsedEntityRefInInternalError - Internal error in parsed entity reference found.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/parsedEntityRefInInternalError
+	XMLParserParsedEntityRefInInternalError XMLParserError = 88
+	// XMLParserParsedEntityRefInInternalSubsetError - Target of parsed entity reference is not found in internal subset.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/parsedEntityRefInInternalSubsetError
+	XMLParserParsedEntityRefInInternalSubsetError XMLParserError = 21
+	// XMLParserParsedEntityRefInPrologError - Target of parsed entity reference is not found in prolog.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/parsedEntityRefInPrologError
+	XMLParserParsedEntityRefInPrologError XMLParserError = 19
+	// XMLParserParsedEntityRefMissingSemiError - Parsed entity reference is missing semicolon.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/parsedEntityRefMissingSemiError
+	XMLParserParsedEntityRefMissingSemiError XMLParserError = 25
+	// XMLParserParsedEntityRefNoNameError - Parsed entity reference is without an entity name.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/parsedEntityRefNoNameError
+	XMLParserParsedEntityRefNoNameError XMLParserError = 24
+	// XMLParserPCDATARequiredError - CDATA is required.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/pcdataRequiredError
+	XMLParserPCDATARequiredError XMLParserError = 69
+	// XMLParserPrematureDocumentEndError - The document ended unexpectedly.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/prematureDocumentEndError
+	XMLParserPrematureDocumentEndError XMLParserError = 5
+	// XMLParserProcessingInstructionNotFinishedError - Processing instruction is not finished.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/processingInstructionNotFinishedError
+	XMLParserProcessingInstructionNotFinishedError XMLParserError = 47
+	// XMLParserProcessingInstructionNotStartedError - Processing instruction is not started.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/processingInstructionNotStartedError
+	XMLParserProcessingInstructionNotStartedError XMLParserError = 46
+	// XMLParserPublicIdentifierRequiredError - Public identifier is required.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/publicIdentifierRequiredError
+	XMLParserPublicIdentifierRequiredError XMLParserError = 71
+	// XMLParserSeparatorRequiredError - Separator is required.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/separatorRequiredError
+	XMLParserSeparatorRequiredError XMLParserError = 66
+	// XMLParserSpaceRequiredError - Space is required.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/spaceRequiredError
+	XMLParserSpaceRequiredError XMLParserError = 65
+	// XMLParserStandaloneValueError - Standalone value found.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/standaloneValueError
+	XMLParserStandaloneValueError XMLParserError = 78
+	// XMLParserStringNotClosedError - String is not closed.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/stringNotClosedError
+	XMLParserStringNotClosedError XMLParserError = 34
+	// XMLParserStringNotStartedError - String is not started.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/stringNotStartedError
+	XMLParserStringNotStartedError XMLParserError = 33
+	// XMLParserTagNameMismatchError - Tag name mismatch.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/tagNameMismatchError
+	XMLParserTagNameMismatchError XMLParserError = 76
+	// XMLParserUndeclaredEntityError - Entity is not declared.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/undeclaredEntityError
+	XMLParserUndeclaredEntityError XMLParserError = 26
+	// XMLParserUnfinishedTagError - Unfinished tag found.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/unfinishedTagError
+	XMLParserUnfinishedTagError XMLParserError = 77
+	// XMLParserUnknownEncodingError - Document encoding is unknown.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/unknownEncodingError
+	XMLParserUnknownEncodingError XMLParserError = 31
+	// XMLParserUnparsedEntityError - Cannot parse entity.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/unparsedEntityError
+	XMLParserUnparsedEntityError XMLParserError = 28
+	// XMLParserURIFragmentError - URI fragment.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/uriFragmentError
+	XMLParserURIFragmentError XMLParserError = 92
+	// XMLParserURIRequiredError - URI is required.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/uriRequiredError
+	XMLParserURIRequiredError XMLParserError = 70
+	// XMLParserXMLDeclNotFinishedError - XML declaration is not finished.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/xmlDeclNotFinishedError
+	XMLParserXMLDeclNotFinishedError XMLParserError = 57
+	// XMLParserXMLDeclNotStartedError - XML declaration is not started.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode/xmlDeclNotStartedError
+	XMLParserXMLDeclNotStartedError XMLParserError = 56
 )
 
 // XMLParserExternalEntityResolvingPolicy enum type
@@ -3199,10 +3860,18 @@ const (
 type XMLParserExternalEntityResolvingPolicy uint
 
 const (
-	XMLParserResolveExternalEntitiesNever XMLParserExternalEntityResolvingPolicy = 0
-	XMLParserResolveExternalEntitiesNoNetwork XMLParserExternalEntityResolvingPolicy = 1
-	XMLParserResolveExternalEntitiesSameOriginOnly XMLParserExternalEntityResolvingPolicy = 2
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ExternalEntityResolvingPolicy-swift.enum/always
 	XMLParserResolveExternalEntitiesAlways XMLParserExternalEntityResolvingPolicy = 3
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ExternalEntityResolvingPolicy-swift.enum/never
+	XMLParserResolveExternalEntitiesNever XMLParserExternalEntityResolvingPolicy = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ExternalEntityResolvingPolicy-swift.enum/noNetwork
+	XMLParserResolveExternalEntitiesNoNetwork XMLParserExternalEntityResolvingPolicy = 1
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ExternalEntityResolvingPolicy-swift.enum/sameOriginOnly
+	XMLParserResolveExternalEntitiesSameOriginOnly XMLParserExternalEntityResolvingPolicy = 2
 )
 
 

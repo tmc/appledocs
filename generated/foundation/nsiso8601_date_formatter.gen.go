@@ -130,7 +130,7 @@ func (i_ ISO8601DateFormatter) StringFromDate(date IDate) IString {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/formatOptions
 func (i_ ISO8601DateFormatter) FormatOptions() ISO8601DateFormatOptions {
-	rv := objc.Send[ISO8601DateFormatOptions](i_.ID, objc.Sel("formatOptions"))
+	rv := objc.Send[objc.ID](i_.ID, objc.Sel("formatOptions"))
 	return rv
 }
 

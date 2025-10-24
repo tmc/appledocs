@@ -275,7 +275,7 @@ func (t_ Task) SetCurrentDirectoryURL(value IURL) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/environment
 func (t_ Task) Environment() IDictionary {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("environment"))
+	rv := objc.Send[Dictionary](t_.ID, objc.Sel("environment"))
 	return rv
 }
 

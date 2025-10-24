@@ -137,7 +137,7 @@ func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary IDictionary
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/dictionary(fromTXTRecord:)
 func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData IData) IDictionary {
-	rv := objc.Send[objc.ID](objc.ID(nc.class), objc.Sel("dictionaryFromTXTRecordData:"), txtData)
+	rv := objc.Send[Dictionary](objc.ID(nc.class), objc.Sel("dictionaryFromTXTRecordData:"), txtData)
 	return rv
 }
 

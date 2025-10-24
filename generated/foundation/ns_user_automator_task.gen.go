@@ -106,7 +106,7 @@ func (u_ UserAutomatorTask) ExecuteWithInputCompletionHandler(input objectivec.I
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask/variables
 func (u_ UserAutomatorTask) Variables() IDictionary {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("variables"))
+	rv := objc.Send[Dictionary](u_.ID, objc.Sel("variables"))
 	return rv
 }
 

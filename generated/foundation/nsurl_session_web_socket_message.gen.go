@@ -31,6 +31,9 @@ type _URLSessionWebSocketMessageClass struct {
 type IURLSessionWebSocketMessage interface {
 	objectivec.IObject
 	// properties:
+	Data() IData
+	String() IString
+	Type() URLSessionWebSocketMessageType
 	// methods:
 }
 
@@ -79,5 +82,49 @@ func NewURLSessionWebSocketMessage() URLSessionWebSocketMessage {
 }
 
 
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage/initWithData:
+func NewURLSessionWebSocketMessageWithData(data IData) URLSessionWebSocketMessage {
+	instance := getURLSessionWebSocketMessageClass().Alloc()
+	rv := objc.Send[URLSessionWebSocketMessage](instance.ID, objc.Sel("initWithData:"), data)
+	rv.Autorelease()
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage/initWithString:
+func NewURLSessionWebSocketMessageWithString(string_ IString) URLSessionWebSocketMessage {
+	instance := getURLSessionWebSocketMessageClass().Alloc()
+	rv := objc.Send[URLSessionWebSocketMessage](instance.ID, objc.Sel("initWithString:"), string_)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage/data
+func (u_ URLSessionWebSocketMessage) Data() IData {
+	rv := objc.Send[Data](u_.ID, objc.Sel("data"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage/string
+func (u_ URLSessionWebSocketMessage) String() IString {
+	rv := objc.Send[String](u_.ID, objc.Sel("string"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage/type
+func (u_ URLSessionWebSocketMessage) Type() URLSessionWebSocketMessageType {
+	rv := objc.Send[URLSessionWebSocketMessageType](u_.ID, objc.Sel("type"))
+	return rv
+}
 
 

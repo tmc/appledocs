@@ -108,7 +108,7 @@ func NewFileManager() FileManager {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/attributesOfItem(atPath:)
 func (f_ FileManager) AttributesOfItemAtPathError(path IString, error_ IError) IDictionary {
-	rv := objc.Send[objc.ID](f_.ID, objc.Sel("attributesOfItemAtPath:error:"), path, error_)
+	rv := objc.Send[Dictionary](f_.ID, objc.Sel("attributesOfItemAtPath:error:"), path, error_)
 	return rv
 }
 

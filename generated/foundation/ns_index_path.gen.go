@@ -37,7 +37,7 @@ type IIndexPath interface {
 	// methods:
 	IndexPathByAddingIndex(index uint) IIndexPath
 	Compare(otherObject IIndexPath) ComparisonResult
-	GetIndexesRange(indexes UInteger /* not a class type */, positionRange objc.IObject /* cross-framework: Range */)
+	GetIndexesRange(indexes uint, positionRange objc.IObject /* cross-framework: Range */)
 	IndexAtPosition(position uint) uint
 	IndexPathByRemovingLastIndex() IIndexPath
 }
@@ -204,7 +204,7 @@ func (i_ IndexPath) Compare(otherObject IIndexPath) ComparisonResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/getIndexes(_:range:)
-func (i_ IndexPath) GetIndexesRange(indexes UInteger /* not a class type */, positionRange objc.IObject /* cross-framework: Range */) {
+func (i_ IndexPath) GetIndexesRange(indexes uint, positionRange objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("getIndexes:range:"), indexes, positionRange)
 }
 

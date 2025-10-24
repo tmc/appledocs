@@ -1,0 +1,193 @@
+// Code generated from Apple documentation for IOBluetooth. DO NOT EDIT.
+
+package iobluetooth_test
+
+import (
+	"github.com/tmc/appledocs/generated/iobluetooth"
+)
+
+// Suppress unused import errors
+var _ = iobluetooth.NewBluetoothDevice
+
+// ExampleBluetoothDevice_AddToFavorites demonstrates using AddToFavorites on a BluetoothDevice instance.
+// Adds the target device to the user’s favorite devices list.
+func ExampleBluetoothDevice_AddToFavorites() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.AddToFavorites()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_CloseConnection demonstrates using CloseConnection on a BluetoothDevice instance.
+// Close down the baseband connection to the device.
+func ExampleBluetoothDevice_CloseConnection() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.CloseConnection()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_GetAddress demonstrates using GetAddress on a BluetoothDevice instance.
+// Get the Bluetooth device address for the target device.
+func ExampleBluetoothDevice_GetAddress() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.GetAddress()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_GetClockOffset demonstrates using GetClockOffset on a BluetoothDevice instance.
+// Get the clock offset value of the device.
+func ExampleBluetoothDevice_GetClockOffset() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.GetClockOffset()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_GetEncryptionMode demonstrates using GetEncryptionMode on a BluetoothDevice instance.
+// Get the encryption mode for the baseband connection.
+func ExampleBluetoothDevice_GetEncryptionMode() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.GetEncryptionMode()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_GetLastInquiryUpdate demonstrates using GetLastInquiryUpdate on a BluetoothDevice instance.
+// Get the date/time of the last time the device was returned during an inquiry.
+func ExampleBluetoothDevice_GetLastInquiryUpdate() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.GetLastInquiryUpdate()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_GetLastServicesUpdate demonstrates using GetLastServicesUpdate on a BluetoothDevice instance.
+// Get the date/time of the last SDP query.
+func ExampleBluetoothDevice_GetLastServicesUpdate() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.GetLastServicesUpdate()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_GetLinkType demonstrates using GetLinkType on a BluetoothDevice instance.
+// Get the link type for the baseband connection.
+func ExampleBluetoothDevice_GetLinkType() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.GetLinkType()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_GetPageScanMode demonstrates using GetPageScanMode on a BluetoothDevice instance.
+// Get the page scan mode for the device.
+func ExampleBluetoothDevice_GetPageScanMode() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.GetPageScanMode()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_GetPageScanPeriodMode demonstrates using GetPageScanPeriodMode on a BluetoothDevice instance.
+// Get the value of the page scan period mode for the device.
+func ExampleBluetoothDevice_GetPageScanPeriodMode() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.GetPageScanPeriodMode()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_GetPageScanRepetitionMode demonstrates using GetPageScanRepetitionMode on a BluetoothDevice instance.
+// Get the value of the page scan repetition mode for the device.
+func ExampleBluetoothDevice_GetPageScanRepetitionMode() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.GetPageScanRepetitionMode()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_HandsFreeAudioGatewayServiceRecord demonstrates using HandsFreeAudioGatewayServiceRecord on a BluetoothDevice instance.
+func ExampleBluetoothDevice_HandsFreeAudioGatewayServiceRecord() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.HandsFreeAudioGatewayServiceRecord()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_HandsFreeDeviceServiceRecord demonstrates using HandsFreeDeviceServiceRecord on a BluetoothDevice instance.
+func ExampleBluetoothDevice_HandsFreeDeviceServiceRecord() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.HandsFreeDeviceServiceRecord()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_IsConnected demonstrates using IsConnected on a BluetoothDevice instance.
+// Indicates whether a baseband connection to the device exists.
+func ExampleBluetoothDevice_IsConnected() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.IsConnected()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_IsFavorite demonstrates using IsFavorite on a BluetoothDevice instance.
+// Reports whether the target device is a favorite for the user.
+func ExampleBluetoothDevice_IsFavorite() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.IsFavorite()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_IsIncoming demonstrates using IsIncoming on a BluetoothDevice instance.
+// Returns TRUE if the device connection was generated by the remote host.
+func ExampleBluetoothDevice_IsIncoming() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.IsIncoming()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_IsPaired demonstrates using IsPaired on a BluetoothDevice instance.
+// Returns whether the target device is paired.
+func ExampleBluetoothDevice_IsPaired() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.IsPaired()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_OpenConnection demonstrates using OpenConnection on a BluetoothDevice instance.
+// Create a baseband connection to the device.
+func ExampleBluetoothDevice_OpenConnection() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.OpenConnection()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_RawRSSI demonstrates using RawRSSI on a BluetoothDevice instance.
+// Get the raw RSSI device (if connected).
+func ExampleBluetoothDevice_RawRSSI() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.RawRSSI()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_RecentAccessDate demonstrates using RecentAccessDate on a BluetoothDevice instance.
+// Returns the date/time of the most recent access of the target device.
+func ExampleBluetoothDevice_RecentAccessDate() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.RecentAccessDate()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_RemoveFromFavorites demonstrates using RemoveFromFavorites on a BluetoothDevice instance.
+// Removes the target device from the user’s favorite devices list.
+func ExampleBluetoothDevice_RemoveFromFavorites() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.RemoveFromFavorites()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_RequestAuthentication demonstrates using RequestAuthentication on a BluetoothDevice instance.
+// Requests that the existing baseband connection be authenticated.
+func ExampleBluetoothDevice_RequestAuthentication() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.RequestAuthentication()
+	// Output:
+	}
+
+// ExampleBluetoothDevice_RSSI demonstrates using RSSI on a BluetoothDevice instance.
+// Get the RSSI device (if connected), above or below the golden range. If the RSSI is within the golden range, a value of 0 is returned. For the actual RSSI value, use getRawRSSI. For more information, see the Bluetooth 4.0 Core Specification.
+func ExampleBluetoothDevice_RSSI() {
+	obj := iobluetooth.NewBluetoothDevice()
+	_ = obj.RSSI()
+	// Output:
+	}
+

@@ -35,6 +35,10 @@ type IExtensionContext interface {
 	SetHostedViewMaximumAllowedSize(value objc.IObject /* cross-framework: Size */)
 	InputItems() unsafe.Pointer
 	SetInputItems(value unsafe.Pointer)
+	Intent() objectivec.IObject
+	SetIntent(value objectivec.IObject)
+	NotificationActions() objectivec.IObject
+	SetNotificationActions(value objectivec.IObject)
 	WidgetActiveDisplayMode() unsafe.Pointer
 	SetWidgetActiveDisplayMode(value unsafe.Pointer)
 	WidgetLargestAvailableDisplayMode() unsafe.Pointer
@@ -131,6 +135,40 @@ func (e_ ExtensionContext) InputItems() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensioncontext/inputitems
 func (e_ ExtensionContext) SetInputItems(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setInputItems:"), value)
+}
+
+
+// Metadata for populating your share extensions interface.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensioncontext/intent
+func (e_ ExtensionContext) Intent() objectivec.IObject {
+	rv := objc.Send[objc.ID](e_.ID, objc.Sel("intent"))
+	return rv
+}
+
+
+// Metadata for populating your share extensions interface.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensioncontext/intent
+func (e_ ExtensionContext) SetIntent(value objectivec.IObject) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setIntent:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensioncontext/notificationactions
+func (e_ ExtensionContext) NotificationActions() objectivec.IObject {
+	rv := objc.Send[objc.ID](e_.ID, objc.Sel("notificationActions"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensioncontext/notificationactions
+func (e_ ExtensionContext) SetNotificationActions(value objectivec.IObject) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setNotificationActions:"), value)
 }
 
 

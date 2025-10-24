@@ -31,6 +31,7 @@ type _UserActivityClass struct {
 type IUserActivity interface {
 	objectivec.IObject
 	// properties:
+	Interaction() objectivec.IObject
 	TVUserActivityTypeBrowsingChannelGuide() IString
 	ActivityItemsConfiguration() objectivec.IObject
 	SetActivityItemsConfiguration(value objectivec.IObject)
@@ -40,6 +41,8 @@ type IUserActivity interface {
 	SetAppClipActivationPayload(value unsafe.Pointer)
 	AppEntityIdentifier() unsafe.Pointer
 	SetAppEntityIdentifier(value unsafe.Pointer)
+	ContentAttributeSet() objectivec.IObject
+	SetContentAttributeSet(value objectivec.IObject)
 	ContextIdentifierPath() IString
 	SetContextIdentifierPath(value IString)
 	Delegate() UserActivityDelegate /* not a class type */
@@ -62,6 +65,8 @@ type IUserActivity interface {
 	SetIsEligibleForSearch(value bool)
 	Keywords() IString
 	SetKeywords(value IString)
+	MapItem() objectivec.IObject
+	SetMapItem(value objectivec.IObject)
 	NdefMessagePayload() unsafe.Pointer
 	SetNdefMessagePayload(value unsafe.Pointer)
 	NeedsSave() bool
@@ -155,6 +160,16 @@ func NewUserActivity() UserActivity {
 
 
 
+// The SiriKit interaction object to use when configuring your app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/interaction
+func (u_ UserActivity) Interaction() objectivec.IObject {
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("interaction"))
+	return rv
+}
+
+
 // An activity for viewing your app’s channel guide.
 //
 // [Full Topic]
@@ -238,6 +253,25 @@ func (u_ UserActivity) AppEntityIdentifier() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/appentityidentifier
 func (u_ UserActivity) SetAppEntityIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAppEntityIdentifier:"), value)
+}
+
+
+// A set of properties that describe the activity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/contentattributeset
+func (u_ UserActivity) ContentAttributeSet() objectivec.IObject {
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("contentAttributeSet"))
+	return rv
+}
+
+
+// A set of properties that describe the activity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/contentattributeset
+func (u_ UserActivity) SetContentAttributeSet(value objectivec.IObject) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setContentAttributeSet:"), value)
 }
 
 
@@ -447,6 +481,25 @@ func (u_ UserActivity) Keywords() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/keywords
 func (u_ UserActivity) SetKeywords(value IString) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setKeywords:"), value)
+}
+
+
+// Attaches the specified map item to a user activity object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/mapitem
+func (u_ UserActivity) MapItem() objectivec.IObject {
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("mapItem"))
+	return rv
+}
+
+
+// Attaches the specified map item to a user activity object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/mapitem
+func (u_ UserActivity) SetMapItem(value objectivec.IObject) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setMapItem:"), value)
 }
 
 
