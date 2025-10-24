@@ -17,3 +17,4 @@ package usernotifications
 // See: doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate/userNotificationCenter(_:didReceive:withCompletionHandler:)
 type PuserNotificationCenter interface {
 }
+

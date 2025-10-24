@@ -19,3 +19,4 @@ var didReceiveNotificationProtocol *objc.Protocol
 func init() {
 	didReceiveNotificationProtocol = objc.GetProtocol("didReceiveNotification:")
 }
+

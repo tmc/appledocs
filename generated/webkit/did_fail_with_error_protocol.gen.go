@@ -19,3 +19,4 @@ var didFailWithErrorProtocol *objc.Protocol
 func init() {
 	didFailWithErrorProtocol = objc.GetProtocol("didFailWithError:")
 }
+

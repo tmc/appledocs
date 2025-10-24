@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class UNNotificationTrigger */
 
+
 /* debug [class_header]: Header for UNNotificationTrigger */
 // The class instance for the [UNNotificationTrigger] class.
 var (
@@ -29,26 +30,29 @@ func getUNNotificationTriggerClass() _UNNotificationTriggerClass {
 type _UNNotificationTriggerClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for UNNotificationTrigger */
 // An interface definition for the [UNNotificationTrigger] class.
 type IUNNotificationTrigger interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for UNNotificationTrigger */
+	
+/* debug [class_interface_properties]: Properties for UNNotificationTrigger */
 	// properties:
 	Repeats() bool
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for UNNotificationTrigger */
+	
+/* debug [class_interface_methods]: Methods for UNNotificationTrigger */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for UNNotificationTrigger */
 // Alloc allocates a new instance without initialization.
@@ -80,13 +84,15 @@ func (u_ UNNotificationTrigger) Autorelease() UNNotificationTrigger {
 func NewUNNotificationTrigger() UNNotificationTrigger {
 	return getUNNotificationTriggerClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for UNNotificationTrigger */
 // The common behavior for subclasses that trigger the delivery of a local or remote notification.
 //
 // The class is an abstract class for representing an event that triggers the delivery of a notification. You don’t create instances of this class directly. Instead, you instantiate the concrete subclass that defines the trigger condition you want for your notification. You then assign the resulting object to the object that you use to schedule your notification. Concrete trigger classes include the following:
+
 
 // The common behavior for subclasses that trigger the delivery of a local or remote notification.
 //
@@ -102,19 +108,28 @@ type UNNotificationTrigger struct {
 func UNNotificationTriggerFrom(ptr unsafe.Pointer) UNNotificationTrigger {
 	return UNNotificationTrigger{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for UNNotificationTrigger */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for UNNotificationTrigger *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for UNNotificationTrigger */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for UNNotificationTrigger */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for UNNotificationTrigger */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for UNNotificationTrigger */
 
@@ -125,8 +140,12 @@ func UNNotificationTriggerFrom(ptr unsafe.Pointer) UNNotificationTrigger {
 func (u_ UNNotificationTrigger) Repeats() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("repeats"))
 	return rv
-} /* debug [instance_properties/getter]: repeats */
+}/* debug [instance_properties/getter]: repeats */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class UNNotificationTrigger */
+
+
+

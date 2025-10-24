@@ -5,10 +5,13 @@ package webkit
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/corefoundation"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/appkit"
+
+	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/vision"
 )
 
 // PWebUIDelegate is the WebUIDelegate protocol interface.
@@ -20,6 +23,12 @@ import (
 //
 // See: doc://com.apple.webkit/documentation/WebKit/WebUIDelegate
 type PWebUIDelegate interface {
+	// Required methods
+	WebViewRunJavaScriptAlertPanelWithMessage(sender IWebView, message objc.IObject /* cross-framework: NSString */)/* debug [protocol_interface/required_method]: WebViewRunJavaScriptAlertPanelWithMessage */
+	WebViewRunJavaScriptConfirmPanelWithMessage(sender IWebView, message objc.IObject /* cross-framework: NSString */) bool/* debug [protocol_interface/required_method]: WebViewRunJavaScriptConfirmPanelWithMessage */
+	WebViewRunJavaScriptTextInputPanelWithPromptDefaultText(sender IWebView, prompt objc.IObject /* cross-framework: NSString */, defaultText objc.IObject /* cross-framework: NSString */) foundation.String/* debug [protocol_interface/required_method]: WebViewRunJavaScriptTextInputPanelWithPromptDefaultText */
+	WebViewSetContentRect(sender IWebView, frame Rect /* not a class type */)/* debug [protocol_interface/required_method]: WebViewSetContentRect */
+	WebViewContentRect(sender IWebView) Rect/* debug [protocol_interface/required_method]: WebViewContentRect */
 	// Optional methods
 	WebViewContextMenuItemsForElementDefaultMenuItems(sender IWebView, element objc.IObject /* cross-framework: NSDictionary */, defaultMenuItems objc.IObject /* cross-framework: NSArray */) foundation.Array
 	HasWebViewContextMenuItemsForElementDefaultMenuItems() bool
@@ -29,11 +38,11 @@ type PWebUIDelegate interface {
 	HasWebViewCreateWebViewWithRequest() bool
 	WebViewDragDestinationActionMaskForDraggingInfo(webView IWebView, draggingInfo unsafe.Pointer) uint
 	HasWebViewDragDestinationActionMaskForDraggingInfo() bool
-	WebViewDragSourceActionMaskForPoint(webView IWebView, point objc.IObject /* cross-framework: Point */) uint
+	WebViewDragSourceActionMaskForPoint(webView IWebView, point vision.Point) uint
 	HasWebViewDragSourceActionMaskForPoint() bool
-	WebViewDrawFooterInRect(sender IWebView, rect objc.IObject /* cross-framework: Rect */)
+	WebViewDrawFooterInRect(sender IWebView, rect Rect /* not a class type */)
 	HasWebViewDrawFooterInRect() bool
-	WebViewDrawHeaderInRect(sender IWebView, rect objc.IObject /* cross-framework: Rect */)
+	WebViewDrawHeaderInRect(sender IWebView, rect Rect /* not a class type */)
 	HasWebViewDrawHeaderInRect() bool
 	WebViewMakeFirstResponder(sender IWebView, responder appkit.Responder)
 	HasWebViewMakeFirstResponder() bool
@@ -53,7 +62,7 @@ type PWebUIDelegate interface {
 	HasWebViewRunOpenPanelForFileButtonWithResultListener() bool
 	WebViewRunOpenPanelForFileButtonWithResultListenerAllowMultipleFiles(sender IWebView, resultListener unsafe.Pointer, allowMultipleFiles bool)
 	HasWebViewRunOpenPanelForFileButtonWithResultListenerAllowMultipleFiles() bool
-	WebViewSetFrame(sender IWebView, frame objc.IObject /* cross-framework: Rect */)
+	WebViewSetFrame(sender IWebView, frame Rect /* not a class type */)
 	HasWebViewSetFrame() bool
 	WebViewSetResizable(sender IWebView, resizable bool)
 	HasWebViewSetResizable() bool
@@ -69,7 +78,7 @@ type PWebUIDelegate interface {
 	HasWebViewValidateUserInterfaceItemDefaultValidation() bool
 	WebViewWillPerformDragDestinationActionForDraggingInfo(webView IWebView, action WebDragDestinationAction, draggingInfo unsafe.Pointer)
 	HasWebViewWillPerformDragDestinationActionForDraggingInfo() bool
-	WebViewWillPerformDragSourceActionFromPointWithPasteboard(webView IWebView, action WebDragSourceAction, point objc.IObject /* cross-framework: Point */, pasteboard appkit.Pasteboard)
+	WebViewWillPerformDragSourceActionFromPointWithPasteboard(webView IWebView, action WebDragSourceAction, point vision.Point, pasteboard appkit.Pasteboard)
 	HasWebViewWillPerformDragSourceActionFromPointWithPasteboard() bool
 	WebViewAreToolbarsVisible(sender IWebView) bool
 	HasWebViewAreToolbarsVisible() bool
@@ -81,7 +90,7 @@ type PWebUIDelegate interface {
 	HasWebViewFocus() bool
 	WebViewFooterHeight(sender IWebView) float32
 	HasWebViewFooterHeight() bool
-	WebViewFrame(sender IWebView) corefoundation.Rect
+	WebViewFrame(sender IWebView) Rect
 	HasWebViewFrame() bool
 	WebViewHeaderHeight(sender IWebView) float32
 	HasWebViewHeaderHeight() bool
@@ -103,44 +112,49 @@ type PWebUIDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type WebUIDelegate struct {
-	_WebViewContextMenuItemsForElementDefaultMenuItems                       func(sender IWebView, element objc.IObject /* cross-framework: NSDictionary */, defaultMenuItems objc.IObject /* cross-framework: NSArray */) foundation.Array
-	_WebViewCreateWebViewModalDialogWithRequest                              func(sender IWebView, request foundation.URLRequest) WebView
-	_WebViewCreateWebViewWithRequest                                         func(sender IWebView, request foundation.URLRequest) WebView
-	_WebViewDragDestinationActionMaskForDraggingInfo                         func(webView IWebView, draggingInfo unsafe.Pointer) uint
-	_WebViewDragSourceActionMaskForPoint                                     func(webView IWebView, point objc.IObject /* cross-framework: Point */) uint
-	_WebViewDrawFooterInRect                                                 func(sender IWebView, rect objc.IObject /* cross-framework: Rect */)
-	_WebViewDrawHeaderInRect                                                 func(sender IWebView, rect objc.IObject /* cross-framework: Rect */)
-	_WebViewMakeFirstResponder                                               func(sender IWebView, responder appkit.Responder)
-	_WebViewMouseDidMoveOverElementModifierFlags                             func(sender IWebView, elementInformation objc.IObject /* cross-framework: NSDictionary */, modifierFlags uint)
-	_WebViewPrintFrameView                                                   func(sender IWebView, frameView IWebFrameView)
-	_WebViewRunBeforeUnloadConfirmPanelWithMessageInitiatedByFrame           func(sender IWebView, message objc.IObject /* cross-framework: NSString */, frame IWebFrame) bool
-	_WebViewRunJavaScriptAlertPanelWithMessageInitiatedByFrame               func(sender IWebView, message objc.IObject /* cross-framework: NSString */, frame IWebFrame)
-	_WebViewRunJavaScriptConfirmPanelWithMessageInitiatedByFrame             func(sender IWebView, message objc.IObject /* cross-framework: NSString */, frame IWebFrame) bool
+	_WebViewContextMenuItemsForElementDefaultMenuItems func(sender IWebView, element objc.IObject /* cross-framework: NSDictionary */, defaultMenuItems objc.IObject /* cross-framework: NSArray */) foundation.Array
+	_WebViewCreateWebViewModalDialogWithRequest func(sender IWebView, request foundation.URLRequest) WebView
+	_WebViewCreateWebViewWithRequest func(sender IWebView, request foundation.URLRequest) WebView
+	_WebViewDragDestinationActionMaskForDraggingInfo func(webView IWebView, draggingInfo unsafe.Pointer) uint
+	_WebViewDragSourceActionMaskForPoint func(webView IWebView, point vision.Point) uint
+	_WebViewDrawFooterInRect func(sender IWebView, rect Rect /* not a class type */)
+	_WebViewDrawHeaderInRect func(sender IWebView, rect Rect /* not a class type */)
+	_WebViewMakeFirstResponder func(sender IWebView, responder appkit.Responder)
+	_WebViewMouseDidMoveOverElementModifierFlags func(sender IWebView, elementInformation objc.IObject /* cross-framework: NSDictionary */, modifierFlags uint)
+	_WebViewPrintFrameView func(sender IWebView, frameView IWebFrameView)
+	_WebViewRunBeforeUnloadConfirmPanelWithMessageInitiatedByFrame func(sender IWebView, message objc.IObject /* cross-framework: NSString */, frame IWebFrame) bool
+	_WebViewRunJavaScriptAlertPanelWithMessageInitiatedByFrame func(sender IWebView, message objc.IObject /* cross-framework: NSString */, frame IWebFrame)
+	_WebViewRunJavaScriptConfirmPanelWithMessageInitiatedByFrame func(sender IWebView, message objc.IObject /* cross-framework: NSString */, frame IWebFrame) bool
 	_WebViewRunJavaScriptTextInputPanelWithPromptDefaultTextInitiatedByFrame func(sender IWebView, prompt objc.IObject /* cross-framework: NSString */, defaultText objc.IObject /* cross-framework: NSString */, frame IWebFrame) foundation.String
-	_WebViewRunOpenPanelForFileButtonWithResultListener                      func(sender IWebView, resultListener unsafe.Pointer)
-	_WebViewRunOpenPanelForFileButtonWithResultListenerAllowMultipleFiles    func(sender IWebView, resultListener unsafe.Pointer, allowMultipleFiles bool)
-	_WebViewSetFrame                                                         func(sender IWebView, frame objc.IObject /* cross-framework: Rect */)
-	_WebViewSetResizable                                                     func(sender IWebView, resizable bool)
-	_WebViewSetStatusBarVisible                                              func(sender IWebView, visible bool)
-	_WebViewSetStatusText                                                    func(sender IWebView, text objc.IObject /* cross-framework: NSString */)
-	_WebViewSetToolbarsVisible                                               func(sender IWebView, visible bool)
-	_WebViewShouldPerformActionFromSender                                    func(webView IWebView, action objc.SEL, sender objc.IObject) bool
-	_WebViewValidateUserInterfaceItemDefaultValidation                       func(webView IWebView, item unsafe.Pointer, defaultValidation bool) bool
-	_WebViewWillPerformDragDestinationActionForDraggingInfo                  func(webView IWebView, action WebDragDestinationAction, draggingInfo unsafe.Pointer)
-	_WebViewWillPerformDragSourceActionFromPointWithPasteboard               func(webView IWebView, action WebDragSourceAction, point objc.IObject /* cross-framework: Point */, pasteboard appkit.Pasteboard)
-	_WebViewAreToolbarsVisible                                               func(sender IWebView) bool
-	_WebViewClose                                                            func(sender IWebView)
-	_WebViewFirstResponder                                                   func(sender IWebView) appkit.Responder
-	_WebViewFocus                                                            func(sender IWebView)
-	_WebViewFooterHeight                                                     func(sender IWebView) float32
-	_WebViewFrame                                                            func(sender IWebView) corefoundation.Rect
-	_WebViewHeaderHeight                                                     func(sender IWebView) float32
-	_WebViewIsResizable                                                      func(sender IWebView) bool
-	_WebViewIsStatusBarVisible                                               func(sender IWebView) bool
-	_WebViewRunModal                                                         func(sender IWebView)
-	_WebViewShow                                                             func(sender IWebView)
-	_WebViewStatusText                                                       func(sender IWebView) foundation.String
-	_WebViewUnfocus                                                          func(sender IWebView)
+	_WebViewRunOpenPanelForFileButtonWithResultListener func(sender IWebView, resultListener unsafe.Pointer)
+	_WebViewRunOpenPanelForFileButtonWithResultListenerAllowMultipleFiles func(sender IWebView, resultListener unsafe.Pointer, allowMultipleFiles bool)
+	_WebViewSetFrame func(sender IWebView, frame Rect /* not a class type */)
+	_WebViewSetResizable func(sender IWebView, resizable bool)
+	_WebViewSetStatusBarVisible func(sender IWebView, visible bool)
+	_WebViewSetStatusText func(sender IWebView, text objc.IObject /* cross-framework: NSString */)
+	_WebViewSetToolbarsVisible func(sender IWebView, visible bool)
+	_WebViewShouldPerformActionFromSender func(webView IWebView, action objc.SEL, sender objc.IObject) bool
+	_WebViewValidateUserInterfaceItemDefaultValidation func(webView IWebView, item unsafe.Pointer, defaultValidation bool) bool
+	_WebViewWillPerformDragDestinationActionForDraggingInfo func(webView IWebView, action WebDragDestinationAction, draggingInfo unsafe.Pointer)
+	_WebViewWillPerformDragSourceActionFromPointWithPasteboard func(webView IWebView, action WebDragSourceAction, point vision.Point, pasteboard appkit.Pasteboard)
+	_WebViewAreToolbarsVisible func(sender IWebView) bool
+	_WebViewClose func(sender IWebView)
+	_WebViewFirstResponder func(sender IWebView) appkit.Responder
+	_WebViewFocus func(sender IWebView)
+	_WebViewFooterHeight func(sender IWebView) float32
+	_WebViewFrame func(sender IWebView) Rect
+	_WebViewHeaderHeight func(sender IWebView) float32
+	_WebViewIsResizable func(sender IWebView) bool
+	_WebViewIsStatusBarVisible func(sender IWebView) bool
+	_WebViewRunModal func(sender IWebView)
+	_WebViewShow func(sender IWebView)
+	_WebViewStatusText func(sender IWebView) foundation.String
+	_WebViewUnfocus func(sender IWebView)
+	_WebViewRunJavaScriptAlertPanelWithMessage func(sender IWebView, message objc.IObject /* cross-framework: NSString */)
+	_WebViewRunJavaScriptConfirmPanelWithMessage func(sender IWebView, message objc.IObject /* cross-framework: NSString */) bool
+	_WebViewRunJavaScriptTextInputPanelWithPromptDefaultText func(sender IWebView, prompt objc.IObject /* cross-framework: NSString */, defaultText objc.IObject /* cross-framework: NSString */) foundation.String
+	_WebViewSetContentRect func(sender IWebView, frame Rect /* not a class type */)
+	_WebViewContentRect func(sender IWebView) Rect
 }
 
 // SetWebViewContextMenuItemsForElementDefaultMenuItems sets the handler for the WebViewContextMenuItemsForElementDefaultMenuItems delegate method.
@@ -174,21 +188,21 @@ func (d *WebUIDelegate) SetWebViewDragDestinationActionMaskForDraggingInfo(f fun
 // SetWebViewDragSourceActionMaskForPoint sets the handler for the WebViewDragSourceActionMaskForPoint delegate method.
 //
 // Returns a mask indicating which drag-source actions are allowed for a drag that begins at the specified location.
-func (d *WebUIDelegate) SetWebViewDragSourceActionMaskForPoint(f func(webView IWebView, point objc.IObject /* cross-framework: Point */) uint) {
+func (d *WebUIDelegate) SetWebViewDragSourceActionMaskForPoint(f func(webView IWebView, point vision.Point) uint) {
 	d._WebViewDragSourceActionMaskForPoint = f
 }
 
 // SetWebViewDrawFooterInRect sets the handler for the WebViewDrawFooterInRect delegate method.
 //
 // Draws the web view’s footer in the specified rectangle.
-func (d *WebUIDelegate) SetWebViewDrawFooterInRect(f func(sender IWebView, rect objc.IObject /* cross-framework: Rect */)) {
+func (d *WebUIDelegate) SetWebViewDrawFooterInRect(f func(sender IWebView, rect Rect /* not a class type */)) {
 	d._WebViewDrawFooterInRect = f
 }
 
 // SetWebViewDrawHeaderInRect sets the handler for the WebViewDrawHeaderInRect delegate method.
 //
 // Draws the web view’s header in the specified rectangle.
-func (d *WebUIDelegate) SetWebViewDrawHeaderInRect(f func(sender IWebView, rect objc.IObject /* cross-framework: Rect */)) {
+func (d *WebUIDelegate) SetWebViewDrawHeaderInRect(f func(sender IWebView, rect Rect /* not a class type */)) {
 	d._WebViewDrawHeaderInRect = f
 }
 
@@ -258,7 +272,7 @@ func (d *WebUIDelegate) SetWebViewRunOpenPanelForFileButtonWithResultListenerAll
 // SetWebViewSetFrame sets the handler for the WebViewSetFrame delegate method.
 //
 // Sets the frame rectangle of a web view’s window to the specified frame size.
-func (d *WebUIDelegate) SetWebViewSetFrame(f func(sender IWebView, frame objc.IObject /* cross-framework: Rect */)) {
+func (d *WebUIDelegate) SetWebViewSetFrame(f func(sender IWebView, frame Rect /* not a class type */)) {
 	d._WebViewSetFrame = f
 }
 
@@ -314,7 +328,7 @@ func (d *WebUIDelegate) SetWebViewWillPerformDragDestinationActionForDraggingInf
 // SetWebViewWillPerformDragSourceActionFromPointWithPasteboard sets the handler for the WebViewWillPerformDragSourceActionFromPointWithPasteboard delegate method.
 //
 // Tells the receiver that the sending web view will perform the specified drag-source action.
-func (d *WebUIDelegate) SetWebViewWillPerformDragSourceActionFromPointWithPasteboard(f func(webView IWebView, action WebDragSourceAction, point objc.IObject /* cross-framework: Point */, pasteboard appkit.Pasteboard)) {
+func (d *WebUIDelegate) SetWebViewWillPerformDragSourceActionFromPointWithPasteboard(f func(webView IWebView, action WebDragSourceAction, point vision.Point, pasteboard appkit.Pasteboard)) {
 	d._WebViewWillPerformDragSourceActionFromPointWithPasteboard = f
 }
 
@@ -356,7 +370,7 @@ func (d *WebUIDelegate) SetWebViewFooterHeight(f func(sender IWebView) float32) 
 // SetWebViewFrame sets the handler for the WebViewFrame delegate method.
 //
 // Returns the frame rectangle of a web view’s window.
-func (d *WebUIDelegate) SetWebViewFrame(f func(sender IWebView) corefoundation.Rect) {
+func (d *WebUIDelegate) SetWebViewFrame(f func(sender IWebView) Rect) {
 	d._WebViewFrame = f
 }
 
@@ -407,6 +421,41 @@ func (d *WebUIDelegate) SetWebViewStatusText(f func(sender IWebView) foundation.
 // Relinquishes focus on a web view’s window.
 func (d *WebUIDelegate) SetWebViewUnfocus(f func(sender IWebView)) {
 	d._WebViewUnfocus = f
+}
+
+// SetWebViewRunJavaScriptAlertPanelWithMessage sets the handler for the WebViewRunJavaScriptAlertPanelWithMessage delegate method.
+//
+// Displays a JavaScript alert panel.
+func (d *WebUIDelegate) SetWebViewRunJavaScriptAlertPanelWithMessage(f func(sender IWebView, message objc.IObject /* cross-framework: NSString */)) {
+	d._WebViewRunJavaScriptAlertPanelWithMessage = f
+}
+
+// SetWebViewRunJavaScriptConfirmPanelWithMessage sets the handler for the WebViewRunJavaScriptConfirmPanelWithMessage delegate method.
+//
+// Displays a JavaScript confirm panel.
+func (d *WebUIDelegate) SetWebViewRunJavaScriptConfirmPanelWithMessage(f func(sender IWebView, message objc.IObject /* cross-framework: NSString */) bool) {
+	d._WebViewRunJavaScriptConfirmPanelWithMessage = f
+}
+
+// SetWebViewRunJavaScriptTextInputPanelWithPromptDefaultText sets the handler for the WebViewRunJavaScriptTextInputPanelWithPromptDefaultText delegate method.
+//
+// Displays a JavaScript text input panel and returns the entered text.
+func (d *WebUIDelegate) SetWebViewRunJavaScriptTextInputPanelWithPromptDefaultText(f func(sender IWebView, prompt objc.IObject /* cross-framework: NSString */, defaultText objc.IObject /* cross-framework: NSString */) foundation.String) {
+	d._WebViewRunJavaScriptTextInputPanelWithPromptDefaultText = f
+}
+
+// SetWebViewSetContentRect sets the handler for the WebViewSetContentRect delegate method.
+//
+// Sets the window’s content view frame to the specified content rectangle.
+func (d *WebUIDelegate) SetWebViewSetContentRect(f func(sender IWebView, frame Rect /* not a class type */)) {
+	d._WebViewSetContentRect = f
+}
+
+// SetWebViewContentRect sets the handler for the WebViewContentRect delegate method.
+//
+// Returns a web view window’s content rectangle.
+func (d *WebUIDelegate) SetWebViewContentRect(f func(sender IWebView) Rect) {
+	d._WebViewContentRect = f
 }
 
 // WebViewContextMenuItemsForElementDefaultMenuItems implements the PWebUIDelegate interface.
@@ -466,7 +515,7 @@ func (d *WebUIDelegate) HasWebViewDragDestinationActionMaskForDraggingInfo() boo
 }
 
 // WebViewDragSourceActionMaskForPoint implements the PWebUIDelegate interface.
-func (d *WebUIDelegate) WebViewDragSourceActionMaskForPoint(webView IWebView, point objc.IObject /* cross-framework: Point */) uint {
+func (d *WebUIDelegate) WebViewDragSourceActionMaskForPoint(webView IWebView, point vision.Point) uint {
 	if d._WebViewDragSourceActionMaskForPoint != nil {
 		return d._WebViewDragSourceActionMaskForPoint(webView, point)
 	}
@@ -480,7 +529,7 @@ func (d *WebUIDelegate) HasWebViewDragSourceActionMaskForPoint() bool {
 }
 
 // WebViewDrawFooterInRect implements the PWebUIDelegate interface.
-func (d *WebUIDelegate) WebViewDrawFooterInRect(sender IWebView, rect objc.IObject /* cross-framework: Rect */) {
+func (d *WebUIDelegate) WebViewDrawFooterInRect(sender IWebView, rect Rect /* not a class type */) {
 	if d._WebViewDrawFooterInRect != nil {
 		d._WebViewDrawFooterInRect(sender, rect)
 	}
@@ -492,7 +541,7 @@ func (d *WebUIDelegate) HasWebViewDrawFooterInRect() bool {
 }
 
 // WebViewDrawHeaderInRect implements the PWebUIDelegate interface.
-func (d *WebUIDelegate) WebViewDrawHeaderInRect(sender IWebView, rect objc.IObject /* cross-framework: Rect */) {
+func (d *WebUIDelegate) WebViewDrawHeaderInRect(sender IWebView, rect Rect /* not a class type */) {
 	if d._WebViewDrawHeaderInRect != nil {
 		d._WebViewDrawHeaderInRect(sender, rect)
 	}
@@ -618,7 +667,7 @@ func (d *WebUIDelegate) HasWebViewRunOpenPanelForFileButtonWithResultListenerAll
 }
 
 // WebViewSetFrame implements the PWebUIDelegate interface.
-func (d *WebUIDelegate) WebViewSetFrame(sender IWebView, frame objc.IObject /* cross-framework: Rect */) {
+func (d *WebUIDelegate) WebViewSetFrame(sender IWebView, frame Rect /* not a class type */) {
 	if d._WebViewSetFrame != nil {
 		d._WebViewSetFrame(sender, frame)
 	}
@@ -718,7 +767,7 @@ func (d *WebUIDelegate) HasWebViewWillPerformDragDestinationActionForDraggingInf
 }
 
 // WebViewWillPerformDragSourceActionFromPointWithPasteboard implements the PWebUIDelegate interface.
-func (d *WebUIDelegate) WebViewWillPerformDragSourceActionFromPointWithPasteboard(webView IWebView, action WebDragSourceAction, point objc.IObject /* cross-framework: Point */, pasteboard appkit.Pasteboard) {
+func (d *WebUIDelegate) WebViewWillPerformDragSourceActionFromPointWithPasteboard(webView IWebView, action WebDragSourceAction, point vision.Point, pasteboard appkit.Pasteboard) {
 	if d._WebViewWillPerformDragSourceActionFromPointWithPasteboard != nil {
 		d._WebViewWillPerformDragSourceActionFromPointWithPasteboard(webView, action, point, pasteboard)
 	}
@@ -796,11 +845,11 @@ func (d *WebUIDelegate) HasWebViewFooterHeight() bool {
 }
 
 // WebViewFrame implements the PWebUIDelegate interface.
-func (d *WebUIDelegate) WebViewFrame(sender IWebView) corefoundation.Rect {
+func (d *WebUIDelegate) WebViewFrame(sender IWebView) Rect {
 	if d._WebViewFrame != nil {
 		return d._WebViewFrame(sender)
 	}
-	var zero corefoundation.Rect
+	var zero Rect
 	return zero
 }
 
@@ -899,4 +948,70 @@ func (d *WebUIDelegate) WebViewUnfocus(sender IWebView) {
 // HasWebViewUnfocus returns true if a handler for WebViewUnfocus has been set.
 func (d *WebUIDelegate) HasWebViewUnfocus() bool {
 	return d._WebViewUnfocus != nil
+}
+
+// WebViewRunJavaScriptAlertPanelWithMessage implements the PWebUIDelegate interface.
+func (d *WebUIDelegate) WebViewRunJavaScriptAlertPanelWithMessage(sender IWebView, message objc.IObject /* cross-framework: NSString */) {
+	if d._WebViewRunJavaScriptAlertPanelWithMessage != nil {
+		d._WebViewRunJavaScriptAlertPanelWithMessage(sender, message)
+	}
+}
+
+// HasWebViewRunJavaScriptAlertPanelWithMessage returns true if a handler for WebViewRunJavaScriptAlertPanelWithMessage has been set.
+func (d *WebUIDelegate) HasWebViewRunJavaScriptAlertPanelWithMessage() bool {
+	return d._WebViewRunJavaScriptAlertPanelWithMessage != nil
+}
+
+// WebViewRunJavaScriptConfirmPanelWithMessage implements the PWebUIDelegate interface.
+func (d *WebUIDelegate) WebViewRunJavaScriptConfirmPanelWithMessage(sender IWebView, message objc.IObject /* cross-framework: NSString */) bool {
+	if d._WebViewRunJavaScriptConfirmPanelWithMessage != nil {
+		return d._WebViewRunJavaScriptConfirmPanelWithMessage(sender, message)
+	}
+	var zero bool
+	return zero
+}
+
+// HasWebViewRunJavaScriptConfirmPanelWithMessage returns true if a handler for WebViewRunJavaScriptConfirmPanelWithMessage has been set.
+func (d *WebUIDelegate) HasWebViewRunJavaScriptConfirmPanelWithMessage() bool {
+	return d._WebViewRunJavaScriptConfirmPanelWithMessage != nil
+}
+
+// WebViewRunJavaScriptTextInputPanelWithPromptDefaultText implements the PWebUIDelegate interface.
+func (d *WebUIDelegate) WebViewRunJavaScriptTextInputPanelWithPromptDefaultText(sender IWebView, prompt objc.IObject /* cross-framework: NSString */, defaultText objc.IObject /* cross-framework: NSString */) foundation.String {
+	if d._WebViewRunJavaScriptTextInputPanelWithPromptDefaultText != nil {
+		return d._WebViewRunJavaScriptTextInputPanelWithPromptDefaultText(sender, prompt, defaultText)
+	}
+	var zero foundation.String
+	return zero
+}
+
+// HasWebViewRunJavaScriptTextInputPanelWithPromptDefaultText returns true if a handler for WebViewRunJavaScriptTextInputPanelWithPromptDefaultText has been set.
+func (d *WebUIDelegate) HasWebViewRunJavaScriptTextInputPanelWithPromptDefaultText() bool {
+	return d._WebViewRunJavaScriptTextInputPanelWithPromptDefaultText != nil
+}
+
+// WebViewSetContentRect implements the PWebUIDelegate interface.
+func (d *WebUIDelegate) WebViewSetContentRect(sender IWebView, frame Rect /* not a class type */) {
+	if d._WebViewSetContentRect != nil {
+		d._WebViewSetContentRect(sender, frame)
+	}
+}
+
+// HasWebViewSetContentRect returns true if a handler for WebViewSetContentRect has been set.
+func (d *WebUIDelegate) HasWebViewSetContentRect() bool {
+	return d._WebViewSetContentRect != nil
+}
+
+// WebViewContentRect implements the PWebUIDelegate interface.
+func (d *WebUIDelegate) WebViewContentRect(sender IWebView) Rect {
+	if d._WebViewContentRect != nil {
+		return d._WebViewContentRect(sender)
+	}
+	var zero Rect
+	return zero
+}
+
+// HasWebViewContentRect returns true if a handler for WebViewContentRect has been set.
+func (d *WebUIDelegate) HasWebViewContentRect() bool {
+	return d._WebViewContentRect != nil
 }

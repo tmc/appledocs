@@ -5,11 +5,15 @@
 package usernotifications
 
 import (
-	"github.com/tmc/appledocs/generated/corelocation"
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for UNLocationNotificationTrigger
+
 
 // iOS-only properties
 
@@ -21,3 +25,7 @@ func (u_ UNLocationNotificationTrigger) Region() corelocation.Region {
 	rv := objc.Send[corelocation.Region](u_.ID, objc.Sel("region"))
 	return rv
 }
+
+
+
+

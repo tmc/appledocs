@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZStorageDevice */
 
+
 /* debug [class_header]: Header for VZStorageDevice */
 // The class instance for the [VZStorageDevice] class.
 var (
@@ -29,25 +30,28 @@ func getVZStorageDeviceClass() _VZStorageDeviceClass {
 type _VZStorageDeviceClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZStorageDevice */
 // An interface definition for the [VZStorageDevice] class.
 type IVZStorageDevice interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZStorageDevice */
+	
+/* debug [class_interface_properties]: Properties for VZStorageDevice */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZStorageDevice */
+	
+/* debug [class_interface_methods]: Methods for VZStorageDevice */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZStorageDevice */
 // Alloc allocates a new instance without initialization.
@@ -79,13 +83,15 @@ func (v_ VZStorageDevice) Autorelease() VZStorageDevice {
 func NewVZStorageDevice() VZStorageDevice {
 	return getVZStorageDeviceClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZStorageDevice */
 // A class that represents a storage device in a VM.
 //
 // Don’t create a directly. Use one of its subclasses, such as , instead.
+
 
 // A class that represents a storage device in a VM.
 //
@@ -101,21 +107,34 @@ type VZStorageDevice struct {
 func VZStorageDeviceFrom(ptr unsafe.Pointer) VZStorageDevice {
 	return VZStorageDevice{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZStorageDevice */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZStorageDevice *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZStorageDevice */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZStorageDevice */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZStorageDevice */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for VZStorageDevice */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZStorageDevice */
+
+
+

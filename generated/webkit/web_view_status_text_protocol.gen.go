@@ -15,3 +15,4 @@ var webViewStatusTextProtocol *objc.Protocol
 func init() {
 	webViewStatusTextProtocol = objc.GetProtocol("webViewStatusText:")
 }
+

@@ -5,11 +5,15 @@
 package webkit
 
 import (
-	"github.com/tmc/appledocs/generated/foundation"
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for PreviewElementInfo
+
 
 // iOS-only properties
 
@@ -21,3 +25,8 @@ func (p_ PreviewElementInfo) LinkURL() objc.IObject /* cross-framework: NSURL */
 	rv := objc.Send[foundation.NSURL](p_.ID, objc.Sel("linkURL"))
 	return rv
 }
+
+
+
+
+

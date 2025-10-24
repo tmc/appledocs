@@ -7,10 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class SFSpeechLanguageModel */
+
 
 /* debug [class_header]: Header for SFSpeechLanguageModel */
 // The class instance for the [SFSpeechLanguageModel] class.
@@ -29,25 +31,28 @@ func getSFSpeechLanguageModelClass() _SFSpeechLanguageModelClass {
 type _SFSpeechLanguageModelClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for SFSpeechLanguageModel */
 // An interface definition for the [SFSpeechLanguageModel] class.
 type ISFSpeechLanguageModel interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for SFSpeechLanguageModel */
+	
+/* debug [class_interface_properties]: Properties for SFSpeechLanguageModel */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for SFSpeechLanguageModel */
+	
+/* debug [class_interface_methods]: Methods for SFSpeechLanguageModel */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for SFSpeechLanguageModel */
 // Alloc allocates a new instance without initialization.
@@ -79,13 +84,15 @@ func (s_ SFSpeechLanguageModel) Autorelease() SFSpeechLanguageModel {
 func NewSFSpeechLanguageModel() SFSpeechLanguageModel {
 	return getSFSpeechLanguageModelClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for SFSpeechLanguageModel */
 // A language model built from custom training data.
 //
 // Create this object using or .
+
 
 // A language model built from custom training data.
 //
@@ -101,10 +108,13 @@ type SFSpeechLanguageModel struct {
 func SFSpeechLanguageModelFrom(ptr unsafe.Pointer) SFSpeechLanguageModel {
 	return SFSpeechLanguageModel{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for SFSpeechLanguageModel */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for SFSpeechLanguageModel *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for SFSpeechLanguageModel */
 
@@ -112,13 +122,15 @@ func SFSpeechLanguageModelFrom(ptr unsafe.Pointer) SFSpeechLanguageModel {
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/prepareCustomLanguageModel(for:clientIdentifier:configuration:completion:)
 func (sc _SFSpeechLanguageModelClass) PrepareCustomLanguageModelForUrlClientIdentifierConfigurationCompletion(asset objc.IObject /* cross-framework: NSURL */, clientIdentifier objc.IObject /* cross-framework: NSString */, configuration ISFSpeechLanguageModelConfiguration, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("prepareCustomLanguageModelForUrl:clientIdentifier:configuration:completion:"), asset, clientIdentifier, configuration, completion)
-} /* debug [class_methods/method]: Class method for%!(EXTRA string=PrepareCustomLanguageModelForUrlClientIdentifierConfigurationCompletion) */
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PrepareCustomLanguageModelForUrlClientIdentifierConfigurationCompletion) */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/prepareCustomLanguageModel(for:clientIdentifier:configuration:ignoresCache:completion:)
 func (sc _SFSpeechLanguageModelClass) PrepareCustomLanguageModelForUrlClientIdentifierConfigurationIgnoresCacheCompletion(asset objc.IObject /* cross-framework: NSURL */, clientIdentifier objc.IObject /* cross-framework: NSString */, configuration ISFSpeechLanguageModelConfiguration, ignoresCache bool, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("prepareCustomLanguageModelForUrl:clientIdentifier:configuration:ignoresCache:completion:"), asset, clientIdentifier, configuration, ignoresCache, completion)
-} /* debug [class_methods/method]: Class method for%!(EXTRA string=PrepareCustomLanguageModelForUrlClientIdentifierConfigurationIgnoresCacheCompletion) */
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PrepareCustomLanguageModelForUrlClientIdentifierConfigurationIgnoresCacheCompletion) */
+
 
 // Creates a language model from custom training data.
 //
@@ -126,7 +138,8 @@ func (sc _SFSpeechLanguageModelClass) PrepareCustomLanguageModelForUrlClientIden
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/prepareCustomLanguageModel(for:configuration:completion:)
 func (sc _SFSpeechLanguageModelClass) PrepareCustomLanguageModelForUrlConfigurationCompletion(asset objc.IObject /* cross-framework: NSURL */, configuration ISFSpeechLanguageModelConfiguration, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("prepareCustomLanguageModelForUrl:configuration:completion:"), asset, configuration, completion)
-} /* debug [class_methods/method]: Class method for%!(EXTRA string=PrepareCustomLanguageModelForUrlConfigurationCompletion) */
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PrepareCustomLanguageModelForUrlConfigurationCompletion) */
+
 
 // Creates a language model from custom training data.
 //
@@ -134,17 +147,27 @@ func (sc _SFSpeechLanguageModelClass) PrepareCustomLanguageModelForUrlConfigurat
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/prepareCustomLanguageModel(for:configuration:ignoresCache:completion:)
 func (sc _SFSpeechLanguageModelClass) PrepareCustomLanguageModelForUrlConfigurationIgnoresCacheCompletion(asset objc.IObject /* cross-framework: NSURL */, configuration ISFSpeechLanguageModelConfiguration, ignoresCache bool, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("prepareCustomLanguageModelForUrl:configuration:ignoresCache:completion:"), asset, configuration, ignoresCache, completion)
-} /* debug [class_methods/method]: Class method for%!(EXTRA string=PrepareCustomLanguageModelForUrlConfigurationIgnoresCacheCompletion) */
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PrepareCustomLanguageModelForUrlConfigurationIgnoresCacheCompletion) */
 
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for SFSpeechLanguageModel */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for SFSpeechLanguageModel */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for SFSpeechLanguageModel */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class SFSpeechLanguageModel */
+
+
+

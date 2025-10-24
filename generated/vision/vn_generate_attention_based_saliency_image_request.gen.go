@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class VNGenerateAttentionBasedSaliencyImageRequest */
 
 
-/* debug [class_header]: Header for VNGenerateAttentionBasedSaliencyImageRequest */
+
+
 // The class instance for the [GenerateAttentionBasedSaliencyImageRequest] class.
 var (
 	GenerateAttentionBasedSaliencyImageRequestClass     _GenerateAttentionBasedSaliencyImageRequestClass
@@ -29,32 +29,32 @@ func getGenerateAttentionBasedSaliencyImageRequestClass() _GenerateAttentionBase
 type _GenerateAttentionBasedSaliencyImageRequestClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for GenerateAttentionBasedSaliencyImageRequest */
+
+
 // An interface definition for the [GenerateAttentionBasedSaliencyImageRequest] class.
 type IGenerateAttentionBasedSaliencyImageRequest interface {
 	IImageBasedRequest
 	
-/* debug [class_interface_properties]: Properties for GenerateAttentionBasedSaliencyImageRequest */
+
 	// properties:
 	Results() []SaliencyImageObservation
 	VNGenerateAttentionBasedSaliencyImageRequestRevision1() int
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for GenerateAttentionBasedSaliencyImageRequest */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for GenerateAttentionBasedSaliencyImageRequest */
+
+
 // Alloc allocates a new instance without initialization.
 func (gc _GenerateAttentionBasedSaliencyImageRequestClass) Alloc() GenerateAttentionBasedSaliencyImageRequest {
 	rv := objc.Send[GenerateAttentionBasedSaliencyImageRequest](objc.ID(gc.class), objc.Sel("alloc"))
@@ -84,11 +84,11 @@ func (g_ GenerateAttentionBasedSaliencyImageRequest) Autorelease() GenerateAtten
 func NewGenerateAttentionBasedSaliencyImageRequest() GenerateAttentionBasedSaliencyImageRequest {
 	return getGenerateAttentionBasedSaliencyImageRequestClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for GenerateAttentionBasedSaliencyImageRequest */
+
+
 // An object that produces a heat map that identifies the parts of an image most likely to draw attention.
 
 
@@ -108,30 +108,30 @@ func GenerateAttentionBasedSaliencyImageRequestFrom(ptr unsafe.Pointer) Generate
 		ImageBasedRequest: ImageBasedRequestFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for GenerateAttentionBasedSaliencyImageRequest *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for GenerateAttentionBasedSaliencyImageRequest */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for GenerateAttentionBasedSaliencyImageRequest */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for GenerateAttentionBasedSaliencyImageRequest */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for GenerateAttentionBasedSaliencyImageRequest */
+
+
+
+
+
+
+
+
+
 
 // The results of the image saliency request.
 //
@@ -140,7 +140,7 @@ func GenerateAttentionBasedSaliencyImageRequestFrom(ptr unsafe.Pointer) Generate
 func (g_ GenerateAttentionBasedSaliencyImageRequest) Results() []SaliencyImageObservation {
 	rv := objc.Send[[]SaliencyImageObservation](g_.ID, objc.Sel("results"))
 	return rv
-}/* debug [instance_properties/getter]: results */
+}
 
 
 // A constant for specifying revision 1 of the image saliency request.
@@ -150,12 +150,12 @@ func (g_ GenerateAttentionBasedSaliencyImageRequest) Results() []SaliencyImageOb
 func (g_ GenerateAttentionBasedSaliencyImageRequest) VNGenerateAttentionBasedSaliencyImageRequestRevision1() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateAttentionBasedSaliencyImageRequestRevision1"))
 	return rv
-}/* debug [instance_properties/getter]: VNGenerateAttentionBasedSaliencyImageRequestRevision1 */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class VNGenerateAttentionBasedSaliencyImageRequest */
+
+
+
 
 
 

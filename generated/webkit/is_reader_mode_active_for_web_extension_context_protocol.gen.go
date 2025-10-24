@@ -19,3 +19,4 @@ var isReaderModeActiveForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	isReaderModeActiveForWebExtensionContextProtocol = objc.GetProtocol("isReaderModeActiveForWebExtensionContext:")
 }
+

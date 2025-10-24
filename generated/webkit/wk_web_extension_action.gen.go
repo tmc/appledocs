@@ -6,14 +6,15 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class WKWebExtensionAction */
+
 
 /* debug [class_header]: Header for WKWebExtensionAction */
 // The class instance for the [WebExtensionAction] class.
@@ -32,15 +33,16 @@ func getWebExtensionActionClass() _WebExtensionActionClass {
 type _WebExtensionActionClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for WebExtensionAction */
 // An interface definition for the [WebExtensionAction] class.
 type IWebExtensionAction interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for WebExtensionAction */
+	
+/* debug [class_interface_properties]: Properties for WebExtensionAction */
 	// properties:
 	AssociatedTab() unsafe.Pointer
 	BadgeText() objc.IObject /* cross-framework: NSString */
@@ -49,7 +51,7 @@ type IWebExtensionAction interface {
 	InspectionName() objc.IObject /* cross-framework: NSString */
 	SetInspectionName(value objc.IObject /* cross-framework: NSString */)
 	Enabled() bool
-	Label() objc.IObject      /* cross-framework: NSString */
+	Label() objc.IObject /* cross-framework: NSString */
 	MenuItems() []MenuElement /* not a class type */
 	PopupPopover() appkit.Popover
 	PopupWebView() IWKWebView
@@ -57,17 +59,19 @@ type IWebExtensionAction interface {
 	WebExtensionContext() IWKWebExtensionContext
 	IsEnabled() bool
 	SetIsEnabled(value bool)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for WebExtensionAction */
+	
+/* debug [class_interface_methods]: Methods for WebExtensionAction */
 	// methods:
 	ClosePopup()
 	IconForSize(size corefoundation.CGSize) appkit.Image
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for WebExtensionAction */
 // Alloc allocates a new instance without initialization.
@@ -99,13 +103,15 @@ func (w_ WebExtensionAction) Autorelease() WebExtensionAction {
 func NewWebExtensionAction() WebExtensionAction {
 	return getWebExtensionActionClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for WebExtensionAction */
 // An object that encapsulates the properties for an individual web extension action.
 //
 // This class provides access to action properties, such as pop-up, icon, or title, with tab-specific values.
+
 
 // An object that encapsulates the properties for an individual web extension action.
 //
@@ -121,16 +127,23 @@ type WebExtensionAction struct {
 func WebExtensionActionFrom(ptr unsafe.Pointer) WebExtensionAction {
 	return WebExtensionAction{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for WebExtensionAction */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for WebExtensionAction *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for WebExtensionAction */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for WebExtensionAction */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for WebExtensionAction */
 
@@ -140,7 +153,8 @@ func WebExtensionActionFrom(ptr unsafe.Pointer) WebExtensionAction {
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/Action/closePopup()
 func (w_ WebExtensionAction) ClosePopup() {
 	objc.Send[objc.ID](w_.ID, objc.Sel("closePopup"))
-} /* debug [instance_methods/method]: ClosePopup */
+}/* debug [instance_methods/method]: ClosePopup */
+
 
 // Returns the action icon for the specified size.
 //
@@ -149,9 +163,11 @@ func (w_ WebExtensionAction) ClosePopup() {
 func (w_ WebExtensionAction) IconForSize(size corefoundation.CGSize) appkit.Image {
 	rv := objc.Send[appkit.Image](w_.ID, objc.Sel("iconForSize:"), size)
 	return rv
-} /* debug [instance_methods/method]: IconForSize */
+}/* debug [instance_methods/method]: IconForSize */
 
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for WebExtensionAction */
 
@@ -162,7 +178,8 @@ func (w_ WebExtensionAction) IconForSize(size corefoundation.CGSize) appkit.Imag
 func (w_ WebExtensionAction) AssociatedTab() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("associatedTab"))
 	return rv
-} /* debug [instance_properties/getter]: associatedTab */
+}/* debug [instance_properties/getter]: associatedTab */
+
 
 // The badge text for the action.
 //
@@ -171,7 +188,8 @@ func (w_ WebExtensionAction) AssociatedTab() unsafe.Pointer {
 func (w_ WebExtensionAction) BadgeText() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("badgeText"))
 	return rv
-} /* debug [instance_properties/getter]: badgeText */
+}/* debug [instance_properties/getter]: badgeText */
+
 
 // A Boolean value indicating whether the badge text is unread.
 //
@@ -180,7 +198,8 @@ func (w_ WebExtensionAction) BadgeText() objc.IObject /* cross-framework: NSStri
 func (w_ WebExtensionAction) HasUnreadBadgeText() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasUnreadBadgeText"))
 	return rv
-} /* debug [instance_properties/getter]: hasUnreadBadgeText */
+}/* debug [instance_properties/getter]: hasUnreadBadgeText */
+
 
 // A Boolean value indicating whether the badge text is unread.
 //
@@ -188,7 +207,8 @@ func (w_ WebExtensionAction) HasUnreadBadgeText() bool {
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/Action/hasUnreadBadgeText
 func (w_ WebExtensionAction) SetHasUnreadBadgeText(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHasUnreadBadgeText:"), value)
-} /* debug [instance_properties/setter]: hasUnreadBadgeText */
+}/* debug [instance_properties/setter]: hasUnreadBadgeText */
+
 
 // The name shown when inspecting the pop-up web view.
 //
@@ -197,7 +217,8 @@ func (w_ WebExtensionAction) SetHasUnreadBadgeText(value bool) {
 func (w_ WebExtensionAction) InspectionName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("inspectionName"))
 	return rv
-} /* debug [instance_properties/getter]: inspectionName */
+}/* debug [instance_properties/getter]: inspectionName */
+
 
 // The name shown when inspecting the pop-up web view.
 //
@@ -205,7 +226,8 @@ func (w_ WebExtensionAction) InspectionName() objc.IObject /* cross-framework: N
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/Action/inspectionName
 func (w_ WebExtensionAction) SetInspectionName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setInspectionName:"), value)
-} /* debug [instance_properties/setter]: inspectionName */
+}/* debug [instance_properties/setter]: inspectionName */
+
 
 // A Boolean value indicating whether the action is enabled.
 //
@@ -214,7 +236,8 @@ func (w_ WebExtensionAction) SetInspectionName(value objc.IObject /* cross-frame
 func (w_ WebExtensionAction) Enabled() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("enabled"))
 	return rv
-} /* debug [instance_properties/getter]: enabled */
+}/* debug [instance_properties/getter]: enabled */
+
 
 // The localized display label for the action.
 //
@@ -223,7 +246,8 @@ func (w_ WebExtensionAction) Enabled() bool {
 func (w_ WebExtensionAction) Label() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("label"))
 	return rv
-} /* debug [instance_properties/getter]: label */
+}/* debug [instance_properties/getter]: label */
+
 
 // The menu items provided by the extension for this action.
 //
@@ -232,7 +256,8 @@ func (w_ WebExtensionAction) Label() objc.IObject /* cross-framework: NSString *
 func (w_ WebExtensionAction) MenuItems() []MenuElement /* not a class type */ {
 	rv := objc.Send[[]MenuElement](w_.ID, objc.Sel("menuItems"))
 	return rv
-} /* debug [instance_properties/getter]: menuItems */
+}/* debug [instance_properties/getter]: menuItems */
+
 
 // A popover that presents a web view loaded with the pop-up page for this action, or if no popup is specified.
 //
@@ -241,7 +266,8 @@ func (w_ WebExtensionAction) MenuItems() []MenuElement /* not a class type */ {
 func (w_ WebExtensionAction) PopupPopover() appkit.Popover {
 	rv := objc.Send[appkit.Popover](w_.ID, objc.Sel("popupPopover"))
 	return rv
-} /* debug [instance_properties/getter]: popupPopover */
+}/* debug [instance_properties/getter]: popupPopover */
+
 
 // A web view loaded with the pop-up page for this action, or if no pop-up is specified.
 //
@@ -250,7 +276,8 @@ func (w_ WebExtensionAction) PopupPopover() appkit.Popover {
 func (w_ WebExtensionAction) PopupWebView() IWKWebView {
 	rv := objc.Send[WebView](w_.ID, objc.Sel("popupWebView"))
 	return rv
-} /* debug [instance_properties/getter]: popupWebView */
+}/* debug [instance_properties/getter]: popupWebView */
+
 
 // A Boolean value indicating whether the action has a pop-up.
 //
@@ -259,7 +286,8 @@ func (w_ WebExtensionAction) PopupWebView() IWKWebView {
 func (w_ WebExtensionAction) PresentsPopup() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("presentsPopup"))
 	return rv
-} /* debug [instance_properties/getter]: presentsPopup */
+}/* debug [instance_properties/getter]: presentsPopup */
+
 
 // The extension context to which this action is related.
 //
@@ -268,7 +296,8 @@ func (w_ WebExtensionAction) PresentsPopup() bool {
 func (w_ WebExtensionAction) WebExtensionContext() IWKWebExtensionContext {
 	rv := objc.Send[WebExtensionContext](w_.ID, objc.Sel("webExtensionContext"))
 	return rv
-} /* debug [instance_properties/getter]: webExtensionContext */
+}/* debug [instance_properties/getter]: webExtensionContext */
+
 
 // A Boolean value indicating whether the action is enabled.
 //
@@ -277,7 +306,8 @@ func (w_ WebExtensionAction) WebExtensionContext() IWKWebExtensionContext {
 func (w_ WebExtensionAction) IsEnabled() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isEnabled"))
 	return rv
-} /* debug [instance_properties/getter]: isEnabled */
+}/* debug [instance_properties/getter]: isEnabled */
+
 
 // A Boolean value indicating whether the action is enabled.
 //
@@ -285,8 +315,11 @@ func (w_ WebExtensionAction) IsEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/action/isenabled
 func (w_ WebExtensionAction) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsEnabled:"), value)
-} /* debug [instance_properties/setter]: isEnabled */
+}/* debug [instance_properties/setter]: isEnabled */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class WKWebExtensionAction */
+
+

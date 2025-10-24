@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MPSImageReduceUnary */
 
 
-/* debug [class_header]: Header for MPSImageReduceUnary */
+
+
 // The class instance for the [ImageReduceUnary] class.
 var (
 	ImageReduceUnaryClass     _ImageReduceUnaryClass
@@ -29,32 +29,32 @@ func getImageReduceUnaryClass() _ImageReduceUnaryClass {
 type _ImageReduceUnaryClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ImageReduceUnary */
+
+
 // An interface definition for the [ImageReduceUnary] class.
 type IImageReduceUnary interface {
 	IUnaryImageKernel
 	
-/* debug [class_interface_properties]: Properties for ImageReduceUnary */
+
 	// properties:
 	ClipRectSource() Region get set /* not a class type */
 	SetClipRectSource(value Region get set /* not a class type */)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ImageReduceUnary */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ImageReduceUnary */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageReduceUnaryClass) Alloc() ImageReduceUnary {
 	rv := objc.Send[ImageReduceUnary](objc.ID(ic.class), objc.Sel("alloc"))
@@ -84,11 +84,11 @@ func (i_ ImageReduceUnary) Autorelease() ImageReduceUnary {
 func NewImageReduceUnary() ImageReduceUnary {
 	return getImageReduceUnaryClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ImageReduceUnary */
+
+
 // The base class for reduction filters that take a single source as input.
 
 
@@ -108,49 +108,49 @@ func ImageReduceUnaryFrom(ptr unsafe.Pointer) ImageReduceUnary {
 		UnaryImageKernel: UnaryImageKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ImageReduceUnary *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ImageReduceUnary */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ImageReduceUnary */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ImageReduceUnary */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ImageReduceUnary */
+
+
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagereduceunary/2942332-cliprectsource
 func (i_ ImageReduceUnary) ClipRectSource() Region get set /* not a class type */ {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("clipRectSource"))
 	return rv
-}/* debug [instance_properties/getter]: clipRectSource */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagereduceunary/2942332-cliprectsource
 func (i_ ImageReduceUnary) SetClipRectSource(value Region get set /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setClipRectSource:"), value)
-}/* debug [instance_properties/setter]: clipRectSource */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSImageReduceUnary */
+
+
+
 
 
 

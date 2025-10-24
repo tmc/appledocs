@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZEFIBootLoader */
+
 
 /* debug [class_header]: Header for VZEFIBootLoader */
 // The class instance for the [VZEFIBootLoader] class.
@@ -28,27 +30,30 @@ func getVZEFIBootLoaderClass() _VZEFIBootLoaderClass {
 type _VZEFIBootLoaderClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZEFIBootLoader */
 // An interface definition for the [VZEFIBootLoader] class.
 type IVZEFIBootLoader interface {
 	IVZBootLoader
-
-	/* debug [class_interface_properties]: Properties for VZEFIBootLoader */
+	
+/* debug [class_interface_properties]: Properties for VZEFIBootLoader */
 	// properties:
 	VariableStore() IVZEFIVariableStore
 	SetVariableStore(value IVZEFIVariableStore)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZEFIBootLoader */
+	
+/* debug [class_interface_methods]: Methods for VZEFIBootLoader */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZEFIBootLoader */
 // Alloc allocates a new instance without initialization.
@@ -80,11 +85,13 @@ func (v_ VZEFIBootLoader) Autorelease() VZEFIBootLoader {
 func NewVZEFIBootLoader() VZEFIBootLoader {
 	return getVZEFIBootLoaderClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZEFIBootLoader */
 // The boot loader configuration the system uses to boot guest-operating systems that expect an Extensible Firmware Interface (EFI) ROM.
+
 
 // The boot loader configuration the system uses to boot guest-operating systems that expect an Extensible Firmware Interface (EFI) ROM.
 //
@@ -102,20 +109,29 @@ func VZEFIBootLoaderFrom(ptr unsafe.Pointer) VZEFIBootLoader {
 		VZBootLoader: VZBootLoaderFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZEFIBootLoader */
 /* debug [class_init_methods]: End init methods */
 
+
+
 /* debug [class_methods]: Class methods for VZEFIBootLoader */
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZEFIBootLoader */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZEFIBootLoader */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZEFIBootLoader */
 
@@ -126,7 +142,8 @@ func VZEFIBootLoaderFrom(ptr unsafe.Pointer) VZEFIBootLoader {
 func (v_ VZEFIBootLoader) VariableStore() IVZEFIVariableStore {
 	rv := objc.Send[VZEFIVariableStore](v_.ID, objc.Sel("variableStore"))
 	return rv
-} /* debug [instance_properties/getter]: variableStore */
+}/* debug [instance_properties/getter]: variableStore */
+
 
 // The boot loader’s EFI variable store.
 //
@@ -134,8 +151,11 @@ func (v_ VZEFIBootLoader) VariableStore() IVZEFIVariableStore {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIBootLoader/variableStore
 func (v_ VZEFIBootLoader) SetVariableStore(value IVZEFIVariableStore) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVariableStore:"), value)
-} /* debug [instance_properties/setter]: variableStore */
+}/* debug [instance_properties/setter]: variableStore */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZEFIBootLoader */
+
+

@@ -6,11 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZSpiceAgentPortAttachment */
+
 
 /* debug [class_header]: Header for VZSpiceAgentPortAttachment */
 // The class instance for the [VZSpiceAgentPortAttachment] class.
@@ -29,27 +31,30 @@ func getVZSpiceAgentPortAttachmentClass() _VZSpiceAgentPortAttachmentClass {
 type _VZSpiceAgentPortAttachmentClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZSpiceAgentPortAttachment */
 // An interface definition for the [VZSpiceAgentPortAttachment] class.
 type IVZSpiceAgentPortAttachment interface {
 	IVZSerialPortAttachment
-
-	/* debug [class_interface_properties]: Properties for VZSpiceAgentPortAttachment */
+	
+/* debug [class_interface_properties]: Properties for VZSpiceAgentPortAttachment */
 	// properties:
 	SharesClipboard() bool
 	SetSharesClipboard(value bool)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZSpiceAgentPortAttachment */
+	
+/* debug [class_interface_methods]: Methods for VZSpiceAgentPortAttachment */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZSpiceAgentPortAttachment */
 // Alloc allocates a new instance without initialization.
@@ -81,11 +86,13 @@ func (v_ VZSpiceAgentPortAttachment) Autorelease() VZSpiceAgentPortAttachment {
 func NewVZSpiceAgentPortAttachment() VZSpiceAgentPortAttachment {
 	return getVZSpiceAgentPortAttachmentClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZSpiceAgentPortAttachment */
 // An attachment point that enables the Spice clipboard sharing capability.
+
 
 // An attachment point that enables the Spice clipboard sharing capability.
 //
@@ -103,14 +110,19 @@ func VZSpiceAgentPortAttachmentFrom(ptr unsafe.Pointer) VZSpiceAgentPortAttachme
 		VZSerialPortAttachment: VZSerialPortAttachmentFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZSpiceAgentPortAttachment */
 /* debug [class_init_methods]: End init methods */
 
+
+
 /* debug [class_methods]: Class methods for VZSpiceAgentPortAttachment */
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZSpiceAgentPortAttachment */
 
@@ -121,11 +133,15 @@ func VZSpiceAgentPortAttachmentFrom(ptr unsafe.Pointer) VZSpiceAgentPortAttachme
 func (vc _VZSpiceAgentPortAttachmentClass) SpiceAgentPortName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](objc.ID(vc.class), objc.Sel("spiceAgentPortName"))
 	return rv
-} /* debug [class_properties_class/property]: spiceAgentPortName */
+}/* debug [class_properties_class/property]: spiceAgentPortName */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZSpiceAgentPortAttachment */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZSpiceAgentPortAttachment */
 
@@ -136,7 +152,8 @@ func (vc _VZSpiceAgentPortAttachmentClass) SpiceAgentPortName() objc.IObject /* 
 func (v_ VZSpiceAgentPortAttachment) SharesClipboard() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("sharesClipboard"))
 	return rv
-} /* debug [instance_properties/getter]: sharesClipboard */
+}/* debug [instance_properties/getter]: sharesClipboard */
+
 
 // A Boolean value that indicates whether the framework needs to share the clipboard between the host and the VM.
 //
@@ -144,7 +161,8 @@ func (v_ VZSpiceAgentPortAttachment) SharesClipboard() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSpiceAgentPortAttachment/sharesClipboard
 func (v_ VZSpiceAgentPortAttachment) SetSharesClipboard(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSharesClipboard:"), value)
-} /* debug [instance_properties/setter]: sharesClipboard */
+}/* debug [instance_properties/setter]: sharesClipboard */
+
 
 // The name of the Virtio console port for the Spice guest agent.
 //
@@ -153,8 +171,11 @@ func (v_ VZSpiceAgentPortAttachment) SetSharesClipboard(value bool) {
 func (v_ VZSpiceAgentPortAttachment) SpiceAgentPortName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("spiceAgentPortName"))
 	return rv
-} /* debug [instance_properties/getter]: spiceAgentPortName */
+}/* debug [instance_properties/getter]: spiceAgentPortName */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZSpiceAgentPortAttachment */
+
+

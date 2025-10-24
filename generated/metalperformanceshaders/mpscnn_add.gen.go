@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNAdd */
 
 
-/* debug [class_header]: Header for MPSCNNAdd */
+
+
 // The class instance for the [CNNAdd] class.
 var (
 	CNNAddClass     _CNNAddClass
@@ -30,30 +30,30 @@ func getCNNAddClass() _CNNAddClass {
 type _CNNAddClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNAdd */
+
+
 // An interface definition for the [CNNAdd] class.
 type ICNNAdd interface {
 	ICNNArithmetic
 	
-/* debug [class_interface_properties]: Properties for CNNAdd */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNAdd */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNAdd */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNAddClass) Alloc() CNNAdd {
 	rv := objc.Send[CNNAdd](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNAdd) Autorelease() CNNAdd {
 func NewCNNAdd() CNNAdd {
 	return getCNNAddClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNAdd */
+
+
 // An addition operator.
 
 
@@ -107,11 +107,11 @@ func CNNAddFrom(ptr unsafe.Pointer) CNNAdd {
 		CNNArithmetic: CNNArithmeticFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNAdd */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnadd/2942501-initwithdevice
@@ -120,31 +120,31 @@ func NewCNNAddWithDevice(device unsafe.Pointer) CNNAdd {
 	rv := objc.Send[CNNAdd](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNAddWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNAdd */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNAdd */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNAdd */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNAdd */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNAdd */
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -9,16 +9,18 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	EventModifierFlags   = _undefined // referenced in WebKit
-	FindInteraction      = _undefined // referenced in WebKit
-	Image                = _undefined // referenced in WebKit
-	KeyCommand           = _undefined // referenced in WebKit
-	KeyModifierFlags     = _undefined // referenced in WebKit
-	MenuElement          = _undefined // referenced in WebKit
-	MenuItem             = _undefined // referenced in WebKit
-	Rect                 = _undefined // referenced in WebKit
-	SelectionAffinity    = _undefined // referenced in WebKit
-	String               = _undefined // referenced in WebKit
-	URL                  = _undefined // referenced in WebKit
+	EventModifierFlags = _undefined // referenced in WebKit
+	FindInteraction = _undefined // referenced in WebKit
+	Image = _undefined // referenced in WebKit
+	KeyCommand = _undefined // referenced in WebKit
+	KeyModifierFlags = _undefined // referenced in WebKit
+	MenuElement = _undefined // referenced in WebKit
+	MenuItem = _undefined // referenced in WebKit
+	Rect = _undefined // referenced in WebKit
+	SelectionAffinity = _undefined // referenced in WebKit
+	String = _undefined // referenced in WebKit
+	URL = _undefined // referenced in WebKit
 	WritingToolsBehavior = _undefined // referenced in WebKit
 )
+
+

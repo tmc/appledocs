@@ -5,11 +5,15 @@
 package usernotifications
 
 import (
-	"github.com/tmc/appledocs/generated/foundation"
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for UNNotificationContent
+
 
 // iOS-only properties
 
@@ -21,3 +25,8 @@ func (u_ UNNotificationContent) LaunchImageName() objc.IObject /* cross-framewor
 	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("launchImageName"))
 	return rv
 }
+
+
+
+
+

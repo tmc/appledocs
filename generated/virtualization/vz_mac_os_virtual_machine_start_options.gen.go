@@ -11,6 +11,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZMacOSVirtualMachineStartOptions */
 
+
 /* debug [class_header]: Header for VZMacOSVirtualMachineStartOptions */
 // The class instance for the [VZMacOSVirtualMachineStartOptions] class.
 var (
@@ -28,27 +29,30 @@ func getVZMacOSVirtualMachineStartOptionsClass() _VZMacOSVirtualMachineStartOpti
 type _VZMacOSVirtualMachineStartOptionsClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZMacOSVirtualMachineStartOptions */
 // An interface definition for the [VZMacOSVirtualMachineStartOptions] class.
 type IVZMacOSVirtualMachineStartOptions interface {
 	IVZVirtualMachineStartOptions
-
-	/* debug [class_interface_properties]: Properties for VZMacOSVirtualMachineStartOptions */
+	
+/* debug [class_interface_properties]: Properties for VZMacOSVirtualMachineStartOptions */
 	// properties:
 	StartUpFromMacOSRecovery() bool
 	SetStartUpFromMacOSRecovery(value bool)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZMacOSVirtualMachineStartOptions */
+	
+/* debug [class_interface_methods]: Methods for VZMacOSVirtualMachineStartOptions */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZMacOSVirtualMachineStartOptions */
 // Alloc allocates a new instance without initialization.
@@ -80,11 +84,13 @@ func (v_ VZMacOSVirtualMachineStartOptions) Autorelease() VZMacOSVirtualMachineS
 func NewVZMacOSVirtualMachineStartOptions() VZMacOSVirtualMachineStartOptions {
 	return getVZMacOSVirtualMachineStartOptionsClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZMacOSVirtualMachineStartOptions */
 // A class that describes start options for macOS VMs.
+
 
 // A class that describes start options for macOS VMs.
 //
@@ -102,19 +108,28 @@ func VZMacOSVirtualMachineStartOptionsFrom(ptr unsafe.Pointer) VZMacOSVirtualMac
 		VZVirtualMachineStartOptions: VZVirtualMachineStartOptionsFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZMacOSVirtualMachineStartOptions */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZMacOSVirtualMachineStartOptions *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZMacOSVirtualMachineStartOptions */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZMacOSVirtualMachineStartOptions */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZMacOSVirtualMachineStartOptions */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZMacOSVirtualMachineStartOptions */
 
@@ -125,7 +140,8 @@ func VZMacOSVirtualMachineStartOptionsFrom(ptr unsafe.Pointer) VZMacOSVirtualMac
 func (v_ VZMacOSVirtualMachineStartOptions) StartUpFromMacOSRecovery() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("startUpFromMacOSRecovery"))
 	return rv
-} /* debug [instance_properties/getter]: startUpFromMacOSRecovery */
+}/* debug [instance_properties/getter]: startUpFromMacOSRecovery */
+
 
 // A Boolean value that indicates whether the macOS guest should start in recovery mode.
 //
@@ -133,8 +149,12 @@ func (v_ VZMacOSVirtualMachineStartOptions) StartUpFromMacOSRecovery() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSVirtualMachineStartOptions/startUpFromMacOSRecovery
 func (v_ VZMacOSVirtualMachineStartOptions) SetStartUpFromMacOSRecovery(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setStartUpFromMacOSRecovery:"), value)
-} /* debug [instance_properties/setter]: startUpFromMacOSRecovery */
+}/* debug [instance_properties/setter]: startUpFromMacOSRecovery */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZMacOSVirtualMachineStartOptions */
+
+
+

@@ -3,8 +3,10 @@
 package webkit
 
 import (
+
+	"github.com/tmc/appledocs/generated/coretelephony"
+
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objc"
 )
 
 // PURLSchemeTask is the WKURLSchemeTask protocol interface.
@@ -21,8 +23,8 @@ import (
 // See: doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask
 type PURLSchemeTask interface {
 	// Required methods
-	DidFailWithError(error_ objc.IObject /* cross-framework: Error */)
-	DidFinish()
-	DidReceiveResponse(response foundation.URLResponse)
-	DidReceiveData(data objc.IObject /* cross-framework: NSData */)
+	DidFailWithError(error_ objc.IObject /* cross-framework: Error */)/* debug [protocol_interface/required_method]: DidFailWithError */
+	DidFinish()/* debug [protocol_interface/required_method]: DidFinish */
+	DidReceiveResponse(response foundation.URLResponse)/* debug [protocol_interface/required_method]: DidReceiveResponse */
+	DidReceiveData(data objc.IObject /* cross-framework: NSData */)/* debug [protocol_interface/required_method]: DidReceiveData */
 }

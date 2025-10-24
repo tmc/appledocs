@@ -6,11 +6,12 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 /* debug [class.gen.go]: Generating class DOMHTMLDocument */
+
 
 /* debug [class_header]: Header for DOMHTMLDocument */
 // The class instance for the [DOMHTMLDocument] class.
@@ -29,15 +30,16 @@ func getDOMHTMLDocumentClass() _DOMHTMLDocumentClass {
 type _DOMHTMLDocumentClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMHTMLDocument */
 // An interface definition for the [DOMHTMLDocument] class.
 type IDOMHTMLDocument interface {
 	IDOMDocument
-
-	/* debug [class_interface_properties]: Properties for DOMHTMLDocument */
+	
+/* debug [class_interface_properties]: Properties for DOMHTMLDocument */
 	// properties:
 	AlinkColor() objc.IObject /* cross-framework: NSString */
 	SetAlinkColor(value objc.IObject /* cross-framework: NSString */)
@@ -59,17 +61,19 @@ type IDOMHTMLDocument interface {
 	VlinkColor() objc.IObject /* cross-framework: NSString */
 	SetVlinkColor(value objc.IObject /* cross-framework: NSString */)
 	Width() int
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMHTMLDocument */
+	
+/* debug [class_interface_methods]: Methods for DOMHTMLDocument */
 	// methods:
 	CreateDocumentFragmentWithMarkupStringBaseURL(markupString objc.IObject /* cross-framework: NSString */, baseURL objc.IObject /* cross-framework: NSURL */) IDOMDocumentFragment
 	CreateDocumentFragmentWithText(text objc.IObject /* cross-framework: NSString */) IDOMDocumentFragment
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMHTMLDocument */
 // Alloc allocates a new instance without initialization.
@@ -101,10 +105,12 @@ func (d_ DOMHTMLDocument) Autorelease() DOMHTMLDocument {
 func NewDOMHTMLDocument() DOMHTMLDocument {
 	return getDOMHTMLDocumentClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMHTMLDocument */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument
@@ -118,16 +124,23 @@ func DOMHTMLDocumentFrom(ptr unsafe.Pointer) DOMHTMLDocument {
 		DOMDocument: DOMDocumentFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMHTMLDocument */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMHTMLDocument *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMHTMLDocument */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMHTMLDocument */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for DOMHTMLDocument */
 
@@ -138,7 +151,8 @@ func DOMHTMLDocumentFrom(ptr unsafe.Pointer) DOMHTMLDocument {
 func (d_ DOMHTMLDocument) CreateDocumentFragmentWithMarkupStringBaseURL(markupString objc.IObject /* cross-framework: NSString */, baseURL objc.IObject /* cross-framework: NSURL */) IDOMDocumentFragment {
 	rv := objc.Send[DOMDocumentFragment](d_.ID, objc.Sel("createDocumentFragmentWithMarkupString:baseURL:"), markupString, baseURL)
 	return rv
-} /* debug [instance_methods/method]: CreateDocumentFragmentWithMarkupStringBaseURL */
+}/* debug [instance_methods/method]: CreateDocumentFragmentWithMarkupStringBaseURL */
+
 
 // Creates a document fragment containing the given text.
 //
@@ -147,9 +161,11 @@ func (d_ DOMHTMLDocument) CreateDocumentFragmentWithMarkupStringBaseURL(markupSt
 func (d_ DOMHTMLDocument) CreateDocumentFragmentWithText(text objc.IObject /* cross-framework: NSString */) IDOMDocumentFragment {
 	rv := objc.Send[DOMDocumentFragment](d_.ID, objc.Sel("createDocumentFragmentWithText:"), text)
 	return rv
-} /* debug [instance_methods/method]: CreateDocumentFragmentWithText */
+}/* debug [instance_methods/method]: CreateDocumentFragmentWithText */
 
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMHTMLDocument */
 
@@ -158,134 +174,157 @@ func (d_ DOMHTMLDocument) CreateDocumentFragmentWithText(text objc.IObject /* cr
 func (d_ DOMHTMLDocument) AlinkColor() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("alinkColor"))
 	return rv
-} /* debug [instance_properties/getter]: alinkColor */
+}/* debug [instance_properties/getter]: alinkColor */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/alinkColor
 func (d_ DOMHTMLDocument) SetAlinkColor(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAlinkColor:"), value)
-} /* debug [instance_properties/setter]: alinkColor */
+}/* debug [instance_properties/setter]: alinkColor */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/bgColor
 func (d_ DOMHTMLDocument) BgColor() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("bgColor"))
 	return rv
-} /* debug [instance_properties/getter]: bgColor */
+}/* debug [instance_properties/getter]: bgColor */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/bgColor
 func (d_ DOMHTMLDocument) SetBgColor(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setBgColor:"), value)
-} /* debug [instance_properties/setter]: bgColor */
+}/* debug [instance_properties/setter]: bgColor */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/compatMode
 func (d_ DOMHTMLDocument) CompatMode() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("compatMode"))
 	return rv
-} /* debug [instance_properties/getter]: compatMode */
+}/* debug [instance_properties/getter]: compatMode */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/designMode
 func (d_ DOMHTMLDocument) DesignMode() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("designMode"))
 	return rv
-} /* debug [instance_properties/getter]: designMode */
+}/* debug [instance_properties/getter]: designMode */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/designMode
 func (d_ DOMHTMLDocument) SetDesignMode(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDesignMode:"), value)
-} /* debug [instance_properties/setter]: designMode */
+}/* debug [instance_properties/setter]: designMode */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/dir
 func (d_ DOMHTMLDocument) Dir() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("dir"))
 	return rv
-} /* debug [instance_properties/getter]: dir */
+}/* debug [instance_properties/getter]: dir */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/dir
 func (d_ DOMHTMLDocument) SetDir(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDir:"), value)
-} /* debug [instance_properties/setter]: dir */
+}/* debug [instance_properties/setter]: dir */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/embeds
 func (d_ DOMHTMLDocument) Embeds() IDOMHTMLCollection {
 	rv := objc.Send[DOMHTMLCollection](d_.ID, objc.Sel("embeds"))
 	return rv
-} /* debug [instance_properties/getter]: embeds */
+}/* debug [instance_properties/getter]: embeds */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/fgColor
 func (d_ DOMHTMLDocument) FgColor() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("fgColor"))
 	return rv
-} /* debug [instance_properties/getter]: fgColor */
+}/* debug [instance_properties/getter]: fgColor */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/fgColor
 func (d_ DOMHTMLDocument) SetFgColor(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFgColor:"), value)
-} /* debug [instance_properties/setter]: fgColor */
+}/* debug [instance_properties/setter]: fgColor */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/height
 func (d_ DOMHTMLDocument) Height() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("height"))
 	return rv
-} /* debug [instance_properties/getter]: height */
+}/* debug [instance_properties/getter]: height */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/linkColor
 func (d_ DOMHTMLDocument) LinkColor() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("linkColor"))
 	return rv
-} /* debug [instance_properties/getter]: linkColor */
+}/* debug [instance_properties/getter]: linkColor */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/linkColor
 func (d_ DOMHTMLDocument) SetLinkColor(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLinkColor:"), value)
-} /* debug [instance_properties/setter]: linkColor */
+}/* debug [instance_properties/setter]: linkColor */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/plugins
 func (d_ DOMHTMLDocument) Plugins() IDOMHTMLCollection {
 	rv := objc.Send[DOMHTMLCollection](d_.ID, objc.Sel("plugins"))
 	return rv
-} /* debug [instance_properties/getter]: plugins */
+}/* debug [instance_properties/getter]: plugins */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/scripts
 func (d_ DOMHTMLDocument) Scripts() IDOMHTMLCollection {
 	rv := objc.Send[DOMHTMLCollection](d_.ID, objc.Sel("scripts"))
 	return rv
-} /* debug [instance_properties/getter]: scripts */
+}/* debug [instance_properties/getter]: scripts */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/vlinkColor
 func (d_ DOMHTMLDocument) VlinkColor() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("vlinkColor"))
 	return rv
-} /* debug [instance_properties/getter]: vlinkColor */
+}/* debug [instance_properties/getter]: vlinkColor */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/vlinkColor
 func (d_ DOMHTMLDocument) SetVlinkColor(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setVlinkColor:"), value)
-} /* debug [instance_properties/setter]: vlinkColor */
+}/* debug [instance_properties/setter]: vlinkColor */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDocument/width
 func (d_ DOMHTMLDocument) Width() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("width"))
 	return rv
-} /* debug [instance_properties/getter]: width */
+}/* debug [instance_properties/getter]: width */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMHTMLDocument */
+
+
+

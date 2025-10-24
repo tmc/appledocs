@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class VNHumanHandPoseObservation */
 
 
-/* debug [class_header]: Header for VNHumanHandPoseObservation */
+
+
 // The class instance for the [HumanHandPoseObservation] class.
 var (
 	HumanHandPoseObservationClass     _HumanHandPoseObservationClass
@@ -31,35 +30,35 @@ func getHumanHandPoseObservationClass() _HumanHandPoseObservationClass {
 type _HumanHandPoseObservationClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for HumanHandPoseObservation */
+
+
 // An interface definition for the [HumanHandPoseObservation] class.
 type IHumanHandPoseObservation interface {
 	IRecognizedPointsObservation
 	
-/* debug [class_interface_properties]: Properties for HumanHandPoseObservation */
+
 	// properties:
 	AvailableJointNames() []string
 	AvailableJointsGroupNames() []string
 	Chirality() Chirality
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for HumanHandPoseObservation */
+
 	// methods:
 	RecognizedPointForJointNameError(jointName HumanHandPoseObservationJointName /* typedef */, error_ objectivec.IObject) IRecognizedPoint
 	RecognizedPointsForJointsGroupNameError(jointsGroupName HumanHandPoseObservationJointsGroupName /* typedef */, error_ objectivec.IObject) foundation.IDictionary
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for HumanHandPoseObservation */
+
+
 // Alloc allocates a new instance without initialization.
 func (hc _HumanHandPoseObservationClass) Alloc() HumanHandPoseObservation {
 	rv := objc.Send[HumanHandPoseObservation](objc.ID(hc.class), objc.Sel("alloc"))
@@ -89,11 +88,11 @@ func (h_ HumanHandPoseObservation) Autorelease() HumanHandPoseObservation {
 func NewHumanHandPoseObservation() HumanHandPoseObservation {
 	return getHumanHandPoseObservationClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for HumanHandPoseObservation */
+
+
 // An observation that provides the hand points the analysis recognized.
 
 
@@ -113,25 +112,25 @@ func HumanHandPoseObservationFrom(ptr unsafe.Pointer) HumanHandPoseObservation {
 		RecognizedPointsObservation: RecognizedPointsObservationFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for HumanHandPoseObservation *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for HumanHandPoseObservation */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for HumanHandPoseObservation */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for HumanHandPoseObservation */
+
+
+
+
+
+
+
 
 // Retrieves the recognized point for a joint name.
 //
@@ -140,7 +139,7 @@ func HumanHandPoseObservationFrom(ptr unsafe.Pointer) HumanHandPoseObservation {
 func (h_ HumanHandPoseObservation) RecognizedPointForJointNameError(jointName HumanHandPoseObservationJointName /* typedef */, error_ objectivec.IObject) IRecognizedPoint {
 	rv := objc.Send[RecognizedPoint](h_.ID, objc.Sel("recognizedPointForJointName:error:"), jointName, error_)
 	return rv
-}/* debug [instance_methods/method]: RecognizedPointForJointNameError */
+}
 
 
 // Retrieves the recognized points associated with the joint group name.
@@ -150,13 +149,13 @@ func (h_ HumanHandPoseObservation) RecognizedPointForJointNameError(jointName Hu
 func (h_ HumanHandPoseObservation) RecognizedPointsForJointsGroupNameError(jointsGroupName HumanHandPoseObservationJointsGroupName /* typedef */, error_ objectivec.IObject) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](h_.ID, objc.Sel("recognizedPointsForJointsGroupName:error:"), jointsGroupName, error_)
 	return rv
-}/* debug [instance_methods/method]: RecognizedPointsForJointsGroupNameError */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for HumanHandPoseObservation */
+
+
+
 
 // The names of the available joints in the observation.
 //
@@ -165,7 +164,7 @@ func (h_ HumanHandPoseObservation) RecognizedPointsForJointsGroupNameError(joint
 func (h_ HumanHandPoseObservation) AvailableJointNames() []string {
 	rv := objc.Send[[]string](h_.ID, objc.Sel("availableJointNames"))
 	return rv
-}/* debug [instance_properties/getter]: availableJointNames */
+}
 
 
 // The joint group names available in the observation.
@@ -175,7 +174,7 @@ func (h_ HumanHandPoseObservation) AvailableJointNames() []string {
 func (h_ HumanHandPoseObservation) AvailableJointsGroupNames() []string {
 	rv := objc.Send[[]string](h_.ID, objc.Sel("availableJointsGroupNames"))
 	return rv
-}/* debug [instance_properties/getter]: availableJointsGroupNames */
+}
 
 
 // The chirality, or handedness, of a pose.
@@ -185,12 +184,12 @@ func (h_ HumanHandPoseObservation) AvailableJointsGroupNames() []string {
 func (h_ HumanHandPoseObservation) Chirality() Chirality {
 	rv := objc.Send[Chirality](h_.ID, objc.Sel("chirality"))
 	return rv
-}/* debug [instance_properties/getter]: chirality */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class VNHumanHandPoseObservation */
+
+
+
 
 
 

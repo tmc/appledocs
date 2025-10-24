@@ -19,3 +19,4 @@ var titleForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	titleForWebExtensionContextProtocol = objc.GetProtocol("titleForWebExtensionContext:")
 }
+

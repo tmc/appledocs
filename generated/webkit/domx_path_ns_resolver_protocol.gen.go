@@ -15,3 +15,4 @@ var DOMXPathNSResolverProtocol *objc.Protocol
 func init() {
 	DOMXPathNSResolverProtocol = objc.GetProtocol("DOMXPathNSResolver")
 }
+

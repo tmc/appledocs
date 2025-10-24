@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZBootLoader */
 
+
 /* debug [class_header]: Header for VZBootLoader */
 // The class instance for the [VZBootLoader] class.
 var (
@@ -29,25 +30,28 @@ func getVZBootLoaderClass() _VZBootLoaderClass {
 type _VZBootLoaderClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZBootLoader */
 // An interface definition for the [VZBootLoader] class.
 type IVZBootLoader interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZBootLoader */
+	
+/* debug [class_interface_properties]: Properties for VZBootLoader */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZBootLoader */
+	
+/* debug [class_interface_methods]: Methods for VZBootLoader */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZBootLoader */
 // Alloc allocates a new instance without initialization.
@@ -79,13 +83,15 @@ func (v_ VZBootLoader) Autorelease() VZBootLoader {
 func NewVZBootLoader() VZBootLoader {
 	return getVZBootLoaderClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZBootLoader */
 // The base class that defines the management of the initial process of the guest system.
 //
 // The abstract class defines the common behaviors for booting a guest operating system into a VM. Don’t create instances of this class directly. Instead, instantiate the subclass that corresponds to the type of operating system you plan to load. For example, to create a boot loader object for a Linux kernel, create a object; to create a boot loader object for installation using an ISO image create a . For a macOS system create .
+
 
 // The base class that defines the management of the initial process of the guest system.
 //
@@ -101,21 +107,34 @@ type VZBootLoader struct {
 func VZBootLoaderFrom(ptr unsafe.Pointer) VZBootLoader {
 	return VZBootLoader{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZBootLoader */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZBootLoader *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZBootLoader */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZBootLoader */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZBootLoader */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for VZBootLoader */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZBootLoader */
+
+
+

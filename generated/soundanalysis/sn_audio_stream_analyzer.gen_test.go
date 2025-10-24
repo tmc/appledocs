@@ -15,7 +15,7 @@ func ExampleSNAudioStreamAnalyzer_CompleteAnalysis() {
 	obj := soundanalysis.NewSNAudioStreamAnalyzer()
 	obj.CompleteAnalysis()
 	// Output:
-}
+	}
 
 // ExampleSNAudioStreamAnalyzer_RemoveAllRequests demonstrates using RemoveAllRequests on a SNAudioStreamAnalyzer instance.
 // Removes all the sound analysis requests from the audio stream analyzer.
@@ -23,4 +23,5 @@ func ExampleSNAudioStreamAnalyzer_RemoveAllRequests() {
 	obj := soundanalysis.NewSNAudioStreamAnalyzer()
 	obj.RemoveAllRequests()
 	// Output:
-}
+	}
+

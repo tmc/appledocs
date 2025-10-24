@@ -6,11 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class DOMText */
+
 
 /* debug [class_header]: Header for DOMText */
 // The class instance for the [DOMText] class.
@@ -29,26 +31,29 @@ func getDOMTextClass() _DOMTextClass {
 type _DOMTextClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMText */
 // An interface definition for the [DOMText] class.
 type IDOMText interface {
 	IDOMCharacterData
-
-	/* debug [class_interface_properties]: Properties for DOMText */
+	
+/* debug [class_interface_properties]: Properties for DOMText */
 	// properties:
 	WholeText() objc.IObject /* cross-framework: NSString */
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMText */
+	
+/* debug [class_interface_methods]: Methods for DOMText */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMText */
 // Alloc allocates a new instance without initialization.
@@ -80,10 +85,12 @@ func (d_ DOMText) Autorelease() DOMText {
 func NewDOMText() DOMText {
 	return getDOMTextClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMText */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMText
@@ -97,19 +104,28 @@ func DOMTextFrom(ptr unsafe.Pointer) DOMText {
 		DOMCharacterData: DOMCharacterDataFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMText */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMText *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMText */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMText */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMText */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMText */
 
@@ -118,8 +134,12 @@ func DOMTextFrom(ptr unsafe.Pointer) DOMText {
 func (d_ DOMText) WholeText() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("wholeText"))
 	return rv
-} /* debug [instance_properties/getter]: wholeText */
+}/* debug [instance_properties/getter]: wholeText */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMText */
+
+
+

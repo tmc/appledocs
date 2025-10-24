@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSLSTMDescriptor */
 
 
-/* debug [class_header]: Header for MPSLSTMDescriptor */
+
+
 // The class instance for the [LSTMDescriptor] class.
 var (
 	LSTMDescriptorClass     _LSTMDescriptorClass
@@ -30,16 +30,16 @@ func getLSTMDescriptorClass() _LSTMDescriptorClass {
 type _LSTMDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for LSTMDescriptor */
+
+
 // An interface definition for the [LSTMDescriptor] class.
 type ILSTMDescriptor interface {
 	IRNNDescriptor
 	
-/* debug [class_interface_properties]: Properties for LSTMDescriptor */
+
 	// properties:
 	CellGateRecurrentWeights() CNNConvolutionDataSource get set /* not a class type */
 	SetCellGateRecurrentWeights(value CNNConvolutionDataSource get set /* not a class type */)
@@ -79,19 +79,19 @@ type ILSTMDescriptor interface {
 	SetInputFeatureChannels(value int)
 	OutputFeatureChannels() int
 	SetOutputFeatureChannels(value int)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for LSTMDescriptor */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for LSTMDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (lc _LSTMDescriptorClass) Alloc() LSTMDescriptor {
 	rv := objc.Send[LSTMDescriptor](objc.ID(lc.class), objc.Sel("alloc"))
@@ -121,11 +121,11 @@ func (l_ LSTMDescriptor) Autorelease() LSTMDescriptor {
 func NewLSTMDescriptor() LSTMDescriptor {
 	return getLSTMDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for LSTMDescriptor */
+
+
 // A description of a long short-term memory block or layer.
 //
 // The recurrent neural network (RNN) layer initialized with transforms the input data (image or matrix), the memory cell data, and previous output with a set of filters. Each produces one feature map in the output data and memory cell according to the long short-term memory (LSTM) formula detailed below. You may provide the LSTM unit with a single input or a sequence of inputs.
@@ -147,21 +147,21 @@ func LSTMDescriptorFrom(ptr unsafe.Pointer) LSTMDescriptor {
 		RNNDescriptor: RNNDescriptorFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for LSTMDescriptor *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for LSTMDescriptor */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865681-createlstmdescriptor
 func (lc _LSTMDescriptorClass) CreateLSTMDescriptor() {
 	objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("createLSTMDescriptor"))
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CreateLSTMDescriptor) */
+}
 
 
 // [Full Topic]
@@ -169,37 +169,37 @@ func (lc _LSTMDescriptorClass) CreateLSTMDescriptor() {
 func (lc _LSTMDescriptorClass) CreateLSTMDescriptorWithInputFeatureChannelsOutputFeatureChannels(inputFeatureChannels uint, outputFeatureChannels uint) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(lc.class), objc.Sel("createLSTMDescriptorWithInputFeatureChannels:outputFeatureChannels:"), inputFeatureChannels, outputFeatureChannels)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CreateLSTMDescriptorWithInputFeatureChannelsOutputFeatureChannels) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for LSTMDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for LSTMDescriptor */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for LSTMDescriptor */
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865679-cellgaterecurrentweights
 func (l_ LSTMDescriptor) CellGateRecurrentWeights() CNNConvolutionDataSource get set /* not a class type */ {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("cellGateRecurrentWeights"))
 	return rv
-}/* debug [instance_properties/getter]: cellGateRecurrentWeights */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865679-cellgaterecurrentweights
 func (l_ LSTMDescriptor) SetCellGateRecurrentWeights(value CNNConvolutionDataSource get set /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCellGateRecurrentWeights:"), value)
-}/* debug [instance_properties/setter]: cellGateRecurrentWeights */
+}
 
 
 // [Full Topic]
@@ -207,14 +207,14 @@ func (l_ LSTMDescriptor) SetCellGateRecurrentWeights(value CNNConvolutionDataSou
 func (l_ LSTMDescriptor) CellGateMemoryWeights() CNNConvolutionDataSource get set /* not a class type */ {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("cellGateMemoryWeights"))
 	return rv
-}/* debug [instance_properties/getter]: cellGateMemoryWeights */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865683-cellgatememoryweights
 func (l_ LSTMDescriptor) SetCellGateMemoryWeights(value CNNConvolutionDataSource get set /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCellGateMemoryWeights:"), value)
-}/* debug [instance_properties/setter]: cellGateMemoryWeights */
+}
 
 
 // [Full Topic]
@@ -222,14 +222,14 @@ func (l_ LSTMDescriptor) SetCellGateMemoryWeights(value CNNConvolutionDataSource
 func (l_ LSTMDescriptor) InputGateInputWeights() CNNConvolutionDataSource get set /* not a class type */ {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("inputGateInputWeights"))
 	return rv
-}/* debug [instance_properties/getter]: inputGateInputWeights */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865684-inputgateinputweights
 func (l_ LSTMDescriptor) SetInputGateInputWeights(value CNNConvolutionDataSource get set /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setInputGateInputWeights:"), value)
-}/* debug [instance_properties/setter]: inputGateInputWeights */
+}
 
 
 // [Full Topic]
@@ -237,14 +237,14 @@ func (l_ LSTMDescriptor) SetInputGateInputWeights(value CNNConvolutionDataSource
 func (l_ LSTMDescriptor) OutputGateMemoryWeights() CNNConvolutionDataSource get set /* not a class type */ {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("outputGateMemoryWeights"))
 	return rv
-}/* debug [instance_properties/getter]: outputGateMemoryWeights */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865688-outputgatememoryweights
 func (l_ LSTMDescriptor) SetOutputGateMemoryWeights(value CNNConvolutionDataSource get set /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setOutputGateMemoryWeights:"), value)
-}/* debug [instance_properties/setter]: outputGateMemoryWeights */
+}
 
 
 // [Full Topic]
@@ -252,14 +252,14 @@ func (l_ LSTMDescriptor) SetOutputGateMemoryWeights(value CNNConvolutionDataSour
 func (l_ LSTMDescriptor) ForgetGateMemoryWeights() CNNConvolutionDataSource get set /* not a class type */ {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("forgetGateMemoryWeights"))
 	return rv
-}/* debug [instance_properties/getter]: forgetGateMemoryWeights */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865689-forgetgatememoryweights
 func (l_ LSTMDescriptor) SetForgetGateMemoryWeights(value CNNConvolutionDataSource get set /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setForgetGateMemoryWeights:"), value)
-}/* debug [instance_properties/setter]: forgetGateMemoryWeights */
+}
 
 
 // [Full Topic]
@@ -267,14 +267,14 @@ func (l_ LSTMDescriptor) SetForgetGateMemoryWeights(value CNNConvolutionDataSour
 func (l_ LSTMDescriptor) CellToOutputNeuronParamB() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](l_.ID, objc.Sel("cellToOutputNeuronParamB"))
 	return rv
-}/* debug [instance_properties/getter]: cellToOutputNeuronParamB */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865694-celltooutputneuronparamb
 func (l_ LSTMDescriptor) SetCellToOutputNeuronParamB(value objectivec.IObject) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCellToOutputNeuronParamB:"), value)
-}/* debug [instance_properties/setter]: cellToOutputNeuronParamB */
+}
 
 
 // [Full Topic]
@@ -282,14 +282,14 @@ func (l_ LSTMDescriptor) SetCellToOutputNeuronParamB(value objectivec.IObject) {
 func (l_ LSTMDescriptor) OutputGateInputWeights() CNNConvolutionDataSource get set /* not a class type */ {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("outputGateInputWeights"))
 	return rv
-}/* debug [instance_properties/getter]: outputGateInputWeights */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865701-outputgateinputweights
 func (l_ LSTMDescriptor) SetOutputGateInputWeights(value CNNConvolutionDataSource get set /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setOutputGateInputWeights:"), value)
-}/* debug [instance_properties/setter]: outputGateInputWeights */
+}
 
 
 // [Full Topic]
@@ -297,14 +297,14 @@ func (l_ LSTMDescriptor) SetOutputGateInputWeights(value CNNConvolutionDataSourc
 func (l_ LSTMDescriptor) MemoryWeightsAreDiagonal() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](l_.ID, objc.Sel("memoryWeightsAreDiagonal"))
 	return rv
-}/* debug [instance_properties/getter]: memoryWeightsAreDiagonal */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865712-memoryweightsarediagonal
 func (l_ LSTMDescriptor) SetMemoryWeightsAreDiagonal(value objectivec.IObject) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMemoryWeightsAreDiagonal:"), value)
-}/* debug [instance_properties/setter]: memoryWeightsAreDiagonal */
+}
 
 
 // [Full Topic]
@@ -312,14 +312,14 @@ func (l_ LSTMDescriptor) SetMemoryWeightsAreDiagonal(value objectivec.IObject) {
 func (l_ LSTMDescriptor) InputGateMemoryWeights() CNNConvolutionDataSource get set /* not a class type */ {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("inputGateMemoryWeights"))
 	return rv
-}/* debug [instance_properties/getter]: inputGateMemoryWeights */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865731-inputgatememoryweights
 func (l_ LSTMDescriptor) SetInputGateMemoryWeights(value CNNConvolutionDataSource get set /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setInputGateMemoryWeights:"), value)
-}/* debug [instance_properties/setter]: inputGateMemoryWeights */
+}
 
 
 // [Full Topic]
@@ -327,14 +327,14 @@ func (l_ LSTMDescriptor) SetInputGateMemoryWeights(value CNNConvolutionDataSourc
 func (l_ LSTMDescriptor) ForgetGateInputWeights() CNNConvolutionDataSource get set /* not a class type */ {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("forgetGateInputWeights"))
 	return rv
-}/* debug [instance_properties/getter]: forgetGateInputWeights */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865734-forgetgateinputweights
 func (l_ LSTMDescriptor) SetForgetGateInputWeights(value CNNConvolutionDataSource get set /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setForgetGateInputWeights:"), value)
-}/* debug [instance_properties/setter]: forgetGateInputWeights */
+}
 
 
 // [Full Topic]
@@ -342,14 +342,14 @@ func (l_ LSTMDescriptor) SetForgetGateInputWeights(value CNNConvolutionDataSourc
 func (l_ LSTMDescriptor) ForgetGateRecurrentWeights() CNNConvolutionDataSource get set /* not a class type */ {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("forgetGateRecurrentWeights"))
 	return rv
-}/* debug [instance_properties/getter]: forgetGateRecurrentWeights */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865735-forgetgaterecurrentweights
 func (l_ LSTMDescriptor) SetForgetGateRecurrentWeights(value CNNConvolutionDataSource get set /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setForgetGateRecurrentWeights:"), value)
-}/* debug [instance_properties/setter]: forgetGateRecurrentWeights */
+}
 
 
 // [Full Topic]
@@ -357,14 +357,14 @@ func (l_ LSTMDescriptor) SetForgetGateRecurrentWeights(value CNNConvolutionDataS
 func (l_ LSTMDescriptor) CellToOutputNeuronType() CNNNeuronType get set /* not a class type */ {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("cellToOutputNeuronType"))
 	return rv
-}/* debug [instance_properties/getter]: cellToOutputNeuronType */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865736-celltooutputneurontype
 func (l_ LSTMDescriptor) SetCellToOutputNeuronType(value CNNNeuronType get set /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCellToOutputNeuronType:"), value)
-}/* debug [instance_properties/setter]: cellToOutputNeuronType */
+}
 
 
 // [Full Topic]
@@ -372,14 +372,14 @@ func (l_ LSTMDescriptor) SetCellToOutputNeuronType(value CNNNeuronType get set /
 func (l_ LSTMDescriptor) CellGateInputWeights() CNNConvolutionDataSource get set /* not a class type */ {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("cellGateInputWeights"))
 	return rv
-}/* debug [instance_properties/getter]: cellGateInputWeights */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865741-cellgateinputweights
 func (l_ LSTMDescriptor) SetCellGateInputWeights(value CNNConvolutionDataSource get set /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCellGateInputWeights:"), value)
-}/* debug [instance_properties/setter]: cellGateInputWeights */
+}
 
 
 // [Full Topic]
@@ -387,14 +387,14 @@ func (l_ LSTMDescriptor) SetCellGateInputWeights(value CNNConvolutionDataSource 
 func (l_ LSTMDescriptor) CellToOutputNeuronParamA() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](l_.ID, objc.Sel("cellToOutputNeuronParamA"))
 	return rv
-}/* debug [instance_properties/getter]: cellToOutputNeuronParamA */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865744-celltooutputneuronparama
 func (l_ LSTMDescriptor) SetCellToOutputNeuronParamA(value objectivec.IObject) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCellToOutputNeuronParamA:"), value)
-}/* debug [instance_properties/setter]: cellToOutputNeuronParamA */
+}
 
 
 // [Full Topic]
@@ -402,14 +402,14 @@ func (l_ LSTMDescriptor) SetCellToOutputNeuronParamA(value objectivec.IObject) {
 func (l_ LSTMDescriptor) InputGateRecurrentWeights() CNNConvolutionDataSource get set /* not a class type */ {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("inputGateRecurrentWeights"))
 	return rv
-}/* debug [instance_properties/getter]: inputGateRecurrentWeights */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865747-inputgaterecurrentweights
 func (l_ LSTMDescriptor) SetInputGateRecurrentWeights(value CNNConvolutionDataSource get set /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setInputGateRecurrentWeights:"), value)
-}/* debug [instance_properties/setter]: inputGateRecurrentWeights */
+}
 
 
 // [Full Topic]
@@ -417,14 +417,14 @@ func (l_ LSTMDescriptor) SetInputGateRecurrentWeights(value CNNConvolutionDataSo
 func (l_ LSTMDescriptor) OutputGateRecurrentWeights() CNNConvolutionDataSource get set /* not a class type */ {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("outputGateRecurrentWeights"))
 	return rv
-}/* debug [instance_properties/getter]: outputGateRecurrentWeights */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2865750-outputgaterecurrentweights
 func (l_ LSTMDescriptor) SetOutputGateRecurrentWeights(value CNNConvolutionDataSource get set /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setOutputGateRecurrentWeights:"), value)
-}/* debug [instance_properties/setter]: outputGateRecurrentWeights */
+}
 
 
 // [Full Topic]
@@ -432,14 +432,14 @@ func (l_ LSTMDescriptor) SetOutputGateRecurrentWeights(value CNNConvolutionDataS
 func (l_ LSTMDescriptor) CellToOutputNeuronParamC() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](l_.ID, objc.Sel("cellToOutputNeuronParamC"))
 	return rv
-}/* debug [instance_properties/getter]: cellToOutputNeuronParamC */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/2935551-celltooutputneuronparamc
 func (l_ LSTMDescriptor) SetCellToOutputNeuronParamC(value objectivec.IObject) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCellToOutputNeuronParamC:"), value)
-}/* debug [instance_properties/setter]: cellToOutputNeuronParamC */
+}
 
 
 // [Full Topic]
@@ -447,14 +447,14 @@ func (l_ LSTMDescriptor) SetCellToOutputNeuronParamC(value objectivec.IObject) {
 func (l_ LSTMDescriptor) InputFeatureChannels() int {
 	rv := objc.Send[int](l_.ID, objc.Sel("inputFeatureChannels"))
 	return rv
-}/* debug [instance_properties/getter]: inputFeatureChannels */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnndescriptor/inputfeaturechannels
 func (l_ LSTMDescriptor) SetInputFeatureChannels(value int) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setInputFeatureChannels:"), value)
-}/* debug [instance_properties/setter]: inputFeatureChannels */
+}
 
 
 // [Full Topic]
@@ -462,19 +462,19 @@ func (l_ LSTMDescriptor) SetInputFeatureChannels(value int) {
 func (l_ LSTMDescriptor) OutputFeatureChannels() int {
 	rv := objc.Send[int](l_.ID, objc.Sel("outputFeatureChannels"))
 	return rv
-}/* debug [instance_properties/getter]: outputFeatureChannels */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnndescriptor/outputfeaturechannels
 func (l_ LSTMDescriptor) SetOutputFeatureChannels(value int) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setOutputFeatureChannels:"), value)
-}/* debug [instance_properties/setter]: outputFeatureChannels */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSLSTMDescriptor */
+
+
+
 
 
 

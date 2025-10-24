@@ -15,3 +15,4 @@ var DOMEventTargetProtocol *objc.Protocol
 func init() {
 	DOMEventTargetProtocol = objc.GetProtocol("DOMEventTarget")
 }
+

@@ -15,3 +15,4 @@ var searchForProtocol *objc.Protocol
 func init() {
 	searchForProtocol = objc.GetProtocol("searchFor:")
 }
+

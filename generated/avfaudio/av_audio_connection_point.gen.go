@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAudioConnectionPoint */
 
 
-/* debug [class_header]: Header for AVAudioConnectionPoint */
+
+
 // The class instance for the [AudioConnectionPoint] class.
 var (
 	AudioConnectionPointClass     _AudioConnectionPointClass
@@ -30,32 +30,32 @@ func getAudioConnectionPointClass() _AudioConnectionPointClass {
 type _AudioConnectionPointClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AudioConnectionPoint */
+
+
 // An interface definition for the [AudioConnectionPoint] class.
 type IAudioConnectionPoint interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for AudioConnectionPoint */
+
 	// properties:
 	Bus() AudioNodeBus /* typedef */
 	Node() IAVAudioNode
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AudioConnectionPoint */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AudioConnectionPoint */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AudioConnectionPointClass) Alloc() AudioConnectionPoint {
 	rv := objc.Send[AudioConnectionPoint](objc.ID(ac.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (a_ AudioConnectionPoint) Autorelease() AudioConnectionPoint {
 func NewAudioConnectionPoint() AudioConnectionPoint {
 	return getAudioConnectionPointClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AudioConnectionPoint */
+
+
 // A representation of either a source or destination connection point in the audio engine.
 //
 // Instances of this class are immutable.
@@ -109,11 +109,11 @@ type AudioConnectionPoint struct {
 func AudioConnectionPointFrom(ptr unsafe.Pointer) AudioConnectionPoint {
 	return AudioConnectionPoint{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AudioConnectionPoint */
+
+
 
 // Creates a connection point object.
 //
@@ -124,28 +124,28 @@ func NewAudioConnectionPointWithNodeBus(node IAVAudioNode, bus AudioNodeBus /* t
 	rv := objc.Send[AudioConnectionPoint](instance.ID, objc.Sel("initWithNode:bus:"), node, bus)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewAudioConnectionPointWithNodeBus */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for AudioConnectionPoint */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AudioConnectionPoint */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AudioConnectionPoint */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AudioConnectionPoint */
+
+
+
+
+
+
+
+
+
 
 // The bus on the node in the connection point.
 //
@@ -154,7 +154,7 @@ func NewAudioConnectionPointWithNodeBus(node IAVAudioNode, bus AudioNodeBus /* t
 func (a_ AudioConnectionPoint) Bus() AudioNodeBus /* typedef */ {
 	rv := objc.Send[uint](a_.ID, objc.Sel("bus"))
 	return rv
-}/* debug [instance_properties/getter]: bus */
+}
 
 
 // The node in the connection point.
@@ -164,11 +164,11 @@ func (a_ AudioConnectionPoint) Bus() AudioNodeBus /* typedef */ {
 func (a_ AudioConnectionPoint) Node() IAVAudioNode {
 	rv := objc.Send[AudioNode](a_.ID, objc.Sel("node"))
 	return rv
-}/* debug [instance_properties/getter]: node */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVAudioConnectionPoint */
+
+
+
 
 

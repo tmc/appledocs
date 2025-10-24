@@ -21,6 +21,6 @@ import (
 // See: doc://com.apple.metalperformanceshaders/documentation/MetalPerformanceShaders/MPSImageTransformProvider
 type PImageTransformProvider interface {
 	// Required methods
-	Transform()/* debug [protocol_interface/required_method]: Transform */
-	TransformForSourceImageHandle(image IImage, handle unsafe.Pointer) MPSScaleTransform/* debug [protocol_interface/required_method]: TransformForSourceImageHandle */
+	Transform()
+	TransformForSourceImageHandle(image IImage, handle unsafe.Pointer) MPSScaleTransform
 }

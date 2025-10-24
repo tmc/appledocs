@@ -2133,7 +2133,7 @@ type IOUserClientMethodDispatch struct {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/IVarsInvalidator
 type IVarsInvalidator struct {
-	Ivars unsafe.Pointer
+	Ivars IOReporter_IVars
 }/* debug [types.gen.go/struct]: IVarsInvalidator */
 
 // disarm

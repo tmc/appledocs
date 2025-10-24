@@ -2,7 +2,12 @@
 
 package webkit
 
-import "github.com/tmc/appledocs/generated/appkit"
+import (
+
+	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/appkit"
+)
 
 // PWebDownloadDelegate is the WebDownloadDelegate protocol interface.
 //

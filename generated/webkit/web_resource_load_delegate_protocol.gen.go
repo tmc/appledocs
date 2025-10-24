@@ -15,3 +15,4 @@ var WebResourceLoadDelegateProtocol *objc.Protocol
 func init() {
 	WebResourceLoadDelegateProtocol = objc.GetProtocol("WebResourceLoadDelegate")
 }
+

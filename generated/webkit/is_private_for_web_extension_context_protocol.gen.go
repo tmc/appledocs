@@ -19,3 +19,4 @@ var isPrivateForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	isPrivateForWebExtensionContextProtocol = objc.GetProtocol("isPrivateForWebExtensionContext:")
 }
+

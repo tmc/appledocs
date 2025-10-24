@@ -6,11 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class DOMRange */
+
 
 /* debug [class_header]: Header for DOMRange */
 // The class instance for the [DOMRange] class.
@@ -29,15 +31,16 @@ func getDOMRangeClass() _DOMRangeClass {
 type _DOMRangeClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMRange */
 // An interface definition for the [DOMRange] class.
 type IDOMRange interface {
 	IDOMObject
-
-	/* debug [class_interface_properties]: Properties for DOMRange */
+	
+/* debug [class_interface_properties]: Properties for DOMRange */
 	// properties:
 	Collapsed() bool
 	CommonAncestorContainer() IDOMNode
@@ -48,15 +51,17 @@ type IDOMRange interface {
 	StartOffset() int
 	Text() objc.IObject /* cross-framework: NSString */
 	WebArchive() IWebArchive
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMRange */
+	
+/* debug [class_interface_methods]: Methods for DOMRange */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMRange */
 // Alloc allocates a new instance without initialization.
@@ -88,10 +93,12 @@ func (d_ DOMRange) Autorelease() DOMRange {
 func NewDOMRange() DOMRange {
 	return getDOMRangeClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMRange */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMRange
@@ -105,19 +112,28 @@ func DOMRangeFrom(ptr unsafe.Pointer) DOMRange {
 		DOMObject: DOMObjectFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMRange */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMRange *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMRange */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMRange */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMRange */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMRange */
 
@@ -126,28 +142,32 @@ func DOMRangeFrom(ptr unsafe.Pointer) DOMRange {
 func (d_ DOMRange) Collapsed() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("collapsed"))
 	return rv
-} /* debug [instance_properties/getter]: collapsed */
+}/* debug [instance_properties/getter]: collapsed */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMRange/commonAncestorContainer
 func (d_ DOMRange) CommonAncestorContainer() IDOMNode {
 	rv := objc.Send[DOMNode](d_.ID, objc.Sel("commonAncestorContainer"))
 	return rv
-} /* debug [instance_properties/getter]: commonAncestorContainer */
+}/* debug [instance_properties/getter]: commonAncestorContainer */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMRange/endContainer
 func (d_ DOMRange) EndContainer() IDOMNode {
 	rv := objc.Send[DOMNode](d_.ID, objc.Sel("endContainer"))
 	return rv
-} /* debug [instance_properties/getter]: endContainer */
+}/* debug [instance_properties/getter]: endContainer */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMRange/endOffset
 func (d_ DOMRange) EndOffset() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("endOffset"))
 	return rv
-} /* debug [instance_properties/getter]: endOffset */
+}/* debug [instance_properties/getter]: endOffset */
+
 
 // A string in markup format corresponding to the content in the range.
 //
@@ -156,28 +176,32 @@ func (d_ DOMRange) EndOffset() int {
 func (d_ DOMRange) MarkupString() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("markupString"))
 	return rv
-} /* debug [instance_properties/getter]: markupString */
+}/* debug [instance_properties/getter]: markupString */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMRange/startContainer
 func (d_ DOMRange) StartContainer() IDOMNode {
 	rv := objc.Send[DOMNode](d_.ID, objc.Sel("startContainer"))
 	return rv
-} /* debug [instance_properties/getter]: startContainer */
+}/* debug [instance_properties/getter]: startContainer */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMRange/startOffset
 func (d_ DOMRange) StartOffset() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("startOffset"))
 	return rv
-} /* debug [instance_properties/getter]: startOffset */
+}/* debug [instance_properties/getter]: startOffset */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMRange/text
 func (d_ DOMRange) Text() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("text"))
 	return rv
-} /* debug [instance_properties/getter]: text */
+}/* debug [instance_properties/getter]: text */
+
 
 // A web archive of the content in the range.
 //
@@ -186,8 +210,12 @@ func (d_ DOMRange) Text() objc.IObject /* cross-framework: NSString */ {
 func (d_ DOMRange) WebArchive() IWebArchive {
 	rv := objc.Send[WebArchive](d_.ID, objc.Sel("webArchive"))
 	return rv
-} /* debug [instance_properties/getter]: webArchive */
+}/* debug [instance_properties/getter]: webArchive */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMRange */
+
+
+

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNSubtractGradient */
 
 
-/* debug [class_header]: Header for MPSCNNSubtractGradient */
+
+
 // The class instance for the [CNNSubtractGradient] class.
 var (
 	CNNSubtractGradientClass     _CNNSubtractGradientClass
@@ -30,30 +30,30 @@ func getCNNSubtractGradientClass() _CNNSubtractGradientClass {
 type _CNNSubtractGradientClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNSubtractGradient */
+
+
 // An interface definition for the [CNNSubtractGradient] class.
 type ICNNSubtractGradient interface {
 	ICNNArithmeticGradient
 	
-/* debug [class_interface_properties]: Properties for CNNSubtractGradient */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNSubtractGradient */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNSubtractGradient */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNSubtractGradientClass) Alloc() CNNSubtractGradient {
 	rv := objc.Send[CNNSubtractGradient](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNSubtractGradient) Autorelease() CNNSubtractGradient {
 func NewCNNSubtractGradient() CNNSubtractGradient {
 	return getCNNSubtractGradientClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNSubtractGradient */
+
+
 // A gradient subtraction operator.
 
 
@@ -107,11 +107,11 @@ func CNNSubtractGradientFrom(ptr unsafe.Pointer) CNNSubtractGradient {
 		CNNArithmeticGradient: CNNArithmeticGradientFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNSubtractGradient */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsubtractgradient/2956165-initwithdevice
@@ -120,31 +120,31 @@ func NewCNNSubtractGradientWithDeviceIsSecondarySourceFilter(device unsafe.Point
 	rv := objc.Send[CNNSubtractGradient](instance.ID, objc.Sel("initWithDevice:isSecondarySourceFilter:"), device, isSecondarySourceFilter)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNSubtractGradientWithDeviceIsSecondarySourceFilter */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNSubtractGradient */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNSubtractGradient */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNSubtractGradient */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNSubtractGradient */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNSubtractGradient */
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AUAudioUnit */
 
 
-/* debug [class_header]: Header for AUAudioUnit */
+
+
 // The class instance for the [AudioUnit] class.
 var (
 	AudioUnitClass     _AudioUnitClass
@@ -30,30 +30,30 @@ func getAudioUnitClass() _AudioUnitClass {
 type _AudioUnitClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AudioUnit */
+
+
 // An interface definition for the [AudioUnit] class.
 type IAudioUnit interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for AudioUnit */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AudioUnit */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AudioUnit */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AudioUnitClass) Alloc() AudioUnit {
 	rv := objc.Send[AudioUnit](objc.ID(ac.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (a_ AudioUnit) Autorelease() AudioUnit {
 func NewAudioUnit() AudioUnit {
 	return getAudioUnitClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AudioUnit */
+
+
 // A parent class referenced by other AVFAudio classes.
 
 
@@ -102,34 +102,34 @@ type AudioUnit struct {
 func AudioUnitFrom(ptr unsafe.Pointer) AudioUnit {
 	return AudioUnit{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AudioUnit *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for AudioUnit */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AudioUnit */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AudioUnit */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AudioUnit */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class AUAudioUnit */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

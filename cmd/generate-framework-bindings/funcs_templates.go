@@ -432,6 +432,7 @@ func generateTestValue(goType, framework, paramName string) string {
 	if strings.HasPrefix(goType, "foundation.") {
 		typeName := strings.TrimPrefix(goType, "foundation.")
 		switch typeName {
+		// Geometry types (struct literals)
 		case "Rect":
 			return "foundation.Rect{Origin: foundation.Point{X: 0, Y: 0}, Size: foundation.Size{Width: 100, Height: 100}}"
 		case "Size":
@@ -445,6 +446,28 @@ func generateTestValue(goType, framework, paramName string) string {
 			return "foundation.TimeInterval(1.0)"
 		case "EdgeInsets":
 			return "foundation.EdgeInsets{Top: 0, Left: 0, Bottom: 0, Right: 0}"
+
+		// Object types (constructors)
+		case "String", "MutableString":
+			return "foundation.NewString()"
+		case "Array", "MutableArray":
+			return "foundation.NewArray()"
+		case "Dictionary", "MutableDictionary":
+			return "foundation.NewDictionary()"
+		case "Data", "MutableData":
+			return "foundation.NewData()"
+		case "URL":
+			// URL needs a valid URL string
+			return `foundation.URL_URLWithString("https://example.com")`
+		case "Date":
+			return "foundation.NewDate()"
+		case "Number":
+			return "foundation.Number.NumberWithInt(0)"
+		case "Set", "MutableSet":
+			return "foundation.NewSet()"
+		case "IndexSet", "MutableIndexSet":
+			return "foundation.NewIndexSet()"
+
 		default:
 			// Other foundation types - try to use zero value or constructor
 			return fmt.Sprintf("%s{}", goType)
@@ -554,13 +577,54 @@ func canGenerateTestValue(args ...string) bool {
 		return false
 	}
 
-	// We can handle Foundation geometry types
+	// Handle interface types by stripping I prefix and checking concrete type
+	// Example: foundation.IString -> check foundation.String
+	if strings.Contains(goType, ".I") {
+		parts := strings.SplitN(goType, ".I", 2)
+		if len(parts) == 2 && len(parts[1]) > 0 && parts[1][0] >= 'A' && parts[1][0] <= 'Z' {
+			concreteType := parts[0] + "." + parts[1]
+			return canGenerateTestValue(concreteType, paramName)
+		}
+	}
+
+	// Handle unqualified interface types (IString, IArray)
+	if len(goType) > 1 && goType[0] == 'I' && goType[1] >= 'A' && goType[1] <= 'Z' {
+		concreteType := goType[1:]
+		return canGenerateTestValue(concreteType, paramName)
+	}
+
+	// We can handle Foundation types (geometry + object types with constructors)
 	if strings.HasPrefix(goType, "foundation.") {
 		typeName := strings.TrimPrefix(goType, "foundation.")
 		switch typeName {
-		case "Rect", "Size", "Point", "Range":
+		// Geometry types (struct literals)
+		case "Rect", "Size", "Point", "Range", "EdgeInsets", "TimeInterval":
+			return true
+		// Object types (constructors available)
+		case "String", "MutableString",
+			"Array", "MutableArray",
+			"Dictionary", "MutableDictionary",
+			"Data", "MutableData",
+			"URL", "Date", "Number",
+			"Set", "MutableSet",
+			"IndexSet", "MutableIndexSet":
 			return true
 		}
+	}
+
+	// We can handle CoreGraphics geometry types (qualified)
+	if strings.HasPrefix(goType, "coregraphics.") {
+		typeName := strings.TrimPrefix(goType, "coregraphics.")
+		switch typeName {
+		case "CGRect", "CGSize", "CGPoint", "CGFloat", "CGAffineTransform", "CGVector":
+			return true
+		}
+	}
+
+	// We can handle unqualified CoreGraphics types (when used in current framework)
+	switch goType {
+	case "CGRect", "CGSize", "CGPoint", "CGFloat", "CGAffineTransform", "CGVector":
+		return true
 	}
 
 	// We can handle package-local types (enums and structs)

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class VNTrackTranslationalImageRegistrationRequest */
 
 
-/* debug [class_header]: Header for VNTrackTranslationalImageRegistrationRequest */
+
+
 // The class instance for the [TrackTranslationalImageRegistrationRequest] class.
 var (
 	TrackTranslationalImageRegistrationRequestClass     _TrackTranslationalImageRegistrationRequestClass
@@ -30,31 +30,31 @@ func getTrackTranslationalImageRegistrationRequestClass() _TrackTranslationalIma
 type _TrackTranslationalImageRegistrationRequestClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for TrackTranslationalImageRegistrationRequest */
+
+
 // An interface definition for the [TrackTranslationalImageRegistrationRequest] class.
 type ITrackTranslationalImageRegistrationRequest interface {
 	IStatefulRequest
 	
-/* debug [class_interface_properties]: Properties for TrackTranslationalImageRegistrationRequest */
+
 	// properties:
 	Results() []ImageTranslationAlignmentObservation
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for TrackTranslationalImageRegistrationRequest */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for TrackTranslationalImageRegistrationRequest */
+
+
 // Alloc allocates a new instance without initialization.
 func (tc _TrackTranslationalImageRegistrationRequestClass) Alloc() TrackTranslationalImageRegistrationRequest {
 	rv := objc.Send[TrackTranslationalImageRegistrationRequest](objc.ID(tc.class), objc.Sel("alloc"))
@@ -84,11 +84,11 @@ func (t_ TrackTranslationalImageRegistrationRequest) Autorelease() TrackTranslat
 func NewTrackTranslationalImageRegistrationRequest() TrackTranslationalImageRegistrationRequest {
 	return getTrackTranslationalImageRegistrationRequestClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for TrackTranslationalImageRegistrationRequest */
+
+
 // An image-analysis request, as a stateful request you track over time, that determines the affine transform necessary to align the content of two images.
 //
 // This request is similar to . However, as a , it automatically computes the registration against the previous frame.
@@ -110,11 +110,11 @@ func TrackTranslationalImageRegistrationRequestFrom(ptr unsafe.Pointer) TrackTra
 		StatefulRequest: StatefulRequestFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for TrackTranslationalImageRegistrationRequest */
+
+
 
 // Creates a new request that tracks the translational registration of two images, with a system callback on completion.
 //
@@ -125,28 +125,28 @@ func NewTrackTranslationalImageRegistrationRequestWithCompletionHandler(completi
 	rv := objc.Send[TrackTranslationalImageRegistrationRequest](instance.ID, objc.Sel("initWithCompletionHandler:"), completionHandler)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewTrackTranslationalImageRegistrationRequestWithCompletionHandler */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for TrackTranslationalImageRegistrationRequest */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for TrackTranslationalImageRegistrationRequest */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for TrackTranslationalImageRegistrationRequest */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for TrackTranslationalImageRegistrationRequest */
+
+
+
+
+
+
+
+
+
 
 // The observed translational image alignment request.
 //
@@ -155,11 +155,11 @@ func NewTrackTranslationalImageRegistrationRequestWithCompletionHandler(completi
 func (t_ TrackTranslationalImageRegistrationRequest) Results() []ImageTranslationAlignmentObservation {
 	rv := objc.Send[[]ImageTranslationAlignmentObservation](t_.ID, objc.Sel("results"))
 	return rv
-}/* debug [instance_properties/getter]: results */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class VNTrackTranslationalImageRegistrationRequest */
+
+
+
 
 

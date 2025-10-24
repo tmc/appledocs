@@ -15,3 +15,4 @@ var webViewRunModalProtocol *objc.Protocol
 func init() {
 	webViewRunModalProtocol = objc.GetProtocol("webViewRunModal:")
 }
+

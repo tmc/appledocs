@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class NSUserAppleScriptTask */
 
 
-/* debug [class_header]: Header for NSUserAppleScriptTask */
+
+
 // The class instance for the [UserAppleScriptTask] class.
 var (
 	UserAppleScriptTaskClass     _UserAppleScriptTaskClass
@@ -29,31 +29,31 @@ func getUserAppleScriptTaskClass() _UserAppleScriptTaskClass {
 type _UserAppleScriptTaskClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for UserAppleScriptTask */
+
+
 // An interface definition for the [UserAppleScriptTask] class.
 type IUserAppleScriptTask interface {
 	IUserScriptTask
 	
-/* debug [class_interface_properties]: Properties for UserAppleScriptTask */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for UserAppleScriptTask */
+
 	// methods:
 	ExecuteWithAppleEventCompletionHandler(event IAppleEventDescriptor, handler UserAppleScriptTaskCompletionHandler /* not a class type */)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for UserAppleScriptTask */
+
+
 // Alloc allocates a new instance without initialization.
 func (uc _UserAppleScriptTaskClass) Alloc() UserAppleScriptTask {
 	rv := objc.Send[UserAppleScriptTask](objc.ID(uc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (u_ UserAppleScriptTask) Autorelease() UserAppleScriptTask {
 func NewUserAppleScriptTask() UserAppleScriptTask {
 	return getUserAppleScriptTaskClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for UserAppleScriptTask */
+
+
 // An object that executes AppleScript scripts.
 //
 // The class is intended to run AppleScript scripts from your application. It is intended to execute user-supplied scripts and will execute them outside of the application’s sandbox, if any. The class is not intended to execute scripts built into an application; for that, use one of the classes. If the application is sandboxed, then the script must be in the folder. A sandboxed application may read from, but not write to, this folder. If you simply need to execute scripts without regard to input or output, use , which can execute any of the specific types. If you need specific control over the input to or output from the script, use this class.
@@ -109,25 +109,25 @@ func UserAppleScriptTaskFrom(ptr unsafe.Pointer) UserAppleScriptTask {
 		UserScriptTask: UserScriptTaskFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for UserAppleScriptTask *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for UserAppleScriptTask */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for UserAppleScriptTask */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for UserAppleScriptTask */
+
+
+
+
+
+
+
 
 // Execute the AppleScript script by sending it the specified Apple event.
 //
@@ -135,17 +135,17 @@ func UserAppleScriptTaskFrom(ptr unsafe.Pointer) UserAppleScriptTask {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAppleScriptTask/execute(withAppleEvent:completionHandler:)
 func (u_ UserAppleScriptTask) ExecuteWithAppleEventCompletionHandler(event IAppleEventDescriptor, handler UserAppleScriptTaskCompletionHandler /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithAppleEvent:completionHandler:"), event, handler)
-}/* debug [instance_methods/method]: ExecuteWithAppleEventCompletionHandler */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for UserAppleScriptTask */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class NSUserAppleScriptTask */
+
+
+
+
+
 
 
 

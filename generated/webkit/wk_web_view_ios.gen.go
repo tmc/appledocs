@@ -5,11 +5,17 @@
 package webkit
 
 import (
-	"github.com/tmc/appledocs/generated/appkit"
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for WebView
+
 
 // iOS-only properties
 
@@ -38,3 +44,7 @@ func (w_ WebView) ScrollView() appkit.ScrollView {
 	rv := objc.Send[appkit.ScrollView](w_.ID, objc.Sel("scrollView"))
 	return rv
 }
+
+
+
+

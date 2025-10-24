@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class bottomRight */
 
 
-/* debug [class_header]: Header for bottomRight */
+
+
 // The class instance for the [bottomRight] class.
 var (
 	BottomRightClass     _bottomRightClass
@@ -30,30 +30,30 @@ func getbottomRightClass() _bottomRightClass {
 type _bottomRightClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for bottomRight */
+
+
 // An interface definition for the [bottomRight] class.
 type IbottomRight interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for bottomRight */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for bottomRight */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for bottomRight */
+
+
 // Alloc allocates a new instance without initialization.
 func (bc _bottomRightClass) Alloc() bottomRight {
 	rv := objc.Send[bottomRight](objc.ID(bc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (b_ bottomRight) Autorelease() bottomRight {
 func NewbottomRight() bottomRight {
 	return getbottomRightClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for bottomRight */
+
+
 
 
 // [Full Topic]
@@ -100,34 +100,34 @@ type bottomRight struct {
 func bottomRightFrom(ptr unsafe.Pointer) bottomRight {
 	return bottomRight{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for bottomRight *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for bottomRight */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for bottomRight */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for bottomRight */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for bottomRight */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class bottomRight */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

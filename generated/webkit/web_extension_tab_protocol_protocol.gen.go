@@ -6,8 +6,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/corefoundation"
+
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objc"
 )
 
 // PWebExtensionTab is the WKWebExtensionTab protocol interface.

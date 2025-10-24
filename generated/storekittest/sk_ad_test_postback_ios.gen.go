@@ -5,11 +5,15 @@
 package storekittest
 
 import (
-	"github.com/tmc/appledocs/generated/foundation"
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for AdTestPostback
+
 
 // iOS-only properties
 
@@ -168,3 +172,7 @@ func (a_ AdTestPostback) Version() AdTestPostbackVersion /* typedef */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("version"))
 	return rv
 }
+
+
+
+

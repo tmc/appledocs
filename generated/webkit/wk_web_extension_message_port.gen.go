@@ -6,12 +6,14 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class WKWebExtensionMessagePort */
+
 
 /* debug [class_header]: Header for WKWebExtensionMessagePort */
 // The class instance for the [WebExtensionMessagePort] class.
@@ -30,15 +32,16 @@ func getWebExtensionMessagePortClass() _WebExtensionMessagePortClass {
 type _WebExtensionMessagePortClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for WebExtensionMessagePort */
 // An interface definition for the [WebExtensionMessagePort] class.
 type IWebExtensionMessagePort interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for WebExtensionMessagePort */
+	
+/* debug [class_interface_properties]: Properties for WebExtensionMessagePort */
 	// properties:
 	ApplicationIdentifier() objc.IObject /* cross-framework: NSString */
 	DisconnectHandler() unsafe.Pointer
@@ -48,18 +51,20 @@ type IWebExtensionMessagePort interface {
 	SetMessageHandler(value unsafe.Pointer)
 	IsDisconnected() bool
 	SetIsDisconnected(value bool)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for WebExtensionMessagePort */
+	
+/* debug [class_interface_methods]: Methods for WebExtensionMessagePort */
 	// methods:
 	Disconnect()
 	DisconnectWithError(error_ objc.IObject /* cross-framework: Error */)
 	SendMessageCompletionHandler(message objc.IObject, completionHandler unsafe.Pointer)
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for WebExtensionMessagePort */
 // Alloc allocates a new instance without initialization.
@@ -91,13 +96,15 @@ func (w_ WebExtensionMessagePort) Autorelease() WebExtensionMessagePort {
 func NewWebExtensionMessagePort() WebExtensionMessagePort {
 	return getWebExtensionMessagePortClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for WebExtensionMessagePort */
 // An object that manages message-based communication with a web extension.
 //
 // Contains properties and methods to handle message exchanges with a web extension.
+
 
 // An object that manages message-based communication with a web extension.
 //
@@ -113,16 +120,23 @@ type WebExtensionMessagePort struct {
 func WebExtensionMessagePortFrom(ptr unsafe.Pointer) WebExtensionMessagePort {
 	return WebExtensionMessagePort{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for WebExtensionMessagePort */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for WebExtensionMessagePort *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for WebExtensionMessagePort */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for WebExtensionMessagePort */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for WebExtensionMessagePort */
 
@@ -132,7 +146,8 @@ func WebExtensionMessagePortFrom(ptr unsafe.Pointer) WebExtensionMessagePort {
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/MessagePort/disconnect()
 func (w_ WebExtensionMessagePort) Disconnect() {
 	objc.Send[objc.ID](w_.ID, objc.Sel("disconnect"))
-} /* debug [instance_methods/method]: Disconnect */
+}/* debug [instance_methods/method]: Disconnect */
+
 
 // Disconnects the port, terminating all further messages with an optional error.
 //
@@ -140,7 +155,8 @@ func (w_ WebExtensionMessagePort) Disconnect() {
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/MessagePort/disconnect(throwing:)
 func (w_ WebExtensionMessagePort) DisconnectWithError(error_ objc.IObject /* cross-framework: Error */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("disconnectWithError:"), error_)
-} /* debug [instance_methods/method]: DisconnectWithError */
+}/* debug [instance_methods/method]: DisconnectWithError */
+
 
 // Sends a message to the connected web extension.
 //
@@ -148,9 +164,11 @@ func (w_ WebExtensionMessagePort) DisconnectWithError(error_ objc.IObject /* cro
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/MessagePort/sendMessage(_:completionHandler:)
 func (w_ WebExtensionMessagePort) SendMessageCompletionHandler(message objc.IObject, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("sendMessage:completionHandler:"), message, completionHandler)
-} /* debug [instance_methods/method]: SendMessageCompletionHandler */
+}/* debug [instance_methods/method]: SendMessageCompletionHandler */
 
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for WebExtensionMessagePort */
 
@@ -161,7 +179,8 @@ func (w_ WebExtensionMessagePort) SendMessageCompletionHandler(message objc.IObj
 func (w_ WebExtensionMessagePort) ApplicationIdentifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("applicationIdentifier"))
 	return rv
-} /* debug [instance_properties/getter]: applicationIdentifier */
+}/* debug [instance_properties/getter]: applicationIdentifier */
+
 
 // The block to be executed when the port disconnects.
 //
@@ -170,7 +189,8 @@ func (w_ WebExtensionMessagePort) ApplicationIdentifier() objc.IObject /* cross-
 func (w_ WebExtensionMessagePort) DisconnectHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("disconnectHandler"))
 	return rv
-} /* debug [instance_properties/getter]: disconnectHandler */
+}/* debug [instance_properties/getter]: disconnectHandler */
+
 
 // The block to be executed when the port disconnects.
 //
@@ -178,7 +198,8 @@ func (w_ WebExtensionMessagePort) DisconnectHandler() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/MessagePort/disconnectHandler
 func (w_ WebExtensionMessagePort) SetDisconnectHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDisconnectHandler:"), value)
-} /* debug [instance_properties/setter]: disconnectHandler */
+}/* debug [instance_properties/setter]: disconnectHandler */
+
 
 // Indicates whether the message port is disconnected.
 //
@@ -187,7 +208,8 @@ func (w_ WebExtensionMessagePort) SetDisconnectHandler(value unsafe.Pointer) {
 func (w_ WebExtensionMessagePort) Disconnected() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("disconnected"))
 	return rv
-} /* debug [instance_properties/getter]: disconnected */
+}/* debug [instance_properties/getter]: disconnected */
+
 
 // The block to be executed when a message is received from the web extension.
 //
@@ -196,7 +218,8 @@ func (w_ WebExtensionMessagePort) Disconnected() bool {
 func (w_ WebExtensionMessagePort) MessageHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("messageHandler"))
 	return rv
-} /* debug [instance_properties/getter]: messageHandler */
+}/* debug [instance_properties/getter]: messageHandler */
+
 
 // The block to be executed when a message is received from the web extension.
 //
@@ -204,7 +227,8 @@ func (w_ WebExtensionMessagePort) MessageHandler() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/MessagePort/messageHandler
 func (w_ WebExtensionMessagePort) SetMessageHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMessageHandler:"), value)
-} /* debug [instance_properties/setter]: messageHandler */
+}/* debug [instance_properties/setter]: messageHandler */
+
 
 // Indicates whether the message port is disconnected.
 //
@@ -213,7 +237,8 @@ func (w_ WebExtensionMessagePort) SetMessageHandler(value unsafe.Pointer) {
 func (w_ WebExtensionMessagePort) IsDisconnected() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isDisconnected"))
 	return rv
-} /* debug [instance_properties/getter]: isDisconnected */
+}/* debug [instance_properties/getter]: isDisconnected */
+
 
 // Indicates whether the message port is disconnected.
 //
@@ -221,8 +246,12 @@ func (w_ WebExtensionMessagePort) IsDisconnected() bool {
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/isdisconnected
 func (w_ WebExtensionMessagePort) SetIsDisconnected(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsDisconnected:"), value)
-} /* debug [instance_properties/setter]: isDisconnected */
+}/* debug [instance_properties/setter]: isDisconnected */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class WKWebExtensionMessagePort */
+
+
+

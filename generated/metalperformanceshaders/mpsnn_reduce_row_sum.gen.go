@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNReduceRowSum */
 
 
-/* debug [class_header]: Header for MPSNNReduceRowSum */
+
+
 // The class instance for the [ReduceRowSum] class.
 var (
 	ReduceRowSumClass     _ReduceRowSumClass
@@ -31,30 +30,30 @@ func getReduceRowSumClass() _ReduceRowSumClass {
 type _ReduceRowSumClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ReduceRowSum */
+
+
 // An interface definition for the [ReduceRowSum] class.
 type IReduceRowSum interface {
 	IReduceUnary
 	
-/* debug [class_interface_properties]: Properties for ReduceRowSum */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ReduceRowSum */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ReduceRowSum */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _ReduceRowSumClass) Alloc() ReduceRowSum {
 	rv := objc.Send[ReduceRowSum](objc.ID(rc.class), objc.Sel("alloc"))
@@ -84,11 +83,11 @@ func (r_ ReduceRowSum) Autorelease() ReduceRowSum {
 func NewReduceRowSum() ReduceRowSum {
 	return getReduceRowSumClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ReduceRowSum */
+
+
 // A reduction filter that returns the sum of all values for each row in an image.
 
 
@@ -108,11 +107,11 @@ func ReduceRowSumFrom(ptr unsafe.Pointer) ReduceRowSum {
 		ReduceUnary: ReduceUnaryFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ReduceRowSum */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducerowsum/3197845-initwithcoder
@@ -121,7 +120,7 @@ func NewReduceRowSumWithCoderDevice(aDecoder foundation.Coder, device unsafe.Poi
 	rv := objc.Send[ReduceRowSum](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceRowSumWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -131,31 +130,31 @@ func NewReduceRowSumWithDevice(device unsafe.Pointer) ReduceRowSum {
 	rv := objc.Send[ReduceRowSum](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceRowSumWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ReduceRowSum */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ReduceRowSum */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ReduceRowSum */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ReduceRowSum */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNReduceRowSum */
+
+
+
+
+
+
+
+
+
+
+
 
 

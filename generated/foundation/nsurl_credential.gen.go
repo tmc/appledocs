@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSURLCredential */
 
 
-/* debug [class_header]: Header for NSURLCredential */
+
+
 // The class instance for the [URLCredential] class.
 var (
 	URLCredentialClass     _URLCredentialClass
@@ -30,16 +30,16 @@ func getURLCredentialClass() _URLCredentialClass {
 type _URLCredentialClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for URLCredential */
+
+
 // An interface definition for the [URLCredential] class.
 type IURLCredential interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for URLCredential */
+
 	// properties:
 	Certificates() IArray
 	HasPassword() bool
@@ -47,19 +47,19 @@ type IURLCredential interface {
 	Password() IString
 	Persistence() URLCredentialPersistence
 	User() IString
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for URLCredential */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for URLCredential */
+
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLCredentialClass) Alloc() URLCredential {
 	rv := objc.Send[URLCredential](objc.ID(uc.class), objc.Sel("alloc"))
@@ -89,11 +89,11 @@ func (u_ URLCredential) Autorelease() URLCredential {
 func NewURLCredential() URLCredential {
 	return getURLCredentialClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for URLCredential */
+
+
 // n authentication credential consisting of information specific to the type of credential and the type of persistent storage to use, if any.
 //
 // The URL Loading System supports password-based user credentials, certificate-based user credentials, and certificate-based server credentials. When you create a credential, you can specify it for a single request, persist it temporarily (until your app quits), or persist it permanently. Permanent persistence can be local persistence in the keychain, or synchronized persistence across the user’s devices, based on their Apple ID.
@@ -113,11 +113,11 @@ type URLCredential struct {
 func URLCredentialFrom(ptr unsafe.Pointer) URLCredential {
 	return URLCredential{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for URLCredential */
+
+
 
 // Creates a URL credential instance for server trust authentication with a given accepted trust.
 //
@@ -126,7 +126,7 @@ func URLCredentialFrom(ptr unsafe.Pointer) URLCredential {
 func NewURLCredentialForTrust(trust objectivec.IObject) URLCredential {
 	rv := objc.Send[URLCredential](objc.ID(getURLCredentialClass().class), objc.Sel("credentialForTrust:"), trust)
 	return rv
-}/* debug [class_init_methods/constructor]: NewURLCredentialForTrust */
+}
 
 
 // Creates a URL credential instance for resolving a client certificate authentication challenge.
@@ -138,7 +138,7 @@ func NewURLCredentialWithIdentityCertificatesPersistence(identity objectivec.IOb
 	rv := objc.Send[URLCredential](instance.ID, objc.Sel("initWithIdentity:certificates:persistence:"), identity, certArray, persistence)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewURLCredentialWithIdentityCertificatesPersistence */
+}
 
 
 // Creates a URL credential instance for server trust authentication, initialized with a accepted trust.
@@ -150,7 +150,7 @@ func NewURLCredentialWithTrust(trust objectivec.IObject) URLCredential {
 	rv := objc.Send[URLCredential](instance.ID, objc.Sel("initWithTrust:"), trust)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewURLCredentialWithTrust */
+}
 
 
 // Creates a URL credential instance initialized with a given user name and password, using a given persistence setting.
@@ -162,13 +162,13 @@ func NewURLCredentialWithUserPasswordPersistence(user IString, password IString,
 	rv := objc.Send[URLCredential](instance.ID, objc.Sel("initWithUser:password:persistence:"), user, password, persistence)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewURLCredentialWithUserPasswordPersistence */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for URLCredential */
+
+
+
 
 // Creates a URL credential instance for resolving a client certificate authentication challenge.
 //
@@ -177,7 +177,7 @@ func NewURLCredentialWithUserPasswordPersistence(user IString, password IString,
 func (uc _URLCredentialClass) CredentialWithIdentityCertificatesPersistence(identity objectivec.IObject, certArray IArray, persistence URLCredentialPersistence) IURLCredential {
 	rv := objc.Send[URLCredential](objc.ID(uc.class), objc.Sel("credentialWithIdentity:certificates:persistence:"), identity, certArray, persistence)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CredentialWithIdentityCertificatesPersistence) */
+}
 
 
 // Creates a URL credential instance for internet password authentication with a given user name and password, using a given persistence setting.
@@ -187,7 +187,7 @@ func (uc _URLCredentialClass) CredentialWithIdentityCertificatesPersistence(iden
 func (uc _URLCredentialClass) CredentialWithUserPasswordPersistence(user IString, password IString, persistence URLCredentialPersistence) IURLCredential {
 	rv := objc.Send[URLCredential](objc.ID(uc.class), objc.Sel("credentialWithUser:password:persistence:"), user, password, persistence)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CredentialWithUserPasswordPersistence) */
+}
 
 
 // Creates a URL credential instance for server trust authentication with a given accepted trust.
@@ -197,23 +197,23 @@ func (uc _URLCredentialClass) CredentialWithUserPasswordPersistence(user IString
 func (uc _URLCredentialClass) CredentialForTrust(trust objectivec.IObject) IURLCredential {
 	rv := objc.Send[URLCredential](objc.ID(uc.class), objc.Sel("credentialForTrust:"), trust)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CredentialForTrust) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for URLCredential */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for URLCredential */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for URLCredential */
+
+
+
+
+
+
+
 
 // The intermediate certificates of the credential, if it is a client certificate credential.
 //
@@ -222,7 +222,7 @@ func (uc _URLCredentialClass) CredentialForTrust(trust objectivec.IObject) IURLC
 func (u_ URLCredential) Certificates() IArray {
 	rv := objc.Send[Array](u_.ID, objc.Sel("certificates"))
 	return rv
-}/* debug [instance_properties/getter]: certificates */
+}
 
 
 // A Boolean value that indicates whether the credential has a password.
@@ -232,7 +232,7 @@ func (u_ URLCredential) Certificates() IArray {
 func (u_ URLCredential) HasPassword() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("hasPassword"))
 	return rv
-}/* debug [instance_properties/getter]: hasPassword */
+}
 
 
 // The identity of this credential if it is a client certificate credential.
@@ -242,7 +242,7 @@ func (u_ URLCredential) HasPassword() bool {
 func (u_ URLCredential) Identity() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](u_.ID, objc.Sel("identity"))
 	return rv
-}/* debug [instance_properties/getter]: identity */
+}
 
 
 // The credential’s password.
@@ -252,7 +252,7 @@ func (u_ URLCredential) Identity() objectivec.IObject {
 func (u_ URLCredential) Password() IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("password"))
 	return rv
-}/* debug [instance_properties/getter]: password */
+}
 
 
 // The credential’s persistence setting.
@@ -262,7 +262,7 @@ func (u_ URLCredential) Password() IString {
 func (u_ URLCredential) Persistence() URLCredentialPersistence {
 	rv := objc.Send[URLCredentialPersistence](u_.ID, objc.Sel("persistence"))
 	return rv
-}/* debug [instance_properties/getter]: persistence */
+}
 
 
 // The credential’s user name.
@@ -272,11 +272,11 @@ func (u_ URLCredential) Persistence() URLCredentialPersistence {
 func (u_ URLCredential) User() IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("user"))
 	return rv
-}/* debug [instance_properties/getter]: user */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSURLCredential */
+
+
+
 
 

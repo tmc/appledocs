@@ -57,8 +57,8 @@ func (v_ Value) CGSizeValue() corefoundation.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/cgVectorValue
-func (v_ Value) CGVectorValue() objc.IObject /* cross-framework: Vector */ {
-	rv := objc.Send[corefoundation.Vector](v_.ID, objc.Sel("CGVectorValue"))
+func (v_ Value) CGVectorValue() corefoundation.CGVector {
+	rv := objc.Send[corefoundation.CGVector](v_.ID, objc.Sel("CGVectorValue"))
 	return rv
 }
 

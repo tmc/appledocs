@@ -6,11 +6,12 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 /* debug [class.gen.go]: Generating class DOMHTMLAreaElement */
+
 
 /* debug [class_header]: Header for DOMHTMLAreaElement */
 // The class instance for the [DOMHTMLAreaElement] class.
@@ -29,45 +30,50 @@ func getDOMHTMLAreaElementClass() _DOMHTMLAreaElementClass {
 type _DOMHTMLAreaElementClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMHTMLAreaElement */
 // An interface definition for the [DOMHTMLAreaElement] class.
 type IDOMHTMLAreaElement interface {
 	IDOMHTMLElement
-
-	/* debug [class_interface_properties]: Properties for DOMHTMLAreaElement */
+	
+/* debug [class_interface_properties]: Properties for DOMHTMLAreaElement */
 	// properties:
 	AbsoluteLinkURL() objc.IObject /* cross-framework: NSURL */
-	Alt() objc.IObject             /* cross-framework: NSString */
+	AccessKey() objc.IObject /* cross-framework: NSString */
+	SetAccessKey(value objc.IObject /* cross-framework: NSString */)
+	Alt() objc.IObject /* cross-framework: NSString */
 	SetAlt(value objc.IObject /* cross-framework: NSString */)
 	Coords() objc.IObject /* cross-framework: NSString */
 	SetCoords(value objc.IObject /* cross-framework: NSString */)
 	HashName() objc.IObject /* cross-framework: NSString */
-	Host() objc.IObject     /* cross-framework: NSString */
+	Host() objc.IObject /* cross-framework: NSString */
 	Hostname() objc.IObject /* cross-framework: NSString */
-	Href() objc.IObject     /* cross-framework: NSString */
+	Href() objc.IObject /* cross-framework: NSString */
 	SetHref(value objc.IObject /* cross-framework: NSString */)
 	NoHref() bool
 	SetNoHref(value bool)
 	Pathname() objc.IObject /* cross-framework: NSString */
-	Port() objc.IObject     /* cross-framework: NSString */
+	Port() objc.IObject /* cross-framework: NSString */
 	Protocol() objc.IObject /* cross-framework: NSString */
-	Search() objc.IObject   /* cross-framework: NSString */
-	Shape() objc.IObject    /* cross-framework: NSString */
+	Search() objc.IObject /* cross-framework: NSString */
+	Shape() objc.IObject /* cross-framework: NSString */
 	SetShape(value objc.IObject /* cross-framework: NSString */)
 	Target() objc.IObject /* cross-framework: NSString */
 	SetTarget(value objc.IObject /* cross-framework: NSString */)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMHTMLAreaElement */
+	
+/* debug [class_interface_methods]: Methods for DOMHTMLAreaElement */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMHTMLAreaElement */
 // Alloc allocates a new instance without initialization.
@@ -99,10 +105,12 @@ func (d_ DOMHTMLAreaElement) Autorelease() DOMHTMLAreaElement {
 func NewDOMHTMLAreaElement() DOMHTMLAreaElement {
 	return getDOMHTMLAreaElementClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMHTMLAreaElement */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement
@@ -116,19 +124,28 @@ func DOMHTMLAreaElementFrom(ptr unsafe.Pointer) DOMHTMLAreaElement {
 		DOMHTMLElement: DOMHTMLElementFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMHTMLAreaElement */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMHTMLAreaElement *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMHTMLAreaElement */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMHTMLAreaElement */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMHTMLAreaElement */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMHTMLAreaElement */
 
@@ -137,135 +154,173 @@ func DOMHTMLAreaElementFrom(ptr unsafe.Pointer) DOMHTMLAreaElement {
 func (d_ DOMHTMLAreaElement) AbsoluteLinkURL() objc.IObject /* cross-framework: NSURL */ {
 	rv := objc.Send[foundation.NSURL](d_.ID, objc.Sel("absoluteLinkURL"))
 	return rv
-} /* debug [instance_properties/getter]: absoluteLinkURL */
+}/* debug [instance_properties/getter]: absoluteLinkURL */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/accessKey
+func (d_ DOMHTMLAreaElement) AccessKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("accessKey"))
+	return rv
+}/* debug [instance_properties/getter]: accessKey */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/accessKey
+func (d_ DOMHTMLAreaElement) SetAccessKey(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setAccessKey:"), value)
+}/* debug [instance_properties/setter]: accessKey */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/alt
 func (d_ DOMHTMLAreaElement) Alt() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("alt"))
 	return rv
-} /* debug [instance_properties/getter]: alt */
+}/* debug [instance_properties/getter]: alt */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/alt
 func (d_ DOMHTMLAreaElement) SetAlt(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAlt:"), value)
-} /* debug [instance_properties/setter]: alt */
+}/* debug [instance_properties/setter]: alt */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/coords
 func (d_ DOMHTMLAreaElement) Coords() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("coords"))
 	return rv
-} /* debug [instance_properties/getter]: coords */
+}/* debug [instance_properties/getter]: coords */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/coords
 func (d_ DOMHTMLAreaElement) SetCoords(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCoords:"), value)
-} /* debug [instance_properties/setter]: coords */
+}/* debug [instance_properties/setter]: coords */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/hashName
 func (d_ DOMHTMLAreaElement) HashName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("hashName"))
 	return rv
-} /* debug [instance_properties/getter]: hashName */
+}/* debug [instance_properties/getter]: hashName */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/host
 func (d_ DOMHTMLAreaElement) Host() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("host"))
 	return rv
-} /* debug [instance_properties/getter]: host */
+}/* debug [instance_properties/getter]: host */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/hostname
 func (d_ DOMHTMLAreaElement) Hostname() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("hostname"))
 	return rv
-} /* debug [instance_properties/getter]: hostname */
+}/* debug [instance_properties/getter]: hostname */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/href
 func (d_ DOMHTMLAreaElement) Href() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("href"))
 	return rv
-} /* debug [instance_properties/getter]: href */
+}/* debug [instance_properties/getter]: href */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/href
 func (d_ DOMHTMLAreaElement) SetHref(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setHref:"), value)
-} /* debug [instance_properties/setter]: href */
+}/* debug [instance_properties/setter]: href */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/noHref
 func (d_ DOMHTMLAreaElement) NoHref() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("noHref"))
 	return rv
-} /* debug [instance_properties/getter]: noHref */
+}/* debug [instance_properties/getter]: noHref */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/noHref
 func (d_ DOMHTMLAreaElement) SetNoHref(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNoHref:"), value)
-} /* debug [instance_properties/setter]: noHref */
+}/* debug [instance_properties/setter]: noHref */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/pathname
 func (d_ DOMHTMLAreaElement) Pathname() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("pathname"))
 	return rv
-} /* debug [instance_properties/getter]: pathname */
+}/* debug [instance_properties/getter]: pathname */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/port
 func (d_ DOMHTMLAreaElement) Port() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("port"))
 	return rv
-} /* debug [instance_properties/getter]: port */
+}/* debug [instance_properties/getter]: port */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/protocol
 func (d_ DOMHTMLAreaElement) Protocol() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("protocol"))
 	return rv
-} /* debug [instance_properties/getter]: protocol */
+}/* debug [instance_properties/getter]: protocol */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/search
 func (d_ DOMHTMLAreaElement) Search() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("search"))
 	return rv
-} /* debug [instance_properties/getter]: search */
+}/* debug [instance_properties/getter]: search */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/shape
 func (d_ DOMHTMLAreaElement) Shape() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("shape"))
 	return rv
-} /* debug [instance_properties/getter]: shape */
+}/* debug [instance_properties/getter]: shape */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/shape
 func (d_ DOMHTMLAreaElement) SetShape(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setShape:"), value)
-} /* debug [instance_properties/setter]: shape */
+}/* debug [instance_properties/setter]: shape */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/target
 func (d_ DOMHTMLAreaElement) Target() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("target"))
 	return rv
-} /* debug [instance_properties/getter]: target */
+}/* debug [instance_properties/getter]: target */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLAreaElement/target
 func (d_ DOMHTMLAreaElement) SetTarget(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTarget:"), value)
-} /* debug [instance_properties/setter]: target */
+}/* debug [instance_properties/setter]: target */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMHTMLAreaElement */
+
+
+

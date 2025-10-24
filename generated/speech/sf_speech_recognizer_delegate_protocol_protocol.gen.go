@@ -2,6 +2,11 @@
 
 package speech
 
+import (
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
 // PSFSpeechRecognizerDelegate is the SFSpeechRecognizerDelegate protocol interface.
 //
 // A protocol that you adopt in your objects to track the availability of a speech recognizer.

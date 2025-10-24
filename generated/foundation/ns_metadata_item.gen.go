@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSMetadataItem */
 
 
-/* debug [class_header]: Header for NSMetadataItem */
+
+
 // The class instance for the [MetadataItem] class.
 var (
 	MetadataItemClass     _MetadataItemClass
@@ -30,16 +30,16 @@ func getMetadataItemClass() _MetadataItemClass {
 type _MetadataItemClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MetadataItem */
+
+
 // An interface definition for the [MetadataItem] class.
 type IMetadataItem interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for MetadataItem */
+
 	// properties:
 	Attributes() IString
 	SetAttributes(value IString)
@@ -224,19 +224,19 @@ type IMetadataItem interface {
 	NSMetadataUbiquitousSharedItemPermissionsReadWrite() IString
 	NSMetadataUbiquitousSharedItemRoleOwner() IString
 	NSMetadataUbiquitousSharedItemRoleParticipant() IString
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MetadataItem */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MetadataItem */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MetadataItemClass) Alloc() MetadataItem {
 	rv := objc.Send[MetadataItem](objc.ID(mc.class), objc.Sel("alloc"))
@@ -266,11 +266,11 @@ func (m_ MetadataItem) Autorelease() MetadataItem {
 func NewMetadataItem() MetadataItem {
 	return getMetadataItemClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MetadataItem */
+
+
 // The metadata associated with a file.
 //
 // Metadata items provide a simple interface to retrieve the available attribute names and values.
@@ -290,30 +290,30 @@ type MetadataItem struct {
 func MetadataItemFrom(ptr unsafe.Pointer) MetadataItem {
 	return MetadataItem{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MetadataItem *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for MetadataItem */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MetadataItem */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MetadataItem */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MetadataItem */
+
+
+
+
+
+
+
+
+
 
 // An array containing the attribute keys for the metadata item’s values.
 //
@@ -322,7 +322,7 @@ func MetadataItemFrom(ptr unsafe.Pointer) MetadataItem {
 func (m_ MetadataItem) Attributes() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("attributes"))
 	return rv
-}/* debug [instance_properties/getter]: attributes */
+}
 
 
 // An array containing the attribute keys for the metadata item’s values.
@@ -331,7 +331,7 @@ func (m_ MetadataItem) Attributes() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitem/attributes
 func (m_ MetadataItem) SetAttributes(value IString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributes:"), value)
-}/* debug [instance_properties/setter]: attributes */
+}
 
 
 // [Full Topic]
@@ -339,7 +339,7 @@ func (m_ MetadataItem) SetAttributes(value IString) {
 func (m_ MetadataItem) NSMetadataItemAcquisitionMakeKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAcquisitionMakeKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAcquisitionMakeKey */
+}
 
 
 // [Full Topic]
@@ -347,7 +347,7 @@ func (m_ MetadataItem) NSMetadataItemAcquisitionMakeKey() IString {
 func (m_ MetadataItem) NSMetadataItemAcquisitionModelKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAcquisitionModelKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAcquisitionModelKey */
+}
 
 
 // [Full Topic]
@@ -355,7 +355,7 @@ func (m_ MetadataItem) NSMetadataItemAcquisitionModelKey() IString {
 func (m_ MetadataItem) NSMetadataItemAlbumKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAlbumKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAlbumKey */
+}
 
 
 // [Full Topic]
@@ -363,7 +363,7 @@ func (m_ MetadataItem) NSMetadataItemAlbumKey() IString {
 func (m_ MetadataItem) NSMetadataItemAltitudeKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAltitudeKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAltitudeKey */
+}
 
 
 // [Full Topic]
@@ -371,7 +371,7 @@ func (m_ MetadataItem) NSMetadataItemAltitudeKey() IString {
 func (m_ MetadataItem) NSMetadataItemApertureKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemApertureKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemApertureKey */
+}
 
 
 // [Full Topic]
@@ -379,7 +379,7 @@ func (m_ MetadataItem) NSMetadataItemApertureKey() IString {
 func (m_ MetadataItem) NSMetadataItemAppleLoopDescriptorsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAppleLoopDescriptorsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAppleLoopDescriptorsKey */
+}
 
 
 // [Full Topic]
@@ -387,7 +387,7 @@ func (m_ MetadataItem) NSMetadataItemAppleLoopDescriptorsKey() IString {
 func (m_ MetadataItem) NSMetadataItemAppleLoopsKeyFilterTypeKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAppleLoopsKeyFilterTypeKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAppleLoopsKeyFilterTypeKey */
+}
 
 
 // [Full Topic]
@@ -395,7 +395,7 @@ func (m_ MetadataItem) NSMetadataItemAppleLoopsKeyFilterTypeKey() IString {
 func (m_ MetadataItem) NSMetadataItemAppleLoopsLoopModeKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAppleLoopsLoopModeKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAppleLoopsLoopModeKey */
+}
 
 
 // [Full Topic]
@@ -403,7 +403,7 @@ func (m_ MetadataItem) NSMetadataItemAppleLoopsLoopModeKey() IString {
 func (m_ MetadataItem) NSMetadataItemAppleLoopsRootKeyKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAppleLoopsRootKeyKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAppleLoopsRootKeyKey */
+}
 
 
 // [Full Topic]
@@ -411,7 +411,7 @@ func (m_ MetadataItem) NSMetadataItemAppleLoopsRootKeyKey() IString {
 func (m_ MetadataItem) NSMetadataItemApplicationCategoriesKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemApplicationCategoriesKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemApplicationCategoriesKey */
+}
 
 
 // [Full Topic]
@@ -419,7 +419,7 @@ func (m_ MetadataItem) NSMetadataItemApplicationCategoriesKey() IString {
 func (m_ MetadataItem) NSMetadataItemAttributeChangeDateKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAttributeChangeDateKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAttributeChangeDateKey */
+}
 
 
 // [Full Topic]
@@ -427,7 +427,7 @@ func (m_ MetadataItem) NSMetadataItemAttributeChangeDateKey() IString {
 func (m_ MetadataItem) NSMetadataItemAudiencesKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAudiencesKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAudiencesKey */
+}
 
 
 // [Full Topic]
@@ -435,7 +435,7 @@ func (m_ MetadataItem) NSMetadataItemAudiencesKey() IString {
 func (m_ MetadataItem) NSMetadataItemAudioBitRateKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAudioBitRateKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAudioBitRateKey */
+}
 
 
 // [Full Topic]
@@ -443,7 +443,7 @@ func (m_ MetadataItem) NSMetadataItemAudioBitRateKey() IString {
 func (m_ MetadataItem) NSMetadataItemAudioChannelCountKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAudioChannelCountKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAudioChannelCountKey */
+}
 
 
 // [Full Topic]
@@ -451,7 +451,7 @@ func (m_ MetadataItem) NSMetadataItemAudioChannelCountKey() IString {
 func (m_ MetadataItem) NSMetadataItemAudioEncodingApplicationKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAudioEncodingApplicationKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAudioEncodingApplicationKey */
+}
 
 
 // [Full Topic]
@@ -459,7 +459,7 @@ func (m_ MetadataItem) NSMetadataItemAudioEncodingApplicationKey() IString {
 func (m_ MetadataItem) NSMetadataItemAudioSampleRateKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAudioSampleRateKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAudioSampleRateKey */
+}
 
 
 // [Full Topic]
@@ -467,7 +467,7 @@ func (m_ MetadataItem) NSMetadataItemAudioSampleRateKey() IString {
 func (m_ MetadataItem) NSMetadataItemAudioTrackNumberKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAudioTrackNumberKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAudioTrackNumberKey */
+}
 
 
 // [Full Topic]
@@ -475,7 +475,7 @@ func (m_ MetadataItem) NSMetadataItemAudioTrackNumberKey() IString {
 func (m_ MetadataItem) NSMetadataItemAuthorAddressesKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAuthorAddressesKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAuthorAddressesKey */
+}
 
 
 // [Full Topic]
@@ -483,7 +483,7 @@ func (m_ MetadataItem) NSMetadataItemAuthorAddressesKey() IString {
 func (m_ MetadataItem) NSMetadataItemAuthorEmailAddressesKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAuthorEmailAddressesKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAuthorEmailAddressesKey */
+}
 
 
 // [Full Topic]
@@ -491,7 +491,7 @@ func (m_ MetadataItem) NSMetadataItemAuthorEmailAddressesKey() IString {
 func (m_ MetadataItem) NSMetadataItemAuthorsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemAuthorsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemAuthorsKey */
+}
 
 
 // [Full Topic]
@@ -499,7 +499,7 @@ func (m_ MetadataItem) NSMetadataItemAuthorsKey() IString {
 func (m_ MetadataItem) NSMetadataItemBitsPerSampleKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemBitsPerSampleKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemBitsPerSampleKey */
+}
 
 
 // [Full Topic]
@@ -507,7 +507,7 @@ func (m_ MetadataItem) NSMetadataItemBitsPerSampleKey() IString {
 func (m_ MetadataItem) NSMetadataItemCFBundleIdentifierKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemCFBundleIdentifierKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemCFBundleIdentifierKey */
+}
 
 
 // [Full Topic]
@@ -515,7 +515,7 @@ func (m_ MetadataItem) NSMetadataItemCFBundleIdentifierKey() IString {
 func (m_ MetadataItem) NSMetadataItemCameraOwnerKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemCameraOwnerKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemCameraOwnerKey */
+}
 
 
 // [Full Topic]
@@ -523,7 +523,7 @@ func (m_ MetadataItem) NSMetadataItemCameraOwnerKey() IString {
 func (m_ MetadataItem) NSMetadataItemCityKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemCityKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemCityKey */
+}
 
 
 // [Full Topic]
@@ -531,7 +531,7 @@ func (m_ MetadataItem) NSMetadataItemCityKey() IString {
 func (m_ MetadataItem) NSMetadataItemCodecsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemCodecsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemCodecsKey */
+}
 
 
 // [Full Topic]
@@ -539,7 +539,7 @@ func (m_ MetadataItem) NSMetadataItemCodecsKey() IString {
 func (m_ MetadataItem) NSMetadataItemColorSpaceKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemColorSpaceKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemColorSpaceKey */
+}
 
 
 // [Full Topic]
@@ -547,7 +547,7 @@ func (m_ MetadataItem) NSMetadataItemColorSpaceKey() IString {
 func (m_ MetadataItem) NSMetadataItemCommentKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemCommentKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemCommentKey */
+}
 
 
 // [Full Topic]
@@ -555,7 +555,7 @@ func (m_ MetadataItem) NSMetadataItemCommentKey() IString {
 func (m_ MetadataItem) NSMetadataItemComposerKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemComposerKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemComposerKey */
+}
 
 
 // [Full Topic]
@@ -563,7 +563,7 @@ func (m_ MetadataItem) NSMetadataItemComposerKey() IString {
 func (m_ MetadataItem) NSMetadataItemContactKeywordsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemContactKeywordsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemContactKeywordsKey */
+}
 
 
 // [Full Topic]
@@ -571,7 +571,7 @@ func (m_ MetadataItem) NSMetadataItemContactKeywordsKey() IString {
 func (m_ MetadataItem) NSMetadataItemContentCreationDateKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemContentCreationDateKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemContentCreationDateKey */
+}
 
 
 // [Full Topic]
@@ -579,7 +579,7 @@ func (m_ MetadataItem) NSMetadataItemContentCreationDateKey() IString {
 func (m_ MetadataItem) NSMetadataItemContentModificationDateKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemContentModificationDateKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemContentModificationDateKey */
+}
 
 
 // [Full Topic]
@@ -587,7 +587,7 @@ func (m_ MetadataItem) NSMetadataItemContentModificationDateKey() IString {
 func (m_ MetadataItem) NSMetadataItemContentTypeKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemContentTypeKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemContentTypeKey */
+}
 
 
 // [Full Topic]
@@ -595,7 +595,7 @@ func (m_ MetadataItem) NSMetadataItemContentTypeKey() IString {
 func (m_ MetadataItem) NSMetadataItemContentTypeTreeKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemContentTypeTreeKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemContentTypeTreeKey */
+}
 
 
 // [Full Topic]
@@ -603,7 +603,7 @@ func (m_ MetadataItem) NSMetadataItemContentTypeTreeKey() IString {
 func (m_ MetadataItem) NSMetadataItemContributorsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemContributorsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemContributorsKey */
+}
 
 
 // [Full Topic]
@@ -611,7 +611,7 @@ func (m_ MetadataItem) NSMetadataItemContributorsKey() IString {
 func (m_ MetadataItem) NSMetadataItemCopyrightKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemCopyrightKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemCopyrightKey */
+}
 
 
 // [Full Topic]
@@ -619,7 +619,7 @@ func (m_ MetadataItem) NSMetadataItemCopyrightKey() IString {
 func (m_ MetadataItem) NSMetadataItemCountryKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemCountryKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemCountryKey */
+}
 
 
 // [Full Topic]
@@ -627,7 +627,7 @@ func (m_ MetadataItem) NSMetadataItemCountryKey() IString {
 func (m_ MetadataItem) NSMetadataItemCoverageKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemCoverageKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemCoverageKey */
+}
 
 
 // [Full Topic]
@@ -635,7 +635,7 @@ func (m_ MetadataItem) NSMetadataItemCoverageKey() IString {
 func (m_ MetadataItem) NSMetadataItemCreatorKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemCreatorKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemCreatorKey */
+}
 
 
 // [Full Topic]
@@ -643,7 +643,7 @@ func (m_ MetadataItem) NSMetadataItemCreatorKey() IString {
 func (m_ MetadataItem) NSMetadataItemDateAddedKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemDateAddedKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemDateAddedKey */
+}
 
 
 // [Full Topic]
@@ -651,7 +651,7 @@ func (m_ MetadataItem) NSMetadataItemDateAddedKey() IString {
 func (m_ MetadataItem) NSMetadataItemDeliveryTypeKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemDeliveryTypeKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemDeliveryTypeKey */
+}
 
 
 // [Full Topic]
@@ -659,7 +659,7 @@ func (m_ MetadataItem) NSMetadataItemDeliveryTypeKey() IString {
 func (m_ MetadataItem) NSMetadataItemDescriptionKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemDescriptionKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemDescriptionKey */
+}
 
 
 // [Full Topic]
@@ -667,7 +667,7 @@ func (m_ MetadataItem) NSMetadataItemDescriptionKey() IString {
 func (m_ MetadataItem) NSMetadataItemDirectorKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemDirectorKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemDirectorKey */
+}
 
 
 // [Full Topic]
@@ -675,7 +675,7 @@ func (m_ MetadataItem) NSMetadataItemDirectorKey() IString {
 func (m_ MetadataItem) NSMetadataItemDisplayNameKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemDisplayNameKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemDisplayNameKey */
+}
 
 
 // [Full Topic]
@@ -683,7 +683,7 @@ func (m_ MetadataItem) NSMetadataItemDisplayNameKey() IString {
 func (m_ MetadataItem) NSMetadataItemDownloadedDateKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemDownloadedDateKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemDownloadedDateKey */
+}
 
 
 // [Full Topic]
@@ -691,7 +691,7 @@ func (m_ MetadataItem) NSMetadataItemDownloadedDateKey() IString {
 func (m_ MetadataItem) NSMetadataItemDueDateKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemDueDateKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemDueDateKey */
+}
 
 
 // [Full Topic]
@@ -699,7 +699,7 @@ func (m_ MetadataItem) NSMetadataItemDueDateKey() IString {
 func (m_ MetadataItem) NSMetadataItemDurationSecondsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemDurationSecondsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemDurationSecondsKey */
+}
 
 
 // [Full Topic]
@@ -707,7 +707,7 @@ func (m_ MetadataItem) NSMetadataItemDurationSecondsKey() IString {
 func (m_ MetadataItem) NSMetadataItemEXIFGPSVersionKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemEXIFGPSVersionKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemEXIFGPSVersionKey */
+}
 
 
 // [Full Topic]
@@ -715,7 +715,7 @@ func (m_ MetadataItem) NSMetadataItemEXIFGPSVersionKey() IString {
 func (m_ MetadataItem) NSMetadataItemEXIFVersionKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemEXIFVersionKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemEXIFVersionKey */
+}
 
 
 // [Full Topic]
@@ -723,7 +723,7 @@ func (m_ MetadataItem) NSMetadataItemEXIFVersionKey() IString {
 func (m_ MetadataItem) NSMetadataItemEditorsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemEditorsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemEditorsKey */
+}
 
 
 // [Full Topic]
@@ -731,7 +731,7 @@ func (m_ MetadataItem) NSMetadataItemEditorsKey() IString {
 func (m_ MetadataItem) NSMetadataItemEmailAddressesKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemEmailAddressesKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemEmailAddressesKey */
+}
 
 
 // [Full Topic]
@@ -739,7 +739,7 @@ func (m_ MetadataItem) NSMetadataItemEmailAddressesKey() IString {
 func (m_ MetadataItem) NSMetadataItemEncodingApplicationsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemEncodingApplicationsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemEncodingApplicationsKey */
+}
 
 
 // [Full Topic]
@@ -747,7 +747,7 @@ func (m_ MetadataItem) NSMetadataItemEncodingApplicationsKey() IString {
 func (m_ MetadataItem) NSMetadataItemExecutableArchitecturesKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemExecutableArchitecturesKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemExecutableArchitecturesKey */
+}
 
 
 // [Full Topic]
@@ -755,7 +755,7 @@ func (m_ MetadataItem) NSMetadataItemExecutableArchitecturesKey() IString {
 func (m_ MetadataItem) NSMetadataItemExecutablePlatformKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemExecutablePlatformKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemExecutablePlatformKey */
+}
 
 
 // [Full Topic]
@@ -763,7 +763,7 @@ func (m_ MetadataItem) NSMetadataItemExecutablePlatformKey() IString {
 func (m_ MetadataItem) NSMetadataItemExposureModeKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemExposureModeKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemExposureModeKey */
+}
 
 
 // [Full Topic]
@@ -771,7 +771,7 @@ func (m_ MetadataItem) NSMetadataItemExposureModeKey() IString {
 func (m_ MetadataItem) NSMetadataItemExposureProgramKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemExposureProgramKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemExposureProgramKey */
+}
 
 
 // [Full Topic]
@@ -779,7 +779,7 @@ func (m_ MetadataItem) NSMetadataItemExposureProgramKey() IString {
 func (m_ MetadataItem) NSMetadataItemExposureTimeSecondsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemExposureTimeSecondsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemExposureTimeSecondsKey */
+}
 
 
 // [Full Topic]
@@ -787,7 +787,7 @@ func (m_ MetadataItem) NSMetadataItemExposureTimeSecondsKey() IString {
 func (m_ MetadataItem) NSMetadataItemExposureTimeStringKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemExposureTimeStringKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemExposureTimeStringKey */
+}
 
 
 // [Full Topic]
@@ -795,7 +795,7 @@ func (m_ MetadataItem) NSMetadataItemExposureTimeStringKey() IString {
 func (m_ MetadataItem) NSMetadataItemFNumberKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemFNumberKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemFNumberKey */
+}
 
 
 // [Full Topic]
@@ -803,7 +803,7 @@ func (m_ MetadataItem) NSMetadataItemFNumberKey() IString {
 func (m_ MetadataItem) NSMetadataItemFSContentChangeDateKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemFSContentChangeDateKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemFSContentChangeDateKey */
+}
 
 
 // [Full Topic]
@@ -811,7 +811,7 @@ func (m_ MetadataItem) NSMetadataItemFSContentChangeDateKey() IString {
 func (m_ MetadataItem) NSMetadataItemFSCreationDateKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemFSCreationDateKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemFSCreationDateKey */
+}
 
 
 // [Full Topic]
@@ -819,7 +819,7 @@ func (m_ MetadataItem) NSMetadataItemFSCreationDateKey() IString {
 func (m_ MetadataItem) NSMetadataItemFSNameKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemFSNameKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemFSNameKey */
+}
 
 
 // [Full Topic]
@@ -827,7 +827,7 @@ func (m_ MetadataItem) NSMetadataItemFSNameKey() IString {
 func (m_ MetadataItem) NSMetadataItemFSSizeKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemFSSizeKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemFSSizeKey */
+}
 
 
 // [Full Topic]
@@ -835,7 +835,7 @@ func (m_ MetadataItem) NSMetadataItemFSSizeKey() IString {
 func (m_ MetadataItem) NSMetadataItemFinderCommentKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemFinderCommentKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemFinderCommentKey */
+}
 
 
 // [Full Topic]
@@ -843,7 +843,7 @@ func (m_ MetadataItem) NSMetadataItemFinderCommentKey() IString {
 func (m_ MetadataItem) NSMetadataItemFlashOnOffKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemFlashOnOffKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemFlashOnOffKey */
+}
 
 
 // [Full Topic]
@@ -851,7 +851,7 @@ func (m_ MetadataItem) NSMetadataItemFlashOnOffKey() IString {
 func (m_ MetadataItem) NSMetadataItemFocalLength35mmKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemFocalLength35mmKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemFocalLength35mmKey */
+}
 
 
 // [Full Topic]
@@ -859,7 +859,7 @@ func (m_ MetadataItem) NSMetadataItemFocalLength35mmKey() IString {
 func (m_ MetadataItem) NSMetadataItemFocalLengthKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemFocalLengthKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemFocalLengthKey */
+}
 
 
 // [Full Topic]
@@ -867,7 +867,7 @@ func (m_ MetadataItem) NSMetadataItemFocalLengthKey() IString {
 func (m_ MetadataItem) NSMetadataItemFontsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemFontsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemFontsKey */
+}
 
 
 // [Full Topic]
@@ -875,7 +875,7 @@ func (m_ MetadataItem) NSMetadataItemFontsKey() IString {
 func (m_ MetadataItem) NSMetadataItemGPSAreaInformationKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemGPSAreaInformationKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemGPSAreaInformationKey */
+}
 
 
 // [Full Topic]
@@ -883,7 +883,7 @@ func (m_ MetadataItem) NSMetadataItemGPSAreaInformationKey() IString {
 func (m_ MetadataItem) NSMetadataItemGPSDOPKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemGPSDOPKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemGPSDOPKey */
+}
 
 
 // [Full Topic]
@@ -891,7 +891,7 @@ func (m_ MetadataItem) NSMetadataItemGPSDOPKey() IString {
 func (m_ MetadataItem) NSMetadataItemGPSDateStampKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemGPSDateStampKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemGPSDateStampKey */
+}
 
 
 // [Full Topic]
@@ -899,7 +899,7 @@ func (m_ MetadataItem) NSMetadataItemGPSDateStampKey() IString {
 func (m_ MetadataItem) NSMetadataItemGPSDestBearingKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemGPSDestBearingKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemGPSDestBearingKey */
+}
 
 
 // [Full Topic]
@@ -907,7 +907,7 @@ func (m_ MetadataItem) NSMetadataItemGPSDestBearingKey() IString {
 func (m_ MetadataItem) NSMetadataItemGPSDestDistanceKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemGPSDestDistanceKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemGPSDestDistanceKey */
+}
 
 
 // [Full Topic]
@@ -915,7 +915,7 @@ func (m_ MetadataItem) NSMetadataItemGPSDestDistanceKey() IString {
 func (m_ MetadataItem) NSMetadataItemGPSDestLatitudeKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemGPSDestLatitudeKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemGPSDestLatitudeKey */
+}
 
 
 // [Full Topic]
@@ -923,7 +923,7 @@ func (m_ MetadataItem) NSMetadataItemGPSDestLatitudeKey() IString {
 func (m_ MetadataItem) NSMetadataItemGPSDestLongitudeKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemGPSDestLongitudeKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemGPSDestLongitudeKey */
+}
 
 
 // [Full Topic]
@@ -931,7 +931,7 @@ func (m_ MetadataItem) NSMetadataItemGPSDestLongitudeKey() IString {
 func (m_ MetadataItem) NSMetadataItemGPSDifferentalKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemGPSDifferentalKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemGPSDifferentalKey */
+}
 
 
 // [Full Topic]
@@ -939,7 +939,7 @@ func (m_ MetadataItem) NSMetadataItemGPSDifferentalKey() IString {
 func (m_ MetadataItem) NSMetadataItemGPSMapDatumKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemGPSMapDatumKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemGPSMapDatumKey */
+}
 
 
 // [Full Topic]
@@ -947,7 +947,7 @@ func (m_ MetadataItem) NSMetadataItemGPSMapDatumKey() IString {
 func (m_ MetadataItem) NSMetadataItemGPSMeasureModeKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemGPSMeasureModeKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemGPSMeasureModeKey */
+}
 
 
 // [Full Topic]
@@ -955,7 +955,7 @@ func (m_ MetadataItem) NSMetadataItemGPSMeasureModeKey() IString {
 func (m_ MetadataItem) NSMetadataItemGPSProcessingMethodKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemGPSProcessingMethodKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemGPSProcessingMethodKey */
+}
 
 
 // [Full Topic]
@@ -963,7 +963,7 @@ func (m_ MetadataItem) NSMetadataItemGPSProcessingMethodKey() IString {
 func (m_ MetadataItem) NSMetadataItemGPSStatusKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemGPSStatusKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemGPSStatusKey */
+}
 
 
 // [Full Topic]
@@ -971,7 +971,7 @@ func (m_ MetadataItem) NSMetadataItemGPSStatusKey() IString {
 func (m_ MetadataItem) NSMetadataItemGPSTrackKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemGPSTrackKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemGPSTrackKey */
+}
 
 
 // [Full Topic]
@@ -979,7 +979,7 @@ func (m_ MetadataItem) NSMetadataItemGPSTrackKey() IString {
 func (m_ MetadataItem) NSMetadataItemGenreKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemGenreKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemGenreKey */
+}
 
 
 // [Full Topic]
@@ -987,7 +987,7 @@ func (m_ MetadataItem) NSMetadataItemGenreKey() IString {
 func (m_ MetadataItem) NSMetadataItemHasAlphaChannelKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemHasAlphaChannelKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemHasAlphaChannelKey */
+}
 
 
 // [Full Topic]
@@ -995,7 +995,7 @@ func (m_ MetadataItem) NSMetadataItemHasAlphaChannelKey() IString {
 func (m_ MetadataItem) NSMetadataItemHeadlineKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemHeadlineKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemHeadlineKey */
+}
 
 
 // [Full Topic]
@@ -1003,7 +1003,7 @@ func (m_ MetadataItem) NSMetadataItemHeadlineKey() IString {
 func (m_ MetadataItem) NSMetadataItemISOSpeedKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemISOSpeedKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemISOSpeedKey */
+}
 
 
 // [Full Topic]
@@ -1011,7 +1011,7 @@ func (m_ MetadataItem) NSMetadataItemISOSpeedKey() IString {
 func (m_ MetadataItem) NSMetadataItemIdentifierKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemIdentifierKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemIdentifierKey */
+}
 
 
 // [Full Topic]
@@ -1019,7 +1019,7 @@ func (m_ MetadataItem) NSMetadataItemIdentifierKey() IString {
 func (m_ MetadataItem) NSMetadataItemImageDirectionKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemImageDirectionKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemImageDirectionKey */
+}
 
 
 // [Full Topic]
@@ -1027,7 +1027,7 @@ func (m_ MetadataItem) NSMetadataItemImageDirectionKey() IString {
 func (m_ MetadataItem) NSMetadataItemInformationKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemInformationKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemInformationKey */
+}
 
 
 // [Full Topic]
@@ -1035,7 +1035,7 @@ func (m_ MetadataItem) NSMetadataItemInformationKey() IString {
 func (m_ MetadataItem) NSMetadataItemInstantMessageAddressesKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemInstantMessageAddressesKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemInstantMessageAddressesKey */
+}
 
 
 // [Full Topic]
@@ -1043,7 +1043,7 @@ func (m_ MetadataItem) NSMetadataItemInstantMessageAddressesKey() IString {
 func (m_ MetadataItem) NSMetadataItemInstructionsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemInstructionsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemInstructionsKey */
+}
 
 
 // [Full Topic]
@@ -1051,7 +1051,7 @@ func (m_ MetadataItem) NSMetadataItemInstructionsKey() IString {
 func (m_ MetadataItem) NSMetadataItemIsApplicationManagedKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemIsApplicationManagedKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemIsApplicationManagedKey */
+}
 
 
 // [Full Topic]
@@ -1059,7 +1059,7 @@ func (m_ MetadataItem) NSMetadataItemIsApplicationManagedKey() IString {
 func (m_ MetadataItem) NSMetadataItemIsGeneralMIDISequenceKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemIsGeneralMIDISequenceKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemIsGeneralMIDISequenceKey */
+}
 
 
 // [Full Topic]
@@ -1067,7 +1067,7 @@ func (m_ MetadataItem) NSMetadataItemIsGeneralMIDISequenceKey() IString {
 func (m_ MetadataItem) NSMetadataItemIsLikelyJunkKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemIsLikelyJunkKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemIsLikelyJunkKey */
+}
 
 
 // [Full Topic]
@@ -1075,7 +1075,7 @@ func (m_ MetadataItem) NSMetadataItemIsLikelyJunkKey() IString {
 func (m_ MetadataItem) NSMetadataItemIsUbiquitousKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemIsUbiquitousKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemIsUbiquitousKey */
+}
 
 
 // [Full Topic]
@@ -1083,7 +1083,7 @@ func (m_ MetadataItem) NSMetadataItemIsUbiquitousKey() IString {
 func (m_ MetadataItem) NSMetadataItemKeySignatureKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemKeySignatureKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemKeySignatureKey */
+}
 
 
 // [Full Topic]
@@ -1091,7 +1091,7 @@ func (m_ MetadataItem) NSMetadataItemKeySignatureKey() IString {
 func (m_ MetadataItem) NSMetadataItemKeywordsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemKeywordsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemKeywordsKey */
+}
 
 
 // [Full Topic]
@@ -1099,7 +1099,7 @@ func (m_ MetadataItem) NSMetadataItemKeywordsKey() IString {
 func (m_ MetadataItem) NSMetadataItemKindKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemKindKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemKindKey */
+}
 
 
 // [Full Topic]
@@ -1107,7 +1107,7 @@ func (m_ MetadataItem) NSMetadataItemKindKey() IString {
 func (m_ MetadataItem) NSMetadataItemLanguagesKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemLanguagesKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemLanguagesKey */
+}
 
 
 // [Full Topic]
@@ -1115,7 +1115,7 @@ func (m_ MetadataItem) NSMetadataItemLanguagesKey() IString {
 func (m_ MetadataItem) NSMetadataItemLastUsedDateKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemLastUsedDateKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemLastUsedDateKey */
+}
 
 
 // [Full Topic]
@@ -1123,7 +1123,7 @@ func (m_ MetadataItem) NSMetadataItemLastUsedDateKey() IString {
 func (m_ MetadataItem) NSMetadataItemLatitudeKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemLatitudeKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemLatitudeKey */
+}
 
 
 // [Full Topic]
@@ -1131,7 +1131,7 @@ func (m_ MetadataItem) NSMetadataItemLatitudeKey() IString {
 func (m_ MetadataItem) NSMetadataItemLayerNamesKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemLayerNamesKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemLayerNamesKey */
+}
 
 
 // [Full Topic]
@@ -1139,7 +1139,7 @@ func (m_ MetadataItem) NSMetadataItemLayerNamesKey() IString {
 func (m_ MetadataItem) NSMetadataItemLensModelKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemLensModelKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemLensModelKey */
+}
 
 
 // [Full Topic]
@@ -1147,7 +1147,7 @@ func (m_ MetadataItem) NSMetadataItemLensModelKey() IString {
 func (m_ MetadataItem) NSMetadataItemLongitudeKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemLongitudeKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemLongitudeKey */
+}
 
 
 // [Full Topic]
@@ -1155,7 +1155,7 @@ func (m_ MetadataItem) NSMetadataItemLongitudeKey() IString {
 func (m_ MetadataItem) NSMetadataItemLyricistKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemLyricistKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemLyricistKey */
+}
 
 
 // [Full Topic]
@@ -1163,7 +1163,7 @@ func (m_ MetadataItem) NSMetadataItemLyricistKey() IString {
 func (m_ MetadataItem) NSMetadataItemMaxApertureKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemMaxApertureKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemMaxApertureKey */
+}
 
 
 // [Full Topic]
@@ -1171,7 +1171,7 @@ func (m_ MetadataItem) NSMetadataItemMaxApertureKey() IString {
 func (m_ MetadataItem) NSMetadataItemMediaTypesKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemMediaTypesKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemMediaTypesKey */
+}
 
 
 // [Full Topic]
@@ -1179,7 +1179,7 @@ func (m_ MetadataItem) NSMetadataItemMediaTypesKey() IString {
 func (m_ MetadataItem) NSMetadataItemMeteringModeKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemMeteringModeKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemMeteringModeKey */
+}
 
 
 // [Full Topic]
@@ -1187,7 +1187,7 @@ func (m_ MetadataItem) NSMetadataItemMeteringModeKey() IString {
 func (m_ MetadataItem) NSMetadataItemMusicalGenreKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemMusicalGenreKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemMusicalGenreKey */
+}
 
 
 // [Full Topic]
@@ -1195,7 +1195,7 @@ func (m_ MetadataItem) NSMetadataItemMusicalGenreKey() IString {
 func (m_ MetadataItem) NSMetadataItemMusicalInstrumentCategoryKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemMusicalInstrumentCategoryKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemMusicalInstrumentCategoryKey */
+}
 
 
 // [Full Topic]
@@ -1203,7 +1203,7 @@ func (m_ MetadataItem) NSMetadataItemMusicalInstrumentCategoryKey() IString {
 func (m_ MetadataItem) NSMetadataItemMusicalInstrumentNameKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemMusicalInstrumentNameKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemMusicalInstrumentNameKey */
+}
 
 
 // [Full Topic]
@@ -1211,7 +1211,7 @@ func (m_ MetadataItem) NSMetadataItemMusicalInstrumentNameKey() IString {
 func (m_ MetadataItem) NSMetadataItemNamedLocationKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemNamedLocationKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemNamedLocationKey */
+}
 
 
 // [Full Topic]
@@ -1219,7 +1219,7 @@ func (m_ MetadataItem) NSMetadataItemNamedLocationKey() IString {
 func (m_ MetadataItem) NSMetadataItemNumberOfPagesKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemNumberOfPagesKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemNumberOfPagesKey */
+}
 
 
 // [Full Topic]
@@ -1227,7 +1227,7 @@ func (m_ MetadataItem) NSMetadataItemNumberOfPagesKey() IString {
 func (m_ MetadataItem) NSMetadataItemOrganizationsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemOrganizationsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemOrganizationsKey */
+}
 
 
 // [Full Topic]
@@ -1235,7 +1235,7 @@ func (m_ MetadataItem) NSMetadataItemOrganizationsKey() IString {
 func (m_ MetadataItem) NSMetadataItemOrientationKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemOrientationKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemOrientationKey */
+}
 
 
 // [Full Topic]
@@ -1243,7 +1243,7 @@ func (m_ MetadataItem) NSMetadataItemOrientationKey() IString {
 func (m_ MetadataItem) NSMetadataItemOriginalFormatKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemOriginalFormatKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemOriginalFormatKey */
+}
 
 
 // [Full Topic]
@@ -1251,7 +1251,7 @@ func (m_ MetadataItem) NSMetadataItemOriginalFormatKey() IString {
 func (m_ MetadataItem) NSMetadataItemOriginalSourceKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemOriginalSourceKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemOriginalSourceKey */
+}
 
 
 // [Full Topic]
@@ -1259,7 +1259,7 @@ func (m_ MetadataItem) NSMetadataItemOriginalSourceKey() IString {
 func (m_ MetadataItem) NSMetadataItemPageHeightKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemPageHeightKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemPageHeightKey */
+}
 
 
 // [Full Topic]
@@ -1267,7 +1267,7 @@ func (m_ MetadataItem) NSMetadataItemPageHeightKey() IString {
 func (m_ MetadataItem) NSMetadataItemPageWidthKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemPageWidthKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemPageWidthKey */
+}
 
 
 // [Full Topic]
@@ -1275,7 +1275,7 @@ func (m_ MetadataItem) NSMetadataItemPageWidthKey() IString {
 func (m_ MetadataItem) NSMetadataItemParticipantsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemParticipantsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemParticipantsKey */
+}
 
 
 // [Full Topic]
@@ -1283,7 +1283,7 @@ func (m_ MetadataItem) NSMetadataItemParticipantsKey() IString {
 func (m_ MetadataItem) NSMetadataItemPathKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemPathKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemPathKey */
+}
 
 
 // [Full Topic]
@@ -1291,7 +1291,7 @@ func (m_ MetadataItem) NSMetadataItemPathKey() IString {
 func (m_ MetadataItem) NSMetadataItemPerformersKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemPerformersKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemPerformersKey */
+}
 
 
 // [Full Topic]
@@ -1299,7 +1299,7 @@ func (m_ MetadataItem) NSMetadataItemPerformersKey() IString {
 func (m_ MetadataItem) NSMetadataItemPhoneNumbersKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemPhoneNumbersKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemPhoneNumbersKey */
+}
 
 
 // [Full Topic]
@@ -1307,7 +1307,7 @@ func (m_ MetadataItem) NSMetadataItemPhoneNumbersKey() IString {
 func (m_ MetadataItem) NSMetadataItemPixelCountKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemPixelCountKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemPixelCountKey */
+}
 
 
 // [Full Topic]
@@ -1315,7 +1315,7 @@ func (m_ MetadataItem) NSMetadataItemPixelCountKey() IString {
 func (m_ MetadataItem) NSMetadataItemPixelHeightKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemPixelHeightKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemPixelHeightKey */
+}
 
 
 // [Full Topic]
@@ -1323,7 +1323,7 @@ func (m_ MetadataItem) NSMetadataItemPixelHeightKey() IString {
 func (m_ MetadataItem) NSMetadataItemPixelWidthKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemPixelWidthKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemPixelWidthKey */
+}
 
 
 // [Full Topic]
@@ -1331,7 +1331,7 @@ func (m_ MetadataItem) NSMetadataItemPixelWidthKey() IString {
 func (m_ MetadataItem) NSMetadataItemProducerKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemProducerKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemProducerKey */
+}
 
 
 // [Full Topic]
@@ -1339,7 +1339,7 @@ func (m_ MetadataItem) NSMetadataItemProducerKey() IString {
 func (m_ MetadataItem) NSMetadataItemProfileNameKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemProfileNameKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemProfileNameKey */
+}
 
 
 // [Full Topic]
@@ -1347,7 +1347,7 @@ func (m_ MetadataItem) NSMetadataItemProfileNameKey() IString {
 func (m_ MetadataItem) NSMetadataItemProjectsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemProjectsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemProjectsKey */
+}
 
 
 // [Full Topic]
@@ -1355,7 +1355,7 @@ func (m_ MetadataItem) NSMetadataItemProjectsKey() IString {
 func (m_ MetadataItem) NSMetadataItemPublishersKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemPublishersKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemPublishersKey */
+}
 
 
 // [Full Topic]
@@ -1363,7 +1363,7 @@ func (m_ MetadataItem) NSMetadataItemPublishersKey() IString {
 func (m_ MetadataItem) NSMetadataItemRecipientAddressesKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemRecipientAddressesKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemRecipientAddressesKey */
+}
 
 
 // [Full Topic]
@@ -1371,7 +1371,7 @@ func (m_ MetadataItem) NSMetadataItemRecipientAddressesKey() IString {
 func (m_ MetadataItem) NSMetadataItemRecipientEmailAddressesKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemRecipientEmailAddressesKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemRecipientEmailAddressesKey */
+}
 
 
 // [Full Topic]
@@ -1379,7 +1379,7 @@ func (m_ MetadataItem) NSMetadataItemRecipientEmailAddressesKey() IString {
 func (m_ MetadataItem) NSMetadataItemRecipientsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemRecipientsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemRecipientsKey */
+}
 
 
 // [Full Topic]
@@ -1387,7 +1387,7 @@ func (m_ MetadataItem) NSMetadataItemRecipientsKey() IString {
 func (m_ MetadataItem) NSMetadataItemRecordingDateKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemRecordingDateKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemRecordingDateKey */
+}
 
 
 // [Full Topic]
@@ -1395,7 +1395,7 @@ func (m_ MetadataItem) NSMetadataItemRecordingDateKey() IString {
 func (m_ MetadataItem) NSMetadataItemRecordingYearKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemRecordingYearKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemRecordingYearKey */
+}
 
 
 // [Full Topic]
@@ -1403,7 +1403,7 @@ func (m_ MetadataItem) NSMetadataItemRecordingYearKey() IString {
 func (m_ MetadataItem) NSMetadataItemRedEyeOnOffKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemRedEyeOnOffKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemRedEyeOnOffKey */
+}
 
 
 // [Full Topic]
@@ -1411,7 +1411,7 @@ func (m_ MetadataItem) NSMetadataItemRedEyeOnOffKey() IString {
 func (m_ MetadataItem) NSMetadataItemResolutionHeightDPIKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemResolutionHeightDPIKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemResolutionHeightDPIKey */
+}
 
 
 // [Full Topic]
@@ -1419,7 +1419,7 @@ func (m_ MetadataItem) NSMetadataItemResolutionHeightDPIKey() IString {
 func (m_ MetadataItem) NSMetadataItemResolutionWidthDPIKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemResolutionWidthDPIKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemResolutionWidthDPIKey */
+}
 
 
 // [Full Topic]
@@ -1427,7 +1427,7 @@ func (m_ MetadataItem) NSMetadataItemResolutionWidthDPIKey() IString {
 func (m_ MetadataItem) NSMetadataItemRightsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemRightsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemRightsKey */
+}
 
 
 // [Full Topic]
@@ -1435,7 +1435,7 @@ func (m_ MetadataItem) NSMetadataItemRightsKey() IString {
 func (m_ MetadataItem) NSMetadataItemSecurityMethodKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemSecurityMethodKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemSecurityMethodKey */
+}
 
 
 // [Full Topic]
@@ -1443,7 +1443,7 @@ func (m_ MetadataItem) NSMetadataItemSecurityMethodKey() IString {
 func (m_ MetadataItem) NSMetadataItemSpeedKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemSpeedKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemSpeedKey */
+}
 
 
 // [Full Topic]
@@ -1451,7 +1451,7 @@ func (m_ MetadataItem) NSMetadataItemSpeedKey() IString {
 func (m_ MetadataItem) NSMetadataItemStarRatingKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemStarRatingKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemStarRatingKey */
+}
 
 
 // [Full Topic]
@@ -1459,7 +1459,7 @@ func (m_ MetadataItem) NSMetadataItemStarRatingKey() IString {
 func (m_ MetadataItem) NSMetadataItemStateOrProvinceKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemStateOrProvinceKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemStateOrProvinceKey */
+}
 
 
 // [Full Topic]
@@ -1467,7 +1467,7 @@ func (m_ MetadataItem) NSMetadataItemStateOrProvinceKey() IString {
 func (m_ MetadataItem) NSMetadataItemStreamableKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemStreamableKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemStreamableKey */
+}
 
 
 // [Full Topic]
@@ -1475,7 +1475,7 @@ func (m_ MetadataItem) NSMetadataItemStreamableKey() IString {
 func (m_ MetadataItem) NSMetadataItemSubjectKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemSubjectKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemSubjectKey */
+}
 
 
 // [Full Topic]
@@ -1483,7 +1483,7 @@ func (m_ MetadataItem) NSMetadataItemSubjectKey() IString {
 func (m_ MetadataItem) NSMetadataItemTempoKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemTempoKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemTempoKey */
+}
 
 
 // [Full Topic]
@@ -1491,7 +1491,7 @@ func (m_ MetadataItem) NSMetadataItemTempoKey() IString {
 func (m_ MetadataItem) NSMetadataItemTextContentKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemTextContentKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemTextContentKey */
+}
 
 
 // [Full Topic]
@@ -1499,7 +1499,7 @@ func (m_ MetadataItem) NSMetadataItemTextContentKey() IString {
 func (m_ MetadataItem) NSMetadataItemThemeKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemThemeKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemThemeKey */
+}
 
 
 // [Full Topic]
@@ -1507,7 +1507,7 @@ func (m_ MetadataItem) NSMetadataItemThemeKey() IString {
 func (m_ MetadataItem) NSMetadataItemTimeSignatureKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemTimeSignatureKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemTimeSignatureKey */
+}
 
 
 // [Full Topic]
@@ -1515,7 +1515,7 @@ func (m_ MetadataItem) NSMetadataItemTimeSignatureKey() IString {
 func (m_ MetadataItem) NSMetadataItemTimestampKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemTimestampKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemTimestampKey */
+}
 
 
 // [Full Topic]
@@ -1523,7 +1523,7 @@ func (m_ MetadataItem) NSMetadataItemTimestampKey() IString {
 func (m_ MetadataItem) NSMetadataItemTitleKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemTitleKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemTitleKey */
+}
 
 
 // [Full Topic]
@@ -1531,7 +1531,7 @@ func (m_ MetadataItem) NSMetadataItemTitleKey() IString {
 func (m_ MetadataItem) NSMetadataItemTotalBitRateKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemTotalBitRateKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemTotalBitRateKey */
+}
 
 
 // [Full Topic]
@@ -1539,7 +1539,7 @@ func (m_ MetadataItem) NSMetadataItemTotalBitRateKey() IString {
 func (m_ MetadataItem) NSMetadataItemURLKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemURLKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemURLKey */
+}
 
 
 // [Full Topic]
@@ -1547,7 +1547,7 @@ func (m_ MetadataItem) NSMetadataItemURLKey() IString {
 func (m_ MetadataItem) NSMetadataItemVersionKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemVersionKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemVersionKey */
+}
 
 
 // [Full Topic]
@@ -1555,7 +1555,7 @@ func (m_ MetadataItem) NSMetadataItemVersionKey() IString {
 func (m_ MetadataItem) NSMetadataItemVideoBitRateKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemVideoBitRateKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemVideoBitRateKey */
+}
 
 
 // [Full Topic]
@@ -1563,7 +1563,7 @@ func (m_ MetadataItem) NSMetadataItemVideoBitRateKey() IString {
 func (m_ MetadataItem) NSMetadataItemWhereFromsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemWhereFromsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemWhereFromsKey */
+}
 
 
 // [Full Topic]
@@ -1571,7 +1571,7 @@ func (m_ MetadataItem) NSMetadataItemWhereFromsKey() IString {
 func (m_ MetadataItem) NSMetadataItemWhiteBalanceKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataItemWhiteBalanceKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataItemWhiteBalanceKey */
+}
 
 
 // [Full Topic]
@@ -1579,7 +1579,7 @@ func (m_ MetadataItem) NSMetadataItemWhiteBalanceKey() IString {
 func (m_ MetadataItem) NSMetadataUbiquitousItemContainerDisplayNameKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemContainerDisplayNameKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemContainerDisplayNameKey */
+}
 
 
 // [Full Topic]
@@ -1587,7 +1587,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemContainerDisplayNameKey() IString
 func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadRequestedKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemDownloadRequestedKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemDownloadRequestedKey */
+}
 
 
 // [Full Topic]
@@ -1595,7 +1595,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadRequestedKey() IString {
 func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingErrorKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemDownloadingErrorKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemDownloadingErrorKey */
+}
 
 
 // [Full Topic]
@@ -1603,7 +1603,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingErrorKey() IString {
 func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusCurrent() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemDownloadingStatusCurrent"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemDownloadingStatusCurrent */
+}
 
 
 // [Full Topic]
@@ -1611,7 +1611,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusCurrent() IStrin
 func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusDownloaded() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemDownloadingStatusDownloaded"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemDownloadingStatusDownloaded */
+}
 
 
 // [Full Topic]
@@ -1619,7 +1619,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusDownloaded() ISt
 func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemDownloadingStatusKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemDownloadingStatusKey */
+}
 
 
 // [Full Topic]
@@ -1627,7 +1627,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusKey() IString {
 func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusNotDownloaded() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemDownloadingStatusNotDownloaded"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemDownloadingStatusNotDownloaded */
+}
 
 
 // [Full Topic]
@@ -1635,7 +1635,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusNotDownloaded() 
 func (m_ MetadataItem) NSMetadataUbiquitousItemHasUnresolvedConflictsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemHasUnresolvedConflictsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemHasUnresolvedConflictsKey */
+}
 
 
 // [Full Topic]
@@ -1643,7 +1643,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemHasUnresolvedConflictsKey() IStri
 func (m_ MetadataItem) NSMetadataUbiquitousItemIsDownloadedKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemIsDownloadedKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemIsDownloadedKey */
+}
 
 
 // [Full Topic]
@@ -1651,7 +1651,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsDownloadedKey() IString {
 func (m_ MetadataItem) NSMetadataUbiquitousItemIsDownloadingKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemIsDownloadingKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemIsDownloadingKey */
+}
 
 
 // [Full Topic]
@@ -1659,7 +1659,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsDownloadingKey() IString {
 func (m_ MetadataItem) NSMetadataUbiquitousItemIsExternalDocumentKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemIsExternalDocumentKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemIsExternalDocumentKey */
+}
 
 
 // [Full Topic]
@@ -1667,7 +1667,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsExternalDocumentKey() IString {
 func (m_ MetadataItem) NSMetadataUbiquitousItemIsSharedKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemIsSharedKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemIsSharedKey */
+}
 
 
 // [Full Topic]
@@ -1675,7 +1675,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsSharedKey() IString {
 func (m_ MetadataItem) NSMetadataUbiquitousItemIsUploadedKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemIsUploadedKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemIsUploadedKey */
+}
 
 
 // [Full Topic]
@@ -1683,7 +1683,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsUploadedKey() IString {
 func (m_ MetadataItem) NSMetadataUbiquitousItemIsUploadingKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemIsUploadingKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemIsUploadingKey */
+}
 
 
 // [Full Topic]
@@ -1691,7 +1691,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsUploadingKey() IString {
 func (m_ MetadataItem) NSMetadataUbiquitousItemPercentDownloadedKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemPercentDownloadedKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemPercentDownloadedKey */
+}
 
 
 // [Full Topic]
@@ -1699,7 +1699,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemPercentDownloadedKey() IString {
 func (m_ MetadataItem) NSMetadataUbiquitousItemPercentUploadedKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemPercentUploadedKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemPercentUploadedKey */
+}
 
 
 // [Full Topic]
@@ -1707,7 +1707,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemPercentUploadedKey() IString {
 func (m_ MetadataItem) NSMetadataUbiquitousItemURLInLocalContainerKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemURLInLocalContainerKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemURLInLocalContainerKey */
+}
 
 
 // [Full Topic]
@@ -1715,7 +1715,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemURLInLocalContainerKey() IString 
 func (m_ MetadataItem) NSMetadataUbiquitousItemUploadingErrorKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousItemUploadingErrorKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousItemUploadingErrorKey */
+}
 
 
 // [Full Topic]
@@ -1723,7 +1723,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemUploadingErrorKey() IString {
 func (m_ MetadataItem) NSMetadataUbiquitousSharedItemCurrentUserPermissionsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemCurrentUserPermissionsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousSharedItemCurrentUserPermissionsKey */
+}
 
 
 // [Full Topic]
@@ -1731,7 +1731,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemCurrentUserPermissionsKey()
 func (m_ MetadataItem) NSMetadataUbiquitousSharedItemCurrentUserRoleKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemCurrentUserRoleKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousSharedItemCurrentUserRoleKey */
+}
 
 
 // [Full Topic]
@@ -1739,7 +1739,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemCurrentUserRoleKey() IStrin
 func (m_ MetadataItem) NSMetadataUbiquitousSharedItemMostRecentEditorNameComponentsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemMostRecentEditorNameComponentsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousSharedItemMostRecentEditorNameComponentsKey */
+}
 
 
 // [Full Topic]
@@ -1747,7 +1747,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemMostRecentEditorNameCompone
 func (m_ MetadataItem) NSMetadataUbiquitousSharedItemOwnerNameComponentsKey() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemOwnerNameComponentsKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousSharedItemOwnerNameComponentsKey */
+}
 
 
 // [Full Topic]
@@ -1755,7 +1755,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemOwnerNameComponentsKey() IS
 func (m_ MetadataItem) NSMetadataUbiquitousSharedItemPermissionsReadOnly() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemPermissionsReadOnly"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousSharedItemPermissionsReadOnly */
+}
 
 
 // [Full Topic]
@@ -1763,7 +1763,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemPermissionsReadOnly() IStri
 func (m_ MetadataItem) NSMetadataUbiquitousSharedItemPermissionsReadWrite() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemPermissionsReadWrite"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousSharedItemPermissionsReadWrite */
+}
 
 
 // [Full Topic]
@@ -1771,7 +1771,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemPermissionsReadWrite() IStr
 func (m_ MetadataItem) NSMetadataUbiquitousSharedItemRoleOwner() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemRoleOwner"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousSharedItemRoleOwner */
+}
 
 
 // [Full Topic]
@@ -1779,12 +1779,12 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemRoleOwner() IString {
 func (m_ MetadataItem) NSMetadataUbiquitousSharedItemRoleParticipant() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemRoleParticipant"))
 	return rv
-}/* debug [instance_properties/getter]: NSMetadataUbiquitousSharedItemRoleParticipant */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSMetadataItem */
+
+
+
 
 
 

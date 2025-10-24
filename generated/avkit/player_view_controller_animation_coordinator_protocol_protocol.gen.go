@@ -16,5 +16,5 @@ import (
 // See: doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerAnimationCoordinator
 type PPlayerViewControllerAnimationCoordinator interface {
 	// Required methods
-	AddCoordinatedAnimationsCompletion(animations unsafe.Pointer, completion unsafe.Pointer)/* debug [protocol_interface/required_method]: AddCoordinatedAnimationsCompletion */
+	AddCoordinatedAnimationsCompletion(animations unsafe.Pointer, completion unsafe.Pointer)
 }

@@ -5,11 +5,14 @@
 package usernotifications
 
 import (
-	"github.com/tmc/appledocs/generated/foundation"
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // iOS-only methods for UNMutableNotificationContent
+
 
 // iOS-only properties
 
@@ -24,3 +27,8 @@ func (u_ UNMutableNotificationContent) LaunchImageName() objc.IObject /* cross-f
 func (u_ UNMutableNotificationContent) SetLaunchImageName(value objc.IObject /* cross-framework: NSString */) {
 	u_.ID.Send(objc.RegisterName("setLaunchImageName:"), value)
 }
+
+
+
+
+

@@ -5,8 +5,15 @@ package webkit
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/appkit"
+
+	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/func([]unsafe"
+
+	"github.com/tmc/appledocs/generated/func(unsafe"
 )
 
 // PUIDelegate is the WKUIDelegate protocol interface.
@@ -65,24 +72,24 @@ type PUIDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type UIDelegate struct {
-	_WebViewCommitPreviewingViewController                                                      func(webView IWKWebView, previewingViewController appkit.ViewController)
-	_WebViewContextMenuConfigurationForElementCompletionHandler                                 func(webView IWKWebView, elementInfo IWKContextMenuElementInfo, completionHandler func(unsafe.Pointer))
-	_WebViewContextMenuDidEndForElement                                                         func(webView IWKWebView, elementInfo IWKContextMenuElementInfo)
-	_WebViewContextMenuForElementWillCommitWithAnimator                                         func(webView IWKWebView, elementInfo IWKContextMenuElementInfo, animator unsafe.Pointer)
-	_WebViewContextMenuWillPresentForElement                                                    func(webView IWKWebView, elementInfo IWKContextMenuElementInfo)
-	_WebViewCreateWebViewWithConfigurationForNavigationActionWindowFeatures                     func(webView IWKWebView, configuration IWKWebViewConfiguration, navigationAction IWKNavigationAction, windowFeatures IWKWindowFeatures) WebView
-	_WebViewPreviewingViewControllerForElementDefaultActions                                    func(webView IWKWebView, elementInfo IWKPreviewElementInfo, previewActions []objc.ID) appkit.ViewController
+	_WebViewCommitPreviewingViewController func(webView IWKWebView, previewingViewController appkit.ViewController)
+	_WebViewContextMenuConfigurationForElementCompletionHandler func(webView IWKWebView, elementInfo IWKContextMenuElementInfo, completionHandler func(unsafe.Pointer))
+	_WebViewContextMenuDidEndForElement func(webView IWKWebView, elementInfo IWKContextMenuElementInfo)
+	_WebViewContextMenuForElementWillCommitWithAnimator func(webView IWKWebView, elementInfo IWKContextMenuElementInfo, animator unsafe.Pointer)
+	_WebViewContextMenuWillPresentForElement func(webView IWKWebView, elementInfo IWKContextMenuElementInfo)
+	_WebViewCreateWebViewWithConfigurationForNavigationActionWindowFeatures func(webView IWKWebView, configuration IWKWebViewConfiguration, navigationAction IWKNavigationAction, windowFeatures IWKWindowFeatures) WebView
+	_WebViewPreviewingViewControllerForElementDefaultActions func(webView IWKWebView, elementInfo IWKPreviewElementInfo, previewActions []objc.ID) appkit.ViewController
 	_WebViewRequestDeviceOrientationAndMotionPermissionForOriginInitiatedByFrameDecisionHandler func(webView IWKWebView, origin IWKSecurityOrigin, frame IWKFrameInfo, decisionHandler func(unsafe.Pointer))
-	_WebViewRequestMediaCapturePermissionForOriginInitiatedByFrameTypeDecisionHandler           func(webView IWKWebView, origin IWKSecurityOrigin, frame IWKFrameInfo, type_ MediaCaptureType, decisionHandler func(unsafe.Pointer))
-	_WebViewRunJavaScriptAlertPanelWithMessageInitiatedByFrameCompletionHandler                 func(webView IWKWebView, message objc.IObject /* cross-framework: NSString */, frame IWKFrameInfo, completionHandler func())
-	_WebViewRunJavaScriptConfirmPanelWithMessageInitiatedByFrameCompletionHandler               func(webView IWKWebView, message objc.IObject /* cross-framework: NSString */, frame IWKFrameInfo, completionHandler func(unsafe.Pointer))
-	_WebViewRunJavaScriptTextInputPanelWithPromptDefaultTextInitiatedByFrameCompletionHandler   func(webView IWKWebView, prompt objc.IObject /* cross-framework: NSString */, defaultText objc.IObject /* cross-framework: NSString */, frame IWKFrameInfo, completionHandler func(unsafe.Pointer))
-	_WebViewRunOpenPanelWithParametersInitiatedByFrameCompletionHandler                         func(webView IWKWebView, parameters IWKOpenPanelParameters, frame IWKFrameInfo, completionHandler func([]unsafe.Pointer))
-	_WebViewShouldPreviewElement                                                                func(webView IWKWebView, elementInfo IWKPreviewElementInfo) bool
-	_WebViewShowLockdownModeFirstUseMessageCompletionHandler                                    func(webView IWKWebView, message objc.IObject /* cross-framework: NSString */, completionHandler func(unsafe.Pointer))
-	_WebViewWillDismissEditMenuWithAnimator                                                     func(webView IWKWebView, animator unsafe.Pointer)
-	_WebViewWillPresentEditMenuWithAnimator                                                     func(webView IWKWebView, animator unsafe.Pointer)
-	_WebViewDidClose                                                                            func(webView IWKWebView)
+	_WebViewRequestMediaCapturePermissionForOriginInitiatedByFrameTypeDecisionHandler func(webView IWKWebView, origin IWKSecurityOrigin, frame IWKFrameInfo, type_ MediaCaptureType, decisionHandler func(unsafe.Pointer))
+	_WebViewRunJavaScriptAlertPanelWithMessageInitiatedByFrameCompletionHandler func(webView IWKWebView, message objc.IObject /* cross-framework: NSString */, frame IWKFrameInfo, completionHandler func())
+	_WebViewRunJavaScriptConfirmPanelWithMessageInitiatedByFrameCompletionHandler func(webView IWKWebView, message objc.IObject /* cross-framework: NSString */, frame IWKFrameInfo, completionHandler func(unsafe.Pointer))
+	_WebViewRunJavaScriptTextInputPanelWithPromptDefaultTextInitiatedByFrameCompletionHandler func(webView IWKWebView, prompt objc.IObject /* cross-framework: NSString */, defaultText objc.IObject /* cross-framework: NSString */, frame IWKFrameInfo, completionHandler func(unsafe.Pointer))
+	_WebViewRunOpenPanelWithParametersInitiatedByFrameCompletionHandler func(webView IWKWebView, parameters IWKOpenPanelParameters, frame IWKFrameInfo, completionHandler func([]unsafe.Pointer))
+	_WebViewShouldPreviewElement func(webView IWKWebView, elementInfo IWKPreviewElementInfo) bool
+	_WebViewShowLockdownModeFirstUseMessageCompletionHandler func(webView IWKWebView, message objc.IObject /* cross-framework: NSString */, completionHandler func(unsafe.Pointer))
+	_WebViewWillDismissEditMenuWithAnimator func(webView IWKWebView, animator unsafe.Pointer)
+	_WebViewWillPresentEditMenuWithAnimator func(webView IWKWebView, animator unsafe.Pointer)
+	_WebViewDidClose func(webView IWKWebView)
 }
 
 // SetWebViewCommitPreviewingViewController sets the handler for the WebViewCommitPreviewingViewController delegate method.

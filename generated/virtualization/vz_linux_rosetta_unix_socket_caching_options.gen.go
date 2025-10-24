@@ -6,11 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZLinuxRosettaUnixSocketCachingOptions */
+
 
 /* debug [class_header]: Header for VZLinuxRosettaUnixSocketCachingOptions */
 // The class instance for the [VZLinuxRosettaUnixSocketCachingOptions] class.
@@ -29,26 +31,29 @@ func getVZLinuxRosettaUnixSocketCachingOptionsClass() _VZLinuxRosettaUnixSocketC
 type _VZLinuxRosettaUnixSocketCachingOptionsClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZLinuxRosettaUnixSocketCachingOptions */
 // An interface definition for the [VZLinuxRosettaUnixSocketCachingOptions] class.
 type IVZLinuxRosettaUnixSocketCachingOptions interface {
 	IVZLinuxRosettaCachingOptions
-
-	/* debug [class_interface_properties]: Properties for VZLinuxRosettaUnixSocketCachingOptions */
+	
+/* debug [class_interface_properties]: Properties for VZLinuxRosettaUnixSocketCachingOptions */
 	// properties:
 	Path() objc.IObject /* cross-framework: NSString */
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZLinuxRosettaUnixSocketCachingOptions */
+	
+/* debug [class_interface_methods]: Methods for VZLinuxRosettaUnixSocketCachingOptions */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZLinuxRosettaUnixSocketCachingOptions */
 // Alloc allocates a new instance without initialization.
@@ -80,13 +85,15 @@ func (v_ VZLinuxRosettaUnixSocketCachingOptions) Autorelease() VZLinuxRosettaUni
 func NewVZLinuxRosettaUnixSocketCachingOptions() VZLinuxRosettaUnixSocketCachingOptions {
 	return getVZLinuxRosettaUnixSocketCachingOptionsClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZLinuxRosettaUnixSocketCachingOptions */
 // An object that represents caching options for a UNIX domain socket.
 //
 // This object configures Rosetta to communicate with the Rosetta daemon using a UNIX domain socket.
+
 
 // An object that represents caching options for a UNIX domain socket.
 //
@@ -104,8 +111,9 @@ func VZLinuxRosettaUnixSocketCachingOptionsFrom(ptr unsafe.Pointer) VZLinuxRoset
 		VZLinuxRosettaCachingOptions: VZLinuxRosettaCachingOptionsFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZLinuxRosettaUnixSocketCachingOptions */
 
@@ -113,17 +121,21 @@ func VZLinuxRosettaUnixSocketCachingOptionsFrom(ptr unsafe.Pointer) VZLinuxRoset
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaUnixSocketCachingOptions/initWithPath:error:
-func NewVZLinuxRosettaUnixSocketCachingOptionsWithPathError(path objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) VZLinuxRosettaUnixSocketCachingOptions {
+func NewVZLinuxRosettaUnixSocketCachingOptionsWithPathError(path objc.IObject /* cross-framework: NSString */, error_ objectivec.IObject) VZLinuxRosettaUnixSocketCachingOptions {
 	instance := getVZLinuxRosettaUnixSocketCachingOptionsClass().Alloc()
 	rv := objc.Send[VZLinuxRosettaUnixSocketCachingOptions](instance.ID, objc.Sel("initWithPath:error:"), path, error_)
 	rv.Autorelease()
 	return rv
-} /* debug [class_init_methods/constructor]: NewVZLinuxRosettaUnixSocketCachingOptionsWithPathError */
+}/* debug [class_init_methods/constructor]: NewVZLinuxRosettaUnixSocketCachingOptionsWithPathError */
 
 /* debug [class_init_methods]: End init methods */
 
+
+
 /* debug [class_methods]: Class methods for VZLinuxRosettaUnixSocketCachingOptions */
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZLinuxRosettaUnixSocketCachingOptions */
 
@@ -134,11 +146,15 @@ func NewVZLinuxRosettaUnixSocketCachingOptionsWithPathError(path objc.IObject /*
 func (vc _VZLinuxRosettaUnixSocketCachingOptionsClass) MaximumPathLength() uint {
 	rv := objc.Send[uint](objc.ID(vc.class), objc.Sel("maximumPathLength"))
 	return rv
-} /* debug [class_properties_class/property]: maximumPathLength */
+}/* debug [class_properties_class/property]: maximumPathLength */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZLinuxRosettaUnixSocketCachingOptions */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZLinuxRosettaUnixSocketCachingOptions */
 
@@ -149,7 +165,8 @@ func (vc _VZLinuxRosettaUnixSocketCachingOptionsClass) MaximumPathLength() uint 
 func (v_ VZLinuxRosettaUnixSocketCachingOptions) MaximumPathLength() uint {
 	rv := objc.Send[uint](v_.ID, objc.Sel("maximumPathLength"))
 	return rv
-} /* debug [instance_properties/getter]: maximumPathLength */
+}/* debug [instance_properties/getter]: maximumPathLength */
+
 
 // The path to the UNIX domain socket that Rosetta uses.
 //
@@ -158,8 +175,11 @@ func (v_ VZLinuxRosettaUnixSocketCachingOptions) MaximumPathLength() uint {
 func (v_ VZLinuxRosettaUnixSocketCachingOptions) Path() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("path"))
 	return rv
-} /* debug [instance_properties/getter]: path */
+}/* debug [instance_properties/getter]: path */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZLinuxRosettaUnixSocketCachingOptions */
+
+

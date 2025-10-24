@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 /* debug [class.gen.go]: Generating class MPSGraphShapedType */
@@ -41,10 +40,10 @@ type IGraphShapedType interface {
 	
 /* debug [class_interface_properties]: Properties for GraphShapedType */
 	// properties:
-	DataType() DataType /* not a class type */
-	SetDataType(value DataType /* not a class type */)
-	Shape() objc.IObject /* cross-framework: NSNumber */
-	SetShape(value objc.IObject /* cross-framework: NSNumber */)
+	DataType() objc.IObject /* cross-framework: DataType */
+	SetDataType(value objc.IObject /* cross-framework: DataType */)
+	Shape() Shape /* not a class type */
+	SetShape(value Shape /* not a class type */)
 /* debug [class_interface_properties]: End properties */
 
 	
@@ -115,7 +114,20 @@ func GraphShapedTypeFrom(ptr unsafe.Pointer) GraphShapedType {
 
 
 
-/* debug [class_init_methods]: Init methods for GraphShapedType *//* debug [class_init_methods]: End init methods */
+/* debug [class_init_methods]: Init methods for GraphShapedType */
+
+// Initializes a shaped type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphShapedType/init(shape:dataType:)
+func NewGraphShapedTypeWithShapeDataType(shape Shape /* not a class type */, dataType objc.IObject /* cross-framework: DataType */) GraphShapedType {
+	instance := getGraphShapedTypeClass().Alloc()
+	rv := objc.Send[GraphShapedType](instance.ID, objc.Sel("initWithShape:dataType:"), shape, dataType)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewGraphShapedTypeWithShapeDataType */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
@@ -130,6 +142,16 @@ func GraphShapedTypeFrom(ptr unsafe.Pointer) GraphShapedType {
 
 
 /* debug [instance_methods]: Instance methods for GraphShapedType */
+
+// Checks if shapes and element data type are the same as the input shaped type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphShapedType/isEqual(to:)
+func (g_ GraphShapedType) IsEqualTo(object IMPSGraphShapedType) bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("isEqualTo:"), object)
+	return rv
+}/* debug [instance_methods/method]: IsEqualTo */
+
 /* debug [instance_methods]: End instance methods */
 
 
@@ -139,9 +161,9 @@ func GraphShapedTypeFrom(ptr unsafe.Pointer) GraphShapedType {
 // The data type of the shaped type.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphshapedtype/datatype
-func (g_ GraphShapedType) DataType() DataType /* not a class type */ {
-	rv := objc.Send[DataType](g_.ID, objc.Sel("dataType"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphShapedType/dataType
+func (g_ GraphShapedType) DataType() objc.IObject /* cross-framework: DataType */ {
+	rv := objc.Send[metalperformanceshaders.DataType](g_.ID, objc.Sel("dataType"))
 	return rv
 }/* debug [instance_properties/getter]: dataType */
 
@@ -149,8 +171,8 @@ func (g_ GraphShapedType) DataType() DataType /* not a class type */ {
 // The data type of the shaped type.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphshapedtype/datatype
-func (g_ GraphShapedType) SetDataType(value DataType /* not a class type */) {
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphShapedType/dataType
+func (g_ GraphShapedType) SetDataType(value objc.IObject /* cross-framework: DataType */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDataType:"), value)
 }/* debug [instance_properties/setter]: dataType */
 
@@ -158,9 +180,9 @@ func (g_ GraphShapedType) SetDataType(value DataType /* not a class type */) {
 // The Shape of the shaped type.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphshapedtype/shape
-func (g_ GraphShapedType) Shape() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](g_.ID, objc.Sel("shape"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphShapedType/shape
+func (g_ GraphShapedType) Shape() Shape /* not a class type */ {
+	rv := objc.Send[Shape](g_.ID, objc.Sel("shape"))
 	return rv
 }/* debug [instance_properties/getter]: shape */
 
@@ -168,8 +190,8 @@ func (g_ GraphShapedType) Shape() objc.IObject /* cross-framework: NSNumber */ {
 // The Shape of the shaped type.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphshapedtype/shape
-func (g_ GraphShapedType) SetShape(value objc.IObject /* cross-framework: NSNumber */) {
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphShapedType/shape
+func (g_ GraphShapedType) SetShape(value Shape /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setShape:"), value)
 }/* debug [instance_properties/setter]: shape */
 
@@ -177,6 +199,5 @@ func (g_ GraphShapedType) SetShape(value objc.IObject /* cross-framework: NSNumb
 
 
 /* debug [class.gen.go]: End class MPSGraphShapedType */
-
 
 

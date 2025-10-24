@@ -5,10 +5,15 @@
 package webkit
 
 import (
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for WebViewConfiguration
+
 
 // iOS-only properties
 
@@ -107,3 +112,8 @@ func (w_ WebViewConfiguration) SelectionGranularity() SelectionGranularity {
 func (w_ WebViewConfiguration) SetSelectionGranularity(value SelectionGranularity) {
 	w_.ID.Send(objc.RegisterName("setSelectionGranularity:"), value)
 }
+
+
+
+
+

@@ -98,3 +98,5 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionRequest/Result/willCompleteAfterReboot
 	OSSystemExtensionRequestWillCompleteAfterReboot OSSystemExtensionRequestResult = 0
 )
+
+

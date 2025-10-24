@@ -7,10 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class SKOverlayTransitionContext */
+
 
 /* debug [class_header]: Header for SKOverlayTransitionContext */
 // The class instance for the [OverlayTransitionContext] class.
@@ -29,25 +31,28 @@ func getOverlayTransitionContextClass() _OverlayTransitionContextClass {
 type _OverlayTransitionContextClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for OverlayTransitionContext */
 // An interface definition for the [OverlayTransitionContext] class.
 type IOverlayTransitionContext interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for OverlayTransitionContext */
+	
+/* debug [class_interface_properties]: Properties for OverlayTransitionContext */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for OverlayTransitionContext */
+	
+/* debug [class_interface_methods]: Methods for OverlayTransitionContext */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for OverlayTransitionContext */
 // Alloc allocates a new instance without initialization.
@@ -79,13 +84,15 @@ func (o_ OverlayTransitionContext) Autorelease() OverlayTransitionContext {
 func NewOverlayTransitionContext() OverlayTransitionContext {
 	return getOverlayTransitionContextClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for OverlayTransitionContext */
 // A context object you can use to animate UI changes while the platform presents or dismisses an overlay.
 //
 // For more information on animating UI changes while the system presents or dismisses an overlay, see and .
+
 
 // A context object you can use to animate UI changes while the platform presents or dismisses an overlay.
 //
@@ -101,21 +108,33 @@ type OverlayTransitionContext struct {
 func OverlayTransitionContextFrom(ptr unsafe.Pointer) OverlayTransitionContext {
 	return OverlayTransitionContext{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for OverlayTransitionContext */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for OverlayTransitionContext *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for OverlayTransitionContext */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for OverlayTransitionContext */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for OverlayTransitionContext */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for OverlayTransitionContext */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class SKOverlayTransitionContext */
+
+

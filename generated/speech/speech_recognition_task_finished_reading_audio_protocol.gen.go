@@ -19,3 +19,4 @@ var speechRecognitionTaskFinishedReadingAudioProtocol *objc.Protocol
 func init() {
 	speechRecognitionTaskFinishedReadingAudioProtocol = objc.GetProtocol("speechRecognitionTaskFinishedReadingAudio:")
 }
+

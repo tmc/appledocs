@@ -19,3 +19,4 @@ var shouldGrantPermissionsOnUserGestureForWebExtensionContextProtocol *objc.Prot
 func init() {
 	shouldGrantPermissionsOnUserGestureForWebExtensionContextProtocol = objc.GetProtocol("shouldGrantPermissionsOnUserGestureForWebExtensionContext:")
 }
+

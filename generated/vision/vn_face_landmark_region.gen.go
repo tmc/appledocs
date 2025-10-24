@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class VNFaceLandmarkRegion */
 
 
-/* debug [class_header]: Header for VNFaceLandmarkRegion */
+
+
 // The class instance for the [FaceLandmarkRegion] class.
 var (
 	FaceLandmarkRegionClass     _FaceLandmarkRegionClass
@@ -30,33 +30,33 @@ func getFaceLandmarkRegionClass() _FaceLandmarkRegionClass {
 type _FaceLandmarkRegionClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for FaceLandmarkRegion */
+
+
 // An interface definition for the [FaceLandmarkRegion] class.
 type IFaceLandmarkRegion interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for FaceLandmarkRegion */
+
 	// properties:
 	PointCount() uint
 	Landmarks() IVNFaceLandmarks2D
 	SetLandmarks(value IVNFaceLandmarks2D)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for FaceLandmarkRegion */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for FaceLandmarkRegion */
+
+
 // Alloc allocates a new instance without initialization.
 func (fc _FaceLandmarkRegionClass) Alloc() FaceLandmarkRegion {
 	rv := objc.Send[FaceLandmarkRegion](objc.ID(fc.class), objc.Sel("alloc"))
@@ -86,11 +86,11 @@ func (f_ FaceLandmarkRegion) Autorelease() FaceLandmarkRegion {
 func NewFaceLandmarkRegion() FaceLandmarkRegion {
 	return getFaceLandmarkRegionClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for FaceLandmarkRegion */
+
+
 // The abstract superclass for information about a specific face landmark.
 
 
@@ -108,30 +108,30 @@ type FaceLandmarkRegion struct {
 func FaceLandmarkRegionFrom(ptr unsafe.Pointer) FaceLandmarkRegion {
 	return FaceLandmarkRegion{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for FaceLandmarkRegion *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for FaceLandmarkRegion */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for FaceLandmarkRegion */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for FaceLandmarkRegion */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for FaceLandmarkRegion */
+
+
+
+
+
+
+
+
+
 
 // The number of points in the face region.
 //
@@ -140,7 +140,7 @@ func FaceLandmarkRegionFrom(ptr unsafe.Pointer) FaceLandmarkRegion {
 func (f_ FaceLandmarkRegion) PointCount() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("pointCount"))
 	return rv
-}/* debug [instance_properties/getter]: pointCount */
+}
 
 
 // The facial features of the detected face.
@@ -150,7 +150,7 @@ func (f_ FaceLandmarkRegion) PointCount() uint {
 func (f_ FaceLandmarkRegion) Landmarks() IVNFaceLandmarks2D {
 	rv := objc.Send[FaceLandmarks2D](f_.ID, objc.Sel("landmarks"))
 	return rv
-}/* debug [instance_properties/getter]: landmarks */
+}
 
 
 // The facial features of the detected face.
@@ -159,12 +159,12 @@ func (f_ FaceLandmarkRegion) Landmarks() IVNFaceLandmarks2D {
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/landmarks
 func (f_ FaceLandmarkRegion) SetLandmarks(value IVNFaceLandmarks2D) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLandmarks:"), value)
-}/* debug [instance_properties/setter]: landmarks */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class VNFaceLandmarkRegion */
+
+
+
 
 
 

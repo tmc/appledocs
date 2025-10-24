@@ -19,3 +19,4 @@ var activeTabForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	activeTabForWebExtensionContextProtocol = objc.GetProtocol("activeTabForWebExtensionContext:")
 }
+

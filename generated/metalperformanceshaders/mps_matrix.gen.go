@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSMatrix */
 
 
-/* debug [class_header]: Header for MPSMatrix */
+
+
 // The class instance for the [Matrix] class.
 var (
 	MatrixClass     _MatrixClass
@@ -30,16 +30,16 @@ func getMatrixClass() _MatrixClass {
 type _MatrixClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for Matrix */
+
+
 // An interface definition for the [Matrix] class.
 type IMatrix interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for Matrix */
+
 	// properties:
 	DataType() DataType get /* not a class type */
 	SetDataType(value DataType get /* not a class type */)
@@ -59,22 +59,22 @@ type IMatrix interface {
 	SetMatrixBytes(value objectivec.IObject)
 	Offset() objectivec.IObject
 	SetOffset(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for Matrix */
+
 	// methods:
 	ResourceSize()
 	Synchronize()
 	SynchronizeOnCommandBuffer(commandBuffer unsafe.Pointer)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for Matrix */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MatrixClass) Alloc() Matrix {
 	rv := objc.Send[Matrix](objc.ID(mc.class), objc.Sel("alloc"))
@@ -104,11 +104,11 @@ func (m_ Matrix) Autorelease() Matrix {
 func NewMatrix() Matrix {
 	return getMatrixClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for Matrix */
+
+
 // A 2D array of data that stores the data’s values.
 //
 // objects serve as inputs and outputs of objects. Matrix data is assumed to be stored in row-major order.
@@ -128,11 +128,11 @@ type Matrix struct {
 func MatrixFrom(ptr unsafe.Pointer) Matrix {
 	return Matrix{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for Matrix */
+
+
 
 // Initializes a matrix with a buffer.
 //
@@ -143,7 +143,7 @@ func NewMatrixWithBufferDescriptor(buffer unsafe.Pointer, descriptor IMatrixDesc
 	rv := objc.Send[Matrix](instance.ID, objc.Sel("initWithBuffer:descriptor:"), buffer, descriptor)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewMatrixWithBufferDescriptor */
+}
 
 
 // [Full Topic]
@@ -153,7 +153,7 @@ func NewMatrixWithBufferOffsetDescriptor(buffer unsafe.Pointer, offset uint, des
 	rv := objc.Send[Matrix](instance.ID, objc.Sel("initWithBuffer:offset:descriptor:"), buffer, offset, descriptor)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewMatrixWithBufferOffsetDescriptor */
+}
 
 
 // [Full Topic]
@@ -163,49 +163,49 @@ func NewMatrixWithDeviceDescriptor(device unsafe.Pointer, descriptor IMatrixDesc
 	rv := objc.Send[Matrix](instance.ID, objc.Sel("initWithDevice:descriptor:"), device, descriptor)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewMatrixWithDeviceDescriptor */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for Matrix */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for Matrix */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for Matrix */
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix/2942569-resourcesize
 func (m_ Matrix) ResourceSize() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("resourceSize"))
-}/* debug [instance_methods/method]: ResourceSize */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix/2942571-synchronize
 func (m_ Matrix) Synchronize() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("synchronize"))
-}/* debug [instance_methods/method]: Synchronize */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix/2942571-synchronizeoncommandbuffer
 func (m_ Matrix) SynchronizeOnCommandBuffer(commandBuffer unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("synchronizeOnCommandBuffer:"), commandBuffer)
-}/* debug [instance_methods/method]: SynchronizeOnCommandBuffer */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for Matrix */
+
+
+
 
 // The type of the values in the matrix.
 //
@@ -214,7 +214,7 @@ func (m_ Matrix) SynchronizeOnCommandBuffer(commandBuffer unsafe.Pointer) {
 func (m_ Matrix) DataType() DataType get /* not a class type */ {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("dataType"))
 	return rv
-}/* debug [instance_properties/getter]: dataType */
+}
 
 
 // The type of the values in the matrix.
@@ -223,7 +223,7 @@ func (m_ Matrix) DataType() DataType get /* not a class type */ {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix/2143197-datatype
 func (m_ Matrix) SetDataType(value DataType get /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDataType:"), value)
-}/* debug [instance_properties/setter]: dataType */
+}
 
 
 // The buffer that stores the matrix data.
@@ -233,7 +233,7 @@ func (m_ Matrix) SetDataType(value DataType get /* not a class type */) {
 func (m_ Matrix) Data() Buffer get /* not a class type */ {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("data"))
 	return rv
-}/* debug [instance_properties/getter]: data */
+}
 
 
 // The buffer that stores the matrix data.
@@ -242,7 +242,7 @@ func (m_ Matrix) Data() Buffer get /* not a class type */ {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix/2143205-data
 func (m_ Matrix) SetData(value Buffer get /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
-}/* debug [instance_properties/setter]: data */
+}
 
 
 // The number of columns in the matrix.
@@ -252,7 +252,7 @@ func (m_ Matrix) SetData(value Buffer get /* not a class type */) {
 func (m_ Matrix) Columns() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](m_.ID, objc.Sel("columns"))
 	return rv
-}/* debug [instance_properties/getter]: columns */
+}
 
 
 // The number of columns in the matrix.
@@ -261,7 +261,7 @@ func (m_ Matrix) Columns() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix/2143207-columns
 func (m_ Matrix) SetColumns(value objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setColumns:"), value)
-}/* debug [instance_properties/setter]: columns */
+}
 
 
 // The stride, in bytes, between corresponding elements of consecutive rows in the matrix.
@@ -271,7 +271,7 @@ func (m_ Matrix) SetColumns(value objectivec.IObject) {
 func (m_ Matrix) RowBytes() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](m_.ID, objc.Sel("rowBytes"))
 	return rv
-}/* debug [instance_properties/getter]: rowBytes */
+}
 
 
 // The stride, in bytes, between corresponding elements of consecutive rows in the matrix.
@@ -280,7 +280,7 @@ func (m_ Matrix) RowBytes() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix/2143208-rowbytes
 func (m_ Matrix) SetRowBytes(value objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRowBytes:"), value)
-}/* debug [instance_properties/setter]: rowBytes */
+}
 
 
 // The device on which the matrix will be used.
@@ -290,7 +290,7 @@ func (m_ Matrix) SetRowBytes(value objectivec.IObject) {
 func (m_ Matrix) Device() Device get /* not a class type */ {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("device"))
 	return rv
-}/* debug [instance_properties/getter]: device */
+}
 
 
 // The device on which the matrix will be used.
@@ -299,7 +299,7 @@ func (m_ Matrix) Device() Device get /* not a class type */ {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix/2143209-device
 func (m_ Matrix) SetDevice(value Device get /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDevice:"), value)
-}/* debug [instance_properties/setter]: device */
+}
 
 
 // The number of rows in the matrix.
@@ -309,7 +309,7 @@ func (m_ Matrix) SetDevice(value Device get /* not a class type */) {
 func (m_ Matrix) Rows() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](m_.ID, objc.Sel("rows"))
 	return rv
-}/* debug [instance_properties/getter]: rows */
+}
 
 
 // The number of rows in the matrix.
@@ -318,7 +318,7 @@ func (m_ Matrix) Rows() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix/2143210-rows
 func (m_ Matrix) SetRows(value objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRows:"), value)
-}/* debug [instance_properties/setter]: rows */
+}
 
 
 // [Full Topic]
@@ -326,14 +326,14 @@ func (m_ Matrix) SetRows(value objectivec.IObject) {
 func (m_ Matrix) Matrices() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](m_.ID, objc.Sel("matrices"))
 	return rv
-}/* debug [instance_properties/getter]: matrices */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix/2873334-matrices
 func (m_ Matrix) SetMatrices(value objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMatrices:"), value)
-}/* debug [instance_properties/setter]: matrices */
+}
 
 
 // [Full Topic]
@@ -341,14 +341,14 @@ func (m_ Matrix) SetMatrices(value objectivec.IObject) {
 func (m_ Matrix) MatrixBytes() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](m_.ID, objc.Sel("matrixBytes"))
 	return rv
-}/* debug [instance_properties/getter]: matrixBytes */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix/2873344-matrixbytes
 func (m_ Matrix) SetMatrixBytes(value objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMatrixBytes:"), value)
-}/* debug [instance_properties/setter]: matrixBytes */
+}
 
 
 // [Full Topic]
@@ -356,18 +356,18 @@ func (m_ Matrix) SetMatrixBytes(value objectivec.IObject) {
 func (m_ Matrix) Offset() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](m_.ID, objc.Sel("offset"))
 	return rv
-}/* debug [instance_properties/getter]: offset */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix/3375740-offset
 func (m_ Matrix) SetOffset(value objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffset:"), value)
-}/* debug [instance_properties/setter]: offset */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSMatrix */
+
+
+
 
 

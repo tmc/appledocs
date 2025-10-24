@@ -15,3 +15,4 @@ var systemExtensionWillBecomeInactiveProtocol *objc.Protocol
 func init() {
 	systemExtensionWillBecomeInactiveProtocol = objc.GetProtocol("systemExtensionWillBecomeInactive:")
 }
+

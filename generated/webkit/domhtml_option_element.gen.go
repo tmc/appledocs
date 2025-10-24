@@ -6,11 +6,12 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 /* debug [class.gen.go]: Generating class DOMHTMLOptionElement */
+
 
 /* debug [class_header]: Header for DOMHTMLOptionElement */
 // The class instance for the [DOMHTMLOptionElement] class.
@@ -29,15 +30,16 @@ func getDOMHTMLOptionElementClass() _DOMHTMLOptionElementClass {
 type _DOMHTMLOptionElementClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMHTMLOptionElement */
 // An interface definition for the [DOMHTMLOptionElement] class.
 type IDOMHTMLOptionElement interface {
 	IDOMHTMLElement
-
-	/* debug [class_interface_properties]: Properties for DOMHTMLOptionElement */
+	
+/* debug [class_interface_properties]: Properties for DOMHTMLOptionElement */
 	// properties:
 	DefaultSelected() bool
 	SetDefaultSelected(value bool)
@@ -49,18 +51,20 @@ type IDOMHTMLOptionElement interface {
 	SetLabel(value objc.IObject /* cross-framework: NSString */)
 	Selected() bool
 	SetSelected(value bool)
-	Text() objc.IObject  /* cross-framework: NSString */
+	Text() objc.IObject /* cross-framework: NSString */
 	Value() objc.IObject /* cross-framework: NSString */
 	SetValue(value objc.IObject /* cross-framework: NSString */)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMHTMLOptionElement */
+	
+/* debug [class_interface_methods]: Methods for DOMHTMLOptionElement */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMHTMLOptionElement */
 // Alloc allocates a new instance without initialization.
@@ -92,10 +96,12 @@ func (d_ DOMHTMLOptionElement) Autorelease() DOMHTMLOptionElement {
 func NewDOMHTMLOptionElement() DOMHTMLOptionElement {
 	return getDOMHTMLOptionElementClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMHTMLOptionElement */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionElement
@@ -109,19 +115,28 @@ func DOMHTMLOptionElementFrom(ptr unsafe.Pointer) DOMHTMLOptionElement {
 		DOMHTMLElement: DOMHTMLElementFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMHTMLOptionElement */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMHTMLOptionElement *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMHTMLOptionElement */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMHTMLOptionElement */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMHTMLOptionElement */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMHTMLOptionElement */
 
@@ -130,87 +145,103 @@ func DOMHTMLOptionElementFrom(ptr unsafe.Pointer) DOMHTMLOptionElement {
 func (d_ DOMHTMLOptionElement) DefaultSelected() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("defaultSelected"))
 	return rv
-} /* debug [instance_properties/getter]: defaultSelected */
+}/* debug [instance_properties/getter]: defaultSelected */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionElement/defaultSelected
 func (d_ DOMHTMLOptionElement) SetDefaultSelected(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDefaultSelected:"), value)
-} /* debug [instance_properties/setter]: defaultSelected */
+}/* debug [instance_properties/setter]: defaultSelected */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionElement/disabled
 func (d_ DOMHTMLOptionElement) Disabled() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("disabled"))
 	return rv
-} /* debug [instance_properties/getter]: disabled */
+}/* debug [instance_properties/getter]: disabled */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionElement/disabled
 func (d_ DOMHTMLOptionElement) SetDisabled(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDisabled:"), value)
-} /* debug [instance_properties/setter]: disabled */
+}/* debug [instance_properties/setter]: disabled */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionElement/form
 func (d_ DOMHTMLOptionElement) Form() IDOMHTMLFormElement {
 	rv := objc.Send[DOMHTMLFormElement](d_.ID, objc.Sel("form"))
 	return rv
-} /* debug [instance_properties/getter]: form */
+}/* debug [instance_properties/getter]: form */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionElement/index
 func (d_ DOMHTMLOptionElement) Index() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("index"))
 	return rv
-} /* debug [instance_properties/getter]: index */
+}/* debug [instance_properties/getter]: index */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionElement/label
 func (d_ DOMHTMLOptionElement) Label() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("label"))
 	return rv
-} /* debug [instance_properties/getter]: label */
+}/* debug [instance_properties/getter]: label */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionElement/label
 func (d_ DOMHTMLOptionElement) SetLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLabel:"), value)
-} /* debug [instance_properties/setter]: label */
+}/* debug [instance_properties/setter]: label */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionElement/selected
 func (d_ DOMHTMLOptionElement) Selected() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("selected"))
 	return rv
-} /* debug [instance_properties/getter]: selected */
+}/* debug [instance_properties/getter]: selected */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionElement/selected
 func (d_ DOMHTMLOptionElement) SetSelected(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSelected:"), value)
-} /* debug [instance_properties/setter]: selected */
+}/* debug [instance_properties/setter]: selected */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionElement/text
 func (d_ DOMHTMLOptionElement) Text() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("text"))
 	return rv
-} /* debug [instance_properties/getter]: text */
+}/* debug [instance_properties/getter]: text */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionElement/value
 func (d_ DOMHTMLOptionElement) Value() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("value"))
 	return rv
-} /* debug [instance_properties/getter]: value */
+}/* debug [instance_properties/getter]: value */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionElement/value
 func (d_ DOMHTMLOptionElement) SetValue(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setValue:"), value)
-} /* debug [instance_properties/setter]: value */
+}/* debug [instance_properties/setter]: value */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMHTMLOptionElement */
+
+
+

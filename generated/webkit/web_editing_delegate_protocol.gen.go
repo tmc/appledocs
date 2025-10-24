@@ -15,3 +15,4 @@ var WebEditingDelegateProtocol *objc.Protocol
 func init() {
 	WebEditingDelegateProtocol = objc.GetProtocol("WebEditingDelegate")
 }
+

@@ -5,10 +5,15 @@
 package webkit
 
 import (
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for WebExtensionCommand
+
 
 // iOS-only properties
 
@@ -20,3 +25,8 @@ func (w_ WebExtensionCommand) KeyCommand() KeyCommand /* not a class type */ {
 	rv := objc.Send[KeyCommand](w_.ID, objc.Sel("keyCommand"))
 	return rv
 }
+
+
+
+
+

@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNPoolingMax */
 
 
-/* debug [class_header]: Header for MPSCNNPoolingMax */
+
+
 // The class instance for the [CNNPoolingMax] class.
 var (
 	CNNPoolingMaxClass     _CNNPoolingMaxClass
@@ -31,30 +30,30 @@ func getCNNPoolingMaxClass() _CNNPoolingMaxClass {
 type _CNNPoolingMaxClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNPoolingMax */
+
+
 // An interface definition for the [CNNPoolingMax] class.
 type ICNNPoolingMax interface {
 	ICNNPooling
 	
-/* debug [class_interface_properties]: Properties for CNNPoolingMax */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNPoolingMax */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNPoolingMax */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNPoolingMaxClass) Alloc() CNNPoolingMax {
 	rv := objc.Send[CNNPoolingMax](objc.ID(cc.class), objc.Sel("alloc"))
@@ -84,11 +83,11 @@ func (c_ CNNPoolingMax) Autorelease() CNNPoolingMax {
 func NewCNNPoolingMax() CNNPoolingMax {
 	return getCNNPoolingMaxClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNPoolingMax */
+
+
 // A max pooling filter.
 //
 // For each pixel in an image, the filter returns the maximum value of the pixels in the filter region defined by x .
@@ -110,11 +109,11 @@ func CNNPoolingMaxFrom(ptr unsafe.Pointer) CNNPoolingMax {
 		CNNPooling: CNNPoolingFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNPoolingMax */
+
+
 
 // Initializes a max pooling filter.
 //
@@ -125,7 +124,7 @@ func NewCNNPoolingMaxWithCoderDevice(aDecoder foundation.Coder, device unsafe.Po
 	rv := objc.Send[CNNPoolingMax](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNPoolingMaxWithCoderDevice */
+}
 
 
 // Initializes a max pooling filter.
@@ -137,31 +136,31 @@ func NewCNNPoolingMaxWithDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPix
 	rv := objc.Send[CNNPoolingMax](instance.ID, objc.Sel("initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:"), device, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNPoolingMaxWithDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNPoolingMax */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNPoolingMax */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNPoolingMax */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNPoolingMax */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNPoolingMax */
+
+
+
+
+
+
+
+
+
+
+
 
 

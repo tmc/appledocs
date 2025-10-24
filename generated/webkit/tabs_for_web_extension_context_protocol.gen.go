@@ -19,3 +19,4 @@ var tabsForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	tabsForWebExtensionContextProtocol = objc.GetProtocol("tabsForWebExtensionContext:")
 }
+

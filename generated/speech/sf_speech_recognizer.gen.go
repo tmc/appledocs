@@ -6,12 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class SFSpeechRecognizer */
+
 
 /* debug [class_header]: Header for SFSpeechRecognizer */
 // The class instance for the [SFSpeechRecognizer] class.
@@ -30,15 +31,16 @@ func getSFSpeechRecognizerClass() _SFSpeechRecognizerClass {
 type _SFSpeechRecognizerClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for SFSpeechRecognizer */
 // An interface definition for the [SFSpeechRecognizer] class.
 type ISFSpeechRecognizer interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for SFSpeechRecognizer */
+	
+/* debug [class_interface_properties]: Properties for SFSpeechRecognizer */
 	// properties:
 	DefaultTaskHint() SFSpeechRecognitionTaskHint
 	SetDefaultTaskHint(value SFSpeechRecognitionTaskHint)
@@ -52,17 +54,19 @@ type ISFSpeechRecognizer interface {
 	SetSupportsOnDeviceRecognition(value bool)
 	IsAvailable() bool
 	SetIsAvailable(value bool)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for SFSpeechRecognizer */
+	
+/* debug [class_interface_methods]: Methods for SFSpeechRecognizer */
 	// methods:
 	RecognitionTaskWithRequestDelegate(request ISFSpeechRecognitionRequest, delegate unsafe.Pointer) ISFSpeechRecognitionTask
 	RecognitionTaskWithRequestResultHandler(request ISFSpeechRecognitionRequest, resultHandler unsafe.Pointer) ISFSpeechRecognitionTask
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for SFSpeechRecognizer */
 // Alloc allocates a new instance without initialization.
@@ -94,13 +98,15 @@ func (s_ SFSpeechRecognizer) Autorelease() SFSpeechRecognizer {
 func NewSFSpeechRecognizer() SFSpeechRecognizer {
 	return getSFSpeechRecognizerClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for SFSpeechRecognizer */
 // An object you use to check for the availability of the speech recognition service, and to initiate the speech recognition process.
 //
 // An object is the central object for managing the speech recognizer process. Use this object to: Request authorization to use speech recognition services. Specify the language to use during the recognition process. Initiate new speech recognition tasks.
+
 
 // An object you use to check for the availability of the speech recognition service, and to initiate the speech recognition process.
 //
@@ -116,8 +122,9 @@ type SFSpeechRecognizer struct {
 func SFSpeechRecognizerFrom(ptr unsafe.Pointer) SFSpeechRecognizer {
 	return SFSpeechRecognizer{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for SFSpeechRecognizer */
 
@@ -130,9 +137,11 @@ func NewSFSpeechRecognizerWithLocale(locale foundation.Locale) SFSpeechRecognize
 	rv := objc.Send[SFSpeechRecognizer](instance.ID, objc.Sel("initWithLocale:"), locale)
 	rv.Autorelease()
 	return rv
-} /* debug [class_init_methods/constructor]: NewSFSpeechRecognizerWithLocale */
+}/* debug [class_init_methods/constructor]: NewSFSpeechRecognizerWithLocale */
 
 /* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for SFSpeechRecognizer */
 
@@ -143,7 +152,8 @@ func NewSFSpeechRecognizerWithLocale(locale foundation.Locale) SFSpeechRecognize
 func (sc _SFSpeechRecognizerClass) AuthorizationStatus() SFSpeechRecognizerAuthorizationStatus {
 	rv := objc.Send[SFSpeechRecognizerAuthorizationStatus](objc.ID(sc.class), objc.Sel("authorizationStatus"))
 	return rv
-} /* debug [class_methods/method]: Class method for%!(EXTRA string=AuthorizationStatus) */
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=AuthorizationStatus) */
+
 
 // Asks the user to allow your app to perform speech recognition.
 //
@@ -151,7 +161,8 @@ func (sc _SFSpeechRecognizerClass) AuthorizationStatus() SFSpeechRecognizerAutho
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognizer/requestAuthorization(_:)
 func (sc _SFSpeechRecognizerClass) RequestAuthorization(handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("requestAuthorization:"), handler)
-} /* debug [class_methods/method]: Class method for%!(EXTRA string=RequestAuthorization) */
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=RequestAuthorization) */
+
 
 // Returns the set of locales that are supported by the speech recognizer.
 //
@@ -160,12 +171,16 @@ func (sc _SFSpeechRecognizerClass) RequestAuthorization(handler unsafe.Pointer) 
 func (sc _SFSpeechRecognizerClass) SupportedLocales() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("supportedLocales"))
 	return rv
-} /* debug [class_methods/method]: Class method for%!(EXTRA string=SupportedLocales) */
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=SupportedLocales) */
 
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for SFSpeechRecognizer */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for SFSpeechRecognizer */
 
@@ -176,7 +191,8 @@ func (sc _SFSpeechRecognizerClass) SupportedLocales() unsafe.Pointer {
 func (s_ SFSpeechRecognizer) RecognitionTaskWithRequestDelegate(request ISFSpeechRecognitionRequest, delegate unsafe.Pointer) ISFSpeechRecognitionTask {
 	rv := objc.Send[SFSpeechRecognitionTask](s_.ID, objc.Sel("recognitionTaskWithRequest:delegate:"), request, delegate)
 	return rv
-} /* debug [instance_methods/method]: RecognitionTaskWithRequestDelegate */
+}/* debug [instance_methods/method]: RecognitionTaskWithRequestDelegate */
+
 
 // Executes the speech recognition request and delivers the results to the specified handler block.
 //
@@ -185,9 +201,11 @@ func (s_ SFSpeechRecognizer) RecognitionTaskWithRequestDelegate(request ISFSpeec
 func (s_ SFSpeechRecognizer) RecognitionTaskWithRequestResultHandler(request ISFSpeechRecognitionRequest, resultHandler unsafe.Pointer) ISFSpeechRecognitionTask {
 	rv := objc.Send[SFSpeechRecognitionTask](s_.ID, objc.Sel("recognitionTaskWithRequest:resultHandler:"), request, resultHandler)
 	return rv
-} /* debug [instance_methods/method]: RecognitionTaskWithRequestResultHandler */
+}/* debug [instance_methods/method]: RecognitionTaskWithRequestResultHandler */
 
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for SFSpeechRecognizer */
 
@@ -198,7 +216,8 @@ func (s_ SFSpeechRecognizer) RecognitionTaskWithRequestResultHandler(request ISF
 func (s_ SFSpeechRecognizer) DefaultTaskHint() SFSpeechRecognitionTaskHint {
 	rv := objc.Send[SFSpeechRecognitionTaskHint](s_.ID, objc.Sel("defaultTaskHint"))
 	return rv
-} /* debug [instance_properties/getter]: defaultTaskHint */
+}/* debug [instance_properties/getter]: defaultTaskHint */
+
 
 // A hint that indicates the type of speech recognition being requested.
 //
@@ -206,7 +225,8 @@ func (s_ SFSpeechRecognizer) DefaultTaskHint() SFSpeechRecognitionTaskHint {
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognizer/defaultTaskHint
 func (s_ SFSpeechRecognizer) SetDefaultTaskHint(value SFSpeechRecognitionTaskHint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultTaskHint:"), value)
-} /* debug [instance_properties/setter]: defaultTaskHint */
+}/* debug [instance_properties/setter]: defaultTaskHint */
+
 
 // The delegate object that handles changes to the availability of speech recognition services.
 //
@@ -215,7 +235,8 @@ func (s_ SFSpeechRecognizer) SetDefaultTaskHint(value SFSpeechRecognitionTaskHin
 func (s_ SFSpeechRecognizer) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
 	return rv
-} /* debug [instance_properties/getter]: delegate */
+}/* debug [instance_properties/getter]: delegate */
+
 
 // The delegate object that handles changes to the availability of speech recognition services.
 //
@@ -223,7 +244,8 @@ func (s_ SFSpeechRecognizer) Delegate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognizer/delegate
 func (s_ SFSpeechRecognizer) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
-} /* debug [instance_properties/setter]: delegate */
+}/* debug [instance_properties/setter]: delegate */
+
 
 // A Boolean value that indicates whether the speech recognizer is currently available.
 //
@@ -232,7 +254,8 @@ func (s_ SFSpeechRecognizer) SetDelegate(value unsafe.Pointer) {
 func (s_ SFSpeechRecognizer) Available() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("available"))
 	return rv
-} /* debug [instance_properties/getter]: available */
+}/* debug [instance_properties/getter]: available */
+
 
 // The locale of the speech recognizer.
 //
@@ -241,7 +264,8 @@ func (s_ SFSpeechRecognizer) Available() bool {
 func (s_ SFSpeechRecognizer) Locale() foundation.Locale {
 	rv := objc.Send[foundation.Locale](s_.ID, objc.Sel("locale"))
 	return rv
-} /* debug [instance_properties/getter]: locale */
+}/* debug [instance_properties/getter]: locale */
+
 
 // The queue on which to execute recognition task handlers and delegate methods.
 //
@@ -250,7 +274,8 @@ func (s_ SFSpeechRecognizer) Locale() foundation.Locale {
 func (s_ SFSpeechRecognizer) Queue() foundation.OperationQueue {
 	rv := objc.Send[foundation.OperationQueue](s_.ID, objc.Sel("queue"))
 	return rv
-} /* debug [instance_properties/getter]: queue */
+}/* debug [instance_properties/getter]: queue */
+
 
 // The queue on which to execute recognition task handlers and delegate methods.
 //
@@ -258,7 +283,8 @@ func (s_ SFSpeechRecognizer) Queue() foundation.OperationQueue {
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognizer/queue
 func (s_ SFSpeechRecognizer) SetQueue(value foundation.OperationQueue) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setQueue:"), value)
-} /* debug [instance_properties/setter]: queue */
+}/* debug [instance_properties/setter]: queue */
+
 
 // A Boolean value that indicates whether the speech recognizer can operate without network access.
 //
@@ -267,7 +293,8 @@ func (s_ SFSpeechRecognizer) SetQueue(value foundation.OperationQueue) {
 func (s_ SFSpeechRecognizer) SupportsOnDeviceRecognition() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("supportsOnDeviceRecognition"))
 	return rv
-} /* debug [instance_properties/getter]: supportsOnDeviceRecognition */
+}/* debug [instance_properties/getter]: supportsOnDeviceRecognition */
+
 
 // A Boolean value that indicates whether the speech recognizer can operate without network access.
 //
@@ -275,7 +302,8 @@ func (s_ SFSpeechRecognizer) SupportsOnDeviceRecognition() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognizer/supportsOnDeviceRecognition
 func (s_ SFSpeechRecognizer) SetSupportsOnDeviceRecognition(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSupportsOnDeviceRecognition:"), value)
-} /* debug [instance_properties/setter]: supportsOnDeviceRecognition */
+}/* debug [instance_properties/setter]: supportsOnDeviceRecognition */
+
 
 // A Boolean value that indicates whether the speech recognizer is currently available.
 //
@@ -284,7 +312,8 @@ func (s_ SFSpeechRecognizer) SetSupportsOnDeviceRecognition(value bool) {
 func (s_ SFSpeechRecognizer) IsAvailable() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isAvailable"))
 	return rv
-} /* debug [instance_properties/getter]: isAvailable */
+}/* debug [instance_properties/getter]: isAvailable */
+
 
 // A Boolean value that indicates whether the speech recognizer is currently available.
 //
@@ -292,8 +321,11 @@ func (s_ SFSpeechRecognizer) IsAvailable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/isavailable
 func (s_ SFSpeechRecognizer) SetIsAvailable(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAvailable:"), value)
-} /* debug [instance_properties/setter]: isAvailable */
+}/* debug [instance_properties/setter]: isAvailable */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class SFSpeechRecognizer */
+
+

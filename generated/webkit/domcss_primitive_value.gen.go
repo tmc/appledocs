@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class DOMCSSPrimitiveValue */
+
 
 /* debug [class_header]: Header for DOMCSSPrimitiveValue */
 // The class instance for the [DOMCSSPrimitiveValue] class.
@@ -28,26 +31,29 @@ func getDOMCSSPrimitiveValueClass() _DOMCSSPrimitiveValueClass {
 type _DOMCSSPrimitiveValueClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMCSSPrimitiveValue */
 // An interface definition for the [DOMCSSPrimitiveValue] class.
 type IDOMCSSPrimitiveValue interface {
 	IDOMCSSValue
-
-	/* debug [class_interface_properties]: Properties for DOMCSSPrimitiveValue */
+	
+/* debug [class_interface_properties]: Properties for DOMCSSPrimitiveValue */
 	// properties:
-	PrimitiveType() unsafe.Pointer
-	/* debug [class_interface_properties]: End properties */
+	PrimitiveType() objectivec.IObject
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMCSSPrimitiveValue */
+	
+/* debug [class_interface_methods]: Methods for DOMCSSPrimitiveValue */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMCSSPrimitiveValue */
 // Alloc allocates a new instance without initialization.
@@ -79,10 +85,12 @@ func (d_ DOMCSSPrimitiveValue) Autorelease() DOMCSSPrimitiveValue {
 func NewDOMCSSPrimitiveValue() DOMCSSPrimitiveValue {
 	return getDOMCSSPrimitiveValueClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMCSSPrimitiveValue */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMCSSPrimitiveValue
@@ -96,29 +104,42 @@ func DOMCSSPrimitiveValueFrom(ptr unsafe.Pointer) DOMCSSPrimitiveValue {
 		DOMCSSValue: DOMCSSValueFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMCSSPrimitiveValue */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMCSSPrimitiveValue *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMCSSPrimitiveValue */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMCSSPrimitiveValue */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMCSSPrimitiveValue */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMCSSPrimitiveValue */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMCSSPrimitiveValue/primitiveType
-func (d_ DOMCSSPrimitiveValue) PrimitiveType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("primitiveType"))
+func (d_ DOMCSSPrimitiveValue) PrimitiveType() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](d_.ID, objc.Sel("primitiveType"))
 	return rv
-} /* debug [instance_properties/getter]: primitiveType */
+}/* debug [instance_properties/getter]: primitiveType */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMCSSPrimitiveValue */
+
+
+

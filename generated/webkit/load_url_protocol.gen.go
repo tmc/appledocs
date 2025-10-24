@@ -19,3 +19,4 @@ var loadURLProtocol *objc.Protocol
 func init() {
 	loadURLProtocol = objc.GetProtocol("loadURL:")
 }
+

@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class DOMCSSRuleList */
+
 
 /* debug [class_header]: Header for DOMCSSRuleList */
 // The class instance for the [DOMCSSRuleList] class.
@@ -28,26 +30,29 @@ func getDOMCSSRuleListClass() _DOMCSSRuleListClass {
 type _DOMCSSRuleListClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMCSSRuleList */
 // An interface definition for the [DOMCSSRuleList] class.
 type IDOMCSSRuleList interface {
 	IDOMObject
-
-	/* debug [class_interface_properties]: Properties for DOMCSSRuleList */
+	
+/* debug [class_interface_properties]: Properties for DOMCSSRuleList */
 	// properties:
-	Length() unsafe.Pointer
-	/* debug [class_interface_properties]: End properties */
+	Length() objectivec.IObject
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMCSSRuleList */
+	
+/* debug [class_interface_methods]: Methods for DOMCSSRuleList */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMCSSRuleList */
 // Alloc allocates a new instance without initialization.
@@ -79,10 +84,12 @@ func (d_ DOMCSSRuleList) Autorelease() DOMCSSRuleList {
 func NewDOMCSSRuleList() DOMCSSRuleList {
 	return getDOMCSSRuleListClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMCSSRuleList */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMCSSRuleList
@@ -96,29 +103,42 @@ func DOMCSSRuleListFrom(ptr unsafe.Pointer) DOMCSSRuleList {
 		DOMObject: DOMObjectFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMCSSRuleList */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMCSSRuleList *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMCSSRuleList */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMCSSRuleList */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMCSSRuleList */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMCSSRuleList */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMCSSRuleList/length
-func (d_ DOMCSSRuleList) Length() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("length"))
+func (d_ DOMCSSRuleList) Length() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](d_.ID, objc.Sel("length"))
 	return rv
-} /* debug [instance_properties/getter]: length */
+}/* debug [instance_properties/getter]: length */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMCSSRuleList */
+
+
+

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNDArrayIdentity */
 
 
-/* debug [class_header]: Header for MPSNDArrayIdentity */
+
+
 // The class instance for the [NDArrayIdentity] class.
 var (
 	NDArrayIdentityClass     _NDArrayIdentityClass
@@ -30,35 +30,35 @@ func getNDArrayIdentityClass() _NDArrayIdentityClass {
 type _NDArrayIdentityClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NDArrayIdentity */
+
+
 // An interface definition for the [NDArrayIdentity] class.
 type INDArrayIdentity interface {
 	INDArrayUnaryKernel
 	
-/* debug [class_interface_properties]: Properties for NDArrayIdentity */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NDArrayIdentity */
+
 	// methods:
 	Reshape()
 	ReshapeWithCommandBufferSourceArrayDimensionCountDimensionSizesDestinationArray(cmdBuf unsafe.Pointer, sourceArray INDArray, numberOfDimensions uint, dimensionSizes uint, destinationArray INDArray) INDArray
 	ReshapeWithCommandBufferSourceArrayShapeDestinationArray(cmdBuf unsafe.Pointer, sourceArray INDArray, shape Shape /* not a class type */, destinationArray INDArray) INDArray
 	ReshapeWithCommandEncoderCommandBufferSourceArrayDimensionCountDimensionSizesDestinationArray(encoder unsafe.Pointer, cmdBuf unsafe.Pointer, sourceArray INDArray, numberOfDimensions uint, dimensionSizes uint, destinationArray INDArray) INDArray
 	ReshapeWithCommandEncoderCommandBufferSourceArrayShapeDestinationArray(encoder unsafe.Pointer, cmdBuf unsafe.Pointer, sourceArray INDArray, shape Shape /* not a class type */, destinationArray INDArray) INDArray
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NDArrayIdentity */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NDArrayIdentityClass) Alloc() NDArrayIdentity {
 	rv := objc.Send[NDArrayIdentity](objc.ID(nc.class), objc.Sel("alloc"))
@@ -88,11 +88,11 @@ func (n_ NDArrayIdentity) Autorelease() NDArrayIdentity {
 func NewNDArrayIdentity() NDArrayIdentity {
 	return getNDArrayIdentityClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NDArrayIdentity */
+
+
 
 
 // [Full Topic]
@@ -107,11 +107,11 @@ func NDArrayIdentityFrom(ptr unsafe.Pointer) NDArrayIdentity {
 		NDArrayUnaryKernel: NDArrayUnaryKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NDArrayIdentity */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayidentity/4438555-initwithdevice
@@ -120,29 +120,29 @@ func NewNDArrayIdentityWithDevice(device unsafe.Pointer) NDArrayIdentity {
 	rv := objc.Send[NDArrayIdentity](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNDArrayIdentityWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for NDArrayIdentity */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NDArrayIdentity */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NDArrayIdentity */
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayidentity/4438556-reshape
 func (n_ NDArrayIdentity) Reshape() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("reshape"))
-}/* debug [instance_methods/method]: Reshape */
+}
 
 
 // [Full Topic]
@@ -150,7 +150,7 @@ func (n_ NDArrayIdentity) Reshape() {
 func (n_ NDArrayIdentity) ReshapeWithCommandBufferSourceArrayDimensionCountDimensionSizesDestinationArray(cmdBuf unsafe.Pointer, sourceArray INDArray, numberOfDimensions uint, dimensionSizes uint, destinationArray INDArray) INDArray {
 	rv := objc.Send[NDArray](n_.ID, objc.Sel("reshapeWithCommandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:"), cmdBuf, sourceArray, numberOfDimensions, dimensionSizes, destinationArray)
 	return rv
-}/* debug [instance_methods/method]: ReshapeWithCommandBufferSourceArrayDimensionCountDimensionSizesDestinationArray */
+}
 
 
 // [Full Topic]
@@ -158,7 +158,7 @@ func (n_ NDArrayIdentity) ReshapeWithCommandBufferSourceArrayDimensionCountDimen
 func (n_ NDArrayIdentity) ReshapeWithCommandBufferSourceArrayShapeDestinationArray(cmdBuf unsafe.Pointer, sourceArray INDArray, shape Shape /* not a class type */, destinationArray INDArray) INDArray {
 	rv := objc.Send[NDArray](n_.ID, objc.Sel("reshapeWithCommandBuffer:sourceArray:shape:destinationArray:"), cmdBuf, sourceArray, shape, destinationArray)
 	return rv
-}/* debug [instance_methods/method]: ReshapeWithCommandBufferSourceArrayShapeDestinationArray */
+}
 
 
 // [Full Topic]
@@ -166,7 +166,7 @@ func (n_ NDArrayIdentity) ReshapeWithCommandBufferSourceArrayShapeDestinationArr
 func (n_ NDArrayIdentity) ReshapeWithCommandEncoderCommandBufferSourceArrayDimensionCountDimensionSizesDestinationArray(encoder unsafe.Pointer, cmdBuf unsafe.Pointer, sourceArray INDArray, numberOfDimensions uint, dimensionSizes uint, destinationArray INDArray) INDArray {
 	rv := objc.Send[NDArray](n_.ID, objc.Sel("reshapeWithCommandEncoder:commandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:"), encoder, cmdBuf, sourceArray, numberOfDimensions, dimensionSizes, destinationArray)
 	return rv
-}/* debug [instance_methods/method]: ReshapeWithCommandEncoderCommandBufferSourceArrayDimensionCountDimensionSizesDestinationArray */
+}
 
 
 // [Full Topic]
@@ -174,16 +174,16 @@ func (n_ NDArrayIdentity) ReshapeWithCommandEncoderCommandBufferSourceArrayDimen
 func (n_ NDArrayIdentity) ReshapeWithCommandEncoderCommandBufferSourceArrayShapeDestinationArray(encoder unsafe.Pointer, cmdBuf unsafe.Pointer, sourceArray INDArray, shape Shape /* not a class type */, destinationArray INDArray) INDArray {
 	rv := objc.Send[NDArray](n_.ID, objc.Sel("reshapeWithCommandEncoder:commandBuffer:sourceArray:shape:destinationArray:"), encoder, cmdBuf, sourceArray, shape, destinationArray)
 	return rv
-}/* debug [instance_methods/method]: ReshapeWithCommandEncoderCommandBufferSourceArrayShapeDestinationArray */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for NDArrayIdentity */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNDArrayIdentity */
+
+
+
+
+
 
 

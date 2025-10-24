@@ -115,3 +115,5 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognizerAuthorizationStatus/restricted
 	SFSpeechRecognizerAuthorizationStatusRestricted SFSpeechRecognizerAuthorizationStatus = 0
 )
+
+

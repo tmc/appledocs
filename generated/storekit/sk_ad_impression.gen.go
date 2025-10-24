@@ -7,10 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class SKAdImpression */
+
 
 /* debug [class_header]: Header for SKAdImpression */
 // The class instance for the [AdImpression] class.
@@ -29,25 +31,28 @@ func getAdImpressionClass() _AdImpressionClass {
 type _AdImpressionClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for AdImpression */
 // An interface definition for the [AdImpression] class.
 type IAdImpression interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for AdImpression */
+	
+/* debug [class_interface_properties]: Properties for AdImpression */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for AdImpression */
+	
+/* debug [class_interface_methods]: Methods for AdImpression */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for AdImpression */
 // Alloc allocates a new instance without initialization.
@@ -79,13 +84,15 @@ func (a_ AdImpression) Autorelease() AdImpression {
 func NewAdImpression() AdImpression {
 	return getAdImpressionClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for AdImpression */
 // A class that defines an ad impression for a view-through ad.
 //
 // Create a instance when you’re preparing to present a view-through ad. In the instance, you set: Values known to you, including your ad network ID, the App Store IDs of the source app and the advertised app, and the version. A value you determine – the campaign ID. Values you generate, including the timestamp, a nonce (ad-impression identifier), and the cryptographic signature. For information about generating the cryptographic signature, see . Use your instance when you call to begin presenting your view-through ad. Use the same instance when you call to end the ad presentation.
+
 
 // A class that defines an ad impression for a view-through ad.
 //
@@ -101,8 +108,9 @@ type AdImpression struct {
 func AdImpressionFrom(ptr unsafe.Pointer) AdImpression {
 	return AdImpression{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for AdImpression */
 
@@ -115,20 +123,31 @@ func NewAdImpressionWithSourceAppStoreItemIdentifierAdvertisedAppStoreItemIdenti
 	rv := objc.Send[AdImpression](instance.ID, objc.Sel("initWithSourceAppStoreItemIdentifier:advertisedAppStoreItemIdentifier:adNetworkIdentifier:adCampaignIdentifier:adImpressionIdentifier:timestamp:signature:version:"), sourceAppStoreItemIdentifier, advertisedAppStoreItemIdentifier, adNetworkIdentifier, adCampaignIdentifier, adImpressionIdentifier, timestamp, signature, version)
 	rv.Autorelease()
 	return rv
-} /* debug [class_init_methods/constructor]: NewAdImpressionWithSourceAppStoreItemIdentifierAdvertisedAppStoreItemIdentifierAdNetworkIdentifierAdCampaignIdentifierAdImpressionIdentifierTimestampSignatureVersion */
+}/* debug [class_init_methods/constructor]: NewAdImpressionWithSourceAppStoreItemIdentifierAdvertisedAppStoreItemIdentifierAdNetworkIdentifierAdCampaignIdentifierAdImpressionIdentifierTimestampSignatureVersion */
 
 /* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for AdImpression */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for AdImpression */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for AdImpression */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for AdImpression */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class SKAdImpression */
+
+

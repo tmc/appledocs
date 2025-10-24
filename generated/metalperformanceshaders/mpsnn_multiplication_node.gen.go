@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNMultiplicationNode */
 
 
-/* debug [class_header]: Header for MPSNNMultiplicationNode */
+
+
 // The class instance for the [MultiplicationNode] class.
 var (
 	MultiplicationNodeClass     _MultiplicationNodeClass
@@ -29,30 +29,30 @@ func getMultiplicationNodeClass() _MultiplicationNodeClass {
 type _MultiplicationNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MultiplicationNode */
+
+
 // An interface definition for the [MultiplicationNode] class.
 type IMultiplicationNode interface {
 	IBinaryArithmeticNode
 	
-/* debug [class_interface_properties]: Properties for MultiplicationNode */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MultiplicationNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MultiplicationNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MultiplicationNodeClass) Alloc() MultiplicationNode {
 	rv := objc.Send[MultiplicationNode](objc.ID(mc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (m_ MultiplicationNode) Autorelease() MultiplicationNode {
 func NewMultiplicationNode() MultiplicationNode {
 	return getMultiplicationNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MultiplicationNode */
+
+
 // A representation of a multiplication operator.
 
 
@@ -106,34 +106,34 @@ func MultiplicationNodeFrom(ptr unsafe.Pointer) MultiplicationNode {
 		BinaryArithmeticNode: BinaryArithmeticNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MultiplicationNode *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for MultiplicationNode */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MultiplicationNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MultiplicationNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MultiplicationNode */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNMultiplicationNode */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

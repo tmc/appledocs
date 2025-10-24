@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class VNImageAlignmentObservation */
 
 
-/* debug [class_header]: Header for VNImageAlignmentObservation */
+
+
 // The class instance for the [ImageAlignmentObservation] class.
 var (
 	ImageAlignmentObservationClass     _ImageAlignmentObservationClass
@@ -29,30 +29,30 @@ func getImageAlignmentObservationClass() _ImageAlignmentObservationClass {
 type _ImageAlignmentObservationClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ImageAlignmentObservation */
+
+
 // An interface definition for the [ImageAlignmentObservation] class.
 type IImageAlignmentObservation interface {
 	IObservation
 	
-/* debug [class_interface_properties]: Properties for ImageAlignmentObservation */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ImageAlignmentObservation */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ImageAlignmentObservation */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageAlignmentObservationClass) Alloc() ImageAlignmentObservation {
 	rv := objc.Send[ImageAlignmentObservation](objc.ID(ic.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (i_ ImageAlignmentObservation) Autorelease() ImageAlignmentObservation {
 func NewImageAlignmentObservation() ImageAlignmentObservation {
 	return getImageAlignmentObservationClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ImageAlignmentObservation */
+
+
 // The abstract superclass for image-analysis results that describe the relative alignment of two images.
 //
 // This abstract superclass forms the basis of image alignment or registration output. You receive its subclasses, such as and , by performing specific registration requests. Don’t create one of these classes yourself.
@@ -108,34 +108,34 @@ func ImageAlignmentObservationFrom(ptr unsafe.Pointer) ImageAlignmentObservation
 		Observation: ObservationFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ImageAlignmentObservation *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ImageAlignmentObservation */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ImageAlignmentObservation */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ImageAlignmentObservation */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ImageAlignmentObservation */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class VNImageAlignmentObservation */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

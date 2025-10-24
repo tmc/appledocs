@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVPlayerLooper */
 
 
-/* debug [class_header]: Header for AVPlayerLooper */
+
+
 // The class instance for the [PlayerLooper] class.
 var (
 	PlayerLooperClass     _PlayerLooperClass
@@ -30,35 +30,35 @@ func getPlayerLooperClass() _PlayerLooperClass {
 type _PlayerLooperClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for PlayerLooper */
+
+
 // An interface definition for the [PlayerLooper] class.
 type IPlayerLooper interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for PlayerLooper */
+
 	// properties:
 	Error() Error
 	LoopCount() int
 	LoopingPlayerItems() []PlayerItem
 	Status() PlayerLooperStatus
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for PlayerLooper */
+
 	// methods:
 	DisableLooping()
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for PlayerLooper */
+
+
 // Alloc allocates a new instance without initialization.
 func (pc _PlayerLooperClass) Alloc() PlayerLooper {
 	rv := objc.Send[PlayerLooper](objc.ID(pc.class), objc.Sel("alloc"))
@@ -88,11 +88,11 @@ func (p_ PlayerLooper) Autorelease() PlayerLooper {
 func NewPlayerLooper() PlayerLooper {
 	return getPlayerLooperClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for PlayerLooper */
+
+
 // An object that loops media content using a queue player.
 //
 // You can manually implement looping playback in your app using , but provides a much simpler interface to loop a single . You create a player looper by passing it a reference to your and a template and the looper automatically manages the looping playback of this content (see example).
@@ -112,11 +112,11 @@ type PlayerLooper struct {
 func PlayerLooperFrom(ptr unsafe.Pointer) PlayerLooper {
 	return PlayerLooper{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for PlayerLooper */
+
+
 
 // Creates a player looper that continuously plays the full duration of a player item.
 //
@@ -125,7 +125,7 @@ func PlayerLooperFrom(ptr unsafe.Pointer) PlayerLooper {
 func NewPlayerLooperWithPlayerTemplateItem(player IAVQueuePlayer, itemToLoop IAVPlayerItem) PlayerLooper {
 	rv := objc.Send[PlayerLooper](objc.ID(getPlayerLooperClass().class), objc.Sel("playerLooperWithPlayer:templateItem:"), player, itemToLoop)
 	return rv
-}/* debug [class_init_methods/constructor]: NewPlayerLooperWithPlayerTemplateItem */
+}
 
 
 // Creates a player looper that continuously plays the specified time range of a player item.
@@ -137,7 +137,7 @@ func NewPlayerLooperWithPlayerTemplateItemTimeRange(player IAVQueuePlayer, itemT
 	rv := objc.Send[PlayerLooper](instance.ID, objc.Sel("initWithPlayer:templateItem:timeRange:"), player, itemToLoop, loopRange)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewPlayerLooperWithPlayerTemplateItemTimeRange */
+}
 
 
 // Creates a player looper that continuously plays the full duration of a player item while adhering to the specified ordering of existing items in the queue.
@@ -149,13 +149,13 @@ func NewPlayerLooperWithPlayerTemplateItemTimeRangeExistingItemsOrdering(player 
 	rv := objc.Send[PlayerLooper](instance.ID, objc.Sel("initWithPlayer:templateItem:timeRange:existingItemsOrdering:"), player, itemToLoop, loopRange, itemOrdering)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewPlayerLooperWithPlayerTemplateItemTimeRangeExistingItemsOrdering */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for PlayerLooper */
+
+
+
 
 // Creates a player looper that continuously plays the full duration of a player item.
 //
@@ -164,7 +164,7 @@ func NewPlayerLooperWithPlayerTemplateItemTimeRangeExistingItemsOrdering(player 
 func (pc _PlayerLooperClass) PlayerLooperWithPlayerTemplateItem(player IAVQueuePlayer, itemToLoop IAVPlayerItem) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(pc.class), objc.Sel("playerLooperWithPlayer:templateItem:"), player, itemToLoop)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PlayerLooperWithPlayerTemplateItem) */
+}
 
 
 // Returns player looper that continuously plays the specified time range of a player item.
@@ -174,18 +174,18 @@ func (pc _PlayerLooperClass) PlayerLooperWithPlayerTemplateItem(player IAVQueueP
 func (pc _PlayerLooperClass) PlayerLooperWithPlayerTemplateItemTimeRange(player IAVQueuePlayer, itemToLoop IAVPlayerItem, loopRange TimeRange /* not a class type */) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(pc.class), objc.Sel("playerLooperWithPlayer:templateItem:timeRange:"), player, itemToLoop, loopRange)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PlayerLooperWithPlayerTemplateItemTimeRange) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for PlayerLooper */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for PlayerLooper */
+
+
+
+
+
 
 // Disables looping for the player queue.
 //
@@ -193,13 +193,13 @@ func (pc _PlayerLooperClass) PlayerLooperWithPlayerTemplateItemTimeRange(player 
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLooper/disableLooping()
 func (p_ PlayerLooper) DisableLooping() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("disableLooping"))
-}/* debug [instance_methods/method]: DisableLooping */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for PlayerLooper */
+
+
+
 
 // An error that describes the reason looping failed.
 //
@@ -208,7 +208,7 @@ func (p_ PlayerLooper) DisableLooping() {
 func (p_ PlayerLooper) Error() Error {
 	rv := objc.Send[Error](p_.ID, objc.Sel("error"))
 	return rv
-}/* debug [instance_properties/getter]: error */
+}
 
 
 // The number of times the object played the media.
@@ -218,7 +218,7 @@ func (p_ PlayerLooper) Error() Error {
 func (p_ PlayerLooper) LoopCount() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("loopCount"))
 	return rv
-}/* debug [instance_properties/getter]: loopCount */
+}
 
 
 // An array containing replicas of the template player item used to accomplish the looping.
@@ -228,7 +228,7 @@ func (p_ PlayerLooper) LoopCount() int {
 func (p_ PlayerLooper) LoopingPlayerItems() []PlayerItem {
 	rv := objc.Send[[]PlayerItem](p_.ID, objc.Sel("loopingPlayerItems"))
 	return rv
-}/* debug [instance_properties/getter]: loopingPlayerItems */
+}
 
 
 // A status that indicates the object’s ability to loop playback.
@@ -238,11 +238,11 @@ func (p_ PlayerLooper) LoopingPlayerItems() []PlayerItem {
 func (p_ PlayerLooper) Status() PlayerLooperStatus {
 	rv := objc.Send[PlayerLooperStatus](p_.ID, objc.Sel("status"))
 	return rv
-}/* debug [instance_properties/getter]: status */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVPlayerLooper */
+
+
+
 
 

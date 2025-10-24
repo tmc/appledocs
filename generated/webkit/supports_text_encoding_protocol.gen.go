@@ -15,3 +15,4 @@ var supportsTextEncodingProtocol *objc.Protocol
 func init() {
 	supportsTextEncodingProtocol = objc.GetProtocol("supportsTextEncoding")
 }
+

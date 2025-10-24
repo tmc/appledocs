@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNUpsamplingBilinear */
 
 
-/* debug [class_header]: Header for MPSCNNUpsamplingBilinear */
+
+
 // The class instance for the [CNNUpsamplingBilinear] class.
 var (
 	CNNUpsamplingBilinearClass     _CNNUpsamplingBilinearClass
@@ -30,30 +30,30 @@ func getCNNUpsamplingBilinearClass() _CNNUpsamplingBilinearClass {
 type _CNNUpsamplingBilinearClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNUpsamplingBilinear */
+
+
 // An interface definition for the [CNNUpsamplingBilinear] class.
 type ICNNUpsamplingBilinear interface {
 	ICNNUpsampling
 	
-/* debug [class_interface_properties]: Properties for CNNUpsamplingBilinear */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNUpsamplingBilinear */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNUpsamplingBilinear */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNUpsamplingBilinearClass) Alloc() CNNUpsamplingBilinear {
 	rv := objc.Send[CNNUpsamplingBilinear](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNUpsamplingBilinear) Autorelease() CNNUpsamplingBilinear {
 func NewCNNUpsamplingBilinear() CNNUpsamplingBilinear {
 	return getCNNUpsamplingBilinearClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNUpsamplingBilinear */
+
+
 // A bilinear spatial upsampling filter.
 //
 // This filter can be used to resample an existing using a different sampling frequency for the and dimensions with the purpose of enlarging the size of an image. The number of output feature channels remains the same as the number of input feature channels. The must be an integer value . The default value is .
@@ -109,11 +109,11 @@ func CNNUpsamplingBilinearFrom(ptr unsafe.Pointer) CNNUpsamplingBilinear {
 		CNNUpsampling: CNNUpsamplingFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNUpsamplingBilinear */
+
+
 
 // Initializes a bilinear spatial upsampling filter.
 //
@@ -124,7 +124,7 @@ func NewCNNUpsamplingBilinearWithDeviceIntegerScaleFactorXIntegerScaleFactorY(de
 	rv := objc.Send[CNNUpsamplingBilinear](instance.ID, objc.Sel("initWithDevice:integerScaleFactorX:integerScaleFactorY:"), device, integerScaleFactorX, integerScaleFactorY)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNUpsamplingBilinearWithDeviceIntegerScaleFactorXIntegerScaleFactorY */
+}
 
 
 // [Full Topic]
@@ -134,31 +134,31 @@ func NewCNNUpsamplingBilinearWithDeviceIntegerScaleFactorXIntegerScaleFactorYAli
 	rv := objc.Send[CNNUpsamplingBilinear](instance.ID, objc.Sel("initWithDevice:integerScaleFactorX:integerScaleFactorY:alignCorners:"), device, integerScaleFactorX, integerScaleFactorY, alignCorners)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNUpsamplingBilinearWithDeviceIntegerScaleFactorXIntegerScaleFactorYAlignCorners */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNUpsamplingBilinear */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNUpsamplingBilinear */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNUpsamplingBilinear */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNUpsamplingBilinear */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNUpsamplingBilinear */
+
+
+
+
+
+
+
+
+
+
+
 
 

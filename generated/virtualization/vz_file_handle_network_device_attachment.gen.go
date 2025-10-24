@@ -6,11 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZFileHandleNetworkDeviceAttachment */
+
 
 /* debug [class_header]: Header for VZFileHandleNetworkDeviceAttachment */
 // The class instance for the [VZFileHandleNetworkDeviceAttachment] class.
@@ -29,15 +31,16 @@ func getVZFileHandleNetworkDeviceAttachmentClass() _VZFileHandleNetworkDeviceAtt
 type _VZFileHandleNetworkDeviceAttachmentClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZFileHandleNetworkDeviceAttachment */
 // An interface definition for the [VZFileHandleNetworkDeviceAttachment] class.
 type IVZFileHandleNetworkDeviceAttachment interface {
 	IVZNetworkDeviceAttachment
-
-	/* debug [class_interface_properties]: Properties for VZFileHandleNetworkDeviceAttachment */
+	
+/* debug [class_interface_properties]: Properties for VZFileHandleNetworkDeviceAttachment */
 	// properties:
 	FileHandle() foundation.FileHandle
 	MaximumTransmissionUnit() int
@@ -46,15 +49,17 @@ type IVZFileHandleNetworkDeviceAttachment interface {
 	SetAttachment(value IVZNetworkDeviceAttachment)
 	NetworkDevices() IVZNetworkDeviceConfiguration
 	SetNetworkDevices(value IVZNetworkDeviceConfiguration)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZFileHandleNetworkDeviceAttachment */
+	
+/* debug [class_interface_methods]: Methods for VZFileHandleNetworkDeviceAttachment */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZFileHandleNetworkDeviceAttachment */
 // Alloc allocates a new instance without initialization.
@@ -86,13 +91,15 @@ func (v_ VZFileHandleNetworkDeviceAttachment) Autorelease() VZFileHandleNetworkD
 func NewVZFileHandleNetworkDeviceAttachment() VZFileHandleNetworkDeviceAttachment {
 	return getVZFileHandleNetworkDeviceAttachmentClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZFileHandleNetworkDeviceAttachment */
 // A network device that transmits raw network packets and frames using a datagram socket.
 //
 // A object maps a network interface to a connected datagram socket. This attachment transmits data at the data link layer. You configure and manage the socket in your app, and manage the corresponding data transfers. To configure a network device with a socket-based file handle: Create a socket with the type in your app. Create a from the socket’s file descriptor. Create the object using the file handle. Assign the attachment object to the property of a object. Add the object to the property of your . This attachment doesn’t require your app to have the entitlement.
+
 
 // A network device that transmits raw network packets and frames using a datagram socket.
 //
@@ -110,8 +117,9 @@ func VZFileHandleNetworkDeviceAttachmentFrom(ptr unsafe.Pointer) VZFileHandleNet
 		VZNetworkDeviceAttachment: VZNetworkDeviceAttachmentFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZFileHandleNetworkDeviceAttachment */
 
@@ -124,18 +132,26 @@ func NewVZFileHandleNetworkDeviceAttachmentWithFileHandle(fileHandle foundation.
 	rv := objc.Send[VZFileHandleNetworkDeviceAttachment](instance.ID, objc.Sel("initWithFileHandle:"), fileHandle)
 	rv.Autorelease()
 	return rv
-} /* debug [class_init_methods/constructor]: NewVZFileHandleNetworkDeviceAttachmentWithFileHandle */
+}/* debug [class_init_methods/constructor]: NewVZFileHandleNetworkDeviceAttachmentWithFileHandle */
 
 /* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZFileHandleNetworkDeviceAttachment */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZFileHandleNetworkDeviceAttachment */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZFileHandleNetworkDeviceAttachment */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZFileHandleNetworkDeviceAttachment */
 
@@ -146,7 +162,8 @@ func NewVZFileHandleNetworkDeviceAttachmentWithFileHandle(fileHandle foundation.
 func (v_ VZFileHandleNetworkDeviceAttachment) FileHandle() foundation.FileHandle {
 	rv := objc.Send[foundation.FileHandle](v_.ID, objc.Sel("fileHandle"))
 	return rv
-} /* debug [instance_properties/getter]: fileHandle */
+}/* debug [instance_properties/getter]: fileHandle */
+
 
 // An integer value that indicates the maximum transmission unit (MTU) associated with this attachment.
 //
@@ -155,7 +172,8 @@ func (v_ VZFileHandleNetworkDeviceAttachment) FileHandle() foundation.FileHandle
 func (v_ VZFileHandleNetworkDeviceAttachment) MaximumTransmissionUnit() int {
 	rv := objc.Send[int](v_.ID, objc.Sel("maximumTransmissionUnit"))
 	return rv
-} /* debug [instance_properties/getter]: maximumTransmissionUnit */
+}/* debug [instance_properties/getter]: maximumTransmissionUnit */
+
 
 // An integer value that indicates the maximum transmission unit (MTU) associated with this attachment.
 //
@@ -163,7 +181,8 @@ func (v_ VZFileHandleNetworkDeviceAttachment) MaximumTransmissionUnit() int {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileHandleNetworkDeviceAttachment/maximumTransmissionUnit
 func (v_ VZFileHandleNetworkDeviceAttachment) SetMaximumTransmissionUnit(value int) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMaximumTransmissionUnit:"), value)
-} /* debug [instance_properties/setter]: maximumTransmissionUnit */
+}/* debug [instance_properties/setter]: maximumTransmissionUnit */
+
 
 // The object that defines how the virtual network device communicates with the host system.
 //
@@ -172,7 +191,8 @@ func (v_ VZFileHandleNetworkDeviceAttachment) SetMaximumTransmissionUnit(value i
 func (v_ VZFileHandleNetworkDeviceAttachment) Attachment() IVZNetworkDeviceAttachment {
 	rv := objc.Send[VZNetworkDeviceAttachment](v_.ID, objc.Sel("attachment"))
 	return rv
-} /* debug [instance_properties/getter]: attachment */
+}/* debug [instance_properties/getter]: attachment */
+
 
 // The object that defines how the virtual network device communicates with the host system.
 //
@@ -180,7 +200,8 @@ func (v_ VZFileHandleNetworkDeviceAttachment) Attachment() IVZNetworkDeviceAttac
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment
 func (v_ VZFileHandleNetworkDeviceAttachment) SetAttachment(value IVZNetworkDeviceAttachment) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
-} /* debug [instance_properties/setter]: attachment */
+}/* debug [instance_properties/setter]: attachment */
+
 
 // The array of network devices that you expose to the guest operating system.
 //
@@ -189,7 +210,8 @@ func (v_ VZFileHandleNetworkDeviceAttachment) SetAttachment(value IVZNetworkDevi
 func (v_ VZFileHandleNetworkDeviceAttachment) NetworkDevices() IVZNetworkDeviceConfiguration {
 	rv := objc.Send[VZNetworkDeviceConfiguration](v_.ID, objc.Sel("networkDevices"))
 	return rv
-} /* debug [instance_properties/getter]: networkDevices */
+}/* debug [instance_properties/getter]: networkDevices */
+
 
 // The array of network devices that you expose to the guest operating system.
 //
@@ -197,8 +219,11 @@ func (v_ VZFileHandleNetworkDeviceAttachment) NetworkDevices() IVZNetworkDeviceC
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices
 func (v_ VZFileHandleNetworkDeviceAttachment) SetNetworkDevices(value IVZNetworkDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setNetworkDevices:"), value)
-} /* debug [instance_properties/setter]: networkDevices */
+}/* debug [instance_properties/setter]: networkDevices */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZFileHandleNetworkDeviceAttachment */
+
+

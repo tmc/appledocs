@@ -3,7 +3,10 @@
 package systemextensions
 
 import (
+
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/coretelephony"
 )
 
 // POSSystemExtensionRequestDelegate is the OSSystemExtensionRequestDelegate protocol interface.
@@ -16,10 +19,10 @@ import (
 // See: doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequestDelegate
 type POSSystemExtensionRequestDelegate interface {
 	// Required methods
-	RequestActionForReplacingExtensionWithExtension(request IOSSystemExtensionRequest, existing IOSSystemExtensionProperties, ext IOSSystemExtensionProperties) OSSystemExtensionReplacementAction
-	RequestDidFailWithError(request IOSSystemExtensionRequest, error_ objc.IObject /* cross-framework: Error */)
-	RequestDidFinishWithResult(request IOSSystemExtensionRequest, result OSSystemExtensionRequestResult)
-	RequestNeedsUserApproval(request IOSSystemExtensionRequest)
+	RequestActionForReplacingExtensionWithExtension(request IOSSystemExtensionRequest, existing IOSSystemExtensionProperties, ext IOSSystemExtensionProperties) OSSystemExtensionReplacementAction/* debug [protocol_interface/required_method]: RequestActionForReplacingExtensionWithExtension */
+	RequestDidFailWithError(request IOSSystemExtensionRequest, error_ objc.IObject /* cross-framework: Error */)/* debug [protocol_interface/required_method]: RequestDidFailWithError */
+	RequestDidFinishWithResult(request IOSSystemExtensionRequest, result OSSystemExtensionRequestResult)/* debug [protocol_interface/required_method]: RequestDidFinishWithResult */
+	RequestNeedsUserApproval(request IOSSystemExtensionRequest)/* debug [protocol_interface/required_method]: RequestNeedsUserApproval */
 	// Optional methods
 	RequestFoundProperties(request IOSSystemExtensionRequest, properties []OSSystemExtensionProperties)
 	HasRequestFoundProperties() bool
@@ -29,11 +32,11 @@ type POSSystemExtensionRequestDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type OSSystemExtensionRequestDelegate struct {
-	_RequestFoundProperties                          func(request IOSSystemExtensionRequest, properties []OSSystemExtensionProperties)
+	_RequestFoundProperties func(request IOSSystemExtensionRequest, properties []OSSystemExtensionProperties)
 	_RequestActionForReplacingExtensionWithExtension func(request IOSSystemExtensionRequest, existing IOSSystemExtensionProperties, ext IOSSystemExtensionProperties) OSSystemExtensionReplacementAction
-	_RequestDidFailWithError                         func(request IOSSystemExtensionRequest, error_ objc.IObject /* cross-framework: Error */)
-	_RequestDidFinishWithResult                      func(request IOSSystemExtensionRequest, result OSSystemExtensionRequestResult)
-	_RequestNeedsUserApproval                        func(request IOSSystemExtensionRequest)
+	_RequestDidFailWithError func(request IOSSystemExtensionRequest, error_ objc.IObject /* cross-framework: Error */)
+	_RequestDidFinishWithResult func(request IOSSystemExtensionRequest, result OSSystemExtensionRequestResult)
+	_RequestNeedsUserApproval func(request IOSSystemExtensionRequest)
 }
 
 // SetRequestFoundProperties sets the handler for the RequestFoundProperties delegate method.

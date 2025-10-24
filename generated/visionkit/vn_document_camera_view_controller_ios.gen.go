@@ -12,6 +12,7 @@ import (
 
 // iOS-only methods for DocumentCameraViewController
 
+
 // iOS-only properties
 
 // The delegate to be notified when the user saves or cancels the document scanner.
@@ -25,3 +26,10 @@ func (d_ DocumentCameraViewController) Delegate() unsafe.Pointer {
 func (d_ DocumentCameraViewController) SetDelegate(value unsafe.Pointer) {
 	d_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
+
+
+
+
+
+
+

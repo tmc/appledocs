@@ -64,8 +64,8 @@ type IGraphPooling2DOpDescriptor interface {
 	SetPaddingStyle(value GraphPaddingStyle)
 	PaddingTop() uint
 	SetPaddingTop(value uint)
-	ReturnIndicesDataType() DataType /* not a class type */
-	SetReturnIndicesDataType(value DataType /* not a class type */)
+	ReturnIndicesDataType() objc.IObject /* cross-framework: DataType */
+	SetReturnIndicesDataType(value objc.IObject /* cross-framework: DataType */)
 	ReturnIndicesMode() GraphPoolingReturnIndicesMode
 	SetReturnIndicesMode(value GraphPoolingReturnIndicesMode)
 	StrideInX() uint
@@ -448,8 +448,8 @@ func (g_ GraphPooling2DOpDescriptor) SetPaddingTop(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling2DOpDescriptor/returnIndicesDataType
-func (g_ GraphPooling2DOpDescriptor) ReturnIndicesDataType() DataType /* not a class type */ {
-	rv := objc.Send[DataType](g_.ID, objc.Sel("returnIndicesDataType"))
+func (g_ GraphPooling2DOpDescriptor) ReturnIndicesDataType() objc.IObject /* cross-framework: DataType */ {
+	rv := objc.Send[metalperformanceshaders.DataType](g_.ID, objc.Sel("returnIndicesDataType"))
 	return rv
 }/* debug [instance_properties/getter]: returnIndicesDataType */
 
@@ -458,7 +458,7 @@ func (g_ GraphPooling2DOpDescriptor) ReturnIndicesDataType() DataType /* not a c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling2DOpDescriptor/returnIndicesDataType
-func (g_ GraphPooling2DOpDescriptor) SetReturnIndicesDataType(value DataType /* not a class type */) {
+func (g_ GraphPooling2DOpDescriptor) SetReturnIndicesDataType(value objc.IObject /* cross-framework: DataType */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReturnIndicesDataType:"), value)
 }/* debug [instance_properties/setter]: returnIndicesDataType */
 

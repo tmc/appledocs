@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAudioEnvironmentDistanceAttenuationParameters */
 
 
-/* debug [class_header]: Header for AVAudioEnvironmentDistanceAttenuationParameters */
+
+
 // The class instance for the [AudioEnvironmentDistanceAttenuationParameters] class.
 var (
 	AudioEnvironmentDistanceAttenuationParametersClass     _AudioEnvironmentDistanceAttenuationParametersClass
@@ -30,16 +30,16 @@ func getAudioEnvironmentDistanceAttenuationParametersClass() _AudioEnvironmentDi
 type _AudioEnvironmentDistanceAttenuationParametersClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AudioEnvironmentDistanceAttenuationParameters */
+
+
 // An interface definition for the [AudioEnvironmentDistanceAttenuationParameters] class.
 type IAudioEnvironmentDistanceAttenuationParameters interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for AudioEnvironmentDistanceAttenuationParameters */
+
 	// properties:
 	DistanceAttenuationModel() AudioEnvironmentDistanceAttenuationModel
 	SetDistanceAttenuationModel(value AudioEnvironmentDistanceAttenuationModel)
@@ -49,19 +49,19 @@ type IAudioEnvironmentDistanceAttenuationParameters interface {
 	SetReferenceDistance(value float32)
 	RolloffFactor() float32
 	SetRolloffFactor(value float32)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AudioEnvironmentDistanceAttenuationParameters */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AudioEnvironmentDistanceAttenuationParameters */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AudioEnvironmentDistanceAttenuationParametersClass) Alloc() AudioEnvironmentDistanceAttenuationParameters {
 	rv := objc.Send[AudioEnvironmentDistanceAttenuationParameters](objc.ID(ac.class), objc.Sel("alloc"))
@@ -91,11 +91,11 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) Autorelease() AudioEnvir
 func NewAudioEnvironmentDistanceAttenuationParameters() AudioEnvironmentDistanceAttenuationParameters {
 	return getAudioEnvironmentDistanceAttenuationParametersClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AudioEnvironmentDistanceAttenuationParameters */
+
+
 // An object that specifies the amount of attenuation distance, the gradual loss in audio intensity, and other characteristics.
 
 
@@ -113,30 +113,30 @@ type AudioEnvironmentDistanceAttenuationParameters struct {
 func AudioEnvironmentDistanceAttenuationParametersFrom(ptr unsafe.Pointer) AudioEnvironmentDistanceAttenuationParameters {
 	return AudioEnvironmentDistanceAttenuationParameters{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AudioEnvironmentDistanceAttenuationParameters *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for AudioEnvironmentDistanceAttenuationParameters */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AudioEnvironmentDistanceAttenuationParameters */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AudioEnvironmentDistanceAttenuationParameters */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AudioEnvironmentDistanceAttenuationParameters */
+
+
+
+
+
+
+
+
+
 
 // The distance attenuation model that describes the drop-off in gain as the source moves away from the listener.
 //
@@ -145,7 +145,7 @@ func AudioEnvironmentDistanceAttenuationParametersFrom(ptr unsafe.Pointer) Audio
 func (a_ AudioEnvironmentDistanceAttenuationParameters) DistanceAttenuationModel() AudioEnvironmentDistanceAttenuationModel {
 	rv := objc.Send[AudioEnvironmentDistanceAttenuationModel](a_.ID, objc.Sel("distanceAttenuationModel"))
 	return rv
-}/* debug [instance_properties/getter]: distanceAttenuationModel */
+}
 
 
 // The distance attenuation model that describes the drop-off in gain as the source moves away from the listener.
@@ -154,7 +154,7 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) DistanceAttenuationModel
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentDistanceAttenuationParameters/distanceAttenuationModel
 func (a_ AudioEnvironmentDistanceAttenuationParameters) SetDistanceAttenuationModel(value AudioEnvironmentDistanceAttenuationModel) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDistanceAttenuationModel:"), value)
-}/* debug [instance_properties/setter]: distanceAttenuationModel */
+}
 
 
 // The distance beyond which the node applies no further attenuation, in meters.
@@ -164,7 +164,7 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) SetDistanceAttenuationMo
 func (a_ AudioEnvironmentDistanceAttenuationParameters) MaximumDistance() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("maximumDistance"))
 	return rv
-}/* debug [instance_properties/getter]: maximumDistance */
+}
 
 
 // The distance beyond which the node applies no further attenuation, in meters.
@@ -173,7 +173,7 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) MaximumDistance() float3
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentDistanceAttenuationParameters/maximumDistance
 func (a_ AudioEnvironmentDistanceAttenuationParameters) SetMaximumDistance(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaximumDistance:"), value)
-}/* debug [instance_properties/setter]: maximumDistance */
+}
 
 
 // The minimum distance at which the node applies attenuation, in meters.
@@ -183,7 +183,7 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) SetMaximumDistance(value
 func (a_ AudioEnvironmentDistanceAttenuationParameters) ReferenceDistance() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("referenceDistance"))
 	return rv
-}/* debug [instance_properties/getter]: referenceDistance */
+}
 
 
 // The minimum distance at which the node applies attenuation, in meters.
@@ -192,7 +192,7 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) ReferenceDistance() floa
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentDistanceAttenuationParameters/referenceDistance
 func (a_ AudioEnvironmentDistanceAttenuationParameters) SetReferenceDistance(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setReferenceDistance:"), value)
-}/* debug [instance_properties/setter]: referenceDistance */
+}
 
 
 // A factor that determines the attenuation curve.
@@ -202,7 +202,7 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) SetReferenceDistance(val
 func (a_ AudioEnvironmentDistanceAttenuationParameters) RolloffFactor() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("rolloffFactor"))
 	return rv
-}/* debug [instance_properties/getter]: rolloffFactor */
+}
 
 
 // A factor that determines the attenuation curve.
@@ -211,12 +211,12 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) RolloffFactor() float32 
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentDistanceAttenuationParameters/rolloffFactor
 func (a_ AudioEnvironmentDistanceAttenuationParameters) SetRolloffFactor(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRolloffFactor:"), value)
-}/* debug [instance_properties/setter]: rolloffFactor */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVAudioEnvironmentDistanceAttenuationParameters */
+
+
+
 
 
 

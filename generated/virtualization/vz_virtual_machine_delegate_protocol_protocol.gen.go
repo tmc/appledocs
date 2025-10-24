@@ -3,7 +3,10 @@
 package virtualization
 
 import (
+
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/coretelephony"
 )
 
 // PVZVirtualMachineDelegate is the VZVirtualMachineDelegate protocol interface.
@@ -28,8 +31,8 @@ type PVZVirtualMachineDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type VZVirtualMachineDelegate struct {
-	_GuestDidStopVirtualMachine                                    func(virtualMachine IVZVirtualMachine)
-	_VirtualMachineDidStopWithError                                func(virtualMachine IVZVirtualMachine, error_ objc.IObject /* cross-framework: Error */)
+	_GuestDidStopVirtualMachine func(virtualMachine IVZVirtualMachine)
+	_VirtualMachineDidStopWithError func(virtualMachine IVZVirtualMachine, error_ objc.IObject /* cross-framework: Error */)
 	_VirtualMachineNetworkDeviceAttachmentWasDisconnectedWithError func(virtualMachine IVZVirtualMachine, networkDevice IVZNetworkDevice, error_ objc.IObject /* cross-framework: Error */)
 }
 

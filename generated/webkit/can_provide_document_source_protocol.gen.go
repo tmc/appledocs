@@ -15,3 +15,4 @@ var canProvideDocumentSourceProtocol *objc.Protocol
 func init() {
 	canProvideDocumentSourceProtocol = objc.GetProtocol("canProvideDocumentSource")
 }
+

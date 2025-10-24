@@ -15,3 +15,4 @@ var undoManagerForWebViewProtocol *objc.Protocol
 func init() {
 	undoManagerForWebViewProtocol = objc.GetProtocol("undoManagerForWebView:")
 }
+

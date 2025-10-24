@@ -7,14 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coreml"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
-/* debug [class.gen.go]: Generating class VNClassificationObservation */
 
 
-/* debug [class_header]: Header for VNClassificationObservation */
+
+
 // The class instance for the [ClassificationObservation] class.
 var (
 	ClassificationObservationClass     _ClassificationObservationClass
@@ -31,16 +29,16 @@ func getClassificationObservationClass() _ClassificationObservationClass {
 type _ClassificationObservationClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ClassificationObservation */
+
+
 // An interface definition for the [ClassificationObservation] class.
 type IClassificationObservation interface {
 	IObservation
 	
-/* debug [class_interface_properties]: Properties for ClassificationObservation */
+
 	// properties:
 	HasPrecisionRecallCurve() bool
 	Identifier() objc.IObject /* cross-framework: NSString */
@@ -48,21 +46,21 @@ type IClassificationObservation interface {
 	SetModelDescription(value coreml.ModelDescription)
 	PredictedFeatureName() objc.IObject /* cross-framework: NSString */
 	SetPredictedFeatureName(value objc.IObject /* cross-framework: NSString */)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ClassificationObservation */
+
 	// methods:
 	HasMinimumPrecisionForRecall(minimumPrecision float32, recall float32) bool
 	HasMinimumRecallForPrecision(minimumRecall float32, precision float32) bool
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ClassificationObservation */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _ClassificationObservationClass) Alloc() ClassificationObservation {
 	rv := objc.Send[ClassificationObservation](objc.ID(cc.class), objc.Sel("alloc"))
@@ -92,11 +90,11 @@ func (c_ ClassificationObservation) Autorelease() ClassificationObservation {
 func NewClassificationObservation() ClassificationObservation {
 	return getClassificationObservationClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ClassificationObservation */
+
+
 // An object that represents classification information that an image-analysis request produces.
 //
 // This type of observation results from performing a image analysis with a Core ML model whose role is classification (rather than prediction or image-to-image processing). Vision infers that an object is a classifier model if that model predicts a single feature. That is, the model’s object has a non- value for its property.
@@ -118,25 +116,25 @@ func ClassificationObservationFrom(ptr unsafe.Pointer) ClassificationObservation
 		Observation: ObservationFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ClassificationObservation *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ClassificationObservation */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ClassificationObservation */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ClassificationObservation */
+
+
+
+
+
+
+
 
 // Determines whether the observation for a specific recall has a minimum precision value.
 //
@@ -145,7 +143,7 @@ func ClassificationObservationFrom(ptr unsafe.Pointer) ClassificationObservation
 func (c_ ClassificationObservation) HasMinimumPrecisionForRecall(minimumPrecision float32, recall float32) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasMinimumPrecision:forRecall:"), minimumPrecision, recall)
 	return rv
-}/* debug [instance_methods/method]: HasMinimumPrecisionForRecall */
+}
 
 
 // Determines whether the observation for a specific precision has a minimum recall value.
@@ -155,13 +153,13 @@ func (c_ ClassificationObservation) HasMinimumPrecisionForRecall(minimumPrecisio
 func (c_ ClassificationObservation) HasMinimumRecallForPrecision(minimumRecall float32, precision float32) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasMinimumRecall:forPrecision:"), minimumRecall, precision)
 	return rv
-}/* debug [instance_methods/method]: HasMinimumRecallForPrecision */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for ClassificationObservation */
+
+
+
 
 // A Boolean variable indicating whether the observation contains precision and recall curves.
 //
@@ -170,7 +168,7 @@ func (c_ ClassificationObservation) HasMinimumRecallForPrecision(minimumRecall f
 func (c_ ClassificationObservation) HasPrecisionRecallCurve() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasPrecisionRecallCurve"))
 	return rv
-}/* debug [instance_properties/getter]: hasPrecisionRecallCurve */
+}
 
 
 // Classification label identifying the type of observation.
@@ -180,7 +178,7 @@ func (c_ ClassificationObservation) HasPrecisionRecallCurve() bool {
 func (c_ ClassificationObservation) Identifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("identifier"))
 	return rv
-}/* debug [instance_properties/getter]: identifier */
+}
 
 
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
@@ -190,7 +188,7 @@ func (c_ ClassificationObservation) Identifier() objc.IObject /* cross-framework
 func (c_ ClassificationObservation) ModelDescription() coreml.ModelDescription {
 	rv := objc.Send[coreml.ModelDescription](c_.ID, objc.Sel("modelDescription"))
 	return rv
-}/* debug [instance_properties/getter]: modelDescription */
+}
 
 
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
@@ -199,7 +197,7 @@ func (c_ ClassificationObservation) ModelDescription() coreml.ModelDescription {
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
 func (c_ ClassificationObservation) SetModelDescription(value coreml.ModelDescription) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModelDescription:"), value)
-}/* debug [instance_properties/setter]: modelDescription */
+}
 
 
 // The name of the primary prediction feature output description.
@@ -209,7 +207,7 @@ func (c_ ClassificationObservation) SetModelDescription(value coreml.ModelDescri
 func (c_ ClassificationObservation) PredictedFeatureName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("predictedFeatureName"))
 	return rv
-}/* debug [instance_properties/getter]: predictedFeatureName */
+}
 
 
 // The name of the primary prediction feature output description.
@@ -218,12 +216,12 @@ func (c_ ClassificationObservation) PredictedFeatureName() objc.IObject /* cross
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
 func (c_ ClassificationObservation) SetPredictedFeatureName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), value)
-}/* debug [instance_properties/setter]: predictedFeatureName */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class VNClassificationObservation */
+
+
+
 
 
 

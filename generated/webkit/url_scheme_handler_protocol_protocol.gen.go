@@ -20,6 +20,6 @@ import (
 // See: doc://com.apple.webkit/documentation/WebKit/WKURLSchemeHandler
 type PURLSchemeHandler interface {
 	// Required methods
-	WebViewStartURLSchemeTask(webView IWKWebView, urlSchemeTask unsafe.Pointer)
-	WebViewStopURLSchemeTask(webView IWKWebView, urlSchemeTask unsafe.Pointer)
+	WebViewStartURLSchemeTask(webView IWKWebView, urlSchemeTask unsafe.Pointer)/* debug [protocol_interface/required_method]: WebViewStartURLSchemeTask */
+	WebViewStopURLSchemeTask(webView IWKWebView, urlSchemeTask unsafe.Pointer)/* debug [protocol_interface/required_method]: WebViewStopURLSchemeTask */
 }

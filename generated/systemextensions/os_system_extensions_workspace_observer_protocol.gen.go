@@ -15,3 +15,4 @@ var OSSystemExtensionsWorkspaceObserverProtocol *objc.Protocol
 func init() {
 	OSSystemExtensionsWorkspaceObserverProtocol = objc.GetProtocol("OSSystemExtensionsWorkspaceObserver")
 }
+

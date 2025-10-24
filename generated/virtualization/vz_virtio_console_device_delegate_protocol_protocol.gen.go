@@ -2,6 +2,11 @@
 
 package virtualization
 
+import (
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
 // PVZVirtioConsoleDeviceDelegate is the VZVirtioConsoleDeviceDelegate protocol interface.
 //
 // Optional methods that you use to respond when a console port opens or closes in the virtual machine.
@@ -23,7 +28,7 @@ type PVZVirtioConsoleDeviceDelegate interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type VZVirtioConsoleDeviceDelegate struct {
 	_ConsoleDeviceDidClosePort func(consoleDevice IVZVirtioConsoleDevice, consolePort IVZVirtioConsolePort)
-	_ConsoleDeviceDidOpenPort  func(consoleDevice IVZVirtioConsoleDevice, consolePort IVZVirtioConsolePort)
+	_ConsoleDeviceDidOpenPort func(consoleDevice IVZVirtioConsoleDevice, consolePort IVZVirtioConsolePort)
 }
 
 // SetConsoleDeviceDidClosePort sets the handler for the ConsoleDeviceDidClosePort delegate method.

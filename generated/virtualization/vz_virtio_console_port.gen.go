@@ -6,12 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZVirtioConsolePort */
+
 
 /* debug [class_header]: Header for VZVirtioConsolePort */
 // The class instance for the [VZVirtioConsolePort] class.
@@ -30,30 +31,33 @@ func getVZVirtioConsolePortClass() _VZVirtioConsolePortClass {
 type _VZVirtioConsolePortClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZVirtioConsolePort */
 // An interface definition for the [VZVirtioConsolePort] class.
 type IVZVirtioConsolePort interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZVirtioConsolePort */
+	
+/* debug [class_interface_properties]: Properties for VZVirtioConsolePort */
 	// properties:
 	Attachment() IVZSerialPortAttachment
 	SetAttachment(value IVZSerialPortAttachment)
 	Name() objc.IObject /* cross-framework: NSString */
 	Ports() IVZVirtioConsolePortArray
 	SetPorts(value IVZVirtioConsolePortArray)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZVirtioConsolePort */
+	
+/* debug [class_interface_methods]: Methods for VZVirtioConsolePort */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZVirtioConsolePort */
 // Alloc allocates a new instance without initialization.
@@ -85,13 +89,15 @@ func (v_ VZVirtioConsolePort) Autorelease() VZVirtioConsolePort {
 func NewVZVirtioConsolePort() VZVirtioConsolePort {
 	return getVZVirtioConsolePortClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZVirtioConsolePort */
 // A class that represents a Virtio console port in a VM.
 //
 // Don’t instantiate a directly. You retrieve this object from the property.
+
 
 // A class that represents a Virtio console port in a VM.
 //
@@ -107,19 +113,28 @@ type VZVirtioConsolePort struct {
 func VZVirtioConsolePortFrom(ptr unsafe.Pointer) VZVirtioConsolePort {
 	return VZVirtioConsolePort{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZVirtioConsolePort */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZVirtioConsolePort *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZVirtioConsolePort */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZVirtioConsolePort */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZVirtioConsolePort */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZVirtioConsolePort */
 
@@ -130,7 +145,8 @@ func VZVirtioConsolePortFrom(ptr unsafe.Pointer) VZVirtioConsolePort {
 func (v_ VZVirtioConsolePort) Attachment() IVZSerialPortAttachment {
 	rv := objc.Send[VZSerialPortAttachment](v_.ID, objc.Sel("attachment"))
 	return rv
-} /* debug [instance_properties/getter]: attachment */
+}/* debug [instance_properties/getter]: attachment */
+
 
 // An array of serial port attachments.
 //
@@ -138,7 +154,8 @@ func (v_ VZVirtioConsolePort) Attachment() IVZSerialPortAttachment {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePort/attachment
 func (v_ VZVirtioConsolePort) SetAttachment(value IVZSerialPortAttachment) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
-} /* debug [instance_properties/setter]: attachment */
+}/* debug [instance_properties/setter]: attachment */
+
 
 // The name of the port.
 //
@@ -147,7 +164,8 @@ func (v_ VZVirtioConsolePort) SetAttachment(value IVZSerialPortAttachment) {
 func (v_ VZVirtioConsolePort) Name() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("name"))
 	return rv
-} /* debug [instance_properties/getter]: name */
+}/* debug [instance_properties/getter]: name */
+
 
 // The array of console ports that a specific device uses.
 //
@@ -156,7 +174,8 @@ func (v_ VZVirtioConsolePort) Name() objc.IObject /* cross-framework: NSString *
 func (v_ VZVirtioConsolePort) Ports() IVZVirtioConsolePortArray {
 	rv := objc.Send[VZVirtioConsolePortArray](v_.ID, objc.Sel("ports"))
 	return rv
-} /* debug [instance_properties/getter]: ports */
+}/* debug [instance_properties/getter]: ports */
+
 
 // The array of console ports that a specific device uses.
 //
@@ -164,8 +183,12 @@ func (v_ VZVirtioConsolePort) Ports() IVZVirtioConsolePortArray {
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevice/ports
 func (v_ VZVirtioConsolePort) SetPorts(value IVZVirtioConsolePortArray) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPorts:"), value)
-} /* debug [instance_properties/setter]: ports */
+}/* debug [instance_properties/setter]: ports */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZVirtioConsolePort */
+
+
+

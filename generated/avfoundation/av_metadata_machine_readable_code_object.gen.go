@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class AVMetadataMachineReadableCodeObject */
 
 
-/* debug [class_header]: Header for AVMetadataMachineReadableCodeObject */
+
+
 // The class instance for the [MetadataMachineReadableCodeObject] class.
 var (
 	MetadataMachineReadableCodeObjectClass     _MetadataMachineReadableCodeObjectClass
@@ -29,33 +29,33 @@ func getMetadataMachineReadableCodeObjectClass() _MetadataMachineReadableCodeObj
 type _MetadataMachineReadableCodeObjectClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MetadataMachineReadableCodeObject */
+
+
 // An interface definition for the [MetadataMachineReadableCodeObject] class.
 type IMetadataMachineReadableCodeObject interface {
 	IMetadataObject
 	
-/* debug [class_interface_properties]: Properties for MetadataMachineReadableCodeObject */
+
 	// properties:
 	Corners() foundation.IDictionary
 	Descriptor() coreimage.BarcodeDescriptor
 	StringValue() objc.IObject /* cross-framework: NSString */
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MetadataMachineReadableCodeObject */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MetadataMachineReadableCodeObject */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MetadataMachineReadableCodeObjectClass) Alloc() MetadataMachineReadableCodeObject {
 	rv := objc.Send[MetadataMachineReadableCodeObject](objc.ID(mc.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (m_ MetadataMachineReadableCodeObject) Autorelease() MetadataMachineReadabl
 func NewMetadataMachineReadableCodeObject() MetadataMachineReadableCodeObject {
 	return getMetadataMachineReadableCodeObjectClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MetadataMachineReadableCodeObject */
+
+
 // Barcode information detected by a metadata capture output.
 //
 // The class is a concrete subclass of defining the features of a detected one-dimensional or two-dimensional barcode. An instance represents a single detected machine readable code in an image.  It’s an immutable object describing the features and payload of a barcode. On supported platforms, the class outputs arrays of detected machine readable code objects.
@@ -111,30 +111,30 @@ func MetadataMachineReadableCodeObjectFrom(ptr unsafe.Pointer) MetadataMachineRe
 		MetadataObject: MetadataObjectFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MetadataMachineReadableCodeObject *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for MetadataMachineReadableCodeObject */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MetadataMachineReadableCodeObject */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MetadataMachineReadableCodeObject */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MetadataMachineReadableCodeObject */
+
+
+
+
+
+
+
+
+
 
 // The points defining the (x, y) locations of the corners.
 //
@@ -143,7 +143,7 @@ func MetadataMachineReadableCodeObjectFrom(ptr unsafe.Pointer) MetadataMachineRe
 func (m_ MetadataMachineReadableCodeObject) Corners() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("corners"))
 	return rv
-}/* debug [instance_properties/getter]: corners */
+}
 
 
 // A barcode description for use in Core Image.
@@ -153,7 +153,7 @@ func (m_ MetadataMachineReadableCodeObject) Corners() foundation.IDictionary {
 func (m_ MetadataMachineReadableCodeObject) Descriptor() coreimage.BarcodeDescriptor {
 	rv := objc.Send[coreimage.BarcodeDescriptor](m_.ID, objc.Sel("descriptor"))
 	return rv
-}/* debug [instance_properties/getter]: descriptor */
+}
 
 
 // Returns the error-corrected data decoded into a human-readable string.
@@ -163,12 +163,12 @@ func (m_ MetadataMachineReadableCodeObject) Descriptor() coreimage.BarcodeDescri
 func (m_ MetadataMachineReadableCodeObject) StringValue() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("stringValue"))
 	return rv
-}/* debug [instance_properties/getter]: stringValue */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVMetadataMachineReadableCodeObject */
+
+
+
 
 
 

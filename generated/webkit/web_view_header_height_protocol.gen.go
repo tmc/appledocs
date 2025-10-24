@@ -15,3 +15,4 @@ var webViewHeaderHeightProtocol *objc.Protocol
 func init() {
 	webViewHeaderHeightProtocol = objc.GetProtocol("webViewHeaderHeight:")
 }
+

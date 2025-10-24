@@ -15,3 +15,4 @@ var webViewDidBeginEditingProtocol *objc.Protocol
 func init() {
 	webViewDidBeginEditingProtocol = objc.GetProtocol("webViewDidBeginEditing:")
 }
+

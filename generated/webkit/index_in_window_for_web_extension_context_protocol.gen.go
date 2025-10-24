@@ -19,3 +19,4 @@ var indexInWindowForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	indexInWindowForWebExtensionContextProtocol = objc.GetProtocol("indexInWindowForWebExtensionContext:")
 }
+

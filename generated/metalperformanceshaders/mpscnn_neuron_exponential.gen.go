@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNNeuronExponential */
 
 
-/* debug [class_header]: Header for MPSCNNNeuronExponential */
+
+
 // The class instance for the [CNNNeuronExponential] class.
 var (
 	CNNNeuronExponentialClass     _CNNNeuronExponentialClass
@@ -30,30 +30,30 @@ func getCNNNeuronExponentialClass() _CNNNeuronExponentialClass {
 type _CNNNeuronExponentialClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNNeuronExponential */
+
+
 // An interface definition for the [CNNNeuronExponential] class.
 type ICNNNeuronExponential interface {
 	ICNNNeuron
 	
-/* debug [class_interface_properties]: Properties for CNNNeuronExponential */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNNeuronExponential */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNNeuronExponential */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNNeuronExponentialClass) Alloc() CNNNeuronExponential {
 	rv := objc.Send[CNNNeuronExponential](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNNeuronExponential) Autorelease() CNNNeuronExponential {
 func NewCNNNeuronExponential() CNNNeuronExponential {
 	return getCNNNeuronExponentialClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNNeuronExponential */
+
+
 // An exponential neuron filter.
 
 
@@ -107,11 +107,11 @@ func CNNNeuronExponentialFrom(ptr unsafe.Pointer) CNNNeuronExponential {
 		CNNNeuron: CNNNeuronFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNNeuronExponential */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronexponential/2951870-initwithdevice
@@ -120,31 +120,31 @@ func NewCNNNeuronExponentialWithDeviceABC(device unsafe.Pointer, a float32, b fl
 	rv := objc.Send[CNNNeuronExponential](instance.ID, objc.Sel("initWithDevice:a:b:c:"), device, a, b, c)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNNeuronExponentialWithDeviceABC */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNNeuronExponential */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNNeuronExponential */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNNeuronExponential */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNNeuronExponential */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNNeuronExponential */
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -339,13 +339,13 @@ func TestPropertyConflictsWithParent(t *testing.T) {
 		propertyName string
 		want         bool
 	}{
-		{"NSControl", "NSView", "view", true},  // view property would conflict with View field
-		{"NSButton", "NSView", "title", false}, // title doesn't conflict
-		{"NSView", "NSResponder", "window", true},
+		{"NSControl", "NSView", "view", true},   // view property would conflict with View field
+		{"NSButton", "NSView", "title", false},  // title doesn't conflict
+		{"NSView", "NSWindow", "window", true},  // window property would conflict with Window field (fixed: was NSResponder)
 		{"NSButton", "NSControl", "button", false},
-		{"", "NSView", "view", false},          // empty class name
-		{"NSButton", "", "view", false},        // empty superclass
-		{"NSButton", "NSView", "", false},      // empty property name
+		{"", "NSView", "view", false},           // empty class name
+		{"NSButton", "", "view", false},         // empty superclass
+		{"NSButton", "NSView", "", false},       // empty property name
 	}
 
 	for _, tt := range tests {

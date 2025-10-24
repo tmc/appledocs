@@ -2,6 +2,11 @@
 
 package storekit
 
+import (
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
 // PStoreProductViewControllerDelegate is the SKStoreProductViewControllerDelegate protocol interface.
 //
 // A protocol to call when the customer dismisses the store screen.

@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZConsolePortConfiguration */
 
+
 /* debug [class_header]: Header for VZConsolePortConfiguration */
 // The class instance for the [VZConsolePortConfiguration] class.
 var (
@@ -29,27 +30,30 @@ func getVZConsolePortConfigurationClass() _VZConsolePortConfigurationClass {
 type _VZConsolePortConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZConsolePortConfiguration */
 // An interface definition for the [VZConsolePortConfiguration] class.
 type IVZConsolePortConfiguration interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZConsolePortConfiguration */
+	
+/* debug [class_interface_properties]: Properties for VZConsolePortConfiguration */
 	// properties:
 	Attachment() IVZSerialPortAttachment
 	SetAttachment(value IVZSerialPortAttachment)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZConsolePortConfiguration */
+	
+/* debug [class_interface_methods]: Methods for VZConsolePortConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZConsolePortConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -81,13 +85,15 @@ func (v_ VZConsolePortConfiguration) Autorelease() VZConsolePortConfiguration {
 func NewVZConsolePortConfiguration() VZConsolePortConfiguration {
 	return getVZConsolePortConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZConsolePortConfiguration */
 // The base class for a console port configuration.
 //
 // Don’t instantiate directly, instead use one of its subclasses like .
+
 
 // The base class for a console port configuration.
 //
@@ -103,19 +109,28 @@ type VZConsolePortConfiguration struct {
 func VZConsolePortConfigurationFrom(ptr unsafe.Pointer) VZConsolePortConfiguration {
 	return VZConsolePortConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZConsolePortConfiguration */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZConsolePortConfiguration *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZConsolePortConfiguration */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZConsolePortConfiguration */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZConsolePortConfiguration */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZConsolePortConfiguration */
 
@@ -126,7 +141,8 @@ func VZConsolePortConfigurationFrom(ptr unsafe.Pointer) VZConsolePortConfigurati
 func (v_ VZConsolePortConfiguration) Attachment() IVZSerialPortAttachment {
 	rv := objc.Send[VZSerialPortAttachment](v_.ID, objc.Sel("attachment"))
 	return rv
-} /* debug [instance_properties/getter]: attachment */
+}/* debug [instance_properties/getter]: attachment */
+
 
 // The serial port attachment.
 //
@@ -134,8 +150,12 @@ func (v_ VZConsolePortConfiguration) Attachment() IVZSerialPortAttachment {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZConsolePortConfiguration/attachment
 func (v_ VZConsolePortConfiguration) SetAttachment(value IVZSerialPortAttachment) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
-} /* debug [instance_properties/setter]: attachment */
+}/* debug [instance_properties/setter]: attachment */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZConsolePortConfiguration */
+
+
+

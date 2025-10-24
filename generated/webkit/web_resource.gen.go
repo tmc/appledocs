@@ -6,12 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class WebResource */
+
 
 /* debug [class_header]: Header for WebResource */
 // The class instance for the [WebResource] class.
@@ -30,30 +31,33 @@ func getWebResourceClass() _WebResourceClass {
 type _WebResourceClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for WebResource */
 // An interface definition for the [WebResource] class.
 type IWebResource interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for WebResource */
+	
+/* debug [class_interface_properties]: Properties for WebResource */
 	// properties:
-	Data() objc.IObject             /* cross-framework: NSData */
-	FrameName() objc.IObject        /* cross-framework: NSString */
-	MIMEType() objc.IObject         /* cross-framework: NSString */
+	Data() objc.IObject /* cross-framework: NSData */
+	FrameName() objc.IObject /* cross-framework: NSString */
+	MIMEType() objc.IObject /* cross-framework: NSString */
 	TextEncodingName() objc.IObject /* cross-framework: NSString */
-	URL() objc.IObject              /* cross-framework: NSURL */
-	/* debug [class_interface_properties]: End properties */
+	URL() objc.IObject /* cross-framework: NSURL */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for WebResource */
+	
+/* debug [class_interface_methods]: Methods for WebResource */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for WebResource */
 // Alloc allocates a new instance without initialization.
@@ -85,13 +89,15 @@ func (w_ WebResource) Autorelease() WebResource {
 func NewWebResource() WebResource {
 	return getWebResourceClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for WebResource */
 // A object represents a downloaded URL. It encapsulates the data of the download as well as other resource properties such as the URL, MIME type, and frame name.
 //
 // Use the method to initialize a newly created object. Use the other methods in this class to get the properties of a object.
+
 
 // A object represents a downloaded URL. It encapsulates the data of the download as well as other resource properties such as the URL, MIME type, and frame name.
 //
@@ -107,8 +113,9 @@ type WebResource struct {
 func WebResourceFrom(ptr unsafe.Pointer) WebResource {
 	return WebResource{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for WebResource */
 
@@ -121,18 +128,26 @@ func NewWebResourceWithDataURLMIMETypeTextEncodingNameFrameName(data objc.IObjec
 	rv := objc.Send[WebResource](instance.ID, objc.Sel("initWithData:URL:MIMEType:textEncodingName:frameName:"), data, URL, MIMEType, textEncodingName, frameName)
 	rv.Autorelease()
 	return rv
-} /* debug [class_init_methods/constructor]: NewWebResourceWithDataURLMIMETypeTextEncodingNameFrameName */
+}/* debug [class_init_methods/constructor]: NewWebResourceWithDataURLMIMETypeTextEncodingNameFrameName */
 
 /* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for WebResource */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for WebResource */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for WebResource */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for WebResource */
 
@@ -143,7 +158,8 @@ func NewWebResourceWithDataURLMIMETypeTextEncodingNameFrameName(data objc.IObjec
 func (w_ WebResource) Data() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](w_.ID, objc.Sel("data"))
 	return rv
-} /* debug [instance_properties/getter]: data */
+}/* debug [instance_properties/getter]: data */
+
 
 // The name of the frame. If the receiver does not represent the contents of an entire HTML frame, this is .
 //
@@ -152,7 +168,8 @@ func (w_ WebResource) Data() objc.IObject /* cross-framework: NSData */ {
 func (w_ WebResource) FrameName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("frameName"))
 	return rv
-} /* debug [instance_properties/getter]: frameName */
+}/* debug [instance_properties/getter]: frameName */
+
 
 // The receiver’s MIME type.
 //
@@ -161,7 +178,8 @@ func (w_ WebResource) FrameName() objc.IObject /* cross-framework: NSString */ {
 func (w_ WebResource) MIMEType() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("MIMEType"))
 	return rv
-} /* debug [instance_properties/getter]: MIMEType */
+}/* debug [instance_properties/getter]: MIMEType */
+
 
 // The receiver’s text encoding name.
 //
@@ -170,7 +188,8 @@ func (w_ WebResource) MIMEType() objc.IObject /* cross-framework: NSString */ {
 func (w_ WebResource) TextEncodingName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("textEncodingName"))
 	return rv
-} /* debug [instance_properties/getter]: textEncodingName */
+}/* debug [instance_properties/getter]: textEncodingName */
+
 
 // The receiver’s URL.
 //
@@ -179,8 +198,11 @@ func (w_ WebResource) TextEncodingName() objc.IObject /* cross-framework: NSStri
 func (w_ WebResource) URL() objc.IObject /* cross-framework: NSURL */ {
 	rv := objc.Send[foundation.NSURL](w_.ID, objc.Sel("URL"))
 	return rv
-} /* debug [instance_properties/getter]: URL */
+}/* debug [instance_properties/getter]: URL */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class WebResource */
+
+

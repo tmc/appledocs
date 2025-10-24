@@ -12,3 +12,4 @@ package systemextensions
 // See: doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequestDelegate/requestNeedsUserApproval(_:)
 type PrequestNeedsUserApproval interface {
 }
+

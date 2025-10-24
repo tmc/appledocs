@@ -11,6 +11,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZVirtioGraphicsScanout */
 
+
 /* debug [class_header]: Header for VZVirtioGraphicsScanout */
 // The class instance for the [VZVirtioGraphicsScanout] class.
 var (
@@ -28,25 +29,28 @@ func getVZVirtioGraphicsScanoutClass() _VZVirtioGraphicsScanoutClass {
 type _VZVirtioGraphicsScanoutClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZVirtioGraphicsScanout */
 // An interface definition for the [VZVirtioGraphicsScanout] class.
 type IVZVirtioGraphicsScanout interface {
 	IVZGraphicsDisplay
-
-	/* debug [class_interface_properties]: Properties for VZVirtioGraphicsScanout */
+	
+/* debug [class_interface_properties]: Properties for VZVirtioGraphicsScanout */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZVirtioGraphicsScanout */
+	
+/* debug [class_interface_methods]: Methods for VZVirtioGraphicsScanout */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZVirtioGraphicsScanout */
 // Alloc allocates a new instance without initialization.
@@ -78,11 +82,13 @@ func (v_ VZVirtioGraphicsScanout) Autorelease() VZVirtioGraphicsScanout {
 func NewVZVirtioGraphicsScanout() VZVirtioGraphicsScanout {
 	return getVZVirtioGraphicsScanoutClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZVirtioGraphicsScanout */
 // A Virtio graphics scanout that corresponds to a Virtio graphics scanout configuration.
+
 
 // A Virtio graphics scanout that corresponds to a Virtio graphics scanout configuration.
 //
@@ -100,21 +106,34 @@ func VZVirtioGraphicsScanoutFrom(ptr unsafe.Pointer) VZVirtioGraphicsScanout {
 		VZGraphicsDisplay: VZGraphicsDisplayFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZVirtioGraphicsScanout */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZVirtioGraphicsScanout *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZVirtioGraphicsScanout */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZVirtioGraphicsScanout */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZVirtioGraphicsScanout */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for VZVirtioGraphicsScanout */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZVirtioGraphicsScanout */
+
+
+

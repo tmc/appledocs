@@ -19,3 +19,4 @@ var urlForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	urlForWebExtensionContextProtocol = objc.GetProtocol("urlForWebExtensionContext:")
 }
+

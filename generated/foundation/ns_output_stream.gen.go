@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSOutputStream */
 
 
-/* debug [class_header]: Header for NSOutputStream */
+
+
 // The class instance for the [OutputStream] class.
 var (
 	OutputStreamClass     _OutputStreamClass
@@ -30,33 +30,33 @@ func getOutputStreamClass() _OutputStreamClass {
 type _OutputStreamClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for OutputStream */
+
+
 // An interface definition for the [OutputStream] class.
 type IOutputStream interface {
 	IStream
 	
-/* debug [class_interface_properties]: Properties for OutputStream */
+
 	// properties:
 	HasSpaceAvailable() bool
 	SetHasSpaceAvailable(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for OutputStream */
+
 	// methods:
 	WriteMaxLength(buffer objectivec.IObject, len_ uint) int
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for OutputStream */
+
+
 // Alloc allocates a new instance without initialization.
 func (oc _OutputStreamClass) Alloc() OutputStream {
 	rv := objc.Send[OutputStream](objc.ID(oc.class), objc.Sel("alloc"))
@@ -86,11 +86,11 @@ func (o_ OutputStream) Autorelease() OutputStream {
 func NewOutputStream() OutputStream {
 	return getOutputStreamClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for OutputStream */
+
+
 // A stream that provides write-only stream functionality.
 //
 // is “toll-free bridged” with its Core Foundation counterpart, . For more information on toll-free bridging, see .
@@ -112,25 +112,25 @@ func OutputStreamFrom(ptr unsafe.Pointer) OutputStream {
 		Stream: StreamFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for OutputStream *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for OutputStream */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for OutputStream */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for OutputStream */
+
+
+
+
+
+
+
 
 // Writes the contents of a provided data buffer to the receiver.
 //
@@ -139,13 +139,13 @@ func OutputStreamFrom(ptr unsafe.Pointer) OutputStream {
 func (o_ OutputStream) WriteMaxLength(buffer objectivec.IObject, len_ uint) int {
 	rv := objc.Send[int](o_.ID, objc.Sel("write:maxLength:"), buffer, len_)
 	return rv
-}/* debug [instance_methods/method]: WriteMaxLength */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for OutputStream */
+
+
+
 
 // A boolean value that indicates whether the receiver can be written to.
 //
@@ -154,7 +154,7 @@ func (o_ OutputStream) WriteMaxLength(buffer objectivec.IObject, len_ uint) int 
 func (o_ OutputStream) HasSpaceAvailable() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("hasSpaceAvailable"))
 	return rv
-}/* debug [instance_properties/getter]: hasSpaceAvailable */
+}
 
 
 // A boolean value that indicates whether the receiver can be written to.
@@ -163,12 +163,12 @@ func (o_ OutputStream) HasSpaceAvailable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/outputstream/hasspaceavailable
 func (o_ OutputStream) SetHasSpaceAvailable(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setHasSpaceAvailable:"), value)
-}/* debug [instance_properties/setter]: hasSpaceAvailable */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSOutputStream */
+
+
+
 
 
 

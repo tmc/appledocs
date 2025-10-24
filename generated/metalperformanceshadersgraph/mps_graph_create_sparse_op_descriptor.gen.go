@@ -40,8 +40,8 @@ type IGraphCreateSparseOpDescriptor interface {
 	
 /* debug [class_interface_properties]: Properties for GraphCreateSparseOpDescriptor */
 	// properties:
-	DataType() DataType /* not a class type */
-	SetDataType(value DataType /* not a class type */)
+	DataType() objc.IObject /* cross-framework: DataType */
+	SetDataType(value objc.IObject /* cross-framework: DataType */)
 	SparseStorageType() GraphSparseStorageType
 	SetSparseStorageType(value GraphSparseStorageType)
 /* debug [class_interface_properties]: End properties */
@@ -124,7 +124,7 @@ func GraphCreateSparseOpDescriptorFrom(ptr unsafe.Pointer) GraphCreateSparseOpDe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCreateSparseOpDescriptor/sparseDescriptor(descriptorWithStorageType:dataType:)
-func (gc _GraphCreateSparseOpDescriptorClass) DescriptorWithStorageTypeDataType(sparseStorageType GraphSparseStorageType, dataType DataType /* not a class type */) unsafe.Pointer {
+func (gc _GraphCreateSparseOpDescriptorClass) DescriptorWithStorageTypeDataType(sparseStorageType GraphSparseStorageType, dataType objc.IObject /* cross-framework: DataType */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("descriptorWithStorageType:dataType:"), sparseStorageType, dataType)
 	return rv
 }/* debug [class_methods/method]: Class method for%!(EXTRA string=DescriptorWithStorageTypeDataType) */
@@ -149,8 +149,8 @@ func (gc _GraphCreateSparseOpDescriptorClass) DescriptorWithStorageTypeDataType(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCreateSparseOpDescriptor/dataType
-func (g_ GraphCreateSparseOpDescriptor) DataType() DataType /* not a class type */ {
-	rv := objc.Send[DataType](g_.ID, objc.Sel("dataType"))
+func (g_ GraphCreateSparseOpDescriptor) DataType() objc.IObject /* cross-framework: DataType */ {
+	rv := objc.Send[metalperformanceshaders.DataType](g_.ID, objc.Sel("dataType"))
 	return rv
 }/* debug [instance_properties/getter]: dataType */
 
@@ -159,7 +159,7 @@ func (g_ GraphCreateSparseOpDescriptor) DataType() DataType /* not a class type 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCreateSparseOpDescriptor/dataType
-func (g_ GraphCreateSparseOpDescriptor) SetDataType(value DataType /* not a class type */) {
+func (g_ GraphCreateSparseOpDescriptor) SetDataType(value objc.IObject /* cross-framework: DataType */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDataType:"), value)
 }/* debug [instance_properties/setter]: dataType */
 

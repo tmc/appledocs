@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class VNHumanBodyRecognizedPoint3D */
 
 
-/* debug [class_header]: Header for VNHumanBodyRecognizedPoint3D */
+
+
 // The class instance for the [HumanBodyRecognizedPoint3D] class.
 var (
 	HumanBodyRecognizedPoint3DClass     _HumanBodyRecognizedPoint3DClass
@@ -30,32 +30,32 @@ func getHumanBodyRecognizedPoint3DClass() _HumanBodyRecognizedPoint3DClass {
 type _HumanBodyRecognizedPoint3DClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for HumanBodyRecognizedPoint3D */
+
+
 // An interface definition for the [HumanBodyRecognizedPoint3D] class.
 type IHumanBodyRecognizedPoint3D interface {
 	IRecognizedPoint3D
 	
-/* debug [class_interface_properties]: Properties for HumanBodyRecognizedPoint3D */
+
 	// properties:
 	LocalPosition() objectivec.IObject
 	ParentJoint() HumanBodyPose3DObservationJointName /* typedef */
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for HumanBodyRecognizedPoint3D */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for HumanBodyRecognizedPoint3D */
+
+
 // Alloc allocates a new instance without initialization.
 func (hc _HumanBodyRecognizedPoint3DClass) Alloc() HumanBodyRecognizedPoint3D {
 	rv := objc.Send[HumanBodyRecognizedPoint3D](objc.ID(hc.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (h_ HumanBodyRecognizedPoint3D) Autorelease() HumanBodyRecognizedPoint3D {
 func NewHumanBodyRecognizedPoint3D() HumanBodyRecognizedPoint3D {
 	return getHumanBodyRecognizedPoint3DClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for HumanBodyRecognizedPoint3D */
+
+
 // A recognized 3D point that includes a parent joint.
 
 
@@ -109,30 +109,30 @@ func HumanBodyRecognizedPoint3DFrom(ptr unsafe.Pointer) HumanBodyRecognizedPoint
 		RecognizedPoint3D: RecognizedPoint3DFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for HumanBodyRecognizedPoint3D *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for HumanBodyRecognizedPoint3D */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for HumanBodyRecognizedPoint3D */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for HumanBodyRecognizedPoint3D */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for HumanBodyRecognizedPoint3D */
+
+
+
+
+
+
+
+
+
 
 // The three-dimensional position.
 //
@@ -141,7 +141,7 @@ func HumanBodyRecognizedPoint3DFrom(ptr unsafe.Pointer) HumanBodyRecognizedPoint
 func (h_ HumanBodyRecognizedPoint3D) LocalPosition() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](h_.ID, objc.Sel("localPosition"))
 	return rv
-}/* debug [instance_properties/getter]: localPosition */
+}
 
 
 // The parent joint in the observation.
@@ -151,12 +151,12 @@ func (h_ HumanBodyRecognizedPoint3D) LocalPosition() objectivec.IObject {
 func (h_ HumanBodyRecognizedPoint3D) ParentJoint() HumanBodyPose3DObservationJointName /* typedef */ {
 	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("parentJoint"))
 	return rv
-}/* debug [instance_properties/getter]: parentJoint */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class VNHumanBodyRecognizedPoint3D */
+
+
+
 
 
 

@@ -251,6 +251,41 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 			goType := mapObjCTypeToGo(method.ReturnType, framework)
 			if importPath := GetImportPathFromType(goType); importPath != "" {
 				if importPath != currentFrameworkImportPath {
+					// Check if this is a cross-framework type that will be replaced with objc.IObject
+					// Extract the base type name (strip package prefix and pointer/slice markers)
+					baseType := goType
+					if strings.Contains(baseType, ".") {
+						parts := strings.Split(baseType, ".")
+						if len(parts) >= 2 {
+							baseType = parts[1]
+						}
+					}
+					baseType = strings.TrimPrefix(baseType, "*")
+					baseType = strings.TrimPrefix(baseType, "[]")
+					baseType = strings.TrimPrefix(baseType, "I") // Strip interface prefix
+
+					// Check if this type has a package prefix from a different framework
+					// If so, it will be converted to objc.IObject in code generation, so skip the import
+					if strings.Contains(goType, ".") {
+						parts := strings.Split(goType, ".")
+						if len(parts) >= 2 {
+							typePackage := parts[0]
+							currentPackage := strings.ToLower(framework)
+
+							// If the type's package differs from current framework, skip import
+							// The code generator will replace it with objc.IObject to avoid circular deps
+							// Exception: corefoundation contains only value types (structs), never classes
+					if typePackage != currentPackage && typePackage != "objc" && typePackage != "objectivec" && typePackage != "corefoundation" {
+								Debug.Imports("skipping import for cross-framework type (return)", method.Name, goType,
+									"class", class.Name,
+									"method", method.Name,
+									"typePackage", typePackage,
+									"currentPackage", currentPackage)
+								continue
+							}
+						}
+					}
+
 					// Check for framework hierarchy violations before adding import
 					// If the target framework is at a higher level than current, skip the import
 					// since the template will use objectivec.IObject (or IObject if we're IN objectivec) instead
@@ -310,6 +345,42 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 
 			if importPath := GetImportPathFromType(goType); importPath != "" {
 				if importPath != currentFrameworkImportPath {
+					// Check if this is a cross-framework type that will be replaced with objc.IObject
+					// Extract the base type name (strip package prefix and pointer/slice markers)
+					baseType := goType
+					if strings.Contains(baseType, ".") {
+						parts := strings.Split(baseType, ".")
+						if len(parts) >= 2 {
+							baseType = parts[1]
+						}
+					}
+					baseType = strings.TrimPrefix(baseType, "*")
+					baseType = strings.TrimPrefix(baseType, "[]")
+					baseType = strings.TrimPrefix(baseType, "I") // Strip interface prefix
+
+					// Check if this type has a package prefix from a different framework
+					// If so, it will be converted to objc.IObject in code generation, so skip the import
+					if strings.Contains(goType, ".") {
+						parts := strings.Split(goType, ".")
+						if len(parts) >= 2 {
+							typePackage := parts[0]
+							currentPackage := strings.ToLower(framework)
+
+							// If the type's package differs from current framework, skip import
+							// The code generator will replace it with objc.IObject to avoid circular deps
+							// Exception: corefoundation contains only value types (structs), never classes
+					if typePackage != currentPackage && typePackage != "objc" && typePackage != "objectivec" && typePackage != "corefoundation" {
+								Debug.Imports("skipping import for cross-framework type (param)", method.Name, goType,
+									"class", class.Name,
+									"method", method.Name,
+									"param", param.Name,
+									"typePackage", typePackage,
+									"currentPackage", currentPackage)
+								continue
+							}
+						}
+					}
+
 					// Check for framework hierarchy violations before adding import
 					// If the target framework is at a higher level than current, skip the import
 					// since the template will use objectivec.IObject (or IObject if we're IN objectivec) instead (fixes appledocs-496, appledocs-519)
@@ -365,6 +436,41 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 		goType := mapObjCTypeToGo(objcType, framework)
 		if importPath := GetImportPathFromType(goType); importPath != "" {
 			if importPath != currentFrameworkImportPath {
+				// Check if this is a cross-framework type that will be replaced with objc.IObject
+				// Extract the base type name (strip package prefix and pointer/slice markers)
+				baseType := goType
+				if strings.Contains(baseType, ".") {
+					parts := strings.Split(baseType, ".")
+					if len(parts) >= 2 {
+						baseType = parts[1]
+					}
+				}
+				baseType = strings.TrimPrefix(baseType, "*")
+				baseType = strings.TrimPrefix(baseType, "[]")
+				baseType = strings.TrimPrefix(baseType, "I") // Strip interface prefix
+
+				// Check if this type has a package prefix from a different framework
+				// If so, it will be converted to objc.IObject in code generation, so skip the import
+				if strings.Contains(goType, ".") {
+					parts := strings.Split(goType, ".")
+					if len(parts) >= 2 {
+						typePackage := parts[0]
+						currentPackage := strings.ToLower(framework)
+
+						// If the type's package differs from current framework, skip import
+						// The code generator will replace it with objc.IObject to avoid circular deps
+						// Exception: corefoundation contains only value types (structs), never classes
+					if typePackage != currentPackage && typePackage != "objc" && typePackage != "objectivec" && typePackage != "corefoundation" {
+							Debug.Imports("skipping import for cross-framework type (property)", prop.Name, goType,
+								"class", class.Name,
+								"property", prop.Name,
+								"typePackage", typePackage,
+								"currentPackage", currentPackage)
+							continue
+						}
+					}
+				}
+
 				// Check for framework hierarchy violations before adding import
 				// If the target framework is at a higher level than current, skip the import
 				// since the template will use objectivec.IObject (or IObject if we're IN objectivec) instead

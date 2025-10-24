@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNAdditionNode */
 
 
-/* debug [class_header]: Header for MPSNNAdditionNode */
+
+
 // The class instance for the [AdditionNode] class.
 var (
 	AdditionNodeClass     _AdditionNodeClass
@@ -29,30 +29,30 @@ func getAdditionNodeClass() _AdditionNodeClass {
 type _AdditionNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AdditionNode */
+
+
 // An interface definition for the [AdditionNode] class.
 type IAdditionNode interface {
 	IBinaryArithmeticNode
 	
-/* debug [class_interface_properties]: Properties for AdditionNode */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AdditionNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AdditionNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AdditionNodeClass) Alloc() AdditionNode {
 	rv := objc.Send[AdditionNode](objc.ID(ac.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (a_ AdditionNode) Autorelease() AdditionNode {
 func NewAdditionNode() AdditionNode {
 	return getAdditionNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AdditionNode */
+
+
 // A representation of an addition operator.
 
 
@@ -106,34 +106,34 @@ func AdditionNodeFrom(ptr unsafe.Pointer) AdditionNode {
 		BinaryArithmeticNode: BinaryArithmeticNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AdditionNode *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for AdditionNode */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AdditionNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AdditionNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AdditionNode */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNAdditionNode */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -267,3 +267,5 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/State-swift.enum/stopping
 	VZVirtualMachineStateStopping VZVirtualMachineState = 0
 )
+
+

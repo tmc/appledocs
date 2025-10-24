@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 /* debug [class.gen.go]: Generating class MPSGraphTensor */
@@ -41,12 +40,9 @@ type IGraphTensor interface {
 	
 /* debug [class_interface_properties]: Properties for GraphTensor */
 	// properties:
-	DataType() DataType /* not a class type */
-	SetDataType(value DataType /* not a class type */)
+	DataType() objc.IObject /* cross-framework: DataType */
 	Operation() IMPSGraphOperation
-	SetOperation(value IMPSGraphOperation)
-	Shape() objc.IObject /* cross-framework: NSNumber */
-	SetShape(value objc.IObject /* cross-framework: NSNumber */)
+	Shape() Shape /* not a class type */
 /* debug [class_interface_properties]: End properties */
 
 	
@@ -143,58 +139,31 @@ func GraphTensorFrom(ptr unsafe.Pointer) GraphTensor {
 // The data type of the tensor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor/datatype
-func (g_ GraphTensor) DataType() DataType /* not a class type */ {
-	rv := objc.Send[DataType](g_.ID, objc.Sel("dataType"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensor/dataType
+func (g_ GraphTensor) DataType() objc.IObject /* cross-framework: DataType */ {
+	rv := objc.Send[metalperformanceshaders.DataType](g_.ID, objc.Sel("dataType"))
 	return rv
 }/* debug [instance_properties/getter]: dataType */
-
-
-// The data type of the tensor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor/datatype
-func (g_ GraphTensor) SetDataType(value DataType /* not a class type */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDataType:"), value)
-}/* debug [instance_properties/setter]: dataType */
 
 
 // The operation responsible for creating this tensor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor/operation
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensor/operation
 func (g_ GraphTensor) Operation() IMPSGraphOperation {
 	rv := objc.Send[GraphOperation](g_.ID, objc.Sel("operation"))
 	return rv
 }/* debug [instance_properties/getter]: operation */
 
 
-// The operation responsible for creating this tensor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor/operation
-func (g_ GraphTensor) SetOperation(value IMPSGraphOperation) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setOperation:"), value)
-}/* debug [instance_properties/setter]: operation */
-
-
 // The shape of the tensor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor/shape
-func (g_ GraphTensor) Shape() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](g_.ID, objc.Sel("shape"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensor/shape
+func (g_ GraphTensor) Shape() Shape /* not a class type */ {
+	rv := objc.Send[Shape](g_.ID, objc.Sel("shape"))
 	return rv
 }/* debug [instance_properties/getter]: shape */
-
-
-// The shape of the tensor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor/shape
-func (g_ GraphTensor) SetShape(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setShape:"), value)
-}/* debug [instance_properties/setter]: shape */
 
 /* debug [instance_properties]: End instance properties */
 

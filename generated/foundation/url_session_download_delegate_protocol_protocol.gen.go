@@ -23,7 +23,7 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/URLSessionDownloadDelegate
 type PURLSessionDownloadDelegate interface {
 	// Required methods
-	URLSessionDownloadTaskDidFinishDownloadingToURL(session IURLSession, downloadTask IURLSessionDownloadTask, location IURL)/* debug [protocol_interface/required_method]: URLSessionDownloadTaskDidFinishDownloadingToURL */
+	URLSessionDownloadTaskDidFinishDownloadingToURL(session IURLSession, downloadTask IURLSessionDownloadTask, location IURL)
 	// Optional methods
 	URLSessionDownloadTaskDidResumeAtOffsetExpectedTotalBytes(session IURLSession, downloadTask IURLSessionDownloadTask, fileOffset int64, expectedTotalBytes int64)
 	HasURLSessionDownloadTaskDidResumeAtOffsetExpectedTotalBytes() bool

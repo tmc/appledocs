@@ -19,3 +19,4 @@ var WebExtensionWindowProtocol *objc.Protocol
 func init() {
 	WebExtensionWindowProtocol = objc.GetProtocol("WKWebExtensionWindow")
 }
+

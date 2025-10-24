@@ -6,12 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class OSSystemExtensionProperties */
+
 
 /* debug [class_header]: Header for OSSystemExtensionProperties */
 // The class instance for the [OSSystemExtensionProperties] class.
@@ -30,32 +31,35 @@ func getOSSystemExtensionPropertiesClass() _OSSystemExtensionPropertiesClass {
 type _OSSystemExtensionPropertiesClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for OSSystemExtensionProperties */
 // An interface definition for the [OSSystemExtensionProperties] class.
 type IOSSystemExtensionProperties interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for OSSystemExtensionProperties */
+	
+/* debug [class_interface_properties]: Properties for OSSystemExtensionProperties */
 	// properties:
-	BundleIdentifier() objc.IObject   /* cross-framework: NSString */
+	BundleIdentifier() objc.IObject /* cross-framework: NSString */
 	BundleShortVersion() objc.IObject /* cross-framework: NSString */
-	BundleVersion() objc.IObject      /* cross-framework: NSString */
+	BundleVersion() objc.IObject /* cross-framework: NSString */
 	IsAwaitingUserApproval() bool
 	IsEnabled() bool
 	IsUninstalling() bool
 	URL() objc.IObject /* cross-framework: NSURL */
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for OSSystemExtensionProperties */
+	
+/* debug [class_interface_methods]: Methods for OSSystemExtensionProperties */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for OSSystemExtensionProperties */
 // Alloc allocates a new instance without initialization.
@@ -87,11 +91,13 @@ func (o_ OSSystemExtensionProperties) Autorelease() OSSystemExtensionProperties 
 func NewOSSystemExtensionProperties() OSSystemExtensionProperties {
 	return getOSSystemExtensionPropertiesClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for OSSystemExtensionProperties */
 // Properties that identify a specific version of a system extension.
+
 
 // Properties that identify a specific version of a system extension.
 //
@@ -107,19 +113,28 @@ type OSSystemExtensionProperties struct {
 func OSSystemExtensionPropertiesFrom(ptr unsafe.Pointer) OSSystemExtensionProperties {
 	return OSSystemExtensionProperties{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for OSSystemExtensionProperties */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for OSSystemExtensionProperties *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for OSSystemExtensionProperties */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for OSSystemExtensionProperties */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for OSSystemExtensionProperties */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for OSSystemExtensionProperties */
 
@@ -130,7 +145,8 @@ func OSSystemExtensionPropertiesFrom(ptr unsafe.Pointer) OSSystemExtensionProper
 func (o_ OSSystemExtensionProperties) BundleIdentifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("bundleIdentifier"))
 	return rv
-} /* debug [instance_properties/getter]: bundleIdentifier */
+}/* debug [instance_properties/getter]: bundleIdentifier */
+
 
 // The bundle short version string of the extension.
 //
@@ -139,7 +155,8 @@ func (o_ OSSystemExtensionProperties) BundleIdentifier() objc.IObject /* cross-f
 func (o_ OSSystemExtensionProperties) BundleShortVersion() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("bundleShortVersion"))
 	return rv
-} /* debug [instance_properties/getter]: bundleShortVersion */
+}/* debug [instance_properties/getter]: bundleShortVersion */
+
 
 // The bundle version of the extension.
 //
@@ -148,28 +165,32 @@ func (o_ OSSystemExtensionProperties) BundleShortVersion() objc.IObject /* cross
 func (o_ OSSystemExtensionProperties) BundleVersion() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("bundleVersion"))
 	return rv
-} /* debug [instance_properties/getter]: bundleVersion */
+}/* debug [instance_properties/getter]: bundleVersion */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/isAwaitingUserApproval
 func (o_ OSSystemExtensionProperties) IsAwaitingUserApproval() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isAwaitingUserApproval"))
 	return rv
-} /* debug [instance_properties/getter]: isAwaitingUserApproval */
+}/* debug [instance_properties/getter]: isAwaitingUserApproval */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/isEnabled
 func (o_ OSSystemExtensionProperties) IsEnabled() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isEnabled"))
 	return rv
-} /* debug [instance_properties/getter]: isEnabled */
+}/* debug [instance_properties/getter]: isEnabled */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/isUninstalling
 func (o_ OSSystemExtensionProperties) IsUninstalling() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isUninstalling"))
 	return rv
-} /* debug [instance_properties/getter]: isUninstalling */
+}/* debug [instance_properties/getter]: isUninstalling */
+
 
 // The file URL of the extension bundle.
 //
@@ -178,8 +199,14 @@ func (o_ OSSystemExtensionProperties) IsUninstalling() bool {
 func (o_ OSSystemExtensionProperties) URL() objc.IObject /* cross-framework: NSURL */ {
 	rv := objc.Send[foundation.NSURL](o_.ID, objc.Sel("URL"))
 	return rv
-} /* debug [instance_properties/getter]: URL */
+}/* debug [instance_properties/getter]: URL */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class OSSystemExtensionProperties */
+
+
+
+
+

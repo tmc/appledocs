@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNCrossChannelNormalizationGradient */
 
 
-/* debug [class_header]: Header for MPSCNNCrossChannelNormalizationGradient */
+
+
 // The class instance for the [CNNCrossChannelNormalizationGradient] class.
 var (
 	CNNCrossChannelNormalizationGradientClass     _CNNCrossChannelNormalizationGradientClass
@@ -31,16 +30,16 @@ func getCNNCrossChannelNormalizationGradientClass() _CNNCrossChannelNormalizatio
 type _CNNCrossChannelNormalizationGradientClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNCrossChannelNormalizationGradient */
+
+
 // An interface definition for the [CNNCrossChannelNormalizationGradient] class.
 type ICNNCrossChannelNormalizationGradient interface {
 	ICNNGradientKernel
 	
-/* debug [class_interface_properties]: Properties for CNNCrossChannelNormalizationGradient */
+
 	// properties:
 	Alpha() objectivec.IObject
 	SetAlpha(value objectivec.IObject)
@@ -50,19 +49,19 @@ type ICNNCrossChannelNormalizationGradient interface {
 	SetKernelSize(value objectivec.IObject)
 	Beta() objectivec.IObject
 	SetBeta(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNCrossChannelNormalizationGradient */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNCrossChannelNormalizationGradient */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNCrossChannelNormalizationGradientClass) Alloc() CNNCrossChannelNormalizationGradient {
 	rv := objc.Send[CNNCrossChannelNormalizationGradient](objc.ID(cc.class), objc.Sel("alloc"))
@@ -92,11 +91,11 @@ func (c_ CNNCrossChannelNormalizationGradient) Autorelease() CNNCrossChannelNorm
 func NewCNNCrossChannelNormalizationGradient() CNNCrossChannelNormalizationGradient {
 	return getCNNCrossChannelNormalizationGradientClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNCrossChannelNormalizationGradient */
+
+
 // A gradient normalization kernel applied across feature channels.
 
 
@@ -116,11 +115,11 @@ func CNNCrossChannelNormalizationGradientFrom(ptr unsafe.Pointer) CNNCrossChanne
 		CNNGradientKernel: CNNGradientKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNCrossChannelNormalizationGradient */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationgradient/2942476-initwithcoder
@@ -129,7 +128,7 @@ func NewCNNCrossChannelNormalizationGradientWithCoderDevice(aDecoder foundation.
 	rv := objc.Send[CNNCrossChannelNormalizationGradient](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNCrossChannelNormalizationGradientWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -139,42 +138,42 @@ func NewCNNCrossChannelNormalizationGradientWithDeviceKernelSize(device unsafe.P
 	rv := objc.Send[CNNCrossChannelNormalizationGradient](instance.ID, objc.Sel("initWithDevice:kernelSize:"), device, kernelSize)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNCrossChannelNormalizationGradientWithDeviceKernelSize */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNCrossChannelNormalizationGradient */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNCrossChannelNormalizationGradient */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNCrossChannelNormalizationGradient */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNCrossChannelNormalizationGradient */
+
+
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationgradient/2942464-alpha
 func (c_ CNNCrossChannelNormalizationGradient) Alpha() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("alpha"))
 	return rv
-}/* debug [instance_properties/getter]: alpha */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationgradient/2942464-alpha
 func (c_ CNNCrossChannelNormalizationGradient) SetAlpha(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlpha:"), value)
-}/* debug [instance_properties/setter]: alpha */
+}
 
 
 // [Full Topic]
@@ -182,14 +181,14 @@ func (c_ CNNCrossChannelNormalizationGradient) SetAlpha(value objectivec.IObject
 func (c_ CNNCrossChannelNormalizationGradient) Delta() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("delta"))
 	return rv
-}/* debug [instance_properties/getter]: delta */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationgradient/2942465-delta
 func (c_ CNNCrossChannelNormalizationGradient) SetDelta(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelta:"), value)
-}/* debug [instance_properties/setter]: delta */
+}
 
 
 // [Full Topic]
@@ -197,14 +196,14 @@ func (c_ CNNCrossChannelNormalizationGradient) SetDelta(value objectivec.IObject
 func (c_ CNNCrossChannelNormalizationGradient) KernelSize() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("kernelSize"))
 	return rv
-}/* debug [instance_properties/getter]: kernelSize */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationgradient/2942468-kernelsize
 func (c_ CNNCrossChannelNormalizationGradient) SetKernelSize(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKernelSize:"), value)
-}/* debug [instance_properties/setter]: kernelSize */
+}
 
 
 // [Full Topic]
@@ -212,18 +211,18 @@ func (c_ CNNCrossChannelNormalizationGradient) SetKernelSize(value objectivec.IO
 func (c_ CNNCrossChannelNormalizationGradient) Beta() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("beta"))
 	return rv
-}/* debug [instance_properties/getter]: beta */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationgradient/2942477-beta
 func (c_ CNNCrossChannelNormalizationGradient) SetBeta(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
-}/* debug [instance_properties/setter]: beta */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSCNNCrossChannelNormalizationGradient */
+
+
+
 
 

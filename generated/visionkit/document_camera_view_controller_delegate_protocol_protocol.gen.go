@@ -3,7 +3,10 @@
 package visionkit
 
 import (
+
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/coretelephony"
 )
 
 // PDocumentCameraViewControllerDelegate is the VNDocumentCameraViewControllerDelegate protocol interface.
@@ -31,9 +34,9 @@ type PDocumentCameraViewControllerDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type DocumentCameraViewControllerDelegate struct {
-	_DocumentCameraViewControllerDidFailWithError  func(controller IVNDocumentCameraViewController, error_ objc.IObject /* cross-framework: Error */)
+	_DocumentCameraViewControllerDidFailWithError func(controller IVNDocumentCameraViewController, error_ objc.IObject /* cross-framework: Error */)
 	_DocumentCameraViewControllerDidFinishWithScan func(controller IVNDocumentCameraViewController, scan IVNDocumentCameraScan)
-	_DocumentCameraViewControllerDidCancel         func(controller IVNDocumentCameraViewController)
+	_DocumentCameraViewControllerDidCancel func(controller IVNDocumentCameraViewController)
 }
 
 // SetDocumentCameraViewControllerDidFailWithError sets the handler for the DocumentCameraViewControllerDidFailWithError delegate method.

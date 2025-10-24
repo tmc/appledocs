@@ -15,3 +15,4 @@ var attachmentWasConnectedProtocol *objc.Protocol
 func init() {
 	attachmentWasConnectedProtocol = objc.GetProtocol("attachmentWasConnected:")
 }
+

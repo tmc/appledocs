@@ -15,3 +15,4 @@ var WebDownloadDelegateProtocol *objc.Protocol
 func init() {
 	WebDownloadDelegateProtocol = objc.GetProtocol("WebDownloadDelegate")
 }
+

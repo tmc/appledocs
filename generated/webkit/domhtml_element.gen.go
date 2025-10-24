@@ -6,11 +6,12 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 /* debug [class.gen.go]: Generating class DOMHTMLElement */
+
 
 /* debug [class_header]: Header for DOMHTMLElement */
 // The class instance for the [DOMHTMLElement] class.
@@ -29,15 +30,16 @@ func getDOMHTMLElementClass() _DOMHTMLElementClass {
 type _DOMHTMLElementClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMHTMLElement */
 // An interface definition for the [DOMHTMLElement] class.
 type IDOMHTMLElement interface {
 	IDOMElement
-
-	/* debug [class_interface_properties]: Properties for DOMHTMLElement */
+	
+/* debug [class_interface_properties]: Properties for DOMHTMLElement */
 	// properties:
 	AccessKey() objc.IObject /* cross-framework: NSString */
 	SetAccessKey(value objc.IObject /* cross-framework: NSString */)
@@ -60,15 +62,17 @@ type IDOMHTMLElement interface {
 	Title() objc.IObject /* cross-framework: NSString */
 	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	TitleDisplayString() objc.IObject /* cross-framework: NSString */
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMHTMLElement */
+	
+/* debug [class_interface_methods]: Methods for DOMHTMLElement */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMHTMLElement */
 // Alloc allocates a new instance without initialization.
@@ -100,10 +104,12 @@ func (d_ DOMHTMLElement) Autorelease() DOMHTMLElement {
 func NewDOMHTMLElement() DOMHTMLElement {
 	return getDOMHTMLElementClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMHTMLElement */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement
@@ -117,19 +123,28 @@ func DOMHTMLElementFrom(ptr unsafe.Pointer) DOMHTMLElement {
 		DOMElement: DOMElementFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMHTMLElement */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMHTMLElement *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMHTMLElement */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMHTMLElement */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMHTMLElement */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMHTMLElement */
 
@@ -138,139 +153,163 @@ func DOMHTMLElementFrom(ptr unsafe.Pointer) DOMHTMLElement {
 func (d_ DOMHTMLElement) AccessKey() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("accessKey"))
 	return rv
-} /* debug [instance_properties/getter]: accessKey */
+}/* debug [instance_properties/getter]: accessKey */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/accessKey
 func (d_ DOMHTMLElement) SetAccessKey(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAccessKey:"), value)
-} /* debug [instance_properties/setter]: accessKey */
+}/* debug [instance_properties/setter]: accessKey */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/children
 func (d_ DOMHTMLElement) Children() IDOMHTMLCollection {
 	rv := objc.Send[DOMHTMLCollection](d_.ID, objc.Sel("children"))
 	return rv
-} /* debug [instance_properties/getter]: children */
+}/* debug [instance_properties/getter]: children */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/contentEditable
 func (d_ DOMHTMLElement) ContentEditable() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("contentEditable"))
 	return rv
-} /* debug [instance_properties/getter]: contentEditable */
+}/* debug [instance_properties/getter]: contentEditable */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/contentEditable
 func (d_ DOMHTMLElement) SetContentEditable(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setContentEditable:"), value)
-} /* debug [instance_properties/setter]: contentEditable */
+}/* debug [instance_properties/setter]: contentEditable */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/dir
 func (d_ DOMHTMLElement) Dir() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("dir"))
 	return rv
-} /* debug [instance_properties/getter]: dir */
+}/* debug [instance_properties/getter]: dir */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/dir
 func (d_ DOMHTMLElement) SetDir(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDir:"), value)
-} /* debug [instance_properties/setter]: dir */
+}/* debug [instance_properties/setter]: dir */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/idName
 func (d_ DOMHTMLElement) IdName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("idName"))
 	return rv
-} /* debug [instance_properties/getter]: idName */
+}/* debug [instance_properties/getter]: idName */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/idName
 func (d_ DOMHTMLElement) SetIdName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIdName:"), value)
-} /* debug [instance_properties/setter]: idName */
+}/* debug [instance_properties/setter]: idName */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/innerText
 func (d_ DOMHTMLElement) InnerText() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("innerText"))
 	return rv
-} /* debug [instance_properties/getter]: innerText */
+}/* debug [instance_properties/getter]: innerText */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/innerText
 func (d_ DOMHTMLElement) SetInnerText(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setInnerText:"), value)
-} /* debug [instance_properties/setter]: innerText */
+}/* debug [instance_properties/setter]: innerText */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/isContentEditable
 func (d_ DOMHTMLElement) IsContentEditable() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isContentEditable"))
 	return rv
-} /* debug [instance_properties/getter]: isContentEditable */
+}/* debug [instance_properties/getter]: isContentEditable */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/lang
 func (d_ DOMHTMLElement) Lang() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("lang"))
 	return rv
-} /* debug [instance_properties/getter]: lang */
+}/* debug [instance_properties/getter]: lang */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/lang
 func (d_ DOMHTMLElement) SetLang(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLang:"), value)
-} /* debug [instance_properties/setter]: lang */
+}/* debug [instance_properties/setter]: lang */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/outerText
 func (d_ DOMHTMLElement) OuterText() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("outerText"))
 	return rv
-} /* debug [instance_properties/getter]: outerText */
+}/* debug [instance_properties/getter]: outerText */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/outerText
 func (d_ DOMHTMLElement) SetOuterText(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setOuterText:"), value)
-} /* debug [instance_properties/setter]: outerText */
+}/* debug [instance_properties/setter]: outerText */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/tabIndex
 func (d_ DOMHTMLElement) TabIndex() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("tabIndex"))
 	return rv
-} /* debug [instance_properties/getter]: tabIndex */
+}/* debug [instance_properties/getter]: tabIndex */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/tabIndex
 func (d_ DOMHTMLElement) SetTabIndex(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTabIndex:"), value)
-} /* debug [instance_properties/setter]: tabIndex */
+}/* debug [instance_properties/setter]: tabIndex */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/title
 func (d_ DOMHTMLElement) Title() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("title"))
 	return rv
-} /* debug [instance_properties/getter]: title */
+}/* debug [instance_properties/getter]: title */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/title
 func (d_ DOMHTMLElement) SetTitle(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTitle:"), value)
-} /* debug [instance_properties/setter]: title */
+}/* debug [instance_properties/setter]: title */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLElement/titleDisplayString
 func (d_ DOMHTMLElement) TitleDisplayString() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("titleDisplayString"))
 	return rv
-} /* debug [instance_properties/getter]: titleDisplayString */
+}/* debug [instance_properties/getter]: titleDisplayString */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMHTMLElement */
+
+
+

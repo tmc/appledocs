@@ -15,3 +15,4 @@ var plugInViewWithArgumentsProtocol *objc.Protocol
 func init() {
 	plugInViewWithArgumentsProtocol = objc.GetProtocol("plugInViewWithArguments:")
 }
+

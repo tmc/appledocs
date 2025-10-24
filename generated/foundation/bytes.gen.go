@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class bytes */
 
 
-/* debug [class_header]: Header for bytes */
+
+
 // The class instance for the [bytes] class.
 var (
 	BytesClass     _bytesClass
@@ -30,30 +30,30 @@ func getbytesClass() _bytesClass {
 type _bytesClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for bytes */
+
+
 // An interface definition for the [bytes] class.
 type Ibytes interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for bytes */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for bytes */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for bytes */
+
+
 // Alloc allocates a new instance without initialization.
 func (bc _bytesClass) Alloc() bytes {
 	rv := objc.Send[bytes](objc.ID(bc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (b_ bytes) Autorelease() bytes {
 func Newbytes() bytes {
 	return getbytesClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for bytes */
+
+
 
 
 // [Full Topic]
@@ -100,34 +100,34 @@ type bytes struct {
 func bytesFrom(ptr unsafe.Pointer) bytes {
 	return bytes{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for bytes *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for bytes */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for bytes */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for bytes */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for bytes */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class bytes */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

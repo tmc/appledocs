@@ -15,3 +15,4 @@ var requestNeedsUserApprovalProtocol *objc.Protocol
 func init() {
 	requestNeedsUserApprovalProtocol = objc.GetProtocol("requestNeedsUserApproval:")
 }
+

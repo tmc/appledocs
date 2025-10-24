@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAssetWriterInputCaptionAdaptor */
 
 
-/* debug [class_header]: Header for AVAssetWriterInputCaptionAdaptor */
+
+
 // The class instance for the [AssetWriterInputCaptionAdaptor] class.
 var (
 	AssetWriterInputCaptionAdaptorClass     _AssetWriterInputCaptionAdaptorClass
@@ -30,31 +30,31 @@ func getAssetWriterInputCaptionAdaptorClass() _AssetWriterInputCaptionAdaptorCla
 type _AssetWriterInputCaptionAdaptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AssetWriterInputCaptionAdaptor */
+
+
 // An interface definition for the [AssetWriterInputCaptionAdaptor] class.
 type IAssetWriterInputCaptionAdaptor interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for AssetWriterInputCaptionAdaptor */
+
 	// properties:
 	AssetWriterInput() IAVAssetWriterInput
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AssetWriterInputCaptionAdaptor */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AssetWriterInputCaptionAdaptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AssetWriterInputCaptionAdaptorClass) Alloc() AssetWriterInputCaptionAdaptor {
 	rv := objc.Send[AssetWriterInputCaptionAdaptor](objc.ID(ac.class), objc.Sel("alloc"))
@@ -84,11 +84,11 @@ func (a_ AssetWriterInputCaptionAdaptor) Autorelease() AssetWriterInputCaptionAd
 func NewAssetWriterInputCaptionAdaptor() AssetWriterInputCaptionAdaptor {
 	return getAssetWriterInputCaptionAdaptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AssetWriterInputCaptionAdaptor */
+
+
 // An object that appends captions to an asset writer input.
 
 
@@ -106,11 +106,11 @@ type AssetWriterInputCaptionAdaptor struct {
 func AssetWriterInputCaptionAdaptorFrom(ptr unsafe.Pointer) AssetWriterInputCaptionAdaptor {
 	return AssetWriterInputCaptionAdaptor{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AssetWriterInputCaptionAdaptor */
+
+
 
 // Creates a new caption adaptor that writes to the specified asset writer input.
 //
@@ -121,13 +121,13 @@ func NewAssetWriterInputCaptionAdaptorWithAssetWriterInput(input IAVAssetWriterI
 	rv := objc.Send[AssetWriterInputCaptionAdaptor](instance.ID, objc.Sel("initWithAssetWriterInput:"), input)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewAssetWriterInputCaptionAdaptorWithAssetWriterInput */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for AssetWriterInputCaptionAdaptor */
+
+
+
 
 // A class method that creates a new caption adaptor that writes to the specified asset writer input.
 //
@@ -136,23 +136,23 @@ func NewAssetWriterInputCaptionAdaptorWithAssetWriterInput(input IAVAssetWriterI
 func (ac _AssetWriterInputCaptionAdaptorClass) AssetWriterInputCaptionAdaptorWithAssetWriterInput(input IAVAssetWriterInput) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(ac.class), objc.Sel("assetWriterInputCaptionAdaptorWithAssetWriterInput:"), input)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AssetWriterInputCaptionAdaptorWithAssetWriterInput) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for AssetWriterInputCaptionAdaptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AssetWriterInputCaptionAdaptor */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AssetWriterInputCaptionAdaptor */
+
+
+
+
+
+
+
 
 // The associated asset writer input.
 //
@@ -161,11 +161,11 @@ func (ac _AssetWriterInputCaptionAdaptorClass) AssetWriterInputCaptionAdaptorWit
 func (a_ AssetWriterInputCaptionAdaptor) AssetWriterInput() IAVAssetWriterInput {
 	rv := objc.Send[AssetWriterInput](a_.ID, objc.Sel("assetWriterInput"))
 	return rv
-}/* debug [instance_properties/getter]: assetWriterInput */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVAssetWriterInputCaptionAdaptor */
+
+
+
 
 

@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZHostAudioInputStreamSource */
+
 
 /* debug [class_header]: Header for VZHostAudioInputStreamSource */
 // The class instance for the [VZHostAudioInputStreamSource] class.
@@ -28,25 +30,28 @@ func getVZHostAudioInputStreamSourceClass() _VZHostAudioInputStreamSourceClass {
 type _VZHostAudioInputStreamSourceClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZHostAudioInputStreamSource */
 // An interface definition for the [VZHostAudioInputStreamSource] class.
 type IVZHostAudioInputStreamSource interface {
 	IVZAudioInputStreamSource
-
-	/* debug [class_interface_properties]: Properties for VZHostAudioInputStreamSource */
+	
+/* debug [class_interface_properties]: Properties for VZHostAudioInputStreamSource */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZHostAudioInputStreamSource */
+	
+/* debug [class_interface_methods]: Methods for VZHostAudioInputStreamSource */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZHostAudioInputStreamSource */
 // Alloc allocates a new instance without initialization.
@@ -78,13 +83,15 @@ func (v_ VZHostAudioInputStreamSource) Autorelease() VZHostAudioInputStreamSourc
 func NewVZHostAudioInputStreamSource() VZHostAudioInputStreamSource {
 	return getVZHostAudioInputStreamSourceClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZHostAudioInputStreamSource */
 // The host audio input stream source that provides audio from the host system’s default input device.
 //
 // The host input data comes from the same device that uses.
+
 
 // The host audio input stream source that provides audio from the host system’s default input device.
 //
@@ -102,22 +109,34 @@ func VZHostAudioInputStreamSourceFrom(ptr unsafe.Pointer) VZHostAudioInputStream
 		VZAudioInputStreamSource: VZAudioInputStreamSourceFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZHostAudioInputStreamSource */
 /* debug [class_init_methods]: End init methods */
 
+
+
 /* debug [class_methods]: Class methods for VZHostAudioInputStreamSource */
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZHostAudioInputStreamSource */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZHostAudioInputStreamSource */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZHostAudioInputStreamSource */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZHostAudioInputStreamSource */
+
+

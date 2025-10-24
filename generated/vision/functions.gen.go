@@ -2,7 +2,7 @@
 
 package vision
 
-/* debug [functions.gen.go]: Generating 12 functions for Vision */
+
 import (
 	"unsafe"
 
@@ -73,7 +73,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNElementTypeSize(_:)
 func VNElementTypeSize(elementType ElementType) uint {
 	return _VNElementTypeSize(elementType)
-}/* debug [functions.gen.go/function]: VNElementTypeSize */
+}
 
 // Returns the image coordinates of a specified face landmark point.
 //
@@ -84,7 +84,7 @@ func VNElementTypeSize(elementType ElementType) uint {
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImagePointForFaceLandmarkPoint(_:_:_:_:)
 func VNImagePointForFaceLandmarkPoint(faceLandmarkPoint unsafe.Pointer, faceBoundingBox corefoundation.CGRect, imageWidth uintptr, imageHeight uintptr) corefoundation.CGPoint {
 	return _VNImagePointForFaceLandmarkPoint(faceLandmarkPoint, faceBoundingBox, imageWidth, imageHeight)
-}/* debug [functions.gen.go/function]: VNImagePointForFaceLandmarkPoint */
+}
 
 // Projects a point in normalized coordinates into image coordinates.
 //
@@ -95,7 +95,7 @@ func VNImagePointForFaceLandmarkPoint(faceLandmarkPoint unsafe.Pointer, faceBoun
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImagePointForNormalizedPoint(_:_:_:)
 func VNImagePointForNormalizedPoint(normalizedPoint corefoundation.CGPoint, imageWidth uintptr, imageHeight uintptr) corefoundation.CGPoint {
 	return _VNImagePointForNormalizedPoint(normalizedPoint, imageWidth, imageHeight)
-}/* debug [functions.gen.go/function]: VNImagePointForNormalizedPoint */
+}
 
 // Projects a point from a region of interest within the normalized coordinates into image coordinates.
 //
@@ -106,7 +106,7 @@ func VNImagePointForNormalizedPoint(normalizedPoint corefoundation.CGPoint, imag
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImagePointForNormalizedPointUsingRegionOfInterest(_:_:_:_:)
 func VNImagePointForNormalizedPointUsingRegionOfInterest(normalizedPoint corefoundation.CGPoint, imageWidth uintptr, imageHeight uintptr, roi corefoundation.CGRect) corefoundation.CGPoint {
 	return _VNImagePointForNormalizedPointUsingRegionOfInterest(normalizedPoint, imageWidth, imageHeight, roi)
-}/* debug [functions.gen.go/function]: VNImagePointForNormalizedPointUsingRegionOfInterest */
+}
 
 // Projects a rectangle from normalized coordinates into image coordinates.
 //
@@ -117,7 +117,7 @@ func VNImagePointForNormalizedPointUsingRegionOfInterest(normalizedPoint corefou
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRectForNormalizedRect(_:_:_:)
 func VNImageRectForNormalizedRect(normalizedRect corefoundation.CGRect, imageWidth uintptr, imageHeight uintptr) corefoundation.CGRect {
 	return _VNImageRectForNormalizedRect(normalizedRect, imageWidth, imageHeight)
-}/* debug [functions.gen.go/function]: VNImageRectForNormalizedRect */
+}
 
 // Projects a rectangle from a region of interest within the normalized coordinates into image coordinates.
 //
@@ -128,7 +128,7 @@ func VNImageRectForNormalizedRect(normalizedRect corefoundation.CGRect, imageWid
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRectForNormalizedRectUsingRegionOfInterest(_:_:_:_:)
 func VNImageRectForNormalizedRectUsingRegionOfInterest(normalizedRect corefoundation.CGRect, imageWidth uintptr, imageHeight uintptr, roi corefoundation.CGRect) corefoundation.CGRect {
 	return _VNImageRectForNormalizedRectUsingRegionOfInterest(normalizedRect, imageWidth, imageHeight, roi)
-}/* debug [functions.gen.go/function]: VNImageRectForNormalizedRectUsingRegionOfInterest */
+}
 
 // Returns the coordinates of a specified face landmark point, in bounding box coordinates.
 //
@@ -139,7 +139,7 @@ func VNImageRectForNormalizedRectUsingRegionOfInterest(normalizedRect corefounda
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNNormalizedFaceBoundingBoxPointForLandmarkPoint(_:_:_:_:)
 func VNNormalizedFaceBoundingBoxPointForLandmarkPoint(faceLandmarkPoint unsafe.Pointer, faceBoundingBox corefoundation.CGRect, imageWidth uintptr, imageHeight uintptr) corefoundation.CGPoint {
 	return _VNNormalizedFaceBoundingBoxPointForLandmarkPoint(faceLandmarkPoint, faceBoundingBox, imageWidth, imageHeight)
-}/* debug [functions.gen.go/function]: VNNormalizedFaceBoundingBoxPointForLandmarkPoint */
+}
 
 // Projects a point from image coordinates into normalized coordinates.
 //
@@ -150,7 +150,7 @@ func VNNormalizedFaceBoundingBoxPointForLandmarkPoint(faceLandmarkPoint unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNNormalizedPointForImagePoint(_:_:_:)
 func VNNormalizedPointForImagePoint(imagePoint corefoundation.CGPoint, imageWidth uintptr, imageHeight uintptr) corefoundation.CGPoint {
 	return _VNNormalizedPointForImagePoint(imagePoint, imageWidth, imageHeight)
-}/* debug [functions.gen.go/function]: VNNormalizedPointForImagePoint */
+}
 
 // Projects a point from a region of interest within the image coordinates into normalized coordinates.
 //
@@ -161,7 +161,7 @@ func VNNormalizedPointForImagePoint(imagePoint corefoundation.CGPoint, imageWidt
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNNormalizedPointForImagePointUsingRegionOfInterest(_:_:_:_:)
 func VNNormalizedPointForImagePointUsingRegionOfInterest(imagePoint corefoundation.CGPoint, imageWidth uintptr, imageHeight uintptr, roi corefoundation.CGRect) corefoundation.CGPoint {
 	return _VNNormalizedPointForImagePointUsingRegionOfInterest(imagePoint, imageWidth, imageHeight, roi)
-}/* debug [functions.gen.go/function]: VNNormalizedPointForImagePointUsingRegionOfInterest */
+}
 
 // Projects a rectangle from image coordinates into normalized coordinates.
 //
@@ -172,7 +172,7 @@ func VNNormalizedPointForImagePointUsingRegionOfInterest(imagePoint corefoundati
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNNormalizedRectForImageRect(_:_:_:)
 func VNNormalizedRectForImageRect(imageRect corefoundation.CGRect, imageWidth uintptr, imageHeight uintptr) corefoundation.CGRect {
 	return _VNNormalizedRectForImageRect(imageRect, imageWidth, imageHeight)
-}/* debug [functions.gen.go/function]: VNNormalizedRectForImageRect */
+}
 
 // Projects a rectangle from a region of interest within the image coordinates space into normalized coordinates.
 //
@@ -183,7 +183,7 @@ func VNNormalizedRectForImageRect(imageRect corefoundation.CGRect, imageWidth ui
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNNormalizedRectForImageRectUsingRegionOfInterest(_:_:_:_:)
 func VNNormalizedRectForImageRectUsingRegionOfInterest(imageRect corefoundation.CGRect, imageWidth uintptr, imageHeight uintptr, roi corefoundation.CGRect) corefoundation.CGRect {
 	return _VNNormalizedRectForImageRectUsingRegionOfInterest(imageRect, imageWidth, imageHeight, roi)
-}/* debug [functions.gen.go/function]: VNNormalizedRectForImageRectUsingRegionOfInterest */
+}
 
 // Returns a Boolean value that indicates whether the rectangle has an origin of zero and unit length and width.
 //
@@ -194,7 +194,7 @@ func VNNormalizedRectForImageRectUsingRegionOfInterest(imageRect corefoundation.
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNNormalizedRectIsIdentityRect(_:)
 func VNNormalizedRectIsIdentityRect(normalizedRect corefoundation.CGRect) bool {
 	return _VNNormalizedRectIsIdentityRect(normalizedRect)
-}/* debug [functions.gen.go/function]: VNNormalizedRectIsIdentityRect */
+}
 
 
 

@@ -16,3 +16,4 @@ package webkit
 // See: doc://com.apple.webkit/documentation/WebKit/WKWebExtensionWindow/windowType(for:)
 type PwindowTypeForWebExtensionContext interface {
 }
+

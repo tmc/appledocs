@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNNeuronPReLU */
 
 
-/* debug [class_header]: Header for MPSCNNNeuronPReLU */
+
+
 // The class instance for the [CNNNeuronPReLU] class.
 var (
 	CNNNeuronPReLUClass     _CNNNeuronPReLUClass
@@ -30,30 +30,30 @@ func getCNNNeuronPReLUClass() _CNNNeuronPReLUClass {
 type _CNNNeuronPReLUClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNNeuronPReLU */
+
+
 // An interface definition for the [CNNNeuronPReLU] class.
 type ICNNNeuronPReLU interface {
 	ICNNNeuron
 	
-/* debug [class_interface_properties]: Properties for CNNNeuronPReLU */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNNeuronPReLU */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNNeuronPReLU */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNNeuronPReLUClass) Alloc() CNNNeuronPReLU {
 	rv := objc.Send[CNNNeuronPReLU](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNNeuronPReLU) Autorelease() CNNNeuronPReLU {
 func NewCNNNeuronPReLU() CNNNeuronPReLU {
 	return getCNNNeuronPReLUClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNNeuronPReLU */
+
+
 // A parametric ReLU (Rectified Linear Unit) neuron filter.
 //
 // For each pixel in an image, the filter applies the following function: Where in . That is, parameters are learned and applied to each channel separately. Compare this to where parameter is shared across all channels.
@@ -109,11 +109,11 @@ func CNNNeuronPReLUFrom(ptr unsafe.Pointer) CNNNeuronPReLU {
 		CNNNeuron: CNNNeuronFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNNeuronPReLU */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronprelu/2921661-initwithdevice
@@ -122,31 +122,31 @@ func NewCNNNeuronPReLUWithDeviceACount(device unsafe.Pointer, a objectivec.IObje
 	rv := objc.Send[CNNNeuronPReLU](instance.ID, objc.Sel("initWithDevice:a:count:"), device, a, count)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNNeuronPReLUWithDeviceACount */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNNeuronPReLU */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNNeuronPReLU */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNNeuronPReLU */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNNeuronPReLU */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNNeuronPReLU */
+
+
+
+
+
+
+
+
+
+
+
 
 

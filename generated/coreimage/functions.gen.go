@@ -2,7 +2,7 @@
 
 package coreimage
 
-/* debug [functions.gen.go]: Generating 0 functions for CoreImage */
+
 import (
 	"github.com/ebitengine/purego"
 )

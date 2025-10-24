@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZVirtioSocketListener */
 
+
 /* debug [class_header]: Header for VZVirtioSocketListener */
 // The class instance for the [VZVirtioSocketListener] class.
 var (
@@ -29,27 +30,30 @@ func getVZVirtioSocketListenerClass() _VZVirtioSocketListenerClass {
 type _VZVirtioSocketListenerClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZVirtioSocketListener */
 // An interface definition for the [VZVirtioSocketListener] class.
 type IVZVirtioSocketListener interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZVirtioSocketListener */
+	
+/* debug [class_interface_properties]: Properties for VZVirtioSocketListener */
 	// properties:
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZVirtioSocketListener */
+	
+/* debug [class_interface_methods]: Methods for VZVirtioSocketListener */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZVirtioSocketListener */
 // Alloc allocates a new instance without initialization.
@@ -81,13 +85,15 @@ func (v_ VZVirtioSocketListener) Autorelease() VZVirtioSocketListener {
 func NewVZVirtioSocketListener() VZVirtioSocketListener {
 	return getVZVirtioSocketListenerClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZVirtioSocketListener */
 // An object that listens for port-based connection requests from the guest operating system.
 //
 // Use a object to route connection requests to your associated delegate object. The socket listener object handles incoming connection requests from the guest operating system and directs them to the methods of its associated object. You may use the same listener object to monitor connections on multiple ports. After creating a object, assign a custom object to its property. The delegate must implement the protocol. To connect the listener to a port, call the method of your virtual machine’s object.
+
 
 // An object that listens for port-based connection requests from the guest operating system.
 //
@@ -103,19 +109,28 @@ type VZVirtioSocketListener struct {
 func VZVirtioSocketListenerFrom(ptr unsafe.Pointer) VZVirtioSocketListener {
 	return VZVirtioSocketListener{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZVirtioSocketListener */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZVirtioSocketListener *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZVirtioSocketListener */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZVirtioSocketListener */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZVirtioSocketListener */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZVirtioSocketListener */
 
@@ -126,7 +141,8 @@ func VZVirtioSocketListenerFrom(ptr unsafe.Pointer) VZVirtioSocketListener {
 func (v_ VZVirtioSocketListener) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("delegate"))
 	return rv
-} /* debug [instance_properties/getter]: delegate */
+}/* debug [instance_properties/getter]: delegate */
+
 
 // The custom object you use to respond to port-based connection attempts.
 //
@@ -134,8 +150,12 @@ func (v_ VZVirtioSocketListener) Delegate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketListener/delegate
 func (v_ VZVirtioSocketListener) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDelegate:"), value)
-} /* debug [instance_properties/setter]: delegate */
+}/* debug [instance_properties/setter]: delegate */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZVirtioSocketListener */
+
+
+

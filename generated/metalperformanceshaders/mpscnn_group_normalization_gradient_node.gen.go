@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNGroupNormalizationGradientNode */
 
 
-/* debug [class_header]: Header for MPSCNNGroupNormalizationGradientNode */
+
+
 // The class instance for the [CNNGroupNormalizationGradientNode] class.
 var (
 	CNNGroupNormalizationGradientNodeClass     _CNNGroupNormalizationGradientNodeClass
@@ -30,30 +30,30 @@ func getCNNGroupNormalizationGradientNodeClass() _CNNGroupNormalizationGradientN
 type _CNNGroupNormalizationGradientNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNGroupNormalizationGradientNode */
+
+
 // An interface definition for the [CNNGroupNormalizationGradientNode] class.
 type ICNNGroupNormalizationGradientNode interface {
 	IGradientFilterNode
 	
-/* debug [class_interface_properties]: Properties for CNNGroupNormalizationGradientNode */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNGroupNormalizationGradientNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNGroupNormalizationGradientNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNGroupNormalizationGradientNodeClass) Alloc() CNNGroupNormalizationGradientNode {
 	rv := objc.Send[CNNGroupNormalizationGradientNode](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNGroupNormalizationGradientNode) Autorelease() CNNGroupNormalizationG
 func NewCNNGroupNormalizationGradientNode() CNNGroupNormalizationGradientNode {
 	return getCNNGroupNormalizationGradientNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNGroupNormalizationGradientNode */
+
+
 
 
 // [Full Topic]
@@ -102,11 +102,11 @@ func CNNGroupNormalizationGradientNodeFrom(ptr unsafe.Pointer) CNNGroupNormaliza
 		GradientFilterNode: GradientFilterNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNGroupNormalizationGradientNode */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientnode/3152569-initwithsourcegradient
@@ -115,39 +115,39 @@ func NewCNNGroupNormalizationGradientNodeWithSourceGradientSourceImageGradientSt
 	rv := objc.Send[CNNGroupNormalizationGradientNode](instance.ID, objc.Sel("initWithSourceGradient:sourceImage:gradientState:"), sourceGradient, sourceImage, gradientState)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNGroupNormalizationGradientNodeWithSourceGradientSourceImageGradientState */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNGroupNormalizationGradientNode */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientnode/3152570-nodewithsourcegradient
 func (cc _CNNGroupNormalizationGradientNodeClass) NodeWithSourceGradientSourceImageGradientState(sourceGradient IImageNode, sourceImage IImageNode, gradientState IGradientStateNode) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("nodeWithSourceGradient:sourceImage:gradientState:"), sourceGradient, sourceImage, gradientState)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSourceGradientSourceImageGradientState) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for CNNGroupNormalizationGradientNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNGroupNormalizationGradientNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNGroupNormalizationGradientNode */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNGroupNormalizationGradientNode */
+
+
+
+
+
+
+
+
+
 
 

@@ -7,13 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
-/* debug [class.gen.go]: Generating class CIFaceFeature */
 
 
-/* debug [class_header]: Header for CIFaceFeature */
+
+
 // The class instance for the [FaceFeature] class.
 var (
 	FaceFeatureClass     _FaceFeatureClass
@@ -30,16 +29,16 @@ func getFaceFeatureClass() _FaceFeatureClass {
 type _FaceFeatureClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for FaceFeature */
+
+
 // An interface definition for the [FaceFeature] class.
 type IFaceFeature interface {
 	IFeature
 	
-/* debug [class_interface_properties]: Properties for FaceFeature */
+
 	// properties:
 	Bounds() corefoundation.CGRect
 	FaceAngle() float32
@@ -57,19 +56,19 @@ type IFaceFeature interface {
 	RightEyePosition() corefoundation.CGPoint
 	TrackingFrameCount() int
 	TrackingID() int
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for FaceFeature */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for FaceFeature */
+
+
 // Alloc allocates a new instance without initialization.
 func (fc _FaceFeatureClass) Alloc() FaceFeature {
 	rv := objc.Send[FaceFeature](objc.ID(fc.class), objc.Sel("alloc"))
@@ -99,11 +98,11 @@ func (f_ FaceFeature) Autorelease() FaceFeature {
 func NewFaceFeature() FaceFeature {
 	return getFaceFeatureClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for FaceFeature */
+
+
 // Information about a face detected in a still or video image.
 //
 // The properties of a object provide information about the face’s eyes and mouth. A face object in a video can also have properties that track its location over time, tracking ID and frame count.
@@ -125,30 +124,30 @@ func FaceFeatureFrom(ptr unsafe.Pointer) FaceFeature {
 		Feature: FeatureFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for FaceFeature *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for FaceFeature */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for FaceFeature */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for FaceFeature */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for FaceFeature */
+
+
+
+
+
+
+
+
+
 
 // A rectangle indicating the position and extent of the face feature in image coordinates.
 //
@@ -157,7 +156,7 @@ func FaceFeatureFrom(ptr unsafe.Pointer) FaceFeature {
 func (f_ FaceFeature) Bounds() corefoundation.CGRect {
 	rv := objc.Send[corefoundation.CGRect](f_.ID, objc.Sel("bounds"))
 	return rv
-}/* debug [instance_properties/getter]: bounds */
+}
 
 
 // The rotation of the face.
@@ -167,7 +166,7 @@ func (f_ FaceFeature) Bounds() corefoundation.CGRect {
 func (f_ FaceFeature) FaceAngle() float32 {
 	rv := objc.Send[float32](f_.ID, objc.Sel("faceAngle"))
 	return rv
-}/* debug [instance_properties/getter]: faceAngle */
+}
 
 
 // A Boolean value that indicates whether information about face rotation is available.
@@ -177,7 +176,7 @@ func (f_ FaceFeature) FaceAngle() float32 {
 func (f_ FaceFeature) HasFaceAngle() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasFaceAngle"))
 	return rv
-}/* debug [instance_properties/getter]: hasFaceAngle */
+}
 
 
 // A Boolean value that indicates whether the detector found the face’s left eye.
@@ -187,7 +186,7 @@ func (f_ FaceFeature) HasFaceAngle() bool {
 func (f_ FaceFeature) HasLeftEyePosition() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasLeftEyePosition"))
 	return rv
-}/* debug [instance_properties/getter]: hasLeftEyePosition */
+}
 
 
 // A Boolean value that indicates whether the detector found the face’s mouth.
@@ -197,7 +196,7 @@ func (f_ FaceFeature) HasLeftEyePosition() bool {
 func (f_ FaceFeature) HasMouthPosition() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasMouthPosition"))
 	return rv
-}/* debug [instance_properties/getter]: hasMouthPosition */
+}
 
 
 // A Boolean value that indicates whether the detector found the face’s right eye.
@@ -207,7 +206,7 @@ func (f_ FaceFeature) HasMouthPosition() bool {
 func (f_ FaceFeature) HasRightEyePosition() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasRightEyePosition"))
 	return rv
-}/* debug [instance_properties/getter]: hasRightEyePosition */
+}
 
 
 // A Boolean value that indicates whether a smile is detected in the face.
@@ -217,7 +216,7 @@ func (f_ FaceFeature) HasRightEyePosition() bool {
 func (f_ FaceFeature) HasSmile() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasSmile"))
 	return rv
-}/* debug [instance_properties/getter]: hasSmile */
+}
 
 
 // A Boolean value that indicates the face object has a tracking frame count.
@@ -227,7 +226,7 @@ func (f_ FaceFeature) HasSmile() bool {
 func (f_ FaceFeature) HasTrackingFrameCount() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasTrackingFrameCount"))
 	return rv
-}/* debug [instance_properties/getter]: hasTrackingFrameCount */
+}
 
 
 // A Boolean value that indicates whether the face object has a tracking ID.
@@ -237,7 +236,7 @@ func (f_ FaceFeature) HasTrackingFrameCount() bool {
 func (f_ FaceFeature) HasTrackingID() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasTrackingID"))
 	return rv
-}/* debug [instance_properties/getter]: hasTrackingID */
+}
 
 
 // A Boolean value that indicates whether a closed left eye is detected in the face.
@@ -247,7 +246,7 @@ func (f_ FaceFeature) HasTrackingID() bool {
 func (f_ FaceFeature) LeftEyeClosed() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("leftEyeClosed"))
 	return rv
-}/* debug [instance_properties/getter]: leftEyeClosed */
+}
 
 
 // The image coordinate of the center of the left eye.
@@ -257,7 +256,7 @@ func (f_ FaceFeature) LeftEyeClosed() bool {
 func (f_ FaceFeature) LeftEyePosition() corefoundation.CGPoint {
 	rv := objc.Send[corefoundation.CGPoint](f_.ID, objc.Sel("leftEyePosition"))
 	return rv
-}/* debug [instance_properties/getter]: leftEyePosition */
+}
 
 
 // The image coordinate of the center of the mouth.
@@ -267,7 +266,7 @@ func (f_ FaceFeature) LeftEyePosition() corefoundation.CGPoint {
 func (f_ FaceFeature) MouthPosition() corefoundation.CGPoint {
 	rv := objc.Send[corefoundation.CGPoint](f_.ID, objc.Sel("mouthPosition"))
 	return rv
-}/* debug [instance_properties/getter]: mouthPosition */
+}
 
 
 // A Boolean value that indicates whether a closed right eye is detected in the face.
@@ -277,7 +276,7 @@ func (f_ FaceFeature) MouthPosition() corefoundation.CGPoint {
 func (f_ FaceFeature) RightEyeClosed() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("rightEyeClosed"))
 	return rv
-}/* debug [instance_properties/getter]: rightEyeClosed */
+}
 
 
 // The image coordinate of the center of the right eye.
@@ -287,7 +286,7 @@ func (f_ FaceFeature) RightEyeClosed() bool {
 func (f_ FaceFeature) RightEyePosition() corefoundation.CGPoint {
 	rv := objc.Send[corefoundation.CGPoint](f_.ID, objc.Sel("rightEyePosition"))
 	return rv
-}/* debug [instance_properties/getter]: rightEyePosition */
+}
 
 
 // The tracking frame count of the face.
@@ -297,7 +296,7 @@ func (f_ FaceFeature) RightEyePosition() corefoundation.CGPoint {
 func (f_ FaceFeature) TrackingFrameCount() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("trackingFrameCount"))
 	return rv
-}/* debug [instance_properties/getter]: trackingFrameCount */
+}
 
 
 // The tracking identifier of the face object.
@@ -307,12 +306,12 @@ func (f_ FaceFeature) TrackingFrameCount() int {
 func (f_ FaceFeature) TrackingID() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("trackingID"))
 	return rv
-}/* debug [instance_properties/getter]: trackingID */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class CIFaceFeature */
+
+
+
 
 
 

@@ -7,15 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVPictureInPictureController */
 
 
-/* debug [class_header]: Header for AVPictureInPictureController */
+
+
 // The class instance for the [PictureInPictureController] class.
 var (
 	PictureInPictureControllerClass     _PictureInPictureControllerClass
@@ -32,16 +30,16 @@ func getPictureInPictureControllerClass() _PictureInPictureControllerClass {
 type _PictureInPictureControllerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for PictureInPictureController */
+
+
 // An interface definition for the [PictureInPictureController] class.
 type IPictureInPictureController interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for PictureInPictureController */
+
 	// properties:
 	ContentSource() IAVPictureInPictureControllerContentSource
 	SetContentSource(value IAVPictureInPictureControllerContentSource)
@@ -59,22 +57,22 @@ type IPictureInPictureController interface {
 	SetIsPictureInPicturePossible(value bool)
 	IsPictureInPictureSuspended() bool
 	SetIsPictureInPictureSuspended(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for PictureInPictureController */
+
 	// methods:
 	InvalidatePlaybackState()
 	StartPictureInPicture()
 	StopPictureInPicture()
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for PictureInPictureController */
+
+
 // Alloc allocates a new instance without initialization.
 func (pc _PictureInPictureControllerClass) Alloc() PictureInPictureController {
 	rv := objc.Send[PictureInPictureController](objc.ID(pc.class), objc.Sel("alloc"))
@@ -104,11 +102,11 @@ func (p_ PictureInPictureController) Autorelease() PictureInPictureController {
 func NewPictureInPictureController() PictureInPictureController {
 	return getPictureInPictureControllerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for PictureInPictureController */
+
+
 // A controller that responds to user-initiated Picture in Picture playback of video in a floating, resizable window.
 //
 // To use Picture in Picture, you need to configure your app to support background audio playback. See for more details. Before presenting a user interface to start Picture in Picture, call the method to determine if the current device supports the feature, and check the property value to determine whether PiP is possible in the current context.
@@ -128,11 +126,11 @@ type PictureInPictureController struct {
 func PictureInPictureControllerFrom(ptr unsafe.Pointer) PictureInPictureController {
 	return PictureInPictureController{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for PictureInPictureController */
+
+
 
 // Creates a Picture in Picture controller with a content source.
 //
@@ -143,7 +141,7 @@ func NewPictureInPictureControllerWithContentSource(contentSource IAVPictureInPi
 	rv := objc.Send[PictureInPictureController](instance.ID, objc.Sel("initWithContentSource:"), contentSource)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewPictureInPictureControllerWithContentSource */
+}
 
 
 // Creates a Picture in Picture controller with a player layer.
@@ -155,13 +153,13 @@ func NewPictureInPictureControllerWithPlayerLayer(playerLayer avfoundation.Playe
 	rv := objc.Send[PictureInPictureController](instance.ID, objc.Sel("initWithPlayerLayer:"), playerLayer)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewPictureInPictureControllerWithPlayerLayer */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for PictureInPictureController */
+
+
+
 
 // Returns a Boolean value that indicates whether the current device supports Picture in Picture.
 //
@@ -170,7 +168,7 @@ func NewPictureInPictureControllerWithPlayerLayer(playerLayer avfoundation.Playe
 func (pc _PictureInPictureControllerClass) IsPictureInPictureSupported() bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isPictureInPictureSupported"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=IsPictureInPictureSupported) */
+}
 
 
 // Returns a system-default template image that’s compatible with a trait collection for the button that starts Picture in Picture in your app.
@@ -180,7 +178,7 @@ func (pc _PictureInPictureControllerClass) IsPictureInPictureSupported() bool {
 func (pc _PictureInPictureControllerClass) PictureInPictureButtonStartImageCompatibleWithTraitCollection(traitCollection TraitCollection /* not a class type */) appkit.Image {
 	rv := objc.Send[appkit.Image](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStartImageCompatibleWithTraitCollection:"), traitCollection)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PictureInPictureButtonStartImageCompatibleWithTraitCollection) */
+}
 
 
 // Returns a system-default template image that’s compatible with a trait collection for the button that stops Picture in Picture in your app.
@@ -190,13 +188,13 @@ func (pc _PictureInPictureControllerClass) PictureInPictureButtonStartImageCompa
 func (pc _PictureInPictureControllerClass) PictureInPictureButtonStopImageCompatibleWithTraitCollection(traitCollection TraitCollection /* not a class type */) appkit.Image {
 	rv := objc.Send[appkit.Image](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStopImageCompatibleWithTraitCollection:"), traitCollection)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PictureInPictureButtonStopImageCompatibleWithTraitCollection) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for PictureInPictureController */
+
+
+
 
 // A system-default template image for the button that starts Picture in Picture in your app.
 //
@@ -205,7 +203,7 @@ func (pc _PictureInPictureControllerClass) PictureInPictureButtonStopImageCompat
 func (pc _PictureInPictureControllerClass) PictureInPictureButtonStartImage() appkit.Image {
 	rv := objc.Send[appkit.Image](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStartImage"))
 	return rv
-}/* debug [class_properties_class/property]: pictureInPictureButtonStartImage */
+}
 
 // A system-default template image for the button that stops Picture in Picture in your app.
 //
@@ -214,12 +212,12 @@ func (pc _PictureInPictureControllerClass) PictureInPictureButtonStartImage() ap
 func (pc _PictureInPictureControllerClass) PictureInPictureButtonStopImage() appkit.Image {
 	rv := objc.Send[appkit.Image](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStopImage"))
 	return rv
-}/* debug [class_properties_class/property]: pictureInPictureButtonStopImage */
-/* debug [class_properties_class]: End class properties */
+}
 
 
 
-/* debug [instance_methods]: Instance methods for PictureInPictureController */
+
+
 
 // Invalidates the controller’s current playback state and fetches the updated state from the sample buffer playback delegate object.
 //
@@ -227,7 +225,7 @@ func (pc _PictureInPictureControllerClass) PictureInPictureButtonStopImage() app
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/invalidatePlaybackState()
 func (p_ PictureInPictureController) InvalidatePlaybackState() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("invalidatePlaybackState"))
-}/* debug [instance_methods/method]: InvalidatePlaybackState */
+}
 
 
 // Starts Picture in Picture, if possible.
@@ -236,7 +234,7 @@ func (p_ PictureInPictureController) InvalidatePlaybackState() {
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/startPictureInPicture()
 func (p_ PictureInPictureController) StartPictureInPicture() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("startPictureInPicture"))
-}/* debug [instance_methods/method]: StartPictureInPicture */
+}
 
 
 // Stops Picture in Picture, if active.
@@ -245,13 +243,13 @@ func (p_ PictureInPictureController) StartPictureInPicture() {
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/stopPictureInPicture()
 func (p_ PictureInPictureController) StopPictureInPicture() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("stopPictureInPicture"))
-}/* debug [instance_methods/method]: StopPictureInPicture */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for PictureInPictureController */
+
+
+
 
 // The source of the controller’s content.
 //
@@ -260,7 +258,7 @@ func (p_ PictureInPictureController) StopPictureInPicture() {
 func (p_ PictureInPictureController) ContentSource() IAVPictureInPictureControllerContentSource {
 	rv := objc.Send[PictureInPictureControllerContentSource](p_.ID, objc.Sel("contentSource"))
 	return rv
-}/* debug [instance_properties/getter]: contentSource */
+}
 
 
 // The source of the controller’s content.
@@ -269,7 +267,7 @@ func (p_ PictureInPictureController) ContentSource() IAVPictureInPictureControll
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/contentSource-swift.property
 func (p_ PictureInPictureController) SetContentSource(value IAVPictureInPictureControllerContentSource) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentSource:"), value)
-}/* debug [instance_properties/setter]: contentSource */
+}
 
 
 // A delegate object for a Picture in Picture controller.
@@ -279,7 +277,7 @@ func (p_ PictureInPictureController) SetContentSource(value IAVPictureInPictureC
 func (p_ PictureInPictureController) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
 	return rv
-}/* debug [instance_properties/getter]: delegate */
+}
 
 
 // A delegate object for a Picture in Picture controller.
@@ -288,7 +286,7 @@ func (p_ PictureInPictureController) Delegate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/delegate
 func (p_ PictureInPictureController) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
-}/* debug [instance_properties/setter]: delegate */
+}
 
 
 // A Boolean value that indicates whether the Picture in Picture window is onscreen.
@@ -298,7 +296,7 @@ func (p_ PictureInPictureController) SetDelegate(value unsafe.Pointer) {
 func (p_ PictureInPictureController) PictureInPictureActive() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("pictureInPictureActive"))
 	return rv
-}/* debug [instance_properties/getter]: pictureInPictureActive */
+}
 
 
 // A Boolean value that indicates whether Picture in Picture playback is currently possible.
@@ -308,7 +306,7 @@ func (p_ PictureInPictureController) PictureInPictureActive() bool {
 func (p_ PictureInPictureController) PictureInPicturePossible() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("pictureInPicturePossible"))
 	return rv
-}/* debug [instance_properties/getter]: pictureInPicturePossible */
+}
 
 
 // A Boolean value that indicates whether the system suspends the controller’s Picture in Picture window.
@@ -318,7 +316,7 @@ func (p_ PictureInPictureController) PictureInPicturePossible() bool {
 func (p_ PictureInPictureController) PictureInPictureSuspended() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("pictureInPictureSuspended"))
 	return rv
-}/* debug [instance_properties/getter]: pictureInPictureSuspended */
+}
 
 
 // A system-default template image for the button that starts Picture in Picture in your app.
@@ -328,7 +326,7 @@ func (p_ PictureInPictureController) PictureInPictureSuspended() bool {
 func (p_ PictureInPictureController) PictureInPictureButtonStartImage() appkit.Image {
 	rv := objc.Send[appkit.Image](p_.ID, objc.Sel("pictureInPictureButtonStartImage"))
 	return rv
-}/* debug [instance_properties/getter]: pictureInPictureButtonStartImage */
+}
 
 
 // A system-default template image for the button that stops Picture in Picture in your app.
@@ -338,7 +336,7 @@ func (p_ PictureInPictureController) PictureInPictureButtonStartImage() appkit.I
 func (p_ PictureInPictureController) PictureInPictureButtonStopImage() appkit.Image {
 	rv := objc.Send[appkit.Image](p_.ID, objc.Sel("pictureInPictureButtonStopImage"))
 	return rv
-}/* debug [instance_properties/getter]: pictureInPictureButtonStopImage */
+}
 
 
 // The layer that displays the video content.
@@ -348,7 +346,7 @@ func (p_ PictureInPictureController) PictureInPictureButtonStopImage() appkit.Im
 func (p_ PictureInPictureController) PlayerLayer() avfoundation.PlayerLayer {
 	rv := objc.Send[avfoundation.PlayerLayer](p_.ID, objc.Sel("playerLayer"))
 	return rv
-}/* debug [instance_properties/getter]: playerLayer */
+}
 
 
 // A Boolean value that determines whether the controller allows the user to skip media content.
@@ -358,7 +356,7 @@ func (p_ PictureInPictureController) PlayerLayer() avfoundation.PlayerLayer {
 func (p_ PictureInPictureController) RequiresLinearPlayback() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("requiresLinearPlayback"))
 	return rv
-}/* debug [instance_properties/getter]: requiresLinearPlayback */
+}
 
 
 // A Boolean value that determines whether the controller allows the user to skip media content.
@@ -367,7 +365,7 @@ func (p_ PictureInPictureController) RequiresLinearPlayback() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/requiresLinearPlayback
 func (p_ PictureInPictureController) SetRequiresLinearPlayback(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRequiresLinearPlayback:"), value)
-}/* debug [instance_properties/setter]: requiresLinearPlayback */
+}
 
 
 // A Boolean value that indicates whether the Picture in Picture window is onscreen.
@@ -377,7 +375,7 @@ func (p_ PictureInPictureController) SetRequiresLinearPlayback(value bool) {
 func (p_ PictureInPictureController) IsPictureInPictureActive() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isPictureInPictureActive"))
 	return rv
-}/* debug [instance_properties/getter]: isPictureInPictureActive */
+}
 
 
 // A Boolean value that indicates whether the Picture in Picture window is onscreen.
@@ -386,7 +384,7 @@ func (p_ PictureInPictureController) IsPictureInPictureActive() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpictureactive
 func (p_ PictureInPictureController) SetIsPictureInPictureActive(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPictureInPictureActive:"), value)
-}/* debug [instance_properties/setter]: isPictureInPictureActive */
+}
 
 
 // A Boolean value that indicates whether Picture in Picture playback is currently possible.
@@ -396,7 +394,7 @@ func (p_ PictureInPictureController) SetIsPictureInPictureActive(value bool) {
 func (p_ PictureInPictureController) IsPictureInPicturePossible() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isPictureInPicturePossible"))
 	return rv
-}/* debug [instance_properties/getter]: isPictureInPicturePossible */
+}
 
 
 // A Boolean value that indicates whether Picture in Picture playback is currently possible.
@@ -405,7 +403,7 @@ func (p_ PictureInPictureController) IsPictureInPicturePossible() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpicturepossible
 func (p_ PictureInPictureController) SetIsPictureInPicturePossible(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPictureInPicturePossible:"), value)
-}/* debug [instance_properties/setter]: isPictureInPicturePossible */
+}
 
 
 // A Boolean value that indicates whether the system suspends the controller’s Picture in Picture window.
@@ -415,7 +413,7 @@ func (p_ PictureInPictureController) SetIsPictureInPicturePossible(value bool) {
 func (p_ PictureInPictureController) IsPictureInPictureSuspended() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isPictureInPictureSuspended"))
 	return rv
-}/* debug [instance_properties/getter]: isPictureInPictureSuspended */
+}
 
 
 // A Boolean value that indicates whether the system suspends the controller’s Picture in Picture window.
@@ -424,11 +422,11 @@ func (p_ PictureInPictureController) IsPictureInPictureSuspended() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpicturesuspended
 func (p_ PictureInPictureController) SetIsPictureInPictureSuspended(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPictureInPictureSuspended:"), value)
-}/* debug [instance_properties/setter]: isPictureInPictureSuspended */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVPictureInPictureController */
+
+
+
 
 

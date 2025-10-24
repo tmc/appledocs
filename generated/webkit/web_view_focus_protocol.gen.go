@@ -15,3 +15,4 @@ var webViewFocusProtocol *objc.Protocol
 func init() {
 	webViewFocusProtocol = objc.GetProtocol("webViewFocus:")
 }
+

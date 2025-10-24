@@ -15,3 +15,4 @@ var WebDocumentSearchingProtocol *objc.Protocol
 func init() {
 	WebDocumentSearchingProtocol = objc.GetProtocol("WebDocumentSearching")
 }
+

@@ -5,7 +5,7 @@ package soundanalysis
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
 )
 
 // PSNResultsObserving is the SNResultsObserving protocol interface.
@@ -24,7 +24,7 @@ import (
 // See: doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNResultsObserving
 type PSNResultsObserving interface {
 	// Required methods
-	RequestDidProduceResult(request unsafe.Pointer, result unsafe.Pointer)
+	RequestDidProduceResult(request unsafe.Pointer, result unsafe.Pointer)/* debug [protocol_interface/required_method]: RequestDidProduceResult */
 	// Optional methods
 	RequestDidFailWithError(request unsafe.Pointer, error_ objc.IObject /* cross-framework: Error */)
 	HasRequestDidFailWithError() bool

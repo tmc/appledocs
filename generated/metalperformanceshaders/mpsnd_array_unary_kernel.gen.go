@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNDArrayUnaryKernel */
 
 
-/* debug [class_header]: Header for MPSNDArrayUnaryKernel */
+
+
 // The class instance for the [NDArrayUnaryKernel] class.
 var (
 	NDArrayUnaryKernelClass     _NDArrayUnaryKernelClass
@@ -31,16 +30,16 @@ func getNDArrayUnaryKernelClass() _NDArrayUnaryKernelClass {
 type _NDArrayUnaryKernelClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NDArrayUnaryKernel */
+
+
 // An interface definition for the [NDArrayUnaryKernel] class.
 type INDArrayUnaryKernel interface {
 	INDArrayMultiaryKernel
 	
-/* debug [class_interface_properties]: Properties for NDArrayUnaryKernel */
+
 	// properties:
 	DilationRates() NDArraySizes get /* not a class type */
 	SetDilationRates(value NDArraySizes get /* not a class type */)
@@ -52,24 +51,24 @@ type INDArrayUnaryKernel interface {
 	SetOffsets(value NDArrayOffsets get /* not a class type */)
 	Strides() NDArrayOffsets get /* not a class type */
 	SetStrides(value NDArrayOffsets get /* not a class type */)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NDArrayUnaryKernel */
+
 	// methods:
 	Encode()
 	EncodeToCommandBufferSourceArray(cmdBuf unsafe.Pointer, sourceArray INDArray) INDArray
 	EncodeToCommandBufferSourceArrayDestinationArray(cmdBuf unsafe.Pointer, sourceArray INDArray, destination INDArray)
 	EncodeToCommandBufferSourceArrayResultStateDestinationArray(cmdBuf unsafe.Pointer, sourceArray INDArray, outGradientState IState, destination INDArray)
 	EncodeToCommandBufferSourceArrayResultStateOutputStateIsTemporary(cmdBuf unsafe.Pointer, sourceArray INDArray, outGradientState objectivec.IObject, outputStateIsTemporary bool) INDArray
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NDArrayUnaryKernel */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NDArrayUnaryKernelClass) Alloc() NDArrayUnaryKernel {
 	rv := objc.Send[NDArrayUnaryKernel](objc.ID(nc.class), objc.Sel("alloc"))
@@ -99,11 +98,11 @@ func (n_ NDArrayUnaryKernel) Autorelease() NDArrayUnaryKernel {
 func NewNDArrayUnaryKernel() NDArrayUnaryKernel {
 	return getNDArrayUnaryKernelClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NDArrayUnaryKernel */
+
+
 
 
 // [Full Topic]
@@ -118,11 +117,11 @@ func NDArrayUnaryKernelFrom(ptr unsafe.Pointer) NDArrayUnaryKernel {
 		NDArrayMultiaryKernel: NDArrayMultiaryKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NDArrayUnaryKernel */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel/3175012-initwithcoder
@@ -131,7 +130,7 @@ func NewNDArrayUnaryKernelWithCoderDevice(coder foundation.Coder, device unsafe.
 	rv := objc.Send[NDArrayUnaryKernel](instance.ID, objc.Sel("initWithCoder:device:"), coder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNDArrayUnaryKernelWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -141,29 +140,29 @@ func NewNDArrayUnaryKernelWithDevice(device unsafe.Pointer) NDArrayUnaryKernel {
 	rv := objc.Send[NDArrayUnaryKernel](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNDArrayUnaryKernelWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for NDArrayUnaryKernel */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NDArrayUnaryKernel */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NDArrayUnaryKernel */
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel/3143536-encode
 func (n_ NDArrayUnaryKernel) Encode() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("encode"))
-}/* debug [instance_methods/method]: Encode */
+}
 
 
 // [Full Topic]
@@ -171,21 +170,21 @@ func (n_ NDArrayUnaryKernel) Encode() {
 func (n_ NDArrayUnaryKernel) EncodeToCommandBufferSourceArray(cmdBuf unsafe.Pointer, sourceArray INDArray) INDArray {
 	rv := objc.Send[NDArray](n_.ID, objc.Sel("encodeToCommandBuffer:sourceArray:"), cmdBuf, sourceArray)
 	return rv
-}/* debug [instance_methods/method]: EncodeToCommandBufferSourceArray */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel/3143537-encodetocommandbuffer
 func (n_ NDArrayUnaryKernel) EncodeToCommandBufferSourceArrayDestinationArray(cmdBuf unsafe.Pointer, sourceArray INDArray, destination INDArray) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("encodeToCommandBuffer:sourceArray:destinationArray:"), cmdBuf, sourceArray, destination)
-}/* debug [instance_methods/method]: EncodeToCommandBufferSourceArrayDestinationArray */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel/3143538-encodetocommandbuffer
 func (n_ NDArrayUnaryKernel) EncodeToCommandBufferSourceArrayResultStateDestinationArray(cmdBuf unsafe.Pointer, sourceArray INDArray, outGradientState IState, destination INDArray) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("encodeToCommandBuffer:sourceArray:resultState:destinationArray:"), cmdBuf, sourceArray, outGradientState, destination)
-}/* debug [instance_methods/method]: EncodeToCommandBufferSourceArrayResultStateDestinationArray */
+}
 
 
 // [Full Topic]
@@ -193,27 +192,27 @@ func (n_ NDArrayUnaryKernel) EncodeToCommandBufferSourceArrayResultStateDestinat
 func (n_ NDArrayUnaryKernel) EncodeToCommandBufferSourceArrayResultStateOutputStateIsTemporary(cmdBuf unsafe.Pointer, sourceArray INDArray, outGradientState objectivec.IObject, outputStateIsTemporary bool) INDArray {
 	rv := objc.Send[NDArray](n_.ID, objc.Sel("encodeToCommandBuffer:sourceArray:resultState:outputStateIsTemporary:"), cmdBuf, sourceArray, outGradientState, outputStateIsTemporary)
 	return rv
-}/* debug [instance_methods/method]: EncodeToCommandBufferSourceArrayResultStateOutputStateIsTemporary */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for NDArrayUnaryKernel */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel/3143534-dilationrates
 func (n_ NDArrayUnaryKernel) DilationRates() NDArraySizes get /* not a class type */ {
 	rv := objc.Send[objc.ID](n_.ID, objc.Sel("dilationRates"))
 	return rv
-}/* debug [instance_properties/getter]: dilationRates */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel/3143534-dilationrates
 func (n_ NDArrayUnaryKernel) SetDilationRates(value NDArraySizes get /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDilationRates:"), value)
-}/* debug [instance_properties/setter]: dilationRates */
+}
 
 
 // [Full Topic]
@@ -221,14 +220,14 @@ func (n_ NDArrayUnaryKernel) SetDilationRates(value NDArraySizes get /* not a cl
 func (n_ NDArrayUnaryKernel) EdgeMode() ImageEdgeMode get /* not a class type */ {
 	rv := objc.Send[objc.ID](n_.ID, objc.Sel("edgeMode"))
 	return rv
-}/* debug [instance_properties/getter]: edgeMode */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel/3143535-edgemode
 func (n_ NDArrayUnaryKernel) SetEdgeMode(value ImageEdgeMode get /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setEdgeMode:"), value)
-}/* debug [instance_properties/setter]: edgeMode */
+}
 
 
 // [Full Topic]
@@ -236,14 +235,14 @@ func (n_ NDArrayUnaryKernel) SetEdgeMode(value ImageEdgeMode get /* not a class 
 func (n_ NDArrayUnaryKernel) KernelSizes() NDArraySizes get /* not a class type */ {
 	rv := objc.Send[objc.ID](n_.ID, objc.Sel("kernelSizes"))
 	return rv
-}/* debug [instance_properties/getter]: kernelSizes */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel/3143541-kernelsizes
 func (n_ NDArrayUnaryKernel) SetKernelSizes(value NDArraySizes get /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setKernelSizes:"), value)
-}/* debug [instance_properties/setter]: kernelSizes */
+}
 
 
 // [Full Topic]
@@ -251,14 +250,14 @@ func (n_ NDArrayUnaryKernel) SetKernelSizes(value NDArraySizes get /* not a clas
 func (n_ NDArrayUnaryKernel) Offsets() NDArrayOffsets get /* not a class type */ {
 	rv := objc.Send[objc.ID](n_.ID, objc.Sel("offsets"))
 	return rv
-}/* debug [instance_properties/getter]: offsets */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel/3143542-offsets
 func (n_ NDArrayUnaryKernel) SetOffsets(value NDArrayOffsets get /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setOffsets:"), value)
-}/* debug [instance_properties/setter]: offsets */
+}
 
 
 // [Full Topic]
@@ -266,18 +265,18 @@ func (n_ NDArrayUnaryKernel) SetOffsets(value NDArrayOffsets get /* not a class 
 func (n_ NDArrayUnaryKernel) Strides() NDArrayOffsets get /* not a class type */ {
 	rv := objc.Send[objc.ID](n_.ID, objc.Sel("strides"))
 	return rv
-}/* debug [instance_properties/getter]: strides */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel/3143543-strides
 func (n_ NDArrayUnaryKernel) SetStrides(value NDArrayOffsets get /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setStrides:"), value)
-}/* debug [instance_properties/setter]: strides */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSNDArrayUnaryKernel */
+
+
+
 
 

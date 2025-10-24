@@ -19,3 +19,4 @@ var duplicateUsingConfigurationProtocol *objc.Protocol
 func init() {
 	duplicateUsingConfigurationProtocol = objc.GetProtocol("duplicateUsingConfiguration:")
 }
+

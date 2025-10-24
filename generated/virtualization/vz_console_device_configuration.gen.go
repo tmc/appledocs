@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZConsoleDeviceConfiguration */
 
+
 /* debug [class_header]: Header for VZConsoleDeviceConfiguration */
 // The class instance for the [VZConsoleDeviceConfiguration] class.
 var (
@@ -29,25 +30,28 @@ func getVZConsoleDeviceConfigurationClass() _VZConsoleDeviceConfigurationClass {
 type _VZConsoleDeviceConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZConsoleDeviceConfiguration */
 // An interface definition for the [VZConsoleDeviceConfiguration] class.
 type IVZConsoleDeviceConfiguration interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZConsoleDeviceConfiguration */
+	
+/* debug [class_interface_properties]: Properties for VZConsoleDeviceConfiguration */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZConsoleDeviceConfiguration */
+	
+/* debug [class_interface_methods]: Methods for VZConsoleDeviceConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZConsoleDeviceConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -79,13 +83,15 @@ func (v_ VZConsoleDeviceConfiguration) Autorelease() VZConsoleDeviceConfiguratio
 func NewVZConsoleDeviceConfiguration() VZConsoleDeviceConfiguration {
 	return getVZConsoleDeviceConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZConsoleDeviceConfiguration */
 // The base class for a console device configuration.
 //
 // Don’t instantiate VZConsoleDeviceConfiguration directly, instead use one of its subclasses like instead.
+
 
 // The base class for a console device configuration.
 //
@@ -101,21 +107,34 @@ type VZConsoleDeviceConfiguration struct {
 func VZConsoleDeviceConfigurationFrom(ptr unsafe.Pointer) VZConsoleDeviceConfiguration {
 	return VZConsoleDeviceConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZConsoleDeviceConfiguration */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZConsoleDeviceConfiguration *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZConsoleDeviceConfiguration */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZConsoleDeviceConfiguration */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZConsoleDeviceConfiguration */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for VZConsoleDeviceConfiguration */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZConsoleDeviceConfiguration */
+
+
+

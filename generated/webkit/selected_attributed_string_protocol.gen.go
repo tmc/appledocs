@@ -15,3 +15,4 @@ var selectedAttributedStringProtocol *objc.Protocol
 func init() {
 	selectedAttributedStringProtocol = objc.GetProtocol("selectedAttributedString")
 }
+

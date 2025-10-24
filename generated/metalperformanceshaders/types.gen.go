@@ -14,7 +14,7 @@ import (
 type MPSAxisAlignedBoundingBox struct {
 	Max unsafe.Pointer
 	Min unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSAxisAlignedBoundingBox */
+}
 
 // MPSOrigin - A position in an image used as the source origin.
 //
@@ -24,14 +24,18 @@ type MPSOrigin struct {
 	Y unsafe.Pointer // The y coordinate of the position, in pixels.
 	Z unsafe.Pointer // The z coordinate of the position, in pixels.
 	X unsafe.Pointer // The x coordinate of the position, in pixels.
-}/* debug [types.gen.go/struct]: MPSOrigin */
+}
 
 // MPSPackedFloat3 - A packed three-element vector.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPackedFloat3-c.struct
 type MPSPackedFloat3 struct {
-}/* debug [types.gen.go/struct]: MPSPackedFloat3 */
+	Elements float32
+	X float32
+	Y float32
+	Z float32
+}
 
 // MPSSize - A size of a region in an image.
 //
@@ -41,7 +45,7 @@ type MPSSize struct {
 	Height unsafe.Pointer // The height of the region, in pixels.
 	Depth unsafe.Pointer // The depth of the region, in pixels.
 	Width unsafe.Pointer // The width of the region, in pixels.
-}/* debug [types.gen.go/struct]: MPSSize */
+}
 
 // MPSCustomKernelArgumentCount - A structure that contains the number of destination, source, and broadcaset textures used by a custom kernel.
 //
@@ -51,7 +55,7 @@ type MPSCustomKernelArgumentCount struct {
 	BroadcastTextureCount unsafe.Pointer
 	DestinationTextureCount unsafe.Pointer
 	SourceTextureCount unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSCustomKernelArgumentCount */
+}
 
 // MPSCustomKernelInfo
 //
@@ -67,7 +71,7 @@ type MPSCustomKernelInfo struct {
 	DestImageArraySize unsafe.Pointer
 	DestinationFeatureChannels unsafe.Pointer
 	SubbatchIndex unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSCustomKernelInfo */
+}
 
 // MPSCustomKernelSourceInfo
 //
@@ -84,7 +88,7 @@ type MPSCustomKernelSourceInfo struct {
 	KernelOrigin unsafe.Pointer
 	FeatureChannels unsafe.Pointer
 	FeatureChannelOffset unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSCustomKernelSourceInfo */
+}
 
 // MPSDimensionSlice
 //
@@ -93,7 +97,7 @@ type MPSCustomKernelSourceInfo struct {
 type MPSDimensionSlice struct {
 	Length unsafe.Pointer
 	Start unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSDimensionSlice */
+}
 
 // MPSImageCoordinate
 //
@@ -103,7 +107,7 @@ type MPSImageCoordinate struct {
 	Channel unsafe.Pointer
 	X unsafe.Pointer
 	Y unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSImageCoordinate */
+}
 
 // MPSImageHistogramInfo - The information used to compute the histogram channels of an image.
 //
@@ -114,7 +118,7 @@ type MPSImageHistogramInfo struct {
 	NumberOfHistogramEntries unsafe.Pointer // Specifies the number of histogram entries ( ) for each channel.
 	HistogramForAlpha unsafe.Pointer // Specifies whether the histogram for the alpha channel should be computed or not.
 	MaxPixelValue unsafe.Pointer // Specifies the maximum pixel value.  Any pixel value greater than this will be clipped to this value (for the purposes of histogram calculation), and assigned to the first histogram entry. This maximum value is applied to each of the four channels separately.
-}/* debug [types.gen.go/struct]: MPSImageHistogramInfo */
+}
 
 // MPSImageKeypointData - A structure that specifies keypoint information.
 //
@@ -123,7 +127,7 @@ type MPSImageHistogramInfo struct {
 type MPSImageKeypointData struct {
 	KeypointColorValue unsafe.Pointer
 	KeypointCoordinate unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSImageKeypointData */
+}
 
 // MPSImageKeypointRangeInfo - A structure that specifies information to find the keypoints in an image.
 //
@@ -132,7 +136,7 @@ type MPSImageKeypointData struct {
 type MPSImageKeypointRangeInfo struct {
 	MinimumThresholdValue unsafe.Pointer
 	MaximumKeypoints unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSImageKeypointRangeInfo */
+}
 
 // MPSImageReadWriteParams - Parameters that control reading and writing of a particular set of feature channels.
 //
@@ -141,7 +145,7 @@ type MPSImageKeypointRangeInfo struct {
 type MPSImageReadWriteParams struct {
 	FeatureChannelOffset unsafe.Pointer
 	NumberOfFeatureChannelsToReadWrite unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSImageReadWriteParams */
+}
 
 // MPSImageRegion
 //
@@ -150,7 +154,7 @@ type MPSImageReadWriteParams struct {
 type MPSImageRegion struct {
 	Offset ImageCoordinate
 	Size ImageCoordinate
-}/* debug [types.gen.go/struct]: MPSImageRegion */
+}
 
 // MPSIntegerDivisionParams - Parameters that define the parts of a division operation.
 //
@@ -161,7 +165,7 @@ type MPSIntegerDivisionParams struct {
 	Divisor unsafe.Pointer
 	Recip unsafe.Pointer
 	Addend unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSIntegerDivisionParams */
+}
 
 // MPSIntersectionDistance - An intersection result that contains the distance from the ray origin to the intersection point.
 //
@@ -169,7 +173,7 @@ type MPSIntegerDivisionParams struct {
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSIntersectionDistance
 type MPSIntersectionDistance struct {
 	Distance unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSIntersectionDistance */
+}
 
 // MPSIntersectionDistancePrimitiveIndex - An intersection result that contains the distance from the ray origin to the intersection point, and the index of the intersected primitive.
 //
@@ -178,7 +182,7 @@ type MPSIntersectionDistance struct {
 type MPSIntersectionDistancePrimitiveIndex struct {
 	Distance unsafe.Pointer
 	PrimitiveIndex unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSIntersectionDistancePrimitiveIndex */
+}
 
 // MPSIntersectionDistancePrimitiveIndexBufferIndex
 //
@@ -188,7 +192,7 @@ type MPSIntersectionDistancePrimitiveIndexBufferIndex struct {
 	BufferIndex unsafe.Pointer
 	Distance unsafe.Pointer
 	PrimitiveIndex unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSIntersectionDistancePrimitiveIndexBufferIndex */
+}
 
 // MPSIntersectionDistancePrimitiveIndexBufferIndexCoordinates
 //
@@ -199,7 +203,7 @@ type MPSIntersectionDistancePrimitiveIndexBufferIndexCoordinates struct {
 	Coordinates unsafe.Pointer
 	Distance unsafe.Pointer
 	PrimitiveIndex unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSIntersectionDistancePrimitiveIndexBufferIndexCoordinates */
+}
 
 // MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndex
 //
@@ -210,7 +214,7 @@ type MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndex struct {
 	Distance unsafe.Pointer
 	InstanceIndex unsafe.Pointer
 	PrimitiveIndex unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndex */
+}
 
 // MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndexCoordinates
 //
@@ -222,7 +226,7 @@ type MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndexCoordinates st
 	Distance unsafe.Pointer
 	InstanceIndex unsafe.Pointer
 	PrimitiveIndex unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndexCoordinates */
+}
 
 // MPSIntersectionDistancePrimitiveIndexCoordinates - An intersection result that contains the origin-intersection distance, intersected primitive index, and intersection point coordinates.
 //
@@ -232,7 +236,7 @@ type MPSIntersectionDistancePrimitiveIndexCoordinates struct {
 	Coordinates unsafe.Pointer
 	Distance unsafe.Pointer
 	PrimitiveIndex unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSIntersectionDistancePrimitiveIndexCoordinates */
+}
 
 // MPSIntersectionDistancePrimitiveIndexInstanceIndex - An intersection result that contains the origin-intersection distance, and intersected primitive and instance indices.
 //
@@ -242,7 +246,7 @@ type MPSIntersectionDistancePrimitiveIndexInstanceIndex struct {
 	Distance unsafe.Pointer
 	InstanceIndex unsafe.Pointer
 	PrimitiveIndex unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSIntersectionDistancePrimitiveIndexInstanceIndex */
+}
 
 // MPSIntersectionDistancePrimitiveIndexInstanceIndexCoordinates - An intersection result that contains the origin-intersection distance, intersected primitive and instance indices, and intersection point coordinates.
 //
@@ -253,7 +257,7 @@ type MPSIntersectionDistancePrimitiveIndexInstanceIndexCoordinates struct {
 	Distance unsafe.Pointer
 	InstanceIndex unsafe.Pointer
 	PrimitiveIndex unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSIntersectionDistancePrimitiveIndexInstanceIndexCoordinates */
+}
 
 // MPSMatrixCopyOffsets - A description of matrix copy operations.
 //
@@ -264,7 +268,7 @@ type MPSMatrixCopyOffsets struct {
 	DestinationColumnOffset unsafe.Pointer
 	SourceRowOffset unsafe.Pointer
 	DestinationRowOffset unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSMatrixCopyOffsets */
+}
 
 // MPSMatrixOffset - A description of row and column offsets into a matrix.
 //
@@ -273,7 +277,7 @@ type MPSMatrixCopyOffsets struct {
 type MPSMatrixOffset struct {
 	ColumnOffset unsafe.Pointer
 	RowOffset unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSMatrixOffset */
+}
 
 // MPSNDArrayOffsets
 //
@@ -281,7 +285,7 @@ type MPSMatrixOffset struct {
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayOffsets
 type MPSNDArrayOffsets struct {
 	Dimensions unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSNDArrayOffsets */
+}
 
 // MPSNDArraySizes
 //
@@ -289,7 +293,7 @@ type MPSNDArrayOffsets struct {
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArraySizes
 type MPSNDArraySizes struct {
 	Dimensions unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSNDArraySizes */
+}
 
 // MPSOffset - A signed coordinate with x, y, and z components.
 //
@@ -299,7 +303,7 @@ type MPSOffset struct {
 	Y unsafe.Pointer // The vertical component of the offset, in pixels.
 	X unsafe.Pointer // The horizontal component of the offset, in pixels.
 	Z unsafe.Pointer // The depth component of the offset, in pixels.
-}/* debug [types.gen.go/struct]: MPSOffset */
+}
 
 // MPSRayOriginDirection - A 3D ray with an origin and a direction.
 //
@@ -308,7 +312,7 @@ type MPSOffset struct {
 type MPSRayOriginDirection struct {
 	Direction unsafe.Pointer
 	Origin unsafe.Pointer
-}/* debug [types.gen.go/struct]: MPSRayOriginDirection */
+}
 
 // MPSRayOriginMaskDirectionMaxDistance - A 3D ray with an origin, a direction, and a mask to filter out intersections.
 //
@@ -319,7 +323,7 @@ type MPSRayOriginMaskDirectionMaxDistance struct {
 	Mask unsafe.Pointer
 	MaxDistance unsafe.Pointer
 	Origin PackedFloat3
-}/* debug [types.gen.go/struct]: MPSRayOriginMaskDirectionMaxDistance */
+}
 
 // MPSRayOriginMinDistanceDirectionMaxDistance - A 3D ray with an origin, a direction, and an intersection distance range from the origin.
 //
@@ -330,7 +334,7 @@ type MPSRayOriginMinDistanceDirectionMaxDistance struct {
 	MaxDistance unsafe.Pointer
 	MinDistance unsafe.Pointer
 	Origin PackedFloat3
-}/* debug [types.gen.go/struct]: MPSRayOriginMinDistanceDirectionMaxDistance */
+}
 
 // MPSRayPackedOriginDirection
 //
@@ -339,7 +343,7 @@ type MPSRayOriginMinDistanceDirectionMaxDistance struct {
 type MPSRayPackedOriginDirection struct {
 	Direction PackedFloat3
 	Origin PackedFloat3
-}/* debug [types.gen.go/struct]: MPSRayPackedOriginDirection */
+}
 
 // MPSRegion - A region of an image.
 //
@@ -348,7 +352,7 @@ type MPSRayPackedOriginDirection struct {
 type MPSRegion struct {
 	Size Size // The size of the region.
 	Origin Origin // The top-left corner of the region.
-}/* debug [types.gen.go/struct]: MPSRegion */
+}
 
 // MPSScaleTransform - A transform matrix for explicit resampling control with a Lanczos kernel.
 //
@@ -359,7 +363,7 @@ type MPSScaleTransform struct {
 	ScaleY unsafe.Pointer // The vertical scale factor.
 	TranslateX unsafe.Pointer // The horizontal translation factor.
 	TranslateY unsafe.Pointer // The vertical translation factor.
-}/* debug [types.gen.go/struct]: MPSScaleTransform */
+}
 
 // MPSStateTextureInfo - An encapsulation of a texture’s dimensions, format, type, and usage.
 //
@@ -373,7 +377,7 @@ type MPSStateTextureInfo struct {
 	Width unsafe.Pointer
 	ArrayLength unsafe.Pointer
 	TextureType TextureType
-}/* debug [types.gen.go/struct]: MPSStateTextureInfo */
+}
 
 
 

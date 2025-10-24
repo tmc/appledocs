@@ -18,3 +18,4 @@ var productViewControllerDidFinishProtocol *objc.Protocol
 func init() {
 	productViewControllerDidFinishProtocol = objc.GetProtocol("productViewControllerDidFinish:")
 }
+

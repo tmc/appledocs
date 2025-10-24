@@ -31,9 +31,11 @@ func (gf GeneratorFuncs) Funcs() template.FuncMap {
 		"formatMethodParams": gf.formatMethodParams,
 
 		// Type Resolution
-		"shouldSkipTypedef":   gf.shouldSkipTypedef,
-		"typeToInterfaceType": gf.TypeToInterfaceType,
-		"concreteReturnType":  gf.concreteReturnType,
+		"shouldSkipTypedef":      gf.shouldSkipTypedef,
+		"typeToInterfaceType":    gf.TypeToInterfaceType,
+		"concreteReturnType":     gf.concreteReturnType,
+		"isStringBasedTypedef":   gf.IsStringBasedTypedef,
+		"getTypedefBaseType":     gf.getTypedefBaseType,
 
 		// Name Conversion
 		"stripFrameworkPrefix": gf.stripFrameworkPrefix,
@@ -52,6 +54,26 @@ func (gf GeneratorFuncs) Funcs() template.FuncMap {
 
 		"debug": gf.debugLog,
 	}
+}
+
+// getTypedefBaseType returns the base type for a typedef (e.g., "NSCalendarIdentifier" -> "NSString *").
+// Returns empty string if not found.
+func (gf GeneratorFuncs) getTypedefBaseType(typeName string) string {
+	var typedef *occ2go.ParsedTypedef
+	if gf.typedefIndex != nil {
+		typedef = gf.typedefIndex[typeName]
+	} else {
+		for _, td := range gf.Typedefs {
+			if td.Name == typeName {
+				typedef = td
+				break
+			}
+		}
+	}
+	if typedef == nil {
+		return ""
+	}
+	return typedef.BaseType
 }
 
 // Method Formatting
@@ -302,47 +324,13 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 		return "IMP"
 	}
 
-	// Handle typedef resolution - if this is a typedef, resolve to underlying type
-	// This fixes issues like TimeInterval (typedef for float64) being treated as objc.ID
-	if typedef, isTypedef := gf.typedefIndex[goType]; isTypedef {
-		// Resolve the typedef to its base type
-		baseType := typedef.BaseType
-
-		// Map C primitive types directly to avoid infinite recursion
-		// (e.g., "double" -> "float64", not "TimeInterval")
-		switch baseType {
-		case "double":
-			return "float64"
-		case "float":
-			return "float32"
-		case "int":
-			return "int32"
-		case "unsigned int":
-			return "uint32"
-		case "short":
-			return "int16"
-		case "unsigned short":
-			return "uint16"
-		case "long":
-			return "int64"
-		case "unsigned long":
-			return "uint64"
-		case "NSInteger":
-			return "int"
-		case "NSUInteger":
-			return "uint"
-		case "BOOL", "bool":
-			return "bool"
-		default:
-			// For non-primitive types, recursively resolve
-			// Use occ2go.MapCTypeToGo for base C types, not mapObjCTypeToGo
-			if goBaseType := occ2go.MapCTypeToGo(baseType, gf.Framework); goBaseType != "" && goBaseType != "unsafe.Pointer" {
-				return goBaseType
-			}
-			// For other typedefs or complex types, recursively process
-			resolvedType := mapObjCTypeToGo(baseType, gf.Framework)
-			return gf.concreteReturnType(resolvedType)
-		}
+	// Check if this is a typedef - if so, PRESERVE the typedef name for objc.Send
+	// Key insight: objc.Send[T] needs the actual type T, and Go typedefs are distinct types
+	// For example: type TextCheckingTypes uintptr means objc.Send needs TextCheckingTypes, not uintptr
+	// This is different from the old behavior which resolved typedefs to primitives
+	if _, isTypedef := gf.typedefIndex[goType]; isTypedef {
+		// Preserve the typedef name - objc.Send can use it directly
+		return goType
 	}
 
 	// Handle qualified types from standard packages (objc., unsafe., etc.)
@@ -360,6 +348,16 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 		parts := strings.Split(goType, ".")
 		frameworkPrefix := parts[0]
 		typeName := parts[len(parts)-1]
+
+		// DEBUG: Track cross-framework type processing
+		if strings.Contains(goType, "Size") || strings.Contains(goType, "Point") || strings.Contains(goType, "Rect") {
+			Debug.TypeMap("concreteReturnType cross-framework check",
+				"goType", goType,
+				"frameworkPrefix", frameworkPrefix,
+				"gf.Framework", gf.Framework,
+				"typeName", typeName,
+			)
+		}
 
 		// If it's from a different framework, check if it would cause a hierarchy violation
 		// For hierarchy violations, the interface type will be objc.IObject, so we should

@@ -22,5 +22,5 @@ import (
 // See: doc://com.apple.coreimage/documentation/CoreImage/CIFilterConstructor
 type PFilterConstructor interface {
 	// Required methods
-	FilterWithName(name objc.IObject /* cross-framework: NSString */) Filter/* debug [protocol_interface/required_method]: FilterWithName */
+	FilterWithName(name objc.IObject /* cross-framework: NSString */) Filter
 }

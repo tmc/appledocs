@@ -2,7 +2,10 @@
 
 package webkit
 
-import "github.com/tmc/appledocs/generated/appkit"
+import (
+
+	"github.com/tmc/appledocs/generated/appkit"
+)
 
 // PWebDocumentView is the WebDocumentView protocol interface.
 //
@@ -14,10 +17,10 @@ import "github.com/tmc/appledocs/generated/appkit"
 // See: doc://com.apple.webkit/documentation/WebKit/WebDocumentView
 type PWebDocumentView interface {
 	// Required methods
-	DataSourceUpdated(dataSource IWebDataSource)
-	Layout()
-	SetDataSource(dataSource IWebDataSource)
-	SetNeedsLayout(flag bool)
-	ViewDidMoveToHostWindow()
-	ViewWillMoveToHostWindow(hostWindow appkit.Window)
+	DataSourceUpdated(dataSource IWebDataSource)/* debug [protocol_interface/required_method]: DataSourceUpdated */
+	Layout()/* debug [protocol_interface/required_method]: Layout */
+	SetDataSource(dataSource IWebDataSource)/* debug [protocol_interface/required_method]: SetDataSource */
+	SetNeedsLayout(flag bool)/* debug [protocol_interface/required_method]: SetNeedsLayout */
+	ViewDidMoveToHostWindow()/* debug [protocol_interface/required_method]: ViewDidMoveToHostWindow */
+	ViewWillMoveToHostWindow(hostWindow appkit.Window)/* debug [protocol_interface/required_method]: ViewWillMoveToHostWindow */
 }

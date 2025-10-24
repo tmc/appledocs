@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAudioUnitEQ */
 
 
-/* debug [class_header]: Header for AVAudioUnitEQ */
+
+
 // The class instance for the [AudioUnitEQ] class.
 var (
 	AudioUnitEQClass     _AudioUnitEQClass
@@ -30,33 +30,33 @@ func getAudioUnitEQClass() _AudioUnitEQClass {
 type _AudioUnitEQClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AudioUnitEQ */
+
+
 // An interface definition for the [AudioUnitEQ] class.
 type IAudioUnitEQ interface {
 	IAudioUnitEffect
 	
-/* debug [class_interface_properties]: Properties for AudioUnitEQ */
+
 	// properties:
 	Bands() []AudioUnitEQFilterParameters
 	GlobalGain() float32
 	SetGlobalGain(value float32)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AudioUnitEQ */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AudioUnitEQ */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AudioUnitEQClass) Alloc() AudioUnitEQ {
 	rv := objc.Send[AudioUnitEQ](objc.ID(ac.class), objc.Sel("alloc"))
@@ -86,11 +86,11 @@ func (a_ AudioUnitEQ) Autorelease() AudioUnitEQ {
 func NewAudioUnitEQ() AudioUnitEQ {
 	return getAudioUnitEQClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AudioUnitEQ */
+
+
 // An object that implements a multiband equalizer.
 //
 // The class encapsulates the filter parameters that the property array returns.
@@ -112,11 +112,11 @@ func AudioUnitEQFrom(ptr unsafe.Pointer) AudioUnitEQ {
 		AudioUnitEffect: AudioUnitEffectFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AudioUnitEQ */
+
+
 
 // Creates an audio unit equalizer object with the specified number of bands.
 //
@@ -127,28 +127,28 @@ func NewAudioUnitEQWithNumberOfBands(numberOfBands uint) AudioUnitEQ {
 	rv := objc.Send[AudioUnitEQ](instance.ID, objc.Sel("initWithNumberOfBands:"), numberOfBands)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewAudioUnitEQWithNumberOfBands */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for AudioUnitEQ */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AudioUnitEQ */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AudioUnitEQ */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AudioUnitEQ */
+
+
+
+
+
+
+
+
+
 
 // An array of equalizer filter parameters.
 //
@@ -157,7 +157,7 @@ func NewAudioUnitEQWithNumberOfBands(numberOfBands uint) AudioUnitEQ {
 func (a_ AudioUnitEQ) Bands() []AudioUnitEQFilterParameters {
 	rv := objc.Send[[]AudioUnitEQFilterParameters](a_.ID, objc.Sel("bands"))
 	return rv
-}/* debug [instance_properties/getter]: bands */
+}
 
 
 // The overall gain adjustment that the audio unit applies to the signal, in decibels.
@@ -167,7 +167,7 @@ func (a_ AudioUnitEQ) Bands() []AudioUnitEQFilterParameters {
 func (a_ AudioUnitEQ) GlobalGain() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("globalGain"))
 	return rv
-}/* debug [instance_properties/getter]: globalGain */
+}
 
 
 // The overall gain adjustment that the audio unit applies to the signal, in decibels.
@@ -176,11 +176,11 @@ func (a_ AudioUnitEQ) GlobalGain() float32 {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitEQ/globalGain
 func (a_ AudioUnitEQ) SetGlobalGain(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setGlobalGain:"), value)
-}/* debug [instance_properties/setter]: globalGain */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVAudioUnitEQ */
+
+
+
 
 

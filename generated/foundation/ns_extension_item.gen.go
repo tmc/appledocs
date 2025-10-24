@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSExtensionItem */
 
 
-/* debug [class_header]: Header for NSExtensionItem */
+
+
 // The class instance for the [ExtensionItem] class.
 var (
 	ExtensionItemClass     _ExtensionItemClass
@@ -30,16 +30,16 @@ func getExtensionItemClass() _ExtensionItemClass {
 type _ExtensionItemClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ExtensionItem */
+
+
 // An interface definition for the [ExtensionItem] class.
 type IExtensionItem interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ExtensionItem */
+
 	// properties:
 	Attachments() []ItemProvider
 	SetAttachments(value []ItemProvider)
@@ -49,19 +49,19 @@ type IExtensionItem interface {
 	SetAttributedTitle(value IAttributedString)
 	UserInfo() objectivec.IObject
 	SetUserInfo(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ExtensionItem */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ExtensionItem */
+
+
 // Alloc allocates a new instance without initialization.
 func (ec _ExtensionItemClass) Alloc() ExtensionItem {
 	rv := objc.Send[ExtensionItem](objc.ID(ec.class), objc.Sel("alloc"))
@@ -91,11 +91,11 @@ func (e_ ExtensionItem) Autorelease() ExtensionItem {
 func NewExtensionItem() ExtensionItem {
 	return getExtensionItemClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ExtensionItem */
+
+
 // An immutable collection of values representing different aspects of an item for an extension to act upon.
 
 
@@ -113,30 +113,30 @@ type ExtensionItem struct {
 func ExtensionItemFrom(ptr unsafe.Pointer) ExtensionItem {
 	return ExtensionItem{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ExtensionItem *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ExtensionItem */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ExtensionItem */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ExtensionItem */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ExtensionItem */
+
+
+
+
+
+
+
+
+
 
 // An optional array of media data associated with the extension item.
 //
@@ -145,7 +145,7 @@ func ExtensionItemFrom(ptr unsafe.Pointer) ExtensionItem {
 func (e_ ExtensionItem) Attachments() []ItemProvider {
 	rv := objc.Send[[]ItemProvider](e_.ID, objc.Sel("attachments"))
 	return rv
-}/* debug [instance_properties/getter]: attachments */
+}
 
 
 // An optional array of media data associated with the extension item.
@@ -163,7 +163,7 @@ func (e_ ExtensionItem) SetAttachments(value []ItemProvider) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAttachments:"), nsArray)
-}/* debug [instance_properties/setter]: attachments */
+}
 
 
 // An optional string describing the extension item content.
@@ -173,7 +173,7 @@ func (e_ ExtensionItem) SetAttachments(value []ItemProvider) {
 func (e_ ExtensionItem) AttributedContentText() IAttributedString {
 	rv := objc.Send[AttributedString](e_.ID, objc.Sel("attributedContentText"))
 	return rv
-}/* debug [instance_properties/getter]: attributedContentText */
+}
 
 
 // An optional string describing the extension item content.
@@ -182,7 +182,7 @@ func (e_ ExtensionItem) AttributedContentText() IAttributedString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensionitem/attributedcontenttext
 func (e_ ExtensionItem) SetAttributedContentText(value IAttributedString) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAttributedContentText:"), value)
-}/* debug [instance_properties/setter]: attributedContentText */
+}
 
 
 // An optional title for the item.
@@ -192,7 +192,7 @@ func (e_ ExtensionItem) SetAttributedContentText(value IAttributedString) {
 func (e_ ExtensionItem) AttributedTitle() IAttributedString {
 	rv := objc.Send[AttributedString](e_.ID, objc.Sel("attributedTitle"))
 	return rv
-}/* debug [instance_properties/getter]: attributedTitle */
+}
 
 
 // An optional title for the item.
@@ -201,7 +201,7 @@ func (e_ ExtensionItem) AttributedTitle() IAttributedString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensionitem/attributedtitle
 func (e_ ExtensionItem) SetAttributedTitle(value IAttributedString) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAttributedTitle:"), value)
-}/* debug [instance_properties/setter]: attributedTitle */
+}
 
 
 // An optional dictionary of keys and values corresponding to the extension item’s properties.
@@ -211,7 +211,7 @@ func (e_ ExtensionItem) SetAttributedTitle(value IAttributedString) {
 func (e_ ExtensionItem) UserInfo() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](e_.ID, objc.Sel("userInfo"))
 	return rv
-}/* debug [instance_properties/getter]: userInfo */
+}
 
 
 // An optional dictionary of keys and values corresponding to the extension item’s properties.
@@ -220,12 +220,12 @@ func (e_ ExtensionItem) UserInfo() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensionitem/userinfo
 func (e_ ExtensionItem) SetUserInfo(value objectivec.IObject) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUserInfo:"), value)
-}/* debug [instance_properties/setter]: userInfo */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSExtensionItem */
+
+
+
 
 
 

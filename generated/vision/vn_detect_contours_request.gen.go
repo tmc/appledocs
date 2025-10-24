@@ -7,13 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
-/* debug [class.gen.go]: Generating class VNDetectContoursRequest */
 
 
-/* debug [class_header]: Header for VNDetectContoursRequest */
+
+
 // The class instance for the [DetectContoursRequest] class.
 var (
 	DetectContoursRequestClass     _DetectContoursRequestClass
@@ -30,16 +29,16 @@ func getDetectContoursRequestClass() _DetectContoursRequestClass {
 type _DetectContoursRequestClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for DetectContoursRequest */
+
+
 // An interface definition for the [DetectContoursRequest] class.
 type IDetectContoursRequest interface {
 	IImageBasedRequest
 	
-/* debug [class_interface_properties]: Properties for DetectContoursRequest */
+
 	// properties:
 	ContrastAdjustment() float32
 	SetContrastAdjustment(value float32)
@@ -53,19 +52,19 @@ type IDetectContoursRequest interface {
 	SetMaximumImageDimension(value uint)
 	Results() []ContoursObservation
 	VNDetectContourRequestRevision1() int
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for DetectContoursRequest */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for DetectContoursRequest */
+
+
 // Alloc allocates a new instance without initialization.
 func (dc _DetectContoursRequestClass) Alloc() DetectContoursRequest {
 	rv := objc.Send[DetectContoursRequest](objc.ID(dc.class), objc.Sel("alloc"))
@@ -95,11 +94,11 @@ func (d_ DetectContoursRequest) Autorelease() DetectContoursRequest {
 func NewDetectContoursRequest() DetectContoursRequest {
 	return getDetectContoursRequestClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for DetectContoursRequest */
+
+
 // A request that detects the contours of the edges of an image.
 
 
@@ -119,30 +118,30 @@ func DetectContoursRequestFrom(ptr unsafe.Pointer) DetectContoursRequest {
 		ImageBasedRequest: ImageBasedRequestFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for DetectContoursRequest *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for DetectContoursRequest */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for DetectContoursRequest */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for DetectContoursRequest */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for DetectContoursRequest */
+
+
+
+
+
+
+
+
+
 
 // The amount by which to adjust the image contrast.
 //
@@ -151,7 +150,7 @@ func DetectContoursRequestFrom(ptr unsafe.Pointer) DetectContoursRequest {
 func (d_ DetectContoursRequest) ContrastAdjustment() float32 {
 	rv := objc.Send[float32](d_.ID, objc.Sel("contrastAdjustment"))
 	return rv
-}/* debug [instance_properties/getter]: contrastAdjustment */
+}
 
 
 // The amount by which to adjust the image contrast.
@@ -160,7 +159,7 @@ func (d_ DetectContoursRequest) ContrastAdjustment() float32 {
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectContoursRequest/contrastAdjustment
 func (d_ DetectContoursRequest) SetContrastAdjustment(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setContrastAdjustment:"), value)
-}/* debug [instance_properties/setter]: contrastAdjustment */
+}
 
 
 // The pixel value to use as a pivot for the contrast.
@@ -170,7 +169,7 @@ func (d_ DetectContoursRequest) SetContrastAdjustment(value float32) {
 func (d_ DetectContoursRequest) ContrastPivot() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](d_.ID, objc.Sel("contrastPivot"))
 	return rv
-}/* debug [instance_properties/getter]: contrastPivot */
+}
 
 
 // The pixel value to use as a pivot for the contrast.
@@ -179,7 +178,7 @@ func (d_ DetectContoursRequest) ContrastPivot() objc.IObject /* cross-framework:
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectContoursRequest/contrastPivot
 func (d_ DetectContoursRequest) SetContrastPivot(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setContrastPivot:"), value)
-}/* debug [instance_properties/setter]: contrastPivot */
+}
 
 
 // A Boolean value that indicates whether the request detects a dark object on a light background.
@@ -189,7 +188,7 @@ func (d_ DetectContoursRequest) SetContrastPivot(value objc.IObject /* cross-fra
 func (d_ DetectContoursRequest) DetectDarkOnLight() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("detectDarkOnLight"))
 	return rv
-}/* debug [instance_properties/getter]: detectDarkOnLight */
+}
 
 
 // A Boolean value that indicates whether the request detects a dark object on a light background.
@@ -198,7 +197,7 @@ func (d_ DetectContoursRequest) DetectDarkOnLight() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectContoursRequest/detectDarkOnLight
 func (d_ DetectContoursRequest) SetDetectDarkOnLight(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDetectDarkOnLight:"), value)
-}/* debug [instance_properties/setter]: detectDarkOnLight */
+}
 
 
 // A Boolean value that indicates whether the request detects a dark object on a light background to aid in detection.
@@ -208,7 +207,7 @@ func (d_ DetectContoursRequest) SetDetectDarkOnLight(value bool) {
 func (d_ DetectContoursRequest) DetectsDarkOnLight() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("detectsDarkOnLight"))
 	return rv
-}/* debug [instance_properties/getter]: detectsDarkOnLight */
+}
 
 
 // A Boolean value that indicates whether the request detects a dark object on a light background to aid in detection.
@@ -217,7 +216,7 @@ func (d_ DetectContoursRequest) DetectsDarkOnLight() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectContoursRequest/detectsDarkOnLight
 func (d_ DetectContoursRequest) SetDetectsDarkOnLight(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDetectsDarkOnLight:"), value)
-}/* debug [instance_properties/setter]: detectsDarkOnLight */
+}
 
 
 // The maximum image dimension to use for contour detection.
@@ -227,7 +226,7 @@ func (d_ DetectContoursRequest) SetDetectsDarkOnLight(value bool) {
 func (d_ DetectContoursRequest) MaximumImageDimension() uint {
 	rv := objc.Send[uint](d_.ID, objc.Sel("maximumImageDimension"))
 	return rv
-}/* debug [instance_properties/getter]: maximumImageDimension */
+}
 
 
 // The maximum image dimension to use for contour detection.
@@ -236,7 +235,7 @@ func (d_ DetectContoursRequest) MaximumImageDimension() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectContoursRequest/maximumImageDimension
 func (d_ DetectContoursRequest) SetMaximumImageDimension(value uint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumImageDimension:"), value)
-}/* debug [instance_properties/setter]: maximumImageDimension */
+}
 
 
 // The results of the request to detect contours.
@@ -246,7 +245,7 @@ func (d_ DetectContoursRequest) SetMaximumImageDimension(value uint) {
 func (d_ DetectContoursRequest) Results() []ContoursObservation {
 	rv := objc.Send[[]ContoursObservation](d_.ID, objc.Sel("results"))
 	return rv
-}/* debug [instance_properties/getter]: results */
+}
 
 
 // A constant for specifying revision 1 of the contours detection request.
@@ -256,12 +255,12 @@ func (d_ DetectContoursRequest) Results() []ContoursObservation {
 func (d_ DetectContoursRequest) VNDetectContourRequestRevision1() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectContourRequestRevision1"))
 	return rv
-}/* debug [instance_properties/getter]: VNDetectContourRequestRevision1 */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class VNDetectContoursRequest */
+
+
+
 
 
 

@@ -5,11 +5,15 @@
 package storekit
 
 import (
-	"github.com/tmc/appledocs/generated/foundation"
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for OverlayAppConfiguration
+
 
 // Returns the object associated with the key.
 //
@@ -119,3 +123,7 @@ func (o_ OverlayAppConfiguration) UserDismissible() bool {
 func (o_ OverlayAppConfiguration) SetUserDismissible(value bool) {
 	o_.ID.Send(objc.RegisterName("setUserDismissible:"), value)
 }
+
+
+
+

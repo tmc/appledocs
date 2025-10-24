@@ -116,7 +116,7 @@ func protocolFileName(protocolName string) string {
 }
 
 // protocolInterfaceFileName converts a protocol name to an interface file name (snake_case).
-// E.g., "NSApplicationDelegate" -> "ns_application_delegate_protocol.gen.go"
+// E.g., "NSApplicationDelegate" -> "ns_application_delegate_protocol_protocol.gen.go"
 func protocolInterfaceFileName(protocolName string) string {
 	base := occ2go.ProtocolFileName(protocolName)
 	// Replace .gen.go with _protocol.gen.go

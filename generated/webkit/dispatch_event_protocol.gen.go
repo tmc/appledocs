@@ -15,3 +15,4 @@ var dispatchEventProtocol *objc.Protocol
 func init() {
 	dispatchEventProtocol = objc.GetProtocol("dispatchEvent:")
 }
+

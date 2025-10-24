@@ -19,3 +19,4 @@ var isSelectedForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	isSelectedForWebExtensionContextProtocol = objc.GetProtocol("isSelectedForWebExtensionContext:")
 }
+

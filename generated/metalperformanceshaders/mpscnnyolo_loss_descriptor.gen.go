@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNYOLOLossDescriptor */
 
 
-/* debug [class_header]: Header for MPSCNNYOLOLossDescriptor */
+
+
 // The class instance for the [CNNYOLOLossDescriptor] class.
 var (
 	CNNYOLOLossDescriptorClass     _CNNYOLOLossDescriptorClass
@@ -31,16 +30,16 @@ func getCNNYOLOLossDescriptorClass() _CNNYOLOLossDescriptorClass {
 type _CNNYOLOLossDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNYOLOLossDescriptor */
+
+
 // An interface definition for the [CNNYOLOLossDescriptor] class.
 type ICNNYOLOLossDescriptor interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for CNNYOLOLossDescriptor */
+
 	// properties:
 	WhLossDescriptor() IMPSCNNLossDescriptor
 	SetWhLossDescriptor(value IMPSCNNLossDescriptor)
@@ -74,19 +73,23 @@ type ICNNYOLOLossDescriptor interface {
 	SetScaleXY(value objectivec.IObject)
 	ReduceAcrossBatch() objectivec.IObject
 	SetReduceAcrossBatch(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+	WHLossDescriptor() IMPSCNNLossDescriptor
+	SetWHLossDescriptor(value IMPSCNNLossDescriptor)
+	XYLossDescriptor() IMPSCNNLossDescriptor
+	SetXYLossDescriptor(value IMPSCNNLossDescriptor)
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNYOLOLossDescriptor */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNYOLOLossDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNYOLOLossDescriptorClass) Alloc() CNNYOLOLossDescriptor {
 	rv := objc.Send[CNNYOLOLossDescriptor](objc.ID(cc.class), objc.Sel("alloc"))
@@ -116,11 +119,11 @@ func (c_ CNNYOLOLossDescriptor) Autorelease() CNNYOLOLossDescriptor {
 func NewCNNYOLOLossDescriptor() CNNYOLOLossDescriptor {
 	return getCNNYOLOLossDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNYOLOLossDescriptor */
+
+
 // An object that specifies properties used by a YOLO loss kernel.
 
 
@@ -138,21 +141,21 @@ type CNNYOLOLossDescriptor struct {
 func CNNYOLOLossDescriptorFrom(ptr unsafe.Pointer) CNNYOLOLossDescriptor {
 	return CNNYOLOLossDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNYOLOLossDescriptor *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for CNNYOLOLossDescriptor */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976500-cnnlossdescriptor
 func (cc _CNNYOLOLossDescriptorClass) CnnLossDescriptor() {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("cnnLossDescriptor"))
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CnnLossDescriptor) */
+}
 
 
 // [Full Topic]
@@ -160,37 +163,37 @@ func (cc _CNNYOLOLossDescriptorClass) CnnLossDescriptor() {
 func (cc _CNNYOLOLossDescriptorClass) CnnLossDescriptorWithXYLossTypeWHLossTypeConfidenceLossTypeClassesLossTypeReductionTypeAnchorBoxesNumberOfAnchorBoxes(XYLossType CNNLossType, WHLossType CNNLossType, confidenceLossType CNNLossType, classesLossType CNNLossType, reductionType CNNReductionType, anchorBoxes foundation.Data, numberOfAnchorBoxes uint) ICNNYOLOLossDescriptor {
 	rv := objc.Send[CNNYOLOLossDescriptor](objc.ID(cc.class), objc.Sel("cnnLossDescriptorWithXYLossType:WHLossType:confidenceLossType:classesLossType:reductionType:anchorBoxes:numberOfAnchorBoxes:"), XYLossType, WHLossType, confidenceLossType, classesLossType, reductionType, anchorBoxes, numberOfAnchorBoxes)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CnnLossDescriptorWithXYLossTypeWHLossTypeConfidenceLossTypeClassesLossTypeReductionTypeAnchorBoxesNumberOfAnchorBoxes) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for CNNYOLOLossDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNYOLOLossDescriptor */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNYOLOLossDescriptor */
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976496-whlossdescriptor
 func (c_ CNNYOLOLossDescriptor) WhLossDescriptor() IMPSCNNLossDescriptor {
 	rv := objc.Send[CNNLossDescriptor](c_.ID, objc.Sel("whLossDescriptor"))
 	return rv
-}/* debug [instance_properties/getter]: whLossDescriptor */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976496-whlossdescriptor
 func (c_ CNNYOLOLossDescriptor) SetWhLossDescriptor(value IMPSCNNLossDescriptor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWhLossDescriptor:"), value)
-}/* debug [instance_properties/setter]: whLossDescriptor */
+}
 
 
 // [Full Topic]
@@ -198,14 +201,14 @@ func (c_ CNNYOLOLossDescriptor) SetWhLossDescriptor(value IMPSCNNLossDescriptor)
 func (c_ CNNYOLOLossDescriptor) XyLossDescriptor() IMPSCNNLossDescriptor {
 	rv := objc.Send[CNNLossDescriptor](c_.ID, objc.Sel("xyLossDescriptor"))
 	return rv
-}/* debug [instance_properties/getter]: xyLossDescriptor */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976497-xylossdescriptor
 func (c_ CNNYOLOLossDescriptor) SetXyLossDescriptor(value IMPSCNNLossDescriptor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setXyLossDescriptor:"), value)
-}/* debug [instance_properties/setter]: xyLossDescriptor */
+}
 
 
 // [Full Topic]
@@ -213,14 +216,14 @@ func (c_ CNNYOLOLossDescriptor) SetXyLossDescriptor(value IMPSCNNLossDescriptor)
 func (c_ CNNYOLOLossDescriptor) AnchorBoxes() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("anchorBoxes"))
 	return rv
-}/* debug [instance_properties/getter]: anchorBoxes */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976498-anchorboxes
 func (c_ CNNYOLOLossDescriptor) SetAnchorBoxes(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAnchorBoxes:"), value)
-}/* debug [instance_properties/setter]: anchorBoxes */
+}
 
 
 // [Full Topic]
@@ -228,14 +231,14 @@ func (c_ CNNYOLOLossDescriptor) SetAnchorBoxes(value objectivec.IObject) {
 func (c_ CNNYOLOLossDescriptor) ClassesLossDescriptor() IMPSCNNLossDescriptor {
 	rv := objc.Send[CNNLossDescriptor](c_.ID, objc.Sel("classesLossDescriptor"))
 	return rv
-}/* debug [instance_properties/getter]: classesLossDescriptor */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976499-classeslossdescriptor
 func (c_ CNNYOLOLossDescriptor) SetClassesLossDescriptor(value IMPSCNNLossDescriptor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setClassesLossDescriptor:"), value)
-}/* debug [instance_properties/setter]: classesLossDescriptor */
+}
 
 
 // [Full Topic]
@@ -243,14 +246,14 @@ func (c_ CNNYOLOLossDescriptor) SetClassesLossDescriptor(value IMPSCNNLossDescri
 func (c_ CNNYOLOLossDescriptor) ConfidenceLossDescriptor() IMPSCNNLossDescriptor {
 	rv := objc.Send[CNNLossDescriptor](c_.ID, objc.Sel("confidenceLossDescriptor"))
 	return rv
-}/* debug [instance_properties/getter]: confidenceLossDescriptor */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976501-confidencelossdescriptor
 func (c_ CNNYOLOLossDescriptor) SetConfidenceLossDescriptor(value IMPSCNNLossDescriptor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfidenceLossDescriptor:"), value)
-}/* debug [instance_properties/setter]: confidenceLossDescriptor */
+}
 
 
 // [Full Topic]
@@ -258,14 +261,14 @@ func (c_ CNNYOLOLossDescriptor) SetConfidenceLossDescriptor(value IMPSCNNLossDes
 func (c_ CNNYOLOLossDescriptor) MaxIOUForObjectAbsence() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("maxIOUForObjectAbsence"))
 	return rv
-}/* debug [instance_properties/getter]: maxIOUForObjectAbsence */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976502-maxiouforobjectabsence
 func (c_ CNNYOLOLossDescriptor) SetMaxIOUForObjectAbsence(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxIOUForObjectAbsence:"), value)
-}/* debug [instance_properties/setter]: maxIOUForObjectAbsence */
+}
 
 
 // [Full Topic]
@@ -273,14 +276,14 @@ func (c_ CNNYOLOLossDescriptor) SetMaxIOUForObjectAbsence(value objectivec.IObje
 func (c_ CNNYOLOLossDescriptor) MinIOUForObjectPresence() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("minIOUForObjectPresence"))
 	return rv
-}/* debug [instance_properties/getter]: minIOUForObjectPresence */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976503-miniouforobjectpresence
 func (c_ CNNYOLOLossDescriptor) SetMinIOUForObjectPresence(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinIOUForObjectPresence:"), value)
-}/* debug [instance_properties/setter]: minIOUForObjectPresence */
+}
 
 
 // [Full Topic]
@@ -288,14 +291,14 @@ func (c_ CNNYOLOLossDescriptor) SetMinIOUForObjectPresence(value objectivec.IObj
 func (c_ CNNYOLOLossDescriptor) NumberOfAnchorBoxes() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("numberOfAnchorBoxes"))
 	return rv
-}/* debug [instance_properties/getter]: numberOfAnchorBoxes */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976504-numberofanchorboxes
 func (c_ CNNYOLOLossDescriptor) SetNumberOfAnchorBoxes(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNumberOfAnchorBoxes:"), value)
-}/* debug [instance_properties/setter]: numberOfAnchorBoxes */
+}
 
 
 // [Full Topic]
@@ -303,14 +306,14 @@ func (c_ CNNYOLOLossDescriptor) SetNumberOfAnchorBoxes(value objectivec.IObject)
 func (c_ CNNYOLOLossDescriptor) ReductionType() CNNReductionType get set /* not a class type */ {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("reductionType"))
 	return rv
-}/* debug [instance_properties/getter]: reductionType */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976505-reductiontype
 func (c_ CNNYOLOLossDescriptor) SetReductionType(value CNNReductionType get set /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReductionType:"), value)
-}/* debug [instance_properties/setter]: reductionType */
+}
 
 
 // [Full Topic]
@@ -318,14 +321,14 @@ func (c_ CNNYOLOLossDescriptor) SetReductionType(value CNNReductionType get set 
 func (c_ CNNYOLOLossDescriptor) Rescore() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("rescore"))
 	return rv
-}/* debug [instance_properties/getter]: rescore */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976506-rescore
 func (c_ CNNYOLOLossDescriptor) SetRescore(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRescore:"), value)
-}/* debug [instance_properties/setter]: rescore */
+}
 
 
 // [Full Topic]
@@ -333,14 +336,14 @@ func (c_ CNNYOLOLossDescriptor) SetRescore(value objectivec.IObject) {
 func (c_ CNNYOLOLossDescriptor) ScaleClass() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("scaleClass"))
 	return rv
-}/* debug [instance_properties/getter]: scaleClass */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976507-scaleclass
 func (c_ CNNYOLOLossDescriptor) SetScaleClass(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setScaleClass:"), value)
-}/* debug [instance_properties/setter]: scaleClass */
+}
 
 
 // [Full Topic]
@@ -348,14 +351,14 @@ func (c_ CNNYOLOLossDescriptor) SetScaleClass(value objectivec.IObject) {
 func (c_ CNNYOLOLossDescriptor) ScaleNoObject() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("scaleNoObject"))
 	return rv
-}/* debug [instance_properties/getter]: scaleNoObject */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976508-scalenoobject
 func (c_ CNNYOLOLossDescriptor) SetScaleNoObject(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setScaleNoObject:"), value)
-}/* debug [instance_properties/setter]: scaleNoObject */
+}
 
 
 // [Full Topic]
@@ -363,14 +366,14 @@ func (c_ CNNYOLOLossDescriptor) SetScaleNoObject(value objectivec.IObject) {
 func (c_ CNNYOLOLossDescriptor) ScaleObject() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("scaleObject"))
 	return rv
-}/* debug [instance_properties/getter]: scaleObject */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976509-scaleobject
 func (c_ CNNYOLOLossDescriptor) SetScaleObject(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setScaleObject:"), value)
-}/* debug [instance_properties/setter]: scaleObject */
+}
 
 
 // [Full Topic]
@@ -378,14 +381,14 @@ func (c_ CNNYOLOLossDescriptor) SetScaleObject(value objectivec.IObject) {
 func (c_ CNNYOLOLossDescriptor) ScaleWH() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("scaleWH"))
 	return rv
-}/* debug [instance_properties/getter]: scaleWH */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976510-scalewh
 func (c_ CNNYOLOLossDescriptor) SetScaleWH(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setScaleWH:"), value)
-}/* debug [instance_properties/setter]: scaleWH */
+}
 
 
 // [Full Topic]
@@ -393,14 +396,14 @@ func (c_ CNNYOLOLossDescriptor) SetScaleWH(value objectivec.IObject) {
 func (c_ CNNYOLOLossDescriptor) ScaleXY() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("scaleXY"))
 	return rv
-}/* debug [instance_properties/getter]: scaleXY */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/2976511-scalexy
 func (c_ CNNYOLOLossDescriptor) SetScaleXY(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setScaleXY:"), value)
-}/* debug [instance_properties/setter]: scaleXY */
+}
 
 
 // [Full Topic]
@@ -408,19 +411,49 @@ func (c_ CNNYOLOLossDescriptor) SetScaleXY(value objectivec.IObject) {
 func (c_ CNNYOLOLossDescriptor) ReduceAcrossBatch() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("reduceAcrossBatch"))
 	return rv
-}/* debug [instance_properties/getter]: reduceAcrossBatch */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor/3547984-reduceacrossbatch
 func (c_ CNNYOLOLossDescriptor) SetReduceAcrossBatch(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReduceAcrossBatch:"), value)
-}/* debug [instance_properties/setter]: reduceAcrossBatch */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSCNNYOLOLossDescriptor */
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNYOLOLossDescriptor/whLossDescriptor
+func (c_ CNNYOLOLossDescriptor) WHLossDescriptor() IMPSCNNLossDescriptor {
+	rv := objc.Send[CNNLossDescriptor](c_.ID, objc.Sel("WHLossDescriptor"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNYOLOLossDescriptor/whLossDescriptor
+func (c_ CNNYOLOLossDescriptor) SetWHLossDescriptor(value IMPSCNNLossDescriptor) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setWHLossDescriptor:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNYOLOLossDescriptor/xyLossDescriptor
+func (c_ CNNYOLOLossDescriptor) XYLossDescriptor() IMPSCNNLossDescriptor {
+	rv := objc.Send[CNNLossDescriptor](c_.ID, objc.Sel("XYLossDescriptor"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNYOLOLossDescriptor/xyLossDescriptor
+func (c_ CNNYOLOLossDescriptor) SetXYLossDescriptor(value IMPSCNNLossDescriptor) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setXYLossDescriptor:"), value)
+}
+
+
+
+
+
 
 
 

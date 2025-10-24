@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class CIBlendKernel */
 
 
-/* debug [class_header]: Header for CIBlendKernel */
+
+
 // The class instance for the [BlendKernel] class.
 var (
 	BlendKernelClass     _BlendKernelClass
@@ -31,32 +30,32 @@ func getBlendKernelClass() _BlendKernelClass {
 type _BlendKernelClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for BlendKernel */
+
+
 // An interface definition for the [BlendKernel] class.
 type IBlendKernel interface {
 	IColorKernel
 	
-/* debug [class_interface_properties]: Properties for BlendKernel */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for BlendKernel */
+
 	// methods:
 	ApplyWithForegroundBackground(foreground ICIImage, background ICIImage) IImage
 	ApplyWithForegroundBackgroundColorSpace(foreground ICIImage, background ICIImage, colorSpace ColorSpaceRef /* not a class type */) IImage
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for BlendKernel */
+
+
 // Alloc allocates a new instance without initialization.
 func (bc _BlendKernelClass) Alloc() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("alloc"))
@@ -86,11 +85,11 @@ func (b_ BlendKernel) Autorelease() BlendKernel {
 func NewBlendKernel() BlendKernel {
 	return getBlendKernelClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for BlendKernel */
+
+
 // A GPU-based image-processing routine that is optimized for blending two images.
 //
 // The blend kernel function has the following characteristics: It has two arguments of type (Core Image Kernel Language) or (Metal Shading Language), representing the foreground and background images. Its return type is (Core Image Kernel Language) or (Metal Shading Language); that is, it returns a pixel color for the output image. A blend kernel routine receives as input single-pixel colors (one sampled from each input image) and computes a final pixel color (output using the return keyword). For example, the Metal Shading Language source below implements a filter that returns the average of its two input images. Generally, the extent of the output image is the union of the extents of the foreground and background images.
@@ -112,11 +111,11 @@ func BlendKernelFrom(ptr unsafe.Pointer) BlendKernel {
 		ColorKernel: ColorKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for BlendKernel */
+
+
 
 // Creates a custom blend kernel from a program string.
 //
@@ -125,13 +124,13 @@ func BlendKernelFrom(ptr unsafe.Pointer) BlendKernel {
 func NewBlendKernelWithString(string_ objc.IObject /* cross-framework: NSString */) BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(getBlendKernelClass().class), objc.Sel("kernelWithString:"), string_)
 	return rv
-}/* debug [class_init_methods/constructor]: NewBlendKernelWithString */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for BlendKernel */
+
+
+
 
 // Creates a custom blend kernel from a program string.
 //
@@ -140,13 +139,13 @@ func NewBlendKernelWithString(string_ objc.IObject /* cross-framework: NSString 
 func (bc _BlendKernelClass) KernelWithString(string_ objc.IObject /* cross-framework: NSString */) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(bc.class), objc.Sel("kernelWithString:"), string_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=KernelWithString) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for BlendKernel */
+
+
+
 
 // A blend kernel that returns a clear color.
 //
@@ -155,7 +154,7 @@ func (bc _BlendKernelClass) KernelWithString(string_ objc.IObject /* cross-frame
 func (bc _BlendKernelClass) Clear() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("clear"))
 	return rv
-}/* debug [class_properties_class/property]: clear */
+}
 
 // A blend kernel that uses the luminance values of the background with the hue and saturation values of the foreground image.
 //
@@ -164,7 +163,7 @@ func (bc _BlendKernelClass) Clear() BlendKernel {
 func (bc _BlendKernelClass) Color() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("color"))
 	return rv
-}/* debug [class_properties_class/property]: color */
+}
 
 // A blend kernel that darkens the background image samples to reflect the foreground image samples.
 //
@@ -173,7 +172,7 @@ func (bc _BlendKernelClass) Color() BlendKernel {
 func (bc _BlendKernelClass) ColorBurn() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("colorBurn"))
 	return rv
-}/* debug [class_properties_class/property]: colorBurn */
+}
 
 // A blend kernel that brightens the background image samples to reflect the foreground image samples.
 //
@@ -182,7 +181,7 @@ func (bc _BlendKernelClass) ColorBurn() BlendKernel {
 func (bc _BlendKernelClass) ColorDodge() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("colorDodge"))
 	return rv
-}/* debug [class_properties_class/property]: colorDodge */
+}
 
 // A blend kernel that adds color components to achieve a brightening effect.
 //
@@ -191,7 +190,7 @@ func (bc _BlendKernelClass) ColorDodge() BlendKernel {
 func (bc _BlendKernelClass) ComponentAdd() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("componentAdd"))
 	return rv
-}/* debug [class_properties_class/property]: componentAdd */
+}
 
 // A blend kernel that creates an image using the maximum values of two input images.
 //
@@ -200,7 +199,7 @@ func (bc _BlendKernelClass) ComponentAdd() BlendKernel {
 func (bc _BlendKernelClass) ComponentMax() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("componentMax"))
 	return rv
-}/* debug [class_properties_class/property]: componentMax */
+}
 
 // A blend kernel that creates an image using the minimum values of two input images.
 //
@@ -209,7 +208,7 @@ func (bc _BlendKernelClass) ComponentMax() BlendKernel {
 func (bc _BlendKernelClass) ComponentMin() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("componentMin"))
 	return rv
-}/* debug [class_properties_class/property]: componentMin */
+}
 
 // A blend kernel that multiplies the color components of its input images.
 //
@@ -218,7 +217,7 @@ func (bc _BlendKernelClass) ComponentMin() BlendKernel {
 func (bc _BlendKernelClass) ComponentMultiply() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("componentMultiply"))
 	return rv
-}/* debug [class_properties_class/property]: componentMultiply */
+}
 
 // A blend kernel that creates an image using the darker values of two input images.
 //
@@ -227,7 +226,7 @@ func (bc _BlendKernelClass) ComponentMultiply() BlendKernel {
 func (bc _BlendKernelClass) Darken() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("darken"))
 	return rv
-}/* debug [class_properties_class/property]: darken */
+}
 
 // A blend kernel that creates an image using the darker color of two input images.
 //
@@ -236,7 +235,7 @@ func (bc _BlendKernelClass) Darken() BlendKernel {
 func (bc _BlendKernelClass) DarkerColor() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("darkerColor"))
 	return rv
-}/* debug [class_properties_class/property]: darkerColor */
+}
 
 // A blend kernel that returns the background input image.
 //
@@ -245,7 +244,7 @@ func (bc _BlendKernelClass) DarkerColor() BlendKernel {
 func (bc _BlendKernelClass) Destination() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("destination"))
 	return rv
-}/* debug [class_properties_class/property]: destination */
+}
 
 // A blend kernel that places the background over the foreground and crops based on the visibility of the foreground.
 //
@@ -254,7 +253,7 @@ func (bc _BlendKernelClass) Destination() BlendKernel {
 func (bc _BlendKernelClass) DestinationAtop() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("destinationAtop"))
 	return rv
-}/* debug [class_properties_class/property]: destinationAtop */
+}
 
 // A blend kernel that places the background over the foreground and crops based on the visibility of both.
 //
@@ -263,7 +262,7 @@ func (bc _BlendKernelClass) DestinationAtop() BlendKernel {
 func (bc _BlendKernelClass) DestinationIn() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("destinationIn"))
 	return rv
-}/* debug [class_properties_class/property]: destinationIn */
+}
 
 // A blend kernel that uses the background image to define what to take out of the foreground image.
 //
@@ -272,7 +271,7 @@ func (bc _BlendKernelClass) DestinationIn() BlendKernel {
 func (bc _BlendKernelClass) DestinationOut() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("destinationOut"))
 	return rv
-}/* debug [class_properties_class/property]: destinationOut */
+}
 
 // A blend kernel that places the background image over the input foreground image.
 //
@@ -281,7 +280,7 @@ func (bc _BlendKernelClass) DestinationOut() BlendKernel {
 func (bc _BlendKernelClass) DestinationOver() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("destinationOver"))
 	return rv
-}/* debug [class_properties_class/property]: destinationOver */
+}
 
 // A blend kernel that creates an image using the difference between the background and foreground images.
 //
@@ -290,7 +289,7 @@ func (bc _BlendKernelClass) DestinationOver() BlendKernel {
 func (bc _BlendKernelClass) Difference() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("difference"))
 	return rv
-}/* debug [class_properties_class/property]: difference */
+}
 
 // A blend kernel that divides the background image sample color with the foreground image sample color.
 //
@@ -299,7 +298,7 @@ func (bc _BlendKernelClass) Difference() BlendKernel {
 func (bc _BlendKernelClass) Divide() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("divide"))
 	return rv
-}/* debug [class_properties_class/property]: divide */
+}
 
 // A blend kernel that produces an effect similar to difference blending but with lower contrast.
 //
@@ -308,7 +307,7 @@ func (bc _BlendKernelClass) Divide() BlendKernel {
 func (bc _BlendKernelClass) Exclusion() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("exclusion"))
 	return rv
-}/* debug [class_properties_class/property]: exclusion */
+}
 
 // A blend kernel that returns either the foreground or background image if the other contains a clear color.
 //
@@ -317,7 +316,7 @@ func (bc _BlendKernelClass) Exclusion() BlendKernel {
 func (bc _BlendKernelClass) ExclusiveOr() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("exclusiveOr"))
 	return rv
-}/* debug [class_properties_class/property]: exclusiveOr */
+}
 
 // A blend kernel that either multiplies or screens colors, depending on the source image sample color.
 //
@@ -326,7 +325,7 @@ func (bc _BlendKernelClass) ExclusiveOr() BlendKernel {
 func (bc _BlendKernelClass) HardLight() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("hardLight"))
 	return rv
-}/* debug [class_properties_class/property]: hardLight */
+}
 
 // A blend kernel that adds two images together, setting each color channel value to either 0 or 1.
 //
@@ -335,7 +334,7 @@ func (bc _BlendKernelClass) HardLight() BlendKernel {
 func (bc _BlendKernelClass) HardMix() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("hardMix"))
 	return rv
-}/* debug [class_properties_class/property]: hardMix */
+}
 
 // A blend kernel that uses the luminance and saturation values of the background image with the hue of the foreground image.
 //
@@ -344,7 +343,7 @@ func (bc _BlendKernelClass) HardMix() BlendKernel {
 func (bc _BlendKernelClass) Hue() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("hue"))
 	return rv
-}/* debug [class_properties_class/property]: hue */
+}
 
 // A blend kernel that creates an image using the lighter values of two input images.
 //
@@ -353,7 +352,7 @@ func (bc _BlendKernelClass) Hue() BlendKernel {
 func (bc _BlendKernelClass) Lighten() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("lighten"))
 	return rv
-}/* debug [class_properties_class/property]: lighten */
+}
 
 // A blend kernel that creates an image using the lighter color of two input images.
 //
@@ -362,7 +361,7 @@ func (bc _BlendKernelClass) Lighten() BlendKernel {
 func (bc _BlendKernelClass) LighterColor() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("lighterColor"))
 	return rv
-}/* debug [class_properties_class/property]: lighterColor */
+}
 
 // A blend kernel that darkens the background image samples to reflect the foreground image samples while also increasing contrast.
 //
@@ -371,7 +370,7 @@ func (bc _BlendKernelClass) LighterColor() BlendKernel {
 func (bc _BlendKernelClass) LinearBurn() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("linearBurn"))
 	return rv
-}/* debug [class_properties_class/property]: linearBurn */
+}
 
 // A blend kernel that lightens the background image samples to reflect the foreground image samples while also increasing contrast.
 //
@@ -380,7 +379,7 @@ func (bc _BlendKernelClass) LinearBurn() BlendKernel {
 func (bc _BlendKernelClass) LinearDodge() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("linearDodge"))
 	return rv
-}/* debug [class_properties_class/property]: linearDodge */
+}
 
 // A blend kernel that burns or dodges colors by changing brightness, depending on the blend color.
 //
@@ -389,7 +388,7 @@ func (bc _BlendKernelClass) LinearDodge() BlendKernel {
 func (bc _BlendKernelClass) LinearLight() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("linearLight"))
 	return rv
-}/* debug [class_properties_class/property]: linearLight */
+}
 
 // A blend kernel that uses the hue and saturation of the background image with the luminance of the foreground image.
 //
@@ -398,7 +397,7 @@ func (bc _BlendKernelClass) LinearLight() BlendKernel {
 func (bc _BlendKernelClass) Luminosity() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("luminosity"))
 	return rv
-}/* debug [class_properties_class/property]: luminosity */
+}
 
 // A blend kernel that multiplies the background image sample color with the foreground image sample color.
 //
@@ -407,7 +406,7 @@ func (bc _BlendKernelClass) Luminosity() BlendKernel {
 func (bc _BlendKernelClass) Multiply() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("multiply"))
 	return rv
-}/* debug [class_properties_class/property]: multiply */
+}
 
 // A blend kernel that either multiplies or screens the foreground image samples with the background image samples, depending on the background color.
 //
@@ -416,7 +415,7 @@ func (bc _BlendKernelClass) Multiply() BlendKernel {
 func (bc _BlendKernelClass) Overlay() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("overlay"))
 	return rv
-}/* debug [class_properties_class/property]: overlay */
+}
 
 // A blend kernel that conditionally replaces background image samples with source image samples depending on the brightness of the source image samples.
 //
@@ -425,7 +424,7 @@ func (bc _BlendKernelClass) Overlay() BlendKernel {
 func (bc _BlendKernelClass) PinLight() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("pinLight"))
 	return rv
-}/* debug [class_properties_class/property]: pinLight */
+}
 
 // A blend kernel that uses the luminance and hue values of the background image with the saturation of the foreground image.
 //
@@ -434,7 +433,7 @@ func (bc _BlendKernelClass) PinLight() BlendKernel {
 func (bc _BlendKernelClass) Saturation() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("saturation"))
 	return rv
-}/* debug [class_properties_class/property]: saturation */
+}
 
 // A blend kernel that multiplies the inverse of the foreground image samples with the inverse of the background image samples.
 //
@@ -443,7 +442,7 @@ func (bc _BlendKernelClass) Saturation() BlendKernel {
 func (bc _BlendKernelClass) Screen() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("screen"))
 	return rv
-}/* debug [class_properties_class/property]: screen */
+}
 
 // A blend kernel that either darkens or lightens colors, depending on the foreground image sample color.
 //
@@ -452,7 +451,7 @@ func (bc _BlendKernelClass) Screen() BlendKernel {
 func (bc _BlendKernelClass) SoftLight() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("softLight"))
 	return rv
-}/* debug [class_properties_class/property]: softLight */
+}
 
 // A blend kernel that returns the foreground input image.
 //
@@ -461,7 +460,7 @@ func (bc _BlendKernelClass) SoftLight() BlendKernel {
 func (bc _BlendKernelClass) Source() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("source"))
 	return rv
-}/* debug [class_properties_class/property]: source */
+}
 
 // A blend kernel that places the foreground over the background and crops based on the visibility of the background.
 //
@@ -470,7 +469,7 @@ func (bc _BlendKernelClass) Source() BlendKernel {
 func (bc _BlendKernelClass) SourceAtop() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("sourceAtop"))
 	return rv
-}/* debug [class_properties_class/property]: sourceAtop */
+}
 
 // A blend kernel that places the foreground over the background and crops based on the visibility of both.
 //
@@ -479,7 +478,7 @@ func (bc _BlendKernelClass) SourceAtop() BlendKernel {
 func (bc _BlendKernelClass) SourceIn() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("sourceIn"))
 	return rv
-}/* debug [class_properties_class/property]: sourceIn */
+}
 
 // A blend kernel that uses the foreground image to define what to take out of the background image.
 //
@@ -488,7 +487,7 @@ func (bc _BlendKernelClass) SourceIn() BlendKernel {
 func (bc _BlendKernelClass) SourceOut() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("sourceOut"))
 	return rv
-}/* debug [class_properties_class/property]: sourceOut */
+}
 
 // A blend kernel that places the foreground image over the input background image.
 //
@@ -497,7 +496,7 @@ func (bc _BlendKernelClass) SourceOut() BlendKernel {
 func (bc _BlendKernelClass) SourceOver() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("sourceOver"))
 	return rv
-}/* debug [class_properties_class/property]: sourceOver */
+}
 
 // A blend kernel that subtracts the background image sample color from the foreground image sample color.
 //
@@ -506,7 +505,7 @@ func (bc _BlendKernelClass) SourceOver() BlendKernel {
 func (bc _BlendKernelClass) Subtract() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("subtract"))
 	return rv
-}/* debug [class_properties_class/property]: subtract */
+}
 
 // A blend kernel that burns or dodges colors by changing contrast, depending on the blend color.
 //
@@ -515,12 +514,12 @@ func (bc _BlendKernelClass) Subtract() BlendKernel {
 func (bc _BlendKernelClass) VividLight() BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(bc.class), objc.Sel("vividLight"))
 	return rv
-}/* debug [class_properties_class/property]: vividLight */
-/* debug [class_properties_class]: End class properties */
+}
 
 
 
-/* debug [instance_methods]: Instance methods for BlendKernel */
+
+
 
 // Creates a new image using the blend kernel and specified foreground and background images.
 //
@@ -529,7 +528,7 @@ func (bc _BlendKernelClass) VividLight() BlendKernel {
 func (b_ BlendKernel) ApplyWithForegroundBackground(foreground ICIImage, background ICIImage) IImage {
 	rv := objc.Send[Image](b_.ID, objc.Sel("applyWithForeground:background:"), foreground, background)
 	return rv
-}/* debug [instance_methods/method]: ApplyWithForegroundBackground */
+}
 
 
 // [Full Topic]
@@ -537,13 +536,13 @@ func (b_ BlendKernel) ApplyWithForegroundBackground(foreground ICIImage, backgro
 func (b_ BlendKernel) ApplyWithForegroundBackgroundColorSpace(foreground ICIImage, background ICIImage, colorSpace ColorSpaceRef /* not a class type */) IImage {
 	rv := objc.Send[Image](b_.ID, objc.Sel("applyWithForeground:background:colorSpace:"), foreground, background, colorSpace)
 	return rv
-}/* debug [instance_methods/method]: ApplyWithForegroundBackgroundColorSpace */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for BlendKernel */
+
+
+
 
 // A blend kernel that returns a clear color.
 //
@@ -552,7 +551,7 @@ func (b_ BlendKernel) ApplyWithForegroundBackgroundColorSpace(foreground ICIImag
 func (b_ BlendKernel) Clear() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("clear"))
 	return rv
-}/* debug [instance_properties/getter]: clear */
+}
 
 
 // A blend kernel that uses the luminance values of the background with the hue and saturation values of the foreground image.
@@ -562,7 +561,7 @@ func (b_ BlendKernel) Clear() ICIBlendKernel {
 func (b_ BlendKernel) Color() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("color"))
 	return rv
-}/* debug [instance_properties/getter]: color */
+}
 
 
 // A blend kernel that darkens the background image samples to reflect the foreground image samples.
@@ -572,7 +571,7 @@ func (b_ BlendKernel) Color() ICIBlendKernel {
 func (b_ BlendKernel) ColorBurn() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("colorBurn"))
 	return rv
-}/* debug [instance_properties/getter]: colorBurn */
+}
 
 
 // A blend kernel that brightens the background image samples to reflect the foreground image samples.
@@ -582,7 +581,7 @@ func (b_ BlendKernel) ColorBurn() ICIBlendKernel {
 func (b_ BlendKernel) ColorDodge() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("colorDodge"))
 	return rv
-}/* debug [instance_properties/getter]: colorDodge */
+}
 
 
 // A blend kernel that adds color components to achieve a brightening effect.
@@ -592,7 +591,7 @@ func (b_ BlendKernel) ColorDodge() ICIBlendKernel {
 func (b_ BlendKernel) ComponentAdd() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("componentAdd"))
 	return rv
-}/* debug [instance_properties/getter]: componentAdd */
+}
 
 
 // A blend kernel that creates an image using the maximum values of two input images.
@@ -602,7 +601,7 @@ func (b_ BlendKernel) ComponentAdd() ICIBlendKernel {
 func (b_ BlendKernel) ComponentMax() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("componentMax"))
 	return rv
-}/* debug [instance_properties/getter]: componentMax */
+}
 
 
 // A blend kernel that creates an image using the minimum values of two input images.
@@ -612,7 +611,7 @@ func (b_ BlendKernel) ComponentMax() ICIBlendKernel {
 func (b_ BlendKernel) ComponentMin() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("componentMin"))
 	return rv
-}/* debug [instance_properties/getter]: componentMin */
+}
 
 
 // A blend kernel that multiplies the color components of its input images.
@@ -622,7 +621,7 @@ func (b_ BlendKernel) ComponentMin() ICIBlendKernel {
 func (b_ BlendKernel) ComponentMultiply() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("componentMultiply"))
 	return rv
-}/* debug [instance_properties/getter]: componentMultiply */
+}
 
 
 // A blend kernel that creates an image using the darker values of two input images.
@@ -632,7 +631,7 @@ func (b_ BlendKernel) ComponentMultiply() ICIBlendKernel {
 func (b_ BlendKernel) Darken() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("darken"))
 	return rv
-}/* debug [instance_properties/getter]: darken */
+}
 
 
 // A blend kernel that creates an image using the darker color of two input images.
@@ -642,7 +641,7 @@ func (b_ BlendKernel) Darken() ICIBlendKernel {
 func (b_ BlendKernel) DarkerColor() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("darkerColor"))
 	return rv
-}/* debug [instance_properties/getter]: darkerColor */
+}
 
 
 // A blend kernel that returns the background input image.
@@ -652,7 +651,7 @@ func (b_ BlendKernel) DarkerColor() ICIBlendKernel {
 func (b_ BlendKernel) Destination() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("destination"))
 	return rv
-}/* debug [instance_properties/getter]: destination */
+}
 
 
 // A blend kernel that places the background over the foreground and crops based on the visibility of the foreground.
@@ -662,7 +661,7 @@ func (b_ BlendKernel) Destination() ICIBlendKernel {
 func (b_ BlendKernel) DestinationAtop() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("destinationAtop"))
 	return rv
-}/* debug [instance_properties/getter]: destinationAtop */
+}
 
 
 // A blend kernel that places the background over the foreground and crops based on the visibility of both.
@@ -672,7 +671,7 @@ func (b_ BlendKernel) DestinationAtop() ICIBlendKernel {
 func (b_ BlendKernel) DestinationIn() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("destinationIn"))
 	return rv
-}/* debug [instance_properties/getter]: destinationIn */
+}
 
 
 // A blend kernel that uses the background image to define what to take out of the foreground image.
@@ -682,7 +681,7 @@ func (b_ BlendKernel) DestinationIn() ICIBlendKernel {
 func (b_ BlendKernel) DestinationOut() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("destinationOut"))
 	return rv
-}/* debug [instance_properties/getter]: destinationOut */
+}
 
 
 // A blend kernel that places the background image over the input foreground image.
@@ -692,7 +691,7 @@ func (b_ BlendKernel) DestinationOut() ICIBlendKernel {
 func (b_ BlendKernel) DestinationOver() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("destinationOver"))
 	return rv
-}/* debug [instance_properties/getter]: destinationOver */
+}
 
 
 // A blend kernel that creates an image using the difference between the background and foreground images.
@@ -702,7 +701,7 @@ func (b_ BlendKernel) DestinationOver() ICIBlendKernel {
 func (b_ BlendKernel) Difference() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("difference"))
 	return rv
-}/* debug [instance_properties/getter]: difference */
+}
 
 
 // A blend kernel that divides the background image sample color with the foreground image sample color.
@@ -712,7 +711,7 @@ func (b_ BlendKernel) Difference() ICIBlendKernel {
 func (b_ BlendKernel) Divide() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("divide"))
 	return rv
-}/* debug [instance_properties/getter]: divide */
+}
 
 
 // A blend kernel that produces an effect similar to difference blending but with lower contrast.
@@ -722,7 +721,7 @@ func (b_ BlendKernel) Divide() ICIBlendKernel {
 func (b_ BlendKernel) Exclusion() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("exclusion"))
 	return rv
-}/* debug [instance_properties/getter]: exclusion */
+}
 
 
 // A blend kernel that returns either the foreground or background image if the other contains a clear color.
@@ -732,7 +731,7 @@ func (b_ BlendKernel) Exclusion() ICIBlendKernel {
 func (b_ BlendKernel) ExclusiveOr() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("exclusiveOr"))
 	return rv
-}/* debug [instance_properties/getter]: exclusiveOr */
+}
 
 
 // A blend kernel that either multiplies or screens colors, depending on the source image sample color.
@@ -742,7 +741,7 @@ func (b_ BlendKernel) ExclusiveOr() ICIBlendKernel {
 func (b_ BlendKernel) HardLight() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("hardLight"))
 	return rv
-}/* debug [instance_properties/getter]: hardLight */
+}
 
 
 // A blend kernel that adds two images together, setting each color channel value to either 0 or 1.
@@ -752,7 +751,7 @@ func (b_ BlendKernel) HardLight() ICIBlendKernel {
 func (b_ BlendKernel) HardMix() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("hardMix"))
 	return rv
-}/* debug [instance_properties/getter]: hardMix */
+}
 
 
 // A blend kernel that uses the luminance and saturation values of the background image with the hue of the foreground image.
@@ -762,7 +761,7 @@ func (b_ BlendKernel) HardMix() ICIBlendKernel {
 func (b_ BlendKernel) Hue() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("hue"))
 	return rv
-}/* debug [instance_properties/getter]: hue */
+}
 
 
 // A blend kernel that creates an image using the lighter values of two input images.
@@ -772,7 +771,7 @@ func (b_ BlendKernel) Hue() ICIBlendKernel {
 func (b_ BlendKernel) Lighten() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("lighten"))
 	return rv
-}/* debug [instance_properties/getter]: lighten */
+}
 
 
 // A blend kernel that creates an image using the lighter color of two input images.
@@ -782,7 +781,7 @@ func (b_ BlendKernel) Lighten() ICIBlendKernel {
 func (b_ BlendKernel) LighterColor() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("lighterColor"))
 	return rv
-}/* debug [instance_properties/getter]: lighterColor */
+}
 
 
 // A blend kernel that darkens the background image samples to reflect the foreground image samples while also increasing contrast.
@@ -792,7 +791,7 @@ func (b_ BlendKernel) LighterColor() ICIBlendKernel {
 func (b_ BlendKernel) LinearBurn() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("linearBurn"))
 	return rv
-}/* debug [instance_properties/getter]: linearBurn */
+}
 
 
 // A blend kernel that lightens the background image samples to reflect the foreground image samples while also increasing contrast.
@@ -802,7 +801,7 @@ func (b_ BlendKernel) LinearBurn() ICIBlendKernel {
 func (b_ BlendKernel) LinearDodge() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("linearDodge"))
 	return rv
-}/* debug [instance_properties/getter]: linearDodge */
+}
 
 
 // A blend kernel that burns or dodges colors by changing brightness, depending on the blend color.
@@ -812,7 +811,7 @@ func (b_ BlendKernel) LinearDodge() ICIBlendKernel {
 func (b_ BlendKernel) LinearLight() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("linearLight"))
 	return rv
-}/* debug [instance_properties/getter]: linearLight */
+}
 
 
 // A blend kernel that uses the hue and saturation of the background image with the luminance of the foreground image.
@@ -822,7 +821,7 @@ func (b_ BlendKernel) LinearLight() ICIBlendKernel {
 func (b_ BlendKernel) Luminosity() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("luminosity"))
 	return rv
-}/* debug [instance_properties/getter]: luminosity */
+}
 
 
 // A blend kernel that multiplies the background image sample color with the foreground image sample color.
@@ -832,7 +831,7 @@ func (b_ BlendKernel) Luminosity() ICIBlendKernel {
 func (b_ BlendKernel) Multiply() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("multiply"))
 	return rv
-}/* debug [instance_properties/getter]: multiply */
+}
 
 
 // A blend kernel that either multiplies or screens the foreground image samples with the background image samples, depending on the background color.
@@ -842,7 +841,7 @@ func (b_ BlendKernel) Multiply() ICIBlendKernel {
 func (b_ BlendKernel) Overlay() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("overlay"))
 	return rv
-}/* debug [instance_properties/getter]: overlay */
+}
 
 
 // A blend kernel that conditionally replaces background image samples with source image samples depending on the brightness of the source image samples.
@@ -852,7 +851,7 @@ func (b_ BlendKernel) Overlay() ICIBlendKernel {
 func (b_ BlendKernel) PinLight() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("pinLight"))
 	return rv
-}/* debug [instance_properties/getter]: pinLight */
+}
 
 
 // A blend kernel that uses the luminance and hue values of the background image with the saturation of the foreground image.
@@ -862,7 +861,7 @@ func (b_ BlendKernel) PinLight() ICIBlendKernel {
 func (b_ BlendKernel) Saturation() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("saturation"))
 	return rv
-}/* debug [instance_properties/getter]: saturation */
+}
 
 
 // A blend kernel that multiplies the inverse of the foreground image samples with the inverse of the background image samples.
@@ -872,7 +871,7 @@ func (b_ BlendKernel) Saturation() ICIBlendKernel {
 func (b_ BlendKernel) Screen() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("screen"))
 	return rv
-}/* debug [instance_properties/getter]: screen */
+}
 
 
 // A blend kernel that either darkens or lightens colors, depending on the foreground image sample color.
@@ -882,7 +881,7 @@ func (b_ BlendKernel) Screen() ICIBlendKernel {
 func (b_ BlendKernel) SoftLight() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("softLight"))
 	return rv
-}/* debug [instance_properties/getter]: softLight */
+}
 
 
 // A blend kernel that returns the foreground input image.
@@ -892,7 +891,7 @@ func (b_ BlendKernel) SoftLight() ICIBlendKernel {
 func (b_ BlendKernel) Source() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("source"))
 	return rv
-}/* debug [instance_properties/getter]: source */
+}
 
 
 // A blend kernel that places the foreground over the background and crops based on the visibility of the background.
@@ -902,7 +901,7 @@ func (b_ BlendKernel) Source() ICIBlendKernel {
 func (b_ BlendKernel) SourceAtop() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("sourceAtop"))
 	return rv
-}/* debug [instance_properties/getter]: sourceAtop */
+}
 
 
 // A blend kernel that places the foreground over the background and crops based on the visibility of both.
@@ -912,7 +911,7 @@ func (b_ BlendKernel) SourceAtop() ICIBlendKernel {
 func (b_ BlendKernel) SourceIn() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("sourceIn"))
 	return rv
-}/* debug [instance_properties/getter]: sourceIn */
+}
 
 
 // A blend kernel that uses the foreground image to define what to take out of the background image.
@@ -922,7 +921,7 @@ func (b_ BlendKernel) SourceIn() ICIBlendKernel {
 func (b_ BlendKernel) SourceOut() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("sourceOut"))
 	return rv
-}/* debug [instance_properties/getter]: sourceOut */
+}
 
 
 // A blend kernel that places the foreground image over the input background image.
@@ -932,7 +931,7 @@ func (b_ BlendKernel) SourceOut() ICIBlendKernel {
 func (b_ BlendKernel) SourceOver() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("sourceOver"))
 	return rv
-}/* debug [instance_properties/getter]: sourceOver */
+}
 
 
 // A blend kernel that subtracts the background image sample color from the foreground image sample color.
@@ -942,7 +941,7 @@ func (b_ BlendKernel) SourceOver() ICIBlendKernel {
 func (b_ BlendKernel) Subtract() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("subtract"))
 	return rv
-}/* debug [instance_properties/getter]: subtract */
+}
 
 
 // A blend kernel that burns or dodges colors by changing contrast, depending on the blend color.
@@ -952,11 +951,11 @@ func (b_ BlendKernel) Subtract() ICIBlendKernel {
 func (b_ BlendKernel) VividLight() ICIBlendKernel {
 	rv := objc.Send[BlendKernel](b_.ID, objc.Sel("vividLight"))
 	return rv
-}/* debug [instance_properties/getter]: vividLight */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class CIBlendKernel */
+
+
+
 
 

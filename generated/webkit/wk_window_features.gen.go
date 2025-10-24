@@ -6,12 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class WKWindowFeatures */
+
 
 /* debug [class_header]: Header for WKWindowFeatures */
 // The class instance for the [WindowFeatures] class.
@@ -30,33 +31,36 @@ func getWindowFeaturesClass() _WindowFeaturesClass {
 type _WindowFeaturesClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for WindowFeatures */
 // An interface definition for the [WindowFeatures] class.
 type IWindowFeatures interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for WindowFeatures */
+	
+/* debug [class_interface_properties]: Properties for WindowFeatures */
 	// properties:
-	AllowsResizing() objc.IObject      /* cross-framework: NSNumber */
-	Height() objc.IObject              /* cross-framework: NSNumber */
-	MenuBarVisibility() objc.IObject   /* cross-framework: NSNumber */
+	AllowsResizing() objc.IObject /* cross-framework: NSNumber */
+	Height() objc.IObject /* cross-framework: NSNumber */
+	MenuBarVisibility() objc.IObject /* cross-framework: NSNumber */
 	StatusBarVisibility() objc.IObject /* cross-framework: NSNumber */
-	ToolbarsVisibility() objc.IObject  /* cross-framework: NSNumber */
-	Width() objc.IObject               /* cross-framework: NSNumber */
-	X() objc.IObject                   /* cross-framework: NSNumber */
-	Y() objc.IObject                   /* cross-framework: NSNumber */
-	/* debug [class_interface_properties]: End properties */
+	ToolbarsVisibility() objc.IObject /* cross-framework: NSNumber */
+	Width() objc.IObject /* cross-framework: NSNumber */
+	X() objc.IObject /* cross-framework: NSNumber */
+	Y() objc.IObject /* cross-framework: NSNumber */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for WindowFeatures */
+	
+/* debug [class_interface_methods]: Methods for WindowFeatures */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for WindowFeatures */
 // Alloc allocates a new instance without initialization.
@@ -88,13 +92,15 @@ func (w_ WindowFeatures) Autorelease() WindowFeatures {
 func NewWindowFeatures() WindowFeatures {
 	return getWindowFeaturesClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for WindowFeatures */
 // Display-related attributes that a webpage requests for its window.
 //
 // A object contains the attributes that a webpage requests from its containing web view. You don’t create a object directly. When a navigation action results in the display of a new web view, creates this object and passes it to the method of its UI delegate object. The delegate uses the information in this object to configure and return the new web view.
+
 
 // Display-related attributes that a webpage requests for its window.
 //
@@ -110,19 +116,28 @@ type WindowFeatures struct {
 func WindowFeaturesFrom(ptr unsafe.Pointer) WindowFeatures {
 	return WindowFeatures{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for WindowFeatures */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for WindowFeatures *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for WindowFeatures */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for WindowFeatures */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for WindowFeatures */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for WindowFeatures */
 
@@ -133,7 +148,8 @@ func WindowFeaturesFrom(ptr unsafe.Pointer) WindowFeatures {
 func (w_ WindowFeatures) AllowsResizing() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](w_.ID, objc.Sel("allowsResizing"))
 	return rv
-} /* debug [instance_properties/getter]: allowsResizing */
+}/* debug [instance_properties/getter]: allowsResizing */
+
 
 // The requested height of the containing window.
 //
@@ -142,7 +158,8 @@ func (w_ WindowFeatures) AllowsResizing() objc.IObject /* cross-framework: NSNum
 func (w_ WindowFeatures) Height() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](w_.ID, objc.Sel("height"))
 	return rv
-} /* debug [instance_properties/getter]: height */
+}/* debug [instance_properties/getter]: height */
+
 
 // A Boolean value that indicates whether the webpage requests a visible menu bar.
 //
@@ -151,7 +168,8 @@ func (w_ WindowFeatures) Height() objc.IObject /* cross-framework: NSNumber */ {
 func (w_ WindowFeatures) MenuBarVisibility() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](w_.ID, objc.Sel("menuBarVisibility"))
 	return rv
-} /* debug [instance_properties/getter]: menuBarVisibility */
+}/* debug [instance_properties/getter]: menuBarVisibility */
+
 
 // A Boolean value that indicates whether the webpage requested a visible status bar.
 //
@@ -160,7 +178,8 @@ func (w_ WindowFeatures) MenuBarVisibility() objc.IObject /* cross-framework: NS
 func (w_ WindowFeatures) StatusBarVisibility() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](w_.ID, objc.Sel("statusBarVisibility"))
 	return rv
-} /* debug [instance_properties/getter]: statusBarVisibility */
+}/* debug [instance_properties/getter]: statusBarVisibility */
+
 
 // A Boolean value that indicates whether the webpage requested a visible toolbar.
 //
@@ -169,7 +188,8 @@ func (w_ WindowFeatures) StatusBarVisibility() objc.IObject /* cross-framework: 
 func (w_ WindowFeatures) ToolbarsVisibility() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](w_.ID, objc.Sel("toolbarsVisibility"))
 	return rv
-} /* debug [instance_properties/getter]: toolbarsVisibility */
+}/* debug [instance_properties/getter]: toolbarsVisibility */
+
 
 // The requested width of the containing window.
 //
@@ -178,7 +198,8 @@ func (w_ WindowFeatures) ToolbarsVisibility() objc.IObject /* cross-framework: N
 func (w_ WindowFeatures) Width() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](w_.ID, objc.Sel("width"))
 	return rv
-} /* debug [instance_properties/getter]: width */
+}/* debug [instance_properties/getter]: width */
+
 
 // The requested x-coordinate of the containing window.
 //
@@ -187,7 +208,8 @@ func (w_ WindowFeatures) Width() objc.IObject /* cross-framework: NSNumber */ {
 func (w_ WindowFeatures) X() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](w_.ID, objc.Sel("x"))
 	return rv
-} /* debug [instance_properties/getter]: x */
+}/* debug [instance_properties/getter]: x */
+
 
 // The requested y-coordinate of the containing window.
 //
@@ -196,8 +218,14 @@ func (w_ WindowFeatures) X() objc.IObject /* cross-framework: NSNumber */ {
 func (w_ WindowFeatures) Y() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](w_.ID, objc.Sel("y"))
 	return rv
-} /* debug [instance_properties/getter]: y */
+}/* debug [instance_properties/getter]: y */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class WKWindowFeatures */
+
+
+
+
+

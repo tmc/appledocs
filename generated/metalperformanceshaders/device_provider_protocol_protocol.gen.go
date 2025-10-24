@@ -17,5 +17,5 @@ package metalperformanceshaders
 // See: doc://com.apple.metalperformanceshaders/documentation/MetalPerformanceShaders/MPSDeviceProvider
 type PDeviceProvider interface {
 	// Required methods
-	MpsMTLDevice()/* debug [protocol_interface/required_method]: MpsMTLDevice */
+	MpsMTLDevice()
 }

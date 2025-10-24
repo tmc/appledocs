@@ -15,3 +15,4 @@ package storekit
 // See: doc://com.apple.storekit/documentation/StoreKit/SKStoreProductViewControllerDelegate/productViewControllerDidFinish(_:)
 type PproductViewControllerDidFinish interface {
 }
+

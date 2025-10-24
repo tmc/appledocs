@@ -15,3 +15,4 @@ var WebFrameLoadDelegateProtocol *objc.Protocol
 func init() {
 	WebFrameLoadDelegateProtocol = objc.GetProtocol("WebFrameLoadDelegate")
 }
+

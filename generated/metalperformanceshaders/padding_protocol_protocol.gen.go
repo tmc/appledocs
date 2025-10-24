@@ -21,8 +21,8 @@ import (
 // See: doc://com.apple.metalperformanceshaders/documentation/MetalPerformanceShaders/MPSNNPadding
 type PPadding interface {
 	// Required methods
-	PaddingMethod()/* debug [protocol_interface/required_method]: PaddingMethod */
-	DestinationImageDescriptorForSourceImagesSourceStatesForKernelSuggestedDescriptor(sourceImages unsafe.Pointer, sourceStates unsafe.Pointer, kernel IKernel, inDescriptor IImageDescriptor) ImageDescriptor/* debug [protocol_interface/required_method]: DestinationImageDescriptorForSourceImagesSourceStatesForKernelSuggestedDescriptor */
+	PaddingMethod()
+	DestinationImageDescriptorForSourceImagesSourceStatesForKernelSuggestedDescriptor(sourceImages unsafe.Pointer, sourceStates unsafe.Pointer, kernel IKernel, inDescriptor IImageDescriptor) ImageDescriptor
 	// Optional methods
 	DestinationImageDescriptor()
 	HasDestinationImageDescriptor() bool

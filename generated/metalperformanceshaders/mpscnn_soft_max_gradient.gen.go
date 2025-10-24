@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNSoftMaxGradient */
 
 
-/* debug [class_header]: Header for MPSCNNSoftMaxGradient */
+
+
 // The class instance for the [CNNSoftMaxGradient] class.
 var (
 	CNNSoftMaxGradientClass     _CNNSoftMaxGradientClass
@@ -31,30 +30,30 @@ func getCNNSoftMaxGradientClass() _CNNSoftMaxGradientClass {
 type _CNNSoftMaxGradientClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNSoftMaxGradient */
+
+
 // An interface definition for the [CNNSoftMaxGradient] class.
 type ICNNSoftMaxGradient interface {
 	ICNNGradientKernel
 	
-/* debug [class_interface_properties]: Properties for CNNSoftMaxGradient */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNSoftMaxGradient */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNSoftMaxGradient */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNSoftMaxGradientClass) Alloc() CNNSoftMaxGradient {
 	rv := objc.Send[CNNSoftMaxGradient](objc.ID(cc.class), objc.Sel("alloc"))
@@ -84,11 +83,11 @@ func (c_ CNNSoftMaxGradient) Autorelease() CNNSoftMaxGradient {
 func NewCNNSoftMaxGradient() CNNSoftMaxGradient {
 	return getCNNSoftMaxGradientClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNSoftMaxGradient */
+
+
 // A gradient softmax filter.
 
 
@@ -108,11 +107,11 @@ func CNNSoftMaxGradientFrom(ptr unsafe.Pointer) CNNSoftMaxGradient {
 		CNNGradientKernel: CNNGradientKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNSoftMaxGradient */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsoftmaxgradient/2942618-initwithcoder
@@ -121,7 +120,7 @@ func NewCNNSoftMaxGradientWithCoderDevice(aDecoder foundation.Coder, device unsa
 	rv := objc.Send[CNNSoftMaxGradient](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNSoftMaxGradientWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -131,31 +130,31 @@ func NewCNNSoftMaxGradientWithDevice(device unsafe.Pointer) CNNSoftMaxGradient {
 	rv := objc.Send[CNNSoftMaxGradient](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNSoftMaxGradientWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNSoftMaxGradient */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNSoftMaxGradient */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNSoftMaxGradient */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNSoftMaxGradient */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNSoftMaxGradient */
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -2,9 +2,9 @@
 
 package vision
 
-/* debug [enums.gen.go]: Generating 13 enums for Vision */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum VNBarcodeCompositeType (5 cases) */
+
 // VNBarcodeCompositeType - Composite types for barcode requests.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeCompositeType
@@ -33,7 +33,7 @@ const (
 	VNBarcodeCompositeTypeNone VNBarcodeCompositeType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum VNChirality (3 cases) */
+
 // VNChirality - Constants that the define the chirality, or handedness, of a pose.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNChirality
@@ -54,7 +54,7 @@ const (
 	VNChiralityUnknown VNChirality = 0
 )
 
-/* debug [enums.gen.go]: Processing enum VNElementType (3 cases) */
+
 // VNElementType - An enumeration of the type of element in feature print data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNElementType
@@ -75,7 +75,7 @@ const (
 	VNElementTypeUnknown VNElementType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum VNErrorCode (24 cases) */
+
 // VNErrorCode - Constants that identify errors from the framework.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNErrorCode
@@ -180,7 +180,7 @@ const (
 	VNErrorUnsupportedRevision VNErrorCode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum VNGenerateOpticalFlowRequestComputationAccuracy (4 cases) */
+
 // VNGenerateOpticalFlowRequestComputationAccuracy - The supported optical flow accuracy levels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGenerateOpticalFlowRequest/ComputationAccuracy-swift.enum
@@ -205,7 +205,7 @@ const (
 	VNGenerateOpticalFlowRequestComputationAccuracyVeryHigh VNGenerateOpticalFlowRequestComputationAccuracy = 0
 )
 
-/* debug [enums.gen.go]: Processing enum VNGeneratePersonSegmentationRequestQualityLevel (3 cases) */
+
 // VNGeneratePersonSegmentationRequestQualityLevel - Constants that define the levels of quality for a person segmentation request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeneratePersonSegmentationRequest/QualityLevel-swift.enum
@@ -226,7 +226,7 @@ const (
 	VNGeneratePersonSegmentationRequestQualityLevelFast VNGeneratePersonSegmentationRequestQualityLevel = 0
 )
 
-/* debug [enums.gen.go]: Processing enum VNHumanBodyPose3DObservationHeightEstimation (2 cases) */
+
 // VNHumanBodyPose3DObservationHeightEstimation - Constants that identify body height estimation techniques.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation/HeightEstimation-swift.enum
@@ -243,7 +243,7 @@ const (
 	VNHumanBodyPose3DObservationHeightEstimationReference VNHumanBodyPose3DObservationHeightEstimation = 0
 )
 
-/* debug [enums.gen.go]: Processing enum VNImageCropAndScaleOption (5 cases) */
+
 // VNImageCropAndScaleOption - Options that define how Vision crops and scales an input-image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageCropAndScaleOption
@@ -272,7 +272,7 @@ const (
 	VNImageCropAndScaleOptionScaleFitRotate90CCW VNImageCropAndScaleOption = 0
 )
 
-/* debug [enums.gen.go]: Processing enum VNPointsClassification (3 cases) */
+
 // VNPointsClassification - The set of classifications that describe how to interpret the points the region provides.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPointsClassification
@@ -290,7 +290,7 @@ const (
 	VNPointsClassificationOpenPath VNPointsClassification = 0
 )
 
-/* debug [enums.gen.go]: Processing enum VNRequestFaceLandmarksConstellation (3 cases) */
+
 // VNRequestFaceLandmarksConstellation - An enumeration of face landmarks in a constellation object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequestFaceLandmarksConstellation
@@ -311,7 +311,7 @@ const (
 	VNRequestFaceLandmarksConstellationNotDefined VNRequestFaceLandmarksConstellation = 0
 )
 
-/* debug [enums.gen.go]: Processing enum VNRequestTextRecognitionLevel (2 cases) */
+
 // VNRequestTextRecognitionLevel - Constants that identify the performance and accuracy of the text recognition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequestTextRecognitionLevel
@@ -328,7 +328,7 @@ const (
 	VNRequestTextRecognitionLevelFast VNRequestTextRecognitionLevel = 0
 )
 
-/* debug [enums.gen.go]: Processing enum VNRequestTrackingLevel (2 cases) */
+
 // VNRequestTrackingLevel - An enumeration of tracking priorities.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequestTrackingLevel
@@ -345,7 +345,7 @@ const (
 	VNRequestTrackingLevelFast VNRequestTrackingLevel = 0
 )
 
-/* debug [enums.gen.go]: Processing enum VNTrackOpticalFlowRequestComputationAccuracy (4 cases) */
+
 // VNTrackOpticalFlowRequestComputationAccuracy - Computational accuracy options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTrackOpticalFlowRequest/ComputationAccuracy-swift.enum

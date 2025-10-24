@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class OSSystemExtensionManager */
 
+
 /* debug [class_header]: Header for OSSystemExtensionManager */
 // The class instance for the [OSSystemExtensionManager] class.
 var (
@@ -29,28 +30,31 @@ func getOSSystemExtensionManagerClass() _OSSystemExtensionManagerClass {
 type _OSSystemExtensionManagerClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for OSSystemExtensionManager */
 // An interface definition for the [OSSystemExtensionManager] class.
 type IOSSystemExtensionManager interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for OSSystemExtensionManager */
+	
+/* debug [class_interface_properties]: Properties for OSSystemExtensionManager */
 	// properties:
 	Delegate() objc.IObject /* cross-framework: OSSystemExtensionRequestDelegate */
 	SetDelegate(value objc.IObject /* cross-framework: OSSystemExtensionRequestDelegate */)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for OSSystemExtensionManager */
+	
+/* debug [class_interface_methods]: Methods for OSSystemExtensionManager */
 	// methods:
 	SubmitRequest(request IOSSystemExtensionRequest)
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for OSSystemExtensionManager */
 // Alloc allocates a new instance without initialization.
@@ -82,13 +86,15 @@ func (o_ OSSystemExtensionManager) Autorelease() OSSystemExtensionManager {
 func NewOSSystemExtensionManager() OSSystemExtensionManager {
 	return getOSSystemExtensionManagerClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for OSSystemExtensionManager */
 // A type that facilitates activation and deactivation of system extensions.
 //
 // Create an instance of with the class methods on that type, and submit it to the shared instance of the extension manager with . Set the on the request to receive the result of the activation or deactivation. The delegate also receives notifications if the user needs to authorize the extension or if a version conflict occurs.
+
 
 // A type that facilitates activation and deactivation of system extensions.
 //
@@ -104,13 +110,18 @@ type OSSystemExtensionManager struct {
 func OSSystemExtensionManagerFrom(ptr unsafe.Pointer) OSSystemExtensionManager {
 	return OSSystemExtensionManager{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for OSSystemExtensionManager */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for OSSystemExtensionManager *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for OSSystemExtensionManager */
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for OSSystemExtensionManager */
 
@@ -121,8 +132,10 @@ func OSSystemExtensionManagerFrom(ptr unsafe.Pointer) OSSystemExtensionManager {
 func (oc _OSSystemExtensionManagerClass) SharedManager() OSSystemExtensionManager {
 	rv := objc.Send[OSSystemExtensionManager](objc.ID(oc.class), objc.Sel("sharedManager"))
 	return rv
-} /* debug [class_properties_class/property]: sharedManager */
+}/* debug [class_properties_class/property]: sharedManager */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for OSSystemExtensionManager */
 
@@ -132,9 +145,11 @@ func (oc _OSSystemExtensionManagerClass) SharedManager() OSSystemExtensionManage
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionManager/submitRequest(_:)
 func (o_ OSSystemExtensionManager) SubmitRequest(request IOSSystemExtensionRequest) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("submitRequest:"), request)
-} /* debug [instance_methods/method]: SubmitRequest */
+}/* debug [instance_methods/method]: SubmitRequest */
 
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for OSSystemExtensionManager */
 
@@ -145,7 +160,8 @@ func (o_ OSSystemExtensionManager) SubmitRequest(request IOSSystemExtensionReque
 func (o_ OSSystemExtensionManager) SharedManager() IOSSystemExtensionManager {
 	rv := objc.Send[OSSystemExtensionManager](o_.ID, objc.Sel("sharedManager"))
 	return rv
-} /* debug [instance_properties/getter]: sharedManager */
+}/* debug [instance_properties/getter]: sharedManager */
+
 
 // A delegate to receive updates about the progress of a request.
 //
@@ -154,7 +170,8 @@ func (o_ OSSystemExtensionManager) SharedManager() IOSSystemExtensionManager {
 func (o_ OSSystemExtensionManager) Delegate() objc.IObject /* cross-framework: OSSystemExtensionRequestDelegate */ {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("delegate"))
 	return rv
-} /* debug [instance_properties/getter]: delegate */
+}/* debug [instance_properties/getter]: delegate */
+
 
 // A delegate to receive updates about the progress of a request.
 //
@@ -162,8 +179,12 @@ func (o_ OSSystemExtensionManager) Delegate() objc.IObject /* cross-framework: O
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/delegate
 func (o_ OSSystemExtensionManager) SetDelegate(value objc.IObject /* cross-framework: OSSystemExtensionRequestDelegate */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDelegate:"), value)
-} /* debug [instance_properties/setter]: delegate */
+}/* debug [instance_properties/setter]: delegate */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class OSSystemExtensionManager */
+
+
+

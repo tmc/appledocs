@@ -6,11 +6,12 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 /* debug [class.gen.go]: Generating class DOMCSSCharsetRule */
+
 
 /* debug [class_header]: Header for DOMCSSCharsetRule */
 // The class instance for the [DOMCSSCharsetRule] class.
@@ -29,26 +30,29 @@ func getDOMCSSCharsetRuleClass() _DOMCSSCharsetRuleClass {
 type _DOMCSSCharsetRuleClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMCSSCharsetRule */
 // An interface definition for the [DOMCSSCharsetRule] class.
 type IDOMCSSCharsetRule interface {
 	IDOMCSSRule
-
-	/* debug [class_interface_properties]: Properties for DOMCSSCharsetRule */
+	
+/* debug [class_interface_properties]: Properties for DOMCSSCharsetRule */
 	// properties:
 	Encoding() objc.IObject /* cross-framework: NSString */
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMCSSCharsetRule */
+	
+/* debug [class_interface_methods]: Methods for DOMCSSCharsetRule */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMCSSCharsetRule */
 // Alloc allocates a new instance without initialization.
@@ -80,10 +84,12 @@ func (d_ DOMCSSCharsetRule) Autorelease() DOMCSSCharsetRule {
 func NewDOMCSSCharsetRule() DOMCSSCharsetRule {
 	return getDOMCSSCharsetRuleClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMCSSCharsetRule */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMCSSCharsetRule
@@ -97,19 +103,28 @@ func DOMCSSCharsetRuleFrom(ptr unsafe.Pointer) DOMCSSCharsetRule {
 		DOMCSSRule: DOMCSSRuleFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMCSSCharsetRule */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMCSSCharsetRule *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMCSSCharsetRule */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMCSSCharsetRule */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMCSSCharsetRule */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMCSSCharsetRule */
 
@@ -118,8 +133,12 @@ func DOMCSSCharsetRuleFrom(ptr unsafe.Pointer) DOMCSSCharsetRule {
 func (d_ DOMCSSCharsetRule) Encoding() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("encoding"))
 	return rv
-} /* debug [instance_properties/getter]: encoding */
+}/* debug [instance_properties/getter]: encoding */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMCSSCharsetRule */
+
+
+

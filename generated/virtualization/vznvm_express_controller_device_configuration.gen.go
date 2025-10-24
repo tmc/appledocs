@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZNVMExpressControllerDeviceConfiguration */
+
 
 /* debug [class_header]: Header for VZNVMExpressControllerDeviceConfiguration */
 // The class instance for the [VZNVMExpressControllerDeviceConfiguration] class.
@@ -28,25 +30,28 @@ func getVZNVMExpressControllerDeviceConfigurationClass() _VZNVMExpressController
 type _VZNVMExpressControllerDeviceConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZNVMExpressControllerDeviceConfiguration */
 // An interface definition for the [VZNVMExpressControllerDeviceConfiguration] class.
 type IVZNVMExpressControllerDeviceConfiguration interface {
 	IVZStorageDeviceConfiguration
-
-	/* debug [class_interface_properties]: Properties for VZNVMExpressControllerDeviceConfiguration */
+	
+/* debug [class_interface_properties]: Properties for VZNVMExpressControllerDeviceConfiguration */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZNVMExpressControllerDeviceConfiguration */
+	
+/* debug [class_interface_methods]: Methods for VZNVMExpressControllerDeviceConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZNVMExpressControllerDeviceConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -78,13 +83,15 @@ func (v_ VZNVMExpressControllerDeviceConfiguration) Autorelease() VZNVMExpressCo
 func NewVZNVMExpressControllerDeviceConfiguration() VZNVMExpressControllerDeviceConfiguration {
 	return getVZNVMExpressControllerDeviceConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZNVMExpressControllerDeviceConfiguration */
 // The configuration object that represents an NVM Express Controller storage device.
 //
 // This device configuration creates a storage device that conforms to the . The device configuration is valid only if used with .
+
 
 // The configuration object that represents an NVM Express Controller storage device.
 //
@@ -102,8 +109,9 @@ func VZNVMExpressControllerDeviceConfigurationFrom(ptr unsafe.Pointer) VZNVMExpr
 		VZStorageDeviceConfiguration: VZStorageDeviceConfigurationFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZNVMExpressControllerDeviceConfiguration */
 
@@ -116,20 +124,31 @@ func NewVZNVMExpressControllerDeviceConfigurationWithAttachment(attachment IVZSt
 	rv := objc.Send[VZNVMExpressControllerDeviceConfiguration](instance.ID, objc.Sel("initWithAttachment:"), attachment)
 	rv.Autorelease()
 	return rv
-} /* debug [class_init_methods/constructor]: NewVZNVMExpressControllerDeviceConfigurationWithAttachment */
+}/* debug [class_init_methods/constructor]: NewVZNVMExpressControllerDeviceConfigurationWithAttachment */
 
 /* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZNVMExpressControllerDeviceConfiguration */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZNVMExpressControllerDeviceConfiguration */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZNVMExpressControllerDeviceConfiguration */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for VZNVMExpressControllerDeviceConfiguration */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZNVMExpressControllerDeviceConfiguration */
+
+

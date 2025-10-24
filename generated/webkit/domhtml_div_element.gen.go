@@ -6,11 +6,12 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 /* debug [class.gen.go]: Generating class DOMHTMLDivElement */
+
 
 /* debug [class_header]: Header for DOMHTMLDivElement */
 // The class instance for the [DOMHTMLDivElement] class.
@@ -29,27 +30,30 @@ func getDOMHTMLDivElementClass() _DOMHTMLDivElementClass {
 type _DOMHTMLDivElementClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMHTMLDivElement */
 // An interface definition for the [DOMHTMLDivElement] class.
 type IDOMHTMLDivElement interface {
 	IDOMHTMLElement
-
-	/* debug [class_interface_properties]: Properties for DOMHTMLDivElement */
+	
+/* debug [class_interface_properties]: Properties for DOMHTMLDivElement */
 	// properties:
 	Align() objc.IObject /* cross-framework: NSString */
 	SetAlign(value objc.IObject /* cross-framework: NSString */)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMHTMLDivElement */
+	
+/* debug [class_interface_methods]: Methods for DOMHTMLDivElement */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMHTMLDivElement */
 // Alloc allocates a new instance without initialization.
@@ -81,10 +85,12 @@ func (d_ DOMHTMLDivElement) Autorelease() DOMHTMLDivElement {
 func NewDOMHTMLDivElement() DOMHTMLDivElement {
 	return getDOMHTMLDivElementClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMHTMLDivElement */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDivElement
@@ -98,19 +104,28 @@ func DOMHTMLDivElementFrom(ptr unsafe.Pointer) DOMHTMLDivElement {
 		DOMHTMLElement: DOMHTMLElementFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMHTMLDivElement */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMHTMLDivElement *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMHTMLDivElement */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMHTMLDivElement */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMHTMLDivElement */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMHTMLDivElement */
 
@@ -119,14 +134,19 @@ func DOMHTMLDivElementFrom(ptr unsafe.Pointer) DOMHTMLDivElement {
 func (d_ DOMHTMLDivElement) Align() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("align"))
 	return rv
-} /* debug [instance_properties/getter]: align */
+}/* debug [instance_properties/getter]: align */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDivElement/align
 func (d_ DOMHTMLDivElement) SetAlign(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAlign:"), value)
-} /* debug [instance_properties/setter]: align */
+}/* debug [instance_properties/setter]: align */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMHTMLDivElement */
+
+
+

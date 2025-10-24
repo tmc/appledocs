@@ -5,8 +5,11 @@ package webkit
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/coretelephony"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PWebPolicyDelegate is the WebPolicyDelegate protocol interface.
@@ -31,10 +34,10 @@ type PWebPolicyDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type WebPolicyDelegate struct {
-	_WebViewDecidePolicyForMIMETypeRequestFrameDecisionListener               func(webView IWebView, type_ objc.IObject /* cross-framework: NSString */, request foundation.URLRequest, frame IWebFrame, listener unsafe.Pointer)
-	_WebViewDecidePolicyForNavigationActionRequestFrameDecisionListener       func(webView IWebView, actionInformation objc.IObject /* cross-framework: NSDictionary */, request foundation.URLRequest, frame IWebFrame, listener unsafe.Pointer)
+	_WebViewDecidePolicyForMIMETypeRequestFrameDecisionListener func(webView IWebView, type_ objc.IObject /* cross-framework: NSString */, request foundation.URLRequest, frame IWebFrame, listener unsafe.Pointer)
+	_WebViewDecidePolicyForNavigationActionRequestFrameDecisionListener func(webView IWebView, actionInformation objc.IObject /* cross-framework: NSDictionary */, request foundation.URLRequest, frame IWebFrame, listener unsafe.Pointer)
 	_WebViewDecidePolicyForNewWindowActionRequestNewFrameNameDecisionListener func(webView IWebView, actionInformation objc.IObject /* cross-framework: NSDictionary */, request foundation.URLRequest, frameName objc.IObject /* cross-framework: NSString */, listener unsafe.Pointer)
-	_WebViewUnableToImplementPolicyWithErrorFrame                             func(webView IWebView, error_ objc.IObject /* cross-framework: Error */, frame IWebFrame)
+	_WebViewUnableToImplementPolicyWithErrorFrame func(webView IWebView, error_ objc.IObject /* cross-framework: Error */, frame IWebFrame)
 }
 
 // SetWebViewDecidePolicyForMIMETypeRequestFrameDecisionListener sets the handler for the WebViewDecidePolicyForMIMETypeRequestFrameDecisionListener delegate method.

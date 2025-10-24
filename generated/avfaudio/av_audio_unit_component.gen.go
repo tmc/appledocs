@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAudioUnitComponent */
 
 
-/* debug [class_header]: Header for AVAudioUnitComponent */
+
+
 // The class instance for the [AudioUnitComponent] class.
 var (
 	AudioUnitComponentClass     _AudioUnitComponentClass
@@ -31,16 +30,16 @@ func getAudioUnitComponentClass() _AudioUnitComponentClass {
 type _AudioUnitComponentClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AudioUnitComponent */
+
+
 // An interface definition for the [AudioUnitComponent] class.
 type IAudioUnitComponent interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for AudioUnitComponent */
+
 	// properties:
 	AllTagNames() []string
 	AudioComponent() objectivec.IObject
@@ -76,20 +75,20 @@ type IAudioUnitComponent interface {
 	AVAudioUnitTypeOfflineEffect() objc.IObject /* cross-framework: NSString */
 	AVAudioUnitTypeOutput() objc.IObject /* cross-framework: NSString */
 	AVAudioUnitTypePanner() objc.IObject /* cross-framework: NSString */
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AudioUnitComponent */
+
 	// methods:
 	SupportsNumberInputChannelsOutputChannels(numInputChannels int, numOutputChannels int) bool
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AudioUnitComponent */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AudioUnitComponentClass) Alloc() AudioUnitComponent {
 	rv := objc.Send[AudioUnitComponent](objc.ID(ac.class), objc.Sel("alloc"))
@@ -119,11 +118,11 @@ func (a_ AudioUnitComponent) Autorelease() AudioUnitComponent {
 func NewAudioUnitComponent() AudioUnitComponent {
 	return getAudioUnitComponentClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AudioUnitComponent */
+
+
 // An object that provides details about an audio unit.
 //
 // Details can include information such as type, subtype, manufacturer, and location. An can include user tags, which you can query later for display.
@@ -143,25 +142,25 @@ type AudioUnitComponent struct {
 func AudioUnitComponentFrom(ptr unsafe.Pointer) AudioUnitComponent {
 	return AudioUnitComponent{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AudioUnitComponent *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for AudioUnitComponent */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AudioUnitComponent */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AudioUnitComponent */
+
+
+
+
+
+
+
 
 // Gets a Boolean value that indicates whether the audio unit component supports the specified number of input and output channels.
 //
@@ -170,13 +169,13 @@ func AudioUnitComponentFrom(ptr unsafe.Pointer) AudioUnitComponent {
 func (a_ AudioUnitComponent) SupportsNumberInputChannelsOutputChannels(numInputChannels int, numOutputChannels int) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("supportsNumberInputChannels:outputChannels:"), numInputChannels, numOutputChannels)
 	return rv
-}/* debug [instance_methods/method]: SupportsNumberInputChannelsOutputChannels */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for AudioUnitComponent */
+
+
+
 
 // An array of tag names for the audio unit component.
 //
@@ -185,7 +184,7 @@ func (a_ AudioUnitComponent) SupportsNumberInputChannelsOutputChannels(numInputC
 func (a_ AudioUnitComponent) AllTagNames() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("allTagNames"))
 	return rv
-}/* debug [instance_properties/getter]: allTagNames */
+}
 
 
 // The underlying audio component.
@@ -195,7 +194,7 @@ func (a_ AudioUnitComponent) AllTagNames() []string {
 func (a_ AudioUnitComponent) AudioComponent() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](a_.ID, objc.Sel("audioComponent"))
 	return rv
-}/* debug [instance_properties/getter]: audioComponent */
+}
 
 
 // The audio component description.
@@ -205,7 +204,7 @@ func (a_ AudioUnitComponent) AudioComponent() objectivec.IObject {
 func (a_ AudioUnitComponent) AudioComponentDescription() audiotoolbox.AudioComponentDescription {
 	rv := objc.Send[audiotoolbox.AudioComponentDescription](a_.ID, objc.Sel("audioComponentDescription"))
 	return rv
-}/* debug [instance_properties/getter]: audioComponentDescription */
+}
 
 
 // An array of architectures that the audio unit supports.
@@ -215,7 +214,7 @@ func (a_ AudioUnitComponent) AudioComponentDescription() audiotoolbox.AudioCompo
 func (a_ AudioUnitComponent) AvailableArchitectures() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("availableArchitectures"))
 	return rv
-}/* debug [instance_properties/getter]: availableArchitectures */
+}
 
 
 // The URL of the audio unit component.
@@ -225,7 +224,7 @@ func (a_ AudioUnitComponent) AvailableArchitectures() []foundation.Number {
 func (a_ AudioUnitComponent) ComponentURL() objc.IObject /* cross-framework: NSURL */ {
 	rv := objc.Send[foundation.NSURL](a_.ID, objc.Sel("componentURL"))
 	return rv
-}/* debug [instance_properties/getter]: componentURL */
+}
 
 
 // The audio unit component’s configuration dictionary.
@@ -235,7 +234,7 @@ func (a_ AudioUnitComponent) ComponentURL() objc.IObject /* cross-framework: NSU
 func (a_ AudioUnitComponent) ConfigurationDictionary() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](a_.ID, objc.Sel("configurationDictionary"))
 	return rv
-}/* debug [instance_properties/getter]: configurationDictionary */
+}
 
 
 // A Boolean value that indicates whether the audio unit component has a custom view.
@@ -245,7 +244,7 @@ func (a_ AudioUnitComponent) ConfigurationDictionary() foundation.IDictionary {
 func (a_ AudioUnitComponent) HasCustomView() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hasCustomView"))
 	return rv
-}/* debug [instance_properties/getter]: hasCustomView */
+}
 
 
 // A Boolean value that indicates whether the audio unit component has MIDI input.
@@ -255,7 +254,7 @@ func (a_ AudioUnitComponent) HasCustomView() bool {
 func (a_ AudioUnitComponent) HasMIDIInput() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hasMIDIInput"))
 	return rv
-}/* debug [instance_properties/getter]: hasMIDIInput */
+}
 
 
 // A Boolean value that indicates whether the audio unit component has MIDI output.
@@ -265,7 +264,7 @@ func (a_ AudioUnitComponent) HasMIDIInput() bool {
 func (a_ AudioUnitComponent) HasMIDIOutput() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hasMIDIOutput"))
 	return rv
-}/* debug [instance_properties/getter]: hasMIDIOutput */
+}
 
 
 // An icon that represents the component.
@@ -275,7 +274,7 @@ func (a_ AudioUnitComponent) HasMIDIOutput() bool {
 func (a_ AudioUnitComponent) Icon() appkit.Image {
 	rv := objc.Send[appkit.Image](a_.ID, objc.Sel("icon"))
 	return rv
-}/* debug [instance_properties/getter]: icon */
+}
 
 
 // The URL of an icon that represents the audio unit component.
@@ -285,7 +284,7 @@ func (a_ AudioUnitComponent) Icon() appkit.Image {
 func (a_ AudioUnitComponent) IconURL() objc.IObject /* cross-framework: NSURL */ {
 	rv := objc.Send[foundation.NSURL](a_.ID, objc.Sel("iconURL"))
 	return rv
-}/* debug [instance_properties/getter]: iconURL */
+}
 
 
 // A Boolean value that indicates whether the audio unit component is safe for sandboxing.
@@ -295,7 +294,7 @@ func (a_ AudioUnitComponent) IconURL() objc.IObject /* cross-framework: NSURL */
 func (a_ AudioUnitComponent) SandboxSafe() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("sandboxSafe"))
 	return rv
-}/* debug [instance_properties/getter]: sandboxSafe */
+}
 
 
 // The localized type name of the component.
@@ -305,7 +304,7 @@ func (a_ AudioUnitComponent) SandboxSafe() bool {
 func (a_ AudioUnitComponent) LocalizedTypeName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("localizedTypeName"))
 	return rv
-}/* debug [instance_properties/getter]: localizedTypeName */
+}
 
 
 // The name of the manufacturer of the audio unit component.
@@ -315,7 +314,7 @@ func (a_ AudioUnitComponent) LocalizedTypeName() objc.IObject /* cross-framework
 func (a_ AudioUnitComponent) ManufacturerName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("manufacturerName"))
 	return rv
-}/* debug [instance_properties/getter]: manufacturerName */
+}
 
 
 // The name of the audio unit component.
@@ -325,7 +324,7 @@ func (a_ AudioUnitComponent) ManufacturerName() objc.IObject /* cross-framework:
 func (a_ AudioUnitComponent) Name() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("name"))
 	return rv
-}/* debug [instance_properties/getter]: name */
+}
 
 
 // A Boolean value that indicates whether the audio unit component passes the validation tests.
@@ -335,7 +334,7 @@ func (a_ AudioUnitComponent) Name() objc.IObject /* cross-framework: NSString */
 func (a_ AudioUnitComponent) PassesAUVal() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("passesAUVal"))
 	return rv
-}/* debug [instance_properties/getter]: passesAUVal */
+}
 
 
 // The audio unit component type.
@@ -345,7 +344,7 @@ func (a_ AudioUnitComponent) PassesAUVal() bool {
 func (a_ AudioUnitComponent) TypeName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("typeName"))
 	return rv
-}/* debug [instance_properties/getter]: typeName */
+}
 
 
 // An array of tags the user creates.
@@ -355,7 +354,7 @@ func (a_ AudioUnitComponent) TypeName() objc.IObject /* cross-framework: NSStrin
 func (a_ AudioUnitComponent) UserTagNames() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("userTagNames"))
 	return rv
-}/* debug [instance_properties/getter]: userTagNames */
+}
 
 
 // An array of tags the user creates.
@@ -373,7 +372,7 @@ func (a_ AudioUnitComponent) SetUserTagNames(value []string) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUserTagNames:"), nsArray)
-}/* debug [instance_properties/setter]: userTagNames */
+}
 
 
 // The audio unit component version number.
@@ -383,7 +382,7 @@ func (a_ AudioUnitComponent) SetUserTagNames(value []string) {
 func (a_ AudioUnitComponent) Version() uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("version"))
 	return rv
-}/* debug [instance_properties/getter]: version */
+}
 
 
 // A string that represents the audio unit component version number.
@@ -393,7 +392,7 @@ func (a_ AudioUnitComponent) Version() uint {
 func (a_ AudioUnitComponent) VersionString() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("versionString"))
 	return rv
-}/* debug [instance_properties/getter]: versionString */
+}
 
 
 // A Boolean value that indicates whether the audio unit component is safe for sandboxing.
@@ -403,7 +402,7 @@ func (a_ AudioUnitComponent) VersionString() objc.IObject /* cross-framework: NS
 func (a_ AudioUnitComponent) IsSandboxSafe() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSandboxSafe"))
 	return rv
-}/* debug [instance_properties/getter]: isSandboxSafe */
+}
 
 
 // A Boolean value that indicates whether the audio unit component is safe for sandboxing.
@@ -412,7 +411,7 @@ func (a_ AudioUnitComponent) IsSandboxSafe() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent/issandboxsafe
 func (a_ AudioUnitComponent) SetIsSandboxSafe(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSandboxSafe:"), value)
-}/* debug [instance_properties/setter]: isSandboxSafe */
+}
 
 
 // The audio unit manufacturer is Apple.
@@ -422,7 +421,7 @@ func (a_ AudioUnitComponent) SetIsSandboxSafe(value bool) {
 func (a_ AudioUnitComponent) AVAudioUnitManufacturerNameApple() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AVAudioUnitManufacturerNameApple"))
 	return rv
-}/* debug [instance_properties/getter]: AVAudioUnitManufacturerNameApple */
+}
 
 
 // An audio unit type that represents an effect.
@@ -432,7 +431,7 @@ func (a_ AudioUnitComponent) AVAudioUnitManufacturerNameApple() objc.IObject /* 
 func (a_ AudioUnitComponent) AVAudioUnitTypeEffect() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AVAudioUnitTypeEffect"))
 	return rv
-}/* debug [instance_properties/getter]: AVAudioUnitTypeEffect */
+}
 
 
 // An audio unit type that represents a format converter.
@@ -442,7 +441,7 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeEffect() objc.IObject /* cross-frame
 func (a_ AudioUnitComponent) AVAudioUnitTypeFormatConverter() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AVAudioUnitTypeFormatConverter"))
 	return rv
-}/* debug [instance_properties/getter]: AVAudioUnitTypeFormatConverter */
+}
 
 
 // An audio unit type that represents a generator.
@@ -452,7 +451,7 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeFormatConverter() objc.IObject /* cr
 func (a_ AudioUnitComponent) AVAudioUnitTypeGenerator() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AVAudioUnitTypeGenerator"))
 	return rv
-}/* debug [instance_properties/getter]: AVAudioUnitTypeGenerator */
+}
 
 
 // An audio unit type that represents a MIDI processor.
@@ -462,7 +461,7 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeGenerator() objc.IObject /* cross-fr
 func (a_ AudioUnitComponent) AVAudioUnitTypeMIDIProcessor() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AVAudioUnitTypeMIDIProcessor"))
 	return rv
-}/* debug [instance_properties/getter]: AVAudioUnitTypeMIDIProcessor */
+}
 
 
 // An audio unit type that represents a mixer.
@@ -472,7 +471,7 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeMIDIProcessor() objc.IObject /* cros
 func (a_ AudioUnitComponent) AVAudioUnitTypeMixer() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AVAudioUnitTypeMixer"))
 	return rv
-}/* debug [instance_properties/getter]: AVAudioUnitTypeMixer */
+}
 
 
 // An audio unit type that represents a music device.
@@ -482,7 +481,7 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeMixer() objc.IObject /* cross-framew
 func (a_ AudioUnitComponent) AVAudioUnitTypeMusicDevice() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AVAudioUnitTypeMusicDevice"))
 	return rv
-}/* debug [instance_properties/getter]: AVAudioUnitTypeMusicDevice */
+}
 
 
 // An audio unit type that represents a music effect.
@@ -492,7 +491,7 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeMusicDevice() objc.IObject /* cross-
 func (a_ AudioUnitComponent) AVAudioUnitTypeMusicEffect() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AVAudioUnitTypeMusicEffect"))
 	return rv
-}/* debug [instance_properties/getter]: AVAudioUnitTypeMusicEffect */
+}
 
 
 // An audio unit type that represents an offline effect.
@@ -502,7 +501,7 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeMusicEffect() objc.IObject /* cross-
 func (a_ AudioUnitComponent) AVAudioUnitTypeOfflineEffect() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AVAudioUnitTypeOfflineEffect"))
 	return rv
-}/* debug [instance_properties/getter]: AVAudioUnitTypeOfflineEffect */
+}
 
 
 // An audio unit type that represents an output.
@@ -512,7 +511,7 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeOfflineEffect() objc.IObject /* cros
 func (a_ AudioUnitComponent) AVAudioUnitTypeOutput() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AVAudioUnitTypeOutput"))
 	return rv
-}/* debug [instance_properties/getter]: AVAudioUnitTypeOutput */
+}
 
 
 // An audio unit type that represents a panner.
@@ -522,12 +521,12 @@ func (a_ AudioUnitComponent) AVAudioUnitTypeOutput() objc.IObject /* cross-frame
 func (a_ AudioUnitComponent) AVAudioUnitTypePanner() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AVAudioUnitTypePanner"))
 	return rv
-}/* debug [instance_properties/getter]: AVAudioUnitTypePanner */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVAudioUnitComponent */
+
+
+
 
 
 

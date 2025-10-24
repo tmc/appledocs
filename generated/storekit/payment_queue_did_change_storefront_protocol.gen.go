@@ -21,3 +21,4 @@ var paymentQueueDidChangeStorefrontProtocol *objc.Protocol
 func init() {
 	paymentQueueDidChangeStorefrontProtocol = objc.GetProtocol("paymentQueueDidChangeStorefront:")
 }
+

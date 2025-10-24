@@ -17,3 +17,4 @@ var cloudServiceSetupViewControllerDidDismissProtocol *objc.Protocol
 func init() {
 	cloudServiceSetupViewControllerDidDismissProtocol = objc.GetProtocol("cloudServiceSetupViewControllerDidDismiss:")
 }
+

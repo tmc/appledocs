@@ -7,13 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAssetVariantVideoLayoutAttributes */
 
 
-/* debug [class_header]: Header for AVAssetVariantVideoLayoutAttributes */
+
+
 // The class instance for the [AssetVariantVideoLayoutAttributes] class.
 var (
 	AssetVariantVideoLayoutAttributesClass     _AssetVariantVideoLayoutAttributesClass
@@ -30,16 +31,16 @@ func getAssetVariantVideoLayoutAttributesClass() _AssetVariantVideoLayoutAttribu
 type _AssetVariantVideoLayoutAttributesClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AssetVariantVideoLayoutAttributes */
+
+
 // An interface definition for the [AssetVariantVideoLayoutAttributes] class.
 type IAssetVariantVideoLayoutAttributes interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for AssetVariantVideoLayoutAttributes */
+
 	// properties:
 	ProjectionType() ProjectionType /* not a class type */
 	StereoViewComponents() StereoViewComponents /* not a class type */
@@ -53,19 +54,19 @@ type IAssetVariantVideoLayoutAttributes interface {
 	SetVideoLayoutAttributes(value IAVAssetVariantVideoLayoutAttributes)
 	VideoRange() VideoRange /* typedef */
 	SetVideoRange(value VideoRange /* typedef */)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AssetVariantVideoLayoutAttributes */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AssetVariantVideoLayoutAttributes */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AssetVariantVideoLayoutAttributesClass) Alloc() AssetVariantVideoLayoutAttributes {
 	rv := objc.Send[AssetVariantVideoLayoutAttributes](objc.ID(ac.class), objc.Sel("alloc"))
@@ -95,11 +96,11 @@ func (a_ AssetVariantVideoLayoutAttributes) Autorelease() AssetVariantVideoLayou
 func NewAssetVariantVideoLayoutAttributes() AssetVariantVideoLayoutAttributes {
 	return getAssetVariantVideoLayoutAttributesClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AssetVariantVideoLayoutAttributes */
+
+
 // Attributes that describe the layout of video content.
 
 
@@ -117,30 +118,30 @@ type AssetVariantVideoLayoutAttributes struct {
 func AssetVariantVideoLayoutAttributesFrom(ptr unsafe.Pointer) AssetVariantVideoLayoutAttributes {
 	return AssetVariantVideoLayoutAttributes{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AssetVariantVideoLayoutAttributes *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for AssetVariantVideoLayoutAttributes */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AssetVariantVideoLayoutAttributes */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AssetVariantVideoLayoutAttributes */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AssetVariantVideoLayoutAttributes */
+
+
+
+
+
+
+
+
+
 
 // Describes the video projection.
 //
@@ -149,7 +150,7 @@ func AssetVariantVideoLayoutAttributesFrom(ptr unsafe.Pointer) AssetVariantVideo
 func (a_ AssetVariantVideoLayoutAttributes) ProjectionType() ProjectionType /* not a class type */ {
 	rv := objc.Send[ProjectionType](a_.ID, objc.Sel("projectionType"))
 	return rv
-}/* debug [instance_properties/getter]: projectionType */
+}
 
 
 // Attributes that describe the video’s stereo components.
@@ -159,7 +160,7 @@ func (a_ AssetVariantVideoLayoutAttributes) ProjectionType() ProjectionType /* n
 func (a_ AssetVariantVideoLayoutAttributes) StereoViewComponents() StereoViewComponents /* not a class type */ {
 	rv := objc.Send[StereoViewComponents](a_.ID, objc.Sel("stereoViewComponents"))
 	return rv
-}/* debug [instance_properties/getter]: stereoViewComponents */
+}
 
 
 // The video sample codec types present in the variant’s renditions.
@@ -169,7 +170,7 @@ func (a_ AssetVariantVideoLayoutAttributes) StereoViewComponents() StereoViewCom
 func (a_ AssetVariantVideoLayoutAttributes) CodecTypes() VideoCodecType /* typedef */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("codecTypes"))
 	return rv
-}/* debug [instance_properties/getter]: codecTypes */
+}
 
 
 // The video sample codec types present in the variant’s renditions.
@@ -178,7 +179,7 @@ func (a_ AssetVariantVideoLayoutAttributes) CodecTypes() VideoCodecType /* typed
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetvariant/videoattributes-swift.class/codectypes
 func (a_ AssetVariantVideoLayoutAttributes) SetCodecTypes(value VideoCodecType /* typedef */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCodecTypes:"), value)
-}/* debug [instance_properties/setter]: codecTypes */
+}
 
 
 // The nominal frame rate of the variant’s renditions.
@@ -188,7 +189,7 @@ func (a_ AssetVariantVideoLayoutAttributes) SetCodecTypes(value VideoCodecType /
 func (a_ AssetVariantVideoLayoutAttributes) NominalFrameRate() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("nominalFrameRate"))
 	return rv
-}/* debug [instance_properties/getter]: nominalFrameRate */
+}
 
 
 // The nominal frame rate of the variant’s renditions.
@@ -197,7 +198,7 @@ func (a_ AssetVariantVideoLayoutAttributes) NominalFrameRate() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetvariant/videoattributes-swift.class/nominalframerate
 func (a_ AssetVariantVideoLayoutAttributes) SetNominalFrameRate(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNominalFrameRate:"), value)
-}/* debug [instance_properties/setter]: nominalFrameRate */
+}
 
 
 // The presentation size of the variant’s renditions.
@@ -207,7 +208,7 @@ func (a_ AssetVariantVideoLayoutAttributes) SetNominalFrameRate(value float64) {
 func (a_ AssetVariantVideoLayoutAttributes) PresentationSize() corefoundation.CGSize {
 	rv := objc.Send[corefoundation.CGSize](a_.ID, objc.Sel("presentationSize"))
 	return rv
-}/* debug [instance_properties/getter]: presentationSize */
+}
 
 
 // The presentation size of the variant’s renditions.
@@ -216,7 +217,7 @@ func (a_ AssetVariantVideoLayoutAttributes) PresentationSize() corefoundation.CG
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetvariant/videoattributes-swift.class/presentationsize
 func (a_ AssetVariantVideoLayoutAttributes) SetPresentationSize(value corefoundation.CGSize) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationSize:"), value)
-}/* debug [instance_properties/setter]: presentationSize */
+}
 
 
 // Attributes that describe the layout of the video content.
@@ -226,7 +227,7 @@ func (a_ AssetVariantVideoLayoutAttributes) SetPresentationSize(value corefounda
 func (a_ AssetVariantVideoLayoutAttributes) VideoLayoutAttributes() IAVAssetVariantVideoLayoutAttributes {
 	rv := objc.Send[AssetVariantVideoLayoutAttributes](a_.ID, objc.Sel("videoLayoutAttributes"))
 	return rv
-}/* debug [instance_properties/getter]: videoLayoutAttributes */
+}
 
 
 // Attributes that describe the layout of the video content.
@@ -235,7 +236,7 @@ func (a_ AssetVariantVideoLayoutAttributes) VideoLayoutAttributes() IAVAssetVari
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetvariant/videoattributes-swift.class/videolayoutattributes
 func (a_ AssetVariantVideoLayoutAttributes) SetVideoLayoutAttributes(value IAVAssetVariantVideoLayoutAttributes) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVideoLayoutAttributes:"), value)
-}/* debug [instance_properties/setter]: videoLayoutAttributes */
+}
 
 
 // The video range of the variant.
@@ -245,7 +246,7 @@ func (a_ AssetVariantVideoLayoutAttributes) SetVideoLayoutAttributes(value IAVAs
 func (a_ AssetVariantVideoLayoutAttributes) VideoRange() VideoRange /* typedef */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("videoRange"))
 	return rv
-}/* debug [instance_properties/getter]: videoRange */
+}
 
 
 // The video range of the variant.
@@ -254,12 +255,12 @@ func (a_ AssetVariantVideoLayoutAttributes) VideoRange() VideoRange /* typedef *
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetvariant/videoattributes-swift.class/videorange
 func (a_ AssetVariantVideoLayoutAttributes) SetVideoRange(value VideoRange /* typedef */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVideoRange:"), value)
-}/* debug [instance_properties/setter]: videoRange */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVAssetVariantVideoLayoutAttributes */
+
+
+
 
 
 

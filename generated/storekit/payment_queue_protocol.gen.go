@@ -21,3 +21,4 @@ var paymentQueueProtocol *objc.Protocol
 func init() {
 	paymentQueueProtocol = objc.GetProtocol("paymentQueue:")
 }
+

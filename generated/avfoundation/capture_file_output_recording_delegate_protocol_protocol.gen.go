@@ -25,7 +25,7 @@ import (
 // See: doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureFileOutputRecordingDelegate
 type PCaptureFileOutputRecordingDelegate interface {
 	// Required methods
-	CaptureOutputDidFinishRecordingToOutputFileAtURLFromConnectionsError(output IAVCaptureFileOutput, outputFileURL objc.IObject /* cross-framework: NSURL */, connections []CaptureConnection, error_ Error)/* debug [protocol_interface/required_method]: CaptureOutputDidFinishRecordingToOutputFileAtURLFromConnectionsError */
+	CaptureOutputDidFinishRecordingToOutputFileAtURLFromConnectionsError(output IAVCaptureFileOutput, outputFileURL objc.IObject /* cross-framework: NSURL */, connections []CaptureConnection, error_ Error)
 	// Optional methods
 	CaptureOutputDidPauseRecordingToOutputFileAtURLFromConnections(output IAVCaptureFileOutput, fileURL objc.IObject /* cross-framework: NSURL */, connections []CaptureConnection)
 	HasCaptureOutputDidPauseRecordingToOutputFileAtURLFromConnections() bool

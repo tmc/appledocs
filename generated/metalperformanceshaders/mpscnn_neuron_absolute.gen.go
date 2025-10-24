@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNNeuronAbsolute */
 
 
-/* debug [class_header]: Header for MPSCNNNeuronAbsolute */
+
+
 // The class instance for the [CNNNeuronAbsolute] class.
 var (
 	CNNNeuronAbsoluteClass     _CNNNeuronAbsoluteClass
@@ -30,30 +30,30 @@ func getCNNNeuronAbsoluteClass() _CNNNeuronAbsoluteClass {
 type _CNNNeuronAbsoluteClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNNeuronAbsolute */
+
+
 // An interface definition for the [CNNNeuronAbsolute] class.
 type ICNNNeuronAbsolute interface {
 	ICNNNeuron
 	
-/* debug [class_interface_properties]: Properties for CNNNeuronAbsolute */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNNeuronAbsolute */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNNeuronAbsolute */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNNeuronAbsoluteClass) Alloc() CNNNeuronAbsolute {
 	rv := objc.Send[CNNNeuronAbsolute](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNNeuronAbsolute) Autorelease() CNNNeuronAbsolute {
 func NewCNNNeuronAbsolute() CNNNeuronAbsolute {
 	return getCNNNeuronAbsoluteClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNNeuronAbsolute */
+
+
 // An absolute neuron filter.
 //
 // For each pixel in an image, the filter applies the following function:
@@ -109,11 +109,11 @@ func CNNNeuronAbsoluteFrom(ptr unsafe.Pointer) CNNNeuronAbsolute {
 		CNNNeuron: CNNNeuronFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNNeuronAbsolute */
+
+
 
 // Initializes an absolute neuron filter.
 //
@@ -124,31 +124,31 @@ func NewCNNNeuronAbsoluteWithDevice(device unsafe.Pointer) CNNNeuronAbsolute {
 	rv := objc.Send[CNNNeuronAbsolute](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNNeuronAbsoluteWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNNeuronAbsolute */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNNeuronAbsolute */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNNeuronAbsolute */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNNeuronAbsolute */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNNeuronAbsolute */
+
+
+
+
+
+
+
+
+
+
+
 
 

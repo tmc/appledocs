@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class columnCount */
 
 
-/* debug [class_header]: Header for columnCount */
+
+
 // The class instance for the [columnCount] class.
 var (
 	ColumnCountClass     _columnCountClass
@@ -30,30 +30,30 @@ func getcolumnCountClass() _columnCountClass {
 type _columnCountClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for columnCount */
+
+
 // An interface definition for the [columnCount] class.
 type IcolumnCount interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for columnCount */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for columnCount */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for columnCount */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _columnCountClass) Alloc() columnCount {
 	rv := objc.Send[columnCount](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ columnCount) Autorelease() columnCount {
 func NewcolumnCount() columnCount {
 	return getcolumnCountClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for columnCount */
+
+
 
 
 // [Full Topic]
@@ -100,34 +100,34 @@ type columnCount struct {
 func columnCountFrom(ptr unsafe.Pointer) columnCount {
 	return columnCount{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for columnCount *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for columnCount */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for columnCount */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for columnCount */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for columnCount */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class columnCount */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSImageBilinearScale */
 
 
-/* debug [class_header]: Header for MPSImageBilinearScale */
+
+
 // The class instance for the [ImageBilinearScale] class.
 var (
 	ImageBilinearScaleClass     _ImageBilinearScaleClass
@@ -31,30 +30,30 @@ func getImageBilinearScaleClass() _ImageBilinearScaleClass {
 type _ImageBilinearScaleClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ImageBilinearScale */
+
+
 // An interface definition for the [ImageBilinearScale] class.
 type IImageBilinearScale interface {
 	IImageScale
 	
-/* debug [class_interface_properties]: Properties for ImageBilinearScale */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ImageBilinearScale */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ImageBilinearScale */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageBilinearScaleClass) Alloc() ImageBilinearScale {
 	rv := objc.Send[ImageBilinearScale](objc.ID(ic.class), objc.Sel("alloc"))
@@ -84,11 +83,11 @@ func (i_ ImageBilinearScale) Autorelease() ImageBilinearScale {
 func NewImageBilinearScale() ImageBilinearScale {
 	return getImageBilinearScaleClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ImageBilinearScale */
+
+
 // A filter that resizes and changes the aspect ratio of an image using Bilinear resampling.
 
 
@@ -108,11 +107,11 @@ func ImageBilinearScaleFrom(ptr unsafe.Pointer) ImageBilinearScale {
 		ImageScale: ImageScaleFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ImageBilinearScale */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebilinearscale/2881188-initwithcoder
@@ -121,7 +120,7 @@ func NewImageBilinearScaleWithCoderDevice(aDecoder foundation.Coder, device unsa
 	rv := objc.Send[ImageBilinearScale](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageBilinearScaleWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -131,31 +130,31 @@ func NewImageBilinearScaleWithDevice(device unsafe.Pointer) ImageBilinearScale {
 	rv := objc.Send[ImageBilinearScale](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageBilinearScaleWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ImageBilinearScale */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ImageBilinearScale */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ImageBilinearScale */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ImageBilinearScale */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSImageBilinearScale */
+
+
+
+
+
+
+
+
+
+
+
 
 

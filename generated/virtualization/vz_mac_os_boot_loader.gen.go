@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZMacOSBootLoader */
+
 
 /* debug [class_header]: Header for VZMacOSBootLoader */
 // The class instance for the [VZMacOSBootLoader] class.
@@ -28,27 +30,30 @@ func getVZMacOSBootLoaderClass() _VZMacOSBootLoaderClass {
 type _VZMacOSBootLoaderClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZMacOSBootLoader */
 // An interface definition for the [VZMacOSBootLoader] class.
 type IVZMacOSBootLoader interface {
 	IVZBootLoader
-
-	/* debug [class_interface_properties]: Properties for VZMacOSBootLoader */
+	
+/* debug [class_interface_properties]: Properties for VZMacOSBootLoader */
 	// properties:
 	Platform() IVZPlatformConfiguration
 	SetPlatform(value IVZPlatformConfiguration)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZMacOSBootLoader */
+	
+/* debug [class_interface_methods]: Methods for VZMacOSBootLoader */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZMacOSBootLoader */
 // Alloc allocates a new instance without initialization.
@@ -80,13 +85,15 @@ func (v_ VZMacOSBootLoader) Autorelease() VZMacOSBootLoader {
 func NewVZMacOSBootLoader() VZMacOSBootLoader {
 	return getVZMacOSBootLoaderClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZMacOSBootLoader */
 // An object that loads and configures a boot loader for running macOS on Apple silicon as a guest system of your VM.
 //
 // You must use a in conjunction with the macOS boot loader. It’s invalid to use it with any other platform configuration.
+
 
 // An object that loads and configures a boot loader for running macOS on Apple silicon as a guest system of your VM.
 //
@@ -104,20 +111,29 @@ func VZMacOSBootLoaderFrom(ptr unsafe.Pointer) VZMacOSBootLoader {
 		VZBootLoader: VZBootLoaderFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZMacOSBootLoader */
 /* debug [class_init_methods]: End init methods */
 
+
+
 /* debug [class_methods]: Class methods for VZMacOSBootLoader */
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZMacOSBootLoader */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZMacOSBootLoader */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZMacOSBootLoader */
 
@@ -128,7 +144,8 @@ func VZMacOSBootLoaderFrom(ptr unsafe.Pointer) VZMacOSBootLoader {
 func (v_ VZMacOSBootLoader) Platform() IVZPlatformConfiguration {
 	rv := objc.Send[VZPlatformConfiguration](v_.ID, objc.Sel("platform"))
 	return rv
-} /* debug [instance_properties/getter]: platform */
+}/* debug [instance_properties/getter]: platform */
+
 
 // The hardware platform to use.
 //
@@ -136,8 +153,11 @@ func (v_ VZMacOSBootLoader) Platform() IVZPlatformConfiguration {
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/platform
 func (v_ VZMacOSBootLoader) SetPlatform(value IVZPlatformConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPlatform:"), value)
-} /* debug [instance_properties/setter]: platform */
+}/* debug [instance_properties/setter]: platform */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZMacOSBootLoader */
+
+

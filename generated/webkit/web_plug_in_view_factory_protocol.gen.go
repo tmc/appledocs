@@ -15,3 +15,4 @@ var WebPlugInViewFactoryProtocol *objc.Protocol
 func init() {
 	WebPlugInViewFactoryProtocol = objc.GetProtocol("WebPlugInViewFactory")
 }
+

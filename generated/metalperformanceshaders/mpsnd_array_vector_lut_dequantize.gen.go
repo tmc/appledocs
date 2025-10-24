@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNDArrayVectorLUTDequantize */
 
 
-/* debug [class_header]: Header for MPSNDArrayVectorLUTDequantize */
+
+
 // The class instance for the [NDArrayVectorLUTDequantize] class.
 var (
 	NDArrayVectorLUTDequantizeClass     _NDArrayVectorLUTDequantizeClass
@@ -30,32 +30,32 @@ func getNDArrayVectorLUTDequantizeClass() _NDArrayVectorLUTDequantizeClass {
 type _NDArrayVectorLUTDequantizeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NDArrayVectorLUTDequantize */
+
+
 // An interface definition for the [NDArrayVectorLUTDequantize] class.
 type INDArrayVectorLUTDequantize interface {
 	INDArrayMultiaryKernel
 	
-/* debug [class_interface_properties]: Properties for NDArrayVectorLUTDequantize */
+
 	// properties:
 	VectorAxis() objectivec.IObject
 	SetVectorAxis(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NDArrayVectorLUTDequantize */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NDArrayVectorLUTDequantize */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NDArrayVectorLUTDequantizeClass) Alloc() NDArrayVectorLUTDequantize {
 	rv := objc.Send[NDArrayVectorLUTDequantize](objc.ID(nc.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (n_ NDArrayVectorLUTDequantize) Autorelease() NDArrayVectorLUTDequantize {
 func NewNDArrayVectorLUTDequantize() NDArrayVectorLUTDequantize {
 	return getNDArrayVectorLUTDequantizeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NDArrayVectorLUTDequantize */
+
+
 
 
 // [Full Topic]
@@ -104,11 +104,11 @@ func NDArrayVectorLUTDequantizeFrom(ptr unsafe.Pointer) NDArrayVectorLUTDequanti
 		NDArrayMultiaryKernel: NDArrayMultiaryKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NDArrayVectorLUTDequantize */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayvectorlutdequantize/4446155-initwithdevice
@@ -117,46 +117,46 @@ func NewNDArrayVectorLUTDequantizeWithDeviceAxis(device unsafe.Pointer, axis uin
 	rv := objc.Send[NDArrayVectorLUTDequantize](instance.ID, objc.Sel("initWithDevice:axis:"), device, axis)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNDArrayVectorLUTDequantizeWithDeviceAxis */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for NDArrayVectorLUTDequantize */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NDArrayVectorLUTDequantize */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NDArrayVectorLUTDequantize */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for NDArrayVectorLUTDequantize */
+
+
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayvectorlutdequantize/4446156-vectoraxis
 func (n_ NDArrayVectorLUTDequantize) VectorAxis() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("vectorAxis"))
 	return rv
-}/* debug [instance_properties/getter]: vectorAxis */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayvectorlutdequantize/4446156-vectoraxis
 func (n_ NDArrayVectorLUTDequantize) SetVectorAxis(value objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setVectorAxis:"), value)
-}/* debug [instance_properties/setter]: vectorAxis */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSNDArrayVectorLUTDequantize */
+
+
+
 
 

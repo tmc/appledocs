@@ -21,3 +21,4 @@ var productsRequestProtocol *objc.Protocol
 func init() {
 	productsRequestProtocol = objc.GetProtocol("productsRequest:")
 }
+

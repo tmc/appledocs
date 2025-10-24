@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSFileVersion */
 
 
-/* debug [class_header]: Header for NSFileVersion */
+
+
 // The class instance for the [FileVersion] class.
 var (
 	FileVersionClass     _FileVersionClass
@@ -30,16 +30,16 @@ func getFileVersionClass() _FileVersionClass {
 type _FileVersionClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for FileVersion */
+
+
 // An interface definition for the [FileVersion] class.
 type IFileVersion interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for FileVersion */
+
 	// properties:
 	Discardable() bool
 	SetDiscardable(value bool)
@@ -60,21 +60,21 @@ type IFileVersion interface {
 	SetIsResolved(value bool)
 	OriginatorNameComponents() IPersonNameComponents
 	SetOriginatorNameComponents(value IPersonNameComponents)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for FileVersion */
+
 	// methods:
 	RemoveAndReturnError(outError IError) bool
 	ReplaceItemAtURLOptionsError(url IURL, options FileVersionReplacingOptions, error_ IError) IURL
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for FileVersion */
+
+
 // Alloc allocates a new instance without initialization.
 func (fc _FileVersionClass) Alloc() FileVersion {
 	rv := objc.Send[FileVersion](objc.ID(fc.class), objc.Sel("alloc"))
@@ -104,11 +104,11 @@ func (f_ FileVersion) Autorelease() FileVersion {
 func NewFileVersion() FileVersion {
 	return getFileVersionClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for FileVersion */
+
+
 // A snapshot of a file at a specific point in time.
 //
 // Use the methods of this class to access, create, and manage file revisions in your app. Each file version instance contains metadata about a single revision, including the location of the associated file, the modification date of the revision, and whether the revision is discardable. In Mac apps, you can use file version objects to track changes to a local file over time and to prevent the loss of data during editing. When managing local versions, the document architecture creates versions at specific points in the lifetime of your application. Your application can also create versions explicitly at times that your application designates as appropriate. In addition to managing local files, the system also uses this class to manage cloud-based files. For files in the cloud, there is usually only one version of the file at any given time. However, additional file versions may be created in cases where two different computers attempt to save the file to the cloud at the same time. In that case, one file is chosen as the current version and any other versions are tagged as being in conflict with the original. Conflict versions are reported to the appropriate file presenter objects and should be resolved as soon as possible so that the corresponding files can be removed from the cloud.
@@ -128,15 +128,15 @@ type FileVersion struct {
 func FileVersionFrom(ptr unsafe.Pointer) FileVersion {
 	return FileVersion{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for FileVersion *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for FileVersion */
+
+
+
 
 // Returns the most recent version object for the file at the specified URL.
 //
@@ -145,7 +145,7 @@ func FileVersionFrom(ptr unsafe.Pointer) FileVersion {
 func (fc _FileVersionClass) CurrentVersionOfItemAtURL(url IURL) IFileVersion {
 	rv := objc.Send[FileVersion](objc.ID(fc.class), objc.Sel("currentVersionOfItemAtURL:"), url)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CurrentVersionOfItemAtURL) */
+}
 
 
 // Returns all versions of the specified file except the current version.
@@ -155,7 +155,7 @@ func (fc _FileVersionClass) CurrentVersionOfItemAtURL(url IURL) IFileVersion {
 func (fc _FileVersionClass) OtherVersionsOfItemAtURL(url IURL) []FileVersion {
 	rv := objc.Send[[]FileVersion](objc.ID(fc.class), objc.Sel("otherVersionsOfItemAtURL:"), url)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=OtherVersionsOfItemAtURL) */
+}
 
 
 // Removes all versions of a file, except the current one, from the version store.
@@ -165,7 +165,7 @@ func (fc _FileVersionClass) OtherVersionsOfItemAtURL(url IURL) []FileVersion {
 func (fc _FileVersionClass) RemoveOtherVersionsOfItemAtURLError(url IURL, outError IError) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("removeOtherVersionsOfItemAtURL:error:"), url, outError)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=RemoveOtherVersionsOfItemAtURLError) */
+}
 
 
 // Creates and returns a temporary directory to use for saving the contents of the file.
@@ -175,7 +175,7 @@ func (fc _FileVersionClass) RemoveOtherVersionsOfItemAtURLError(url IURL, outErr
 func (fc _FileVersionClass) TemporaryDirectoryURLForNewVersionOfItemAtURL(url IURL) IURL {
 	rv := objc.Send[URL](objc.ID(fc.class), objc.Sel("temporaryDirectoryURLForNewVersionOfItemAtURL:"), url)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=TemporaryDirectoryURLForNewVersionOfItemAtURL) */
+}
 
 
 // Returns the version of the file that has the specified persistent ID.
@@ -185,18 +185,18 @@ func (fc _FileVersionClass) TemporaryDirectoryURLForNewVersionOfItemAtURL(url IU
 func (fc _FileVersionClass) VersionOfItemAtURLForPersistentIdentifier(url IURL, persistentIdentifier objc.IObject) IFileVersion {
 	rv := objc.Send[FileVersion](objc.ID(fc.class), objc.Sel("versionOfItemAtURL:forPersistentIdentifier:"), url, persistentIdentifier)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=VersionOfItemAtURLForPersistentIdentifier) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for FileVersion */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for FileVersion */
+
+
+
+
+
 
 // Remove this version object and its associated file from the version store.
 //
@@ -205,7 +205,7 @@ func (fc _FileVersionClass) VersionOfItemAtURLForPersistentIdentifier(url IURL, 
 func (f_ FileVersion) RemoveAndReturnError(outError IError) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("removeAndReturnError:"), outError)
 	return rv
-}/* debug [instance_methods/method]: RemoveAndReturnError */
+}
 
 
 // Replace the contents of the specified file with the contents of the current version’s file.
@@ -215,13 +215,13 @@ func (f_ FileVersion) RemoveAndReturnError(outError IError) bool {
 func (f_ FileVersion) ReplaceItemAtURLOptionsError(url IURL, options FileVersionReplacingOptions, error_ IError) IURL {
 	rv := objc.Send[URL](f_.ID, objc.Sel("replaceItemAtURL:options:error:"), url, options, error_)
 	return rv
-}/* debug [instance_methods/method]: ReplaceItemAtURLOptionsError */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for FileVersion */
+
+
+
 
 // A Boolean value that specifies whether the system can delete the associated file at some future time.
 //
@@ -230,7 +230,7 @@ func (f_ FileVersion) ReplaceItemAtURLOptionsError(url IURL, options FileVersion
 func (f_ FileVersion) Discardable() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("discardable"))
 	return rv
-}/* debug [instance_properties/getter]: discardable */
+}
 
 
 // A Boolean value that specifies whether the system can delete the associated file at some future time.
@@ -239,7 +239,7 @@ func (f_ FileVersion) Discardable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/isDiscardable
 func (f_ FileVersion) SetDiscardable(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDiscardable:"), value)
-}/* debug [instance_properties/setter]: discardable */
+}
 
 
 // The string containing the user-presentable name of the file version.
@@ -249,7 +249,7 @@ func (f_ FileVersion) SetDiscardable(value bool) {
 func (f_ FileVersion) LocalizedName() IString {
 	rv := objc.Send[String](f_.ID, objc.Sel("localizedName"))
 	return rv
-}/* debug [instance_properties/getter]: localizedName */
+}
 
 
 // The user-presentable name of the computer on which the revision was saved.
@@ -259,7 +259,7 @@ func (f_ FileVersion) LocalizedName() IString {
 func (f_ FileVersion) LocalizedNameOfSavingComputer() IString {
 	rv := objc.Send[String](f_.ID, objc.Sel("localizedNameOfSavingComputer"))
 	return rv
-}/* debug [instance_properties/getter]: localizedNameOfSavingComputer */
+}
 
 
 // The modification date of the version.
@@ -269,7 +269,7 @@ func (f_ FileVersion) LocalizedNameOfSavingComputer() IString {
 func (f_ FileVersion) ModificationDate() IDate {
 	rv := objc.Send[Date](f_.ID, objc.Sel("modificationDate"))
 	return rv
-}/* debug [instance_properties/getter]: modificationDate */
+}
 
 
 // The identifier for this version of the file.
@@ -279,7 +279,7 @@ func (f_ FileVersion) ModificationDate() IDate {
 func (f_ FileVersion) PersistentIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("persistentIdentifier"))
 	return rv
-}/* debug [instance_properties/getter]: persistentIdentifier */
+}
 
 
 // The URL identifying the location of the file associated with the file version object.
@@ -289,7 +289,7 @@ func (f_ FileVersion) PersistentIdentifier() unsafe.Pointer {
 func (f_ FileVersion) URL() IURL {
 	rv := objc.Send[URL](f_.ID, objc.Sel("URL"))
 	return rv
-}/* debug [instance_properties/getter]: URL */
+}
 
 
 // [Full Topic]
@@ -297,14 +297,14 @@ func (f_ FileVersion) URL() IURL {
 func (f_ FileVersion) HasLocalContents() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasLocalContents"))
 	return rv
-}/* debug [instance_properties/getter]: hasLocalContents */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/haslocalcontents
 func (f_ FileVersion) SetHasLocalContents(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setHasLocalContents:"), value)
-}/* debug [instance_properties/setter]: hasLocalContents */
+}
 
 
 // [Full Topic]
@@ -312,14 +312,14 @@ func (f_ FileVersion) SetHasLocalContents(value bool) {
 func (f_ FileVersion) HasThumbnail() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasThumbnail"))
 	return rv
-}/* debug [instance_properties/getter]: hasThumbnail */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/hasthumbnail
 func (f_ FileVersion) SetHasThumbnail(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setHasThumbnail:"), value)
-}/* debug [instance_properties/setter]: hasThumbnail */
+}
 
 
 // A Boolean value indicating whether the contents of the version are in conflict with the contents of another version.
@@ -329,7 +329,7 @@ func (f_ FileVersion) SetHasThumbnail(value bool) {
 func (f_ FileVersion) IsConflict() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isConflict"))
 	return rv
-}/* debug [instance_properties/getter]: isConflict */
+}
 
 
 // A Boolean value indicating whether the contents of the version are in conflict with the contents of another version.
@@ -338,7 +338,7 @@ func (f_ FileVersion) IsConflict() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isconflict
 func (f_ FileVersion) SetIsConflict(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsConflict:"), value)
-}/* debug [instance_properties/setter]: isConflict */
+}
 
 
 // A Boolean value that specifies whether the system can delete the associated file at some future time.
@@ -348,7 +348,7 @@ func (f_ FileVersion) SetIsConflict(value bool) {
 func (f_ FileVersion) IsDiscardable() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isDiscardable"))
 	return rv
-}/* debug [instance_properties/getter]: isDiscardable */
+}
 
 
 // A Boolean value that specifies whether the system can delete the associated file at some future time.
@@ -357,7 +357,7 @@ func (f_ FileVersion) IsDiscardable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isdiscardable
 func (f_ FileVersion) SetIsDiscardable(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsDiscardable:"), value)
-}/* debug [instance_properties/setter]: isDiscardable */
+}
 
 
 // A Boolean value that indicates if the version object is in conflict or not.
@@ -367,7 +367,7 @@ func (f_ FileVersion) SetIsDiscardable(value bool) {
 func (f_ FileVersion) IsResolved() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isResolved"))
 	return rv
-}/* debug [instance_properties/getter]: isResolved */
+}
 
 
 // A Boolean value that indicates if the version object is in conflict or not.
@@ -376,7 +376,7 @@ func (f_ FileVersion) IsResolved() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isresolved
 func (f_ FileVersion) SetIsResolved(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsResolved:"), value)
-}/* debug [instance_properties/setter]: isResolved */
+}
 
 
 // [Full Topic]
@@ -384,19 +384,19 @@ func (f_ FileVersion) SetIsResolved(value bool) {
 func (f_ FileVersion) OriginatorNameComponents() IPersonNameComponents {
 	rv := objc.Send[PersonNameComponents](f_.ID, objc.Sel("originatorNameComponents"))
 	return rv
-}/* debug [instance_properties/getter]: originatorNameComponents */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/originatornamecomponents
 func (f_ FileVersion) SetOriginatorNameComponents(value IPersonNameComponents) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOriginatorNameComponents:"), value)
-}/* debug [instance_properties/setter]: originatorNameComponents */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSFileVersion */
+
+
+
 
 
 

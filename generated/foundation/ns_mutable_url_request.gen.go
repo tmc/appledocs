@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSMutableURLRequest */
 
 
-/* debug [class_header]: Header for NSMutableURLRequest */
+
+
 // The class instance for the [MutableURLRequest] class.
 var (
 	MutableURLRequestClass     _MutableURLRequestClass
@@ -30,16 +30,16 @@ func getMutableURLRequestClass() _MutableURLRequestClass {
 type _MutableURLRequestClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MutableURLRequest */
+
+
 // An interface definition for the [MutableURLRequest] class.
 type IMutableURLRequest interface {
 	IURLRequest
 	
-/* debug [class_interface_properties]: Properties for MutableURLRequest */
+
 	// properties:
 	AllowsCellularAccess() bool
 	SetAllowsCellularAccess(value bool)
@@ -81,19 +81,19 @@ type IMutableURLRequest interface {
 	SetRequiresDNSSECValidation(value bool)
 	Url() IURL
 	SetUrl(value IURL)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MutableURLRequest */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MutableURLRequest */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MutableURLRequestClass) Alloc() MutableURLRequest {
 	rv := objc.Send[MutableURLRequest](objc.ID(mc.class), objc.Sel("alloc"))
@@ -123,11 +123,11 @@ func (m_ MutableURLRequest) Autorelease() MutableURLRequest {
 func NewMutableURLRequest() MutableURLRequest {
 	return getMutableURLRequestClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MutableURLRequest */
+
+
 // A mutable URL load request that is independent of protocol or URL scheme.
 //
 // In Swift, this object bridges to and you use when you need reference semantics or other Foundation-specific behavior. is a subclass of that allows you to change the request’s properties. only represents information about the request. Use other classes, such as , to send the request to a server. See and for an introduction to these techniques. Classes that create a network operation based on a request make a deep copy of that request. Thus, changing the request after creating a network operation has no effect on the ongoing operation. For example, if you use to create a data task from a request, and then later change the request, the data task continues using the original request.
@@ -149,30 +149,30 @@ func MutableURLRequestFrom(ptr unsafe.Pointer) MutableURLRequest {
 		URLRequest: URLRequestFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MutableURLRequest *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for MutableURLRequest */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MutableURLRequest */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MutableURLRequest */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MutableURLRequest */
+
+
+
+
+
+
+
+
+
 
 // A Boolean value that indicates whether a connection can use the device’s cellular network (if present).
 //
@@ -181,7 +181,7 @@ func MutableURLRequestFrom(ptr unsafe.Pointer) MutableURLRequest {
 func (m_ MutableURLRequest) AllowsCellularAccess() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowsCellularAccess"))
 	return rv
-}/* debug [instance_properties/getter]: allowsCellularAccess */
+}
 
 
 // A Boolean value that indicates whether a connection can use the device’s cellular network (if present).
@@ -190,7 +190,7 @@ func (m_ MutableURLRequest) AllowsCellularAccess() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/allowsCellularAccess
 func (m_ MutableURLRequest) SetAllowsCellularAccess(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsCellularAccess:"), value)
-}/* debug [instance_properties/setter]: allowsCellularAccess */
+}
 
 
 // The entity that initiates the network request.
@@ -200,7 +200,7 @@ func (m_ MutableURLRequest) SetAllowsCellularAccess(value bool) {
 func (m_ MutableURLRequest) Attribution() URLRequestAttribution /* not a class type */ {
 	rv := objc.Send[URLRequestAttribution](m_.ID, objc.Sel("attribution"))
 	return rv
-}/* debug [instance_properties/getter]: attribution */
+}
 
 
 // The entity that initiates the network request.
@@ -209,7 +209,7 @@ func (m_ MutableURLRequest) Attribution() URLRequestAttribution /* not a class t
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/attribution
 func (m_ MutableURLRequest) SetAttribution(value URLRequestAttribution /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttribution:"), value)
-}/* debug [instance_properties/setter]: attribution */
+}
 
 
 // A Boolean value that indicates whether the request should use the default cookie handling for the request.
@@ -219,7 +219,7 @@ func (m_ MutableURLRequest) SetAttribution(value URLRequestAttribution /* not a 
 func (m_ MutableURLRequest) HTTPShouldHandleCookies() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("HTTPShouldHandleCookies"))
 	return rv
-}/* debug [instance_properties/getter]: HTTPShouldHandleCookies */
+}
 
 
 // A Boolean value that indicates whether the request should use the default cookie handling for the request.
@@ -228,7 +228,7 @@ func (m_ MutableURLRequest) HTTPShouldHandleCookies() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/httpShouldHandleCookies
 func (m_ MutableURLRequest) SetHTTPShouldHandleCookies(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHTTPShouldHandleCookies:"), value)
-}/* debug [instance_properties/setter]: HTTPShouldHandleCookies */
+}
 
 
 // A Boolean value that indicates whether the request can continue transmitting data before receiving a response from an earlier transmission.
@@ -238,7 +238,7 @@ func (m_ MutableURLRequest) SetHTTPShouldHandleCookies(value bool) {
 func (m_ MutableURLRequest) HTTPShouldUsePipelining() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("HTTPShouldUsePipelining"))
 	return rv
-}/* debug [instance_properties/getter]: HTTPShouldUsePipelining */
+}
 
 
 // A Boolean value that indicates whether the request can continue transmitting data before receiving a response from an earlier transmission.
@@ -247,7 +247,7 @@ func (m_ MutableURLRequest) HTTPShouldUsePipelining() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/httpShouldUsePipelining
 func (m_ MutableURLRequest) SetHTTPShouldUsePipelining(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHTTPShouldUsePipelining:"), value)
-}/* debug [instance_properties/setter]: HTTPShouldUsePipelining */
+}
 
 
 // The network service type of the connection.
@@ -257,7 +257,7 @@ func (m_ MutableURLRequest) SetHTTPShouldUsePipelining(value bool) {
 func (m_ MutableURLRequest) NetworkServiceType() URLRequestNetworkServiceType {
 	rv := objc.Send[URLRequestNetworkServiceType](m_.ID, objc.Sel("networkServiceType"))
 	return rv
-}/* debug [instance_properties/getter]: networkServiceType */
+}
 
 
 // The network service type of the connection.
@@ -266,7 +266,7 @@ func (m_ MutableURLRequest) NetworkServiceType() URLRequestNetworkServiceType {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/networkServiceType
 func (m_ MutableURLRequest) SetNetworkServiceType(value URLRequestNetworkServiceType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkServiceType:"), value)
-}/* debug [instance_properties/setter]: networkServiceType */
+}
 
 
 // The request’s timeout interval, in seconds.
@@ -276,7 +276,7 @@ func (m_ MutableURLRequest) SetNetworkServiceType(value URLRequestNetworkService
 func (m_ MutableURLRequest) TimeoutInterval() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("timeoutInterval"))
 	return rv
-}/* debug [instance_properties/getter]: timeoutInterval */
+}
 
 
 // The request’s timeout interval, in seconds.
@@ -285,7 +285,7 @@ func (m_ MutableURLRequest) TimeoutInterval() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/timeoutInterval
 func (m_ MutableURLRequest) SetTimeoutInterval(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeoutInterval:"), value)
-}/* debug [instance_properties/setter]: timeoutInterval */
+}
 
 
 // A dictionary containing all of the HTTP header fields for a request.
@@ -295,7 +295,7 @@ func (m_ MutableURLRequest) SetTimeoutInterval(value float64) {
 func (m_ MutableURLRequest) AllHTTPHeaderFields() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("allHTTPHeaderFields"))
 	return rv
-}/* debug [instance_properties/getter]: allHTTPHeaderFields */
+}
 
 
 // A dictionary containing all of the HTTP header fields for a request.
@@ -304,7 +304,7 @@ func (m_ MutableURLRequest) AllHTTPHeaderFields() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allhttpheaderfields
 func (m_ MutableURLRequest) SetAllHTTPHeaderFields(value IString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllHTTPHeaderFields:"), value)
-}/* debug [instance_properties/setter]: allHTTPHeaderFields */
+}
 
 
 // A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.
@@ -314,7 +314,7 @@ func (m_ MutableURLRequest) SetAllHTTPHeaderFields(value IString) {
 func (m_ MutableURLRequest) AllowsConstrainedNetworkAccess() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowsConstrainedNetworkAccess"))
 	return rv
-}/* debug [instance_properties/getter]: allowsConstrainedNetworkAccess */
+}
 
 
 // A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.
@@ -323,7 +323,7 @@ func (m_ MutableURLRequest) AllowsConstrainedNetworkAccess() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowsconstrainednetworkaccess
 func (m_ MutableURLRequest) SetAllowsConstrainedNetworkAccess(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsConstrainedNetworkAccess:"), value)
-}/* debug [instance_properties/setter]: allowsConstrainedNetworkAccess */
+}
 
 
 // A Boolean value that indicates whether connections may use a network interface that the system considers expensive.
@@ -333,7 +333,7 @@ func (m_ MutableURLRequest) SetAllowsConstrainedNetworkAccess(value bool) {
 func (m_ MutableURLRequest) AllowsExpensiveNetworkAccess() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowsExpensiveNetworkAccess"))
 	return rv
-}/* debug [instance_properties/getter]: allowsExpensiveNetworkAccess */
+}
 
 
 // A Boolean value that indicates whether connections may use a network interface that the system considers expensive.
@@ -342,7 +342,7 @@ func (m_ MutableURLRequest) AllowsExpensiveNetworkAccess() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowsexpensivenetworkaccess
 func (m_ MutableURLRequest) SetAllowsExpensiveNetworkAccess(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsExpensiveNetworkAccess:"), value)
-}/* debug [instance_properties/setter]: allowsExpensiveNetworkAccess */
+}
 
 
 // [Full Topic]
@@ -350,14 +350,14 @@ func (m_ MutableURLRequest) SetAllowsExpensiveNetworkAccess(value bool) {
 func (m_ MutableURLRequest) AllowsPersistentDNS() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowsPersistentDNS"))
 	return rv
-}/* debug [instance_properties/getter]: allowsPersistentDNS */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowspersistentdns
 func (m_ MutableURLRequest) SetAllowsPersistentDNS(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsPersistentDNS:"), value)
-}/* debug [instance_properties/setter]: allowsPersistentDNS */
+}
 
 
 // [Full Topic]
@@ -365,14 +365,14 @@ func (m_ MutableURLRequest) SetAllowsPersistentDNS(value bool) {
 func (m_ MutableURLRequest) AllowsUltraConstrainedNetworkAccess() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowsUltraConstrainedNetworkAccess"))
 	return rv
-}/* debug [instance_properties/getter]: allowsUltraConstrainedNetworkAccess */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowsultraconstrainednetworkaccess
 func (m_ MutableURLRequest) SetAllowsUltraConstrainedNetworkAccess(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsUltraConstrainedNetworkAccess:"), value)
-}/* debug [instance_properties/setter]: allowsUltraConstrainedNetworkAccess */
+}
 
 
 // [Full Topic]
@@ -380,14 +380,14 @@ func (m_ MutableURLRequest) SetAllowsUltraConstrainedNetworkAccess(value bool) {
 func (m_ MutableURLRequest) AssumesHTTP3Capable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("assumesHTTP3Capable"))
 	return rv
-}/* debug [instance_properties/getter]: assumesHTTP3Capable */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/assumeshttp3capable
 func (m_ MutableURLRequest) SetAssumesHTTP3Capable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAssumesHTTP3Capable:"), value)
-}/* debug [instance_properties/setter]: assumesHTTP3Capable */
+}
 
 
 // The request’s cache policy.
@@ -397,7 +397,7 @@ func (m_ MutableURLRequest) SetAssumesHTTP3Capable(value bool) {
 func (m_ MutableURLRequest) CachePolicy() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](m_.ID, objc.Sel("cachePolicy"))
 	return rv
-}/* debug [instance_properties/getter]: cachePolicy */
+}
 
 
 // The request’s cache policy.
@@ -406,7 +406,7 @@ func (m_ MutableURLRequest) CachePolicy() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/cachepolicy
 func (m_ MutableURLRequest) SetCachePolicy(value objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCachePolicy:"), value)
-}/* debug [instance_properties/setter]: cachePolicy */
+}
 
 
 // [Full Topic]
@@ -414,14 +414,14 @@ func (m_ MutableURLRequest) SetCachePolicy(value objectivec.IObject) {
 func (m_ MutableURLRequest) CookiePartitionIdentifier() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("cookiePartitionIdentifier"))
 	return rv
-}/* debug [instance_properties/getter]: cookiePartitionIdentifier */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/cookiepartitionidentifier
 func (m_ MutableURLRequest) SetCookiePartitionIdentifier(value IString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCookiePartitionIdentifier:"), value)
-}/* debug [instance_properties/setter]: cookiePartitionIdentifier */
+}
 
 
 // The request body.
@@ -431,7 +431,7 @@ func (m_ MutableURLRequest) SetCookiePartitionIdentifier(value IString) {
 func (m_ MutableURLRequest) HttpBody() IData {
 	rv := objc.Send[Data](m_.ID, objc.Sel("httpBody"))
 	return rv
-}/* debug [instance_properties/getter]: httpBody */
+}
 
 
 // The request body.
@@ -440,7 +440,7 @@ func (m_ MutableURLRequest) HttpBody() IData {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpbody
 func (m_ MutableURLRequest) SetHttpBody(value IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHttpBody:"), value)
-}/* debug [instance_properties/setter]: httpBody */
+}
 
 
 // The request body as an input stream.
@@ -450,7 +450,7 @@ func (m_ MutableURLRequest) SetHttpBody(value IData) {
 func (m_ MutableURLRequest) HttpBodyStream() IInputStream {
 	rv := objc.Send[InputStream](m_.ID, objc.Sel("httpBodyStream"))
 	return rv
-}/* debug [instance_properties/getter]: httpBodyStream */
+}
 
 
 // The request body as an input stream.
@@ -459,7 +459,7 @@ func (m_ MutableURLRequest) HttpBodyStream() IInputStream {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpbodystream
 func (m_ MutableURLRequest) SetHttpBodyStream(value IInputStream) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHttpBodyStream:"), value)
-}/* debug [instance_properties/setter]: httpBodyStream */
+}
 
 
 // The HTTP request method.
@@ -469,7 +469,7 @@ func (m_ MutableURLRequest) SetHttpBodyStream(value IInputStream) {
 func (m_ MutableURLRequest) HttpMethod() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("httpMethod"))
 	return rv
-}/* debug [instance_properties/getter]: httpMethod */
+}
 
 
 // The HTTP request method.
@@ -478,7 +478,7 @@ func (m_ MutableURLRequest) HttpMethod() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpmethod
 func (m_ MutableURLRequest) SetHttpMethod(value IString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHttpMethod:"), value)
-}/* debug [instance_properties/setter]: httpMethod */
+}
 
 
 // The main document URL.
@@ -488,7 +488,7 @@ func (m_ MutableURLRequest) SetHttpMethod(value IString) {
 func (m_ MutableURLRequest) MainDocumentURL() IURL {
 	rv := objc.Send[URL](m_.ID, objc.Sel("mainDocumentURL"))
 	return rv
-}/* debug [instance_properties/getter]: mainDocumentURL */
+}
 
 
 // The main document URL.
@@ -497,7 +497,7 @@ func (m_ MutableURLRequest) MainDocumentURL() IURL {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/maindocumenturl
 func (m_ MutableURLRequest) SetMainDocumentURL(value IURL) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMainDocumentURL:"), value)
-}/* debug [instance_properties/setter]: mainDocumentURL */
+}
 
 
 // [Full Topic]
@@ -505,14 +505,14 @@ func (m_ MutableURLRequest) SetMainDocumentURL(value IURL) {
 func (m_ MutableURLRequest) RequiresDNSSECValidation() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("requiresDNSSECValidation"))
 	return rv
-}/* debug [instance_properties/getter]: requiresDNSSECValidation */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/requiresdnssecvalidation
 func (m_ MutableURLRequest) SetRequiresDNSSECValidation(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiresDNSSECValidation:"), value)
-}/* debug [instance_properties/setter]: requiresDNSSECValidation */
+}
 
 
 // The URL being requested.
@@ -522,7 +522,7 @@ func (m_ MutableURLRequest) SetRequiresDNSSECValidation(value bool) {
 func (m_ MutableURLRequest) Url() IURL {
 	rv := objc.Send[URL](m_.ID, objc.Sel("url"))
 	return rv
-}/* debug [instance_properties/getter]: url */
+}
 
 
 // The URL being requested.
@@ -531,12 +531,12 @@ func (m_ MutableURLRequest) Url() IURL {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/url
 func (m_ MutableURLRequest) SetUrl(value IURL) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUrl:"), value)
-}/* debug [instance_properties/setter]: url */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSMutableURLRequest */
+
+
+
 
 
 

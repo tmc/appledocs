@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZAudioOutputStreamSink */
 
+
 /* debug [class_header]: Header for VZAudioOutputStreamSink */
 // The class instance for the [VZAudioOutputStreamSink] class.
 var (
@@ -29,25 +30,28 @@ func getVZAudioOutputStreamSinkClass() _VZAudioOutputStreamSinkClass {
 type _VZAudioOutputStreamSinkClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZAudioOutputStreamSink */
 // An interface definition for the [VZAudioOutputStreamSink] class.
 type IVZAudioOutputStreamSink interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZAudioOutputStreamSink */
+	
+/* debug [class_interface_properties]: Properties for VZAudioOutputStreamSink */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZAudioOutputStreamSink */
+	
+/* debug [class_interface_methods]: Methods for VZAudioOutputStreamSink */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZAudioOutputStreamSink */
 // Alloc allocates a new instance without initialization.
@@ -79,13 +83,15 @@ func (v_ VZAudioOutputStreamSink) Autorelease() VZAudioOutputStreamSink {
 func NewVZAudioOutputStreamSink() VZAudioOutputStreamSink {
 	return getVZAudioOutputStreamSinkClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZAudioOutputStreamSink */
 // The base class for an audio output stream sink.
 //
 // An audio output stream sink defines how the host system consumes audio data from a guest. Don’t instantiate directly, use one of its subclasses, such as instead.
+
 
 // The base class for an audio output stream sink.
 //
@@ -101,21 +107,34 @@ type VZAudioOutputStreamSink struct {
 func VZAudioOutputStreamSinkFrom(ptr unsafe.Pointer) VZAudioOutputStreamSink {
 	return VZAudioOutputStreamSink{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZAudioOutputStreamSink */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZAudioOutputStreamSink *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZAudioOutputStreamSink */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZAudioOutputStreamSink */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZAudioOutputStreamSink */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for VZAudioOutputStreamSink */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZAudioOutputStreamSink */
+
+
+

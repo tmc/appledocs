@@ -19,3 +19,4 @@ var zoomFactorForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	zoomFactorForWebExtensionContextProtocol = objc.GetProtocol("zoomFactorForWebExtensionContext:")
 }
+

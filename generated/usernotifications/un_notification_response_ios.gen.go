@@ -5,11 +5,16 @@
 package usernotifications
 
 import (
-	"github.com/tmc/appledocs/generated/gameplaykit"
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/gameplaykit"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for UNNotificationResponse
+
 
 // iOS-only properties
 
@@ -21,3 +26,8 @@ func (u_ UNNotificationResponse) TargetScene() gameplaykit.Scene {
 	rv := objc.Send[gameplaykit.Scene](u_.ID, objc.Sel("targetScene"))
 	return rv
 }
+
+
+
+
+

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class VNClassifyImageRequest */
 
 
-/* debug [class_header]: Header for VNClassifyImageRequest */
+
+
 // The class instance for the [ClassifyImageRequest] class.
 var (
 	ClassifyImageRequestClass     _ClassifyImageRequestClass
@@ -30,33 +30,33 @@ func getClassifyImageRequestClass() _ClassifyImageRequestClass {
 type _ClassifyImageRequestClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ClassifyImageRequest */
+
+
 // An interface definition for the [ClassifyImageRequest] class.
 type IClassifyImageRequest interface {
 	IImageBasedRequest
 	
-/* debug [class_interface_properties]: Properties for ClassifyImageRequest */
+
 	// properties:
 	Results() []ClassificationObservation
 	VNClassifyImageRequestRevision1() int
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ClassifyImageRequest */
+
 	// methods:
 	SupportedIdentifiersAndReturnError(error_ objectivec.IObject) []string
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ClassifyImageRequest */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _ClassifyImageRequestClass) Alloc() ClassifyImageRequest {
 	rv := objc.Send[ClassifyImageRequest](objc.ID(cc.class), objc.Sel("alloc"))
@@ -86,11 +86,11 @@ func (c_ ClassifyImageRequest) Autorelease() ClassifyImageRequest {
 func NewClassifyImageRequest() ClassifyImageRequest {
 	return getClassifyImageRequestClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ClassifyImageRequest */
+
+
 // A request to classify an image.
 //
 // This type of request produces a collection of objects that describe an image. Access the classifications through .
@@ -112,15 +112,15 @@ func ClassifyImageRequestFrom(ptr unsafe.Pointer) ClassifyImageRequest {
 		ImageBasedRequest: ImageBasedRequestFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ClassifyImageRequest *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ClassifyImageRequest */
+
+
+
 
 // Requests the collection of classifications that the Vision framework recognizes.
 //
@@ -129,18 +129,18 @@ func ClassifyImageRequestFrom(ptr unsafe.Pointer) ClassifyImageRequest {
 func (cc _ClassifyImageRequestClass) KnownClassificationsForRevisionError(requestRevision uint, error_ objectivec.IObject) []ClassificationObservation {
 	rv := objc.Send[[]ClassificationObservation](objc.ID(cc.class), objc.Sel("knownClassificationsForRevision:error:"), requestRevision, error_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=KnownClassificationsForRevisionError) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for ClassifyImageRequest */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ClassifyImageRequest */
+
+
+
+
+
 
 // Returns the classification identifiers that the request supports in its current configuration.
 //
@@ -149,13 +149,13 @@ func (cc _ClassifyImageRequestClass) KnownClassificationsForRevisionError(reques
 func (c_ ClassifyImageRequest) SupportedIdentifiersAndReturnError(error_ objectivec.IObject) []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("supportedIdentifiersAndReturnError:"), error_)
 	return rv
-}/* debug [instance_methods/method]: SupportedIdentifiersAndReturnError */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for ClassifyImageRequest */
+
+
+
 
 // The results of the image classification request.
 //
@@ -164,7 +164,7 @@ func (c_ ClassifyImageRequest) SupportedIdentifiersAndReturnError(error_ objecti
 func (c_ ClassifyImageRequest) Results() []ClassificationObservation {
 	rv := objc.Send[[]ClassificationObservation](c_.ID, objc.Sel("results"))
 	return rv
-}/* debug [instance_properties/getter]: results */
+}
 
 
 // A constant for specifying the first revision of the image-classification request.
@@ -174,12 +174,12 @@ func (c_ ClassifyImageRequest) Results() []ClassificationObservation {
 func (c_ ClassifyImageRequest) VNClassifyImageRequestRevision1() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("VNClassifyImageRequestRevision1"))
 	return rv
-}/* debug [instance_properties/getter]: VNClassifyImageRequestRevision1 */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class VNClassifyImageRequest */
+
+
+
 
 
 

@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class VNSequenceRequestHandler */
 
 
-/* debug [class_header]: Header for VNSequenceRequestHandler */
+
+
 // The class instance for the [SequenceRequestHandler] class.
 var (
 	SequenceRequestHandlerClass     _SequenceRequestHandlerClass
@@ -31,21 +30,21 @@ func getSequenceRequestHandlerClass() _SequenceRequestHandlerClass {
 type _SequenceRequestHandlerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for SequenceRequestHandler */
+
+
 // An interface definition for the [SequenceRequestHandler] class.
 type ISequenceRequestHandler interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for SequenceRequestHandler */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for SequenceRequestHandler */
+
 	// methods:
 	PerformRequestsOnCVPixelBufferError(requests []Request, pixelBuffer PixelBufferRef /* not a class type */, error_ objectivec.IObject) bool
 	PerformRequestsOnCGImageError(requests []Request, image ImageRef /* not a class type */, error_ objectivec.IObject) bool
@@ -59,14 +58,14 @@ type ISequenceRequestHandler interface {
 	PerformRequestsOnImageDataOrientationError(requests []Request, imageData objc.IObject /* cross-framework: NSData */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool
 	PerformRequestsOnImageURLError(requests []Request, imageURL objc.IObject /* cross-framework: NSURL */, error_ objectivec.IObject) bool
 	PerformRequestsOnImageURLOrientationError(requests []Request, imageURL objc.IObject /* cross-framework: NSURL */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for SequenceRequestHandler */
+
+
 // Alloc allocates a new instance without initialization.
 func (sc _SequenceRequestHandlerClass) Alloc() SequenceRequestHandler {
 	rv := objc.Send[SequenceRequestHandler](objc.ID(sc.class), objc.Sel("alloc"))
@@ -96,11 +95,11 @@ func (s_ SequenceRequestHandler) Autorelease() SequenceRequestHandler {
 func NewSequenceRequestHandler() SequenceRequestHandler {
 	return getSequenceRequestHandlerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for SequenceRequestHandler */
+
+
 // An object that processes image-analysis requests for each frame in a sequence.
 //
 // Instantiate this handler to perform Vision requests on a series of images. Unlike the , you don’t specify the image on creation. Instead, you supply each image frame one by one as you continue to call one of the methods.
@@ -120,26 +119,26 @@ type SequenceRequestHandler struct {
 func SequenceRequestHandlerFrom(ptr unsafe.Pointer) SequenceRequestHandler {
 	return SequenceRequestHandler{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for SequenceRequestHandler */
-/* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for SequenceRequestHandler */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for SequenceRequestHandler */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for SequenceRequestHandler */
+
+
+
+
+
+
+
+
 
 // Schedules one or more Vision requests to be performed on a Core Video pixel buffer.
 //
@@ -148,7 +147,7 @@ func SequenceRequestHandlerFrom(ptr unsafe.Pointer) SequenceRequestHandler {
 func (s_ SequenceRequestHandler) PerformRequestsOnCVPixelBufferError(requests []Request, pixelBuffer PixelBufferRef /* not a class type */, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onCVPixelBuffer:error:"), requests, pixelBuffer, error_)
 	return rv
-}/* debug [instance_methods/method]: PerformRequestsOnCVPixelBufferError */
+}
 
 
 // Schedules Vision requests to be performed on a Core Graphics image.
@@ -158,7 +157,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnCVPixelBufferError(requests []
 func (s_ SequenceRequestHandler) PerformRequestsOnCGImageError(requests []Request, image ImageRef /* not a class type */, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onCGImage:error:"), requests, image, error_)
 	return rv
-}/* debug [instance_methods/method]: PerformRequestsOnCGImageError */
+}
 
 
 // Performs one or more requests on an image contained within a sample buffer.
@@ -168,7 +167,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnCGImageError(requests []Reques
 func (s_ SequenceRequestHandler) PerformRequestsOnCMSampleBufferError(requests []Request, sampleBuffer SampleBufferRef /* not a class type */, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onCMSampleBuffer:error:"), requests, sampleBuffer, error_)
 	return rv
-}/* debug [instance_methods/method]: PerformRequestsOnCMSampleBufferError */
+}
 
 
 // Schedules one or more Vision requests to be performed on Core Image image data.
@@ -178,7 +177,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnCMSampleBufferError(requests [
 func (s_ SequenceRequestHandler) PerformRequestsOnCIImageError(requests []Request, image objectivec.IObject, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onCIImage:error:"), requests, image, error_)
 	return rv
-}/* debug [instance_methods/method]: PerformRequestsOnCIImageError */
+}
 
 
 // Schedules one or more Vision requests to be performed on Core Image image data with known orientation.
@@ -188,7 +187,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnCIImageError(requests []Reques
 func (s_ SequenceRequestHandler) PerformRequestsOnCIImageOrientationError(requests []Request, image objectivec.IObject, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onCIImage:orientation:error:"), requests, image, orientation, error_)
 	return rv
-}/* debug [instance_methods/method]: PerformRequestsOnCIImageOrientationError */
+}
 
 
 // Schedules one or more Vision requests to be performed on a Core Video pixel buffer with known orientation.
@@ -198,7 +197,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnCIImageOrientationError(reques
 func (s_ SequenceRequestHandler) PerformRequestsOnCVPixelBufferOrientationError(requests []Request, pixelBuffer PixelBufferRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onCVPixelBuffer:orientation:error:"), requests, pixelBuffer, orientation, error_)
 	return rv
-}/* debug [instance_methods/method]: PerformRequestsOnCVPixelBufferOrientationError */
+}
 
 
 // Schedules one or more Vision requests to be performed on a Core Graphics image with known orientation.
@@ -208,7 +207,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnCVPixelBufferOrientationError(
 func (s_ SequenceRequestHandler) PerformRequestsOnCGImageOrientationError(requests []Request, image ImageRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onCGImage:orientation:error:"), requests, image, orientation, error_)
 	return rv
-}/* debug [instance_methods/method]: PerformRequestsOnCGImageOrientationError */
+}
 
 
 // Performs one or more requests on an image of a specified orientation contained within a sample buffer.
@@ -218,7 +217,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnCGImageOrientationError(reques
 func (s_ SequenceRequestHandler) PerformRequestsOnCMSampleBufferOrientationError(requests []Request, sampleBuffer SampleBufferRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onCMSampleBuffer:orientation:error:"), requests, sampleBuffer, orientation, error_)
 	return rv
-}/* debug [instance_methods/method]: PerformRequestsOnCMSampleBufferOrientationError */
+}
 
 
 // Schedules one or more Vision requests to be performed on raw image data.
@@ -228,7 +227,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnCMSampleBufferOrientationError
 func (s_ SequenceRequestHandler) PerformRequestsOnImageDataError(requests []Request, imageData objc.IObject /* cross-framework: NSData */, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onImageData:error:"), requests, imageData, error_)
 	return rv
-}/* debug [instance_methods/method]: PerformRequestsOnImageDataError */
+}
 
 
 // Schedules one or more Vision requests to be performed on raw data containing an image with known orientation.
@@ -238,7 +237,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnImageDataError(requests []Requ
 func (s_ SequenceRequestHandler) PerformRequestsOnImageDataOrientationError(requests []Request, imageData objc.IObject /* cross-framework: NSData */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onImageData:orientation:error:"), requests, imageData, orientation, error_)
 	return rv
-}/* debug [instance_methods/method]: PerformRequestsOnImageDataOrientationError */
+}
 
 
 // Schedules one or more Vision requests to be performed on an image.
@@ -248,7 +247,7 @@ func (s_ SequenceRequestHandler) PerformRequestsOnImageDataOrientationError(requ
 func (s_ SequenceRequestHandler) PerformRequestsOnImageURLError(requests []Request, imageURL objc.IObject /* cross-framework: NSURL */, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onImageURL:error:"), requests, imageURL, error_)
 	return rv
-}/* debug [instance_methods/method]: PerformRequestsOnImageURLError */
+}
 
 
 // Schedules one or more Vision requests to be performed on an image with known orientation, at a specific URL.
@@ -258,16 +257,16 @@ func (s_ SequenceRequestHandler) PerformRequestsOnImageURLError(requests []Reque
 func (s_ SequenceRequestHandler) PerformRequestsOnImageURLOrientationError(requests []Request, imageURL objc.IObject /* cross-framework: NSURL */, orientation ImagePropertyOrientation /* not a class type */, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("performRequests:onImageURL:orientation:error:"), requests, imageURL, orientation, error_)
 	return rv
-}/* debug [instance_methods/method]: PerformRequestsOnImageURLOrientationError */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for SequenceRequestHandler */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class VNSequenceRequestHandler */
+
+
+
+
+
 
 

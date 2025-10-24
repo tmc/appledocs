@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZAudioInputStreamSource */
 
+
 /* debug [class_header]: Header for VZAudioInputStreamSource */
 // The class instance for the [VZAudioInputStreamSource] class.
 var (
@@ -29,25 +30,28 @@ func getVZAudioInputStreamSourceClass() _VZAudioInputStreamSourceClass {
 type _VZAudioInputStreamSourceClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZAudioInputStreamSource */
 // An interface definition for the [VZAudioInputStreamSource] class.
 type IVZAudioInputStreamSource interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZAudioInputStreamSource */
+	
+/* debug [class_interface_properties]: Properties for VZAudioInputStreamSource */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZAudioInputStreamSource */
+	
+/* debug [class_interface_methods]: Methods for VZAudioInputStreamSource */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZAudioInputStreamSource */
 // Alloc allocates a new instance without initialization.
@@ -79,13 +83,15 @@ func (v_ VZAudioInputStreamSource) Autorelease() VZAudioInputStreamSource {
 func NewVZAudioInputStreamSource() VZAudioInputStreamSource {
 	return getVZAudioInputStreamSourceClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZAudioInputStreamSource */
 // The base class for an audio input stream source.
 //
 // An audio input stream source defines how th guest produces audio input data on the host system. Don’t instantiate directly, use one of its subclasses such as instead.
+
 
 // The base class for an audio input stream source.
 //
@@ -101,21 +107,34 @@ type VZAudioInputStreamSource struct {
 func VZAudioInputStreamSourceFrom(ptr unsafe.Pointer) VZAudioInputStreamSource {
 	return VZAudioInputStreamSource{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZAudioInputStreamSource */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZAudioInputStreamSource *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZAudioInputStreamSource */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZAudioInputStreamSource */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZAudioInputStreamSource */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for VZAudioInputStreamSource */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZAudioInputStreamSource */
+
+
+

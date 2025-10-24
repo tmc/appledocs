@@ -2,6 +2,11 @@
 
 package speech
 
+import (
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
 // PSFSpeechRecognitionTaskDelegate is the SFSpeechRecognitionTaskDelegate protocol interface.
 //
 // A protocol with methods for managing multi-utterance speech recognition requests.
@@ -36,13 +41,13 @@ type PSFSpeechRecognitionTaskDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type SFSpeechRecognitionTaskDelegate struct {
-	_SpeechRecognitionDidDetectSpeech                 func(task ISFSpeechRecognitionTask)
-	_SpeechRecognitionTaskDidFinishRecognition        func(task ISFSpeechRecognitionTask, recognitionResult ISFSpeechRecognitionResult)
-	_SpeechRecognitionTaskDidFinishSuccessfully       func(task ISFSpeechRecognitionTask, successfully bool)
+	_SpeechRecognitionDidDetectSpeech func(task ISFSpeechRecognitionTask)
+	_SpeechRecognitionTaskDidFinishRecognition func(task ISFSpeechRecognitionTask, recognitionResult ISFSpeechRecognitionResult)
+	_SpeechRecognitionTaskDidFinishSuccessfully func(task ISFSpeechRecognitionTask, successfully bool)
 	_SpeechRecognitionTaskDidHypothesizeTranscription func(task ISFSpeechRecognitionTask, transcription ISFTranscription)
-	_SpeechRecognitionTaskDidProcessAudioDuration     func(task ISFSpeechRecognitionTask, duration float64)
-	_SpeechRecognitionTaskFinishedReadingAudio        func(task ISFSpeechRecognitionTask)
-	_SpeechRecognitionTaskWasCancelled                func(task ISFSpeechRecognitionTask)
+	_SpeechRecognitionTaskDidProcessAudioDuration func(task ISFSpeechRecognitionTask, duration float64)
+	_SpeechRecognitionTaskFinishedReadingAudio func(task ISFSpeechRecognitionTask)
+	_SpeechRecognitionTaskWasCancelled func(task ISFSpeechRecognitionTask)
 }
 
 // SetSpeechRecognitionDidDetectSpeech sets the handler for the SpeechRecognitionDidDetectSpeech delegate method.

@@ -3,9 +3,16 @@
 package webkit
 
 import (
-	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/javascriptcore"
+
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/appkit"
+
+	"github.com/tmc/appledocs/generated/coretelephony"
+
+	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/javascriptcore"
 )
 
 // PWebFrameLoadDelegate is the WebFrameLoadDelegate protocol interface.
@@ -15,6 +22,8 @@ import (
 //
 // See: doc://com.apple.webkit/documentation/WebKit/WebFrameLoadDelegate
 type PWebFrameLoadDelegate interface {
+	// Required methods
+	WebViewWindowScriptObjectAvailable(webView IWebView, windowScriptObject IWebScriptObject)/* debug [protocol_interface/required_method]: WebViewWindowScriptObjectAvailable */
 	// Optional methods
 	WebViewDidCancelClientRedirectForFrame(sender IWebView, frame IWebFrame)
 	HasWebViewDidCancelClientRedirectForFrame() bool
@@ -24,7 +33,7 @@ type PWebFrameLoadDelegate interface {
 	HasWebViewDidClearWindowObjectForFrame() bool
 	WebViewDidCommitLoadForFrame(sender IWebView, frame IWebFrame)
 	HasWebViewDidCommitLoadForFrame() bool
-	WebViewDidCreateJavaScriptContextForFrame(webView IWebView, context javascriptcore.JSContext, frame IWebFrame)
+	WebViewDidCreateJavaScriptContextForFrame(webView IWebView, context objc.IObject, frame IWebFrame)
 	HasWebViewDidCreateJavaScriptContextForFrame() bool
 	WebViewDidFailLoadWithErrorForFrame(sender IWebView, error_ objc.IObject /* cross-framework: Error */, frame IWebFrame)
 	HasWebViewDidFailLoadWithErrorForFrame() bool
@@ -50,20 +59,21 @@ type PWebFrameLoadDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type WebFrameLoadDelegate struct {
-	_WebViewDidCancelClientRedirectForFrame                     func(sender IWebView, frame IWebFrame)
-	_WebViewDidChangeLocationWithinPageForFrame                 func(sender IWebView, frame IWebFrame)
-	_WebViewDidClearWindowObjectForFrame                        func(webView IWebView, windowObject IWebScriptObject, frame IWebFrame)
-	_WebViewDidCommitLoadForFrame                               func(sender IWebView, frame IWebFrame)
-	_WebViewDidCreateJavaScriptContextForFrame                  func(webView IWebView, context javascriptcore.JSContext, frame IWebFrame)
-	_WebViewDidFailLoadWithErrorForFrame                        func(sender IWebView, error_ objc.IObject /* cross-framework: Error */, frame IWebFrame)
-	_WebViewDidFailProvisionalLoadWithErrorForFrame             func(sender IWebView, error_ objc.IObject /* cross-framework: Error */, frame IWebFrame)
-	_WebViewDidFinishLoadForFrame                               func(sender IWebView, frame IWebFrame)
-	_WebViewDidReceiveIconForFrame                              func(sender IWebView, image appkit.Image, frame IWebFrame)
-	_WebViewDidReceiveServerRedirectForProvisionalLoadForFrame  func(sender IWebView, frame IWebFrame)
-	_WebViewDidReceiveTitleForFrame                             func(sender IWebView, title objc.IObject /* cross-framework: NSString */, frame IWebFrame)
-	_WebViewDidStartProvisionalLoadForFrame                     func(sender IWebView, frame IWebFrame)
-	_WebViewWillCloseFrame                                      func(sender IWebView, frame IWebFrame)
+	_WebViewDidCancelClientRedirectForFrame func(sender IWebView, frame IWebFrame)
+	_WebViewDidChangeLocationWithinPageForFrame func(sender IWebView, frame IWebFrame)
+	_WebViewDidClearWindowObjectForFrame func(webView IWebView, windowObject IWebScriptObject, frame IWebFrame)
+	_WebViewDidCommitLoadForFrame func(sender IWebView, frame IWebFrame)
+	_WebViewDidCreateJavaScriptContextForFrame func(webView IWebView, context objc.IObject, frame IWebFrame)
+	_WebViewDidFailLoadWithErrorForFrame func(sender IWebView, error_ objc.IObject /* cross-framework: Error */, frame IWebFrame)
+	_WebViewDidFailProvisionalLoadWithErrorForFrame func(sender IWebView, error_ objc.IObject /* cross-framework: Error */, frame IWebFrame)
+	_WebViewDidFinishLoadForFrame func(sender IWebView, frame IWebFrame)
+	_WebViewDidReceiveIconForFrame func(sender IWebView, image appkit.Image, frame IWebFrame)
+	_WebViewDidReceiveServerRedirectForProvisionalLoadForFrame func(sender IWebView, frame IWebFrame)
+	_WebViewDidReceiveTitleForFrame func(sender IWebView, title objc.IObject /* cross-framework: NSString */, frame IWebFrame)
+	_WebViewDidStartProvisionalLoadForFrame func(sender IWebView, frame IWebFrame)
+	_WebViewWillCloseFrame func(sender IWebView, frame IWebFrame)
 	_WebViewWillPerformClientRedirectToURLDelayFireDateForFrame func(sender IWebView, URL objc.IObject /* cross-framework: NSURL */, seconds float64, date objc.IObject /* cross-framework: NSDate */, frame IWebFrame)
+	_WebViewWindowScriptObjectAvailable func(webView IWebView, windowScriptObject IWebScriptObject)
 }
 
 // SetWebViewDidCancelClientRedirectForFrame sets the handler for the WebViewDidCancelClientRedirectForFrame delegate method.
@@ -97,7 +107,7 @@ func (d *WebFrameLoadDelegate) SetWebViewDidCommitLoadForFrame(f func(sender IWe
 // SetWebViewDidCreateJavaScriptContextForFrame sets the handler for the WebViewDidCreateJavaScriptContextForFrame delegate method.
 //
 // Notifies the delegate that a new JavaScript context has been created.
-func (d *WebFrameLoadDelegate) SetWebViewDidCreateJavaScriptContextForFrame(f func(webView IWebView, context javascriptcore.JSContext, frame IWebFrame)) {
+func (d *WebFrameLoadDelegate) SetWebViewDidCreateJavaScriptContextForFrame(f func(webView IWebView, context objc.IObject, frame IWebFrame)) {
 	d._WebViewDidCreateJavaScriptContextForFrame = f
 }
 
@@ -164,6 +174,13 @@ func (d *WebFrameLoadDelegate) SetWebViewWillPerformClientRedirectToURLDelayFire
 	d._WebViewWillPerformClientRedirectToURLDelayFireDateForFrame = f
 }
 
+// SetWebViewWindowScriptObjectAvailable sets the handler for the WebViewWindowScriptObjectAvailable delegate method.
+//
+// Called when a frame’s scripting object for a page is available. Use the   method instead.
+func (d *WebFrameLoadDelegate) SetWebViewWindowScriptObjectAvailable(f func(webView IWebView, windowScriptObject IWebScriptObject)) {
+	d._WebViewWindowScriptObjectAvailable = f
+}
+
 // WebViewDidCancelClientRedirectForFrame implements the PWebFrameLoadDelegate interface.
 func (d *WebFrameLoadDelegate) WebViewDidCancelClientRedirectForFrame(sender IWebView, frame IWebFrame) {
 	if d._WebViewDidCancelClientRedirectForFrame != nil {
@@ -213,7 +230,7 @@ func (d *WebFrameLoadDelegate) HasWebViewDidCommitLoadForFrame() bool {
 }
 
 // WebViewDidCreateJavaScriptContextForFrame implements the PWebFrameLoadDelegate interface.
-func (d *WebFrameLoadDelegate) WebViewDidCreateJavaScriptContextForFrame(webView IWebView, context javascriptcore.JSContext, frame IWebFrame) {
+func (d *WebFrameLoadDelegate) WebViewDidCreateJavaScriptContextForFrame(webView IWebView, context objc.IObject, frame IWebFrame) {
 	if d._WebViewDidCreateJavaScriptContextForFrame != nil {
 		d._WebViewDidCreateJavaScriptContextForFrame(webView, context, frame)
 	}
@@ -330,4 +347,16 @@ func (d *WebFrameLoadDelegate) WebViewWillPerformClientRedirectToURLDelayFireDat
 // HasWebViewWillPerformClientRedirectToURLDelayFireDateForFrame returns true if a handler for WebViewWillPerformClientRedirectToURLDelayFireDateForFrame has been set.
 func (d *WebFrameLoadDelegate) HasWebViewWillPerformClientRedirectToURLDelayFireDateForFrame() bool {
 	return d._WebViewWillPerformClientRedirectToURLDelayFireDateForFrame != nil
+}
+
+// WebViewWindowScriptObjectAvailable implements the PWebFrameLoadDelegate interface.
+func (d *WebFrameLoadDelegate) WebViewWindowScriptObjectAvailable(webView IWebView, windowScriptObject IWebScriptObject) {
+	if d._WebViewWindowScriptObjectAvailable != nil {
+		d._WebViewWindowScriptObjectAvailable(webView, windowScriptObject)
+	}
+}
+
+// HasWebViewWindowScriptObjectAvailable returns true if a handler for WebViewWindowScriptObjectAvailable has been set.
+func (d *WebFrameLoadDelegate) HasWebViewWindowScriptObjectAvailable() bool {
+	return d._WebViewWindowScriptObjectAvailable != nil
 }

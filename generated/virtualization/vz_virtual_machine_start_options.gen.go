@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZVirtualMachineStartOptions */
 
+
 /* debug [class_header]: Header for VZVirtualMachineStartOptions */
 // The class instance for the [VZVirtualMachineStartOptions] class.
 var (
@@ -29,25 +30,28 @@ func getVZVirtualMachineStartOptionsClass() _VZVirtualMachineStartOptionsClass {
 type _VZVirtualMachineStartOptionsClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZVirtualMachineStartOptions */
 // An interface definition for the [VZVirtualMachineStartOptions] class.
 type IVZVirtualMachineStartOptions interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZVirtualMachineStartOptions */
+	
+/* debug [class_interface_properties]: Properties for VZVirtualMachineStartOptions */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZVirtualMachineStartOptions */
+	
+/* debug [class_interface_methods]: Methods for VZVirtualMachineStartOptions */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZVirtualMachineStartOptions */
 // Alloc allocates a new instance without initialization.
@@ -79,11 +83,13 @@ func (v_ VZVirtualMachineStartOptions) Autorelease() VZVirtualMachineStartOption
 func NewVZVirtualMachineStartOptions() VZVirtualMachineStartOptions {
 	return getVZVirtualMachineStartOptionsClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZVirtualMachineStartOptions */
 // The abstract class for VM start options.
+
 
 // The abstract class for VM start options.
 //
@@ -99,21 +105,34 @@ type VZVirtualMachineStartOptions struct {
 func VZVirtualMachineStartOptionsFrom(ptr unsafe.Pointer) VZVirtualMachineStartOptions {
 	return VZVirtualMachineStartOptions{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZVirtualMachineStartOptions */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZVirtualMachineStartOptions *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZVirtualMachineStartOptions */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZVirtualMachineStartOptions */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZVirtualMachineStartOptions */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for VZVirtualMachineStartOptions */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZVirtualMachineStartOptions */
+
+
+

@@ -1,0 +1,162 @@
+# Circular Dependency Breaking Rules
+#
+# This file configures how circular import dependencies should be broken
+# when generating Go bindings for Apple frameworks.
+
+# Framework hierarchy levels (lower number = lower in dependency stack)
+# Frameworks at the same level can have circular dependencies that need breaking.
+hierarchy:
+  objc: 0
+  objectivec: 0
+
+  # Level 1: Core system frameworks
+  coregraphics: 1
+  corefoundation: 1
+  foundation: 1
+  coretext: 1
+  iosurface: 1
+
+  # Level 2: Framework-specific functionality
+  uniformtypeidentifiers: 2
+  coreimage: 2
+  quartzcore: 2
+  coreaudio: 2
+  coremidi: 2
+  imageio: 2
+  coredata: 2
+  corelocation: 2
+  corespotlight: 2
+  network: 2
+  security: 2
+  corebluetooth: 2
+  corevideo: 2
+  coreml: 2
+  vision: 2
+  naturallanguage: 2
+  coretelephony: 2
+
+  # Level 3: High-level UI frameworks
+  appkit: 3
+  uikit: 3
+
+  # Level 4: Specialized/domain-specific frameworks
+  avfoundation: 4
+  avkit: 4
+  avfaudio: 4
+  audiounit: 4
+  audiotoolbox: 4
+  metal: 4
+  metalkit: 4
+  metalperformanceshaders: 4
+  scenekit: 4
+  spritekit: 4
+
+# Breaking rules applied in order
+rules:
+  # Rule 1: Cross-framework class references become objc.IObject
+  # This is the primary mechanism for breaking cycles between frameworks
+  - name: cross_framework_classes
+    description: "Class types from other frameworks are converted to objc.IObject"
+    enabled: true
+    action: skip_import
+    applies_to:
+      - type_category: class
+      - cross_framework: true
+    reason: "Will be converted to objc.IObject with inline comment"
+
+  # Rule 2: Framework hierarchy violations
+  # Lower-level frameworks should not import higher-level frameworks
+  - name: hierarchy_violation
+    description: "Prevent lower-level frameworks from importing higher-level ones"
+    enabled: true
+    action: skip_import
+    applies_to:
+      - check: target_level > current_level
+    reason: "Framework hierarchy violation"
+
+  # Rule 3: Same-level framework cycles
+  # When frameworks are at the same level and have circular dependencies,
+  # break them using objc.IObject
+  - name: same_level_cycle
+    description: "Break cycles between frameworks at the same hierarchy level"
+    enabled: true
+    action: skip_import
+    applies_to:
+      - check: target_level == current_level
+      - cross_framework: true
+      - type_category: class
+    reason: "Same-level circular dependency"
+
+# Specific overrides for known cases
+# These take precedence over general rules
+overrides:
+  # Vision ↔ CoreImage cycle
+  - from: vision
+    to: coreimage
+    types: ["BarcodeDescriptor", "Image"]
+    action: skip_import
+    reason: "Known cycle: vision ↔ coreimage"
+
+  - from: coreimage
+    to: vision
+    types: ["Request", "Observation"]
+    action: skip_import
+    reason: "Known cycle: coreimage ↔ vision"
+
+  # AudioToolbox ↔ AVFAudio cycle
+  - from: audiotoolbox
+    to: avfaudio
+    types: ["AudioFormat", "AudioBuffer"]
+    action: skip_import
+    reason: "Known cycle: audiotoolbox ↔ avfaudio"
+
+  - from: avfaudio
+    to: audiotoolbox
+    types: ["AudioUnit"]
+    action: skip_import
+    reason: "Known cycle: avfaudio ↔ audiotoolbox"
+
+  # AVFoundation ↔ AVKit cycle
+  - from: avfoundation
+    to: avkit
+    types: ["PlayerViewController", "RoutePickerView"]
+    action: skip_import
+    reason: "Known cycle: avfoundation ↔ avkit"
+
+  - from: avkit
+    to: avfoundation
+    types: ["Player", "PlayerItem"]
+    action: skip_import
+    reason: "Known cycle: avkit ↔ avfoundation"
+
+# Type categories for classification
+type_categories:
+  class:
+    patterns:
+      - "^[A-Z][A-Z].*"  # NS*, AV*, etc.
+      - "*Class"
+    description: "Objective-C classes that can be replaced with objc.IObject"
+
+  struct:
+    patterns:
+      - "^CG.*"  # CGRect, CGPoint, etc.
+      - "*Struct"
+    description: "C structs that must maintain concrete types"
+
+  enum:
+    patterns:
+      - "*Enum"
+      - "*Mask"
+      - "*Options"
+    description: "Enumerations that must maintain concrete types"
+
+# Actions available
+actions:
+  skip_import:
+    description: "Don't add import statement; use objc.IObject instead"
+
+  keep_import:
+    description: "Keep the import and use the concrete type"
+
+  use_interface:
+    description: "Keep import but use interface type (I-prefixed)"

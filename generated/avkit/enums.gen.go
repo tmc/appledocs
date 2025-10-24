@@ -2,9 +2,9 @@
 
 package avkit
 
-/* debug [enums.gen.go]: Generating 12 enums for AVKit */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum AVAudioSessionRouteSelection (3 cases) */
+
 // AVAudioSessionRouteSelection - Constants that indicate the audio route selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVAudioSessionRouteSelection
@@ -25,7 +25,7 @@ const (
 	AVAudioSessionRouteSelectionNone AVAudioSessionRouteSelection = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVKitError (6 cases) */
+
 // AVKitError - Constants that identify framework error codes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVKitError-swift.struct/Code
@@ -57,7 +57,7 @@ const (
 	AVKitErrorRecordingFailed AVKitError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVRoutePickerViewButtonState (4 cases) */
+
 // AVRoutePickerViewButtonState - Constants that describe the available button states.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/ButtonState
@@ -82,7 +82,7 @@ const (
 	AVRoutePickerViewButtonStateNormalHighlighted AVRoutePickerViewButtonState = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVCaptureEventPhase (3 cases) */
+
 // AVCaptureEventPhase - Constants that indicate the phase of a system capture event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventPhase
@@ -103,7 +103,7 @@ const (
 	AVCaptureEventPhaseEnded AVCaptureEventPhase = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVCaptureViewControlsStyle (4 cases) */
+
 // AVCaptureViewControlsStyle - Constants that describe the capture view’s supported controls styles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureViewControlsStyle
@@ -128,7 +128,7 @@ const (
 	AVCaptureViewControlsStyleInlineDeviceSelection AVCaptureViewControlsStyle = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVContentProposalAction (3 cases) */
+
 // AVContentProposalAction - Constant that indicate the action a user takes when dismissing a content proposal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalAction
@@ -149,7 +149,7 @@ const (
 	AVContentProposalActionReject AVContentProposalAction = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVDisplayDynamicRange (4 cases) */
+
 // AVDisplayDynamicRange - Describes how High Dynamic Range (HDR) video content renders.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayDynamicRange
@@ -174,7 +174,7 @@ const (
 	AVDisplayDynamicRangeStandard AVDisplayDynamicRange = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVPlayerViewControllerSkippingBehavior (2 cases) */
+
 // AVPlayerViewControllerSkippingBehavior - Constants that represent the player view controller’s skipping behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewControllerSkippingBehavior
@@ -191,7 +191,7 @@ const (
 	AVPlayerViewControllerSkippingBehaviorSkipItem AVPlayerViewControllerSkippingBehavior = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVPlayerViewControlsStyle (5 cases) */
+
 // AVPlayerViewControlsStyle - Constants that indicate which user interface controls the view displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewControlsStyle
@@ -220,7 +220,7 @@ const (
 	AVPlayerViewControlsStyleNone AVPlayerViewControlsStyle = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVPlayerViewTrimResult (2 cases) */
+
 // AVPlayerViewTrimResult - Constants that specify an action a user takes when trimming media in a player view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewTrimResult
@@ -237,7 +237,7 @@ const (
 	AVPlayerViewTrimOKButton AVPlayerViewTrimResult = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVRoutePickerViewButtonStyle (3 cases) */
+
 // AVRoutePickerViewButtonStyle - Constants that define the button styles a route picker view supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerViewButtonStyle
@@ -258,7 +258,7 @@ const (
 	AVRoutePickerViewButtonStyleSystem AVRoutePickerViewButtonStyle = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVVideoFrameAnalysisType (6 cases) */
+
 // AVVideoFrameAnalysisType - Constants that define the types of analysis a player view controller may perform on a paused video frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVVideoFrameAnalysisType

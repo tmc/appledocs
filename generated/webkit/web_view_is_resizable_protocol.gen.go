@@ -15,3 +15,4 @@ var webViewIsResizableProtocol *objc.Protocol
 func init() {
 	webViewIsResizableProtocol = objc.GetProtocol("webViewIsResizable:")
 }
+

@@ -15,26 +15,26 @@ func TestLookupTypeMapping(t *testing.T) {
 		want      string
 		wantFound bool
 	}{
-		// Foundation geometry types (unqualified)
+		// Foundation geometry types (cross-framework reference to CoreFoundation)
 		{
 			name:      "NSRect in Foundation",
 			objcType:  "NSRect",
 			framework: "Foundation",
-			want:      "Rect",
+			want:      "corefoundation.CGRect", // NSRect is CGRect from CoreFoundation
 			wantFound: true,
 		},
 		{
 			name:      "NSSize in Foundation",
 			objcType:  "NSSize",
 			framework: "Foundation",
-			want:      "Size",
+			want:      "corefoundation.CGSize", // NSSize is CGSize from CoreFoundation
 			wantFound: true,
 		},
 		{
 			name:      "NSPoint in Foundation",
 			objcType:  "NSPoint",
 			framework: "Foundation",
-			want:      "Point",
+			want:      "corefoundation.CGPoint", // NSPoint is CGPoint from CoreFoundation
 			wantFound: true,
 		},
 		// CoreGraphics types in CoreGraphics (unqualified)
@@ -59,12 +59,12 @@ func TestLookupTypeMapping(t *testing.T) {
 			want:      "Point", // Uses local alias in CoreGraphics
 			wantFound: true,
 		},
-		// AppKit geometry types (qualified with corefoundation where they're defined)
+		// AppKit geometry types (cross-framework reference to CoreFoundation)
 		{
 			name:      "NSRect in AppKit",
 			objcType:  "NSRect",
 			framework: "AppKit",
-			want:      "Rect", // NSRect is stripped to Rect
+			want:      "corefoundation.CGRect", // NSRect is CGRect from CoreFoundation
 			wantFound: true,
 		},
 		{
@@ -86,7 +86,7 @@ func TestLookupTypeMapping(t *testing.T) {
 			name:      "NSRect in ScreenSaver",
 			objcType:  "NSRect",
 			framework: "ScreenSaver",
-			want:      "Rect", // NSRect stripped to Rect
+			want:      "corefoundation.CGRect", // NSRect → corefoundation.CGRect
 			wantFound: true,
 		},
 		{
@@ -234,7 +234,7 @@ func TestLookupTypeMapping(t *testing.T) {
 
 // TestLookupTypeMappingPrecedence tests that framework-specific mappings take precedence
 func TestLookupTypeMappingPrecedence(t *testing.T) {
-	// NSRect should map the same in Foundation and AppKit (both strip to "Rect")
+	// NSRect should map the same in Foundation and AppKit (both to corefoundation.CGRect)
 	foundationType, foundFoundation := lookupTypeMapping("NSRect", "Foundation")
 	appKitType, foundAppKit := lookupTypeMapping("NSRect", "AppKit")
 
@@ -242,13 +242,13 @@ func TestLookupTypeMappingPrecedence(t *testing.T) {
 		t.Fatal("NSRect should be found in both Foundation and AppKit")
 	}
 
-	// Both should map to "Rect" (stripped)
-	if foundationType != "Rect" {
-		t.Errorf("NSRect in Foundation should be 'Rect', got %q", foundationType)
+	// Both should map to "corefoundation.CGRect" (cross-framework reference)
+	if foundationType != "corefoundation.CGRect" {
+		t.Errorf("NSRect in Foundation should be 'corefoundation.CGRect', got %q", foundationType)
 	}
 
-	if appKitType != "Rect" {
-		t.Errorf("NSRect in AppKit should be 'Rect', got %q", appKitType)
+	if appKitType != "corefoundation.CGRect" {
+		t.Errorf("NSRect in AppKit should be 'corefoundation.CGRect', got %q", appKitType)
 	}
 }
 

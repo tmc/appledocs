@@ -19,3 +19,4 @@ var ScriptMessageHandlerProtocol *objc.Protocol
 func init() {
 	ScriptMessageHandlerProtocol = objc.GetProtocol("WKScriptMessageHandler")
 }
+

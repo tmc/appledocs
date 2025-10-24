@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class map */
 
 
-/* debug [class_header]: Header for map */
+
+
 // The class instance for the [Map] class.
 var (
 	MapClass     _MapClass
@@ -30,30 +30,30 @@ func getMapClass() _MapClass {
 type _MapClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for Map */
+
+
 // An interface definition for the [Map] class.
 type IMap interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for Map */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for Map */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for Map */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MapClass) Alloc() Map {
 	rv := objc.Send[Map](objc.ID(mc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (m_ Map) Autorelease() Map {
 func NewMap() Map {
 	return getMapClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for Map */
+
+
 
 
 // [Full Topic]
@@ -100,34 +100,34 @@ type Map struct {
 func MapFrom(ptr unsafe.Pointer) Map {
 	return Map{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for Map *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for Map */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for Map */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for Map */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for Map */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class map */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

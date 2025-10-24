@@ -95,13 +95,33 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 					if strippedName != typeName {
 						// Register stripped name pointing to the STRIPPED type, not the original
 						// So NSCellAttribute lookup finds CellAttribute, not NSCellAttribute
-						if _, exists := crossFrameworkTypeRegistry[strippedName]; !exists {
-							crossFrameworkTypeRegistry[strippedName] = frameworkPkg
-							Debug.TypeMap("registry: added stripped type", strippedName, typeName,
+						//
+						// EXCEPTION: Don't register stripped names for CoreGraphics geometry types
+						// (Point, Size, Rect, AffineTransform) because these conflict with the actual
+						// Apple type names (CGPoint, CGSize, CGRect, CGAffineTransform).
+						// NSPoint/NSSize/NSRect are Foundation typedefs for the CG types, so we need
+						// the full "CG" prefix to be preserved.
+						geometryTypes := map[string]bool{
+							"Point":           true,
+							"Size":            true,
+							"Rect":            true,
+							"AffineTransform": true,
+						}
+						if !geometryTypes[strippedName] {
+							if _, exists := crossFrameworkTypeRegistry[strippedName]; !exists {
+								crossFrameworkTypeRegistry[strippedName] = frameworkPkg
+								Debug.TypeMap("registry: added stripped type", strippedName, typeName,
+									"strippedName", strippedName,
+									"originalName", typeName,
+									"framework", frameworkPkg,
+									"file", filepath.Base(genFile))
+							}
+						} else {
+							Debug.TypeMap("registry: SKIPPED stripped geometry type", strippedName, typeName,
 								"strippedName", strippedName,
 								"originalName", typeName,
 								"framework", frameworkPkg,
-								"file", filepath.Base(genFile))
+								"reason", "geometry type")
 						}
 					}
 				}

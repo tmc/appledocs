@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSImageDivide */
 
 
-/* debug [class_header]: Header for MPSImageDivide */
+
+
 // The class instance for the [ImageDivide] class.
 var (
 	ImageDivideClass     _ImageDivideClass
@@ -30,30 +30,30 @@ func getImageDivideClass() _ImageDivideClass {
 type _ImageDivideClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ImageDivide */
+
+
 // An interface definition for the [ImageDivide] class.
 type IImageDivide interface {
 	IImageArithmetic
 	
-/* debug [class_interface_properties]: Properties for ImageDivide */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ImageDivide */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ImageDivide */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageDivideClass) Alloc() ImageDivide {
 	rv := objc.Send[ImageDivide](objc.ID(ic.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (i_ ImageDivide) Autorelease() ImageDivide {
 func NewImageDivide() ImageDivide {
 	return getImageDivideClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ImageDivide */
+
+
 // A filter that returns the element-wise quotient of its two input images.
 
 
@@ -107,11 +107,11 @@ func ImageDivideFrom(ptr unsafe.Pointer) ImageDivide {
 		ImageArithmetic: ImageArithmeticFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ImageDivide */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedivide/2866606-initwithdevice
@@ -120,31 +120,31 @@ func NewImageDivideWithDevice(device unsafe.Pointer) ImageDivide {
 	rv := objc.Send[ImageDivide](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageDivideWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ImageDivide */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ImageDivide */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ImageDivide */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ImageDivide */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSImageDivide */
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -19,3 +19,4 @@ var webViewWebContentProcessDidTerminateProtocol *objc.Protocol
 func init() {
 	webViewWebContentProcessDidTerminateProtocol = objc.GetProtocol("webViewWebContentProcessDidTerminate:")
 }
+

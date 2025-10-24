@@ -17,7 +17,7 @@ import (
 // See: doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureFileOutputDelegate
 type PCaptureFileOutputDelegate interface {
 	// Required methods
-	CaptureOutputShouldProvideSampleAccurateRecordingStart(output IAVCaptureOutput) bool/* debug [protocol_interface/required_method]: CaptureOutputShouldProvideSampleAccurateRecordingStart */
+	CaptureOutputShouldProvideSampleAccurateRecordingStart(output IAVCaptureOutput) bool
 	// Optional methods
 	CaptureOutputDidOutputSampleBufferFromConnection(output IAVCaptureFileOutput, sampleBuffer SampleBufferRef /* not a class type */, connection IAVCaptureConnection)
 	HasCaptureOutputDidOutputSampleBufferFromConnection() bool

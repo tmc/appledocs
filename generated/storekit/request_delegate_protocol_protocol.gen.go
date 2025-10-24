@@ -3,7 +3,10 @@
 package storekit
 
 import (
+
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/coretelephony"
 )
 
 // PRequestDelegate is the SKRequestDelegate protocol interface.
@@ -33,7 +36,7 @@ type PRequestDelegate interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type RequestDelegate struct {
 	_RequestDidFailWithError func(request ISKRequest, error_ objc.IObject /* cross-framework: Error */)
-	_RequestDidFinish        func(request ISKRequest)
+	_RequestDidFinish func(request ISKRequest)
 }
 
 // SetRequestDidFailWithError sets the handler for the RequestDidFailWithError delegate method.

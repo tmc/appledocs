@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNConcatenationGradientNode */
 
 
-/* debug [class_header]: Header for MPSNNConcatenationGradientNode */
+
+
 // The class instance for the [ConcatenationGradientNode] class.
 var (
 	ConcatenationGradientNodeClass     _ConcatenationGradientNodeClass
@@ -30,30 +30,30 @@ func getConcatenationGradientNodeClass() _ConcatenationGradientNodeClass {
 type _ConcatenationGradientNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ConcatenationGradientNode */
+
+
 // An interface definition for the [ConcatenationGradientNode] class.
 type IConcatenationGradientNode interface {
 	IGradientFilterNode
 	
-/* debug [class_interface_properties]: Properties for ConcatenationGradientNode */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ConcatenationGradientNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ConcatenationGradientNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _ConcatenationGradientNodeClass) Alloc() ConcatenationGradientNode {
 	rv := objc.Send[ConcatenationGradientNode](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ ConcatenationGradientNode) Autorelease() ConcatenationGradientNode {
 func NewConcatenationGradientNode() ConcatenationGradientNode {
 	return getConcatenationGradientNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ConcatenationGradientNode */
+
+
 // A representation of the results from one or more gradient kernels.
 
 
@@ -107,11 +107,11 @@ func ConcatenationGradientNodeFrom(ptr unsafe.Pointer) ConcatenationGradientNode
 		GradientFilterNode: GradientFilterNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ConcatenationGradientNode */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconcatenationgradientnode/2951934-initwithsourcegradient
@@ -120,39 +120,39 @@ func NewConcatenationGradientNodeWithSourceGradientSourceImageGradientState(grad
 	rv := objc.Send[ConcatenationGradientNode](instance.ID, objc.Sel("initWithSourceGradient:sourceImage:gradientState:"), gradientSourceNode, sourceImage, gradientState)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewConcatenationGradientNodeWithSourceGradientSourceImageGradientState */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ConcatenationGradientNode */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconcatenationgradientnode/2951948-nodewithsourcegradient
 func (cc _ConcatenationGradientNodeClass) NodeWithSourceGradientSourceImageGradientState(gradientSourceNode IImageNode, sourceImage IImageNode, gradientState IGradientStateNode) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("nodeWithSourceGradient:sourceImage:gradientState:"), gradientSourceNode, sourceImage, gradientState)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSourceGradientSourceImageGradientState) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for ConcatenationGradientNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ConcatenationGradientNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ConcatenationGradientNode */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNConcatenationGradientNode */
+
+
+
+
+
+
+
+
+
 
 

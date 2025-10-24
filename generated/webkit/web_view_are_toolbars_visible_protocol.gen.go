@@ -15,3 +15,4 @@ var webViewAreToolbarsVisibleProtocol *objc.Protocol
 func init() {
 	webViewAreToolbarsVisibleProtocol = objc.GetProtocol("webViewAreToolbarsVisible:")
 }
+

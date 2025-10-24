@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNPoolingNode */
 
 
-/* debug [class_header]: Header for MPSCNNPoolingNode */
+
+
 // The class instance for the [CNNPoolingNode] class.
 var (
 	CNNPoolingNodeClass     _CNNPoolingNodeClass
@@ -30,16 +30,16 @@ func getCNNPoolingNodeClass() _CNNPoolingNodeClass {
 type _CNNPoolingNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNPoolingNode */
+
+
 // An interface definition for the [CNNPoolingNode] class.
 type ICNNPoolingNode interface {
 	IFilterNode
 	
-/* debug [class_interface_properties]: Properties for CNNPoolingNode */
+
 	// properties:
 	KernelHeight() objectivec.IObject
 	SetKernelHeight(value objectivec.IObject)
@@ -49,19 +49,19 @@ type ICNNPoolingNode interface {
 	SetStrideInPixelsX(value objectivec.IObject)
 	StrideInPixelsY() objectivec.IObject
 	SetStrideInPixelsY(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNPoolingNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNPoolingNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNPoolingNodeClass) Alloc() CNNPoolingNode {
 	rv := objc.Send[CNNPoolingNode](objc.ID(cc.class), objc.Sel("alloc"))
@@ -91,11 +91,11 @@ func (c_ CNNPoolingNode) Autorelease() CNNPoolingNode {
 func NewCNNPoolingNode() CNNPoolingNode {
 	return getCNNPoolingNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNPoolingNode */
+
+
 // A representation of a MPS CNN pooling kernel.
 
 
@@ -115,11 +115,11 @@ func CNNPoolingNodeFrom(ptr unsafe.Pointer) CNNPoolingNode {
 		FilterNode: FilterNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNPoolingNode */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingnode/2866488-initwithsource
@@ -128,7 +128,7 @@ func NewCNNPoolingNodeWithSourceFilterSize(sourceNode IImageNode, size uint) CNN
 	rv := objc.Send[CNNPoolingNode](instance.ID, objc.Sel("initWithSource:filterSize:"), sourceNode, size)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNPoolingNodeWithSourceFilterSize */
+}
 
 
 // [Full Topic]
@@ -138,7 +138,7 @@ func NewCNNPoolingNodeWithSourceFilterSizeStride(sourceNode IImageNode, size uin
 	rv := objc.Send[CNNPoolingNode](instance.ID, objc.Sel("initWithSource:filterSize:stride:"), sourceNode, size, stride)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNPoolingNodeWithSourceFilterSizeStride */
+}
 
 
 // [Full Topic]
@@ -148,20 +148,20 @@ func NewCNNPoolingNodeWithSourceKernelWidthKernelHeightStrideInPixelsXStrideInPi
 	rv := objc.Send[CNNPoolingNode](instance.ID, objc.Sel("initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:"), sourceNode, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNPoolingNodeWithSourceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNPoolingNode */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingnode/2866508-nodewithsource
 func (cc _CNNPoolingNodeClass) NodeWithSourceFilterSize(sourceNode IImageNode, size uint) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("nodeWithSource:filterSize:"), sourceNode, size)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSourceFilterSize) */
+}
 
 
 // [Full Topic]
@@ -169,37 +169,37 @@ func (cc _CNNPoolingNodeClass) NodeWithSourceFilterSize(sourceNode IImageNode, s
 func (cc _CNNPoolingNodeClass) NodeWithSourceFilterSizeStride(sourceNode IImageNode, size uint, stride uint) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("nodeWithSource:filterSize:stride:"), sourceNode, size, stride)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSourceFilterSizeStride) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for CNNPoolingNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNPoolingNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNPoolingNode */
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingnode/2993001-kernelheight
 func (c_ CNNPoolingNode) KernelHeight() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("kernelHeight"))
 	return rv
-}/* debug [instance_properties/getter]: kernelHeight */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingnode/2993001-kernelheight
 func (c_ CNNPoolingNode) SetKernelHeight(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKernelHeight:"), value)
-}/* debug [instance_properties/setter]: kernelHeight */
+}
 
 
 // [Full Topic]
@@ -207,14 +207,14 @@ func (c_ CNNPoolingNode) SetKernelHeight(value objectivec.IObject) {
 func (c_ CNNPoolingNode) KernelWidth() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("kernelWidth"))
 	return rv
-}/* debug [instance_properties/getter]: kernelWidth */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingnode/2993002-kernelwidth
 func (c_ CNNPoolingNode) SetKernelWidth(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKernelWidth:"), value)
-}/* debug [instance_properties/setter]: kernelWidth */
+}
 
 
 // [Full Topic]
@@ -222,14 +222,14 @@ func (c_ CNNPoolingNode) SetKernelWidth(value objectivec.IObject) {
 func (c_ CNNPoolingNode) StrideInPixelsX() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("strideInPixelsX"))
 	return rv
-}/* debug [instance_properties/getter]: strideInPixelsX */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingnode/2993003-strideinpixelsx
 func (c_ CNNPoolingNode) SetStrideInPixelsX(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStrideInPixelsX:"), value)
-}/* debug [instance_properties/setter]: strideInPixelsX */
+}
 
 
 // [Full Topic]
@@ -237,18 +237,18 @@ func (c_ CNNPoolingNode) SetStrideInPixelsX(value objectivec.IObject) {
 func (c_ CNNPoolingNode) StrideInPixelsY() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("strideInPixelsY"))
 	return rv
-}/* debug [instance_properties/getter]: strideInPixelsY */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingnode/2993004-strideinpixelsy
 func (c_ CNNPoolingNode) SetStrideInPixelsY(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStrideInPixelsY:"), value)
-}/* debug [instance_properties/setter]: strideInPixelsY */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSCNNPoolingNode */
+
+
+
 
 

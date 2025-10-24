@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class DOMCSSMediaRule */
+
 
 /* debug [class_header]: Header for DOMCSSMediaRule */
 // The class instance for the [DOMCSSMediaRule] class.
@@ -28,27 +31,30 @@ func getDOMCSSMediaRuleClass() _DOMCSSMediaRuleClass {
 type _DOMCSSMediaRuleClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMCSSMediaRule */
 // An interface definition for the [DOMCSSMediaRule] class.
 type IDOMCSSMediaRule interface {
 	IDOMCSSRule
-
-	/* debug [class_interface_properties]: Properties for DOMCSSMediaRule */
+	
+/* debug [class_interface_properties]: Properties for DOMCSSMediaRule */
 	// properties:
 	CssRules() IDOMCSSRuleList
 	Media() IDOMMediaList
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMCSSMediaRule */
+	
+/* debug [class_interface_methods]: Methods for DOMCSSMediaRule */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMCSSMediaRule */
 // Alloc allocates a new instance without initialization.
@@ -80,10 +86,12 @@ func (d_ DOMCSSMediaRule) Autorelease() DOMCSSMediaRule {
 func NewDOMCSSMediaRule() DOMCSSMediaRule {
 	return getDOMCSSMediaRuleClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMCSSMediaRule */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMCSSMediaRule
@@ -97,19 +105,28 @@ func DOMCSSMediaRuleFrom(ptr unsafe.Pointer) DOMCSSMediaRule {
 		DOMCSSRule: DOMCSSRuleFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMCSSMediaRule */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMCSSMediaRule *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMCSSMediaRule */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMCSSMediaRule */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMCSSMediaRule */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMCSSMediaRule */
 
@@ -118,15 +135,20 @@ func DOMCSSMediaRuleFrom(ptr unsafe.Pointer) DOMCSSMediaRule {
 func (d_ DOMCSSMediaRule) CssRules() IDOMCSSRuleList {
 	rv := objc.Send[DOMCSSRuleList](d_.ID, objc.Sel("cssRules"))
 	return rv
-} /* debug [instance_properties/getter]: cssRules */
+}/* debug [instance_properties/getter]: cssRules */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMCSSMediaRule/media
 func (d_ DOMCSSMediaRule) Media() IDOMMediaList {
 	rv := objc.Send[DOMMediaList](d_.ID, objc.Sel("media"))
 	return rv
-} /* debug [instance_properties/getter]: media */
+}/* debug [instance_properties/getter]: media */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMCSSMediaRule */
+
+
+

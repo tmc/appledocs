@@ -6,11 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZLinuxBootLoader */
+
 
 /* debug [class_header]: Header for VZLinuxBootLoader */
 // The class instance for the [VZLinuxBootLoader] class.
@@ -29,15 +31,16 @@ func getVZLinuxBootLoaderClass() _VZLinuxBootLoaderClass {
 type _VZLinuxBootLoaderClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZLinuxBootLoader */
 // An interface definition for the [VZLinuxBootLoader] class.
 type IVZLinuxBootLoader interface {
 	IVZBootLoader
-
-	/* debug [class_interface_properties]: Properties for VZLinuxBootLoader */
+	
+/* debug [class_interface_properties]: Properties for VZLinuxBootLoader */
 	// properties:
 	CommandLine() objc.IObject /* cross-framework: NSString */
 	SetCommandLine(value objc.IObject /* cross-framework: NSString */)
@@ -47,15 +50,17 @@ type IVZLinuxBootLoader interface {
 	SetKernelURL(value objc.IObject /* cross-framework: NSURL */)
 	BootLoader() IVZBootLoader
 	SetBootLoader(value IVZBootLoader)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZLinuxBootLoader */
+	
+/* debug [class_interface_methods]: Methods for VZLinuxBootLoader */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZLinuxBootLoader */
 // Alloc allocates a new instance without initialization.
@@ -87,13 +92,15 @@ func (v_ VZLinuxBootLoader) Autorelease() VZLinuxBootLoader {
 func NewVZLinuxBootLoader() VZLinuxBootLoader {
 	return getVZLinuxBootLoaderClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZLinuxBootLoader */
 // An object that loads and configures a Linux kernel as the guest system of your VM.
 //
 // Create and configure a object during the initial configuration of your VM. Use this object to specify the location of the Linux kernel that serves as the guest operating system. You can also specify additional information to use during the boot process, such as command-line parameters to pass to the kernel. Assign the object to the property of your object.  A configuration with   is only valid if used with  .
+
 
 // An object that loads and configures a Linux kernel as the guest system of your VM.
 //
@@ -111,8 +118,9 @@ func VZLinuxBootLoaderFrom(ptr unsafe.Pointer) VZLinuxBootLoader {
 		VZBootLoader: VZBootLoaderFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZLinuxBootLoader */
 
@@ -125,18 +133,26 @@ func NewVZLinuxBootLoaderWithKernelURL(kernelURL objc.IObject /* cross-framework
 	rv := objc.Send[VZLinuxBootLoader](instance.ID, objc.Sel("initWithKernelURL:"), kernelURL)
 	rv.Autorelease()
 	return rv
-} /* debug [class_init_methods/constructor]: NewVZLinuxBootLoaderWithKernelURL */
+}/* debug [class_init_methods/constructor]: NewVZLinuxBootLoaderWithKernelURL */
 
 /* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZLinuxBootLoader */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZLinuxBootLoader */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZLinuxBootLoader */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZLinuxBootLoader */
 
@@ -147,7 +163,8 @@ func NewVZLinuxBootLoaderWithKernelURL(kernelURL objc.IObject /* cross-framework
 func (v_ VZLinuxBootLoader) CommandLine() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("commandLine"))
 	return rv
-} /* debug [instance_properties/getter]: commandLine */
+}/* debug [instance_properties/getter]: commandLine */
+
 
 // The command-line parameters to pass to the Linux kernel at boot time.
 //
@@ -155,7 +172,8 @@ func (v_ VZLinuxBootLoader) CommandLine() objc.IObject /* cross-framework: NSStr
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/commandLine
 func (v_ VZLinuxBootLoader) SetCommandLine(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCommandLine:"), value)
-} /* debug [instance_properties/setter]: commandLine */
+}/* debug [instance_properties/setter]: commandLine */
+
 
 // The location of an optional RAM disk, which the boot loader maps into memory before it boots the Linux kernel.
 //
@@ -164,7 +182,8 @@ func (v_ VZLinuxBootLoader) SetCommandLine(value objc.IObject /* cross-framework
 func (v_ VZLinuxBootLoader) InitialRamdiskURL() objc.IObject /* cross-framework: NSURL */ {
 	rv := objc.Send[foundation.NSURL](v_.ID, objc.Sel("initialRamdiskURL"))
 	return rv
-} /* debug [instance_properties/getter]: initialRamdiskURL */
+}/* debug [instance_properties/getter]: initialRamdiskURL */
+
 
 // The location of an optional RAM disk, which the boot loader maps into memory before it boots the Linux kernel.
 //
@@ -172,7 +191,8 @@ func (v_ VZLinuxBootLoader) InitialRamdiskURL() objc.IObject /* cross-framework:
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/initialRamdiskURL
 func (v_ VZLinuxBootLoader) SetInitialRamdiskURL(value objc.IObject /* cross-framework: NSURL */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setInitialRamdiskURL:"), value)
-} /* debug [instance_properties/setter]: initialRamdiskURL */
+}/* debug [instance_properties/setter]: initialRamdiskURL */
+
 
 // The URL of the Linux kernel file.
 //
@@ -181,7 +201,8 @@ func (v_ VZLinuxBootLoader) SetInitialRamdiskURL(value objc.IObject /* cross-fra
 func (v_ VZLinuxBootLoader) KernelURL() objc.IObject /* cross-framework: NSURL */ {
 	rv := objc.Send[foundation.NSURL](v_.ID, objc.Sel("kernelURL"))
 	return rv
-} /* debug [instance_properties/getter]: kernelURL */
+}/* debug [instance_properties/getter]: kernelURL */
+
 
 // The URL of the Linux kernel file.
 //
@@ -189,7 +210,8 @@ func (v_ VZLinuxBootLoader) KernelURL() objc.IObject /* cross-framework: NSURL *
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/kernelURL
 func (v_ VZLinuxBootLoader) SetKernelURL(value objc.IObject /* cross-framework: NSURL */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setKernelURL:"), value)
-} /* debug [instance_properties/setter]: kernelURL */
+}/* debug [instance_properties/setter]: kernelURL */
+
 
 // The guest system to boot when the VM starts.
 //
@@ -198,7 +220,8 @@ func (v_ VZLinuxBootLoader) SetKernelURL(value objc.IObject /* cross-framework: 
 func (v_ VZLinuxBootLoader) BootLoader() IVZBootLoader {
 	rv := objc.Send[VZBootLoader](v_.ID, objc.Sel("bootLoader"))
 	return rv
-} /* debug [instance_properties/getter]: bootLoader */
+}/* debug [instance_properties/getter]: bootLoader */
+
 
 // The guest system to boot when the VM starts.
 //
@@ -206,8 +229,11 @@ func (v_ VZLinuxBootLoader) BootLoader() IVZBootLoader {
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/bootloader
 func (v_ VZLinuxBootLoader) SetBootLoader(value IVZBootLoader) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setBootLoader:"), value)
-} /* debug [instance_properties/setter]: bootLoader */
+}/* debug [instance_properties/setter]: bootLoader */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZLinuxBootLoader */
+
+

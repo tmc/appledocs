@@ -9,7 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	DataType = _undefined // referenced in MetalPerformanceShadersGraph
 	GraphCallableMap = _undefined // referenced in MetalPerformanceShadersGraph
 	GraphCompilationCompletionHandler = _undefined // referenced in MetalPerformanceShadersGraph
 	GraphCompletionHandler = _undefined // referenced in MetalPerformanceShadersGraph
@@ -23,6 +22,7 @@ type (
 	GraphTensorShapedTypeDictionary = _undefined // referenced in MetalPerformanceShadersGraph
 	GraphWhileAfterBlock = _undefined // referenced in MetalPerformanceShadersGraph
 	GraphWhileBeforeBlock = _undefined // referenced in MetalPerformanceShadersGraph
+	ImageBatch = _undefined // referenced in MetalPerformanceShadersGraph
 	Shape = _undefined // referenced in MetalPerformanceShadersGraph
 )
 

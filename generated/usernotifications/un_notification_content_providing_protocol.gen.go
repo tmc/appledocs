@@ -21,3 +21,4 @@ var UNNotificationContentProvidingProtocol *objc.Protocol
 func init() {
 	UNNotificationContentProvidingProtocol = objc.GetProtocol("UNNotificationContentProviding")
 }
+

@@ -10,5 +10,5 @@ package webkit
 // See: doc://com.apple.webkit/documentation/WebKit/DOMEventListener
 type PDOMEventListener interface {
 	// Required methods
-	HandleEvent(event IDOMEvent)
+	HandleEvent(event IDOMEvent)/* debug [protocol_interface/required_method]: HandleEvent */
 }

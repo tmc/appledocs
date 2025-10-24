@@ -19,3 +19,4 @@ var frameForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	frameForWebExtensionContextProtocol = objc.GetProtocol("frameForWebExtensionContext:")
 }
+

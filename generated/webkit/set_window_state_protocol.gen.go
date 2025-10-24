@@ -19,3 +19,4 @@ var setWindowStateProtocol *objc.Protocol
 func init() {
 	setWindowStateProtocol = objc.GetProtocol("setWindowState:")
 }
+

@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZKeyboardConfiguration */
 
+
 /* debug [class_header]: Header for VZKeyboardConfiguration */
 // The class instance for the [VZKeyboardConfiguration] class.
 var (
@@ -29,25 +30,28 @@ func getVZKeyboardConfigurationClass() _VZKeyboardConfigurationClass {
 type _VZKeyboardConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZKeyboardConfiguration */
 // An interface definition for the [VZKeyboardConfiguration] class.
 type IVZKeyboardConfiguration interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZKeyboardConfiguration */
+	
+/* debug [class_interface_properties]: Properties for VZKeyboardConfiguration */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZKeyboardConfiguration */
+	
+/* debug [class_interface_methods]: Methods for VZKeyboardConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZKeyboardConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -79,13 +83,15 @@ func (v_ VZKeyboardConfiguration) Autorelease() VZKeyboardConfiguration {
 func NewVZKeyboardConfiguration() VZKeyboardConfiguration {
 	return getVZKeyboardConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZKeyboardConfiguration */
 // The base class for a configuring a keyboard.
 //
 // defines the abstract interface that defines a virtual keyboard that you connect to a guest operating system. Don’t instantiate directly, use one of its subclasses such as instead.
+
 
 // The base class for a configuring a keyboard.
 //
@@ -101,21 +107,34 @@ type VZKeyboardConfiguration struct {
 func VZKeyboardConfigurationFrom(ptr unsafe.Pointer) VZKeyboardConfiguration {
 	return VZKeyboardConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZKeyboardConfiguration */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZKeyboardConfiguration *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZKeyboardConfiguration */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZKeyboardConfiguration */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZKeyboardConfiguration */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for VZKeyboardConfiguration */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZKeyboardConfiguration */
+
+
+

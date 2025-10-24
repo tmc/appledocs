@@ -3,6 +3,7 @@
 package storekit
 
 import (
+
 	"github.com/tmc/appledocs/generated/objc"
 )
 
@@ -33,7 +34,7 @@ type PPaymentQueueDelegate interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type PaymentQueueDelegate struct {
 	_PaymentQueueShouldContinueTransactionInStorefront func(paymentQueue ISKPaymentQueue, transaction ISKPaymentTransaction, newStorefront objc.IObject /* cross-framework: Storefront */) bool
-	_PaymentQueueShouldShowPriceConsent                func(paymentQueue ISKPaymentQueue) bool
+	_PaymentQueueShouldShowPriceConsent func(paymentQueue ISKPaymentQueue) bool
 }
 
 // SetPaymentQueueShouldContinueTransactionInStorefront sets the handler for the PaymentQueueShouldContinueTransactionInStorefront delegate method.

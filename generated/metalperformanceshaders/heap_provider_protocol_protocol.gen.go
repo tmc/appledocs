@@ -21,9 +21,9 @@ import (
 // See: doc://com.apple.metalperformanceshaders/documentation/MetalPerformanceShaders/MPSHeapProvider
 type PHeapProvider interface {
 	// Required methods
-	NewHeap()/* debug [protocol_interface/required_method]: NewHeap */
-	NewHeapWithDescriptor(descriptor metal.HeapDescriptor) unsafe.Pointer/* debug [protocol_interface/required_method]: NewHeapWithDescriptor */
-	RetireHeapCacheDelay(heap unsafe.Pointer, seconds float64)/* debug [protocol_interface/required_method]: RetireHeapCacheDelay */
+	NewHeap()
+	NewHeapWithDescriptor(descriptor metal.HeapDescriptor) unsafe.Pointer
+	RetireHeapCacheDelay(heap unsafe.Pointer, seconds float64)
 	// Optional methods
 	Retire()
 	HasRetire() bool

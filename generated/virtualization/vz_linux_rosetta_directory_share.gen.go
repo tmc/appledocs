@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZLinuxRosettaDirectoryShare */
+
 
 /* debug [class_header]: Header for VZLinuxRosettaDirectoryShare */
 // The class instance for the [VZLinuxRosettaDirectoryShare] class.
@@ -28,29 +30,32 @@ func getVZLinuxRosettaDirectoryShareClass() _VZLinuxRosettaDirectoryShareClass {
 type _VZLinuxRosettaDirectoryShareClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZLinuxRosettaDirectoryShare */
 // An interface definition for the [VZLinuxRosettaDirectoryShare] class.
 type IVZLinuxRosettaDirectoryShare interface {
 	IVZDirectoryShare
-
-	/* debug [class_interface_properties]: Properties for VZLinuxRosettaDirectoryShare */
+	
+/* debug [class_interface_properties]: Properties for VZLinuxRosettaDirectoryShare */
 	// properties:
 	Options() IVZLinuxRosettaCachingOptions
 	SetOptions(value IVZLinuxRosettaCachingOptions)
-	CachingOptions() unsafe.Pointer
-	SetCachingOptions(value unsafe.Pointer)
-	/* debug [class_interface_properties]: End properties */
+	CachingOptions() objectivec.IObject
+	SetCachingOptions(value objectivec.IObject)
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZLinuxRosettaDirectoryShare */
+	
+/* debug [class_interface_methods]: Methods for VZLinuxRosettaDirectoryShare */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZLinuxRosettaDirectoryShare */
 // Alloc allocates a new instance without initialization.
@@ -82,13 +87,15 @@ func (v_ VZLinuxRosettaDirectoryShare) Autorelease() VZLinuxRosettaDirectoryShar
 func NewVZLinuxRosettaDirectoryShare() VZLinuxRosettaDirectoryShare {
 	return getVZLinuxRosettaDirectoryShareClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZLinuxRosettaDirectoryShare */
 // The Linux directory share for Rosetta.
 //
 // This directory share exposes the Rosetta directory from the host file system to the guest. The example below shows the process of creating a , and then associating the Rosetta directory share with the VM configuration. For complete instructions on installing Rosetta see , which includes additional information about checking for Rosetta availability, mounting the directory share, and registering the Rosetta runtime binary to run Intel binaries in a guest VM. For information on using a custom kernel to enhance Rosetta performance, see .
+
 
 // The Linux directory share for Rosetta.
 //
@@ -106,8 +113,9 @@ func VZLinuxRosettaDirectoryShareFrom(ptr unsafe.Pointer) VZLinuxRosettaDirector
 		VZDirectoryShare: VZDirectoryShareFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZLinuxRosettaDirectoryShare */
 
@@ -115,14 +123,16 @@ func VZLinuxRosettaDirectoryShareFrom(ptr unsafe.Pointer) VZLinuxRosettaDirector
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/init()
-func NewVZLinuxRosettaDirectoryShareWithError(error_ unsafe.Pointer) VZLinuxRosettaDirectoryShare {
+func NewVZLinuxRosettaDirectoryShareWithError(error_ objectivec.IObject) VZLinuxRosettaDirectoryShare {
 	instance := getVZLinuxRosettaDirectoryShareClass().Alloc()
 	rv := objc.Send[VZLinuxRosettaDirectoryShare](instance.ID, objc.Sel("initWithError:"), error_)
 	rv.Autorelease()
 	return rv
-} /* debug [class_init_methods/constructor]: NewVZLinuxRosettaDirectoryShareWithError */
+}/* debug [class_init_methods/constructor]: NewVZLinuxRosettaDirectoryShareWithError */
 
 /* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZLinuxRosettaDirectoryShare */
 
@@ -132,9 +142,11 @@ func NewVZLinuxRosettaDirectoryShareWithError(error_ unsafe.Pointer) VZLinuxRose
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/installRosetta(completionHandler:)
 func (vc _VZLinuxRosettaDirectoryShareClass) InstallRosettaWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(vc.class), objc.Sel("installRosettaWithCompletionHandler:"), completionHandler)
-} /* debug [class_methods/method]: Class method for%!(EXTRA string=InstallRosettaWithCompletionHandler) */
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=InstallRosettaWithCompletionHandler) */
 
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZLinuxRosettaDirectoryShare */
 
@@ -145,11 +157,15 @@ func (vc _VZLinuxRosettaDirectoryShareClass) InstallRosettaWithCompletionHandler
 func (vc _VZLinuxRosettaDirectoryShareClass) Availability() VZLinuxRosettaAvailability {
 	rv := objc.Send[VZLinuxRosettaAvailability](objc.ID(vc.class), objc.Sel("availability"))
 	return rv
-} /* debug [class_properties_class/property]: availability */
+}/* debug [class_properties_class/property]: availability */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZLinuxRosettaDirectoryShare */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZLinuxRosettaDirectoryShare */
 
@@ -160,7 +176,8 @@ func (vc _VZLinuxRosettaDirectoryShareClass) Availability() VZLinuxRosettaAvaila
 func (v_ VZLinuxRosettaDirectoryShare) Availability() VZLinuxRosettaAvailability {
 	rv := objc.Send[VZLinuxRosettaAvailability](v_.ID, objc.Sel("availability"))
 	return rv
-} /* debug [instance_properties/getter]: availability */
+}/* debug [instance_properties/getter]: availability */
+
 
 // The value that enables translation caching and configures the socket communication type for Rosetta.
 //
@@ -169,7 +186,8 @@ func (v_ VZLinuxRosettaDirectoryShare) Availability() VZLinuxRosettaAvailability
 func (v_ VZLinuxRosettaDirectoryShare) Options() IVZLinuxRosettaCachingOptions {
 	rv := objc.Send[VZLinuxRosettaCachingOptions](v_.ID, objc.Sel("options"))
 	return rv
-} /* debug [instance_properties/getter]: options */
+}/* debug [instance_properties/getter]: options */
+
 
 // The value that enables translation caching and configures the socket communication type for Rosetta.
 //
@@ -177,25 +195,30 @@ func (v_ VZLinuxRosettaDirectoryShare) Options() IVZLinuxRosettaCachingOptions {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/options
 func (v_ VZLinuxRosettaDirectoryShare) SetOptions(value IVZLinuxRosettaCachingOptions) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setOptions:"), value)
-} /* debug [instance_properties/setter]: options */
+}/* debug [instance_properties/setter]: options */
+
 
 // The value that enables translation caching and configures the socket communication type for Rosetta.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzlinuxrosettadirectoryshare/cachingoptions-swift.property
-func (v_ VZLinuxRosettaDirectoryShare) CachingOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("cachingOptions"))
+func (v_ VZLinuxRosettaDirectoryShare) CachingOptions() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](v_.ID, objc.Sel("cachingOptions"))
 	return rv
-} /* debug [instance_properties/getter]: cachingOptions */
+}/* debug [instance_properties/getter]: cachingOptions */
+
 
 // The value that enables translation caching and configures the socket communication type for Rosetta.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzlinuxrosettadirectoryshare/cachingoptions-swift.property
-func (v_ VZLinuxRosettaDirectoryShare) SetCachingOptions(value unsafe.Pointer) {
+func (v_ VZLinuxRosettaDirectoryShare) SetCachingOptions(value objectivec.IObject) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCachingOptions:"), value)
-} /* debug [instance_properties/setter]: cachingOptions */
+}/* debug [instance_properties/setter]: cachingOptions */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZLinuxRosettaDirectoryShare */
+
+

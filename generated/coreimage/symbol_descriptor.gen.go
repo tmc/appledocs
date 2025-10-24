@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class symbolDescriptor */
 
 
-/* debug [class_header]: Header for symbolDescriptor */
+
+
 // The class instance for the [symbolDescriptor] class.
 var (
 	SymbolDescriptorClass     _symbolDescriptorClass
@@ -30,30 +30,30 @@ func getsymbolDescriptorClass() _symbolDescriptorClass {
 type _symbolDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for symbolDescriptor */
+
+
 // An interface definition for the [symbolDescriptor] class.
 type IsymbolDescriptor interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for symbolDescriptor */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for symbolDescriptor */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for symbolDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (sc _symbolDescriptorClass) Alloc() symbolDescriptor {
 	rv := objc.Send[symbolDescriptor](objc.ID(sc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (s_ symbolDescriptor) Autorelease() symbolDescriptor {
 func NewsymbolDescriptor() symbolDescriptor {
 	return getsymbolDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for symbolDescriptor */
+
+
 
 
 // [Full Topic]
@@ -100,34 +100,34 @@ type symbolDescriptor struct {
 func symbolDescriptorFrom(ptr unsafe.Pointer) symbolDescriptor {
 	return symbolDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for symbolDescriptor *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for symbolDescriptor */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for symbolDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for symbolDescriptor */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for symbolDescriptor */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class symbolDescriptor */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -19,7 +19,7 @@ import (
 // See: doc://com.apple.avkit/documentation/AVKit/AVCaptureViewDelegate
 type PCaptureViewDelegate interface {
 	// Required methods
-	CaptureViewStartRecordingToFileOutput(captureView IAVCaptureView, fileOutput avfoundation.CaptureFileOutput)/* debug [protocol_interface/required_method]: CaptureViewStartRecordingToFileOutput */
+	CaptureViewStartRecordingToFileOutput(captureView IAVCaptureView, fileOutput avfoundation.CaptureFileOutput)
 }
 
 // CaptureViewDelegate is a delegate implementation builder for the PCaptureViewDelegate protocol.

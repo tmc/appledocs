@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MPSImageLaplacianPyramidSubtract */
 
 
-/* debug [class_header]: Header for MPSImageLaplacianPyramidSubtract */
+
+
 // The class instance for the [ImageLaplacianPyramidSubtract] class.
 var (
 	ImageLaplacianPyramidSubtractClass     _ImageLaplacianPyramidSubtractClass
@@ -29,30 +29,30 @@ func getImageLaplacianPyramidSubtractClass() _ImageLaplacianPyramidSubtractClass
 type _ImageLaplacianPyramidSubtractClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ImageLaplacianPyramidSubtract */
+
+
 // An interface definition for the [ImageLaplacianPyramidSubtract] class.
 type IImageLaplacianPyramidSubtract interface {
 	IImageLaplacianPyramid
 	
-/* debug [class_interface_properties]: Properties for ImageLaplacianPyramidSubtract */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ImageLaplacianPyramidSubtract */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ImageLaplacianPyramidSubtract */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageLaplacianPyramidSubtractClass) Alloc() ImageLaplacianPyramidSubtract {
 	rv := objc.Send[ImageLaplacianPyramidSubtract](objc.ID(ic.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (i_ ImageLaplacianPyramidSubtract) Autorelease() ImageLaplacianPyramidSubtr
 func NewImageLaplacianPyramidSubtract() ImageLaplacianPyramidSubtract {
 	return getImageLaplacianPyramidSubtractClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ImageLaplacianPyramidSubtract */
+
+
 // A filter that convolves an image with a subtractive Laplacian pyramid.
 
 
@@ -106,34 +106,34 @@ func ImageLaplacianPyramidSubtractFrom(ptr unsafe.Pointer) ImageLaplacianPyramid
 		ImageLaplacianPyramid: ImageLaplacianPyramidFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ImageLaplacianPyramidSubtract *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ImageLaplacianPyramidSubtract */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ImageLaplacianPyramidSubtract */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ImageLaplacianPyramidSubtract */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ImageLaplacianPyramidSubtract */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSImageLaplacianPyramidSubtract */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -19,3 +19,4 @@ var closeForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	closeForWebExtensionContextProtocol = objc.GetProtocol("closeForWebExtensionContext:")
 }
+

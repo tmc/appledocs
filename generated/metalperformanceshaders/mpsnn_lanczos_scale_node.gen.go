@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNLanczosScaleNode */
 
 
-/* debug [class_header]: Header for MPSNNLanczosScaleNode */
+
+
 // The class instance for the [LanczosScaleNode] class.
 var (
 	LanczosScaleNodeClass     _LanczosScaleNodeClass
@@ -29,30 +29,30 @@ func getLanczosScaleNodeClass() _LanczosScaleNodeClass {
 type _LanczosScaleNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for LanczosScaleNode */
+
+
 // An interface definition for the [LanczosScaleNode] class.
 type ILanczosScaleNode interface {
 	IScaleNode
 	
-/* debug [class_interface_properties]: Properties for LanczosScaleNode */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for LanczosScaleNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for LanczosScaleNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (lc _LanczosScaleNodeClass) Alloc() LanczosScaleNode {
 	rv := objc.Send[LanczosScaleNode](objc.ID(lc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (l_ LanczosScaleNode) Autorelease() LanczosScaleNode {
 func NewLanczosScaleNode() LanczosScaleNode {
 	return getLanczosScaleNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for LanczosScaleNode */
+
+
 // A representation of a Lanczos resampling filter.
 
 
@@ -106,34 +106,34 @@ func LanczosScaleNodeFrom(ptr unsafe.Pointer) LanczosScaleNode {
 		ScaleNode: ScaleNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for LanczosScaleNode *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for LanczosScaleNode */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for LanczosScaleNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for LanczosScaleNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for LanczosScaleNode */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNLanczosScaleNode */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

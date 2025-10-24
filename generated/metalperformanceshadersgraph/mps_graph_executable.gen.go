@@ -7,8 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/metalperformanceshaders"
 )
 
 /* debug [class.gen.go]: Generating class MPSGraphExecutable */
@@ -51,7 +49,7 @@ type IGraphExecutable interface {
 	
 /* debug [class_interface_methods]: Methods for GraphExecutable */
 	// methods:
-	EncodeToCommandBufferInputsArrayResultsArrayExecutionDescriptor(commandBuffer metalperformanceshaders.CommandBuffer, inputsArray []GraphTensorData, resultsArray []GraphTensorData, executionDescriptor IMPSGraphExecutableExecutionDescriptor) []GraphTensorData
+	EncodeToCommandBufferInputsArrayResultsArrayExecutionDescriptor(commandBuffer objc.IObject /* cross-framework: MPSCommandBuffer */, inputsArray []GraphTensorData, resultsArray []GraphTensorData, executionDescriptor IMPSGraphExecutableExecutionDescriptor) []GraphTensorData
 	GetOutputTypesWithDeviceInputTypesCompilationDescriptor(device IMPSGraphDevice, inputTypes []GraphType, compilationDescriptor IMPSGraphCompilationDescriptor) []GraphShapedType
 	RunWithMTLCommandQueueInputsArrayResultsArrayExecutionDescriptor(commandQueue unsafe.Pointer, inputsArray []GraphTensorData, resultsArray []GraphTensorData, executionDescriptor IMPSGraphExecutableExecutionDescriptor) []GraphTensorData
 	RunAsyncWithMTLCommandQueueInputsArrayResultsArrayExecutionDescriptor(commandQueue unsafe.Pointer, inputsArray []GraphTensorData, resultsArray []GraphTensorData, executionDescriptor IMPSGraphExecutableExecutionDescriptor) []GraphTensorData
@@ -169,7 +167,7 @@ func NewGraphExecutableWithMPSGraphPackageAtURLCompilationDescriptor(mpsgraphPac
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutable/encode(to:inputs:results:executionDescriptor:)
-func (g_ GraphExecutable) EncodeToCommandBufferInputsArrayResultsArrayExecutionDescriptor(commandBuffer metalperformanceshaders.CommandBuffer, inputsArray []GraphTensorData, resultsArray []GraphTensorData, executionDescriptor IMPSGraphExecutableExecutionDescriptor) []GraphTensorData {
+func (g_ GraphExecutable) EncodeToCommandBufferInputsArrayResultsArrayExecutionDescriptor(commandBuffer objc.IObject /* cross-framework: MPSCommandBuffer */, inputsArray []GraphTensorData, resultsArray []GraphTensorData, executionDescriptor IMPSGraphExecutableExecutionDescriptor) []GraphTensorData {
 	rv := objc.Send[[]GraphTensorData](g_.ID, objc.Sel("encodeToCommandBuffer:inputsArray:resultsArray:executionDescriptor:"), commandBuffer, inputsArray, resultsArray, executionDescriptor)
 	return rv
 }/* debug [instance_methods/method]: EncodeToCommandBufferInputsArrayResultsArrayExecutionDescriptor */

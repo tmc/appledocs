@@ -7,12 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
-/* debug [class.gen.go]: Generating class AVMetricHLSMediaSegmentRequestEvent */
 
 
-/* debug [class_header]: Header for AVMetricHLSMediaSegmentRequestEvent */
+
+
 // The class instance for the [MetricHLSMediaSegmentRequestEvent] class.
 var (
 	MetricHLSMediaSegmentRequestEventClass     _MetricHLSMediaSegmentRequestEventClass
@@ -29,16 +30,16 @@ func getMetricHLSMediaSegmentRequestEventClass() _MetricHLSMediaSegmentRequestEv
 type _MetricHLSMediaSegmentRequestEventClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MetricHLSMediaSegmentRequestEvent */
+
+
 // An interface definition for the [MetricHLSMediaSegmentRequestEvent] class.
 type IMetricHLSMediaSegmentRequestEvent interface {
 	IMetricEvent
 	
-/* debug [class_interface_properties]: Properties for MetricHLSMediaSegmentRequestEvent */
+
 	// properties:
 	ByteRange() corefoundation.Range
 	IndexFileURL() objc.IObject /* cross-framework: NSURL */
@@ -47,19 +48,19 @@ type IMetricHLSMediaSegmentRequestEvent interface {
 	MediaType() MediaType /* typedef */
 	SegmentDuration() float64
 	Url() objc.IObject /* cross-framework: NSURL */
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MetricHLSMediaSegmentRequestEvent */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MetricHLSMediaSegmentRequestEvent */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MetricHLSMediaSegmentRequestEventClass) Alloc() MetricHLSMediaSegmentRequestEvent {
 	rv := objc.Send[MetricHLSMediaSegmentRequestEvent](objc.ID(mc.class), objc.Sel("alloc"))
@@ -89,11 +90,11 @@ func (m_ MetricHLSMediaSegmentRequestEvent) Autorelease() MetricHLSMediaSegmentR
 func NewMetricHLSMediaSegmentRequestEvent() MetricHLSMediaSegmentRequestEvent {
 	return getMetricHLSMediaSegmentRequestEventClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MetricHLSMediaSegmentRequestEvent */
+
+
 // An event that represents a live streaming media segment resource request.
 
 
@@ -113,37 +114,37 @@ func MetricHLSMediaSegmentRequestEventFrom(ptr unsafe.Pointer) MetricHLSMediaSeg
 		MetricEvent: MetricEventFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MetricHLSMediaSegmentRequestEvent *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for MetricHLSMediaSegmentRequestEvent */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MetricHLSMediaSegmentRequestEvent */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MetricHLSMediaSegmentRequestEvent */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MetricHLSMediaSegmentRequestEvent */
+
+
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetricHLSMediaSegmentRequestEvent/byteRange
 func (m_ MetricHLSMediaSegmentRequestEvent) ByteRange() corefoundation.Range {
 	rv := objc.Send[corefoundation.Range](m_.ID, objc.Sel("byteRange"))
 	return rv
-}/* debug [instance_properties/getter]: byteRange */
+}
 
 
 // [Full Topic]
@@ -151,7 +152,7 @@ func (m_ MetricHLSMediaSegmentRequestEvent) ByteRange() corefoundation.Range {
 func (m_ MetricHLSMediaSegmentRequestEvent) IndexFileURL() objc.IObject /* cross-framework: NSURL */ {
 	rv := objc.Send[foundation.NSURL](m_.ID, objc.Sel("indexFileURL"))
 	return rv
-}/* debug [instance_properties/getter]: indexFileURL */
+}
 
 
 // [Full Topic]
@@ -159,7 +160,7 @@ func (m_ MetricHLSMediaSegmentRequestEvent) IndexFileURL() objc.IObject /* cross
 func (m_ MetricHLSMediaSegmentRequestEvent) IsMapSegment() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isMapSegment"))
 	return rv
-}/* debug [instance_properties/getter]: isMapSegment */
+}
 
 
 // [Full Topic]
@@ -167,7 +168,7 @@ func (m_ MetricHLSMediaSegmentRequestEvent) IsMapSegment() bool {
 func (m_ MetricHLSMediaSegmentRequestEvent) MediaResourceRequestEvent() IAVMetricMediaResourceRequestEvent {
 	rv := objc.Send[MetricMediaResourceRequestEvent](m_.ID, objc.Sel("mediaResourceRequestEvent"))
 	return rv
-}/* debug [instance_properties/getter]: mediaResourceRequestEvent */
+}
 
 
 // [Full Topic]
@@ -175,7 +176,7 @@ func (m_ MetricHLSMediaSegmentRequestEvent) MediaResourceRequestEvent() IAVMetri
 func (m_ MetricHLSMediaSegmentRequestEvent) MediaType() MediaType /* typedef */ {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("mediaType"))
 	return rv
-}/* debug [instance_properties/getter]: mediaType */
+}
 
 
 // Returns the duration of segment in seconds.
@@ -185,7 +186,7 @@ func (m_ MetricHLSMediaSegmentRequestEvent) MediaType() MediaType /* typedef */ 
 func (m_ MetricHLSMediaSegmentRequestEvent) SegmentDuration() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("segmentDuration"))
 	return rv
-}/* debug [instance_properties/getter]: segmentDuration */
+}
 
 
 // [Full Topic]
@@ -193,12 +194,12 @@ func (m_ MetricHLSMediaSegmentRequestEvent) SegmentDuration() float64 {
 func (m_ MetricHLSMediaSegmentRequestEvent) Url() objc.IObject /* cross-framework: NSURL */ {
 	rv := objc.Send[foundation.NSURL](m_.ID, objc.Sel("url"))
 	return rv
-}/* debug [instance_properties/getter]: url */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVMetricHLSMediaSegmentRequestEvent */
+
+
+
 
 
 

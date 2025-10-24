@@ -19,3 +19,4 @@ var setFrameProtocol *objc.Protocol
 func init() {
 	setFrameProtocol = objc.GetProtocol("setFrame:")
 }
+

@@ -11,6 +11,7 @@ import (
 
 /* debug [class.gen.go]: Generating class DOMCSSFontFaceRule */
 
+
 /* debug [class_header]: Header for DOMCSSFontFaceRule */
 // The class instance for the [DOMCSSFontFaceRule] class.
 var (
@@ -28,26 +29,29 @@ func getDOMCSSFontFaceRuleClass() _DOMCSSFontFaceRuleClass {
 type _DOMCSSFontFaceRuleClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMCSSFontFaceRule */
 // An interface definition for the [DOMCSSFontFaceRule] class.
 type IDOMCSSFontFaceRule interface {
 	IDOMCSSRule
-
-	/* debug [class_interface_properties]: Properties for DOMCSSFontFaceRule */
+	
+/* debug [class_interface_properties]: Properties for DOMCSSFontFaceRule */
 	// properties:
 	Style() IDOMCSSStyleDeclaration
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMCSSFontFaceRule */
+	
+/* debug [class_interface_methods]: Methods for DOMCSSFontFaceRule */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMCSSFontFaceRule */
 // Alloc allocates a new instance without initialization.
@@ -79,10 +83,12 @@ func (d_ DOMCSSFontFaceRule) Autorelease() DOMCSSFontFaceRule {
 func NewDOMCSSFontFaceRule() DOMCSSFontFaceRule {
 	return getDOMCSSFontFaceRuleClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMCSSFontFaceRule */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMCSSFontFaceRule
@@ -96,19 +102,28 @@ func DOMCSSFontFaceRuleFrom(ptr unsafe.Pointer) DOMCSSFontFaceRule {
 		DOMCSSRule: DOMCSSRuleFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMCSSFontFaceRule */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMCSSFontFaceRule *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMCSSFontFaceRule */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMCSSFontFaceRule */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMCSSFontFaceRule */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMCSSFontFaceRule */
 
@@ -117,8 +132,12 @@ func DOMCSSFontFaceRuleFrom(ptr unsafe.Pointer) DOMCSSFontFaceRule {
 func (d_ DOMCSSFontFaceRule) Style() IDOMCSSStyleDeclaration {
 	rv := objc.Send[DOMCSSStyleDeclaration](d_.ID, objc.Sel("style"))
 	return rv
-} /* debug [instance_properties/getter]: style */
+}/* debug [instance_properties/getter]: style */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMCSSFontFaceRule */
+
+
+

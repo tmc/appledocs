@@ -6,11 +6,12 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 /* debug [class.gen.go]: Generating class DOMHTMLOptGroupElement */
+
 
 /* debug [class_header]: Header for DOMHTMLOptGroupElement */
 // The class instance for the [DOMHTMLOptGroupElement] class.
@@ -29,29 +30,32 @@ func getDOMHTMLOptGroupElementClass() _DOMHTMLOptGroupElementClass {
 type _DOMHTMLOptGroupElementClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMHTMLOptGroupElement */
 // An interface definition for the [DOMHTMLOptGroupElement] class.
 type IDOMHTMLOptGroupElement interface {
 	IDOMHTMLElement
-
-	/* debug [class_interface_properties]: Properties for DOMHTMLOptGroupElement */
+	
+/* debug [class_interface_properties]: Properties for DOMHTMLOptGroupElement */
 	// properties:
 	Disabled() bool
 	SetDisabled(value bool)
 	Label() objc.IObject /* cross-framework: NSString */
 	SetLabel(value objc.IObject /* cross-framework: NSString */)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMHTMLOptGroupElement */
+	
+/* debug [class_interface_methods]: Methods for DOMHTMLOptGroupElement */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMHTMLOptGroupElement */
 // Alloc allocates a new instance without initialization.
@@ -83,10 +87,12 @@ func (d_ DOMHTMLOptGroupElement) Autorelease() DOMHTMLOptGroupElement {
 func NewDOMHTMLOptGroupElement() DOMHTMLOptGroupElement {
 	return getDOMHTMLOptGroupElementClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMHTMLOptGroupElement */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptGroupElement
@@ -100,19 +106,28 @@ func DOMHTMLOptGroupElementFrom(ptr unsafe.Pointer) DOMHTMLOptGroupElement {
 		DOMHTMLElement: DOMHTMLElementFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMHTMLOptGroupElement */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMHTMLOptGroupElement *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMHTMLOptGroupElement */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMHTMLOptGroupElement */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMHTMLOptGroupElement */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMHTMLOptGroupElement */
 
@@ -121,27 +136,34 @@ func DOMHTMLOptGroupElementFrom(ptr unsafe.Pointer) DOMHTMLOptGroupElement {
 func (d_ DOMHTMLOptGroupElement) Disabled() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("disabled"))
 	return rv
-} /* debug [instance_properties/getter]: disabled */
+}/* debug [instance_properties/getter]: disabled */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptGroupElement/disabled
 func (d_ DOMHTMLOptGroupElement) SetDisabled(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDisabled:"), value)
-} /* debug [instance_properties/setter]: disabled */
+}/* debug [instance_properties/setter]: disabled */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptGroupElement/label
 func (d_ DOMHTMLOptGroupElement) Label() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("label"))
 	return rv
-} /* debug [instance_properties/getter]: label */
+}/* debug [instance_properties/getter]: label */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptGroupElement/label
 func (d_ DOMHTMLOptGroupElement) SetLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLabel:"), value)
-} /* debug [instance_properties/setter]: label */
+}/* debug [instance_properties/setter]: label */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMHTMLOptGroupElement */
+
+
+

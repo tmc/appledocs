@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MPSMatrixLogSoftMax */
 
 
-/* debug [class_header]: Header for MPSMatrixLogSoftMax */
+
+
 // The class instance for the [MatrixLogSoftMax] class.
 var (
 	MatrixLogSoftMaxClass     _MatrixLogSoftMaxClass
@@ -29,30 +29,30 @@ func getMatrixLogSoftMaxClass() _MatrixLogSoftMaxClass {
 type _MatrixLogSoftMaxClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MatrixLogSoftMax */
+
+
 // An interface definition for the [MatrixLogSoftMax] class.
 type IMatrixLogSoftMax interface {
 	IMatrixSoftMax
 	
-/* debug [class_interface_properties]: Properties for MatrixLogSoftMax */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MatrixLogSoftMax */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MatrixLogSoftMax */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MatrixLogSoftMaxClass) Alloc() MatrixLogSoftMax {
 	rv := objc.Send[MatrixLogSoftMax](objc.ID(mc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (m_ MatrixLogSoftMax) Autorelease() MatrixLogSoftMax {
 func NewMatrixLogSoftMax() MatrixLogSoftMax {
 	return getMatrixLogSoftMaxClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MatrixLogSoftMax */
+
+
 // A logarithmic softmax kernel that operates on matrices.
 
 
@@ -106,34 +106,34 @@ func MatrixLogSoftMaxFrom(ptr unsafe.Pointer) MatrixLogSoftMax {
 		MatrixSoftMax: MatrixSoftMaxFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MatrixLogSoftMax *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for MatrixLogSoftMax */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MatrixLogSoftMax */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MatrixLogSoftMax */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MatrixLogSoftMax */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSMatrixLogSoftMax */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

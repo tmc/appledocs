@@ -6,11 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class DOMMediaList */
+
 
 /* debug [class_header]: Header for DOMMediaList */
 // The class instance for the [DOMMediaList] class.
@@ -29,28 +31,31 @@ func getDOMMediaListClass() _DOMMediaListClass {
 type _DOMMediaListClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMMediaList */
 // An interface definition for the [DOMMediaList] class.
 type IDOMMediaList interface {
 	IDOMObject
-
-	/* debug [class_interface_properties]: Properties for DOMMediaList */
+	
+/* debug [class_interface_properties]: Properties for DOMMediaList */
 	// properties:
-	Length() unsafe.Pointer
+	Length() objectivec.IObject
 	MediaText() objc.IObject /* cross-framework: NSString */
 	SetMediaText(value objc.IObject /* cross-framework: NSString */)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMMediaList */
+	
+/* debug [class_interface_methods]: Methods for DOMMediaList */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMMediaList */
 // Alloc allocates a new instance without initialization.
@@ -82,10 +87,12 @@ func (d_ DOMMediaList) Autorelease() DOMMediaList {
 func NewDOMMediaList() DOMMediaList {
 	return getDOMMediaListClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMMediaList */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMMediaList
@@ -99,42 +106,57 @@ func DOMMediaListFrom(ptr unsafe.Pointer) DOMMediaList {
 		DOMObject: DOMObjectFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMMediaList */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMMediaList *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMMediaList */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMMediaList */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMMediaList */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMMediaList */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMMediaList/length
-func (d_ DOMMediaList) Length() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("length"))
+func (d_ DOMMediaList) Length() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](d_.ID, objc.Sel("length"))
 	return rv
-} /* debug [instance_properties/getter]: length */
+}/* debug [instance_properties/getter]: length */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMMediaList/mediaText
 func (d_ DOMMediaList) MediaText() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("mediaText"))
 	return rv
-} /* debug [instance_properties/getter]: mediaText */
+}/* debug [instance_properties/getter]: mediaText */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMMediaList/mediaText
 func (d_ DOMMediaList) SetMediaText(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMediaText:"), value)
-} /* debug [instance_properties/setter]: mediaText */
+}/* debug [instance_properties/setter]: mediaText */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMMediaList */
+
+
+

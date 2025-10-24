@@ -16,3 +16,4 @@ package speech
 // See: doc://com.apple.speech/documentation/Speech/SFSpeechRecognizerDelegate/speechRecognizer(_:availabilityDidChange:)
 type PspeechRecognizer interface {
 }
+

@@ -19,3 +19,4 @@ var isLoadingCompleteForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	isLoadingCompleteForWebExtensionContextProtocol = objc.GetProtocol("isLoadingCompleteForWebExtensionContext:")
 }
+

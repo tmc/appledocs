@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class AVDelegatingPlaybackCoordinatorBufferingCommand */
 
 
-/* debug [class_header]: Header for AVDelegatingPlaybackCoordinatorBufferingCommand */
+
+
 // The class instance for the [DelegatingPlaybackCoordinatorBufferingCommand] class.
 var (
 	DelegatingPlaybackCoordinatorBufferingCommandClass     _DelegatingPlaybackCoordinatorBufferingCommandClass
@@ -29,32 +29,32 @@ func getDelegatingPlaybackCoordinatorBufferingCommandClass() _DelegatingPlayback
 type _DelegatingPlaybackCoordinatorBufferingCommandClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for DelegatingPlaybackCoordinatorBufferingCommand */
+
+
 // An interface definition for the [DelegatingPlaybackCoordinatorBufferingCommand] class.
 type IDelegatingPlaybackCoordinatorBufferingCommand interface {
 	IDelegatingPlaybackCoordinatorPlaybackControlCommand
 	
-/* debug [class_interface_properties]: Properties for DelegatingPlaybackCoordinatorBufferingCommand */
+
 	// properties:
 	AnticipatedPlaybackRate() float32
 	CompletionDueDate() objc.IObject /* cross-framework: NSDate */
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for DelegatingPlaybackCoordinatorBufferingCommand */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for DelegatingPlaybackCoordinatorBufferingCommand */
+
+
 // Alloc allocates a new instance without initialization.
 func (dc _DelegatingPlaybackCoordinatorBufferingCommandClass) Alloc() DelegatingPlaybackCoordinatorBufferingCommand {
 	rv := objc.Send[DelegatingPlaybackCoordinatorBufferingCommand](objc.ID(dc.class), objc.Sel("alloc"))
@@ -84,11 +84,11 @@ func (d_ DelegatingPlaybackCoordinatorBufferingCommand) Autorelease() Delegating
 func NewDelegatingPlaybackCoordinatorBufferingCommand() DelegatingPlaybackCoordinatorBufferingCommand {
 	return getDelegatingPlaybackCoordinatorBufferingCommandClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for DelegatingPlaybackCoordinatorBufferingCommand */
+
+
 // A command that indicates to start buffering data in preparation for playback.
 //
 // When your app receives this command, update its user interface to indicate that playback is buffering.
@@ -110,30 +110,30 @@ func DelegatingPlaybackCoordinatorBufferingCommandFrom(ptr unsafe.Pointer) Deleg
 		DelegatingPlaybackCoordinatorPlaybackControlCommand: DelegatingPlaybackCoordinatorPlaybackControlCommandFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for DelegatingPlaybackCoordinatorBufferingCommand *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for DelegatingPlaybackCoordinatorBufferingCommand */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for DelegatingPlaybackCoordinatorBufferingCommand */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for DelegatingPlaybackCoordinatorBufferingCommand */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for DelegatingPlaybackCoordinatorBufferingCommand */
+
+
+
+
+
+
+
+
+
 
 // The rate at which the coordinator expects the current item to play.
 //
@@ -142,7 +142,7 @@ func DelegatingPlaybackCoordinatorBufferingCommandFrom(ptr unsafe.Pointer) Deleg
 func (d_ DelegatingPlaybackCoordinatorBufferingCommand) AnticipatedPlaybackRate() float32 {
 	rv := objc.Send[float32](d_.ID, objc.Sel("anticipatedPlaybackRate"))
 	return rv
-}/* debug [instance_properties/getter]: anticipatedPlaybackRate */
+}
 
 
 // The deadline by which the coordinator expects the delegate to complete execution of a command.
@@ -152,12 +152,12 @@ func (d_ DelegatingPlaybackCoordinatorBufferingCommand) AnticipatedPlaybackRate(
 func (d_ DelegatingPlaybackCoordinatorBufferingCommand) CompletionDueDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("completionDueDate"))
 	return rv
-}/* debug [instance_properties/getter]: completionDueDate */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVDelegatingPlaybackCoordinatorBufferingCommand */
+
+
+
 
 
 

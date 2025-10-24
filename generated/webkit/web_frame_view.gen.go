@@ -6,11 +6,12 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 /* debug [class.gen.go]: Generating class WebFrameView */
+
 
 /* debug [class_header]: Header for WebFrameView */
 // The class instance for the [WebFrameView] class.
@@ -29,15 +30,16 @@ func getWebFrameViewClass() _WebFrameViewClass {
 type _WebFrameViewClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for WebFrameView */
 // An interface definition for the [WebFrameView] class.
 type IWebFrameView interface {
 	appkit.IView
-
-	/* debug [class_interface_properties]: Properties for WebFrameView */
+	
+/* debug [class_interface_properties]: Properties for WebFrameView */
 	// properties:
 	AllowsScrolling() bool
 	SetAllowsScrolling(value bool)
@@ -45,15 +47,17 @@ type IWebFrameView interface {
 	DocumentView() unsafe.Pointer
 	DocumentViewShouldHandlePrint() bool
 	WebFrame() IWebFrame
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for WebFrameView */
+	
+/* debug [class_interface_methods]: Methods for WebFrameView */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for WebFrameView */
 // Alloc allocates a new instance without initialization.
@@ -85,11 +89,13 @@ func (w_ WebFrameView) Autorelease() WebFrameView {
 func NewWebFrameView() WebFrameView {
 	return getWebFrameViewClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for WebFrameView */
 // objects and their subviews display the web content contained in a frame. You never create instances of directly— objects create and manage a hierarchy of objects, one for each frame. objects use a scroll view whose document view conforms to the protocol.
+
 
 // objects and their subviews display the web content contained in a frame. You never create instances of directly— objects create and manage a hierarchy of objects, one for each frame. objects use a scroll view whose document view conforms to the protocol.
 //
@@ -107,19 +113,28 @@ func WebFrameViewFrom(ptr unsafe.Pointer) WebFrameView {
 		View: appkit.ViewFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for WebFrameView */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for WebFrameView *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for WebFrameView */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for WebFrameView */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for WebFrameView */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for WebFrameView */
 
@@ -130,7 +145,8 @@ func WebFrameViewFrom(ptr unsafe.Pointer) WebFrameView {
 func (w_ WebFrameView) AllowsScrolling() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("allowsScrolling"))
 	return rv
-} /* debug [instance_properties/getter]: allowsScrolling */
+}/* debug [instance_properties/getter]: allowsScrolling */
+
 
 // A Boolean that indicates whether the frame view should allow users to scroll.
 //
@@ -138,7 +154,8 @@ func (w_ WebFrameView) AllowsScrolling() bool {
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebFrameView/allowsScrolling
 func (w_ WebFrameView) SetAllowsScrolling(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsScrolling:"), value)
-} /* debug [instance_properties/setter]: allowsScrolling */
+}/* debug [instance_properties/setter]: allowsScrolling */
+
 
 // A Boolean value indicating whether the receiver can print headers and footers.
 //
@@ -147,7 +164,8 @@ func (w_ WebFrameView) SetAllowsScrolling(value bool) {
 func (w_ WebFrameView) CanPrintHeadersAndFooters() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("canPrintHeadersAndFooters"))
 	return rv
-} /* debug [instance_properties/getter]: canPrintHeadersAndFooters */
+}/* debug [instance_properties/getter]: canPrintHeadersAndFooters */
+
 
 // The subview that displays the web content.
 //
@@ -156,7 +174,8 @@ func (w_ WebFrameView) CanPrintHeadersAndFooters() bool {
 func (w_ WebFrameView) DocumentView() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("documentView"))
 	return rv
-} /* debug [instance_properties/getter]: documentView */
+}/* debug [instance_properties/getter]: documentView */
+
 
 // A Boolean value indicating whether the document view should handle a print operation.
 //
@@ -165,7 +184,8 @@ func (w_ WebFrameView) DocumentView() unsafe.Pointer {
 func (w_ WebFrameView) DocumentViewShouldHandlePrint() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("documentViewShouldHandlePrint"))
 	return rv
-} /* debug [instance_properties/getter]: documentViewShouldHandlePrint */
+}/* debug [instance_properties/getter]: documentViewShouldHandlePrint */
+
 
 // The web frame.
 //
@@ -174,8 +194,12 @@ func (w_ WebFrameView) DocumentViewShouldHandlePrint() bool {
 func (w_ WebFrameView) WebFrame() IWebFrame {
 	rv := objc.Send[WebFrame](w_.ID, objc.Sel("webFrame"))
 	return rv
-} /* debug [instance_properties/getter]: webFrame */
+}/* debug [instance_properties/getter]: webFrame */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class WebFrameView */
+
+
+

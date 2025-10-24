@@ -19,3 +19,4 @@ var setParentTabProtocol *objc.Protocol
 func init() {
 	setParentTabProtocol = objc.GetProtocol("setParentTab:")
 }
+

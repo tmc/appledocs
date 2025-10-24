@@ -19,3 +19,4 @@ var shouldBypassPermissionsForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	shouldBypassPermissionsForWebExtensionContextProtocol = objc.GetProtocol("shouldBypassPermissionsForWebExtensionContext:")
 }
+

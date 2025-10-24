@@ -5,10 +5,14 @@
 package webkit
 
 import (
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for Preferences
+
 
 // iOS-only properties
 
@@ -21,3 +25,8 @@ func (p_ Preferences) IsLookToScrollEnabled() bool {
 func (p_ Preferences) SetIsLookToScrollEnabled(value bool) {
 	p_.ID.Send(objc.RegisterName("setIsLookToScrollEnabled:"), value)
 }
+
+
+
+
+

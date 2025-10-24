@@ -19,8 +19,8 @@ import (
 // See: doc://com.apple.metalperformanceshaders/documentation/MetalPerformanceShaders/MPSSVGFTextureAllocator
 type PSVGFTextureAllocator interface {
 	// Required methods
-	`return`()/* debug [protocol_interface/required_method]: `return` */
-	ReturnTexture(texture unsafe.Pointer)/* debug [protocol_interface/required_method]: ReturnTexture */
-	Texture()/* debug [protocol_interface/required_method]: Texture */
-	TextureWithPixelFormatWidthHeight(pixelFormat PixelFormat /* not a class type */, width uint, height uint) unsafe.Pointer/* debug [protocol_interface/required_method]: TextureWithPixelFormatWidthHeight */
+	`return`()
+	ReturnTexture(texture unsafe.Pointer)
+	Texture()
+	TextureWithPixelFormatWidthHeight(pixelFormat PixelFormat /* not a class type */, width uint, height uint) unsafe.Pointer
 }

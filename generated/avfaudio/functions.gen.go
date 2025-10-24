@@ -2,7 +2,7 @@
 
 package avfaudio
 
-/* debug [functions.gen.go]: Generating 0 functions for AVFAudio */
+
 import (
 	"github.com/ebitengine/purego"
 )

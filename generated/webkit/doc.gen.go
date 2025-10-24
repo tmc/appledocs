@@ -1,3 +1,4 @@
+
 // Code generated from Apple documentation for WebKit. DO NOT EDIT.
 
 // Package webkit provides Go bindings for the WebKit framework.
@@ -12,10 +13,10 @@ import (
 
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/WebKit.framework/WebKit"
-
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
+

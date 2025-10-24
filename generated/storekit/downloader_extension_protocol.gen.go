@@ -20,3 +20,4 @@ var DownloaderExtensionProtocol *objc.Protocol
 func init() {
 	DownloaderExtensionProtocol = objc.GetProtocol("SKDownloaderExtension")
 }
+

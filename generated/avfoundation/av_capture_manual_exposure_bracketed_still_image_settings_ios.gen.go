@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corevideo"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 

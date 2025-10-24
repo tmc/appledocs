@@ -6,6 +6,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PWebExtensionControllerDelegate is the WKWebExtensionControllerDelegate protocol interface.
@@ -52,18 +54,18 @@ type PWebExtensionControllerDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type WebExtensionControllerDelegate struct {
-	_WebExtensionControllerConnectUsingMessagePortForExtensionContextCompletionHandler               func(controller IWKWebExtensionController, port IWKWebExtensionMessagePort, extensionContext IWKWebExtensionContext, completionHandler unsafe.Pointer)
-	_WebExtensionControllerDidUpdateActionForExtensionContext                                        func(controller IWKWebExtensionController, action IWKWebExtensionAction, context IWKWebExtensionContext)
-	_WebExtensionControllerFocusedWindowForExtensionContext                                          func(controller IWKWebExtensionController, extensionContext IWKWebExtensionContext) unsafe.Pointer
-	_WebExtensionControllerOpenNewTabUsingConfigurationForExtensionContextCompletionHandler          func(controller IWKWebExtensionController, configuration IWKWebExtensionTabConfiguration, extensionContext IWKWebExtensionContext, completionHandler unsafe.Pointer)
-	_WebExtensionControllerOpenNewWindowUsingConfigurationForExtensionContextCompletionHandler       func(controller IWKWebExtensionController, configuration IWKWebExtensionWindowConfiguration, extensionContext IWKWebExtensionContext, completionHandler unsafe.Pointer)
-	_WebExtensionControllerOpenOptionsPageForExtensionContextCompletionHandler                       func(controller IWKWebExtensionController, extensionContext IWKWebExtensionContext, completionHandler unsafe.Pointer)
-	_WebExtensionControllerOpenWindowsForExtensionContext                                            func(controller IWKWebExtensionController, extensionContext IWKWebExtensionContext) []objc.ID
-	_WebExtensionControllerPresentPopupForActionForExtensionContextCompletionHandler                 func(controller IWKWebExtensionController, action IWKWebExtensionAction, context IWKWebExtensionContext, completionHandler unsafe.Pointer)
+	_WebExtensionControllerConnectUsingMessagePortForExtensionContextCompletionHandler func(controller IWKWebExtensionController, port IWKWebExtensionMessagePort, extensionContext IWKWebExtensionContext, completionHandler unsafe.Pointer)
+	_WebExtensionControllerDidUpdateActionForExtensionContext func(controller IWKWebExtensionController, action IWKWebExtensionAction, context IWKWebExtensionContext)
+	_WebExtensionControllerFocusedWindowForExtensionContext func(controller IWKWebExtensionController, extensionContext IWKWebExtensionContext) unsafe.Pointer
+	_WebExtensionControllerOpenNewTabUsingConfigurationForExtensionContextCompletionHandler func(controller IWKWebExtensionController, configuration IWKWebExtensionTabConfiguration, extensionContext IWKWebExtensionContext, completionHandler unsafe.Pointer)
+	_WebExtensionControllerOpenNewWindowUsingConfigurationForExtensionContextCompletionHandler func(controller IWKWebExtensionController, configuration IWKWebExtensionWindowConfiguration, extensionContext IWKWebExtensionContext, completionHandler unsafe.Pointer)
+	_WebExtensionControllerOpenOptionsPageForExtensionContextCompletionHandler func(controller IWKWebExtensionController, extensionContext IWKWebExtensionContext, completionHandler unsafe.Pointer)
+	_WebExtensionControllerOpenWindowsForExtensionContext func(controller IWKWebExtensionController, extensionContext IWKWebExtensionContext) []objc.ID
+	_WebExtensionControllerPresentPopupForActionForExtensionContextCompletionHandler func(controller IWKWebExtensionController, action IWKWebExtensionAction, context IWKWebExtensionContext, completionHandler unsafe.Pointer)
 	_WebExtensionControllerPromptForPermissionMatchPatternsInTabForExtensionContextCompletionHandler func(controller IWKWebExtensionController, matchPatterns unsafe.Pointer, tab unsafe.Pointer, extensionContext IWKWebExtensionContext, completionHandler unsafe.Pointer)
-	_WebExtensionControllerPromptForPermissionsInTabForExtensionContextCompletionHandler             func(controller IWKWebExtensionController, permissions unsafe.Pointer, tab unsafe.Pointer, extensionContext IWKWebExtensionContext, completionHandler unsafe.Pointer)
-	_WebExtensionControllerPromptForPermissionToAccessURLsInTabForExtensionContextCompletionHandler  func(controller IWKWebExtensionController, urls unsafe.Pointer, tab unsafe.Pointer, extensionContext IWKWebExtensionContext, completionHandler unsafe.Pointer)
-	_WebExtensionControllerSendMessageToApplicationWithIdentifierForExtensionContextReplyHandler     func(controller IWKWebExtensionController, message objc.IObject, applicationIdentifier objc.IObject /* cross-framework: NSString */, extensionContext IWKWebExtensionContext, replyHandler unsafe.Pointer)
+	_WebExtensionControllerPromptForPermissionsInTabForExtensionContextCompletionHandler func(controller IWKWebExtensionController, permissions unsafe.Pointer, tab unsafe.Pointer, extensionContext IWKWebExtensionContext, completionHandler unsafe.Pointer)
+	_WebExtensionControllerPromptForPermissionToAccessURLsInTabForExtensionContextCompletionHandler func(controller IWKWebExtensionController, urls unsafe.Pointer, tab unsafe.Pointer, extensionContext IWKWebExtensionContext, completionHandler unsafe.Pointer)
+	_WebExtensionControllerSendMessageToApplicationWithIdentifierForExtensionContextReplyHandler func(controller IWKWebExtensionController, message objc.IObject, applicationIdentifier objc.IObject /* cross-framework: NSString */, extensionContext IWKWebExtensionContext, replyHandler unsafe.Pointer)
 }
 
 // SetWebExtensionControllerConnectUsingMessagePortForExtensionContextCompletionHandler sets the handler for the WebExtensionControllerConnectUsingMessagePortForExtensionContextCompletionHandler delegate method.

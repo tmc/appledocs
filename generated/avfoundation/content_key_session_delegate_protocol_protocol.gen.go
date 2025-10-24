@@ -25,7 +25,7 @@ import (
 // See: doc://com.apple.avfoundation/documentation/AVFoundation/AVContentKeySessionDelegate
 type PContentKeySessionDelegate interface {
 	// Required methods
-	ContentKeySessionDidProvideContentKeyRequest(session IAVContentKeySession, keyRequest IAVContentKeyRequest)/* debug [protocol_interface/required_method]: ContentKeySessionDidProvideContentKeyRequest */
+	ContentKeySessionDidProvideContentKeyRequest(session IAVContentKeySession, keyRequest IAVContentKeyRequest)
 	// Optional methods
 	ContentKeySessionContentKeyRequestDidFailWithError(session IAVContentKeySession, keyRequest IAVContentKeyRequest, err Error)
 	HasContentKeySessionContentKeyRequestDidFailWithError() bool

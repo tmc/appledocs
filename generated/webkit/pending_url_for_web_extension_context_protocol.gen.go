@@ -19,3 +19,4 @@ var pendingURLForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	pendingURLForWebExtensionContextProtocol = objc.GetProtocol("pendingURLForWebExtensionContext:")
 }
+

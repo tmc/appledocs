@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSVector */
 
 
-/* debug [class_header]: Header for MPSVector */
+
+
 // The class instance for the [Vector] class.
 var (
 	VectorClass     _VectorClass
@@ -30,16 +30,16 @@ func getVectorClass() _VectorClass {
 type _VectorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for Vector */
+
+
 // An interface definition for the [Vector] class.
 type IVector interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for Vector */
+
 	// properties:
 	DataType() DataType get /* not a class type */
 	SetDataType(value DataType get /* not a class type */)
@@ -55,22 +55,22 @@ type IVector interface {
 	SetData(value Buffer get /* not a class type */)
 	Offset() objectivec.IObject
 	SetOffset(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for Vector */
+
 	// methods:
 	Synchronize()
 	SynchronizeOnCommandBuffer(commandBuffer unsafe.Pointer)
 	ResourceSize()
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for Vector */
+
+
 // Alloc allocates a new instance without initialization.
 func (vc _VectorClass) Alloc() Vector {
 	rv := objc.Send[Vector](objc.ID(vc.class), objc.Sel("alloc"))
@@ -100,11 +100,11 @@ func (v_ Vector) Autorelease() Vector {
 func NewVector() Vector {
 	return getVectorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for Vector */
+
+
 // A 1D array of data that stores the data’s values.
 
 
@@ -122,11 +122,11 @@ type Vector struct {
 func VectorFrom(ptr unsafe.Pointer) Vector {
 	return Vector{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for Vector */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsvector/2873346-initwithbuffer
@@ -135,7 +135,7 @@ func NewVectorWithBufferDescriptor(buffer unsafe.Pointer, descriptor IVectorDesc
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithBuffer:descriptor:"), buffer, descriptor)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewVectorWithBufferDescriptor */
+}
 
 
 // [Full Topic]
@@ -145,7 +145,7 @@ func NewVectorWithBufferOffsetDescriptor(buffer unsafe.Pointer, offset uint, des
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithBuffer:offset:descriptor:"), buffer, offset, descriptor)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewVectorWithBufferOffsetDescriptor */
+}
 
 
 // [Full Topic]
@@ -155,63 +155,63 @@ func NewVectorWithDeviceDescriptor(device unsafe.Pointer, descriptor IVectorDesc
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithDevice:descriptor:"), device, descriptor)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewVectorWithDeviceDescriptor */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for Vector */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for Vector */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for Vector */
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsvector/2942568-synchronize
 func (v_ Vector) Synchronize() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("synchronize"))
-}/* debug [instance_methods/method]: Synchronize */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsvector/2942568-synchronizeoncommandbuffer
 func (v_ Vector) SynchronizeOnCommandBuffer(commandBuffer unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("synchronizeOnCommandBuffer:"), commandBuffer)
-}/* debug [instance_methods/method]: SynchronizeOnCommandBuffer */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsvector/2942570-resourcesize
 func (v_ Vector) ResourceSize() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("resourceSize"))
-}/* debug [instance_methods/method]: ResourceSize */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for Vector */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsvector/2873336-datatype
 func (v_ Vector) DataType() DataType get /* not a class type */ {
 	rv := objc.Send[objc.ID](v_.ID, objc.Sel("dataType"))
 	return rv
-}/* debug [instance_properties/getter]: dataType */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsvector/2873336-datatype
 func (v_ Vector) SetDataType(value DataType get /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDataType:"), value)
-}/* debug [instance_properties/setter]: dataType */
+}
 
 
 // [Full Topic]
@@ -219,14 +219,14 @@ func (v_ Vector) SetDataType(value DataType get /* not a class type */) {
 func (v_ Vector) Device() Device get /* not a class type */ {
 	rv := objc.Send[objc.ID](v_.ID, objc.Sel("device"))
 	return rv
-}/* debug [instance_properties/getter]: device */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsvector/2873338-device
 func (v_ Vector) SetDevice(value Device get /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDevice:"), value)
-}/* debug [instance_properties/setter]: device */
+}
 
 
 // [Full Topic]
@@ -234,14 +234,14 @@ func (v_ Vector) SetDevice(value Device get /* not a class type */) {
 func (v_ Vector) VectorBytes() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](v_.ID, objc.Sel("vectorBytes"))
 	return rv
-}/* debug [instance_properties/getter]: vectorBytes */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsvector/2873340-vectorbytes
 func (v_ Vector) SetVectorBytes(value objectivec.IObject) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVectorBytes:"), value)
-}/* debug [instance_properties/setter]: vectorBytes */
+}
 
 
 // [Full Topic]
@@ -249,14 +249,14 @@ func (v_ Vector) SetVectorBytes(value objectivec.IObject) {
 func (v_ Vector) Vectors() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](v_.ID, objc.Sel("vectors"))
 	return rv
-}/* debug [instance_properties/getter]: vectors */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsvector/2873388-vectors
 func (v_ Vector) SetVectors(value objectivec.IObject) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVectors:"), value)
-}/* debug [instance_properties/setter]: vectors */
+}
 
 
 // [Full Topic]
@@ -264,14 +264,14 @@ func (v_ Vector) SetVectors(value objectivec.IObject) {
 func (v_ Vector) Length() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](v_.ID, objc.Sel("length"))
 	return rv
-}/* debug [instance_properties/getter]: length */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsvector/2873392-length
 func (v_ Vector) SetLength(value objectivec.IObject) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setLength:"), value)
-}/* debug [instance_properties/setter]: length */
+}
 
 
 // [Full Topic]
@@ -279,14 +279,14 @@ func (v_ Vector) SetLength(value objectivec.IObject) {
 func (v_ Vector) Data() Buffer get /* not a class type */ {
 	rv := objc.Send[objc.ID](v_.ID, objc.Sel("data"))
 	return rv
-}/* debug [instance_properties/getter]: data */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsvector/2873393-data
 func (v_ Vector) SetData(value Buffer get /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setData:"), value)
-}/* debug [instance_properties/setter]: data */
+}
 
 
 // [Full Topic]
@@ -294,18 +294,18 @@ func (v_ Vector) SetData(value Buffer get /* not a class type */) {
 func (v_ Vector) Offset() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](v_.ID, objc.Sel("offset"))
 	return rv
-}/* debug [instance_properties/getter]: offset */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsvector/3375741-offset
 func (v_ Vector) SetOffset(value objectivec.IObject) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setOffset:"), value)
-}/* debug [instance_properties/setter]: offset */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSVector */
+
+
+
 
 

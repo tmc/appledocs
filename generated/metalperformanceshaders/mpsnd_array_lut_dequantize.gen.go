@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNDArrayLUTDequantize */
 
 
-/* debug [class_header]: Header for MPSNDArrayLUTDequantize */
+
+
 // The class instance for the [NDArrayLUTDequantize] class.
 var (
 	NDArrayLUTDequantizeClass     _NDArrayLUTDequantizeClass
@@ -30,30 +30,30 @@ func getNDArrayLUTDequantizeClass() _NDArrayLUTDequantizeClass {
 type _NDArrayLUTDequantizeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NDArrayLUTDequantize */
+
+
 // An interface definition for the [NDArrayLUTDequantize] class.
 type INDArrayLUTDequantize interface {
 	INDArrayMultiaryKernel
 	
-/* debug [class_interface_properties]: Properties for NDArrayLUTDequantize */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NDArrayLUTDequantize */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NDArrayLUTDequantize */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NDArrayLUTDequantizeClass) Alloc() NDArrayLUTDequantize {
 	rv := objc.Send[NDArrayLUTDequantize](objc.ID(nc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (n_ NDArrayLUTDequantize) Autorelease() NDArrayLUTDequantize {
 func NewNDArrayLUTDequantize() NDArrayLUTDequantize {
 	return getNDArrayLUTDequantizeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NDArrayLUTDequantize */
+
+
 
 
 // [Full Topic]
@@ -102,11 +102,11 @@ func NDArrayLUTDequantizeFrom(ptr unsafe.Pointer) NDArrayLUTDequantize {
 		NDArrayMultiaryKernel: NDArrayMultiaryKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NDArrayLUTDequantize */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraylutdequantize/4446151-initwithdevice
@@ -115,31 +115,31 @@ func NewNDArrayLUTDequantizeWithDevice(device unsafe.Pointer) NDArrayLUTDequanti
 	rv := objc.Send[NDArrayLUTDequantize](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNDArrayLUTDequantizeWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for NDArrayLUTDequantize */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NDArrayLUTDequantize */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NDArrayLUTDequantize */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for NDArrayLUTDequantize */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNDArrayLUTDequantize */
+
+
+
+
+
+
+
+
+
+
+
 
 

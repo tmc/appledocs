@@ -15,6 +15,6 @@ package metalperformanceshaders
 // See: doc://com.apple.metalperformanceshaders/documentation/MetalPerformanceShaders/MPSNNLossCallback
 type PLossCallback interface {
 	// Required methods
-	ScalarWeight()/* debug [protocol_interface/required_method]: ScalarWeight */
-	ScalarWeightForSourceImageDestinationImage(sourceImage IImage, destinationImage IImage) float32/* debug [protocol_interface/required_method]: ScalarWeightForSourceImageDestinationImage */
+	ScalarWeight()
+	ScalarWeightForSourceImageDestinationImage(sourceImage IImage, destinationImage IImage) float32
 }

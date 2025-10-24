@@ -6,11 +6,12 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 /* debug [class.gen.go]: Generating class DOMRGBColor */
+
 
 /* debug [class_header]: Header for DOMRGBColor */
 // The class instance for the [DOMRGBColor] class.
@@ -29,30 +30,33 @@ func getDOMRGBColorClass() _DOMRGBColorClass {
 type _DOMRGBColorClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMRGBColor */
 // An interface definition for the [DOMRGBColor] class.
 type IDOMRGBColor interface {
 	IDOMObject
-
-	/* debug [class_interface_properties]: Properties for DOMRGBColor */
+	
+/* debug [class_interface_properties]: Properties for DOMRGBColor */
 	// properties:
 	Alpha() IDOMCSSPrimitiveValue
 	Blue() IDOMCSSPrimitiveValue
 	Color() appkit.Color
 	Green() IDOMCSSPrimitiveValue
 	Red() IDOMCSSPrimitiveValue
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMRGBColor */
+	
+/* debug [class_interface_methods]: Methods for DOMRGBColor */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMRGBColor */
 // Alloc allocates a new instance without initialization.
@@ -84,10 +88,12 @@ func (d_ DOMRGBColor) Autorelease() DOMRGBColor {
 func NewDOMRGBColor() DOMRGBColor {
 	return getDOMRGBColorClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMRGBColor */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMRGBColor
@@ -101,19 +107,28 @@ func DOMRGBColorFrom(ptr unsafe.Pointer) DOMRGBColor {
 		DOMObject: DOMObjectFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMRGBColor */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMRGBColor *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMRGBColor */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMRGBColor */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMRGBColor */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMRGBColor */
 
@@ -122,36 +137,44 @@ func DOMRGBColorFrom(ptr unsafe.Pointer) DOMRGBColor {
 func (d_ DOMRGBColor) Alpha() IDOMCSSPrimitiveValue {
 	rv := objc.Send[DOMCSSPrimitiveValue](d_.ID, objc.Sel("alpha"))
 	return rv
-} /* debug [instance_properties/getter]: alpha */
+}/* debug [instance_properties/getter]: alpha */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMRGBColor/blue
 func (d_ DOMRGBColor) Blue() IDOMCSSPrimitiveValue {
 	rv := objc.Send[DOMCSSPrimitiveValue](d_.ID, objc.Sel("blue"))
 	return rv
-} /* debug [instance_properties/getter]: blue */
+}/* debug [instance_properties/getter]: blue */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMRGBColor/color
 func (d_ DOMRGBColor) Color() appkit.Color {
 	rv := objc.Send[appkit.Color](d_.ID, objc.Sel("color"))
 	return rv
-} /* debug [instance_properties/getter]: color */
+}/* debug [instance_properties/getter]: color */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMRGBColor/green
 func (d_ DOMRGBColor) Green() IDOMCSSPrimitiveValue {
 	rv := objc.Send[DOMCSSPrimitiveValue](d_.ID, objc.Sel("green"))
 	return rv
-} /* debug [instance_properties/getter]: green */
+}/* debug [instance_properties/getter]: green */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMRGBColor/red
 func (d_ DOMRGBColor) Red() IDOMCSSPrimitiveValue {
 	rv := objc.Send[DOMCSSPrimitiveValue](d_.ID, objc.Sel("red"))
 	return rv
-} /* debug [instance_properties/getter]: red */
+}/* debug [instance_properties/getter]: red */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMRGBColor */
+
+
+

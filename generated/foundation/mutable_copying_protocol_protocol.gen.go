@@ -23,5 +23,5 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/NSMutableCopying
 type PMutableCopying interface {
 	// Required methods
-	MutableCopyWithZone(zone Zone /* not a class type */) objc.ID/* debug [protocol_interface/required_method]: MutableCopyWithZone */
+	MutableCopyWithZone(zone Zone /* not a class type */) objc.ID
 }

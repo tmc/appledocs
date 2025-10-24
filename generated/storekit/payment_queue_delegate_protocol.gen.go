@@ -21,3 +21,4 @@ var PaymentQueueDelegateProtocol *objc.Protocol
 func init() {
 	PaymentQueueDelegateProtocol = objc.GetProtocol("SKPaymentQueueDelegate")
 }
+

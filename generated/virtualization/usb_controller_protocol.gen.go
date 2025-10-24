@@ -15,3 +15,4 @@ var usbControllerProtocol *objc.Protocol
 func init() {
 	usbControllerProtocol = objc.GetProtocol("usbController")
 }
+

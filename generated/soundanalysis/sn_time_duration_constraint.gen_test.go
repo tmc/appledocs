@@ -13,7 +13,9 @@ var _ = soundanalysis.NewSNTimeDurationConstraint
 // Creates a constraint with a time duration range.
 func ExampleNewSNTimeDurationConstraintWithDurationRange() {
 	_ = soundanalysis.NewSNTimeDurationConstraintWithDurationRange(
-		soundanalysis.TimeRange /* not a class type */ {}, // durationRange TimeRange /* not a class type */
+		soundanalysis.TimeRange /* not a class type */{}, // durationRange TimeRange /* not a class type */
 	)
 	// Output:
 }
+
+

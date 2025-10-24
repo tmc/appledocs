@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class VNDetectDocumentSegmentationRequest */
 
 
-/* debug [class_header]: Header for VNDetectDocumentSegmentationRequest */
+
+
 // The class instance for the [DetectDocumentSegmentationRequest] class.
 var (
 	DetectDocumentSegmentationRequestClass     _DetectDocumentSegmentationRequestClass
@@ -29,32 +29,32 @@ func getDetectDocumentSegmentationRequestClass() _DetectDocumentSegmentationRequ
 type _DetectDocumentSegmentationRequestClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for DetectDocumentSegmentationRequest */
+
+
 // An interface definition for the [DetectDocumentSegmentationRequest] class.
 type IDetectDocumentSegmentationRequest interface {
 	IImageBasedRequest
 	
-/* debug [class_interface_properties]: Properties for DetectDocumentSegmentationRequest */
+
 	// properties:
 	Results() []RectangleObservation
 	VNDetectDocumentSegmentationRequestRevision1() int
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for DetectDocumentSegmentationRequest */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for DetectDocumentSegmentationRequest */
+
+
 // Alloc allocates a new instance without initialization.
 func (dc _DetectDocumentSegmentationRequestClass) Alloc() DetectDocumentSegmentationRequest {
 	rv := objc.Send[DetectDocumentSegmentationRequest](objc.ID(dc.class), objc.Sel("alloc"))
@@ -84,11 +84,11 @@ func (d_ DetectDocumentSegmentationRequest) Autorelease() DetectDocumentSegmenta
 func NewDetectDocumentSegmentationRequest() DetectDocumentSegmentationRequest {
 	return getDetectDocumentSegmentationRequestClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for DetectDocumentSegmentationRequest */
+
+
 // An object that detects rectangular regions that contain text in the input image.
 //
 // Perform this request to detect a document in an image. The result that the request generates contains the four corner points of a document’s quadrilateral and saliency mask.
@@ -110,30 +110,30 @@ func DetectDocumentSegmentationRequestFrom(ptr unsafe.Pointer) DetectDocumentSeg
 		ImageBasedRequest: ImageBasedRequestFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for DetectDocumentSegmentationRequest *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for DetectDocumentSegmentationRequest */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for DetectDocumentSegmentationRequest */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for DetectDocumentSegmentationRequest */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for DetectDocumentSegmentationRequest */
+
+
+
+
+
+
+
+
+
 
 // The results of a document segmentation request.
 //
@@ -142,7 +142,7 @@ func DetectDocumentSegmentationRequestFrom(ptr unsafe.Pointer) DetectDocumentSeg
 func (d_ DetectDocumentSegmentationRequest) Results() []RectangleObservation {
 	rv := objc.Send[[]RectangleObservation](d_.ID, objc.Sel("results"))
 	return rv
-}/* debug [instance_properties/getter]: results */
+}
 
 
 // A constant for specifying revision 1 of the document segmentation request.
@@ -152,12 +152,12 @@ func (d_ DetectDocumentSegmentationRequest) Results() []RectangleObservation {
 func (d_ DetectDocumentSegmentationRequest) VNDetectDocumentSegmentationRequestRevision1() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectDocumentSegmentationRequestRevision1"))
 	return rv
-}/* debug [instance_properties/getter]: VNDetectDocumentSegmentationRequestRevision1 */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class VNDetectDocumentSegmentationRequest */
+
+
+
 
 
 

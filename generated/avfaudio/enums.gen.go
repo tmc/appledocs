@@ -2,9 +2,9 @@
 
 package avfaudio
 
-/* debug [enums.gen.go]: Generating 55 enums for AVFAudio */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum AVAudioApplicationMicrophoneInjectionPermission (4 cases) */
+
 // AVAudioApplicationMicrophoneInjectionPermission - Constants that indicate an app’s permission to add audio to calls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/MicrophoneInjectionPermission-swift.enum
@@ -29,7 +29,7 @@ const (
 	AVAudioApplicationMicrophoneInjectionPermissionUndetermined AVAudioApplicationMicrophoneInjectionPermission = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioApplicationRecordPermission (3 cases) */
+
 // AVAudioApplicationRecordPermission - Constants that indicate the app’s permission to record audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/recordPermission-swift.enum
@@ -50,7 +50,7 @@ const (
 	AVAudioApplicationRecordPermissionUndetermined AVAudioApplicationRecordPermission = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioContentSource (22 cases) */
+
 // AVAudioContentSource enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioContentSource
@@ -125,7 +125,7 @@ const (
 	AVAudioContentSource_Unspecified AVAudioContentSource = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioDynamicRangeControlConfiguration (5 cases) */
+
 // AVAudioDynamicRangeControlConfiguration enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioDynamicRangeControlConfiguration
@@ -149,7 +149,7 @@ const (
 	AVAudioDynamicRangeControlConfiguration_Speech AVAudioDynamicRangeControlConfiguration = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioRoutingArbitrationCategory (3 cases) */
+
 // AVAudioRoutingArbitrationCategory - Categories that describe the general nature of your app’s audio use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/Category
@@ -170,7 +170,7 @@ const (
 	AVAudioRoutingArbitrationCategoryPlayback AVAudioRoutingArbitrationCategory = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionCategoryOptions (10 cases) */
+
 // AVAudioSessionCategoryOptions - Constants that specify optional audio behaviors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/CategoryOptions-swift.struct
@@ -219,7 +219,7 @@ const (
 	AVAudioSessionCategoryOptionOverrideMutedMicrophoneInterruption AVAudioSessionCategoryOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionInterruptionOptions (1 cases) */
+
 // AVAudioSessionInterruptionOptions - Constants that indicate the state of an audio session after an interruption.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/InterruptionOptions
@@ -232,7 +232,7 @@ const (
 	AVAudioSessionInterruptionOptionShouldResume AVAudioSessionInterruptionOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionInterruptionReason (6 cases) */
+
 // AVAudioSessionInterruptionReason - Constants that define the reasons for an audio session interruption.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/InterruptionReason
@@ -264,7 +264,7 @@ const (
 	AVAudioSessionInterruptionReasonDeviceUnauthenticated AVAudioSessionInterruptionReason = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionInterruptionType (2 cases) */
+
 // AVAudioSessionInterruptionType - Constants that describe the type of an audio interruption.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/InterruptionType
@@ -281,7 +281,7 @@ const (
 	AVAudioSessionInterruptionTypeEnded AVAudioSessionInterruptionType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionIOType (2 cases) */
+
 // AVAudioSessionIOType - Constant values used to specify the audio session’s aggregated I/O behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/IOType
@@ -298,7 +298,7 @@ const (
 	AVAudioSessionIOTypeNotSpecified AVAudioSessionIOType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionMicrophoneInjectionMode (2 cases) */
+
 // AVAudioSessionMicrophoneInjectionMode - The modes of injecting audio into another app’s input stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/MicrophoneInjectionMode
@@ -315,7 +315,7 @@ const (
 	AVAudioSessionMicrophoneInjectionModeSpokenAudio AVAudioSessionMicrophoneInjectionMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionPortOverride (2 cases) */
+
 // AVAudioSessionPortOverride - Constants for use with the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/PortOverride
@@ -332,7 +332,7 @@ const (
 	AVAudioSessionPortOverrideSpeaker AVAudioSessionPortOverride = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionPromptStyle (3 cases) */
+
 // AVAudioSessionPromptStyle - Constants that indicate the prompt style to use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/PromptStyle-swift.enum
@@ -353,7 +353,7 @@ const (
 	AVAudioSessionPromptStyleShort AVAudioSessionPromptStyle = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionRecordPermission (3 cases) */
+
 // AVAudioSessionRecordPermission - The values that define the current state of the record permission request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/RecordPermission-swift.enum
@@ -374,7 +374,7 @@ const (
 	AVAudioSessionRecordPermissionUndetermined AVAudioSessionRecordPermission = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionRenderingMode (6 cases) */
+
 // AVAudioSessionRenderingMode - Audio session rendering mode identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/RenderingMode-swift.enum
@@ -407,7 +407,7 @@ const (
 	AVAudioSessionRenderingModeSurround AVAudioSessionRenderingMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionRouteChangeReason (8 cases) */
+
 // AVAudioSessionRouteChangeReason - Constants that indicate the reason for an audio route change.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/RouteChangeReason
@@ -448,13 +448,13 @@ const (
 	AVAudioSessionRouteChangeReasonWakeFromSleep AVAudioSessionRouteChangeReason = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionRouteSelection (0 cases) */
+
 // AVAudioSessionRouteSelection - Constants used to define the active route selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/RouteSelection
 type AVAudioSessionRouteSelection uint
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionRouteSharingPolicy (5 cases) */
+
 // AVAudioSessionRouteSharingPolicy - Cases that indicate the possible route-sharing policies for an audio session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/RouteSharingPolicy-swift.enum
@@ -483,7 +483,7 @@ const (
 	AVAudioSessionRouteSharingPolicyLongFormVideo AVAudioSessionRouteSharingPolicy = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionSetActiveOptions (1 cases) */
+
 // AVAudioSessionSetActiveOptions - Options that provide additional information about your app’s audio intentions upon session deactivation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/SetActiveOptions
@@ -496,7 +496,7 @@ const (
 	AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation AVAudioSessionSetActiveOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionSilenceSecondaryAudioHintType (2 cases) */
+
 // AVAudioSessionSilenceSecondaryAudioHintType - Constants that indicate whether optional secondary audio muting should begin or end.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/SilenceSecondaryAudioHintType
@@ -513,7 +513,7 @@ const (
 	AVAudioSessionSilenceSecondaryAudioHintTypeEnd AVAudioSessionSilenceSecondaryAudioHintType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionSoundStageSize (4 cases) */
+
 // AVAudioSessionSoundStageSize - Constants that specify the perceived size of sounds the audio session plays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/SoundStageSize
@@ -538,7 +538,7 @@ const (
 	AVAudioSessionSoundStageSizeSmall AVAudioSessionSoundStageSize = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioStereoOrientation (5 cases) */
+
 // AVAudioStereoOrientation - Constants that define the supported stereo orientations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/StereoOrientation
@@ -567,7 +567,7 @@ const (
 	AVAudioStereoOrientationPortraitUpsideDown AVAudioStereoOrientation = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionAnchoringStrategy (3 cases) */
+
 // AVAudioSessionAnchoringStrategy enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionAnchoringStrategy
@@ -585,7 +585,7 @@ const (
 	AVAudioSessionAnchoringStrategyScene AVAudioSessionAnchoringStrategy = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionSpatialExperience (3 cases) */
+
 // AVAudioSessionSpatialExperience enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionSpatialExperience-c.enum
@@ -603,7 +603,7 @@ const (
 	AVAudioSessionSpatialExperienceHeadTracked AVAudioSessionSpatialExperience = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudio3DMixingPointSourceInHeadMode (2 cases) */
+
 // AVAudio3DMixingPointSourceInHeadMode - The in-head modes for a point source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudio3DMixingPointSourceInHeadMode
@@ -620,7 +620,7 @@ const (
 	AVAudio3DMixingPointSourceInHeadModeMono AVAudio3DMixingPointSourceInHeadMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudio3DMixingRenderingAlgorithm (7 cases) */
+
 // AVAudio3DMixingRenderingAlgorithm - The types of rendering algorithms available per input bus of the environment node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudio3DMixingRenderingAlgorithm
@@ -657,7 +657,7 @@ const (
 	AVAudio3DMixingRenderingAlgorithmStereoPassThrough AVAudio3DMixingRenderingAlgorithm = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudio3DMixingSourceMode (4 cases) */
+
 // AVAudio3DMixingSourceMode - The source modes for the input bus of the audio environment node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudio3DMixingSourceMode
@@ -682,7 +682,7 @@ const (
 	AVAudio3DMixingSourceModeSpatializeIfMono AVAudio3DMixingSourceMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioCommonFormat (5 cases) */
+
 // AVAudioCommonFormat - The format options that describe common audio formats.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioCommonFormat
@@ -711,7 +711,7 @@ const (
 	AVAudioPCMFormatInt32 AVAudioCommonFormat = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioConverterInputStatus (3 cases) */
+
 // AVAudioConverterInputStatus - An option that indicates the status of an audio converter input block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioConverterInputStatus
@@ -732,7 +732,7 @@ const (
 	AVAudioConverterInputStatus_NoDataNow AVAudioConverterInputStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioConverterOutputStatus (4 cases) */
+
 // AVAudioConverterOutputStatus - An option that indicates the return status of an audio converter method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioConverterOutputStatus
@@ -757,7 +757,7 @@ const (
 	AVAudioConverterOutputStatus_InputRanDry AVAudioConverterOutputStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioConverterPrimeMethod (3 cases) */
+
 // AVAudioConverterPrimeMethod - Options for the prime method property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioConverterPrimeMethod
@@ -778,7 +778,7 @@ const (
 	AVAudioConverterPrimeMethod_Pre AVAudioConverterPrimeMethod = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioEngineManualRenderingError (3 cases) */
+
 // AVAudioEngineManualRenderingError - Constants that describe error codes that the framework returns from manual rendering mode methods.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngineManualRenderingError
@@ -799,7 +799,7 @@ const (
 	AVAudioEngineManualRenderingErrorNotRunning AVAudioEngineManualRenderingError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioEngineManualRenderingMode (2 cases) */
+
 // AVAudioEngineManualRenderingMode - The two modes for manual rendering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngineManualRenderingMode
@@ -816,7 +816,7 @@ const (
 	AVAudioEngineManualRenderingModeRealtime AVAudioEngineManualRenderingMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioEngineManualRenderingStatus (4 cases) */
+
 // AVAudioEngineManualRenderingStatus - Status codes that return from the render call to the engine operating in manual rendering mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngineManualRenderingStatus
@@ -841,7 +841,7 @@ const (
 	AVAudioEngineManualRenderingStatusSuccess AVAudioEngineManualRenderingStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioEnvironmentDistanceAttenuationModel (3 cases) */
+
 // AVAudioEnvironmentDistanceAttenuationModel - Types of distance attenuation models.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentDistanceAttenuationModel
@@ -862,7 +862,7 @@ const (
 	AVAudioEnvironmentDistanceAttenuationModelLinear AVAudioEnvironmentDistanceAttenuationModel = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioEnvironmentOutputType (4 cases) */
+
 // AVAudioEnvironmentOutputType - The output types for using with the automatic 3D mixing rendering algorithm.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentOutputType
@@ -887,7 +887,7 @@ const (
 	AVAudioEnvironmentOutputTypeHeadphones AVAudioEnvironmentOutputType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioPlayerNodeBufferOptions (3 cases) */
+
 // AVAudioPlayerNodeBufferOptions - The buffer options that control the playback scheduling.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayerNodeBufferOptions
@@ -908,7 +908,7 @@ const (
 	AVAudioPlayerNodeBufferLoops AVAudioPlayerNodeBufferOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioPlayerNodeCompletionCallbackType (3 cases) */
+
 // AVAudioPlayerNodeCompletionCallbackType - Constants that specify when the framework must invoke the completion handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayerNodeCompletionCallbackType
@@ -929,7 +929,7 @@ const (
 	AVAudioPlayerNodeCompletionDataRendered AVAudioPlayerNodeCompletionCallbackType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioQuality (5 cases) */
+
 // AVAudioQuality - The values that specify the sample rate audio quality for encoding and conversion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioQuality
@@ -958,7 +958,7 @@ const (
 	AVAudioQualityMin AVAudioQuality = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioSessionActivationOptions (1 cases) */
+
 // AVAudioSessionActivationOptions - Constants that describe the options to pass when activating the audio session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionActivationOptions
@@ -971,7 +971,7 @@ const (
 	AVAudioSessionActivationOptionNone AVAudioSessionActivationOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioUnitDistortionPreset (22 cases) */
+
 // AVAudioUnitDistortionPreset - Constants that represent preset audio distortions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitDistortionPreset
@@ -1068,7 +1068,7 @@ const (
 	AVAudioUnitDistortionPresetSpeechWaves AVAudioUnitDistortionPreset = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioUnitEQFilterType (11 cases) */
+
 // AVAudioUnitEQFilterType - Filter types available to use with the filter type property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitEQFilterType
@@ -1121,7 +1121,7 @@ const (
 	AVAudioUnitEQFilterTypeResonantLowShelf AVAudioUnitEQFilterType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioUnitReverbPreset (13 cases) */
+
 // AVAudioUnitReverbPreset - Constants that represent preset reverbs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitReverbPreset
@@ -1182,7 +1182,7 @@ const (
 	AVAudioUnitReverbPresetSmallRoom AVAudioUnitReverbPreset = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioVoiceProcessingOtherAudioDuckingLevel (4 cases) */
+
 // AVAudioVoiceProcessingOtherAudioDuckingLevel - Constants that define the supported ducking levels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioVoiceProcessingOtherAudioDuckingConfiguration/Level
@@ -1207,7 +1207,7 @@ const (
 	AVAudioVoiceProcessingOtherAudioDuckingLevelMin AVAudioVoiceProcessingOtherAudioDuckingLevel = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVAudioVoiceProcessingSpeechActivityEvent (2 cases) */
+
 // AVAudioVoiceProcessingSpeechActivityEvent - Types of speech activity events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioVoiceProcessingSpeechActivityEvent
@@ -1224,7 +1224,7 @@ const (
 	AVAudioVoiceProcessingSpeechActivityStarted AVAudioVoiceProcessingSpeechActivityEvent = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVMIDIControlChangeMessageType (35 cases) */
+
 // AVMIDIControlChangeMessageType - Constants that represents control change event types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIControlChangeEvent/MessageType-swift.enum
@@ -1373,7 +1373,7 @@ const (
 	AVMIDIControlChangeMessageTypeVolume AVMIDIControlChangeMessageType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVMIDIMetaEventType (16 cases) */
+
 // AVMIDIMetaEventType - Constants that represent the types of meta events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIMetaEvent/EventType
@@ -1446,7 +1446,7 @@ const (
 	AVMIDIMetaEventTypeTrackName AVMIDIMetaEventType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVMusicSequenceLoadOptions (2 cases) */
+
 // AVMusicSequenceLoadOptions - A structure that defines whether data on different MIDI channels map to multiple tracks, or whether the framework preserves the tracks as they are.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMusicSequenceLoadOptions
@@ -1463,7 +1463,7 @@ const (
 	AVMusicSequenceLoadSMF_ChannelsToTracks AVMusicSequenceLoadOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVMusicTrackLoopCount (1 cases) */
+
 // AVMusicTrackLoopCount - Options that define the number of times a track loops.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMusicTrackLoopCount
@@ -1476,7 +1476,7 @@ const (
 	AVMusicTrackLoopCountForever AVMusicTrackLoopCount = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVSpeechBoundary (2 cases) */
+
 // AVSpeechBoundary - Specifies when to pause or stop speech.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechBoundary
@@ -1493,7 +1493,7 @@ const (
 	AVSpeechBoundaryWord AVSpeechBoundary = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVSpeechSynthesisMarkerMark (5 cases) */
+
 // AVSpeechSynthesisMarkerMark - Constants that describe the type of text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisMarker/Mark-swift.enum
@@ -1522,7 +1522,7 @@ const (
 	AVSpeechSynthesisMarkerMarkWord AVSpeechSynthesisMarkerMark = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVSpeechSynthesisVoiceTraits (3 cases) */
+
 // AVSpeechSynthesisVoiceTraits - Traits that describe a voice.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisVoice/Traits
@@ -1543,7 +1543,7 @@ const (
 	AVSpeechSynthesisVoiceTraitNone AVSpeechSynthesisVoiceTraits = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVSpeechSynthesisVoiceGender (3 cases) */
+
 // AVSpeechSynthesisVoiceGender - The gender for a voice.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisVoiceGender
@@ -1564,7 +1564,7 @@ const (
 	AVSpeechSynthesisVoiceGenderUnspecified AVSpeechSynthesisVoiceGender = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVSpeechSynthesisVoiceQuality (3 cases) */
+
 // AVSpeechSynthesisVoiceQuality - The speech quality of a voice.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisVoiceQuality
@@ -1585,7 +1585,7 @@ const (
 	AVSpeechSynthesisVoiceQualityPremium AVSpeechSynthesisVoiceQuality = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AVSpeechSynthesisPersonalVoiceAuthorizationStatus (4 cases) */
+
 // AVSpeechSynthesisPersonalVoiceAuthorizationStatus - An enumeration that models the personal voices authorization status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/PersonalVoiceAuthorizationStatus-swift.enum

@@ -22,7 +22,7 @@ import (
 // See: doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension
 type PUNNotificationContentExtension interface {
 	// Required methods
-	DidReceiveNotification(notification usernotifications.UNNotification)
+	DidReceiveNotification(notification usernotifications.UNNotification)/* debug [protocol_interface/required_method]: DidReceiveNotification */
 	// Optional methods
 	DidReceiveNotificationResponseCompletionHandler(response usernotifications.UNNotificationResponse, completion unsafe.Pointer)
 	HasDidReceiveNotificationResponseCompletionHandler() bool

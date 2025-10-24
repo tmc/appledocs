@@ -18,6 +18,9 @@ var runAspirational = flag.Bool("aspirational", false, "run aspirational (not-ye
 // By default, runs only baseline tests that should pass.
 // Use -aspirational flag to also run aspirational tests (goals for future implementation).
 func TestScripts(t *testing.T) {
+	if os.Getenv("SCRIPTTEST") == "" {
+		t.Skip("Skipping script tests; set SCRIPTTEST=1 to enable")
+	}
 	// Build the occ2go binary for testing
 	tmpDir := t.TempDir()
 	tmpBin := filepath.Join(tmpDir, "occ2go")

@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZXHCIControllerConfiguration */
+
 
 /* debug [class_header]: Header for VZXHCIControllerConfiguration */
 // The class instance for the [VZXHCIControllerConfiguration] class.
@@ -28,25 +30,28 @@ func getVZXHCIControllerConfigurationClass() _VZXHCIControllerConfigurationClass
 type _VZXHCIControllerConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZXHCIControllerConfiguration */
 // An interface definition for the [VZXHCIControllerConfiguration] class.
 type IVZXHCIControllerConfiguration interface {
 	IVZUSBControllerConfiguration
-
-	/* debug [class_interface_properties]: Properties for VZXHCIControllerConfiguration */
+	
+/* debug [class_interface_properties]: Properties for VZXHCIControllerConfiguration */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZXHCIControllerConfiguration */
+	
+/* debug [class_interface_methods]: Methods for VZXHCIControllerConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZXHCIControllerConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -78,13 +83,15 @@ func (v_ VZXHCIControllerConfiguration) Autorelease() VZXHCIControllerConfigurat
 func NewVZXHCIControllerConfiguration() VZXHCIControllerConfiguration {
 	return getVZXHCIControllerConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZXHCIControllerConfiguration */
 // The configuration object for the USB Extensible Host Controller Interface (XHCI) controller.
 //
 // Use this configuration to create a USB XHCI controller device for the guest.
+
 
 // The configuration object for the USB Extensible Host Controller Interface (XHCI) controller.
 //
@@ -102,22 +109,34 @@ func VZXHCIControllerConfigurationFrom(ptr unsafe.Pointer) VZXHCIControllerConfi
 		VZUSBControllerConfiguration: VZUSBControllerConfigurationFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZXHCIControllerConfiguration */
 /* debug [class_init_methods]: End init methods */
 
+
+
 /* debug [class_methods]: Class methods for VZXHCIControllerConfiguration */
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZXHCIControllerConfiguration */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZXHCIControllerConfiguration */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZXHCIControllerConfiguration */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZXHCIControllerConfiguration */
+
+

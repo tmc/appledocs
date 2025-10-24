@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVMIDIMetaEvent */
 
 
-/* debug [class_header]: Header for AVMIDIMetaEvent */
+
+
 // The class instance for the [MIDIMetaEvent] class.
 var (
 	MIDIMetaEventClass     _MIDIMetaEventClass
@@ -31,31 +30,31 @@ func getMIDIMetaEventClass() _MIDIMetaEventClass {
 type _MIDIMetaEventClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MIDIMetaEvent */
+
+
 // An interface definition for the [MIDIMetaEvent] class.
 type IMIDIMetaEvent interface {
 	IMusicEvent
 	
-/* debug [class_interface_properties]: Properties for MIDIMetaEvent */
+
 	// properties:
 	Type() MIDIMetaEventType
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MIDIMetaEvent */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MIDIMetaEvent */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDIMetaEventClass) Alloc() MIDIMetaEvent {
 	rv := objc.Send[MIDIMetaEvent](objc.ID(mc.class), objc.Sel("alloc"))
@@ -85,11 +84,11 @@ func (m_ MIDIMetaEvent) Autorelease() MIDIMetaEvent {
 func NewMIDIMetaEvent() MIDIMetaEvent {
 	return getMIDIMetaEventClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MIDIMetaEvent */
+
+
 // An object that represents MIDI meta event messages.
 //
 // You can’t modify the size and contents of this event once you create it. This doesn’t verify that the content matches the MIDI specification. You can only add , , or to a sequence’s tempo track.
@@ -111,11 +110,11 @@ func MIDIMetaEventFrom(ptr unsafe.Pointer) MIDIMetaEvent {
 		MusicEvent: MusicEventFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MIDIMetaEvent */
+
+
 
 // Creates an event with a MIDI meta event type and data.
 //
@@ -126,28 +125,28 @@ func NewMIDIMetaEventWithTypeData(type_ MIDIMetaEventType, data objc.IObject /* 
 	rv := objc.Send[MIDIMetaEvent](instance.ID, objc.Sel("initWithType:data:"), type_, data)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewMIDIMetaEventWithTypeData */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for MIDIMetaEvent */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MIDIMetaEvent */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MIDIMetaEvent */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MIDIMetaEvent */
+
+
+
+
+
+
+
+
+
 
 // The type of meta event.
 //
@@ -156,11 +155,11 @@ func NewMIDIMetaEventWithTypeData(type_ MIDIMetaEventType, data objc.IObject /* 
 func (m_ MIDIMetaEvent) Type() MIDIMetaEventType {
 	rv := objc.Send[MIDIMetaEventType](m_.ID, objc.Sel("type"))
 	return rv
-}/* debug [instance_properties/getter]: type */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVMIDIMetaEvent */
+
+
+
 
 

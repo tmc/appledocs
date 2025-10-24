@@ -19,3 +19,4 @@ var isPlayingAudioForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	isPlayingAudioForWebExtensionContextProtocol = objc.GetProtocol("isPlayingAudioForWebExtensionContext:")
 }
+

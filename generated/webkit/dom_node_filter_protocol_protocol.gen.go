@@ -3,7 +3,8 @@
 package webkit
 
 import (
-	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PDOMNodeFilter is the DOMNodeFilter protocol interface.
@@ -14,5 +15,5 @@ import (
 // See: doc://com.apple.webkit/documentation/WebKit/DOMNodeFilter
 type PDOMNodeFilter interface {
 	// Required methods
-	AcceptNode(n IDOMNode) unsafe.Pointer
+	AcceptNode(n IDOMNode) objectivec.IObject/* debug [protocol_interface/required_method]: AcceptNode */
 }

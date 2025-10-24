@@ -118,6 +118,8 @@ var templateFuncs = template.FuncMap{
 	"convertDocURL":                       convertDocURL,
 	"structsUseUnsafe":                    structsUseUnsafe,
 	"structsUseObjc":                      structsUseObjc,
+	"getStructCrossFrameworkImports":      getStructCrossFrameworkImports,
+	"getProtocolCrossFrameworkImports":    getProtocolCrossFrameworkImports,
 
 	// Property generation helpers
 	"propertyToGoName":            propertyToGoName,
@@ -308,6 +310,80 @@ func structsUseObjc(structs []*occ2go.ParsedStruct, framework string) bool {
 		}
 	}
 	return false
+}
+
+// getStructCrossFrameworkImports returns a map of cross-framework imports needed by struct fields
+// Returns map[packageName]importPath (e.g., map["corefoundation"]="github.com/tmc/appledocs/generated/corefoundation")
+func getStructCrossFrameworkImports(structs []*occ2go.ParsedStruct, framework, outputModule string) map[string]string {
+	imports := make(map[string]string)
+	for _, s := range structs {
+		for _, field := range s.Fields {
+			mappedType := mapCTypeToGoWithFramework(field.Type, framework)
+			// Check if it's a cross-framework reference (e.g., "corefoundation.CGPoint")
+			if strings.Contains(mappedType, ".") && !strings.HasPrefix(mappedType, "objc.") && !strings.HasPrefix(mappedType, "unsafe.") {
+				parts := strings.SplitN(mappedType, ".", 2)
+				if len(parts) == 2 {
+					pkgName := parts[0]
+					// Don't import our own package
+					if strings.ToLower(pkgName) != strings.ToLower(framework) {
+						imports[pkgName] = outputModule + "/" + pkgName
+					}
+				}
+			}
+		}
+	}
+	return imports
+}
+
+// getProtocolCrossFrameworkImports returns a map of cross-framework imports needed by protocol methods
+// Returns map[packageName]importPath (e.g., map["objectivec"]="github.com/tmc/appledocs/generated/objectivec")
+func getProtocolCrossFrameworkImports(protocol *occ2go.ParsedProtocol, framework, outputModule string) map[string]string {
+	imports := make(map[string]string)
+
+	// Check all methods (both required and optional)
+	allMethods := append([]*occ2go.ParsedMethod{}, protocol.RequiredMethods...)
+	allMethods = append(allMethods, protocol.OptionalMethods...)
+
+	for _, method := range allMethods {
+		// Check return type
+		if method.ReturnType != "" && method.ReturnType != "void" {
+			mappedType := mapObjCTypeToGo(method.ReturnType, framework)
+			checkAndAddCrossFrameworkImport(mappedType, framework, outputModule, imports)
+		}
+
+		// Check parameter types
+		for _, param := range method.Parameters {
+			mappedType := mapObjCTypeToGo(param.Type, framework)
+			checkAndAddCrossFrameworkImport(mappedType, framework, outputModule, imports)
+		}
+	}
+
+	return imports
+}
+
+// checkAndAddCrossFrameworkImport checks if a mapped type is a cross-framework reference and adds it to imports
+func checkAndAddCrossFrameworkImport(mappedType, framework, outputModule string, imports map[string]string) {
+	// Skip slice types (e.g., "[]objc.ID") - the standard library objc package doesn't need importing
+	if strings.HasPrefix(mappedType, "[]") {
+		return
+	}
+
+	// Skip map types (e.g., "map[string]objc.ID")
+	if strings.HasPrefix(mappedType, "map[") {
+		return
+	}
+
+	// Check if it's a cross-framework reference (e.g., "objectivec.IObject")
+	if strings.Contains(mappedType, ".") && !strings.HasPrefix(mappedType, "objc.") && !strings.HasPrefix(mappedType, "unsafe.") {
+		parts := strings.SplitN(mappedType, ".", 2)
+		if len(parts) == 2 {
+			pkgName := parts[0]
+			// Don't import our own package
+			if strings.ToLower(pkgName) != strings.ToLower(framework) {
+				imports[pkgName] = outputModule + "/" + pkgName
+			}
+		}
+	}
 }
 
 func isValidGoIdentifier(s string) bool {

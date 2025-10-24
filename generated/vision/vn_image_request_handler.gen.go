@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class VNImageRequestHandler */
 
 
-/* debug [class_header]: Header for VNImageRequestHandler */
+
+
 // The class instance for the [ImageRequestHandler] class.
 var (
 	ImageRequestHandlerClass     _ImageRequestHandlerClass
@@ -31,31 +30,31 @@ func getImageRequestHandlerClass() _ImageRequestHandlerClass {
 type _ImageRequestHandlerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ImageRequestHandler */
+
+
 // An interface definition for the [ImageRequestHandler] class.
 type IImageRequestHandler interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ImageRequestHandler */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ImageRequestHandler */
+
 	// methods:
 	PerformRequestsError(requests []Request, error_ objectivec.IObject) bool
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ImageRequestHandler */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageRequestHandlerClass) Alloc() ImageRequestHandler {
 	rv := objc.Send[ImageRequestHandler](objc.ID(ic.class), objc.Sel("alloc"))
@@ -85,11 +84,11 @@ func (i_ ImageRequestHandler) Autorelease() ImageRequestHandler {
 func NewImageRequestHandler() ImageRequestHandler {
 	return getImageRequestHandlerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ImageRequestHandler */
+
+
 // An object that processes one or more image-analysis request pertaining to a single image.
 //
 // Instantiate this handler to perform Vision requests on a single image. You specify the image and, optionally, a completion handler at the time of creation, and call to begin executing the request.
@@ -109,11 +108,11 @@ type ImageRequestHandler struct {
 func ImageRequestHandlerFrom(ptr unsafe.Pointer) ImageRequestHandler {
 	return ImageRequestHandler{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ImageRequestHandler */
+
+
 
 // Creates a handler to be used for performing requests on Core Graphics images.
 //
@@ -124,7 +123,7 @@ func NewImageRequestHandlerWithCGImageOptions(image ImageRef /* not a class type
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithCGImage:options:"), image, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageRequestHandlerWithCGImageOptions */
+}
 
 
 // Creates a handler to be used for performing requests on a Core Graphics image with known orientation.
@@ -136,7 +135,7 @@ func NewImageRequestHandlerWithCGImageOrientationOptions(image ImageRef /* not a
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithCGImage:orientation:options:"), image, orientation, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageRequestHandlerWithCGImageOrientationOptions */
+}
 
 
 // Creates a handler to use for performing requests on Core Image image data.
@@ -148,7 +147,7 @@ func NewImageRequestHandlerWithCIImageOptions(image objectivec.IObject, options 
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithCIImage:options:"), image, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageRequestHandlerWithCIImageOptions */
+}
 
 
 // Creates a handler to be used for performing requests on Core Image image data of a known orientation.
@@ -160,7 +159,7 @@ func NewImageRequestHandlerWithCIImageOrientationOptions(image objectivec.IObjec
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithCIImage:orientation:options:"), image, orientation, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageRequestHandlerWithCIImageOrientationOptions */
+}
 
 
 // Creates a request handler that performs requests on an image in a sample buffer that contains depth data.
@@ -172,7 +171,7 @@ func NewImageRequestHandlerWithCMSampleBufferDepthDataOrientationOptions(sampleB
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithCMSampleBuffer:depthData:orientation:options:"), sampleBuffer, depthData, orientation, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageRequestHandlerWithCMSampleBufferDepthDataOrientationOptions */
+}
 
 
 // Creates a request handler that performs requests on an image contained within a sample buffer.
@@ -184,7 +183,7 @@ func NewImageRequestHandlerWithCMSampleBufferOptions(sampleBuffer SampleBufferRe
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithCMSampleBuffer:options:"), sampleBuffer, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageRequestHandlerWithCMSampleBufferOptions */
+}
 
 
 // Creates a request handler that performs requests on an image of a specified orientation contained within a sample buffer.
@@ -196,7 +195,7 @@ func NewImageRequestHandlerWithCMSampleBufferOrientationOptions(sampleBuffer Sam
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithCMSampleBuffer:orientation:options:"), sampleBuffer, orientation, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageRequestHandlerWithCMSampleBufferOrientationOptions */
+}
 
 
 // [Full Topic]
@@ -206,7 +205,7 @@ func NewImageRequestHandlerWithCVPixelBufferDepthDataOrientationOptions(pixelBuf
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithCVPixelBuffer:depthData:orientation:options:"), pixelBuffer, depthData, orientation, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageRequestHandlerWithCVPixelBufferDepthDataOrientationOptions */
+}
 
 
 // Creates a handler for performing requests on a Core Video pixel buffer.
@@ -218,7 +217,7 @@ func NewImageRequestHandlerWithCVPixelBufferOptions(pixelBuffer PixelBufferRef /
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithCVPixelBuffer:options:"), pixelBuffer, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageRequestHandlerWithCVPixelBufferOptions */
+}
 
 
 // Creates a handler for performing requests on a Core Video pixel buffer of a known orientation.
@@ -230,7 +229,7 @@ func NewImageRequestHandlerWithCVPixelBufferOrientationOptions(pixelBuffer Pixel
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithCVPixelBuffer:orientation:options:"), pixelBuffer, orientation, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageRequestHandlerWithCVPixelBufferOrientationOptions */
+}
 
 
 // Creates a handler to use for performing requests on an image in a data object.
@@ -242,7 +241,7 @@ func NewImageRequestHandlerWithDataOptions(imageData objc.IObject /* cross-frame
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithData:options:"), imageData, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageRequestHandlerWithDataOptions */
+}
 
 
 // Creates a handler to use for performing requests on an image of known orientation.
@@ -254,7 +253,7 @@ func NewImageRequestHandlerWithDataOrientationOptions(imageData objc.IObject /* 
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithData:orientation:options:"), imageData, orientation, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageRequestHandlerWithDataOrientationOptions */
+}
 
 
 // Creates a handler to be used for performing requests on an image at the specified URL.
@@ -266,7 +265,7 @@ func NewImageRequestHandlerWithURLOptions(imageURL objc.IObject /* cross-framewo
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithURL:options:"), imageURL, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageRequestHandlerWithURLOptions */
+}
 
 
 // Creates a handler to be used for performing requests on an image with known orientation, at the specified URL.
@@ -278,23 +277,23 @@ func NewImageRequestHandlerWithURLOrientationOptions(imageURL objc.IObject /* cr
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithURL:orientation:options:"), imageURL, orientation, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageRequestHandlerWithURLOrientationOptions */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ImageRequestHandler */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ImageRequestHandler */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ImageRequestHandler */
+
+
+
+
+
+
+
 
 // Schedules Vision requests to perform.
 //
@@ -303,16 +302,16 @@ func NewImageRequestHandlerWithURLOrientationOptions(imageURL objc.IObject /* cr
 func (i_ ImageRequestHandler) PerformRequestsError(requests []Request, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("performRequests:error:"), requests, error_)
 	return rv
-}/* debug [instance_methods/method]: PerformRequestsError */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for ImageRequestHandler */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class VNImageRequestHandler */
+
+
+
+
+
 
 

@@ -19,3 +19,4 @@ var setZoomFactorProtocol *objc.Protocol
 func init() {
 	setZoomFactorProtocol = objc.GetProtocol("setZoomFactor:")
 }
+

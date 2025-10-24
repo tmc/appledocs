@@ -7,11 +7,13 @@ package storekit
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for OverlayTransitionContext
+
 
 // Adds a closure you can use to animate view properties.
 //
@@ -40,3 +42,8 @@ func (o_ OverlayTransitionContext) StartFrame() corefoundation.CGRect {
 	rv := objc.Send[corefoundation.CGRect](o_.ID, objc.Sel("startFrame"))
 	return rv
 }
+
+
+
+
+

@@ -14,22 +14,88 @@ var (
 	blockTypeRegex = regexp.MustCompile(`^(.+?)\s*\(\^\)\s*\(([^)]*)\)$`)
 )
 
+// extractBlockComponents extracts return type and parameter types from a block type string.
+// This handles nested blocks by tracking parenthesis depth.
+// Supports both named and unnamed blocks:
+//   - Unnamed: "void (^)(void)"
+//   - Named: "void (^blockName)(void)"
+// Examples:
+//   "void (^)(void)" -> ("void", "void", true)
+//   "NSProgress * (^)(void (^)(NSData *, NSError *))" -> ("NSProgress *", "void (^)(NSData *, NSError *)", true)
+//   "void (^completionHandler)(NSData *, NSError *)" -> ("void", "NSData *, NSError *", true)
+func extractBlockComponents(blockType string) (returnType string, paramTypes string, ok bool) {
+	// Find the (^ marker - could be (^) or (^name)
+	caretIdx := strings.Index(blockType, "(^")
+	if caretIdx == -1 {
+		return "", "", false
+	}
+
+	// Return type is everything before (^
+	returnType = strings.TrimSpace(blockType[:caretIdx])
+
+	// Find the closing paren of (^) or (^name) - we need to skip past the block name if present
+	// Start after "(^"
+	nameEndIdx := caretIdx + 2
+	for nameEndIdx < len(blockType) && blockType[nameEndIdx] != ')' {
+		nameEndIdx++
+	}
+	if nameEndIdx >= len(blockType) {
+		return "", "", false
+	}
+	// Now nameEndIdx points to the ')' after (^ or (^name
+
+	// Find the opening paren after (^) or (^name)
+	startIdx := nameEndIdx + 1 // Start after the closing paren
+	for startIdx < len(blockType) && blockType[startIdx] == ' ' {
+		startIdx++
+	}
+	if startIdx >= len(blockType) || blockType[startIdx] != '(' {
+		return "", "", false
+	}
+
+	// Track parenthesis depth to find matching closing paren
+	depth := 0
+	endIdx := -1
+	for i := startIdx; i < len(blockType); i++ {
+		if blockType[i] == '(' {
+			depth++
+		} else if blockType[i] == ')' {
+			depth--
+			if depth == 0 {
+				endIdx = i
+				break
+			}
+		}
+	}
+
+	if endIdx == -1 {
+		return "", "", false
+	}
+
+	// Parameter types are between the parentheses (excluding the parens themselves)
+	paramTypes = blockType[startIdx+1 : endIdx]
+
+	return returnType, paramTypes, true
+}
+
 // parseBlockType converts Objective-C block syntax to Go function type.
 // Examples:
 //   "void (^)(void)"          -> "func()"
 //   "id (^)(NSString *)"      -> "func(objc.ID) objc.ID"
 //   "BOOL (^)(id, NSError *)" -> "func(objc.ID, objc.ID) bool"
+//   "NSProgress * (^)(void (^)(NSData *, NSError *))" -> "func(func(unsafe.Pointer, unsafe.Pointer)) unsafe.Pointer"
 func parseBlockType(blockType, framework string) string {
 	blockType = strings.TrimSpace(blockType)
 
-	matches := blockTypeRegex.FindStringSubmatch(blockType)
-	if matches == nil {
+	// Extract block components manually to handle nested blocks
+	returnType, paramTypes, ok := extractBlockComponents(blockType)
+	if !ok {
 		// Not a block type
 		return ""
 	}
 
-	returnType := strings.TrimSpace(matches[1])
-	paramTypes := strings.TrimSpace(matches[2])
+	returnType = strings.TrimSpace(returnType)
+	paramTypes = strings.TrimSpace(paramTypes)
 
 	// Map return type
 	goReturnType := MapCTypeToGo(returnType, framework)

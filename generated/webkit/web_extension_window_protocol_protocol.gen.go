@@ -5,8 +5,9 @@ package webkit
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // PWebExtensionWindow is the WKWebExtensionWindow protocol interface.

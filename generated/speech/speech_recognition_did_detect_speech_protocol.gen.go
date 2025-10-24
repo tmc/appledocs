@@ -19,3 +19,4 @@ var speechRecognitionDidDetectSpeechProtocol *objc.Protocol
 func init() {
 	speechRecognitionDidDetectSpeechProtocol = objc.GetProtocol("speechRecognitionDidDetectSpeech:")
 }
+

@@ -21,3 +21,4 @@ var paymentQueueRestoreCompletedTransactionsFinishedProtocol *objc.Protocol
 func init() {
 	paymentQueueRestoreCompletedTransactionsFinishedProtocol = objc.GetProtocol("paymentQueueRestoreCompletedTransactionsFinished:")
 }
+

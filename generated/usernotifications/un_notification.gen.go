@@ -6,12 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class UNNotification */
+
 
 /* debug [class_header]: Header for UNNotification */
 // The class instance for the [UNNotification] class.
@@ -30,27 +31,30 @@ func getUNNotificationClass() _UNNotificationClass {
 type _UNNotificationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for UNNotification */
 // An interface definition for the [UNNotification] class.
 type IUNNotification interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for UNNotification */
+	
+/* debug [class_interface_properties]: Properties for UNNotification */
 	// properties:
 	Date() objc.IObject /* cross-framework: NSDate */
 	Request() IUNNotificationRequest
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for UNNotification */
+	
+/* debug [class_interface_methods]: Methods for UNNotification */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for UNNotification */
 // Alloc allocates a new instance without initialization.
@@ -82,13 +86,15 @@ func (u_ UNNotification) Autorelease() UNNotification {
 func NewUNNotification() UNNotification {
 	return getUNNotificationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for UNNotification */
 // The data for a local or remote notification the system delivers to your app.
 //
 // A object contains the initial notification request, which contains the notification’s payload, and the date that the system delivered the notification. Don’t create notification objects directly. When handling notifications, the system delivers notification objects to your object. The object also maintains the list of notifications that the system delivers, and you use the method to retrieve those objects.
+
 
 // The data for a local or remote notification the system delivers to your app.
 //
@@ -104,19 +110,28 @@ type UNNotification struct {
 func UNNotificationFrom(ptr unsafe.Pointer) UNNotification {
 	return UNNotification{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for UNNotification */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for UNNotification *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for UNNotification */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for UNNotification */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for UNNotification */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for UNNotification */
 
@@ -127,7 +142,8 @@ func UNNotificationFrom(ptr unsafe.Pointer) UNNotification {
 func (u_ UNNotification) Date() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](u_.ID, objc.Sel("date"))
 	return rv
-} /* debug [instance_properties/getter]: date */
+}/* debug [instance_properties/getter]: date */
+
 
 // The notification request containing the payload and trigger condition for the notification.
 //
@@ -136,8 +152,12 @@ func (u_ UNNotification) Date() objc.IObject /* cross-framework: NSDate */ {
 func (u_ UNNotification) Request() IUNNotificationRequest {
 	rv := objc.Send[UNNotificationRequest](u_.ID, objc.Sel("request"))
 	return rv
-} /* debug [instance_properties/getter]: request */
+}/* debug [instance_properties/getter]: request */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class UNNotification */
+
+
+

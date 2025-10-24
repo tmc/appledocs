@@ -15,3 +15,4 @@ var chooseFilenamesProtocol *objc.Protocol
 func init() {
 	chooseFilenamesProtocol = objc.GetProtocol("chooseFilenames:")
 }
+

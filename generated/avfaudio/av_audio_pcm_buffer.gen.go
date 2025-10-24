@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAudioPCMBuffer */
 
 
-/* debug [class_header]: Header for AVAudioPCMBuffer */
+
+
 // The class instance for the [AudioPCMBuffer] class.
 var (
 	AudioPCMBufferClass     _AudioPCMBufferClass
@@ -30,16 +30,16 @@ func getAudioPCMBufferClass() _AudioPCMBufferClass {
 type _AudioPCMBufferClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AudioPCMBuffer */
+
+
 // An interface definition for the [AudioPCMBuffer] class.
 type IAudioPCMBuffer interface {
 	IAudioBuffer
 	
-/* debug [class_interface_properties]: Properties for AudioPCMBuffer */
+
 	// properties:
 	FloatChannelData() objectivec.IObject
 	FrameCapacity() AudioFrameCount /* typedef */
@@ -48,19 +48,19 @@ type IAudioPCMBuffer interface {
 	Int16ChannelData() objectivec.IObject
 	Int32ChannelData() objectivec.IObject
 	Stride() uint
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AudioPCMBuffer */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AudioPCMBuffer */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AudioPCMBufferClass) Alloc() AudioPCMBuffer {
 	rv := objc.Send[AudioPCMBuffer](objc.ID(ac.class), objc.Sel("alloc"))
@@ -90,11 +90,11 @@ func (a_ AudioPCMBuffer) Autorelease() AudioPCMBuffer {
 func NewAudioPCMBuffer() AudioPCMBuffer {
 	return getAudioPCMBufferClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AudioPCMBuffer */
+
+
 // An object that represents an audio buffer you use with PCM audio formats.
 //
 // The PCM buffer class provides methods that are useful for manipulating buffers of audio in PCM format.
@@ -116,11 +116,11 @@ func AudioPCMBufferFrom(ptr unsafe.Pointer) AudioPCMBuffer {
 		AudioBuffer: AudioBufferFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AudioPCMBuffer */
+
+
 
 // Creates a PCM audio buffer instance without copying samples, for PCM audio data, with a specified buffer list and a deallocator closure.
 //
@@ -131,7 +131,7 @@ func NewAudioPCMBufferWithPCMFormatBufferListNoCopyDeallocator(format IAVAudioFo
 	rv := objc.Send[AudioPCMBuffer](instance.ID, objc.Sel("initWithPCMFormat:bufferListNoCopy:deallocator:"), format, bufferList, deallocator)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewAudioPCMBufferWithPCMFormatBufferListNoCopyDeallocator */
+}
 
 
 // Creates a PCM audio buffer instance for PCM audio data.
@@ -143,28 +143,28 @@ func NewAudioPCMBufferWithPCMFormatFrameCapacity(format IAVAudioFormat, frameCap
 	rv := objc.Send[AudioPCMBuffer](instance.ID, objc.Sel("initWithPCMFormat:frameCapacity:"), format, frameCapacity)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewAudioPCMBufferWithPCMFormatFrameCapacity */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for AudioPCMBuffer */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AudioPCMBuffer */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AudioPCMBuffer */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AudioPCMBuffer */
+
+
+
+
+
+
+
+
+
 
 // The buffer’s audio samples as floating point values.
 //
@@ -173,7 +173,7 @@ func NewAudioPCMBufferWithPCMFormatFrameCapacity(format IAVAudioFormat, frameCap
 func (a_ AudioPCMBuffer) FloatChannelData() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](a_.ID, objc.Sel("floatChannelData"))
 	return rv
-}/* debug [instance_properties/getter]: floatChannelData */
+}
 
 
 // The buffer’s capacity, in audio sample frames.
@@ -183,7 +183,7 @@ func (a_ AudioPCMBuffer) FloatChannelData() objectivec.IObject {
 func (a_ AudioPCMBuffer) FrameCapacity() AudioFrameCount /* typedef */ {
 	rv := objc.Send[uint32](a_.ID, objc.Sel("frameCapacity"))
 	return rv
-}/* debug [instance_properties/getter]: frameCapacity */
+}
 
 
 // The current number of valid sample frames in the buffer.
@@ -193,7 +193,7 @@ func (a_ AudioPCMBuffer) FrameCapacity() AudioFrameCount /* typedef */ {
 func (a_ AudioPCMBuffer) FrameLength() AudioFrameCount /* typedef */ {
 	rv := objc.Send[uint32](a_.ID, objc.Sel("frameLength"))
 	return rv
-}/* debug [instance_properties/getter]: frameLength */
+}
 
 
 // The current number of valid sample frames in the buffer.
@@ -202,7 +202,7 @@ func (a_ AudioPCMBuffer) FrameLength() AudioFrameCount /* typedef */ {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/frameLength
 func (a_ AudioPCMBuffer) SetFrameLength(value AudioFrameCount /* typedef */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFrameLength:"), value)
-}/* debug [instance_properties/setter]: frameLength */
+}
 
 
 // The buffer’s 16-bit integer audio samples.
@@ -212,7 +212,7 @@ func (a_ AudioPCMBuffer) SetFrameLength(value AudioFrameCount /* typedef */) {
 func (a_ AudioPCMBuffer) Int16ChannelData() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](a_.ID, objc.Sel("int16ChannelData"))
 	return rv
-}/* debug [instance_properties/getter]: int16ChannelData */
+}
 
 
 // The buffer’s 32-bit integer audio samples.
@@ -222,7 +222,7 @@ func (a_ AudioPCMBuffer) Int16ChannelData() objectivec.IObject {
 func (a_ AudioPCMBuffer) Int32ChannelData() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](a_.ID, objc.Sel("int32ChannelData"))
 	return rv
-}/* debug [instance_properties/getter]: int32ChannelData */
+}
 
 
 // The buffer’s number of interleaved channels.
@@ -232,11 +232,11 @@ func (a_ AudioPCMBuffer) Int32ChannelData() objectivec.IObject {
 func (a_ AudioPCMBuffer) Stride() uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("stride"))
 	return rv
-}/* debug [instance_properties/getter]: stride */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVAudioPCMBuffer */
+
+
+
 
 

@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNDilatedPoolingMaxGradient */
 
 
-/* debug [class_header]: Header for MPSCNNDilatedPoolingMaxGradient */
+
+
 // The class instance for the [CNNDilatedPoolingMaxGradient] class.
 var (
 	CNNDilatedPoolingMaxGradientClass     _CNNDilatedPoolingMaxGradientClass
@@ -31,30 +30,30 @@ func getCNNDilatedPoolingMaxGradientClass() _CNNDilatedPoolingMaxGradientClass {
 type _CNNDilatedPoolingMaxGradientClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNDilatedPoolingMaxGradient */
+
+
 // An interface definition for the [CNNDilatedPoolingMaxGradient] class.
 type ICNNDilatedPoolingMaxGradient interface {
 	ICNNPoolingGradient
 	
-/* debug [class_interface_properties]: Properties for CNNDilatedPoolingMaxGradient */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNDilatedPoolingMaxGradient */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNDilatedPoolingMaxGradient */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNDilatedPoolingMaxGradientClass) Alloc() CNNDilatedPoolingMaxGradient {
 	rv := objc.Send[CNNDilatedPoolingMaxGradient](objc.ID(cc.class), objc.Sel("alloc"))
@@ -84,11 +83,11 @@ func (c_ CNNDilatedPoolingMaxGradient) Autorelease() CNNDilatedPoolingMaxGradien
 func NewCNNDilatedPoolingMaxGradient() CNNDilatedPoolingMaxGradient {
 	return getCNNDilatedPoolingMaxGradientClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNDilatedPoolingMaxGradient */
+
+
 // A gradient dilated max pooling filter.
 //
 // A gradient max pooling filter but the pixels selected in each “application” of the max pooling operation are exactly the same pixels that would be selected with dilated convolution
@@ -110,11 +109,11 @@ func CNNDilatedPoolingMaxGradientFrom(ptr unsafe.Pointer) CNNDilatedPoolingMaxGr
 		CNNPoolingGradient: CNNPoolingGradientFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNDilatedPoolingMaxGradient */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnndilatedpoolingmaxgradient/2942346-initwithcoder
@@ -123,7 +122,7 @@ func NewCNNDilatedPoolingMaxGradientWithCoderDevice(aDecoder foundation.Coder, d
 	rv := objc.Send[CNNDilatedPoolingMaxGradient](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNDilatedPoolingMaxGradientWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -133,31 +132,31 @@ func NewCNNDilatedPoolingMaxGradientWithDeviceKernelWidthKernelHeightDilationRat
 	rv := objc.Send[CNNDilatedPoolingMaxGradient](instance.ID, objc.Sel("initWithDevice:kernelWidth:kernelHeight:dilationRateX:dilationRateY:strideInPixelsX:strideInPixelsY:"), device, kernelWidth, kernelHeight, dilationRateX, dilationRateY, strideInPixelsX, strideInPixelsY)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNDilatedPoolingMaxGradientWithDeviceKernelWidthKernelHeightDilationRateXDilationRateYStrideInPixelsXStrideInPixelsY */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNDilatedPoolingMaxGradient */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNDilatedPoolingMaxGradient */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNDilatedPoolingMaxGradient */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNDilatedPoolingMaxGradient */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNDilatedPoolingMaxGradient */
+
+
+
+
+
+
+
+
+
+
+
 
 

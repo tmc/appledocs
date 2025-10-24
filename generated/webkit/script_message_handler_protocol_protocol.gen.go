@@ -16,5 +16,5 @@ package webkit
 // See: doc://com.apple.webkit/documentation/WebKit/WKScriptMessageHandler
 type PScriptMessageHandler interface {
 	// Required methods
-	UserContentControllerDidReceiveScriptMessage(userContentController IWKUserContentController, message IWKScriptMessage)
+	UserContentControllerDidReceiveScriptMessage(userContentController IWKUserContentController, message IWKScriptMessage)/* debug [protocol_interface/required_method]: UserContentControllerDidReceiveScriptMessage */
 }

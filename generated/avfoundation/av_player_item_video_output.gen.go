@@ -7,15 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corevideo"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVPlayerItemVideoOutput */
 
 
-/* debug [class_header]: Header for AVPlayerItemVideoOutput */
+
+
 // The class instance for the [PlayerItemVideoOutput] class.
 var (
 	PlayerItemVideoOutputClass     _PlayerItemVideoOutputClass
@@ -32,35 +30,35 @@ func getPlayerItemVideoOutputClass() _PlayerItemVideoOutputClass {
 type _PlayerItemVideoOutputClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for PlayerItemVideoOutput */
+
+
 // An interface definition for the [PlayerItemVideoOutput] class.
 type IPlayerItemVideoOutput interface {
 	IPlayerItemOutput
 	
-/* debug [class_interface_properties]: Properties for PlayerItemVideoOutput */
+
 	// properties:
 	Delegate() unsafe.Pointer
 	DelegateQueue() objectivec.IObject
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for PlayerItemVideoOutput */
+
 	// methods:
 	HasNewPixelBufferForItemTime(itemTime objc.IObject /* cross-framework: Time */) bool
 	RequestNotificationOfMediaDataChangeWithAdvanceInterval(interval float64)
 	SetDelegateQueue(delegate unsafe.Pointer, delegateQueue objectivec.IObject)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for PlayerItemVideoOutput */
+
+
 // Alloc allocates a new instance without initialization.
 func (pc _PlayerItemVideoOutputClass) Alloc() PlayerItemVideoOutput {
 	rv := objc.Send[PlayerItemVideoOutput](objc.ID(pc.class), objc.Sel("alloc"))
@@ -90,11 +88,11 @@ func (p_ PlayerItemVideoOutput) Autorelease() PlayerItemVideoOutput {
 func NewPlayerItemVideoOutput() PlayerItemVideoOutput {
 	return getPlayerItemVideoOutputClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for PlayerItemVideoOutput */
+
+
 // An object that outputs video frames from a player item.
 
 
@@ -114,11 +112,11 @@ func PlayerItemVideoOutputFrom(ptr unsafe.Pointer) PlayerItemVideoOutput {
 		PlayerItemOutput: PlayerItemOutputFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for PlayerItemVideoOutput */
+
+
 
 // Creates a video output object initialized with the specified output settings.
 //
@@ -129,7 +127,7 @@ func NewPlayerItemVideoOutputWithOutputSettings(outputSettings foundation.IDicti
 	rv := objc.Send[PlayerItemVideoOutput](instance.ID, objc.Sel("initWithOutputSettings:"), outputSettings)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewPlayerItemVideoOutputWithOutputSettings */
+}
 
 
 // Creates a video output object using the specified pixel buffer attributes.
@@ -141,23 +139,23 @@ func NewPlayerItemVideoOutputWithPixelBufferAttributes(pixelBufferAttributes fou
 	rv := objc.Send[PlayerItemVideoOutput](instance.ID, objc.Sel("initWithPixelBufferAttributes:"), pixelBufferAttributes)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewPlayerItemVideoOutputWithPixelBufferAttributes */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for PlayerItemVideoOutput */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for PlayerItemVideoOutput */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for PlayerItemVideoOutput */
+
+
+
+
+
+
+
 
 // Returns a Boolean value that indicates whether video output is available for the specified item time.
 //
@@ -166,7 +164,7 @@ func NewPlayerItemVideoOutputWithPixelBufferAttributes(pixelBufferAttributes fou
 func (p_ PlayerItemVideoOutput) HasNewPixelBufferForItemTime(itemTime objc.IObject /* cross-framework: Time */) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("hasNewPixelBufferForItemTime:"), itemTime)
 	return rv
-}/* debug [instance_methods/method]: HasNewPixelBufferForItemTime */
+}
 
 
 // Tells the receiver that the video out put client is entering a quiescent state.
@@ -175,7 +173,7 @@ func (p_ PlayerItemVideoOutput) HasNewPixelBufferForItemTime(itemTime objc.IObje
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemVideoOutput/requestNotificationOfMediaDataChange(withAdvanceInterval:)
 func (p_ PlayerItemVideoOutput) RequestNotificationOfMediaDataChangeWithAdvanceInterval(interval float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("requestNotificationOfMediaDataChangeWithAdvanceInterval:"), interval)
-}/* debug [instance_methods/method]: RequestNotificationOfMediaDataChangeWithAdvanceInterval */
+}
 
 
 // Sets the delegate and dispatch queue for the receiver.
@@ -184,13 +182,13 @@ func (p_ PlayerItemVideoOutput) RequestNotificationOfMediaDataChangeWithAdvanceI
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemVideoOutput/setDelegate(_:queue:)
 func (p_ PlayerItemVideoOutput) SetDelegateQueue(delegate unsafe.Pointer, delegateQueue objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:queue:"), delegate, delegateQueue)
-}/* debug [instance_methods/method]: SetDelegateQueue */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for PlayerItemVideoOutput */
+
+
+
 
 // The delegate for the video output object.
 //
@@ -199,7 +197,7 @@ func (p_ PlayerItemVideoOutput) SetDelegateQueue(delegate unsafe.Pointer, delega
 func (p_ PlayerItemVideoOutput) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
 	return rv
-}/* debug [instance_properties/getter]: delegate */
+}
 
 
 // The dispatch queue on which to call delegate methods.
@@ -209,11 +207,11 @@ func (p_ PlayerItemVideoOutput) Delegate() unsafe.Pointer {
 func (p_ PlayerItemVideoOutput) DelegateQueue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](p_.ID, objc.Sel("delegateQueue"))
 	return rv
-}/* debug [instance_properties/getter]: delegateQueue */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVPlayerItemVideoOutput */
+
+
+
 
 

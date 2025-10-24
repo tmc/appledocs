@@ -19,3 +19,4 @@ var HTTPCookieStoreObserverProtocol *objc.Protocol
 func init() {
 	HTTPCookieStoreObserverProtocol = objc.GetProtocol("WKHTTPCookieStoreObserver")
 }
+

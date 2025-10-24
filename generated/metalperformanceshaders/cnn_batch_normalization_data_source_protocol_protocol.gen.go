@@ -27,21 +27,21 @@ import (
 // See: doc://com.apple.metalperformanceshaders/documentation/MetalPerformanceShaders/MPSCNNBatchNormalizationDataSource
 type PCNNBatchNormalizationDataSource interface {
 	// Required methods
-	Load()/* debug [protocol_interface/required_method]: Load */
-	Beta()/* debug [protocol_interface/required_method]: Beta */
-	Mean()/* debug [protocol_interface/required_method]: Mean */
-	Variance()/* debug [protocol_interface/required_method]: Variance */
-	NumberOfFeatureChannels()/* debug [protocol_interface/required_method]: NumberOfFeatureChannels */
-	Gamma()/* debug [protocol_interface/required_method]: Gamma */
-	Purge()/* debug [protocol_interface/required_method]: Purge */
-	EncodeWithCoder(aCoder foundation.Coder)/* debug [protocol_interface/required_method]: EncodeWithCoder */
-	InitWithCoder(aDecoder foundation.Coder) objectivec.IObject/* debug [protocol_interface/required_method]: InitWithCoder */
-	UpdateGammaAndBetaWithCommandBufferBatchNormalizationState(commandBuffer unsafe.Pointer, batchNormalizationState ICNNBatchNormalizationState) CNNNormalizationGammaAndBetaState/* debug [protocol_interface/required_method]: UpdateGammaAndBetaWithCommandBufferBatchNormalizationState */
-	Label()/* debug [protocol_interface/required_method]: Label */
-	UpdateGammaAndBetaWithBatchNormalizationState(batchNormalizationState ICNNBatchNormalizationState) bool/* debug [protocol_interface/required_method]: UpdateGammaAndBetaWithBatchNormalizationState */
-	UpdateMeanAndVarianceWithBatchNormalizationState(batchNormalizationState ICNNBatchNormalizationState) bool/* debug [protocol_interface/required_method]: UpdateMeanAndVarianceWithBatchNormalizationState */
-	UpdateMeanAndVarianceWithCommandBufferBatchNormalizationState(commandBuffer unsafe.Pointer, batchNormalizationState ICNNBatchNormalizationState) CNNNormalizationMeanAndVarianceState/* debug [protocol_interface/required_method]: UpdateMeanAndVarianceWithCommandBufferBatchNormalizationState */
-	CopyWithZoneDevice(zone Zone /* not a class type */, device unsafe.Pointer) objectivec.IObject/* debug [protocol_interface/required_method]: CopyWithZoneDevice */
+	Load()
+	Beta()
+	Mean()
+	Variance()
+	NumberOfFeatureChannels()
+	Gamma()
+	Purge()
+	EncodeWithCoder(aCoder foundation.Coder)
+	InitWithCoder(aDecoder foundation.Coder) objectivec.IObject
+	UpdateGammaAndBetaWithCommandBufferBatchNormalizationState(commandBuffer unsafe.Pointer, batchNormalizationState ICNNBatchNormalizationState) CNNNormalizationGammaAndBetaState
+	Label()
+	UpdateGammaAndBetaWithBatchNormalizationState(batchNormalizationState ICNNBatchNormalizationState) bool
+	UpdateMeanAndVarianceWithBatchNormalizationState(batchNormalizationState ICNNBatchNormalizationState) bool
+	UpdateMeanAndVarianceWithCommandBufferBatchNormalizationState(commandBuffer unsafe.Pointer, batchNormalizationState ICNNBatchNormalizationState) CNNNormalizationMeanAndVarianceState
+	CopyWithZoneDevice(zone Zone /* not a class type */, device unsafe.Pointer) objectivec.IObject
 	// Optional methods
 	Epsilon()
 	HasEpsilon() bool

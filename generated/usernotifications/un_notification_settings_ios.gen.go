@@ -5,10 +5,14 @@
 package usernotifications
 
 import (
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for UNNotificationSettings
+
 
 // iOS-only properties
 
@@ -29,3 +33,8 @@ func (u_ UNNotificationSettings) CarPlaySetting() UNNotificationSetting {
 	rv := objc.Send[UNNotificationSetting](u_.ID, objc.Sel("carPlaySetting"))
 	return rv
 }
+
+
+
+
+

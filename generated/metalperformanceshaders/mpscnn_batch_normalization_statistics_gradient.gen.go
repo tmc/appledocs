@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNBatchNormalizationStatisticsGradient */
 
 
-/* debug [class_header]: Header for MPSCNNBatchNormalizationStatisticsGradient */
+
+
 // The class instance for the [CNNBatchNormalizationStatisticsGradient] class.
 var (
 	CNNBatchNormalizationStatisticsGradientClass     _CNNBatchNormalizationStatisticsGradientClass
@@ -31,32 +30,32 @@ func getCNNBatchNormalizationStatisticsGradientClass() _CNNBatchNormalizationSta
 type _CNNBatchNormalizationStatisticsGradientClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNBatchNormalizationStatisticsGradient */
+
+
 // An interface definition for the [CNNBatchNormalizationStatisticsGradient] class.
 type ICNNBatchNormalizationStatisticsGradient interface {
 	ICNNGradientKernel
 	
-/* debug [class_interface_properties]: Properties for CNNBatchNormalizationStatisticsGradient */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNBatchNormalizationStatisticsGradient */
+
 	// methods:
 	EncodeBatch()
 	EncodeBatchToCommandBufferSourceGradientsSourceImagesBatchNormalizationState(commandBuffer unsafe.Pointer, sourceGradients ImageBatch /* not a class type */, sourceImages ImageBatch /* not a class type */, batchNormalizationState ICNNBatchNormalizationState)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNBatchNormalizationStatisticsGradient */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNBatchNormalizationStatisticsGradientClass) Alloc() CNNBatchNormalizationStatisticsGradient {
 	rv := objc.Send[CNNBatchNormalizationStatisticsGradient](objc.ID(cc.class), objc.Sel("alloc"))
@@ -86,11 +85,11 @@ func (c_ CNNBatchNormalizationStatisticsGradient) Autorelease() CNNBatchNormaliz
 func NewCNNBatchNormalizationStatisticsGradient() CNNBatchNormalizationStatisticsGradient {
 	return getCNNBatchNormalizationStatisticsGradientClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNBatchNormalizationStatisticsGradient */
+
+
 // An object that stores the gradient of the loss function with respect to the batch statistics and batch normalization weights.
 
 
@@ -110,11 +109,11 @@ func CNNBatchNormalizationStatisticsGradientFrom(ptr unsafe.Pointer) CNNBatchNor
 		CNNGradientKernel: CNNGradientKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNBatchNormalizationStatisticsGradient */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationstatisticsgradient/3013774-initwithcoder
@@ -123,7 +122,7 @@ func NewCNNBatchNormalizationStatisticsGradientWithCoderDevice(aDecoder foundati
 	rv := objc.Send[CNNBatchNormalizationStatisticsGradient](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNBatchNormalizationStatisticsGradientWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -133,45 +132,45 @@ func NewCNNBatchNormalizationStatisticsGradientWithDeviceFusedNeuronDescriptor(d
 	rv := objc.Send[CNNBatchNormalizationStatisticsGradient](instance.ID, objc.Sel("initWithDevice:fusedNeuronDescriptor:"), device, fusedNeuronDescriptor)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNBatchNormalizationStatisticsGradientWithDeviceFusedNeuronDescriptor */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNBatchNormalizationStatisticsGradient */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNBatchNormalizationStatisticsGradient */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNBatchNormalizationStatisticsGradient */
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationstatisticsgradient/2953964-encodebatch
 func (c_ CNNBatchNormalizationStatisticsGradient) EncodeBatch() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeBatch"))
-}/* debug [instance_methods/method]: EncodeBatch */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationstatisticsgradient/2953964-encodebatchtocommandbuffer
 func (c_ CNNBatchNormalizationStatisticsGradient) EncodeBatchToCommandBufferSourceGradientsSourceImagesBatchNormalizationState(commandBuffer unsafe.Pointer, sourceGradients ImageBatch /* not a class type */, sourceImages ImageBatch /* not a class type */, batchNormalizationState ICNNBatchNormalizationState) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeBatchToCommandBuffer:sourceGradients:sourceImages:batchNormalizationState:"), commandBuffer, sourceGradients, sourceImages, batchNormalizationState)
-}/* debug [instance_methods/method]: EncodeBatchToCommandBufferSourceGradientsSourceImagesBatchNormalizationState */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for CNNBatchNormalizationStatisticsGradient */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNBatchNormalizationStatisticsGradient */
+
+
+
+
+
 
 

@@ -15,3 +15,4 @@ var WebOpenPanelResultListenerProtocol *objc.Protocol
 func init() {
 	WebOpenPanelResultListenerProtocol = objc.GetProtocol("WebOpenPanelResultListener")
 }
+

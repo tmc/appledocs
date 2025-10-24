@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZVirtioConsolePortArray */
 
+
 /* debug [class_header]: Header for VZVirtioConsolePortArray */
 // The class instance for the [VZVirtioConsolePortArray] class.
 var (
@@ -29,27 +30,30 @@ func getVZVirtioConsolePortArrayClass() _VZVirtioConsolePortArrayClass {
 type _VZVirtioConsolePortArrayClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZVirtioConsolePortArray */
 // An interface definition for the [VZVirtioConsolePortArray] class.
 type IVZVirtioConsolePortArray interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZVirtioConsolePortArray */
+	
+/* debug [class_interface_properties]: Properties for VZVirtioConsolePortArray */
 	// properties:
 	MaximumPortCount() uint32 /* not a class type */
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZVirtioConsolePortArray */
+	
+/* debug [class_interface_methods]: Methods for VZVirtioConsolePortArray */
 	// methods:
 	ObjectAtIndexedSubscript(portIndex uint) IVZVirtioConsolePort
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZVirtioConsolePortArray */
 // Alloc allocates a new instance without initialization.
@@ -81,11 +85,13 @@ func (v_ VZVirtioConsolePortArray) Autorelease() VZVirtioConsolePortArray {
 func NewVZVirtioConsolePortArray() VZVirtioConsolePortArray {
 	return getVZVirtioConsolePortArrayClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZVirtioConsolePortArray */
 // A class that represents a collection of Virtio console ports.
+
 
 // A class that represents a collection of Virtio console ports.
 //
@@ -101,16 +107,23 @@ type VZVirtioConsolePortArray struct {
 func VZVirtioConsolePortArrayFrom(ptr unsafe.Pointer) VZVirtioConsolePortArray {
 	return VZVirtioConsolePortArray{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZVirtioConsolePortArray */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZVirtioConsolePortArray *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZVirtioConsolePortArray */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZVirtioConsolePortArray */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZVirtioConsolePortArray */
 
@@ -121,9 +134,11 @@ func VZVirtioConsolePortArrayFrom(ptr unsafe.Pointer) VZVirtioConsolePortArray {
 func (v_ VZVirtioConsolePortArray) ObjectAtIndexedSubscript(portIndex uint) IVZVirtioConsolePort {
 	rv := objc.Send[VZVirtioConsolePort](v_.ID, objc.Sel("objectAtIndexedSubscript:"), portIndex)
 	return rv
-} /* debug [instance_methods/method]: ObjectAtIndexedSubscript */
+}/* debug [instance_methods/method]: ObjectAtIndexedSubscript */
 
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZVirtioConsolePortArray */
 
@@ -134,8 +149,12 @@ func (v_ VZVirtioConsolePortArray) ObjectAtIndexedSubscript(portIndex uint) IVZV
 func (v_ VZVirtioConsolePortArray) MaximumPortCount() uint32 /* not a class type */ {
 	rv := objc.Send[uint32](v_.ID, objc.Sel("maximumPortCount"))
 	return rv
-} /* debug [instance_properties/getter]: maximumPortCount */
+}/* debug [instance_properties/getter]: maximumPortCount */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZVirtioConsolePortArray */
+
+
+

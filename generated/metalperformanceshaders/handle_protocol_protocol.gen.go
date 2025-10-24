@@ -17,5 +17,5 @@ package metalperformanceshaders
 // See: doc://com.apple.metalperformanceshaders/documentation/MetalPerformanceShaders/MPSHandle
 type PHandle interface {
 	// Required methods
-	Label()/* debug [protocol_interface/required_method]: Label */
+	Label()
 }

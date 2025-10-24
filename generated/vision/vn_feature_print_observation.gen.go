@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class VNFeaturePrintObservation */
 
 
-/* debug [class_header]: Header for VNFeaturePrintObservation */
+
+
 // The class instance for the [FeaturePrintObservation] class.
 var (
 	FeaturePrintObservationClass     _FeaturePrintObservationClass
@@ -31,34 +30,34 @@ func getFeaturePrintObservationClass() _FeaturePrintObservationClass {
 type _FeaturePrintObservationClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for FeaturePrintObservation */
+
+
 // An interface definition for the [FeaturePrintObservation] class.
 type IFeaturePrintObservation interface {
 	IObservation
 	
-/* debug [class_interface_properties]: Properties for FeaturePrintObservation */
+
 	// properties:
 	Data() objc.IObject /* cross-framework: NSData */
 	ElementCount() uint
 	ElementType() ElementType
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for FeaturePrintObservation */
+
 	// methods:
 	ComputeDistanceToFeaturePrintObservationError(outDistance objectivec.IObject, featurePrint IVNFeaturePrintObservation, error_ objectivec.IObject) bool
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for FeaturePrintObservation */
+
+
 // Alloc allocates a new instance without initialization.
 func (fc _FeaturePrintObservationClass) Alloc() FeaturePrintObservation {
 	rv := objc.Send[FeaturePrintObservation](objc.ID(fc.class), objc.Sel("alloc"))
@@ -88,11 +87,11 @@ func (f_ FeaturePrintObservation) Autorelease() FeaturePrintObservation {
 func NewFeaturePrintObservation() FeaturePrintObservation {
 	return getFeaturePrintObservationClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for FeaturePrintObservation */
+
+
 // An observation that provides the recognized feature print.
 
 
@@ -112,25 +111,25 @@ func FeaturePrintObservationFrom(ptr unsafe.Pointer) FeaturePrintObservation {
 		Observation: ObservationFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for FeaturePrintObservation *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for FeaturePrintObservation */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for FeaturePrintObservation */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for FeaturePrintObservation */
+
+
+
+
+
+
+
 
 // Computes the distance between two feature print observations.
 //
@@ -139,13 +138,13 @@ func FeaturePrintObservationFrom(ptr unsafe.Pointer) FeaturePrintObservation {
 func (f_ FeaturePrintObservation) ComputeDistanceToFeaturePrintObservationError(outDistance objectivec.IObject, featurePrint IVNFeaturePrintObservation, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("computeDistance:toFeaturePrintObservation:error:"), outDistance, featurePrint, error_)
 	return rv
-}/* debug [instance_methods/method]: ComputeDistanceToFeaturePrintObservationError */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for FeaturePrintObservation */
+
+
+
 
 // The feature print data.
 //
@@ -154,7 +153,7 @@ func (f_ FeaturePrintObservation) ComputeDistanceToFeaturePrintObservationError(
 func (f_ FeaturePrintObservation) Data() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("data"))
 	return rv
-}/* debug [instance_properties/getter]: data */
+}
 
 
 // The total number of elements in the data.
@@ -164,7 +163,7 @@ func (f_ FeaturePrintObservation) Data() objc.IObject /* cross-framework: NSData
 func (f_ FeaturePrintObservation) ElementCount() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("elementCount"))
 	return rv
-}/* debug [instance_properties/getter]: elementCount */
+}
 
 
 // The type of each element in the data.
@@ -174,12 +173,12 @@ func (f_ FeaturePrintObservation) ElementCount() uint {
 func (f_ FeaturePrintObservation) ElementType() ElementType {
 	rv := objc.Send[ElementType](f_.ID, objc.Sel("elementType"))
 	return rv
-}/* debug [instance_properties/getter]: elementType */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class VNFeaturePrintObservation */
+
+
+
 
 
 

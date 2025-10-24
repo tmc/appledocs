@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAudioSourceNode */
 
 
-/* debug [class_header]: Header for AVAudioSourceNode */
+
+
 // The class instance for the [AudioSourceNode] class.
 var (
 	AudioSourceNodeClass     _AudioSourceNodeClass
@@ -30,30 +30,30 @@ func getAudioSourceNodeClass() _AudioSourceNodeClass {
 type _AudioSourceNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AudioSourceNode */
+
+
 // An interface definition for the [AudioSourceNode] class.
 type IAudioSourceNode interface {
 	IAudioNode
 	
-/* debug [class_interface_properties]: Properties for AudioSourceNode */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AudioSourceNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AudioSourceNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AudioSourceNodeClass) Alloc() AudioSourceNode {
 	rv := objc.Send[AudioSourceNode](objc.ID(ac.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (a_ AudioSourceNode) Autorelease() AudioSourceNode {
 func NewAudioSourceNode() AudioSourceNode {
 	return getAudioSourceNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AudioSourceNode */
+
+
 // An object that supplies audio data.
 //
 // The class allows for supplying audio data for rendering through . It’s a convenient method for delievering audio data instead of setting the input callback on an audio unit with .
@@ -109,11 +109,11 @@ func AudioSourceNodeFrom(ptr unsafe.Pointer) AudioSourceNode {
 		AudioNode: AudioNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AudioSourceNode */
+
+
 
 // Creates an audio source node with the audio format and a block that supplies audio data.
 //
@@ -124,7 +124,7 @@ func NewAudioSourceNodeWithFormatRenderBlock(format IAVAudioFormat, block AudioS
 	rv := objc.Send[AudioSourceNode](instance.ID, objc.Sel("initWithFormat:renderBlock:"), format, block)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewAudioSourceNodeWithFormatRenderBlock */
+}
 
 
 // Creates an audio source node with a block that supplies audio data.
@@ -136,31 +136,31 @@ func NewAudioSourceNodeWithRenderBlock(block AudioSourceNodeRenderBlock /* not a
 	rv := objc.Send[AudioSourceNode](instance.ID, objc.Sel("initWithRenderBlock:"), block)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewAudioSourceNodeWithRenderBlock */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for AudioSourceNode */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AudioSourceNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AudioSourceNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AudioSourceNode */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class AVAudioSourceNode */
+
+
+
+
+
+
+
+
+
+
+
 
 

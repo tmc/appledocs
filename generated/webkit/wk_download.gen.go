@@ -6,12 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class WKDownload */
+
 
 /* debug [class_header]: Header for WKDownload */
 // The class instance for the [Download] class.
@@ -30,15 +31,16 @@ func getDownloadClass() _DownloadClass {
 type _DownloadClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for Download */
 // An interface definition for the [Download] class.
 type IDownload interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for Download */
+	
+/* debug [class_interface_properties]: Properties for Download */
 	// properties:
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
@@ -48,16 +50,18 @@ type IDownload interface {
 	WebView() IWKWebView
 	IsUserInitiated() bool
 	SetIsUserInitiated(value bool)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for Download */
+	
+/* debug [class_interface_methods]: Methods for Download */
 	// methods:
 	Cancel(completionHandler func(unsafe.Pointer))
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for Download */
 // Alloc allocates a new instance without initialization.
@@ -89,11 +93,13 @@ func (d_ Download) Autorelease() Download {
 func NewDownload() Download {
 	return getDownloadClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for Download */
 // An object that represents the download of a web resource.
+
 
 // An object that represents the download of a web resource.
 //
@@ -109,16 +115,23 @@ type Download struct {
 func DownloadFrom(ptr unsafe.Pointer) Download {
 	return Download{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for Download */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for Download *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for Download */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for Download */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for Download */
 
@@ -128,9 +141,11 @@ func DownloadFrom(ptr unsafe.Pointer) Download {
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDownload/cancel(_:)
 func (d_ Download) Cancel(completionHandler func(unsafe.Pointer)) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("cancel:"), completionHandler)
-} /* debug [instance_methods/method]: Cancel */
+}/* debug [instance_methods/method]: Cancel */
 
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for Download */
 
@@ -141,7 +156,8 @@ func (d_ Download) Cancel(completionHandler func(unsafe.Pointer)) {
 func (d_ Download) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("delegate"))
 	return rv
-} /* debug [instance_properties/getter]: delegate */
+}/* debug [instance_properties/getter]: delegate */
+
 
 // An object you use to track download progress and handle redirects, authentication challenges, and failures.
 //
@@ -149,14 +165,16 @@ func (d_ Download) Delegate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDownload/delegate
 func (d_ Download) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDelegate:"), value)
-} /* debug [instance_properties/setter]: delegate */
+}/* debug [instance_properties/setter]: delegate */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDownload/isUserInitiated
 func (d_ Download) UserInitiated() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("userInitiated"))
 	return rv
-} /* debug [instance_properties/getter]: userInitiated */
+}/* debug [instance_properties/getter]: userInitiated */
+
 
 // An object that represents the request that initiated the download.
 //
@@ -165,14 +183,16 @@ func (d_ Download) UserInitiated() bool {
 func (d_ Download) OriginalRequest() foundation.URLRequest {
 	rv := objc.Send[foundation.URLRequest](d_.ID, objc.Sel("originalRequest"))
 	return rv
-} /* debug [instance_properties/getter]: originalRequest */
+}/* debug [instance_properties/getter]: originalRequest */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDownload/originatingFrame
 func (d_ Download) OriginatingFrame() IWKFrameInfo {
 	rv := objc.Send[FrameInfo](d_.ID, objc.Sel("originatingFrame"))
 	return rv
-} /* debug [instance_properties/getter]: originatingFrame */
+}/* debug [instance_properties/getter]: originatingFrame */
+
 
 // The web view where the download initiated.
 //
@@ -181,21 +201,27 @@ func (d_ Download) OriginatingFrame() IWKFrameInfo {
 func (d_ Download) WebView() IWKWebView {
 	rv := objc.Send[WebView](d_.ID, objc.Sel("webView"))
 	return rv
-} /* debug [instance_properties/getter]: webView */
+}/* debug [instance_properties/getter]: webView */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/isuserinitiated
 func (d_ Download) IsUserInitiated() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isUserInitiated"))
 	return rv
-} /* debug [instance_properties/getter]: isUserInitiated */
+}/* debug [instance_properties/getter]: isUserInitiated */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/isuserinitiated
 func (d_ Download) SetIsUserInitiated(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsUserInitiated:"), value)
-} /* debug [instance_properties/setter]: isUserInitiated */
+}/* debug [instance_properties/setter]: isUserInitiated */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class WKDownload */
+
+
+

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNNeuronReLU */
 
 
-/* debug [class_header]: Header for MPSCNNNeuronReLU */
+
+
 // The class instance for the [CNNNeuronReLU] class.
 var (
 	CNNNeuronReLUClass     _CNNNeuronReLUClass
@@ -30,30 +30,30 @@ func getCNNNeuronReLUClass() _CNNNeuronReLUClass {
 type _CNNNeuronReLUClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNNeuronReLU */
+
+
 // An interface definition for the [CNNNeuronReLU] class.
 type ICNNNeuronReLU interface {
 	ICNNNeuron
 	
-/* debug [class_interface_properties]: Properties for CNNNeuronReLU */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNNeuronReLU */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNNeuronReLU */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNNeuronReLUClass) Alloc() CNNNeuronReLU {
 	rv := objc.Send[CNNNeuronReLU](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNNeuronReLU) Autorelease() CNNNeuronReLU {
 func NewCNNNeuronReLU() CNNNeuronReLU {
 	return getCNNNeuronReLUClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNNeuronReLU */
+
+
 // A ReLU (Rectified Linear Unit) neuron filter.
 //
 // For each pixel in an image, the filter applies the following function: This filter is called in CNN literature. Some CNN literature defines as . If you want this behavior, simply set the property to .
@@ -109,11 +109,11 @@ func CNNNeuronReLUFrom(ptr unsafe.Pointer) CNNNeuronReLU {
 		CNNNeuron: CNNNeuronFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNNeuronReLU */
+
+
 
 // Initializes a ReLU neuron filter.
 //
@@ -124,31 +124,31 @@ func NewCNNNeuronReLUWithDeviceA(device unsafe.Pointer, a float32) CNNNeuronReLU
 	rv := objc.Send[CNNNeuronReLU](instance.ID, objc.Sel("initWithDevice:a:"), device, a)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNNeuronReLUWithDeviceA */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNNeuronReLU */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNNeuronReLU */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNNeuronReLU */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNNeuronReLU */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNNeuronReLU */
+
+
+
+
+
+
+
+
+
+
+
 
 

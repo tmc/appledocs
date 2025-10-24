@@ -6,11 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZFileHandleSerialPortAttachment */
+
 
 /* debug [class_header]: Header for VZFileHandleSerialPortAttachment */
 // The class instance for the [VZFileHandleSerialPortAttachment] class.
@@ -29,27 +31,30 @@ func getVZFileHandleSerialPortAttachmentClass() _VZFileHandleSerialPortAttachmen
 type _VZFileHandleSerialPortAttachmentClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZFileHandleSerialPortAttachment */
 // An interface definition for the [VZFileHandleSerialPortAttachment] class.
 type IVZFileHandleSerialPortAttachment interface {
 	IVZSerialPortAttachment
-
-	/* debug [class_interface_properties]: Properties for VZFileHandleSerialPortAttachment */
+	
+/* debug [class_interface_properties]: Properties for VZFileHandleSerialPortAttachment */
 	// properties:
 	FileHandleForReading() foundation.FileHandle
 	FileHandleForWriting() foundation.FileHandle
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZFileHandleSerialPortAttachment */
+	
+/* debug [class_interface_methods]: Methods for VZFileHandleSerialPortAttachment */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZFileHandleSerialPortAttachment */
 // Alloc allocates a new instance without initialization.
@@ -81,13 +86,15 @@ func (v_ VZFileHandleSerialPortAttachment) Autorelease() VZFileHandleSerialPortA
 func NewVZFileHandleSerialPortAttachment() VZFileHandleSerialPortAttachment {
 	return getVZFileHandleSerialPortAttachmentClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZFileHandleSerialPortAttachment */
 // An attachment point that allows bidirectional communication using file handles.
 //
 // Use a object to configure a serial port using separate file handles for reading and writing data. In your virtual machine, use the file handles in this object in the following way: To send data to the guest operating system, write data to the file handle in the property. To receive data from the guest operating system, read data from the file handle in the property.
+
 
 // An attachment point that allows bidirectional communication using file handles.
 //
@@ -105,8 +112,9 @@ func VZFileHandleSerialPortAttachmentFrom(ptr unsafe.Pointer) VZFileHandleSerial
 		VZSerialPortAttachment: VZSerialPortAttachmentFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZFileHandleSerialPortAttachment */
 
@@ -119,18 +127,26 @@ func NewVZFileHandleSerialPortAttachmentWithFileHandleForReadingFileHandleForWri
 	rv := objc.Send[VZFileHandleSerialPortAttachment](instance.ID, objc.Sel("initWithFileHandleForReading:fileHandleForWriting:"), fileHandleForReading, fileHandleForWriting)
 	rv.Autorelease()
 	return rv
-} /* debug [class_init_methods/constructor]: NewVZFileHandleSerialPortAttachmentWithFileHandleForReadingFileHandleForWriting */
+}/* debug [class_init_methods/constructor]: NewVZFileHandleSerialPortAttachmentWithFileHandleForReadingFileHandleForWriting */
 
 /* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZFileHandleSerialPortAttachment */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZFileHandleSerialPortAttachment */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZFileHandleSerialPortAttachment */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZFileHandleSerialPortAttachment */
 
@@ -141,7 +157,8 @@ func NewVZFileHandleSerialPortAttachmentWithFileHandleForReadingFileHandleForWri
 func (v_ VZFileHandleSerialPortAttachment) FileHandleForReading() foundation.FileHandle {
 	rv := objc.Send[foundation.FileHandle](v_.ID, objc.Sel("fileHandleForReading"))
 	return rv
-} /* debug [instance_properties/getter]: fileHandleForReading */
+}/* debug [instance_properties/getter]: fileHandleForReading */
+
 
 // The file handle that the guest operating system uses to write data.
 //
@@ -150,8 +167,11 @@ func (v_ VZFileHandleSerialPortAttachment) FileHandleForReading() foundation.Fil
 func (v_ VZFileHandleSerialPortAttachment) FileHandleForWriting() foundation.FileHandle {
 	rv := objc.Send[foundation.FileHandle](v_.ID, objc.Sel("fileHandleForWriting"))
 	return rv
-} /* debug [instance_properties/getter]: fileHandleForWriting */
+}/* debug [instance_properties/getter]: fileHandleForWriting */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZFileHandleSerialPortAttachment */
+
+

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNDArrayAffineQuantizationDescriptor */
 
 
-/* debug [class_header]: Header for MPSNDArrayAffineQuantizationDescriptor */
+
+
 // The class instance for the [NDArrayAffineQuantizationDescriptor] class.
 var (
 	NDArrayAffineQuantizationDescriptorClass     _NDArrayAffineQuantizationDescriptorClass
@@ -30,16 +30,16 @@ func getNDArrayAffineQuantizationDescriptorClass() _NDArrayAffineQuantizationDes
 type _NDArrayAffineQuantizationDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NDArrayAffineQuantizationDescriptor */
+
+
 // An interface definition for the [NDArrayAffineQuantizationDescriptor] class.
 type INDArrayAffineQuantizationDescriptor interface {
 	INDArrayQuantizationDescriptor
 	
-/* debug [class_interface_properties]: Properties for NDArrayAffineQuantizationDescriptor */
+
 	// properties:
 	HasMinValue() objectivec.IObject
 	SetHasMinValue(value objectivec.IObject)
@@ -47,19 +47,19 @@ type INDArrayAffineQuantizationDescriptor interface {
 	SetHasZeroPoint(value objectivec.IObject)
 	ImplicitZeroPoint() objectivec.IObject
 	SetImplicitZeroPoint(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NDArrayAffineQuantizationDescriptor */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NDArrayAffineQuantizationDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NDArrayAffineQuantizationDescriptorClass) Alloc() NDArrayAffineQuantizationDescriptor {
 	rv := objc.Send[NDArrayAffineQuantizationDescriptor](objc.ID(nc.class), objc.Sel("alloc"))
@@ -89,11 +89,11 @@ func (n_ NDArrayAffineQuantizationDescriptor) Autorelease() NDArrayAffineQuantiz
 func NewNDArrayAffineQuantizationDescriptor() NDArrayAffineQuantizationDescriptor {
 	return getNDArrayAffineQuantizationDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NDArrayAffineQuantizationDescriptor */
+
+
 
 
 // [Full Topic]
@@ -108,11 +108,11 @@ func NDArrayAffineQuantizationDescriptorFrom(ptr unsafe.Pointer) NDArrayAffineQu
 		NDArrayQuantizationDescriptor: NDArrayQuantizationDescriptorFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NDArrayAffineQuantizationDescriptor */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayaffinequantizationdescriptor/4446137-initwithdatatype
@@ -121,42 +121,42 @@ func NewNDArrayAffineQuantizationDescriptorWithDataTypeHasZeroPointHasMinValue(q
 	rv := objc.Send[NDArrayAffineQuantizationDescriptor](instance.ID, objc.Sel("initWithDataType:hasZeroPoint:hasMinValue:"), quantizationDataType, hasZeroPoint, hasMinValue)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNDArrayAffineQuantizationDescriptorWithDataTypeHasZeroPointHasMinValue */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for NDArrayAffineQuantizationDescriptor */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NDArrayAffineQuantizationDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NDArrayAffineQuantizationDescriptor */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for NDArrayAffineQuantizationDescriptor */
+
+
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayaffinequantizationdescriptor/4446134-hasminvalue
 func (n_ NDArrayAffineQuantizationDescriptor) HasMinValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("hasMinValue"))
 	return rv
-}/* debug [instance_properties/getter]: hasMinValue */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayaffinequantizationdescriptor/4446134-hasminvalue
 func (n_ NDArrayAffineQuantizationDescriptor) SetHasMinValue(value objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setHasMinValue:"), value)
-}/* debug [instance_properties/setter]: hasMinValue */
+}
 
 
 // [Full Topic]
@@ -164,14 +164,14 @@ func (n_ NDArrayAffineQuantizationDescriptor) SetHasMinValue(value objectivec.IO
 func (n_ NDArrayAffineQuantizationDescriptor) HasZeroPoint() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("hasZeroPoint"))
 	return rv
-}/* debug [instance_properties/getter]: hasZeroPoint */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayaffinequantizationdescriptor/4446135-haszeropoint
 func (n_ NDArrayAffineQuantizationDescriptor) SetHasZeroPoint(value objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setHasZeroPoint:"), value)
-}/* debug [instance_properties/setter]: hasZeroPoint */
+}
 
 
 // [Full Topic]
@@ -179,18 +179,18 @@ func (n_ NDArrayAffineQuantizationDescriptor) SetHasZeroPoint(value objectivec.I
 func (n_ NDArrayAffineQuantizationDescriptor) ImplicitZeroPoint() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("implicitZeroPoint"))
 	return rv
-}/* debug [instance_properties/getter]: implicitZeroPoint */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayaffinequantizationdescriptor/4462739-implicitzeropoint
 func (n_ NDArrayAffineQuantizationDescriptor) SetImplicitZeroPoint(value objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setImplicitZeroPoint:"), value)
-}/* debug [instance_properties/setter]: implicitZeroPoint */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSNDArrayAffineQuantizationDescriptor */
+
+
+
 
 

@@ -18,8 +18,8 @@ package foundation
 // See: doc://com.apple.foundation/documentation/Foundation/NSDiscardableContent
 type PDiscardableContent interface {
 	// Required methods
-	BeginContentAccess() bool/* debug [protocol_interface/required_method]: BeginContentAccess */
-	DiscardContentIfPossible()/* debug [protocol_interface/required_method]: DiscardContentIfPossible */
-	EndContentAccess()/* debug [protocol_interface/required_method]: EndContentAccess */
-	IsContentDiscarded() bool/* debug [protocol_interface/required_method]: IsContentDiscarded */
+	BeginContentAccess() bool
+	DiscardContentIfPossible()
+	EndContentAccess()
+	IsContentDiscarded() bool
 }

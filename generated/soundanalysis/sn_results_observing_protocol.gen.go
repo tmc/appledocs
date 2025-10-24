@@ -21,3 +21,4 @@ var SNResultsObservingProtocol *objc.Protocol
 func init() {
 	SNResultsObservingProtocol = objc.GetProtocol("SNResultsObserving")
 }
+

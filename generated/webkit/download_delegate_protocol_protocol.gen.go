@@ -3,10 +3,14 @@
 package webkit
 
 import (
-	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/coretelephony"
 
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/func(unsafe"
 )
 
 // PDownloadDelegate is the WKDownloadDelegate protocol interface.
@@ -23,7 +27,7 @@ import (
 // See: doc://com.apple.webkit/documentation/WebKit/WKDownloadDelegate
 type PDownloadDelegate interface {
 	// Required methods
-	DownloadDecideDestinationUsingResponseSuggestedFilenameCompletionHandler(download IWKDownload, response foundation.URLResponse, suggestedFilename objc.IObject /* cross-framework: NSString */, completionHandler func(unsafe.Pointer))
+	DownloadDecideDestinationUsingResponseSuggestedFilenameCompletionHandler(download IWKDownload, response foundation.URLResponse, suggestedFilename objc.IObject /* cross-framework: NSString */, completionHandler func(unsafe.Pointer))/* debug [protocol_interface/required_method]: DownloadDecideDestinationUsingResponseSuggestedFilenameCompletionHandler */
 	// Optional methods
 	DownloadDecidePlaceholderPolicy(download IWKDownload, completionHandler func(unsafe.Pointer, unsafe.Pointer))
 	HasDownloadDecidePlaceholderPolicy() bool
@@ -45,13 +49,13 @@ type PDownloadDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type DownloadDelegate struct {
-	_DownloadDecidePlaceholderPolicy                                          func(download IWKDownload, completionHandler func(unsafe.Pointer, unsafe.Pointer))
-	_DownloadDidFailWithErrorResumeData                                       func(download IWKDownload, error_ objc.IObject /* cross-framework: Error */, resumeData objc.IObject /* cross-framework: NSData */)
-	_DownloadDidReceiveAuthenticationChallengeCompletionHandler               func(download IWKDownload, challenge foundation.URLAuthenticationChallenge, completionHandler func(unsafe.Pointer, unsafe.Pointer))
-	_DownloadDidReceiveFinalURL                                               func(download IWKDownload, url objc.IObject /* cross-framework: NSURL */)
-	_DownloadDidReceivePlaceholderURLCompletionHandler                        func(download IWKDownload, url objc.IObject /* cross-framework: NSURL */, completionHandler func())
-	_DownloadWillPerformHTTPRedirectionNewRequestDecisionHandler              func(download IWKDownload, response foundation.HTTPURLResponse, request foundation.URLRequest, decisionHandler func(unsafe.Pointer))
-	_DownloadDidFinish                                                        func(download IWKDownload)
+	_DownloadDecidePlaceholderPolicy func(download IWKDownload, completionHandler func(unsafe.Pointer, unsafe.Pointer))
+	_DownloadDidFailWithErrorResumeData func(download IWKDownload, error_ objc.IObject /* cross-framework: Error */, resumeData objc.IObject /* cross-framework: NSData */)
+	_DownloadDidReceiveAuthenticationChallengeCompletionHandler func(download IWKDownload, challenge foundation.URLAuthenticationChallenge, completionHandler func(unsafe.Pointer, unsafe.Pointer))
+	_DownloadDidReceiveFinalURL func(download IWKDownload, url objc.IObject /* cross-framework: NSURL */)
+	_DownloadDidReceivePlaceholderURLCompletionHandler func(download IWKDownload, url objc.IObject /* cross-framework: NSURL */, completionHandler func())
+	_DownloadWillPerformHTTPRedirectionNewRequestDecisionHandler func(download IWKDownload, response foundation.HTTPURLResponse, request foundation.URLRequest, decisionHandler func(unsafe.Pointer))
+	_DownloadDidFinish func(download IWKDownload)
 	_DownloadDecideDestinationUsingResponseSuggestedFilenameCompletionHandler func(download IWKDownload, response foundation.URLResponse, suggestedFilename objc.IObject /* cross-framework: NSString */, completionHandler func(unsafe.Pointer))
 }
 

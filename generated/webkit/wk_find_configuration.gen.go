@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class WKFindConfiguration */
 
+
 /* debug [class_header]: Header for WKFindConfiguration */
 // The class instance for the [FindConfiguration] class.
 var (
@@ -29,15 +30,16 @@ func getFindConfigurationClass() _FindConfigurationClass {
 type _FindConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for FindConfiguration */
 // An interface definition for the [FindConfiguration] class.
 type IFindConfiguration interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for FindConfiguration */
+	
+/* debug [class_interface_properties]: Properties for FindConfiguration */
 	// properties:
 	Backwards() bool
 	SetBackwards(value bool)
@@ -45,15 +47,17 @@ type IFindConfiguration interface {
 	SetCaseSensitive(value bool)
 	Wraps() bool
 	SetWraps(value bool)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for FindConfiguration */
+	
+/* debug [class_interface_methods]: Methods for FindConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for FindConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -85,13 +89,15 @@ func (f_ FindConfiguration) Autorelease() FindConfiguration {
 func NewFindConfiguration() FindConfiguration {
 	return getFindConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for FindConfiguration */
 // The configuration parameters to use when searching the contents of the web view.
 //
 // Create a object and configure its attributes to specify how to perform searches within the web view’s contents. To initiate a search, call the appropriate method of and pass this object along with the search string.
+
 
 // The configuration parameters to use when searching the contents of the web view.
 //
@@ -107,19 +113,28 @@ type FindConfiguration struct {
 func FindConfigurationFrom(ptr unsafe.Pointer) FindConfiguration {
 	return FindConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for FindConfiguration */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for FindConfiguration *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for FindConfiguration */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for FindConfiguration */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for FindConfiguration */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for FindConfiguration */
 
@@ -130,7 +145,8 @@ func FindConfigurationFrom(ptr unsafe.Pointer) FindConfiguration {
 func (f_ FindConfiguration) Backwards() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("backwards"))
 	return rv
-} /* debug [instance_properties/getter]: backwards */
+}/* debug [instance_properties/getter]: backwards */
+
 
 // A Boolean value that indicates the search direction, relative to the current selection.
 //
@@ -138,7 +154,8 @@ func (f_ FindConfiguration) Backwards() bool {
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKFindConfiguration/backwards
 func (f_ FindConfiguration) SetBackwards(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setBackwards:"), value)
-} /* debug [instance_properties/setter]: backwards */
+}/* debug [instance_properties/setter]: backwards */
+
 
 // A Boolean value that indicates whether to consider case when matching the search string.
 //
@@ -147,7 +164,8 @@ func (f_ FindConfiguration) SetBackwards(value bool) {
 func (f_ FindConfiguration) CaseSensitive() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("caseSensitive"))
 	return rv
-} /* debug [instance_properties/getter]: caseSensitive */
+}/* debug [instance_properties/getter]: caseSensitive */
+
 
 // A Boolean value that indicates whether to consider case when matching the search string.
 //
@@ -155,7 +173,8 @@ func (f_ FindConfiguration) CaseSensitive() bool {
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKFindConfiguration/caseSensitive
 func (f_ FindConfiguration) SetCaseSensitive(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setCaseSensitive:"), value)
-} /* debug [instance_properties/setter]: caseSensitive */
+}/* debug [instance_properties/setter]: caseSensitive */
+
 
 // A Boolean value that indicates whether the search wraps around to the other side of the page.
 //
@@ -164,7 +183,8 @@ func (f_ FindConfiguration) SetCaseSensitive(value bool) {
 func (f_ FindConfiguration) Wraps() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("wraps"))
 	return rv
-} /* debug [instance_properties/getter]: wraps */
+}/* debug [instance_properties/getter]: wraps */
+
 
 // A Boolean value that indicates whether the search wraps around to the other side of the page.
 //
@@ -172,8 +192,12 @@ func (f_ FindConfiguration) Wraps() bool {
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKFindConfiguration/wraps
 func (f_ FindConfiguration) SetWraps(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setWraps:"), value)
-} /* debug [instance_properties/setter]: wraps */
+}/* debug [instance_properties/setter]: wraps */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class WKFindConfiguration */
+
+
+

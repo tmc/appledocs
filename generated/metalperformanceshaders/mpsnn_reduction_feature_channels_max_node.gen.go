@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNReductionFeatureChannelsMaxNode */
 
 
-/* debug [class_header]: Header for MPSNNReductionFeatureChannelsMaxNode */
+
+
 // The class instance for the [ReductionFeatureChannelsMaxNode] class.
 var (
 	ReductionFeatureChannelsMaxNodeClass     _ReductionFeatureChannelsMaxNodeClass
@@ -29,30 +29,30 @@ func getReductionFeatureChannelsMaxNodeClass() _ReductionFeatureChannelsMaxNodeC
 type _ReductionFeatureChannelsMaxNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ReductionFeatureChannelsMaxNode */
+
+
 // An interface definition for the [ReductionFeatureChannelsMaxNode] class.
 type IReductionFeatureChannelsMaxNode interface {
 	IUnaryReductionNode
 	
-/* debug [class_interface_properties]: Properties for ReductionFeatureChannelsMaxNode */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ReductionFeatureChannelsMaxNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ReductionFeatureChannelsMaxNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _ReductionFeatureChannelsMaxNodeClass) Alloc() ReductionFeatureChannelsMaxNode {
 	rv := objc.Send[ReductionFeatureChannelsMaxNode](objc.ID(rc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (r_ ReductionFeatureChannelsMaxNode) Autorelease() ReductionFeatureChannels
 func NewReductionFeatureChannelsMaxNode() ReductionFeatureChannelsMaxNode {
 	return getReductionFeatureChannelsMaxNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ReductionFeatureChannelsMaxNode */
+
+
 
 
 // [Full Topic]
@@ -101,34 +101,34 @@ func ReductionFeatureChannelsMaxNodeFrom(ptr unsafe.Pointer) ReductionFeatureCha
 		UnaryReductionNode: UnaryReductionNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ReductionFeatureChannelsMaxNode *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ReductionFeatureChannelsMaxNode */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ReductionFeatureChannelsMaxNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ReductionFeatureChannelsMaxNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ReductionFeatureChannelsMaxNode */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNReductionFeatureChannelsMaxNode */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

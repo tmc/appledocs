@@ -19,3 +19,4 @@ var URLSchemeHandlerProtocol *objc.Protocol
 func init() {
 	URLSchemeHandlerProtocol = objc.GetProtocol("WKURLSchemeHandler")
 }
+

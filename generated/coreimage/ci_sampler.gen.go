@@ -7,15 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class CISampler */
 
 
-/* debug [class_header]: Header for CISampler */
+
+
 // The class instance for the [Sampler] class.
 var (
 	SamplerClass     _SamplerClass
@@ -32,32 +30,32 @@ func getSamplerClass() _SamplerClass {
 type _SamplerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for Sampler */
+
+
 // An interface definition for the [Sampler] class.
 type ISampler interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for Sampler */
+
 	// properties:
 	Definition() ICIFilterShape
 	Extent() corefoundation.CGRect
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for Sampler */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for Sampler */
+
+
 // Alloc allocates a new instance without initialization.
 func (sc _SamplerClass) Alloc() Sampler {
 	rv := objc.Send[Sampler](objc.ID(sc.class), objc.Sel("alloc"))
@@ -87,11 +85,11 @@ func (s_ Sampler) Autorelease() Sampler {
 func NewSampler() Sampler {
 	return getSamplerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for Sampler */
+
+
 // An object that retrieves pixel samples for processing by a filter kernel.
 //
 // The class retrieves samples of images for processing by a object. A object defines a coordinate transform, and modes for interpolation and wrapping. You use objects in conjunction with other Core Image classes, such as , , and , to create custom filters.
@@ -111,11 +109,11 @@ type Sampler struct {
 func SamplerFrom(ptr unsafe.Pointer) Sampler {
 	return Sampler{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for Sampler */
+
+
 
 // Initializes a sampler with an image object.
 //
@@ -126,7 +124,7 @@ func NewSamplerWithImage(im ICIImage) Sampler {
 	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:"), im)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewSamplerWithImage */
+}
 
 
 // Initializes the sampler with an image object using options specified as key-value pairs.
@@ -138,7 +136,7 @@ func NewSamplerWithImageKeysAndValues(im ICIImage, key0 objc.IObject) Sampler {
 	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:keysAndValues:"), im, key0)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewSamplerWithImageKeysAndValues */
+}
 
 
 // Initializes the sampler with an image object using options specified in a dictionary.
@@ -150,13 +148,13 @@ func NewSamplerWithImageOptions(im ICIImage, dict objc.IObject /* cross-framewor
 	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:options:"), im, dict)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewSamplerWithImageOptions */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for Sampler */
+
+
+
 
 // Creates and returns a sampler that references an image.
 //
@@ -165,7 +163,7 @@ func NewSamplerWithImageOptions(im ICIImage, dict objc.IObject /* cross-framewor
 func (sc _SamplerClass) SamplerWithImage(im ICIImage) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("samplerWithImage:"), im)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SamplerWithImage) */
+}
 
 
 // Creates and returns a sampler that references an image using options specified as key-value pairs.
@@ -175,7 +173,7 @@ func (sc _SamplerClass) SamplerWithImage(im ICIImage) objectivec.IObject {
 func (sc _SamplerClass) SamplerWithImageKeysAndValues(im ICIImage, key0 objc.IObject) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("samplerWithImage:keysAndValues:"), im, key0)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SamplerWithImageKeysAndValues) */
+}
 
 
 // Creates and returns a sampler that references an image using options specified in a dictionary.
@@ -185,23 +183,23 @@ func (sc _SamplerClass) SamplerWithImageKeysAndValues(im ICIImage, key0 objc.IOb
 func (sc _SamplerClass) SamplerWithImageOptions(im ICIImage, dict objc.IObject /* cross-framework: NSDictionary */) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("samplerWithImage:options:"), im, dict)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SamplerWithImageOptions) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for Sampler */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for Sampler */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for Sampler */
+
+
+
+
+
+
+
 
 // The domain of definition (DOD) of the sampler
 //
@@ -210,7 +208,7 @@ func (sc _SamplerClass) SamplerWithImageOptions(im ICIImage, dict objc.IObject /
 func (s_ Sampler) Definition() ICIFilterShape {
 	rv := objc.Send[FilterShape](s_.ID, objc.Sel("definition"))
 	return rv
-}/* debug [instance_properties/getter]: definition */
+}
 
 
 // The rectangle that specifies the extent of the sampler
@@ -220,11 +218,11 @@ func (s_ Sampler) Definition() ICIFilterShape {
 func (s_ Sampler) Extent() corefoundation.CGRect {
 	rv := objc.Send[corefoundation.CGRect](s_.ID, objc.Sel("extent"))
 	return rv
-}/* debug [instance_properties/getter]: extent */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class CISampler */
+
+
+
 
 

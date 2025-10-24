@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVCaptureIndexPicker */
 
 
-/* debug [class_header]: Header for AVCaptureIndexPicker */
+
+
 // The class instance for the [CaptureIndexPicker] class.
 var (
 	CaptureIndexPickerClass     _CaptureIndexPickerClass
@@ -31,16 +30,16 @@ func getCaptureIndexPickerClass() _CaptureIndexPickerClass {
 type _CaptureIndexPickerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CaptureIndexPicker */
+
+
 // An interface definition for the [CaptureIndexPicker] class.
 type ICaptureIndexPicker interface {
 	ICaptureControl
 	
-/* debug [class_interface_properties]: Properties for CaptureIndexPicker */
+
 	// properties:
 	AccessibilityIdentifier() objc.IObject /* cross-framework: NSString */
 	SetAccessibilityIdentifier(value objc.IObject /* cross-framework: NSString */)
@@ -50,20 +49,20 @@ type ICaptureIndexPicker interface {
 	SelectedIndex() int
 	SetSelectedIndex(value int)
 	SymbolName() objc.IObject /* cross-framework: NSString */
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CaptureIndexPicker */
+
 	// methods:
 	SetActionQueueAction(actionQueue objectivec.IObject, action int)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CaptureIndexPicker */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureIndexPickerClass) Alloc() CaptureIndexPicker {
 	rv := objc.Send[CaptureIndexPicker](objc.ID(cc.class), objc.Sel("alloc"))
@@ -93,11 +92,11 @@ func (c_ CaptureIndexPicker) Autorelease() CaptureIndexPicker {
 func NewCaptureIndexPicker() CaptureIndexPicker {
 	return getCaptureIndexPickerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CaptureIndexPicker */
+
+
 // A control for selecting from a set of mutually exclusive values by index.
 //
 // Index pickers are appropriate for controls that provide an indexed container of values.
@@ -119,11 +118,11 @@ func CaptureIndexPickerFrom(ptr unsafe.Pointer) CaptureIndexPicker {
 		CaptureControl: CaptureControlFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CaptureIndexPicker */
+
+
 
 // Creates an object to select an index from a set of values.
 //
@@ -134,7 +133,7 @@ func NewCaptureIndexPickerWithLocalizedTitleSymbolNameLocalizedIndexTitles(local
 	rv := objc.Send[CaptureIndexPicker](instance.ID, objc.Sel("initWithLocalizedTitle:symbolName:localizedIndexTitles:"), localizedTitle, symbolName, localizedIndexTitles)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCaptureIndexPickerWithLocalizedTitleSymbolNameLocalizedIndexTitles */
+}
 
 
 // Creates a control to pick a value from the specified number of indexes.
@@ -146,7 +145,7 @@ func NewCaptureIndexPickerWithLocalizedTitleSymbolNameNumberOfIndexes(localizedT
 	rv := objc.Send[CaptureIndexPicker](instance.ID, objc.Sel("initWithLocalizedTitle:symbolName:numberOfIndexes:"), localizedTitle, symbolName, numberOfIndexes)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCaptureIndexPickerWithLocalizedTitleSymbolNameNumberOfIndexes */
+}
 
 
 // Creates a control to pick a value from the specified number of indices.
@@ -158,23 +157,23 @@ func NewCaptureIndexPickerWithLocalizedTitleSymbolNameNumberOfIndexesLocalizedTi
 	rv := objc.Send[CaptureIndexPicker](instance.ID, objc.Sel("initWithLocalizedTitle:symbolName:numberOfIndexes:localizedTitleTransform:"), localizedTitle, symbolName, numberOfIndexes, localizedTitleTransform)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCaptureIndexPickerWithLocalizedTitleSymbolNameNumberOfIndexesLocalizedTitleTransform */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CaptureIndexPicker */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CaptureIndexPicker */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CaptureIndexPicker */
+
+
+
+
+
+
+
 
 // Sets the action to perform on the specified dispatch queue when the control’s value changes.
 //
@@ -182,13 +181,13 @@ func NewCaptureIndexPickerWithLocalizedTitleSymbolNameNumberOfIndexesLocalizedTi
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureIndexPicker/setActionQueue:action:
 func (c_ CaptureIndexPicker) SetActionQueueAction(actionQueue objectivec.IObject, action int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActionQueue:action:"), actionQueue, action)
-}/* debug [instance_methods/method]: SetActionQueueAction */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for CaptureIndexPicker */
+
+
+
 
 // A string identifier for this control.
 //
@@ -197,7 +196,7 @@ func (c_ CaptureIndexPicker) SetActionQueueAction(actionQueue objectivec.IObject
 func (c_ CaptureIndexPicker) AccessibilityIdentifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("accessibilityIdentifier"))
 	return rv
-}/* debug [instance_properties/getter]: accessibilityIdentifier */
+}
 
 
 // A string identifier for this control.
@@ -206,7 +205,7 @@ func (c_ CaptureIndexPicker) AccessibilityIdentifier() objc.IObject /* cross-fra
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureIndexPicker/accessibilityIdentifier
 func (c_ CaptureIndexPicker) SetAccessibilityIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAccessibilityIdentifier:"), value)
-}/* debug [instance_properties/setter]: accessibilityIdentifier */
+}
 
 
 // The titles to present for each index.
@@ -216,7 +215,7 @@ func (c_ CaptureIndexPicker) SetAccessibilityIdentifier(value objc.IObject /* cr
 func (c_ CaptureIndexPicker) LocalizedIndexTitles() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("localizedIndexTitles"))
 	return rv
-}/* debug [instance_properties/getter]: localizedIndexTitles */
+}
 
 
 // A localized title that describes the control’s action.
@@ -226,7 +225,7 @@ func (c_ CaptureIndexPicker) LocalizedIndexTitles() []string {
 func (c_ CaptureIndexPicker) LocalizedTitle() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("localizedTitle"))
 	return rv
-}/* debug [instance_properties/getter]: localizedTitle */
+}
 
 
 // The number of index values the control provides.
@@ -236,7 +235,7 @@ func (c_ CaptureIndexPicker) LocalizedTitle() objc.IObject /* cross-framework: N
 func (c_ CaptureIndexPicker) NumberOfIndexes() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("numberOfIndexes"))
 	return rv
-}/* debug [instance_properties/getter]: numberOfIndexes */
+}
 
 
 // The currently selected index.
@@ -246,7 +245,7 @@ func (c_ CaptureIndexPicker) NumberOfIndexes() int {
 func (c_ CaptureIndexPicker) SelectedIndex() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("selectedIndex"))
 	return rv
-}/* debug [instance_properties/getter]: selectedIndex */
+}
 
 
 // The currently selected index.
@@ -255,7 +254,7 @@ func (c_ CaptureIndexPicker) SelectedIndex() int {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureIndexPicker/selectedIndex
 func (c_ CaptureIndexPicker) SetSelectedIndex(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSelectedIndex:"), value)
-}/* debug [instance_properties/setter]: selectedIndex */
+}
 
 
 // The name of the SF Symbol that represents this control.
@@ -265,11 +264,11 @@ func (c_ CaptureIndexPicker) SetSelectedIndex(value int) {
 func (c_ CaptureIndexPicker) SymbolName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("symbolName"))
 	return rv
-}/* debug [instance_properties/getter]: symbolName */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVCaptureIndexPicker */
+
+
+
 
 

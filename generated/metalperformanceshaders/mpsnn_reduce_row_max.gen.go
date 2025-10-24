@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNReduceRowMax */
 
 
-/* debug [class_header]: Header for MPSNNReduceRowMax */
+
+
 // The class instance for the [ReduceRowMax] class.
 var (
 	ReduceRowMaxClass     _ReduceRowMaxClass
@@ -31,30 +30,30 @@ func getReduceRowMaxClass() _ReduceRowMaxClass {
 type _ReduceRowMaxClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ReduceRowMax */
+
+
 // An interface definition for the [ReduceRowMax] class.
 type IReduceRowMax interface {
 	IReduceUnary
 	
-/* debug [class_interface_properties]: Properties for ReduceRowMax */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ReduceRowMax */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ReduceRowMax */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _ReduceRowMaxClass) Alloc() ReduceRowMax {
 	rv := objc.Send[ReduceRowMax](objc.ID(rc.class), objc.Sel("alloc"))
@@ -84,11 +83,11 @@ func (r_ ReduceRowMax) Autorelease() ReduceRowMax {
 func NewReduceRowMax() ReduceRowMax {
 	return getReduceRowMaxClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ReduceRowMax */
+
+
 // A reduction filter that returns the maximum value for each row in an image.
 
 
@@ -108,11 +107,11 @@ func ReduceRowMaxFrom(ptr unsafe.Pointer) ReduceRowMax {
 		ReduceUnary: ReduceUnaryFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ReduceRowMax */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducerowmax/3197842-initwithcoder
@@ -121,7 +120,7 @@ func NewReduceRowMaxWithCoderDevice(aDecoder foundation.Coder, device unsafe.Poi
 	rv := objc.Send[ReduceRowMax](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceRowMaxWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -131,31 +130,31 @@ func NewReduceRowMaxWithDevice(device unsafe.Pointer) ReduceRowMax {
 	rv := objc.Send[ReduceRowMax](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceRowMaxWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ReduceRowMax */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ReduceRowMax */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ReduceRowMax */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ReduceRowMax */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNReduceRowMax */
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -3,7 +3,10 @@
 package virtualization
 
 import (
+
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/coretelephony"
 )
 
 // PVZNetworkBlockDeviceStorageDeviceAttachmentDelegate is the VZNetworkBlockDeviceStorageDeviceAttachmentDelegate protocol interface.
@@ -27,7 +30,7 @@ type PVZNetworkBlockDeviceStorageDeviceAttachmentDelegate interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type VZNetworkBlockDeviceStorageDeviceAttachmentDelegate struct {
 	_AttachmentDidEncounterError func(attachment IVZNetworkBlockDeviceStorageDeviceAttachment, error_ objc.IObject /* cross-framework: Error */)
-	_AttachmentWasConnected      func(attachment IVZNetworkBlockDeviceStorageDeviceAttachment)
+	_AttachmentWasConnected func(attachment IVZNetworkBlockDeviceStorageDeviceAttachment)
 }
 
 // SetAttachmentDidEncounterError sets the handler for the AttachmentDidEncounterError delegate method.

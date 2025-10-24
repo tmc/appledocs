@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corevideo"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVSampleCursor */
 
 
-/* debug [class_header]: Header for AVSampleCursor */
+
+
 // The class instance for the [SampleCursor] class.
 var (
 	SampleCursorClass     _SampleCursorClass
@@ -31,16 +30,16 @@ func getSampleCursorClass() _SampleCursorClass {
 type _SampleCursorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for SampleCursor */
+
+
 // An interface definition for the [SampleCursor] class.
 type ISampleCursor interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for SampleCursor */
+
 	// properties:
 	CurrentChunkInfo() objc.IObject /* cross-framework: AVSampleCursorChunkInfo */
 	CurrentChunkStorageRange() objc.IObject /* cross-framework: AVSampleCursorStorageRange */
@@ -55,10 +54,10 @@ type ISampleCursor interface {
 	DecodeTimeStamp() objc.IObject /* cross-framework: Time */
 	PresentationTimeStamp() objc.IObject /* cross-framework: Time */
 	SamplesRequiredForDecoderRefresh() int
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for SampleCursor */
+
 	// methods:
 	ComparePositionInDecodeOrderWithPositionOfCursor(cursor IAVSampleCursor) ComparisonResult /* not a class type */
 	CopyCurrentSampleFormatDescription() FormatDescriptionRef /* not a class type */
@@ -68,14 +67,14 @@ type ISampleCursor interface {
 	StepByPresentationTimeWasPinned(deltaPresentationTime objc.IObject /* cross-framework: Time */, outWasPinned objectivec.IObject) objc.IObject /* cross-framework: Time */
 	StepInDecodeOrderByCount(stepCount int64) int64
 	StepInPresentationOrderByCount(stepCount int64) int64
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for SampleCursor */
+
+
 // Alloc allocates a new instance without initialization.
 func (sc _SampleCursorClass) Alloc() SampleCursor {
 	rv := objc.Send[SampleCursor](objc.ID(sc.class), objc.Sel("alloc"))
@@ -105,11 +104,11 @@ func (s_ SampleCursor) Autorelease() SampleCursor {
 func NewSampleCursor() SampleCursor {
 	return getSampleCursorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for SampleCursor */
+
+
 // An object that provides information about the media sample at the cursor’s current position.
 //
 // You position a sample cursor at a specific media sample in a sequence of samples contained in a higher-level object, like an . You can move it to a new position in that sequence either backwards or forwards, either in decode order or in presentation order. You can also request moving it according to a count of samples or a delta in time. Use a sample cursor to get information about the media sample such as its duration, timestamps, dependency information, and so on. You can also use them to synchronously to perform I/O in order to load media data of one or more media samples into memory.
@@ -129,25 +128,25 @@ type SampleCursor struct {
 func SampleCursorFrom(ptr unsafe.Pointer) SampleCursor {
 	return SampleCursor{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for SampleCursor *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for SampleCursor */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for SampleCursor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for SampleCursor */
+
+
+
+
+
+
+
 
 // Compares the relative positions of two sample cursors and returns their relative positions.
 //
@@ -156,7 +155,7 @@ func SampleCursorFrom(ptr unsafe.Pointer) SampleCursor {
 func (s_ SampleCursor) ComparePositionInDecodeOrderWithPositionOfCursor(cursor IAVSampleCursor) ComparisonResult /* not a class type */ {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("comparePositionInDecodeOrderWithPositionOfCursor:"), cursor)
 	return rv
-}/* debug [instance_methods/method]: ComparePositionInDecodeOrderWithPositionOfCursor */
+}
 
 
 // Returns the format description of the sample at the cursor’s current position.
@@ -166,7 +165,7 @@ func (s_ SampleCursor) ComparePositionInDecodeOrderWithPositionOfCursor(cursor I
 func (s_ SampleCursor) CopyCurrentSampleFormatDescription() FormatDescriptionRef /* not a class type */ {
 	rv := objc.Send[FormatDescriptionRef](s_.ID, objc.Sel("copyCurrentSampleFormatDescription"))
 	return rv
-}/* debug [instance_methods/method]: CopyCurrentSampleFormatDescription */
+}
 
 
 // Determines whether a sample earlier in decode order can have a presentation timestamp later than that of the specified sample cursor.
@@ -176,7 +175,7 @@ func (s_ SampleCursor) CopyCurrentSampleFormatDescription() FormatDescriptionRef
 func (s_ SampleCursor) SamplesWithEarlierDecodeTimeStampsMayHaveLaterPresentationTimeStampsThanCursor(cursor IAVSampleCursor) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("samplesWithEarlierDecodeTimeStampsMayHaveLaterPresentationTimeStampsThanCursor:"), cursor)
 	return rv
-}/* debug [instance_methods/method]: SamplesWithEarlierDecodeTimeStampsMayHaveLaterPresentationTimeStampsThanCursor */
+}
 
 
 // Determines whether a sample later in decode order can have a presentation timestamp earlier than that of the specified sample cursor.
@@ -186,7 +185,7 @@ func (s_ SampleCursor) SamplesWithEarlierDecodeTimeStampsMayHaveLaterPresentatio
 func (s_ SampleCursor) SamplesWithLaterDecodeTimeStampsMayHaveEarlierPresentationTimeStampsThanCursor(cursor IAVSampleCursor) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("samplesWithLaterDecodeTimeStampsMayHaveEarlierPresentationTimeStampsThanCursor:"), cursor)
 	return rv
-}/* debug [instance_methods/method]: SamplesWithLaterDecodeTimeStampsMayHaveEarlierPresentationTimeStampsThanCursor */
+}
 
 
 // Moves the cursor by a given delta time on the decode timeline.
@@ -196,7 +195,7 @@ func (s_ SampleCursor) SamplesWithLaterDecodeTimeStampsMayHaveEarlierPresentatio
 func (s_ SampleCursor) StepByDecodeTimeWasPinned(deltaDecodeTime objc.IObject /* cross-framework: Time */, outWasPinned objectivec.IObject) objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](s_.ID, objc.Sel("stepByDecodeTime:wasPinned:"), deltaDecodeTime, outWasPinned)
 	return rv
-}/* debug [instance_methods/method]: StepByDecodeTimeWasPinned */
+}
 
 
 // Moves the cursor by a given delta time on the presentation timeline.
@@ -206,7 +205,7 @@ func (s_ SampleCursor) StepByDecodeTimeWasPinned(deltaDecodeTime objc.IObject /*
 func (s_ SampleCursor) StepByPresentationTimeWasPinned(deltaPresentationTime objc.IObject /* cross-framework: Time */, outWasPinned objectivec.IObject) objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](s_.ID, objc.Sel("stepByPresentationTime:wasPinned:"), deltaPresentationTime, outWasPinned)
 	return rv
-}/* debug [instance_methods/method]: StepByPresentationTimeWasPinned */
+}
 
 
 // Moves the cursor a given number of samples in decode order.
@@ -216,7 +215,7 @@ func (s_ SampleCursor) StepByPresentationTimeWasPinned(deltaPresentationTime obj
 func (s_ SampleCursor) StepInDecodeOrderByCount(stepCount int64) int64 {
 	rv := objc.Send[int64](s_.ID, objc.Sel("stepInDecodeOrderByCount:"), stepCount)
 	return rv
-}/* debug [instance_methods/method]: StepInDecodeOrderByCount */
+}
 
 
 // Moves the cursor a given number of samples in presentation order.
@@ -226,13 +225,13 @@ func (s_ SampleCursor) StepInDecodeOrderByCount(stepCount int64) int64 {
 func (s_ SampleCursor) StepInPresentationOrderByCount(stepCount int64) int64 {
 	rv := objc.Send[int64](s_.ID, objc.Sel("stepInPresentationOrderByCount:"), stepCount)
 	return rv
-}/* debug [instance_methods/method]: StepInPresentationOrderByCount */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for SampleCursor */
+
+
+
 
 // A value that provides information about the chunk of samples to which the current sample belongs.
 //
@@ -241,7 +240,7 @@ func (s_ SampleCursor) StepInPresentationOrderByCount(stepCount int64) int64 {
 func (s_ SampleCursor) CurrentChunkInfo() objc.IObject /* cross-framework: AVSampleCursorChunkInfo */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("currentChunkInfo"))
 	return rv
-}/* debug [instance_properties/getter]: currentChunkInfo */
+}
 
 
 // The sample range in the storage container to load together with the current sample as a chunk.
@@ -251,7 +250,7 @@ func (s_ SampleCursor) CurrentChunkInfo() objc.IObject /* cross-framework: AVSam
 func (s_ SampleCursor) CurrentChunkStorageRange() objc.IObject /* cross-framework: AVSampleCursorStorageRange */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("currentChunkStorageRange"))
 	return rv
-}/* debug [instance_properties/getter]: currentChunkStorageRange */
+}
 
 
 // The URL of the storage container of the current sample and other samples to load in the same operation as a chunk.
@@ -261,7 +260,7 @@ func (s_ SampleCursor) CurrentChunkStorageRange() objc.IObject /* cross-framewor
 func (s_ SampleCursor) CurrentChunkStorageURL() objc.IObject /* cross-framework: NSURL */ {
 	rv := objc.Send[foundation.NSURL](s_.ID, objc.Sel("currentChunkStorageURL"))
 	return rv
-}/* debug [instance_properties/getter]: currentChunkStorageURL */
+}
 
 
 // The independent decodability information for the audio sample.
@@ -271,7 +270,7 @@ func (s_ SampleCursor) CurrentChunkStorageURL() objc.IObject /* cross-framework:
 func (s_ SampleCursor) CurrentSampleAudioDependencyInfo() objc.IObject /* cross-framework: AVSampleCursorAudioDependencyInfo */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("currentSampleAudioDependencyInfo"))
 	return rv
-}/* debug [instance_properties/getter]: currentSampleAudioDependencyInfo */
+}
 
 
 // A dictionary of dependency-related sample buffer attachments.
@@ -281,7 +280,7 @@ func (s_ SampleCursor) CurrentSampleAudioDependencyInfo() objc.IObject /* cross-
 func (s_ SampleCursor) CurrentSampleDependencyAttachments() objc.IObject /* cross-framework: NSDictionary */ {
 	rv := objc.Send[foundation.NSDictionary](s_.ID, objc.Sel("currentSampleDependencyAttachments"))
 	return rv
-}/* debug [instance_properties/getter]: currentSampleDependencyAttachments */
+}
 
 
 // The dependency information that describes relationships between a media sample and other media samples in the same sample sequence.
@@ -291,7 +290,7 @@ func (s_ SampleCursor) CurrentSampleDependencyAttachments() objc.IObject /* cros
 func (s_ SampleCursor) CurrentSampleDependencyInfo() objc.IObject /* cross-framework: AVSampleCursorDependencyInfo */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("currentSampleDependencyInfo"))
 	return rv
-}/* debug [instance_properties/getter]: currentSampleDependencyInfo */
+}
 
 
 // The decode duration of the sample at the cursor’s current position.
@@ -301,7 +300,7 @@ func (s_ SampleCursor) CurrentSampleDependencyInfo() objc.IObject /* cross-frame
 func (s_ SampleCursor) CurrentSampleDuration() objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](s_.ID, objc.Sel("currentSampleDuration"))
 	return rv
-}/* debug [instance_properties/getter]: currentSampleDuration */
+}
 
 
 // The index of the current sample within the chunk to which it belongs.
@@ -311,7 +310,7 @@ func (s_ SampleCursor) CurrentSampleDuration() objc.IObject /* cross-framework: 
 func (s_ SampleCursor) CurrentSampleIndexInChunk() int64 {
 	rv := objc.Send[int64](s_.ID, objc.Sel("currentSampleIndexInChunk"))
 	return rv
-}/* debug [instance_properties/getter]: currentSampleIndexInChunk */
+}
 
 
 // The offset and length of the current sample in the current chunk storage URL.
@@ -321,7 +320,7 @@ func (s_ SampleCursor) CurrentSampleIndexInChunk() int64 {
 func (s_ SampleCursor) CurrentSampleStorageRange() objc.IObject /* cross-framework: AVSampleCursorStorageRange */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("currentSampleStorageRange"))
 	return rv
-}/* debug [instance_properties/getter]: currentSampleStorageRange */
+}
 
 
 // The synchronization information for the current sample for consideration when resynchronizing a decoder.
@@ -331,7 +330,7 @@ func (s_ SampleCursor) CurrentSampleStorageRange() objc.IObject /* cross-framewo
 func (s_ SampleCursor) CurrentSampleSyncInfo() objc.IObject /* cross-framework: AVSampleCursorSyncInfo */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("currentSampleSyncInfo"))
 	return rv
-}/* debug [instance_properties/getter]: currentSampleSyncInfo */
+}
 
 
 // The decode timestamp of the sample at the current position of the cursor.
@@ -341,7 +340,7 @@ func (s_ SampleCursor) CurrentSampleSyncInfo() objc.IObject /* cross-framework: 
 func (s_ SampleCursor) DecodeTimeStamp() objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](s_.ID, objc.Sel("decodeTimeStamp"))
 	return rv
-}/* debug [instance_properties/getter]: decodeTimeStamp */
+}
 
 
 // The presentation timestamp of the sample at the current position of the cursor.
@@ -351,7 +350,7 @@ func (s_ SampleCursor) DecodeTimeStamp() objc.IObject /* cross-framework: Time *
 func (s_ SampleCursor) PresentationTimeStamp() objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](s_.ID, objc.Sel("presentationTimeStamp"))
 	return rv
-}/* debug [instance_properties/getter]: presentationTimeStamp */
+}
 
 
 // The number of samples prior to the current sample, in decode order, the decoder requires to achieve a coherent output at the current decode time.
@@ -361,12 +360,12 @@ func (s_ SampleCursor) PresentationTimeStamp() objc.IObject /* cross-framework: 
 func (s_ SampleCursor) SamplesRequiredForDecoderRefresh() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("samplesRequiredForDecoderRefresh"))
 	return rv
-}/* debug [instance_properties/getter]: samplesRequiredForDecoderRefresh */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVSampleCursor */
+
+
+
 
 
 

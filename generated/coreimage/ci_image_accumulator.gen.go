@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class CIImageAccumulator */
 
 
-/* debug [class_header]: Header for CIImageAccumulator */
+
+
 // The class instance for the [ImageAccumulator] class.
 var (
 	ImageAccumulatorClass     _ImageAccumulatorClass
@@ -31,36 +30,36 @@ func getImageAccumulatorClass() _ImageAccumulatorClass {
 type _ImageAccumulatorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ImageAccumulator */
+
+
 // An interface definition for the [ImageAccumulator] class.
 type IImageAccumulator interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ImageAccumulator */
+
 	// properties:
 	Extent() corefoundation.CGRect
 	Format() Format /* typedef */
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ImageAccumulator */
+
 	// methods:
 	Clear()
 	Image() IImage
 	SetImage(image ICIImage)
 	SetImageDirtyRect(image ICIImage, dirtyRect corefoundation.CGRect)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ImageAccumulator */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageAccumulatorClass) Alloc() ImageAccumulator {
 	rv := objc.Send[ImageAccumulator](objc.ID(ic.class), objc.Sel("alloc"))
@@ -90,11 +89,11 @@ func (i_ ImageAccumulator) Autorelease() ImageAccumulator {
 func NewImageAccumulator() ImageAccumulator {
 	return getImageAccumulatorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ImageAccumulator */
+
+
 // An object that manages feedback-based image processing for tasks such as painting or fluid simulation.
 //
 // The class enables feedback-based image processing for such things as iterative painting operations or fluid dynamics simulations. You use objects in conjunction with other Core Image classes, such as , , , and , to take advantage of the built-in Core Image filters when processing images.
@@ -114,11 +113,11 @@ type ImageAccumulator struct {
 func ImageAccumulatorFrom(ptr unsafe.Pointer) ImageAccumulator {
 	return ImageAccumulator{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ImageAccumulator */
+
+
 
 // Initializes an image accumulator with the specified extent and pixel format.
 //
@@ -129,7 +128,7 @@ func NewImageAccumulatorWithExtentFormat(extent corefoundation.CGRect, format Fo
 	rv := objc.Send[ImageAccumulator](instance.ID, objc.Sel("initWithExtent:format:"), extent, format)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageAccumulatorWithExtentFormat */
+}
 
 
 // Initializes an image accumulator with the specified extent, pixel format, and color space.
@@ -141,13 +140,13 @@ func NewImageAccumulatorWithExtentFormatColorSpace(extent corefoundation.CGRect,
 	rv := objc.Send[ImageAccumulator](instance.ID, objc.Sel("initWithExtent:format:colorSpace:"), extent, format, colorSpace)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageAccumulatorWithExtentFormatColorSpace */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ImageAccumulator */
+
+
+
 
 // Creates an image accumulator with the specified extent and pixel format.
 //
@@ -156,7 +155,7 @@ func NewImageAccumulatorWithExtentFormatColorSpace(extent corefoundation.CGRect,
 func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormat(extent corefoundation.CGRect, format Format /* typedef */) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(ic.class), objc.Sel("imageAccumulatorWithExtent:format:"), extent, format)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ImageAccumulatorWithExtentFormat) */
+}
 
 
 // Creates an image accumulator with the specified extent, pixel format, and color space.
@@ -166,18 +165,18 @@ func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormat(extent corefou
 func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormatColorSpace(extent corefoundation.CGRect, format Format /* typedef */, colorSpace ColorSpaceRef /* not a class type */) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(ic.class), objc.Sel("imageAccumulatorWithExtent:format:colorSpace:"), extent, format, colorSpace)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ImageAccumulatorWithExtentFormatColorSpace) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for ImageAccumulator */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ImageAccumulator */
+
+
+
+
+
 
 // Resets the accumulator, discarding any pending updates and the current content.
 //
@@ -185,7 +184,7 @@ func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormatColorSpace(exte
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/clear()
 func (i_ ImageAccumulator) Clear() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("clear"))
-}/* debug [instance_methods/method]: Clear */
+}
 
 
 // Returns the current contents of the image accumulator.
@@ -195,7 +194,7 @@ func (i_ ImageAccumulator) Clear() {
 func (i_ ImageAccumulator) Image() IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("image"))
 	return rv
-}/* debug [instance_methods/method]: Image */
+}
 
 
 // Sets the contents of the image accumulator to the contents of the specified image object.
@@ -204,7 +203,7 @@ func (i_ ImageAccumulator) Image() IImage {
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/setImage(_:)
 func (i_ ImageAccumulator) SetImage(image ICIImage) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImage:"), image)
-}/* debug [instance_methods/method]: SetImage */
+}
 
 
 // Updates an image accumulator with a subregion of an image object.
@@ -213,13 +212,13 @@ func (i_ ImageAccumulator) SetImage(image ICIImage) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/setImage(_:dirtyRect:)
 func (i_ ImageAccumulator) SetImageDirtyRect(image ICIImage, dirtyRect corefoundation.CGRect) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImage:dirtyRect:"), image, dirtyRect)
-}/* debug [instance_methods/method]: SetImageDirtyRect */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for ImageAccumulator */
+
+
+
 
 // The extent of the image associated with the image accumulator.
 //
@@ -228,7 +227,7 @@ func (i_ ImageAccumulator) SetImageDirtyRect(image ICIImage, dirtyRect corefound
 func (i_ ImageAccumulator) Extent() corefoundation.CGRect {
 	rv := objc.Send[corefoundation.CGRect](i_.ID, objc.Sel("extent"))
 	return rv
-}/* debug [instance_properties/getter]: extent */
+}
 
 
 // The pixel format of the image accumulator.
@@ -238,11 +237,11 @@ func (i_ ImageAccumulator) Extent() corefoundation.CGRect {
 func (i_ ImageAccumulator) Format() Format /* typedef */ {
 	rv := objc.Send[int32](i_.ID, objc.Sel("format"))
 	return rv
-}/* debug [instance_properties/getter]: format */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class CIImageAccumulator */
+
+
+
 
 

@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNPoolingAverageGradientNode */
 
 
-/* debug [class_header]: Header for MPSCNNPoolingAverageGradientNode */
+
+
 // The class instance for the [CNNPoolingAverageGradientNode] class.
 var (
 	CNNPoolingAverageGradientNodeClass     _CNNPoolingAverageGradientNodeClass
@@ -29,30 +29,30 @@ func getCNNPoolingAverageGradientNodeClass() _CNNPoolingAverageGradientNodeClass
 type _CNNPoolingAverageGradientNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNPoolingAverageGradientNode */
+
+
 // An interface definition for the [CNNPoolingAverageGradientNode] class.
 type ICNNPoolingAverageGradientNode interface {
 	ICNNPoolingGradientNode
 	
-/* debug [class_interface_properties]: Properties for CNNPoolingAverageGradientNode */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNPoolingAverageGradientNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNPoolingAverageGradientNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNPoolingAverageGradientNodeClass) Alloc() CNNPoolingAverageGradientNode {
 	rv := objc.Send[CNNPoolingAverageGradientNode](objc.ID(cc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (c_ CNNPoolingAverageGradientNode) Autorelease() CNNPoolingAverageGradientN
 func NewCNNPoolingAverageGradientNode() CNNPoolingAverageGradientNode {
 	return getCNNPoolingAverageGradientNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNPoolingAverageGradientNode */
+
+
 // A representation of a gradient average pooling filter.
 
 
@@ -106,34 +106,34 @@ func CNNPoolingAverageGradientNodeFrom(ptr unsafe.Pointer) CNNPoolingAverageGrad
 		CNNPoolingGradientNode: CNNPoolingGradientNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNPoolingAverageGradientNode *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for CNNPoolingAverageGradientNode */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNPoolingAverageGradientNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNPoolingAverageGradientNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNPoolingAverageGradientNode */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNPoolingAverageGradientNode */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

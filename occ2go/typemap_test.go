@@ -21,19 +21,19 @@ func TestParseBlockType(t *testing.T) {
 			name:      "block with id return",
 			blockType: "id (^)(void)",
 			framework: "Foundation",
-			want:      "func() unsafe.Pointer",
+			want:      "func() objc.ID", // id maps to objc.ID type
 		},
 		{
 			name:      "block with single param",
 			blockType: "void (^)(id)",
 			framework: "Foundation",
-			want:      "func(unsafe.Pointer)",
+			want:      "func(objc.ID)", // id maps to objc.ID type
 		},
 		{
 			name:      "block with multiple params",
 			blockType: "BOOL (^)(id, NSError *)",
 			framework: "Foundation",
-			want:      "func(unsafe.Pointer, unsafe.Pointer) bool",
+			want:      "func(objc.ID, unsafe.Pointer) bool", // id maps to objc.ID type
 		},
 		{
 			name:      "block with NSString param",
@@ -46,6 +46,122 @@ func TestParseBlockType(t *testing.T) {
 			blockType: "NSString *",
 			framework: "Foundation",
 			want:      "",
+		},
+		{
+			name:      "nested block - NSItemProvider loadHandler",
+			blockType: "NSProgress * (^)(void (^)(NSData *, NSError *))",
+			framework: "Foundation",
+			want:      "func(func(unsafe.Pointer, unsafe.Pointer)) unsafe.Pointer",
+		},
+		{
+			name:      "nested block with parameter name",
+			blockType: "NSProgress * (^)(void (^completionHandler)(NSData * data, NSError * error))",
+			framework: "Foundation",
+			want:      "func(func(unsafe.Pointer, unsafe.Pointer)) unsafe.Pointer",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := parseBlockType(tt.blockType, tt.framework)
+			if got != tt.want {
+				t.Errorf("parseBlockType(%q, %q) = %q, want %q", tt.blockType, tt.framework, got, tt.want)
+			}
+		})
+	}
+}
+
+// TestParseBlockType_ErrorCases tests error conditions and edge cases in block type parsing
+func TestParseBlockType_ErrorCases(t *testing.T) {
+	tests := []struct {
+		name      string
+		blockType string
+		framework string
+		want      string // Empty string means not a block type
+	}{
+		{
+			name:      "not a block type - simple type",
+			blockType: "NSString *",
+			framework: "Foundation",
+			want:      "",
+		},
+		{
+			name:      "not a block type - missing caret",
+			blockType: "void ()(void)",
+			framework: "Foundation",
+			want:      "",
+		},
+		{
+			name:      "malformed block - missing opening paren",
+			blockType: "void (^)void)",
+			framework: "Foundation",
+			want:      "",
+		},
+		{
+			name:      "malformed block - missing closing paren",
+			blockType: "void (^)(void",
+			framework: "Foundation",
+			want:      "",
+		},
+		{
+			name:      "malformed block - unbalanced nested parens",
+			blockType: "NSProgress * (^)(void (^)(NSData *, NSError *",
+			framework: "Foundation",
+			want:      "",
+		},
+		{
+			name:      "malformed block - extra closing paren (still parses correctly)",
+			blockType: "void (^)(void))",
+			framework: "Foundation",
+			want:      "func()", // Extra paren is ignored - block is still valid
+		},
+		{
+			name:      "empty string",
+			blockType: "",
+			framework: "Foundation",
+			want:      "",
+		},
+		{
+			name:      "only whitespace",
+			blockType: "   ",
+			framework: "Foundation",
+			want:      "",
+		},
+		{
+			name:      "block with only caret marker",
+			blockType: "(^)",
+			framework: "Foundation",
+			want:      "",
+		},
+		{
+			name:      "deeply nested blocks - triple nesting",
+			blockType: "void (^)(void (^)(void (^)(void)))",
+			framework: "Foundation",
+			want:      "func(func(func()))",
+		},
+		{
+			name:      "block with complex parameter types (includes generic array)",
+			blockType: "id (^)(NSString *, NSArray<NSString *> *, NSError **)",
+			framework: "Foundation",
+			want:      "func(unsafe.Pointer, []unsafe.Pointer, unsafe.Pointer) objc.ID", // NSArray<T> maps to []T, id maps to objc.ID
+		},
+		{
+			name:      "block with pointer return type",
+			blockType: "NSString * (^)(void)",
+			framework: "Foundation",
+			want:      "func() unsafe.Pointer",
+		},
+		{
+			name:      "block with no parameters but explicit void - id return",
+			blockType: "id (^)(void)",
+			framework: "Foundation",
+			want:      "func() objc.ID", // id maps to objc.ID, not unsafe.Pointer
+		},
+		{
+			name:      "block with named parameters in nested block",
+			blockType: "void (^)(void (^handler)(NSString *message, NSInteger code))",
+			framework: "Foundation",
+			want:      "func(func(unsafe.Pointer, unsafe.Pointer))", // NSInteger without framework context maps to unsafe.Pointer
 		},
 	}
 
@@ -76,7 +192,7 @@ func TestMapCTypeToGo_Blocks(t *testing.T) {
 			name:      "BOOL block with params",
 			cType:     "BOOL (^)(id, NSError *)",
 			framework: "Foundation",
-			want:      "func(unsafe.Pointer, unsafe.Pointer) bool",
+			want:      "func(objc.ID, unsafe.Pointer) bool", // id maps to objc.ID type
 		},
 		{
 			name:      "regular type",
@@ -94,7 +210,7 @@ func TestMapCTypeToGo_Blocks(t *testing.T) {
 			name:      "NSArray of BOOL blocks with params",
 			cType:     "NSArray<BOOL (^)(id, NSError *)>",
 			framework: "Foundation",
-			want:      "[]func(unsafe.Pointer, unsafe.Pointer) bool",
+			want:      "[]func(objc.ID, unsafe.Pointer) bool", // id maps to objc.ID type
 		},
 		{
 			name:      "NSArray of blocks with pointer",

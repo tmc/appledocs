@@ -19,3 +19,4 @@ var isMutedForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	isMutedForWebExtensionContextProtocol = objc.GetProtocol("isMutedForWebExtensionContext:")
 }
+

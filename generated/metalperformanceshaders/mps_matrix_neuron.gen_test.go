@@ -51,10 +51,3 @@ func ExampleMatrixNeuron_Encode() {
 	// Output:
 	}
 
-// ExampleMatrixNeuron_SetNeuronToPReLUWithParametersA demonstrates using SetNeuronToPReLUWithParametersA on a MatrixNeuron instance.
-func ExampleMatrixNeuron_SetNeuronToPReLUWithParametersA() {
-	obj := metalperformanceshaders.NewMatrixNeuron()
-	obj.SetNeuronToPReLUWithParametersA()
-	// Output:
-	}
-

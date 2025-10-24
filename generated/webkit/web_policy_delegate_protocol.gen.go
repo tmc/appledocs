@@ -15,3 +15,4 @@ var WebPolicyDelegateProtocol *objc.Protocol
 func init() {
 	WebPolicyDelegateProtocol = objc.GetProtocol("WebPolicyDelegate")
 }
+

@@ -15,3 +15,4 @@ var receivedErrorProtocol *objc.Protocol
 func init() {
 	receivedErrorProtocol = objc.GetProtocol("receivedError:")
 }
+

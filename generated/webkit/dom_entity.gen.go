@@ -6,11 +6,12 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 /* debug [class.gen.go]: Generating class DOMEntity */
+
 
 /* debug [class_header]: Header for DOMEntity */
 // The class instance for the [DOMEntity] class.
@@ -29,28 +30,31 @@ func getDOMEntityClass() _DOMEntityClass {
 type _DOMEntityClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMEntity */
 // An interface definition for the [DOMEntity] class.
 type IDOMEntity interface {
 	IDOMNode
-
-	/* debug [class_interface_properties]: Properties for DOMEntity */
+	
+/* debug [class_interface_properties]: Properties for DOMEntity */
 	// properties:
 	NotationName() objc.IObject /* cross-framework: NSString */
-	PublicId() objc.IObject     /* cross-framework: NSString */
-	SystemId() objc.IObject     /* cross-framework: NSString */
-	/* debug [class_interface_properties]: End properties */
+	PublicId() objc.IObject /* cross-framework: NSString */
+	SystemId() objc.IObject /* cross-framework: NSString */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMEntity */
+	
+/* debug [class_interface_methods]: Methods for DOMEntity */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMEntity */
 // Alloc allocates a new instance without initialization.
@@ -82,10 +86,12 @@ func (d_ DOMEntity) Autorelease() DOMEntity {
 func NewDOMEntity() DOMEntity {
 	return getDOMEntityClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMEntity */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMEntity
@@ -99,19 +105,28 @@ func DOMEntityFrom(ptr unsafe.Pointer) DOMEntity {
 		DOMNode: DOMNodeFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMEntity */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMEntity *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMEntity */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMEntity */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMEntity */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMEntity */
 
@@ -120,22 +135,28 @@ func DOMEntityFrom(ptr unsafe.Pointer) DOMEntity {
 func (d_ DOMEntity) NotationName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("notationName"))
 	return rv
-} /* debug [instance_properties/getter]: notationName */
+}/* debug [instance_properties/getter]: notationName */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMEntity/publicId
 func (d_ DOMEntity) PublicId() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("publicId"))
 	return rv
-} /* debug [instance_properties/getter]: publicId */
+}/* debug [instance_properties/getter]: publicId */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMEntity/systemId
 func (d_ DOMEntity) SystemId() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("systemId"))
 	return rv
-} /* debug [instance_properties/getter]: systemId */
+}/* debug [instance_properties/getter]: systemId */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMEntity */
+
+
+

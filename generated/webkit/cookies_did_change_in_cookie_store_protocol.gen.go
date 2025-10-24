@@ -19,3 +19,4 @@ var cookiesDidChangeInCookieStoreProtocol *objc.Protocol
 func init() {
 	cookiesDidChangeInCookieStoreProtocol = objc.GetProtocol("cookiesDidChangeInCookieStore:")
 }
+

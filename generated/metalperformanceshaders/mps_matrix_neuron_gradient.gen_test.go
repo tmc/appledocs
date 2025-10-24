@@ -44,13 +44,6 @@ func ExampleMatrixNeuronGradient_NeuronType() {
 	// Output:
 	}
 
-// ExampleMatrixNeuronGradient_SetNeuronToPReLUWithParametersA demonstrates using SetNeuronToPReLUWithParametersA on a MatrixNeuronGradient instance.
-func ExampleMatrixNeuronGradient_SetNeuronToPReLUWithParametersA() {
-	obj := metalperformanceshaders.NewMatrixNeuronGradient()
-	obj.SetNeuronToPReLUWithParametersA()
-	// Output:
-	}
-
 // ExampleMatrixNeuronGradient_SetNeuronType demonstrates using SetNeuronType on a MatrixNeuronGradient instance.
 func ExampleMatrixNeuronGradient_SetNeuronType() {
 	obj := metalperformanceshaders.NewMatrixNeuronGradient()

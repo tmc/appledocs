@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class CAFrontAnchoringStrategy */
 
 
-/* debug [class_header]: Header for CAFrontAnchoringStrategy */
+
+
 // The class instance for the [FrontAnchoringStrategy] class.
 var (
 	FrontAnchoringStrategyClass     _FrontAnchoringStrategyClass
@@ -30,30 +30,30 @@ func getFrontAnchoringStrategyClass() _FrontAnchoringStrategyClass {
 type _FrontAnchoringStrategyClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for FrontAnchoringStrategy */
+
+
 // An interface definition for the [FrontAnchoringStrategy] class.
 type IFrontAnchoringStrategy interface {
 	IAnchoringStrategy
 	
-/* debug [class_interface_properties]: Properties for FrontAnchoringStrategy */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for FrontAnchoringStrategy */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for FrontAnchoringStrategy */
+
+
 // Alloc allocates a new instance without initialization.
 func (fc _FrontAnchoringStrategyClass) Alloc() FrontAnchoringStrategy {
 	rv := objc.Send[FrontAnchoringStrategy](objc.ID(fc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (f_ FrontAnchoringStrategy) Autorelease() FrontAnchoringStrategy {
 func NewFrontAnchoringStrategy() FrontAnchoringStrategy {
 	return getFrontAnchoringStrategyClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for FrontAnchoringStrategy */
+
+
 // Anchor to the front of the user’s space.
 
 
@@ -107,34 +107,34 @@ func FrontAnchoringStrategyFrom(ptr unsafe.Pointer) FrontAnchoringStrategy {
 		AnchoringStrategy: AnchoringStrategyFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for FrontAnchoringStrategy */
-/* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for FrontAnchoringStrategy */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for FrontAnchoringStrategy */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for FrontAnchoringStrategy */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for FrontAnchoringStrategy */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class CAFrontAnchoringStrategy */
+
+
+
+
+
+
+
+
+
+
+
+
 
 

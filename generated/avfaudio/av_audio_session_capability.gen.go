@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAudioSessionCapability */
 
 
-/* debug [class_header]: Header for AVAudioSessionCapability */
+
+
 // The class instance for the [AudioSessionCapability] class.
 var (
 	AudioSessionCapabilityClass     _AudioSessionCapabilityClass
@@ -30,16 +30,16 @@ func getAudioSessionCapabilityClass() _AudioSessionCapabilityClass {
 type _AudioSessionCapabilityClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AudioSessionCapability */
+
+
 // An interface definition for the [AudioSessionCapability] class.
 type IAudioSessionCapability interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for AudioSessionCapability */
+
 	// properties:
 	Enabled() bool
 	Supported() bool
@@ -47,19 +47,19 @@ type IAudioSessionCapability interface {
 	SetIsEnabled(value bool)
 	IsSupported() bool
 	SetIsSupported(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AudioSessionCapability */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AudioSessionCapability */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AudioSessionCapabilityClass) Alloc() AudioSessionCapability {
 	rv := objc.Send[AudioSessionCapability](objc.ID(ac.class), objc.Sel("alloc"))
@@ -89,11 +89,11 @@ func (a_ AudioSessionCapability) Autorelease() AudioSessionCapability {
 func NewAudioSessionCapability() AudioSessionCapability {
 	return getAudioSessionCapabilityClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AudioSessionCapability */
+
+
 // Describes whether a specific capability is supported and if that capability is currently enabled
 
 
@@ -111,30 +111,30 @@ type AudioSessionCapability struct {
 func AudioSessionCapabilityFrom(ptr unsafe.Pointer) AudioSessionCapability {
 	return AudioSessionCapability{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AudioSessionCapability *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for AudioSessionCapability */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AudioSessionCapability */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AudioSessionCapability */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AudioSessionCapability */
+
+
+
+
+
+
+
+
+
 
 // A Boolean value that indicates whether the capability is enabled.
 //
@@ -143,7 +143,7 @@ func AudioSessionCapabilityFrom(ptr unsafe.Pointer) AudioSessionCapability {
 func (a_ AudioSessionCapability) Enabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("enabled"))
 	return rv
-}/* debug [instance_properties/getter]: enabled */
+}
 
 
 // A Boolean value that indicates whether the capability is supported.
@@ -153,7 +153,7 @@ func (a_ AudioSessionCapability) Enabled() bool {
 func (a_ AudioSessionCapability) Supported() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("supported"))
 	return rv
-}/* debug [instance_properties/getter]: supported */
+}
 
 
 // A Boolean value that indicates whether the capability is enabled.
@@ -163,7 +163,7 @@ func (a_ AudioSessionCapability) Supported() bool {
 func (a_ AudioSessionCapability) IsEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEnabled"))
 	return rv
-}/* debug [instance_properties/getter]: isEnabled */
+}
 
 
 // A Boolean value that indicates whether the capability is enabled.
@@ -172,7 +172,7 @@ func (a_ AudioSessionCapability) IsEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessioncapability/isenabled
 func (a_ AudioSessionCapability) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEnabled:"), value)
-}/* debug [instance_properties/setter]: isEnabled */
+}
 
 
 // A Boolean value that indicates whether the capability is supported.
@@ -182,7 +182,7 @@ func (a_ AudioSessionCapability) SetIsEnabled(value bool) {
 func (a_ AudioSessionCapability) IsSupported() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSupported"))
 	return rv
-}/* debug [instance_properties/getter]: isSupported */
+}
 
 
 // A Boolean value that indicates whether the capability is supported.
@@ -191,12 +191,12 @@ func (a_ AudioSessionCapability) IsSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessioncapability/issupported
 func (a_ AudioSessionCapability) SetIsSupported(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSupported:"), value)
-}/* debug [instance_properties/setter]: isSupported */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVAudioSessionCapability */
+
+
+
 
 
 

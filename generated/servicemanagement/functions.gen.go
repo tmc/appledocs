@@ -9,18 +9,19 @@ import (
 	"github.com/ebitengine/purego"
 )
 
+
 // ServiceManagement Functions (6 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_SMJobBless               func(StringRef, StringRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SMLoginItemSetEnabled    func(StringRef, unsafe.Pointer) unsafe.Pointer
+	_SMJobBless func(StringRef, StringRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_SMLoginItemSetEnabled func(StringRef, unsafe.Pointer) unsafe.Pointer
 	_SMCopyAllJobDictionaries func(StringRef) ArrayRef
-	_SMJobCopyDictionary      func(StringRef, StringRef) DictionaryRef
-	_SMJobRemove              func(StringRef, StringRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SMJobSubmit              func(StringRef, DictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_SMJobCopyDictionary func(StringRef, StringRef) DictionaryRef
+	_SMJobRemove func(StringRef, StringRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_SMJobSubmit func(StringRef, DictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 )
 
 func init() {
@@ -48,6 +49,8 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	purego.RegisterLibFunc(fn, lib, name)
 }
 
+
+
 // Submits the executable for the given label as a job to .
 //
 // Deprecated: This function was deprecated in macOS 13.0.
@@ -59,7 +62,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMJobBless(_:_:_:_:)
 func SMJobBless(domain StringRef, executableLabel StringRef, auth unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer {
 	return _SMJobBless(domain, executableLabel, auth, outError)
-} /* debug [functions.gen.go/function]: SMJobBless */
+}/* debug [functions.gen.go/function]: SMJobBless */
 
 // Enables a helper executable in the main app-bundle directory.
 //
@@ -72,7 +75,7 @@ func SMJobBless(domain StringRef, executableLabel StringRef, auth unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMLoginItemSetEnabled(_:_:)
 func SMLoginItemSetEnabled(identifier StringRef, enabled unsafe.Pointer) unsafe.Pointer {
 	return _SMLoginItemSetEnabled(identifier, enabled)
-} /* debug [functions.gen.go/function]: SMLoginItemSetEnabled */
+}/* debug [functions.gen.go/function]: SMLoginItemSetEnabled */
 
 // Copies the job description dictionaries for all jobs in the specified domain.
 //
@@ -85,7 +88,7 @@ func SMLoginItemSetEnabled(identifier StringRef, enabled unsafe.Pointer) unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMCopyAllJobDictionaries(_:)
 func SMCopyAllJobDictionaries(domain StringRef) ArrayRef {
 	return _SMCopyAllJobDictionaries(domain)
-} /* debug [functions.gen.go/function]: SMCopyAllJobDictionaries */
+}/* debug [functions.gen.go/function]: SMCopyAllJobDictionaries */
 
 // Copies the job description dictionary for the specified job label.
 //
@@ -98,7 +101,7 @@ func SMCopyAllJobDictionaries(domain StringRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMJobCopyDictionary(_:_:)
 func SMJobCopyDictionary(domain StringRef, jobLabel StringRef) DictionaryRef {
 	return _SMJobCopyDictionary(domain, jobLabel)
-} /* debug [functions.gen.go/function]: SMJobCopyDictionary */
+}/* debug [functions.gen.go/function]: SMJobCopyDictionary */
 
 // Removes the job with the specified label from the specified domain.
 //
@@ -111,7 +114,7 @@ func SMJobCopyDictionary(domain StringRef, jobLabel StringRef) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMJobRemove(_:_:_:_:_:)
 func SMJobRemove(domain StringRef, jobLabel StringRef, auth unsafe.Pointer, wait unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer {
 	return _SMJobRemove(domain, jobLabel, auth, wait, outError)
-} /* debug [functions.gen.go/function]: SMJobRemove */
+}/* debug [functions.gen.go/function]: SMJobRemove */
 
 // Submits the specified job to the specified domain.
 //
@@ -124,4 +127,8 @@ func SMJobRemove(domain StringRef, jobLabel StringRef, auth unsafe.Pointer, wait
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMJobSubmit(_:_:_:_:)
 func SMJobSubmit(domain StringRef, job DictionaryRef, auth unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer {
 	return _SMJobSubmit(domain, job, auth, outError)
-} /* debug [functions.gen.go/function]: SMJobSubmit */
+}/* debug [functions.gen.go/function]: SMJobSubmit */
+
+
+
+

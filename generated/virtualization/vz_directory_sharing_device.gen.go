@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZDirectorySharingDevice */
 
+
 /* debug [class_header]: Header for VZDirectorySharingDevice */
 // The class instance for the [VZDirectorySharingDevice] class.
 var (
@@ -29,25 +30,28 @@ func getVZDirectorySharingDeviceClass() _VZDirectorySharingDeviceClass {
 type _VZDirectorySharingDeviceClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZDirectorySharingDevice */
 // An interface definition for the [VZDirectorySharingDevice] class.
 type IVZDirectorySharingDevice interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZDirectorySharingDevice */
+	
+/* debug [class_interface_properties]: Properties for VZDirectorySharingDevice */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZDirectorySharingDevice */
+	
+/* debug [class_interface_methods]: Methods for VZDirectorySharingDevice */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZDirectorySharingDevice */
 // Alloc allocates a new instance without initialization.
@@ -79,13 +83,15 @@ func (v_ VZDirectorySharingDevice) Autorelease() VZDirectorySharingDevice {
 func NewVZDirectorySharingDevice() VZDirectorySharingDevice {
 	return getVZDirectorySharingDeviceClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZDirectorySharingDevice */
 // The base class that represents a directory sharing device in a VM.
 //
 // Don’t instantiate directly; configure a directory sharing device first by using through a subclass of . When you create a from the configuration, the directory sharing devices are available through the property. The real type of corresponds to the type used by the configuration. For example, a leads to a device of type .
+
 
 // The base class that represents a directory sharing device in a VM.
 //
@@ -101,21 +107,34 @@ type VZDirectorySharingDevice struct {
 func VZDirectorySharingDeviceFrom(ptr unsafe.Pointer) VZDirectorySharingDevice {
 	return VZDirectorySharingDevice{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZDirectorySharingDevice */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZDirectorySharingDevice *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZDirectorySharingDevice */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZDirectorySharingDevice */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZDirectorySharingDevice */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for VZDirectorySharingDevice */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZDirectorySharingDevice */
+
+
+

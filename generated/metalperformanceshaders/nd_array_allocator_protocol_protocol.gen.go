@@ -19,6 +19,6 @@ import (
 // See: doc://com.apple.metalperformanceshaders/documentation/MetalPerformanceShaders/MPSNDArrayAllocator
 type PNDArrayAllocator interface {
 	// Required methods
-	Array()/* debug [protocol_interface/required_method]: Array */
-	ArrayForCommandBufferArrayDescriptorKernel(cmdBuf unsafe.Pointer, descriptor INDArrayDescriptor, kernel IKernel) NDArray/* debug [protocol_interface/required_method]: ArrayForCommandBufferArrayDescriptorKernel */
+	Array()
+	ArrayForCommandBufferArrayDescriptorKernel(cmdBuf unsafe.Pointer, descriptor INDArrayDescriptor, kernel IKernel) NDArray
 }

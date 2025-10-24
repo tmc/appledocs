@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNFullyConnectedGradientNode */
 
 
-/* debug [class_header]: Header for MPSCNNFullyConnectedGradientNode */
+
+
 // The class instance for the [CNNFullyConnectedGradientNode] class.
 var (
 	CNNFullyConnectedGradientNodeClass     _CNNFullyConnectedGradientNodeClass
@@ -30,30 +30,30 @@ func getCNNFullyConnectedGradientNodeClass() _CNNFullyConnectedGradientNodeClass
 type _CNNFullyConnectedGradientNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNFullyConnectedGradientNode */
+
+
 // An interface definition for the [CNNFullyConnectedGradientNode] class.
 type ICNNFullyConnectedGradientNode interface {
 	ICNNConvolutionGradientNode
 	
-/* debug [class_interface_properties]: Properties for CNNFullyConnectedGradientNode */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNFullyConnectedGradientNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNFullyConnectedGradientNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNFullyConnectedGradientNodeClass) Alloc() CNNFullyConnectedGradientNode {
 	rv := objc.Send[CNNFullyConnectedGradientNode](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNFullyConnectedGradientNode) Autorelease() CNNFullyConnectedGradientN
 func NewCNNFullyConnectedGradientNode() CNNFullyConnectedGradientNode {
 	return getCNNFullyConnectedGradientNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNFullyConnectedGradientNode */
+
+
 
 
 // [Full Topic]
@@ -102,11 +102,11 @@ func CNNFullyConnectedGradientNodeFrom(ptr unsafe.Pointer) CNNFullyConnectedGrad
 		CNNConvolutionGradientNode: CNNConvolutionGradientNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNFullyConnectedGradientNode */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnfullyconnectedgradientnode/3152566-initwithsourcegradient
@@ -115,39 +115,39 @@ func NewCNNFullyConnectedGradientNodeWithSourceGradientSourceImageConvolutionGra
 	rv := objc.Send[CNNFullyConnectedGradientNode](instance.ID, objc.Sel("initWithSourceGradient:sourceImage:convolutionGradientState:weights:"), sourceGradient, sourceImage, gradientState, weights)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNFullyConnectedGradientNodeWithSourceGradientSourceImageConvolutionGradientStateWeights */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNFullyConnectedGradientNode */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnfullyconnectedgradientnode/3152567-nodewithsourcegradient
 func (cc _CNNFullyConnectedGradientNodeClass) NodeWithSourceGradientSourceImageConvolutionGradientStateWeights(sourceGradient IImageNode, sourceImage IImageNode, gradientState ICNNConvolutionGradientStateNode, weights unsafe.Pointer) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("nodeWithSourceGradient:sourceImage:convolutionGradientState:weights:"), sourceGradient, sourceImage, gradientState, weights)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSourceGradientSourceImageConvolutionGradientStateWeights) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for CNNFullyConnectedGradientNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNFullyConnectedGradientNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNFullyConnectedGradientNode */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNFullyConnectedGradientNode */
+
+
+
+
+
+
+
+
+
 
 

@@ -2,9 +2,9 @@
 
 package coreimage
 
-/* debug [enums.gen.go]: Generating 3 enums for CoreImage */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum CIDataMatrixCodeECCVersion (6 cases) */
+
 // DataMatrixCodeECCVersion - Constants indicating the Data Matrix code ECC version.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/ECCVersion-swift.enum
@@ -37,7 +37,7 @@ const (
 	DataMatrixCodeECCVersion200 DataMatrixCodeECCVersion = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CIQRCodeErrorCorrectionLevel (4 cases) */
+
 // QRCodeErrorCorrectionLevel - Constants indicating the percentage of the symbol that is dedicated to error correction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/ErrorCorrectionLevel-swift.enum
@@ -62,7 +62,7 @@ const (
 	QRCodeErrorCorrectionLevelQ QRCodeErrorCorrectionLevel = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CIRenderDestinationAlphaMode (3 cases) */
+
 // RenderDestinationAlphaMode - Different ways of representing alpha.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestinationAlphaMode

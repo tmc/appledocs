@@ -6,11 +6,12 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 /* debug [class.gen.go]: Generating class SKMutablePayment */
+
 
 /* debug [class_header]: Header for SKMutablePayment */
 // The class instance for the [MutablePayment] class.
@@ -29,15 +30,16 @@ func getMutablePaymentClass() _MutablePaymentClass {
 type _MutablePaymentClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for MutablePayment */
 // An interface definition for the [MutablePayment] class.
 type IMutablePayment interface {
 	IPayment
-
-	/* debug [class_interface_properties]: Properties for MutablePayment */
+	
+/* debug [class_interface_properties]: Properties for MutablePayment */
 	// properties:
 	ApplicationUsername() objc.IObject /* cross-framework: NSString */
 	SetApplicationUsername(value objc.IObject /* cross-framework: NSString */)
@@ -51,15 +53,17 @@ type IMutablePayment interface {
 	SetRequestData(value objc.IObject /* cross-framework: NSData */)
 	SimulatesAskToBuyInSandbox() bool
 	SetSimulatesAskToBuyInSandbox(value bool)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for MutablePayment */
+	
+/* debug [class_interface_methods]: Methods for MutablePayment */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for MutablePayment */
 // Alloc allocates a new instance without initialization.
@@ -91,13 +95,15 @@ func (m_ MutablePayment) Autorelease() MutablePayment {
 func NewMutablePayment() MutablePayment {
 	return getMutablePaymentClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for MutablePayment */
 // A mutable request to the App Store to process payment for additional functionality that your app offers.
 //
 // A mutable payment object identifies a product and the quantity of that item the user would like to purchase. When a mutable payment is added to the payment queue, the payment queue copies the contents into an immutable request before queueing the request. Your app can safely change the contents of the mutable payment object.
+
 
 // A mutable request to the App Store to process payment for additional functionality that your app offers.
 //
@@ -115,19 +121,28 @@ func MutablePaymentFrom(ptr unsafe.Pointer) MutablePayment {
 		Payment: PaymentFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for MutablePayment */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for MutablePayment *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for MutablePayment */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for MutablePayment */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for MutablePayment */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for MutablePayment */
 
@@ -138,7 +153,8 @@ func MutablePaymentFrom(ptr unsafe.Pointer) MutablePayment {
 func (m_ MutablePayment) ApplicationUsername() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("applicationUsername"))
 	return rv
-} /* debug [instance_properties/getter]: applicationUsername */
+}/* debug [instance_properties/getter]: applicationUsername */
+
 
 // A string that associates the transaction with a user account on your service.
 //
@@ -146,7 +162,8 @@ func (m_ MutablePayment) ApplicationUsername() objc.IObject /* cross-framework: 
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/applicationUsername
 func (m_ MutablePayment) SetApplicationUsername(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationUsername:"), value)
-} /* debug [instance_properties/setter]: applicationUsername */
+}/* debug [instance_properties/setter]: applicationUsername */
+
 
 // The details of the discount offer to apply to the payment.
 //
@@ -155,7 +172,8 @@ func (m_ MutablePayment) SetApplicationUsername(value objc.IObject /* cross-fram
 func (m_ MutablePayment) PaymentDiscount() ISKPaymentDiscount {
 	rv := objc.Send[PaymentDiscount](m_.ID, objc.Sel("paymentDiscount"))
 	return rv
-} /* debug [instance_properties/getter]: paymentDiscount */
+}/* debug [instance_properties/getter]: paymentDiscount */
+
 
 // The details of the discount offer to apply to the payment.
 //
@@ -163,7 +181,8 @@ func (m_ MutablePayment) PaymentDiscount() ISKPaymentDiscount {
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/paymentDiscount
 func (m_ MutablePayment) SetPaymentDiscount(value ISKPaymentDiscount) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPaymentDiscount:"), value)
-} /* debug [instance_properties/setter]: paymentDiscount */
+}/* debug [instance_properties/setter]: paymentDiscount */
+
 
 // A string that identifies a product that can be purchased from within your app.
 //
@@ -172,7 +191,8 @@ func (m_ MutablePayment) SetPaymentDiscount(value ISKPaymentDiscount) {
 func (m_ MutablePayment) ProductIdentifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("productIdentifier"))
 	return rv
-} /* debug [instance_properties/getter]: productIdentifier */
+}/* debug [instance_properties/getter]: productIdentifier */
+
 
 // A string that identifies a product that can be purchased from within your app.
 //
@@ -180,7 +200,8 @@ func (m_ MutablePayment) ProductIdentifier() objc.IObject /* cross-framework: NS
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/productIdentifier
 func (m_ MutablePayment) SetProductIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifier:"), value)
-} /* debug [instance_properties/setter]: productIdentifier */
+}/* debug [instance_properties/setter]: productIdentifier */
+
 
 // The number of items the user wants to purchase.
 //
@@ -189,7 +210,8 @@ func (m_ MutablePayment) SetProductIdentifier(value objc.IObject /* cross-framew
 func (m_ MutablePayment) Quantity() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("quantity"))
 	return rv
-} /* debug [instance_properties/getter]: quantity */
+}/* debug [instance_properties/getter]: quantity */
+
 
 // The number of items the user wants to purchase.
 //
@@ -197,7 +219,8 @@ func (m_ MutablePayment) Quantity() int {
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/quantity
 func (m_ MutablePayment) SetQuantity(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setQuantity:"), value)
-} /* debug [instance_properties/setter]: quantity */
+}/* debug [instance_properties/setter]: quantity */
+
 
 // Reserved for future use.
 //
@@ -206,7 +229,8 @@ func (m_ MutablePayment) SetQuantity(value int) {
 func (m_ MutablePayment) RequestData() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("requestData"))
 	return rv
-} /* debug [instance_properties/getter]: requestData */
+}/* debug [instance_properties/getter]: requestData */
+
 
 // Reserved for future use.
 //
@@ -214,7 +238,8 @@ func (m_ MutablePayment) RequestData() objc.IObject /* cross-framework: NSData *
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/requestData
 func (m_ MutablePayment) SetRequestData(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestData:"), value)
-} /* debug [instance_properties/setter]: requestData */
+}/* debug [instance_properties/setter]: requestData */
+
 
 // A Boolean value that produces an “ask to buy” flow for this payment in the sandbox.
 //
@@ -223,7 +248,8 @@ func (m_ MutablePayment) SetRequestData(value objc.IObject /* cross-framework: N
 func (m_ MutablePayment) SimulatesAskToBuyInSandbox() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("simulatesAskToBuyInSandbox"))
 	return rv
-} /* debug [instance_properties/getter]: simulatesAskToBuyInSandbox */
+}/* debug [instance_properties/getter]: simulatesAskToBuyInSandbox */
+
 
 // A Boolean value that produces an “ask to buy” flow for this payment in the sandbox.
 //
@@ -231,8 +257,12 @@ func (m_ MutablePayment) SimulatesAskToBuyInSandbox() bool {
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/simulatesAskToBuyInSandbox
 func (m_ MutablePayment) SetSimulatesAskToBuyInSandbox(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSimulatesAskToBuyInSandbox:"), value)
-} /* debug [instance_properties/setter]: simulatesAskToBuyInSandbox */
+}/* debug [instance_properties/setter]: simulatesAskToBuyInSandbox */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class SKMutablePayment */
+
+
+

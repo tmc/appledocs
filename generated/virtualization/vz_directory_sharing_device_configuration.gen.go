@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZDirectorySharingDeviceConfiguration */
 
+
 /* debug [class_header]: Header for VZDirectorySharingDeviceConfiguration */
 // The class instance for the [VZDirectorySharingDeviceConfiguration] class.
 var (
@@ -29,25 +30,28 @@ func getVZDirectorySharingDeviceConfigurationClass() _VZDirectorySharingDeviceCo
 type _VZDirectorySharingDeviceConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZDirectorySharingDeviceConfiguration */
 // An interface definition for the [VZDirectorySharingDeviceConfiguration] class.
 type IVZDirectorySharingDeviceConfiguration interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZDirectorySharingDeviceConfiguration */
+	
+/* debug [class_interface_properties]: Properties for VZDirectorySharingDeviceConfiguration */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZDirectorySharingDeviceConfiguration */
+	
+/* debug [class_interface_methods]: Methods for VZDirectorySharingDeviceConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZDirectorySharingDeviceConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -79,13 +83,15 @@ func (v_ VZDirectorySharingDeviceConfiguration) Autorelease() VZDirectorySharing
 func NewVZDirectorySharingDeviceConfiguration() VZDirectorySharingDeviceConfiguration {
 	return getVZDirectorySharingDeviceConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZDirectorySharingDeviceConfiguration */
 // The base class for a directory sharing device configuration.
 //
 // Don’t instantiate directly. Instead use one of its subclasses, like .
+
 
 // The base class for a directory sharing device configuration.
 //
@@ -101,21 +107,34 @@ type VZDirectorySharingDeviceConfiguration struct {
 func VZDirectorySharingDeviceConfigurationFrom(ptr unsafe.Pointer) VZDirectorySharingDeviceConfiguration {
 	return VZDirectorySharingDeviceConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZDirectorySharingDeviceConfiguration */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZDirectorySharingDeviceConfiguration *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZDirectorySharingDeviceConfiguration */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZDirectorySharingDeviceConfiguration */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZDirectorySharingDeviceConfiguration */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for VZDirectorySharingDeviceConfiguration */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZDirectorySharingDeviceConfiguration */
+
+
+

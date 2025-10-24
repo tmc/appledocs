@@ -15,3 +15,4 @@ var WebDocumentRepresentationProtocol *objc.Protocol
 func init() {
 	WebDocumentRepresentationProtocol = objc.GetProtocol("WebDocumentRepresentation")
 }
+

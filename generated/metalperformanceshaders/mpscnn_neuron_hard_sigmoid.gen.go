@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNNeuronHardSigmoid */
 
 
-/* debug [class_header]: Header for MPSCNNNeuronHardSigmoid */
+
+
 // The class instance for the [CNNNeuronHardSigmoid] class.
 var (
 	CNNNeuronHardSigmoidClass     _CNNNeuronHardSigmoidClass
@@ -30,30 +30,30 @@ func getCNNNeuronHardSigmoidClass() _CNNNeuronHardSigmoidClass {
 type _CNNNeuronHardSigmoidClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNNeuronHardSigmoid */
+
+
 // An interface definition for the [CNNNeuronHardSigmoid] class.
 type ICNNNeuronHardSigmoid interface {
 	ICNNNeuron
 	
-/* debug [class_interface_properties]: Properties for CNNNeuronHardSigmoid */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNNeuronHardSigmoid */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNNeuronHardSigmoid */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNNeuronHardSigmoidClass) Alloc() CNNNeuronHardSigmoid {
 	rv := objc.Send[CNNNeuronHardSigmoid](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNNeuronHardSigmoid) Autorelease() CNNNeuronHardSigmoid {
 func NewCNNNeuronHardSigmoid() CNNNeuronHardSigmoid {
 	return getCNNNeuronHardSigmoidClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNNeuronHardSigmoid */
+
+
 // A hard sigmoid neuron filter.
 //
 // For each pixel in an image, the filter applies the following function:
@@ -109,11 +109,11 @@ func CNNNeuronHardSigmoidFrom(ptr unsafe.Pointer) CNNNeuronHardSigmoid {
 		CNNNeuron: CNNNeuronFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNNeuronHardSigmoid */
+
+
 
 // Initializes a hard sigmoid neuron filter.
 //
@@ -124,31 +124,31 @@ func NewCNNNeuronHardSigmoidWithDeviceAB(device unsafe.Pointer, a float32, b flo
 	rv := objc.Send[CNNNeuronHardSigmoid](instance.ID, objc.Sel("initWithDevice:a:b:"), device, a, b)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNNeuronHardSigmoidWithDeviceAB */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNNeuronHardSigmoid */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNNeuronHardSigmoid */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNNeuronHardSigmoid */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNNeuronHardSigmoid */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNNeuronHardSigmoid */
+
+
+
+
+
+
+
+
+
+
+
 
 

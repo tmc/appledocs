@@ -17,5 +17,5 @@ import (
 // See: doc://com.apple.coreimage/documentation/CoreImage/CIPlugInRegistration
 type PPlugInRegistration interface {
 	// Required methods
-	Load(host objectivec.IObject) bool/* debug [protocol_interface/required_method]: Load */
+	Load(host objectivec.IObject) bool
 }

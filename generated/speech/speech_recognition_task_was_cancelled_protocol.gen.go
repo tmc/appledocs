@@ -19,3 +19,4 @@ var speechRecognitionTaskWasCancelledProtocol *objc.Protocol
 func init() {
 	speechRecognitionTaskWasCancelledProtocol = objc.GetProtocol("speechRecognitionTaskWasCancelled:")
 }
+

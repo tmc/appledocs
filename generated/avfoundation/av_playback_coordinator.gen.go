@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corevideo"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVPlaybackCoordinator */
 
 
-/* debug [class_header]: Header for AVPlaybackCoordinator */
+
+
 // The class instance for the [PlaybackCoordinator] class.
 var (
 	PlaybackCoordinatorClass     _PlaybackCoordinatorClass
@@ -31,16 +30,16 @@ func getPlaybackCoordinatorClass() _PlaybackCoordinatorClass {
 type _PlaybackCoordinatorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for PlaybackCoordinator */
+
+
 // An interface definition for the [PlaybackCoordinator] class.
 type IPlaybackCoordinator interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for PlaybackCoordinator */
+
 	// properties:
 	OtherParticipants() []CoordinatedPlaybackParticipant
 	PauseSnapsToMediaTimeOfOriginator() bool
@@ -48,23 +47,23 @@ type IPlaybackCoordinator interface {
 	SuspensionReasons() []string
 	SuspensionReasonsThatTriggerWaiting() []string
 	SetSuspensionReasonsThatTriggerWaiting(value []string)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for PlaybackCoordinator */
+
 	// methods:
 	BeginSuspensionForReason(suspensionReason CoordinatedPlaybackSuspensionReason /* typedef */) ICoordinatedPlaybackSuspension
 	ExpectedItemTimeAtHostTime(hostClockTime objc.IObject /* cross-framework: Time */) objc.IObject /* cross-framework: Time */
 	ParticipantLimitForWaitingOutSuspensionsWithReason(reason CoordinatedPlaybackSuspensionReason /* typedef */) int
 	SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int, reason CoordinatedPlaybackSuspensionReason /* typedef */)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for PlaybackCoordinator */
+
+
 // Alloc allocates a new instance without initialization.
 func (pc _PlaybackCoordinatorClass) Alloc() PlaybackCoordinator {
 	rv := objc.Send[PlaybackCoordinator](objc.ID(pc.class), objc.Sel("alloc"))
@@ -94,11 +93,11 @@ func (p_ PlaybackCoordinator) Autorelease() PlaybackCoordinator {
 func NewPlaybackCoordinator() PlaybackCoordinator {
 	return getPlaybackCoordinatorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for PlaybackCoordinator */
+
+
 // An object that coordinates the playback of players in a connected group.
 //
 // The framework provides two playback coordinator subclasses that manage different types of player objects: coordinates the state of objects. If your app uses , continue to use its standard interfaces to control playback. The coordinator intercepts changes to the player’s rate and time, and propagates them to other players in the group. coordinates the state of custom player objects. If your app uses a custom player, such as one that renders media using and , use this object to coordinate group playback. Adopt the coordinator’s delegate protocol so that your player responds to the commands that the coordinator issues.
@@ -118,25 +117,25 @@ type PlaybackCoordinator struct {
 func PlaybackCoordinatorFrom(ptr unsafe.Pointer) PlaybackCoordinator {
 	return PlaybackCoordinator{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for PlaybackCoordinator *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for PlaybackCoordinator */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for PlaybackCoordinator */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for PlaybackCoordinator */
+
+
+
+
+
+
+
 
 // Tells the coordinator to stop sending playback commands temporarily when the playback object disconnects from the group activity.
 //
@@ -145,7 +144,7 @@ func PlaybackCoordinatorFrom(ptr unsafe.Pointer) PlaybackCoordinator {
 func (p_ PlaybackCoordinator) BeginSuspensionForReason(suspensionReason CoordinatedPlaybackSuspensionReason /* typedef */) ICoordinatedPlaybackSuspension {
 	rv := objc.Send[CoordinatedPlaybackSuspension](p_.ID, objc.Sel("beginSuspensionForReason:"), suspensionReason)
 	return rv
-}/* debug [instance_methods/method]: BeginSuspensionForReason */
+}
 
 
 // Returns a time in the current item’s timeline that the coordinator expects to play at the specified host time.
@@ -155,7 +154,7 @@ func (p_ PlaybackCoordinator) BeginSuspensionForReason(suspensionReason Coordina
 func (p_ PlaybackCoordinator) ExpectedItemTimeAtHostTime(hostClockTime objc.IObject /* cross-framework: Time */) objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](p_.ID, objc.Sel("expectedItemTimeAtHostTime:"), hostClockTime)
 	return rv
-}/* debug [instance_methods/method]: ExpectedItemTimeAtHostTime */
+}
 
 
 // Returns the limit on the number of partipants that a group may contain before the coordinator stops waiting on suspensions that occur for a particular reason.
@@ -165,7 +164,7 @@ func (p_ PlaybackCoordinator) ExpectedItemTimeAtHostTime(hostClockTime objc.IObj
 func (p_ PlaybackCoordinator) ParticipantLimitForWaitingOutSuspensionsWithReason(reason CoordinatedPlaybackSuspensionReason /* typedef */) int {
 	rv := objc.Send[int](p_.ID, objc.Sel("participantLimitForWaitingOutSuspensionsWithReason:"), reason)
 	return rv
-}/* debug [instance_methods/method]: ParticipantLimitForWaitingOutSuspensionsWithReason */
+}
 
 
 // Sets a limit on the number of partipants that a group may contain before the coordinator stops waiting on suspensions that occur for a particular reason.
@@ -174,13 +173,13 @@ func (p_ PlaybackCoordinator) ParticipantLimitForWaitingOutSuspensionsWithReason
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlaybackCoordinator/setParticipantLimit(_:forWaitingOutSuspensionsWithReason:)
 func (p_ PlaybackCoordinator) SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int, reason CoordinatedPlaybackSuspensionReason /* typedef */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setParticipantLimit:forWaitingOutSuspensionsWithReason:"), participantLimit, reason)
-}/* debug [instance_methods/method]: SetParticipantLimitForWaitingOutSuspensionsWithReason */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for PlaybackCoordinator */
+
+
+
 
 // The identifiers of the other participants in a group.
 //
@@ -189,7 +188,7 @@ func (p_ PlaybackCoordinator) SetParticipantLimitForWaitingOutSuspensionsWithRea
 func (p_ PlaybackCoordinator) OtherParticipants() []CoordinatedPlaybackParticipant {
 	rv := objc.Send[[]CoordinatedPlaybackParticipant](p_.ID, objc.Sel("otherParticipants"))
 	return rv
-}/* debug [instance_properties/getter]: otherParticipants */
+}
 
 
 // A Boolean value that indicates whether participants mirror the originator’s stop time when they pause.
@@ -199,7 +198,7 @@ func (p_ PlaybackCoordinator) OtherParticipants() []CoordinatedPlaybackParticipa
 func (p_ PlaybackCoordinator) PauseSnapsToMediaTimeOfOriginator() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("pauseSnapsToMediaTimeOfOriginator"))
 	return rv
-}/* debug [instance_properties/getter]: pauseSnapsToMediaTimeOfOriginator */
+}
 
 
 // A Boolean value that indicates whether participants mirror the originator’s stop time when they pause.
@@ -208,7 +207,7 @@ func (p_ PlaybackCoordinator) PauseSnapsToMediaTimeOfOriginator() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlaybackCoordinator/pauseSnapsToMediaTimeOfOriginator
 func (p_ PlaybackCoordinator) SetPauseSnapsToMediaTimeOfOriginator(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPauseSnapsToMediaTimeOfOriginator:"), value)
-}/* debug [instance_properties/setter]: pauseSnapsToMediaTimeOfOriginator */
+}
 
 
 // The reasons a coordinator is currently unable to participate in a group playback activity.
@@ -218,7 +217,7 @@ func (p_ PlaybackCoordinator) SetPauseSnapsToMediaTimeOfOriginator(value bool) {
 func (p_ PlaybackCoordinator) SuspensionReasons() []string {
 	rv := objc.Send[[]string](p_.ID, objc.Sel("suspensionReasons"))
 	return rv
-}/* debug [instance_properties/getter]: suspensionReasons */
+}
 
 
 // The reasons that cause a coordinator to suspend playback.
@@ -228,7 +227,7 @@ func (p_ PlaybackCoordinator) SuspensionReasons() []string {
 func (p_ PlaybackCoordinator) SuspensionReasonsThatTriggerWaiting() []string {
 	rv := objc.Send[[]string](p_.ID, objc.Sel("suspensionReasonsThatTriggerWaiting"))
 	return rv
-}/* debug [instance_properties/getter]: suspensionReasonsThatTriggerWaiting */
+}
 
 
 // The reasons that cause a coordinator to suspend playback.
@@ -246,12 +245,12 @@ func (p_ PlaybackCoordinator) SetSuspensionReasonsThatTriggerWaiting(value []str
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSuspensionReasonsThatTriggerWaiting:"), nsArray)
-}/* debug [instance_properties/setter]: suspensionReasonsThatTriggerWaiting */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVPlaybackCoordinator */
+
+
+
 
 
 

@@ -7,8 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/metalperformanceshaders"
 )
 
 /* debug [class.gen.go]: Generating class MPSGraph */
@@ -83,22 +81,22 @@ type IGraph interface {
 	BroadcastTensorToShapeName(tensor IMPSGraphTensor, shape Shape /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	BroadcastTensorToShapeTensorName(tensor IMPSGraphTensor, shapeTensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	CallSymbolNameInputTensorsOutputTypesName(symbolName objc.IObject /* cross-framework: NSString */, inputTensors []GraphTensor, outputTypes []GraphType, name objc.IObject /* cross-framework: NSString */) []GraphTensor
-	CastTensorToTypeName(tensor IMPSGraphTensor, type_ DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	CastTensorToTypeName(tensor IMPSGraphTensor, type_ objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	CeilWithTensorName(tensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	ClampWithTensorMinValueTensorMaxValueTensorName(tensor IMPSGraphTensor, minValueTensor IMPSGraphTensor, maxValueTensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	ColToImWithSourceTensorOutputShapeDescriptorName(source IMPSGraphTensor, outputShape Shape /* not a class type */, descriptor IMPSGraphImToColOpDescriptor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	CompileWithDeviceFeedsTargetTensorsTargetOperationsCompilationDescriptor(device IMPSGraphDevice, feeds GraphTensorShapedTypeDictionary /* not a class type */, targetTensors []GraphTensor, targetOperations []GraphOperation, compilationDescriptor IMPSGraphCompilationDescriptor) IGraphExecutable
 	ConstantWithRealPartImaginaryPart(realPart float64, imaginaryPart float64) IGraphTensor
-	ConstantWithRealPartImaginaryPartDataType(realPart float64, imaginaryPart float64, dataType DataType /* not a class type */) IGraphTensor
-	ConstantWithRealPartImaginaryPartShapeDataType(realPart float64, imaginaryPart float64, shape Shape /* not a class type */, dataType DataType /* not a class type */) IGraphTensor
+	ConstantWithRealPartImaginaryPartDataType(realPart float64, imaginaryPart float64, dataType objc.IObject /* cross-framework: DataType */) IGraphTensor
+	ConstantWithRealPartImaginaryPartShapeDataType(realPart float64, imaginaryPart float64, shape Shape /* not a class type */, dataType objc.IObject /* cross-framework: DataType */) IGraphTensor
 	ComplexTensorWithRealTensorImaginaryTensorName(realTensor IMPSGraphTensor, imaginaryTensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	ConcatTensorWithTensorDimensionName(tensor IMPSGraphTensor, tensor2 IMPSGraphTensor, dimensionIndex int, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	ConcatTensorsDimensionInterleaveName(tensors []GraphTensor, dimensionIndex int, interleave bool, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	ConcatTensorsDimensionName(tensors []GraphTensor, dimensionIndex int, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	ConjugateWithTensorName(tensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	ConstantWithScalarDataType(scalar float64, dataType DataType /* not a class type */) IGraphTensor
-	ConstantWithScalarShapeDataType(scalar float64, shape Shape /* not a class type */, dataType DataType /* not a class type */) IGraphTensor
-	ConstantWithDataShapeDataType(data objc.IObject /* cross-framework: NSData */, shape Shape /* not a class type */, dataType DataType /* not a class type */) IGraphTensor
+	ConstantWithScalarDataType(scalar float64, dataType objc.IObject /* cross-framework: DataType */) IGraphTensor
+	ConstantWithScalarShapeDataType(scalar float64, shape Shape /* not a class type */, dataType objc.IObject /* cross-framework: DataType */) IGraphTensor
+	ConstantWithDataShapeDataType(data objc.IObject /* cross-framework: NSData */, shape Shape /* not a class type */, dataType objc.IObject /* cross-framework: DataType */) IGraphTensor
 	ControlDependencyWithOperationsDependentBlockName(operations []GraphOperation, dependentBlock GraphControlFlowDependencyBlock /* not a class type */, name objc.IObject /* cross-framework: NSString */) []GraphTensor
 	Convolution2DWithSourceTensorWeightsTensorDescriptorName(source IMPSGraphTensor, weights IMPSGraphTensor, descriptor IMPSGraphConvolution2DOpDescriptor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	Convolution2DDataGradientWithIncomingGradientTensorWeightsTensorOutputShapeForwardConvolutionDescriptorName(incomingGradient IMPSGraphTensor, weights IMPSGraphTensor, outputShape Shape /* not a class type */, forwardConvolutionDescriptor IMPSGraphConvolution2DOpDescriptor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
@@ -146,17 +144,17 @@ type IGraph interface {
 	DepthwiseConvolution3DWeightsGradientWithIncomingGradientTensorSourceTensorOutputShapeDescriptorName(incomingGradient IMPSGraphTensor, source IMPSGraphTensor, outputShape Shape /* not a class type */, descriptor IMPSGraphDepthwiseConvolution3DOpDescriptor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	DequantizeTensorLUTTensorAxisName(tensor IMPSGraphTensor, LUTTensor IMPSGraphTensor, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	DequantizeTensorLUTTensorName(tensor IMPSGraphTensor, LUTTensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	DequantizeTensorScaleZeroPointDataTypeName(tensor IMPSGraphTensor, scale float64, zeroPoint float64, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	DequantizeTensorScaleTensorDataTypeName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	DequantizeTensorScaleTensorZeroPointDataTypeAxisName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPoint float64, dataType DataType /* not a class type */, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	DequantizeTensorScaleTensorZeroPointTensorDataTypeAxisName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPointTensor IMPSGraphTensor, dataType DataType /* not a class type */, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	DequantizeTensorScaleTensorZeroPointTensorDataTypeName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPointTensor IMPSGraphTensor, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	DequantizeTensorScaleZeroPointDataTypeName(tensor IMPSGraphTensor, scale float64, zeroPoint float64, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	DequantizeTensorScaleTensorDataTypeName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	DequantizeTensorScaleTensorZeroPointDataTypeAxisName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPoint float64, dataType objc.IObject /* cross-framework: DataType */, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	DequantizeTensorScaleTensorZeroPointTensorDataTypeAxisName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPointTensor IMPSGraphTensor, dataType objc.IObject /* cross-framework: DataType */, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	DequantizeTensorScaleTensorZeroPointTensorDataTypeName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPointTensor IMPSGraphTensor, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	DivisionWithPrimaryTensorSecondaryTensorName(primaryTensor IMPSGraphTensor, secondaryTensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	DivisionNoNaNWithPrimaryTensorSecondaryTensorName(primaryTensor IMPSGraphTensor, secondaryTensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	DropoutTensorRateTensorName(tensor IMPSGraphTensor, rate IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	DropoutTensorRateName(tensor IMPSGraphTensor, rate float64, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	EncodeToCommandBufferFeedsTargetOperationsResultsDictionaryExecutionDescriptor(commandBuffer metalperformanceshaders.CommandBuffer, feeds GraphTensorDataDictionary /* not a class type */, targetOperations []GraphOperation, resultsDictionary GraphTensorDataDictionary /* not a class type */, executionDescriptor IMPSGraphExecutionDescriptor)
-	EncodeToCommandBufferFeedsTargetTensorsTargetOperationsExecutionDescriptor(commandBuffer metalperformanceshaders.CommandBuffer, feeds GraphTensorDataDictionary /* not a class type */, targetTensors []GraphTensor, targetOperations []GraphOperation, executionDescriptor IMPSGraphExecutionDescriptor) GraphTensorDataDictionary /* not a class type */
+	EncodeToCommandBufferFeedsTargetOperationsResultsDictionaryExecutionDescriptor(commandBuffer objc.IObject /* cross-framework: MPSCommandBuffer */, feeds GraphTensorDataDictionary /* not a class type */, targetOperations []GraphOperation, resultsDictionary GraphTensorDataDictionary /* not a class type */, executionDescriptor IMPSGraphExecutionDescriptor)
+	EncodeToCommandBufferFeedsTargetTensorsTargetOperationsExecutionDescriptor(commandBuffer objc.IObject /* cross-framework: MPSCommandBuffer */, feeds GraphTensorDataDictionary /* not a class type */, targetTensors []GraphTensor, targetOperations []GraphOperation, executionDescriptor IMPSGraphExecutionDescriptor) GraphTensorDataDictionary /* not a class type */
 	EqualWithPrimaryTensorSecondaryTensorName(primaryTensor IMPSGraphTensor, secondaryTensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	ExpandDimsOfTensorAxesName(tensor IMPSGraphTensor, axes []foundation.Number, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	ExpandDimsOfTensorAxesTensorName(tensor IMPSGraphTensor, axesTensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
@@ -185,7 +183,7 @@ type IGraph interface {
 	GRUGradientsWithSourceTensorRecurrentWeightSourceGradientZStateOutputFwdInputWeightBiasDescriptorName(source IMPSGraphTensor, recurrentWeight IMPSGraphTensor, sourceGradient IMPSGraphTensor, zState IMPSGraphTensor, outputFwd IMPSGraphTensor, inputWeight IMPSGraphTensor, bias IMPSGraphTensor, descriptor IMPSGraphGRUDescriptor, name objc.IObject /* cross-framework: NSString */) []GraphTensor
 	GRUGradientsWithSourceTensorRecurrentWeightSourceGradientZStateOutputFwdInputWeightBiasInitStateDescriptorName(source IMPSGraphTensor, recurrentWeight IMPSGraphTensor, sourceGradient IMPSGraphTensor, zState IMPSGraphTensor, outputFwd IMPSGraphTensor, inputWeight IMPSGraphTensor, bias IMPSGraphTensor, initState IMPSGraphTensor, descriptor IMPSGraphGRUDescriptor, name objc.IObject /* cross-framework: NSString */) []GraphTensor
 	GRUGradientsWithSourceTensorRecurrentWeightSourceGradientZStateOutputFwdStateGradientInputWeightBiasInitStateMaskSecondaryBiasDescriptorName(source IMPSGraphTensor, recurrentWeight IMPSGraphTensor, sourceGradient IMPSGraphTensor, zState IMPSGraphTensor, outputFwd IMPSGraphTensor, stateGradient IMPSGraphTensor, inputWeight IMPSGraphTensor, bias IMPSGraphTensor, initState IMPSGraphTensor, mask IMPSGraphTensor, secondaryBias IMPSGraphTensor, descriptor IMPSGraphGRUDescriptor, name objc.IObject /* cross-framework: NSString */) []GraphTensor
-	HammingDistanceWithPrimaryTensorSecondaryTensorResultDataTypeName(primaryTensor IMPSGraphTensor, secondaryTensor IMPSGraphTensor, resultDataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	HammingDistanceWithPrimaryTensorSecondaryTensorResultDataTypeName(primaryTensor IMPSGraphTensor, secondaryTensor IMPSGraphTensor, resultDataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	HermiteanToRealFFTWithTensorAxesDescriptorName(tensor IMPSGraphTensor, axes []foundation.Number, descriptor IMPSGraphFFTDescriptor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	HermiteanToRealFFTWithTensorAxesTensorDescriptorName(tensor IMPSGraphTensor, axesTensor IMPSGraphTensor, descriptor IMPSGraphFFTDescriptor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	IdentityWithTensorName(tensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
@@ -247,20 +245,20 @@ type IGraph interface {
 	NormalizationWithTensorMeanTensorVarianceTensorGammaTensorBetaTensorEpsilonName(tensor IMPSGraphTensor, mean IMPSGraphTensor, variance IMPSGraphTensor, gamma IMPSGraphTensor, beta IMPSGraphTensor, epsilon float32, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	NotWithTensorName(tensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	NotEqualWithPrimaryTensorSecondaryTensorName(primaryTensor IMPSGraphTensor, secondaryTensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	OneHotWithIndicesTensorDepthAxisDataTypeName(indicesTensor IMPSGraphTensor, depth uint, axis uint, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	OneHotWithIndicesTensorDepthAxisDataTypeOnValueOffValueName(indicesTensor IMPSGraphTensor, depth uint, axis uint, dataType DataType /* not a class type */, onValue float64, offValue float64, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	OneHotWithIndicesTensorDepthAxisDataTypeName(indicesTensor IMPSGraphTensor, depth uint, axis uint, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	OneHotWithIndicesTensorDepthAxisDataTypeOnValueOffValueName(indicesTensor IMPSGraphTensor, depth uint, axis uint, dataType objc.IObject /* cross-framework: DataType */, onValue float64, offValue float64, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	OneHotWithIndicesTensorDepthAxisName(indicesTensor IMPSGraphTensor, depth uint, axis uint, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	OneHotWithIndicesTensorDepthDataTypeName(indicesTensor IMPSGraphTensor, depth uint, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	OneHotWithIndicesTensorDepthDataTypeOnValueOffValueName(indicesTensor IMPSGraphTensor, depth uint, dataType DataType /* not a class type */, onValue float64, offValue float64, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	OneHotWithIndicesTensorDepthDataTypeName(indicesTensor IMPSGraphTensor, depth uint, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	OneHotWithIndicesTensorDepthDataTypeOnValueOffValueName(indicesTensor IMPSGraphTensor, depth uint, dataType objc.IObject /* cross-framework: DataType */, onValue float64, offValue float64, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	OneHotWithIndicesTensorDepthName(indicesTensor IMPSGraphTensor, depth uint, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	PadGradientWithIncomingGradientTensorSourceTensorPaddingModeLeftPaddingRightPaddingName(incomingGradientTensor IMPSGraphTensor, sourceTensor IMPSGraphTensor, paddingMode GraphPaddingMode, leftPadding Shape /* not a class type */, rightPadding Shape /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	PadTensorWithPaddingModeLeftPaddingRightPaddingConstantValueName(tensor IMPSGraphTensor, paddingMode GraphPaddingMode, leftPadding Shape /* not a class type */, rightPadding Shape /* not a class type */, constantValue float64, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	PlaceholderWithShapeDataTypeName(shape Shape /* not a class type */, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	PlaceholderWithShapeDataTypeName(shape Shape /* not a class type */, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	PlaceholderWithShapeName(shape Shape /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	PowerWithPrimaryTensorSecondaryTensorName(primaryTensor IMPSGraphTensor, secondaryTensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	QuantizeTensorScaleZeroPointDataTypeName(tensor IMPSGraphTensor, scale float64, zeroPoint float64, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	QuantizeTensorScaleTensorZeroPointDataTypeAxisName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPoint float64, dataType DataType /* not a class type */, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	QuantizeTensorScaleTensorZeroPointTensorDataTypeAxisName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPointTensor IMPSGraphTensor, dataType DataType /* not a class type */, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	QuantizeTensorScaleZeroPointDataTypeName(tensor IMPSGraphTensor, scale float64, zeroPoint float64, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	QuantizeTensorScaleTensorZeroPointDataTypeAxisName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPoint float64, dataType objc.IObject /* cross-framework: DataType */, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	QuantizeTensorScaleTensorZeroPointTensorDataTypeAxisName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPointTensor IMPSGraphTensor, dataType objc.IObject /* cross-framework: DataType */, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	RandomPhiloxStateTensorWithCounterLowCounterHighKeyName(counterLow uint, counterHigh uint, key uint, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	RandomPhiloxStateTensorWithSeedName(seed uint, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	RandomTensorWithShapeDescriptorName(shape Shape /* not a class type */, descriptor IMPSGraphRandomOpDescriptor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
@@ -299,7 +297,7 @@ type IGraph interface {
 	ReductionProductWithTensorAxisName(tensor IMPSGraphTensor, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	ReductionSumWithTensorAxesName(tensor IMPSGraphTensor, axes []foundation.Number, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	ReductionSumWithTensorAxisName(tensor IMPSGraphTensor, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	ReinterpretCastTensorToTypeName(tensor IMPSGraphTensor, type_ DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	ReinterpretCastTensorToTypeName(tensor IMPSGraphTensor, type_ objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	ReLUWithTensorName(tensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	ReLUGradientWithIncomingGradientSourceTensorName(gradient IMPSGraphTensor, source IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	ReshapeTensorWithShapeName(tensor IMPSGraphTensor, shape Shape /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
@@ -388,7 +386,7 @@ type IGraph interface {
 	SpaceToBatchTensorSpatialAxesBatchAxisBlockDimensionsUsePixelShuffleOrderName(tensor IMPSGraphTensor, spatialAxes []foundation.Number, batchAxis int, blockDimensions []foundation.Number, usePixelShuffleOrder bool, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	SpaceToBatchTensorSpatialAxesTensorBatchAxisTensorBlockDimensionsTensorUsePixelShuffleOrderName(tensor IMPSGraphTensor, spatialAxesTensor IMPSGraphTensor, batchAxisTensor IMPSGraphTensor, blockDimensionsTensor IMPSGraphTensor, usePixelShuffleOrder bool, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	SparseTensorWithDescriptorTensorsShapeName(sparseDescriptor IMPSGraphCreateSparseOpDescriptor, inputTensorArray []GraphTensor, shape Shape /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	SparseTensorWithTypeTensorsShapeDataTypeName(sparseStorageType GraphSparseStorageType, inputTensorArray []GraphTensor, shape Shape /* not a class type */, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	SparseTensorWithTypeTensorsShapeDataTypeName(sparseStorageType GraphSparseStorageType, inputTensorArray []GraphTensor, shape Shape /* not a class type */, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	SplitTensorNumSplitsAxisName(tensor IMPSGraphTensor, numSplits uint, axis int, name objc.IObject /* cross-framework: NSString */) []GraphTensor
 	SplitTensorSplitSizesAxisName(tensor IMPSGraphTensor, splitSizes []foundation.Number, axis int, name objc.IObject /* cross-framework: NSString */) []GraphTensor
 	SplitTensorSplitSizesTensorAxisName(tensor IMPSGraphTensor, splitSizesTensor IMPSGraphTensor, axis int, name objc.IObject /* cross-framework: NSString */) []GraphTensor
@@ -415,7 +413,7 @@ type IGraph interface {
 	TransposeTensorPermutationName(tensor IMPSGraphTensor, permutation []foundation.Number, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	TransposeTensorDimensionWithDimensionName(tensor IMPSGraphTensor, dimensionIndex uint, dimensionIndex2 uint, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	TruncateWithTensorName(tensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
-	VariableWithDataShapeDataTypeName(data objc.IObject /* cross-framework: NSData */, shape Shape /* not a class type */, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
+	VariableWithDataShapeDataTypeName(data objc.IObject /* cross-framework: NSData */, shape Shape /* not a class type */, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	VariableFromTensorWithTensorName(tensor IMPSGraphTensor, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	VarianceOfTensorAxesName(tensor IMPSGraphTensor, axes []foundation.Number, name objc.IObject /* cross-framework: NSString */) IGraphTensor
 	VarianceOfTensorMeanTensorAxesName(tensor IMPSGraphTensor, meanTensor IMPSGraphTensor, axes []foundation.Number, name objc.IObject /* cross-framework: NSString */) IGraphTensor
@@ -838,7 +836,7 @@ func (g_ Graph) CallSymbolNameInputTensorsOutputTypesName(symbolName objc.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/cast(_:to:name:)
-func (g_ Graph) CastTensorToTypeName(tensor IMPSGraphTensor, type_ DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) CastTensorToTypeName(tensor IMPSGraphTensor, type_ objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("castTensor:toType:name:"), tensor, type_, name)
 	return rv
 }/* debug [instance_methods/method]: CastTensorToTypeName */
@@ -898,7 +896,7 @@ func (g_ Graph) ConstantWithRealPartImaginaryPart(realPart float64, imaginaryPar
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/complexConstant(realPart:imaginaryPart:dataType:)
-func (g_ Graph) ConstantWithRealPartImaginaryPartDataType(realPart float64, imaginaryPart float64, dataType DataType /* not a class type */) IGraphTensor {
+func (g_ Graph) ConstantWithRealPartImaginaryPartDataType(realPart float64, imaginaryPart float64, dataType objc.IObject /* cross-framework: DataType */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("constantWithRealPart:imaginaryPart:dataType:"), realPart, imaginaryPart, dataType)
 	return rv
 }/* debug [instance_methods/method]: ConstantWithRealPartImaginaryPartDataType */
@@ -908,7 +906,7 @@ func (g_ Graph) ConstantWithRealPartImaginaryPartDataType(realPart float64, imag
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/complexConstant(realPart:imaginaryPart:shape:dataType:)
-func (g_ Graph) ConstantWithRealPartImaginaryPartShapeDataType(realPart float64, imaginaryPart float64, shape Shape /* not a class type */, dataType DataType /* not a class type */) IGraphTensor {
+func (g_ Graph) ConstantWithRealPartImaginaryPartShapeDataType(realPart float64, imaginaryPart float64, shape Shape /* not a class type */, dataType objc.IObject /* cross-framework: DataType */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("constantWithRealPart:imaginaryPart:shape:dataType:"), realPart, imaginaryPart, shape, dataType)
 	return rv
 }/* debug [instance_methods/method]: ConstantWithRealPartImaginaryPartShapeDataType */
@@ -968,7 +966,7 @@ func (g_ Graph) ConjugateWithTensorName(tensor IMPSGraphTensor, name objc.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/constant(_:dataType:)
-func (g_ Graph) ConstantWithScalarDataType(scalar float64, dataType DataType /* not a class type */) IGraphTensor {
+func (g_ Graph) ConstantWithScalarDataType(scalar float64, dataType objc.IObject /* cross-framework: DataType */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("constantWithScalar:dataType:"), scalar, dataType)
 	return rv
 }/* debug [instance_methods/method]: ConstantWithScalarDataType */
@@ -978,7 +976,7 @@ func (g_ Graph) ConstantWithScalarDataType(scalar float64, dataType DataType /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/constant(_:shape:dataType:)-3wa0e
-func (g_ Graph) ConstantWithScalarShapeDataType(scalar float64, shape Shape /* not a class type */, dataType DataType /* not a class type */) IGraphTensor {
+func (g_ Graph) ConstantWithScalarShapeDataType(scalar float64, shape Shape /* not a class type */, dataType objc.IObject /* cross-framework: DataType */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("constantWithScalar:shape:dataType:"), scalar, shape, dataType)
 	return rv
 }/* debug [instance_methods/method]: ConstantWithScalarShapeDataType */
@@ -988,7 +986,7 @@ func (g_ Graph) ConstantWithScalarShapeDataType(scalar float64, shape Shape /* n
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/constant(_:shape:dataType:)-ylr4
-func (g_ Graph) ConstantWithDataShapeDataType(data objc.IObject /* cross-framework: NSData */, shape Shape /* not a class type */, dataType DataType /* not a class type */) IGraphTensor {
+func (g_ Graph) ConstantWithDataShapeDataType(data objc.IObject /* cross-framework: NSData */, shape Shape /* not a class type */, dataType objc.IObject /* cross-framework: DataType */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("constantWithData:shape:dataType:"), data, shape, dataType)
 	return rv
 }/* debug [instance_methods/method]: ConstantWithDataShapeDataType */
@@ -1468,7 +1466,7 @@ func (g_ Graph) DequantizeTensorLUTTensorName(tensor IMPSGraphTensor, LUTTensor 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/dequantize(_:scale:zeroPoint:dataType:name:)
-func (g_ Graph) DequantizeTensorScaleZeroPointDataTypeName(tensor IMPSGraphTensor, scale float64, zeroPoint float64, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) DequantizeTensorScaleZeroPointDataTypeName(tensor IMPSGraphTensor, scale float64, zeroPoint float64, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("dequantizeTensor:scale:zeroPoint:dataType:name:"), tensor, scale, zeroPoint, dataType, name)
 	return rv
 }/* debug [instance_methods/method]: DequantizeTensorScaleZeroPointDataTypeName */
@@ -1478,7 +1476,7 @@ func (g_ Graph) DequantizeTensorScaleZeroPointDataTypeName(tensor IMPSGraphTenso
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/dequantize(_:scaleTensor:dataType:name:)
-func (g_ Graph) DequantizeTensorScaleTensorDataTypeName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) DequantizeTensorScaleTensorDataTypeName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("dequantizeTensor:scaleTensor:dataType:name:"), tensor, scaleTensor, dataType, name)
 	return rv
 }/* debug [instance_methods/method]: DequantizeTensorScaleTensorDataTypeName */
@@ -1488,7 +1486,7 @@ func (g_ Graph) DequantizeTensorScaleTensorDataTypeName(tensor IMPSGraphTensor, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/dequantize(_:scaleTensor:zeroPoint:dataType:axis:name:)
-func (g_ Graph) DequantizeTensorScaleTensorZeroPointDataTypeAxisName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPoint float64, dataType DataType /* not a class type */, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) DequantizeTensorScaleTensorZeroPointDataTypeAxisName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPoint float64, dataType objc.IObject /* cross-framework: DataType */, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("dequantizeTensor:scaleTensor:zeroPoint:dataType:axis:name:"), tensor, scaleTensor, zeroPoint, dataType, axis, name)
 	return rv
 }/* debug [instance_methods/method]: DequantizeTensorScaleTensorZeroPointDataTypeAxisName */
@@ -1498,7 +1496,7 @@ func (g_ Graph) DequantizeTensorScaleTensorZeroPointDataTypeAxisName(tensor IMPS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/dequantize(_:scaleTensor:zeroPointTensor:dataType:axis:name:)
-func (g_ Graph) DequantizeTensorScaleTensorZeroPointTensorDataTypeAxisName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPointTensor IMPSGraphTensor, dataType DataType /* not a class type */, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) DequantizeTensorScaleTensorZeroPointTensorDataTypeAxisName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPointTensor IMPSGraphTensor, dataType objc.IObject /* cross-framework: DataType */, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("dequantizeTensor:scaleTensor:zeroPointTensor:dataType:axis:name:"), tensor, scaleTensor, zeroPointTensor, dataType, axis, name)
 	return rv
 }/* debug [instance_methods/method]: DequantizeTensorScaleTensorZeroPointTensorDataTypeAxisName */
@@ -1508,7 +1506,7 @@ func (g_ Graph) DequantizeTensorScaleTensorZeroPointTensorDataTypeAxisName(tenso
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/dequantize(_:scaleTensor:zeroPointTensor:dataType:name:)
-func (g_ Graph) DequantizeTensorScaleTensorZeroPointTensorDataTypeName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPointTensor IMPSGraphTensor, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) DequantizeTensorScaleTensorZeroPointTensorDataTypeName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPointTensor IMPSGraphTensor, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("dequantizeTensor:scaleTensor:zeroPointTensor:dataType:name:"), tensor, scaleTensor, zeroPointTensor, dataType, name)
 	return rv
 }/* debug [instance_methods/method]: DequantizeTensorScaleTensorZeroPointTensorDataTypeName */
@@ -1558,7 +1556,7 @@ func (g_ Graph) DropoutTensorRateName(tensor IMPSGraphTensor, rate float64, name
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/encode(to:feeds:targetOperations:resultsDictionary:executionDescriptor:)
-func (g_ Graph) EncodeToCommandBufferFeedsTargetOperationsResultsDictionaryExecutionDescriptor(commandBuffer metalperformanceshaders.CommandBuffer, feeds GraphTensorDataDictionary /* not a class type */, targetOperations []GraphOperation, resultsDictionary GraphTensorDataDictionary /* not a class type */, executionDescriptor IMPSGraphExecutionDescriptor) {
+func (g_ Graph) EncodeToCommandBufferFeedsTargetOperationsResultsDictionaryExecutionDescriptor(commandBuffer objc.IObject /* cross-framework: MPSCommandBuffer */, feeds GraphTensorDataDictionary /* not a class type */, targetOperations []GraphOperation, resultsDictionary GraphTensorDataDictionary /* not a class type */, executionDescriptor IMPSGraphExecutionDescriptor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("encodeToCommandBuffer:feeds:targetOperations:resultsDictionary:executionDescriptor:"), commandBuffer, feeds, targetOperations, resultsDictionary, executionDescriptor)
 }/* debug [instance_methods/method]: EncodeToCommandBufferFeedsTargetOperationsResultsDictionaryExecutionDescriptor */
 
@@ -1567,7 +1565,7 @@ func (g_ Graph) EncodeToCommandBufferFeedsTargetOperationsResultsDictionaryExecu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/encode(to:feeds:targetTensors:targetOperations:executionDescriptor:)
-func (g_ Graph) EncodeToCommandBufferFeedsTargetTensorsTargetOperationsExecutionDescriptor(commandBuffer metalperformanceshaders.CommandBuffer, feeds GraphTensorDataDictionary /* not a class type */, targetTensors []GraphTensor, targetOperations []GraphOperation, executionDescriptor IMPSGraphExecutionDescriptor) GraphTensorDataDictionary /* not a class type */ {
+func (g_ Graph) EncodeToCommandBufferFeedsTargetTensorsTargetOperationsExecutionDescriptor(commandBuffer objc.IObject /* cross-framework: MPSCommandBuffer */, feeds GraphTensorDataDictionary /* not a class type */, targetTensors []GraphTensor, targetOperations []GraphOperation, executionDescriptor IMPSGraphExecutionDescriptor) GraphTensorDataDictionary /* not a class type */ {
 	rv := objc.Send[GraphTensorDataDictionary](g_.ID, objc.Sel("encodeToCommandBuffer:feeds:targetTensors:targetOperations:executionDescriptor:"), commandBuffer, feeds, targetTensors, targetOperations, executionDescriptor)
 	return rv
 }/* debug [instance_methods/method]: EncodeToCommandBufferFeedsTargetTensorsTargetOperationsExecutionDescriptor */
@@ -1857,7 +1855,7 @@ func (g_ Graph) GRUGradientsWithSourceTensorRecurrentWeightSourceGradientZStateO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/HammingDistance(primary:secondary:resultDataType:name:)
-func (g_ Graph) HammingDistanceWithPrimaryTensorSecondaryTensorResultDataTypeName(primaryTensor IMPSGraphTensor, secondaryTensor IMPSGraphTensor, resultDataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) HammingDistanceWithPrimaryTensorSecondaryTensorResultDataTypeName(primaryTensor IMPSGraphTensor, secondaryTensor IMPSGraphTensor, resultDataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("HammingDistanceWithPrimaryTensor:secondaryTensor:resultDataType:name:"), primaryTensor, secondaryTensor, resultDataType, name)
 	return rv
 }/* debug [instance_methods/method]: HammingDistanceWithPrimaryTensorSecondaryTensorResultDataTypeName */
@@ -2477,7 +2475,7 @@ func (g_ Graph) NotEqualWithPrimaryTensorSecondaryTensorName(primaryTensor IMPSG
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/oneHot(withIndicesTensor:depth:axis:dataType:name:)
-func (g_ Graph) OneHotWithIndicesTensorDepthAxisDataTypeName(indicesTensor IMPSGraphTensor, depth uint, axis uint, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) OneHotWithIndicesTensorDepthAxisDataTypeName(indicesTensor IMPSGraphTensor, depth uint, axis uint, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("oneHotWithIndicesTensor:depth:axis:dataType:name:"), indicesTensor, depth, axis, dataType, name)
 	return rv
 }/* debug [instance_methods/method]: OneHotWithIndicesTensorDepthAxisDataTypeName */
@@ -2487,7 +2485,7 @@ func (g_ Graph) OneHotWithIndicesTensorDepthAxisDataTypeName(indicesTensor IMPSG
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/oneHot(withIndicesTensor:depth:axis:dataType:onValue:offValue:name:)
-func (g_ Graph) OneHotWithIndicesTensorDepthAxisDataTypeOnValueOffValueName(indicesTensor IMPSGraphTensor, depth uint, axis uint, dataType DataType /* not a class type */, onValue float64, offValue float64, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) OneHotWithIndicesTensorDepthAxisDataTypeOnValueOffValueName(indicesTensor IMPSGraphTensor, depth uint, axis uint, dataType objc.IObject /* cross-framework: DataType */, onValue float64, offValue float64, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("oneHotWithIndicesTensor:depth:axis:dataType:onValue:offValue:name:"), indicesTensor, depth, axis, dataType, onValue, offValue, name)
 	return rv
 }/* debug [instance_methods/method]: OneHotWithIndicesTensorDepthAxisDataTypeOnValueOffValueName */
@@ -2507,7 +2505,7 @@ func (g_ Graph) OneHotWithIndicesTensorDepthAxisName(indicesTensor IMPSGraphTens
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/oneHot(withIndicesTensor:depth:dataType:name:)
-func (g_ Graph) OneHotWithIndicesTensorDepthDataTypeName(indicesTensor IMPSGraphTensor, depth uint, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) OneHotWithIndicesTensorDepthDataTypeName(indicesTensor IMPSGraphTensor, depth uint, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("oneHotWithIndicesTensor:depth:dataType:name:"), indicesTensor, depth, dataType, name)
 	return rv
 }/* debug [instance_methods/method]: OneHotWithIndicesTensorDepthDataTypeName */
@@ -2517,7 +2515,7 @@ func (g_ Graph) OneHotWithIndicesTensorDepthDataTypeName(indicesTensor IMPSGraph
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/oneHot(withIndicesTensor:depth:dataType:onValue:offValue:name:)
-func (g_ Graph) OneHotWithIndicesTensorDepthDataTypeOnValueOffValueName(indicesTensor IMPSGraphTensor, depth uint, dataType DataType /* not a class type */, onValue float64, offValue float64, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) OneHotWithIndicesTensorDepthDataTypeOnValueOffValueName(indicesTensor IMPSGraphTensor, depth uint, dataType objc.IObject /* cross-framework: DataType */, onValue float64, offValue float64, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("oneHotWithIndicesTensor:depth:dataType:onValue:offValue:name:"), indicesTensor, depth, dataType, onValue, offValue, name)
 	return rv
 }/* debug [instance_methods/method]: OneHotWithIndicesTensorDepthDataTypeOnValueOffValueName */
@@ -2557,7 +2555,7 @@ func (g_ Graph) PadTensorWithPaddingModeLeftPaddingRightPaddingConstantValueName
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/placeholder(shape:dataType:name:)
-func (g_ Graph) PlaceholderWithShapeDataTypeName(shape Shape /* not a class type */, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) PlaceholderWithShapeDataTypeName(shape Shape /* not a class type */, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("placeholderWithShape:dataType:name:"), shape, dataType, name)
 	return rv
 }/* debug [instance_methods/method]: PlaceholderWithShapeDataTypeName */
@@ -2587,7 +2585,7 @@ func (g_ Graph) PowerWithPrimaryTensorSecondaryTensorName(primaryTensor IMPSGrap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/quantize(_:scale:zeroPoint:dataType:name:)
-func (g_ Graph) QuantizeTensorScaleZeroPointDataTypeName(tensor IMPSGraphTensor, scale float64, zeroPoint float64, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) QuantizeTensorScaleZeroPointDataTypeName(tensor IMPSGraphTensor, scale float64, zeroPoint float64, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("quantizeTensor:scale:zeroPoint:dataType:name:"), tensor, scale, zeroPoint, dataType, name)
 	return rv
 }/* debug [instance_methods/method]: QuantizeTensorScaleZeroPointDataTypeName */
@@ -2597,7 +2595,7 @@ func (g_ Graph) QuantizeTensorScaleZeroPointDataTypeName(tensor IMPSGraphTensor,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/quantize(_:scaleTensor:zeroPoint:dataType:axis:name:)
-func (g_ Graph) QuantizeTensorScaleTensorZeroPointDataTypeAxisName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPoint float64, dataType DataType /* not a class type */, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) QuantizeTensorScaleTensorZeroPointDataTypeAxisName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPoint float64, dataType objc.IObject /* cross-framework: DataType */, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("quantizeTensor:scaleTensor:zeroPoint:dataType:axis:name:"), tensor, scaleTensor, zeroPoint, dataType, axis, name)
 	return rv
 }/* debug [instance_methods/method]: QuantizeTensorScaleTensorZeroPointDataTypeAxisName */
@@ -2607,7 +2605,7 @@ func (g_ Graph) QuantizeTensorScaleTensorZeroPointDataTypeAxisName(tensor IMPSGr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/quantize(_:scaleTensor:zeroPointTensor:dataType:axis:name:)
-func (g_ Graph) QuantizeTensorScaleTensorZeroPointTensorDataTypeAxisName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPointTensor IMPSGraphTensor, dataType DataType /* not a class type */, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) QuantizeTensorScaleTensorZeroPointTensorDataTypeAxisName(tensor IMPSGraphTensor, scaleTensor IMPSGraphTensor, zeroPointTensor IMPSGraphTensor, dataType objc.IObject /* cross-framework: DataType */, axis int, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("quantizeTensor:scaleTensor:zeroPointTensor:dataType:axis:name:"), tensor, scaleTensor, zeroPointTensor, dataType, axis, name)
 	return rv
 }/* debug [instance_methods/method]: QuantizeTensorScaleTensorZeroPointTensorDataTypeAxisName */
@@ -2997,7 +2995,7 @@ func (g_ Graph) ReductionSumWithTensorAxisName(tensor IMPSGraphTensor, axis int,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/reinterpretCast(_:to:name:)
-func (g_ Graph) ReinterpretCastTensorToTypeName(tensor IMPSGraphTensor, type_ DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) ReinterpretCastTensorToTypeName(tensor IMPSGraphTensor, type_ objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("reinterpretCastTensor:toType:name:"), tensor, type_, name)
 	return rv
 }/* debug [instance_methods/method]: ReinterpretCastTensorToTypeName */
@@ -3885,7 +3883,7 @@ func (g_ Graph) SparseTensorWithDescriptorTensorsShapeName(sparseDescriptor IMPS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/sparseTensor(sparseTensorWithType:tensors:shape:dataType:name:)
-func (g_ Graph) SparseTensorWithTypeTensorsShapeDataTypeName(sparseStorageType GraphSparseStorageType, inputTensorArray []GraphTensor, shape Shape /* not a class type */, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) SparseTensorWithTypeTensorsShapeDataTypeName(sparseStorageType GraphSparseStorageType, inputTensorArray []GraphTensor, shape Shape /* not a class type */, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("sparseTensorWithType:tensors:shape:dataType:name:"), sparseStorageType, inputTensorArray, shape, dataType, name)
 	return rv
 }/* debug [instance_methods/method]: SparseTensorWithTypeTensorsShapeDataTypeName */
@@ -4155,7 +4153,7 @@ func (g_ Graph) TruncateWithTensorName(tensor IMPSGraphTensor, name objc.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraph/variable(with:shape:dataType:name:)
-func (g_ Graph) VariableWithDataShapeDataTypeName(data objc.IObject /* cross-framework: NSData */, shape Shape /* not a class type */, dataType DataType /* not a class type */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
+func (g_ Graph) VariableWithDataShapeDataTypeName(data objc.IObject /* cross-framework: NSData */, shape Shape /* not a class type */, dataType objc.IObject /* cross-framework: DataType */, name objc.IObject /* cross-framework: NSString */) IGraphTensor {
 	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("variableWithData:shape:dataType:name:"), data, shape, dataType, name)
 	return rv
 }/* debug [instance_methods/method]: VariableWithDataShapeDataTypeName */

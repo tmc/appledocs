@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSImageSubtract */
 
 
-/* debug [class_header]: Header for MPSImageSubtract */
+
+
 // The class instance for the [ImageSubtract] class.
 var (
 	ImageSubtractClass     _ImageSubtractClass
@@ -30,30 +30,30 @@ func getImageSubtractClass() _ImageSubtractClass {
 type _ImageSubtractClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ImageSubtract */
+
+
 // An interface definition for the [ImageSubtract] class.
 type IImageSubtract interface {
 	IImageArithmetic
 	
-/* debug [class_interface_properties]: Properties for ImageSubtract */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ImageSubtract */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ImageSubtract */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageSubtractClass) Alloc() ImageSubtract {
 	rv := objc.Send[ImageSubtract](objc.ID(ic.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (i_ ImageSubtract) Autorelease() ImageSubtract {
 func NewImageSubtract() ImageSubtract {
 	return getImageSubtractClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ImageSubtract */
+
+
 // A filter that returns the element-wise difference of its two input images.
 
 
@@ -107,11 +107,11 @@ func ImageSubtractFrom(ptr unsafe.Pointer) ImageSubtract {
 		ImageArithmetic: ImageArithmeticFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ImageSubtract */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagesubtract/2866613-initwithdevice
@@ -120,31 +120,31 @@ func NewImageSubtractWithDevice(device unsafe.Pointer) ImageSubtract {
 	rv := objc.Send[ImageSubtract](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageSubtractWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ImageSubtract */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ImageSubtract */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ImageSubtract */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ImageSubtract */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSImageSubtract */
+
+
+
+
+
+
+
+
+
+
+
 
 

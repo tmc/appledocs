@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNReduceFeatureChannelsMin */
 
 
-/* debug [class_header]: Header for MPSNNReduceFeatureChannelsMin */
+
+
 // The class instance for the [ReduceFeatureChannelsMin] class.
 var (
 	ReduceFeatureChannelsMinClass     _ReduceFeatureChannelsMinClass
@@ -31,30 +30,30 @@ func getReduceFeatureChannelsMinClass() _ReduceFeatureChannelsMinClass {
 type _ReduceFeatureChannelsMinClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ReduceFeatureChannelsMin */
+
+
 // An interface definition for the [ReduceFeatureChannelsMin] class.
 type IReduceFeatureChannelsMin interface {
 	IReduceUnary
 	
-/* debug [class_interface_properties]: Properties for ReduceFeatureChannelsMin */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ReduceFeatureChannelsMin */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ReduceFeatureChannelsMin */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _ReduceFeatureChannelsMinClass) Alloc() ReduceFeatureChannelsMin {
 	rv := objc.Send[ReduceFeatureChannelsMin](objc.ID(rc.class), objc.Sel("alloc"))
@@ -84,11 +83,11 @@ func (r_ ReduceFeatureChannelsMin) Autorelease() ReduceFeatureChannelsMin {
 func NewReduceFeatureChannelsMin() ReduceFeatureChannelsMin {
 	return getReduceFeatureChannelsMinClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ReduceFeatureChannelsMin */
+
+
 // A reduction filter that returns the minimum value for each feature channel in an image.
 
 
@@ -108,11 +107,11 @@ func ReduceFeatureChannelsMinFrom(ptr unsafe.Pointer) ReduceFeatureChannelsMin {
 		ReduceUnary: ReduceUnaryFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ReduceFeatureChannelsMin */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmin/3197840-initwithcoder
@@ -121,7 +120,7 @@ func NewReduceFeatureChannelsMinWithCoderDevice(aDecoder foundation.Coder, devic
 	rv := objc.Send[ReduceFeatureChannelsMin](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceFeatureChannelsMinWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -131,31 +130,31 @@ func NewReduceFeatureChannelsMinWithDevice(device unsafe.Pointer) ReduceFeatureC
 	rv := objc.Send[ReduceFeatureChannelsMin](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceFeatureChannelsMinWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ReduceFeatureChannelsMin */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ReduceFeatureChannelsMin */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ReduceFeatureChannelsMin */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ReduceFeatureChannelsMin */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNReduceFeatureChannelsMin */
+
+
+
+
+
+
+
+
+
+
+
 
 

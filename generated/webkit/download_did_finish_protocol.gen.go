@@ -19,3 +19,4 @@ var downloadDidFinishProtocol *objc.Protocol
 func init() {
 	downloadDidFinishProtocol = objc.GetProtocol("downloadDidFinish:")
 }
+

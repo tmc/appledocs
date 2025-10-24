@@ -25,14 +25,14 @@ import (
 // See: doc://com.apple.metalperformanceshaders/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationDataSource
 type PCNNGroupNormalizationDataSource interface {
 	// Required methods
-	Beta()/* debug [protocol_interface/required_method]: Beta */
-	CopyWithZoneDevice(zone Zone /* not a class type */, device unsafe.Pointer) objectivec.IObject/* debug [protocol_interface/required_method]: CopyWithZoneDevice */
-	EncodeWithCoder(aCoder foundation.Coder)/* debug [protocol_interface/required_method]: EncodeWithCoder */
-	Gamma()/* debug [protocol_interface/required_method]: Gamma */
-	InitWithCoder(aDecoder foundation.Coder) objectivec.IObject/* debug [protocol_interface/required_method]: InitWithCoder */
-	Label()/* debug [protocol_interface/required_method]: Label */
-	UpdateGammaAndBetaWithCommandBufferGroupNormalizationStateBatch(commandBuffer unsafe.Pointer, groupNormalizationStateBatch CNNGroupNormalizationGradientStateBatch /* not a class type */) CNNNormalizationGammaAndBetaState/* debug [protocol_interface/required_method]: UpdateGammaAndBetaWithCommandBufferGroupNormalizationStateBatch */
-	UpdateGammaAndBetaWithGroupNormalizationStateBatch(groupNormalizationStateBatch CNNGroupNormalizationGradientStateBatch /* not a class type */) bool/* debug [protocol_interface/required_method]: UpdateGammaAndBetaWithGroupNormalizationStateBatch */
+	Beta()
+	CopyWithZoneDevice(zone Zone /* not a class type */, device unsafe.Pointer) objectivec.IObject
+	EncodeWithCoder(aCoder foundation.Coder)
+	Gamma()
+	InitWithCoder(aDecoder foundation.Coder) objectivec.IObject
+	Label()
+	UpdateGammaAndBetaWithCommandBufferGroupNormalizationStateBatch(commandBuffer unsafe.Pointer, groupNormalizationStateBatch CNNGroupNormalizationGradientStateBatch /* not a class type */) CNNNormalizationGammaAndBetaState
+	UpdateGammaAndBetaWithGroupNormalizationStateBatch(groupNormalizationStateBatch CNNGroupNormalizationGradientStateBatch /* not a class type */) bool
 	// Optional methods
 	Copy()
 	HasCopy() bool

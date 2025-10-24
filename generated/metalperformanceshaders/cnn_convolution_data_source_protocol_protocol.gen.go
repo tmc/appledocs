@@ -25,16 +25,16 @@ import (
 // See: doc://com.apple.metalperformanceshaders/documentation/MetalPerformanceShaders/MPSCNNConvolutionDataSource
 type PCNNConvolutionDataSource interface {
 	// Required methods
-	BiasTerms()/* debug [protocol_interface/required_method]: BiasTerms */
-	Load()/* debug [protocol_interface/required_method]: Load */
-	Descriptor()/* debug [protocol_interface/required_method]: Descriptor */
-	Purge()/* debug [protocol_interface/required_method]: Purge */
-	DataType()/* debug [protocol_interface/required_method]: DataType */
-	Weights()/* debug [protocol_interface/required_method]: Weights */
-	Label()/* debug [protocol_interface/required_method]: Label */
-	UpdateWithCommandBufferGradientStateSourceState(commandBuffer unsafe.Pointer, gradientState ICNNConvolutionGradientState, sourceState ICNNConvolutionWeightsAndBiasesState) CNNConvolutionWeightsAndBiasesState/* debug [protocol_interface/required_method]: UpdateWithCommandBufferGradientStateSourceState */
-	UpdateWithGradientStateSourceState(gradientState ICNNConvolutionGradientState, sourceState ICNNConvolutionWeightsAndBiasesState) bool/* debug [protocol_interface/required_method]: UpdateWithGradientStateSourceState */
-	CopyWithZoneDevice(zone Zone /* not a class type */, device unsafe.Pointer) objectivec.IObject/* debug [protocol_interface/required_method]: CopyWithZoneDevice */
+	BiasTerms()
+	Load()
+	Descriptor()
+	Purge()
+	DataType()
+	Weights()
+	Label()
+	UpdateWithCommandBufferGradientStateSourceState(commandBuffer unsafe.Pointer, gradientState ICNNConvolutionGradientState, sourceState ICNNConvolutionWeightsAndBiasesState) CNNConvolutionWeightsAndBiasesState
+	UpdateWithGradientStateSourceState(gradientState ICNNConvolutionGradientState, sourceState ICNNConvolutionWeightsAndBiasesState) bool
+	CopyWithZoneDevice(zone Zone /* not a class type */, device unsafe.Pointer) objectivec.IObject
 	// Optional methods
 	RangesForUInt8Kernel()
 	HasRangesForUInt8Kernel() bool

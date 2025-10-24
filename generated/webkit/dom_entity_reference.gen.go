@@ -11,6 +11,7 @@ import (
 
 /* debug [class.gen.go]: Generating class DOMEntityReference */
 
+
 /* debug [class_header]: Header for DOMEntityReference */
 // The class instance for the [DOMEntityReference] class.
 var (
@@ -28,25 +29,28 @@ func getDOMEntityReferenceClass() _DOMEntityReferenceClass {
 type _DOMEntityReferenceClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMEntityReference */
 // An interface definition for the [DOMEntityReference] class.
 type IDOMEntityReference interface {
 	IDOMNode
-
-	/* debug [class_interface_properties]: Properties for DOMEntityReference */
+	
+/* debug [class_interface_properties]: Properties for DOMEntityReference */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMEntityReference */
+	
+/* debug [class_interface_methods]: Methods for DOMEntityReference */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMEntityReference */
 // Alloc allocates a new instance without initialization.
@@ -78,10 +82,12 @@ func (d_ DOMEntityReference) Autorelease() DOMEntityReference {
 func NewDOMEntityReference() DOMEntityReference {
 	return getDOMEntityReferenceClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMEntityReference */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMEntityReference
@@ -95,21 +101,34 @@ func DOMEntityReferenceFrom(ptr unsafe.Pointer) DOMEntityReference {
 		DOMNode: DOMNodeFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMEntityReference */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMEntityReference *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMEntityReference */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMEntityReference */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for DOMEntityReference */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for DOMEntityReference */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMEntityReference */
+
+
+

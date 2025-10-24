@@ -9,7 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	AppImpression = _undefined // referenced in StoreKit
-	Configuration = _undefined // referenced in StoreKit
-	WindowScene   = _undefined // referenced in StoreKit
+	WindowScene = _undefined // referenced in StoreKit
 )
+
+

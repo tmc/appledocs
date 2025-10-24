@@ -7,10 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class SKAdTestPostback */
+
 
 /* debug [class_header]: Header for SKAdTestPostback */
 // The class instance for the [AdTestPostback] class.
@@ -29,25 +31,28 @@ func getAdTestPostbackClass() _AdTestPostbackClass {
 type _AdTestPostbackClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for AdTestPostback */
 // An interface definition for the [AdTestPostback] class.
 type IAdTestPostback interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for AdTestPostback */
+	
+/* debug [class_interface_properties]: Properties for AdTestPostback */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for AdTestPostback */
+	
+/* debug [class_interface_methods]: Methods for AdTestPostback */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for AdTestPostback */
 // Alloc allocates a new instance without initialization.
@@ -79,13 +84,15 @@ func (a_ AdTestPostback) Autorelease() AdTestPostback {
 func NewAdTestPostback() AdTestPostback {
 	return getAdTestPostbackClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for AdTestPostback */
 // A test postback that contains ad conversion information in the testing environment.
 //
 // Use this class to create test postbacks to use for unit testing. In the production environment, the system creates a postback after a user installs an advertised app. The advertised app is responsible for registering the installation and may update the conversion value. The system sends the postback after a timer expires. In the testing environment, you can mimic a postback by creating it directly. You control the property values within the postback. Use it to test your app’s ability to register the app installation and update conversion values, and to test your server’s ability to receive postbacks.
+
 
 // A test postback that contains ad conversion information in the testing environment.
 //
@@ -101,8 +108,9 @@ type AdTestPostback struct {
 func AdTestPostbackFrom(ptr unsafe.Pointer) AdTestPostback {
 	return AdTestPostback{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for AdTestPostback */
 
@@ -115,7 +123,8 @@ func NewAdTestPostbackWithVersionAdNetworkIdentifierAdCampaignIdentifierAppStore
 	rv := objc.Send[AdTestPostback](instance.ID, objc.Sel("initWithVersion:adNetworkIdentifier:adCampaignIdentifier:appStoreItemIdentifier:sourceAppStoreItemIdentifier:conversionValue:fidelityType:isRedownload:didWin:postbackURL:"), version, adNetworkIdentifier, adCampaignIdentifier, appStoreItemIdentifier, sourceAppStoreItemIdentifier, conversionValue, fidelityType, isRedownload, didWin, postbackURL)
 	rv.Autorelease()
 	return rv
-} /* debug [class_init_methods/constructor]: NewAdTestPostbackWithVersionAdNetworkIdentifierAdCampaignIdentifierAppStoreItemIdentifierSourceAppStoreItemIdentifierConversionValueFidelityTypeIsRedownloadDidWinPostbackURL */
+}/* debug [class_init_methods/constructor]: NewAdTestPostbackWithVersionAdNetworkIdentifierAdCampaignIdentifierAppStoreItemIdentifierSourceAppStoreItemIdentifierConversionValueFidelityTypeIsRedownloadDidWinPostbackURL */
+
 
 // Creates a test postback for a web ad or an in-app ad.
 //
@@ -126,9 +135,11 @@ func NewAdTestPostbackWithVersionAdNetworkIdentifierSourceIdentifierAppStoreItem
 	rv := objc.Send[AdTestPostback](instance.ID, objc.Sel("initWithVersion:adNetworkIdentifier:sourceIdentifier:appStoreItemIdentifier:sourceAppStoreItemIdentifier:sourceDomain:fidelityType:isRedownload:didWin:postbackURL:"), version, adNetworkIdentifier, sourceIdentifier, appStoreItemIdentifier, sourceAppStoreItemIdentifier, sourceDomain, fidelityType, isRedownload, didWin, postbackURL)
 	rv.Autorelease()
 	return rv
-} /* debug [class_init_methods/constructor]: NewAdTestPostbackWithVersionAdNetworkIdentifierSourceIdentifierAppStoreItemIdentifierSourceAppStoreItemIdentifierSourceDomainFidelityTypeIsRedownloadDidWinPostbackURL */
+}/* debug [class_init_methods/constructor]: NewAdTestPostbackWithVersionAdNetworkIdentifierSourceIdentifierAppStoreItemIdentifierSourceAppStoreItemIdentifierSourceDomainFidelityTypeIsRedownloadDidWinPostbackURL */
 
 /* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for AdTestPostback */
 
@@ -139,17 +150,26 @@ func NewAdTestPostbackWithVersionAdNetworkIdentifierSourceIdentifierAppStoreItem
 func (ac _AdTestPostbackClass) WinningPostbacksWithVersionAdNetworkIdentifierSourceIdentifierAppStoreItemIdentifierSourceAppStoreItemIdentifierSourceDomainFidelityTypeIsRedownloadPostbackURL(version AdTestPostbackVersion /* typedef */, adNetworkIdentifier objc.IObject /* cross-framework: NSString */, sourceIdentifier objc.IObject /* cross-framework: NSString */, appStoreItemIdentifier int, sourceAppStoreItemIdentifier int, sourceDomain objc.IObject /* cross-framework: NSString */, fidelityType int, isRedownload bool, postbackURL objc.IObject /* cross-framework: NSString */) []AdTestPostback {
 	rv := objc.Send[[]AdTestPostback](objc.ID(ac.class), objc.Sel("winningPostbacksWithVersion:adNetworkIdentifier:sourceIdentifier:appStoreItemIdentifier:sourceAppStoreItemIdentifier:sourceDomain:fidelityType:isRedownload:postbackURL:"), version, adNetworkIdentifier, sourceIdentifier, appStoreItemIdentifier, sourceAppStoreItemIdentifier, sourceDomain, fidelityType, isRedownload, postbackURL)
 	return rv
-} /* debug [class_methods/method]: Class method for%!(EXTRA string=WinningPostbacksWithVersionAdNetworkIdentifierSourceIdentifierAppStoreItemIdentifierSourceAppStoreItemIdentifierSourceDomainFidelityTypeIsRedownloadPostbackURL) */
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=WinningPostbacksWithVersionAdNetworkIdentifierSourceIdentifierAppStoreItemIdentifierSourceAppStoreItemIdentifierSourceDomainFidelityTypeIsRedownloadPostbackURL) */
 
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for AdTestPostback */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for AdTestPostback */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for AdTestPostback */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class SKAdTestPostback */
+
+

@@ -15,3 +15,4 @@ var DOMNodeFilterProtocol *objc.Protocol
 func init() {
 	DOMNodeFilterProtocol = objc.GetProtocol("DOMNodeFilter")
 }
+

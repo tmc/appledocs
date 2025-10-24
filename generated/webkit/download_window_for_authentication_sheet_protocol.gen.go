@@ -15,3 +15,4 @@ var downloadWindowForAuthenticationSheetProtocol *objc.Protocol
 func init() {
 	downloadWindowForAuthenticationSheetProtocol = objc.GetProtocol("downloadWindowForAuthenticationSheet:")
 }
+

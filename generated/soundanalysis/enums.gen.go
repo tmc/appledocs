@@ -49,3 +49,5 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNTimeDurationConstraintType/SNTimeDurationConstraintTypeRange
 	SNTimeDurationConstraintTypeRange SNTimeDurationConstraintType = 0
 )
+
+

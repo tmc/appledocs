@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNDivisionNode */
 
 
-/* debug [class_header]: Header for MPSNNDivisionNode */
+
+
 // The class instance for the [DivisionNode] class.
 var (
 	DivisionNodeClass     _DivisionNodeClass
@@ -29,30 +29,30 @@ func getDivisionNodeClass() _DivisionNodeClass {
 type _DivisionNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for DivisionNode */
+
+
 // An interface definition for the [DivisionNode] class.
 type IDivisionNode interface {
 	IBinaryArithmeticNode
 	
-/* debug [class_interface_properties]: Properties for DivisionNode */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for DivisionNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for DivisionNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (dc _DivisionNodeClass) Alloc() DivisionNode {
 	rv := objc.Send[DivisionNode](objc.ID(dc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (d_ DivisionNode) Autorelease() DivisionNode {
 func NewDivisionNode() DivisionNode {
 	return getDivisionNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for DivisionNode */
+
+
 // A representation of a division operator.
 
 
@@ -106,34 +106,34 @@ func DivisionNodeFrom(ptr unsafe.Pointer) DivisionNode {
 		BinaryArithmeticNode: BinaryArithmeticNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for DivisionNode *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for DivisionNode */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for DivisionNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for DivisionNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for DivisionNode */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNDivisionNode */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

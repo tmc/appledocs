@@ -15,3 +15,4 @@ package visionkit
 // See: doc://com.apple.VisionKit/documentation/VisionKit/VNDocumentCameraViewControllerDelegate/documentCameraViewControllerDidCancel(_:)
 type PdocumentCameraViewControllerDidCancel interface {
 }
+

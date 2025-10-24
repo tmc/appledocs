@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZHostAudioOutputStreamSink */
+
 
 /* debug [class_header]: Header for VZHostAudioOutputStreamSink */
 // The class instance for the [VZHostAudioOutputStreamSink] class.
@@ -28,25 +30,28 @@ func getVZHostAudioOutputStreamSinkClass() _VZHostAudioOutputStreamSinkClass {
 type _VZHostAudioOutputStreamSinkClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZHostAudioOutputStreamSink */
 // An interface definition for the [VZHostAudioOutputStreamSink] class.
 type IVZHostAudioOutputStreamSink interface {
 	IVZAudioOutputStreamSink
-
-	/* debug [class_interface_properties]: Properties for VZHostAudioOutputStreamSink */
+	
+/* debug [class_interface_properties]: Properties for VZHostAudioOutputStreamSink */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZHostAudioOutputStreamSink */
+	
+/* debug [class_interface_methods]: Methods for VZHostAudioOutputStreamSink */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZHostAudioOutputStreamSink */
 // Alloc allocates a new instance without initialization.
@@ -78,13 +83,15 @@ func (v_ VZHostAudioOutputStreamSink) Autorelease() VZHostAudioOutputStreamSink 
 func NewVZHostAudioOutputStreamSink() VZHostAudioOutputStreamSink {
 	return getVZHostAudioOutputStreamSinkClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZHostAudioOutputStreamSink */
 // Host audio output stream sink plays audio to the host system’s default output device.
 //
 // Host output data goes to the same device that uses.
+
 
 // Host audio output stream sink plays audio to the host system’s default output device.
 //
@@ -102,22 +109,34 @@ func VZHostAudioOutputStreamSinkFrom(ptr unsafe.Pointer) VZHostAudioOutputStream
 		VZAudioOutputStreamSink: VZAudioOutputStreamSinkFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZHostAudioOutputStreamSink */
 /* debug [class_init_methods]: End init methods */
 
+
+
 /* debug [class_methods]: Class methods for VZHostAudioOutputStreamSink */
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZHostAudioOutputStreamSink */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZHostAudioOutputStreamSink */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZHostAudioOutputStreamSink */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZHostAudioOutputStreamSink */
+
+

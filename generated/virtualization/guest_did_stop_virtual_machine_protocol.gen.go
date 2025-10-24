@@ -15,3 +15,4 @@ var guestDidStopVirtualMachineProtocol *objc.Protocol
 func init() {
 	guestDidStopVirtualMachineProtocol = objc.GetProtocol("guestDidStopVirtualMachine:")
 }
+

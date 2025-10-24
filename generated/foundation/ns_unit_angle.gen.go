@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class NSUnitAngle */
 
 
-/* debug [class_header]: Header for NSUnitAngle */
+
+
 // The class instance for the [UnitAngle] class.
 var (
 	UnitAngleClass     _UnitAngleClass
@@ -29,30 +29,30 @@ func getUnitAngleClass() _UnitAngleClass {
 type _UnitAngleClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for UnitAngle */
+
+
 // An interface definition for the [UnitAngle] class.
 type IUnitAngle interface {
 	IDimension
 	
-/* debug [class_interface_properties]: Properties for UnitAngle */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for UnitAngle */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for UnitAngle */
+
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitAngleClass) Alloc() UnitAngle {
 	rv := objc.Send[UnitAngle](objc.ID(uc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (u_ UnitAngle) Autorelease() UnitAngle {
 func NewUnitAngle() UnitAngle {
 	return getUnitAngleClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for UnitAngle */
+
+
 // A unit of measure for planar angle and rotation.
 //
 // You typically use instances of to represent specific quantities of planar angle using the class.
@@ -108,20 +108,20 @@ func UnitAngleFrom(ptr unsafe.Pointer) UnitAngle {
 		Dimension: DimensionFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for UnitAngle *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for UnitAngle */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for UnitAngle */
+
+
+
+
+
 
 // The degrees unit of angle.
 //
@@ -130,17 +130,17 @@ func UnitAngleFrom(ptr unsafe.Pointer) UnitAngle {
 func (uc _UnitAngleClass) Degrees() UnitAngle {
 	rv := objc.Send[UnitAngle](objc.ID(uc.class), objc.Sel("degrees"))
 	return rv
-}/* debug [class_properties_class/property]: degrees */
-/* debug [class_properties_class]: End class properties */
+}
 
 
 
-/* debug [instance_methods]: Instance methods for UnitAngle */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for UnitAngle */
+
+
+
+
 
 // The degrees unit of angle.
 //
@@ -149,12 +149,12 @@ func (uc _UnitAngleClass) Degrees() UnitAngle {
 func (u_ UnitAngle) Degrees() IUnitAngle {
 	rv := objc.Send[UnitAngle](u_.ID, objc.Sel("degrees"))
 	return rv
-}/* debug [instance_properties/getter]: degrees */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSUnitAngle */
+
+
+
 
 
 

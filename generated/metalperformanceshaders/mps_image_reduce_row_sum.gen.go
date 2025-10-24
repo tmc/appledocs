@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSImageReduceRowSum */
 
 
-/* debug [class_header]: Header for MPSImageReduceRowSum */
+
+
 // The class instance for the [ImageReduceRowSum] class.
 var (
 	ImageReduceRowSumClass     _ImageReduceRowSumClass
@@ -30,30 +30,30 @@ func getImageReduceRowSumClass() _ImageReduceRowSumClass {
 type _ImageReduceRowSumClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ImageReduceRowSum */
+
+
 // An interface definition for the [ImageReduceRowSum] class.
 type IImageReduceRowSum interface {
 	IImageReduceUnary
 	
-/* debug [class_interface_properties]: Properties for ImageReduceRowSum */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ImageReduceRowSum */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ImageReduceRowSum */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageReduceRowSumClass) Alloc() ImageReduceRowSum {
 	rv := objc.Send[ImageReduceRowSum](objc.ID(ic.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (i_ ImageReduceRowSum) Autorelease() ImageReduceRowSum {
 func NewImageReduceRowSum() ImageReduceRowSum {
 	return getImageReduceRowSumClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ImageReduceRowSum */
+
+
 // A filter that returns the sum of all values for a row in an image.
 
 
@@ -107,11 +107,11 @@ func ImageReduceRowSumFrom(ptr unsafe.Pointer) ImageReduceRowSum {
 		ImageReduceUnary: ImageReduceUnaryFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ImageReduceRowSum */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagereducerowsum/2942334-initwithdevice
@@ -120,31 +120,31 @@ func NewImageReduceRowSumWithDevice(device unsafe.Pointer) ImageReduceRowSum {
 	rv := objc.Send[ImageReduceRowSum](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageReduceRowSumWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ImageReduceRowSum */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ImageReduceRowSum */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ImageReduceRowSum */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ImageReduceRowSum */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSImageReduceRowSum */
+
+
+
+
+
+
+
+
+
+
+
 
 

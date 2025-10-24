@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class WKFindResult */
 
+
 /* debug [class_header]: Header for WKFindResult */
 // The class instance for the [FindResult] class.
 var (
@@ -29,26 +30,29 @@ func getFindResultClass() _FindResultClass {
 type _FindResultClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for FindResult */
 // An interface definition for the [FindResult] class.
 type IFindResult interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for FindResult */
+	
+/* debug [class_interface_properties]: Properties for FindResult */
 	// properties:
 	MatchFound() bool
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for FindResult */
+	
+/* debug [class_interface_methods]: Methods for FindResult */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for FindResult */
 // Alloc allocates a new instance without initialization.
@@ -80,13 +84,15 @@ func (f_ FindResult) Autorelease() FindResult {
 func NewFindResult() FindResult {
 	return getFindResultClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for FindResult */
 // An object that contains the results of searching the web view’s contents.
 //
 // When you perform a search using the methods of , the web view creates a object and delivers it to your completion handler. You don’t create instances of this class directly. Use the objects that the web view provides to determine whether it found a match for the content.
+
 
 // An object that contains the results of searching the web view’s contents.
 //
@@ -102,19 +108,28 @@ type FindResult struct {
 func FindResultFrom(ptr unsafe.Pointer) FindResult {
 	return FindResult{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for FindResult */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for FindResult *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for FindResult */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for FindResult */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for FindResult */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for FindResult */
 
@@ -125,8 +140,12 @@ func FindResultFrom(ptr unsafe.Pointer) FindResult {
 func (f_ FindResult) MatchFound() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("matchFound"))
 	return rv
-} /* debug [instance_properties/getter]: matchFound */
+}/* debug [instance_properties/getter]: matchFound */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class WKFindResult */
+
+
+

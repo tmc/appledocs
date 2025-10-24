@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class rightEyePosition */
 
 
-/* debug [class_header]: Header for rightEyePosition */
+
+
 // The class instance for the [rightEyePosition] class.
 var (
 	RightEyePositionClass     _rightEyePositionClass
@@ -30,30 +30,30 @@ func getrightEyePositionClass() _rightEyePositionClass {
 type _rightEyePositionClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for rightEyePosition */
+
+
 // An interface definition for the [rightEyePosition] class.
 type IrightEyePosition interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for rightEyePosition */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for rightEyePosition */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for rightEyePosition */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _rightEyePositionClass) Alloc() rightEyePosition {
 	rv := objc.Send[rightEyePosition](objc.ID(rc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (r_ rightEyePosition) Autorelease() rightEyePosition {
 func NewrightEyePosition() rightEyePosition {
 	return getrightEyePositionClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for rightEyePosition */
+
+
 
 
 // [Full Topic]
@@ -100,34 +100,34 @@ type rightEyePosition struct {
 func rightEyePositionFrom(ptr unsafe.Pointer) rightEyePosition {
 	return rightEyePosition{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for rightEyePosition *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for rightEyePosition */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for rightEyePosition */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for rightEyePosition */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for rightEyePosition */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class rightEyePosition */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

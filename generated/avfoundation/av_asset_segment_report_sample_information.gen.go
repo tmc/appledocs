@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAssetSegmentReportSampleInformation */
 
 
-/* debug [class_header]: Header for AVAssetSegmentReportSampleInformation */
+
+
 // The class instance for the [AssetSegmentReportSampleInformation] class.
 var (
 	AssetSegmentReportSampleInformationClass     _AssetSegmentReportSampleInformationClass
@@ -30,16 +30,16 @@ func getAssetSegmentReportSampleInformationClass() _AssetSegmentReportSampleInfo
 type _AssetSegmentReportSampleInformationClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AssetSegmentReportSampleInformation */
+
+
 // An interface definition for the [AssetSegmentReportSampleInformation] class.
 type IAssetSegmentReportSampleInformation interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for AssetSegmentReportSampleInformation */
+
 	// properties:
 	IsSyncSample() bool
 	Length() int
@@ -55,19 +55,19 @@ type IAssetSegmentReportSampleInformation interface {
 	SetMediaType(value MediaType /* typedef */)
 	TrackID() PersistentTrackID /* not a class type */
 	SetTrackID(value PersistentTrackID /* not a class type */)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AssetSegmentReportSampleInformation */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AssetSegmentReportSampleInformation */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AssetSegmentReportSampleInformationClass) Alloc() AssetSegmentReportSampleInformation {
 	rv := objc.Send[AssetSegmentReportSampleInformation](objc.ID(ac.class), objc.Sel("alloc"))
@@ -97,11 +97,11 @@ func (a_ AssetSegmentReportSampleInformation) Autorelease() AssetSegmentReportSa
 func NewAssetSegmentReportSampleInformation() AssetSegmentReportSampleInformation {
 	return getAssetSegmentReportSampleInformationClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AssetSegmentReportSampleInformation */
+
+
 // An object that provides information about sample data in a track.
 
 
@@ -119,30 +119,30 @@ type AssetSegmentReportSampleInformation struct {
 func AssetSegmentReportSampleInformationFrom(ptr unsafe.Pointer) AssetSegmentReportSampleInformation {
 	return AssetSegmentReportSampleInformation{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AssetSegmentReportSampleInformation *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for AssetSegmentReportSampleInformation */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AssetSegmentReportSampleInformation */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AssetSegmentReportSampleInformation */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AssetSegmentReportSampleInformation */
+
+
+
+
+
+
+
+
+
 
 // A Boolean value that indicates whether the sample is a key frame.
 //
@@ -151,7 +151,7 @@ func AssetSegmentReportSampleInformationFrom(ptr unsafe.Pointer) AssetSegmentRep
 func (a_ AssetSegmentReportSampleInformation) IsSyncSample() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSyncSample"))
 	return rv
-}/* debug [instance_properties/getter]: isSyncSample */
+}
 
 
 // The length of the sample data.
@@ -161,7 +161,7 @@ func (a_ AssetSegmentReportSampleInformation) IsSyncSample() bool {
 func (a_ AssetSegmentReportSampleInformation) Length() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("length"))
 	return rv
-}/* debug [instance_properties/getter]: length */
+}
 
 
 // The offset of a sample in the segment.
@@ -171,7 +171,7 @@ func (a_ AssetSegmentReportSampleInformation) Length() int {
 func (a_ AssetSegmentReportSampleInformation) Offset() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("offset"))
 	return rv
-}/* debug [instance_properties/getter]: offset */
+}
 
 
 // The presentation timestamp (PTS) of a sample.
@@ -181,7 +181,7 @@ func (a_ AssetSegmentReportSampleInformation) Offset() int {
 func (a_ AssetSegmentReportSampleInformation) PresentationTimeStamp() objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](a_.ID, objc.Sel("presentationTimeStamp"))
 	return rv
-}/* debug [instance_properties/getter]: presentationTimeStamp */
+}
 
 
 // The duration of a track.
@@ -191,7 +191,7 @@ func (a_ AssetSegmentReportSampleInformation) PresentationTimeStamp() objc.IObje
 func (a_ AssetSegmentReportSampleInformation) Duration() objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](a_.ID, objc.Sel("duration"))
 	return rv
-}/* debug [instance_properties/getter]: duration */
+}
 
 
 // The duration of a track.
@@ -200,7 +200,7 @@ func (a_ AssetSegmentReportSampleInformation) Duration() objc.IObject /* cross-f
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetsegmenttrackreport/duration
 func (a_ AssetSegmentReportSampleInformation) SetDuration(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDuration:"), value)
-}/* debug [instance_properties/setter]: duration */
+}
 
 
 // The earliest presentation timestamp (PTS) for this track.
@@ -210,7 +210,7 @@ func (a_ AssetSegmentReportSampleInformation) SetDuration(value objc.IObject /* 
 func (a_ AssetSegmentReportSampleInformation) EarliestPresentationTimeStamp() objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](a_.ID, objc.Sel("earliestPresentationTimeStamp"))
 	return rv
-}/* debug [instance_properties/getter]: earliestPresentationTimeStamp */
+}
 
 
 // The earliest presentation timestamp (PTS) for this track.
@@ -219,7 +219,7 @@ func (a_ AssetSegmentReportSampleInformation) EarliestPresentationTimeStamp() ob
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetsegmenttrackreport/earliestpresentationtimestamp
 func (a_ AssetSegmentReportSampleInformation) SetEarliestPresentationTimeStamp(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEarliestPresentationTimeStamp:"), value)
-}/* debug [instance_properties/setter]: earliestPresentationTimeStamp */
+}
 
 
 // Information about the first video sample in a track.
@@ -229,7 +229,7 @@ func (a_ AssetSegmentReportSampleInformation) SetEarliestPresentationTimeStamp(v
 func (a_ AssetSegmentReportSampleInformation) FirstVideoSampleInformation() IAVAssetSegmentReportSampleInformation {
 	rv := objc.Send[AssetSegmentReportSampleInformation](a_.ID, objc.Sel("firstVideoSampleInformation"))
 	return rv
-}/* debug [instance_properties/getter]: firstVideoSampleInformation */
+}
 
 
 // Information about the first video sample in a track.
@@ -238,7 +238,7 @@ func (a_ AssetSegmentReportSampleInformation) FirstVideoSampleInformation() IAVA
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetsegmenttrackreport/firstvideosampleinformation
 func (a_ AssetSegmentReportSampleInformation) SetFirstVideoSampleInformation(value IAVAssetSegmentReportSampleInformation) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFirstVideoSampleInformation:"), value)
-}/* debug [instance_properties/setter]: firstVideoSampleInformation */
+}
 
 
 // The type of media a track contains.
@@ -248,7 +248,7 @@ func (a_ AssetSegmentReportSampleInformation) SetFirstVideoSampleInformation(val
 func (a_ AssetSegmentReportSampleInformation) MediaType() MediaType /* typedef */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("mediaType"))
 	return rv
-}/* debug [instance_properties/getter]: mediaType */
+}
 
 
 // The type of media a track contains.
@@ -257,7 +257,7 @@ func (a_ AssetSegmentReportSampleInformation) MediaType() MediaType /* typedef *
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetsegmenttrackreport/mediatype
 func (a_ AssetSegmentReportSampleInformation) SetMediaType(value MediaType /* typedef */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMediaType:"), value)
-}/* debug [instance_properties/setter]: mediaType */
+}
 
 
 // A persistent unique identifier for a track.
@@ -267,7 +267,7 @@ func (a_ AssetSegmentReportSampleInformation) SetMediaType(value MediaType /* ty
 func (a_ AssetSegmentReportSampleInformation) TrackID() PersistentTrackID /* not a class type */ {
 	rv := objc.Send[PersistentTrackID](a_.ID, objc.Sel("trackID"))
 	return rv
-}/* debug [instance_properties/getter]: trackID */
+}
 
 
 // A persistent unique identifier for a track.
@@ -276,12 +276,12 @@ func (a_ AssetSegmentReportSampleInformation) TrackID() PersistentTrackID /* not
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetsegmenttrackreport/trackid
 func (a_ AssetSegmentReportSampleInformation) SetTrackID(value PersistentTrackID /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTrackID:"), value)
-}/* debug [instance_properties/setter]: trackID */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVAssetSegmentReportSampleInformation */
+
+
+
 
 
 

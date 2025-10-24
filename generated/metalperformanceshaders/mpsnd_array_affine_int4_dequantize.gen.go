@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNDArrayAffineInt4Dequantize */
 
 
-/* debug [class_header]: Header for MPSNDArrayAffineInt4Dequantize */
+
+
 // The class instance for the [NDArrayAffineInt4Dequantize] class.
 var (
 	NDArrayAffineInt4DequantizeClass     _NDArrayAffineInt4DequantizeClass
@@ -30,30 +30,30 @@ func getNDArrayAffineInt4DequantizeClass() _NDArrayAffineInt4DequantizeClass {
 type _NDArrayAffineInt4DequantizeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NDArrayAffineInt4Dequantize */
+
+
 // An interface definition for the [NDArrayAffineInt4Dequantize] class.
 type INDArrayAffineInt4Dequantize interface {
 	INDArrayMultiaryKernel
 	
-/* debug [class_interface_properties]: Properties for NDArrayAffineInt4Dequantize */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NDArrayAffineInt4Dequantize */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NDArrayAffineInt4Dequantize */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NDArrayAffineInt4DequantizeClass) Alloc() NDArrayAffineInt4Dequantize {
 	rv := objc.Send[NDArrayAffineInt4Dequantize](objc.ID(nc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (n_ NDArrayAffineInt4Dequantize) Autorelease() NDArrayAffineInt4Dequantize 
 func NewNDArrayAffineInt4Dequantize() NDArrayAffineInt4Dequantize {
 	return getNDArrayAffineInt4DequantizeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NDArrayAffineInt4Dequantize */
+
+
 
 
 // [Full Topic]
@@ -102,11 +102,11 @@ func NDArrayAffineInt4DequantizeFrom(ptr unsafe.Pointer) NDArrayAffineInt4Dequan
 		NDArrayMultiaryKernel: NDArrayMultiaryKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NDArrayAffineInt4Dequantize */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayaffineint4dequantize/4446149-initwithdevice
@@ -115,31 +115,31 @@ func NewNDArrayAffineInt4DequantizeWithDeviceQuantizationDescriptor(device unsaf
 	rv := objc.Send[NDArrayAffineInt4Dequantize](instance.ID, objc.Sel("initWithDevice:quantizationDescriptor:"), device, quantizationDescriptor)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNDArrayAffineInt4DequantizeWithDeviceQuantizationDescriptor */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for NDArrayAffineInt4Dequantize */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NDArrayAffineInt4Dequantize */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NDArrayAffineInt4Dequantize */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for NDArrayAffineInt4Dequantize */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNDArrayAffineInt4Dequantize */
+
+
+
+
+
+
+
+
+
+
+
 
 

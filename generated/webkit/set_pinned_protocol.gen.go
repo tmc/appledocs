@@ -19,3 +19,4 @@ var setPinnedProtocol *objc.Protocol
 func init() {
 	setPinnedProtocol = objc.GetProtocol("setPinned:")
 }
+

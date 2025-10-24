@@ -19,3 +19,4 @@ var UNNotificationContentExtensionProtocol *objc.Protocol
 func init() {
 	UNNotificationContentExtensionProtocol = objc.GetProtocol("UNNotificationContentExtension")
 }
+

@@ -18,3 +18,4 @@ var paymentQueueShouldShowPriceConsentProtocol *objc.Protocol
 func init() {
 	paymentQueueShouldShowPriceConsentProtocol = objc.GetProtocol("paymentQueueShouldShowPriceConsent:")
 }
+

@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZUSBKeyboardConfiguration */
+
 
 /* debug [class_header]: Header for VZUSBKeyboardConfiguration */
 // The class instance for the [VZUSBKeyboardConfiguration] class.
@@ -28,25 +30,28 @@ func getVZUSBKeyboardConfigurationClass() _VZUSBKeyboardConfigurationClass {
 type _VZUSBKeyboardConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZUSBKeyboardConfiguration */
 // An interface definition for the [VZUSBKeyboardConfiguration] class.
 type IVZUSBKeyboardConfiguration interface {
 	IVZKeyboardConfiguration
-
-	/* debug [class_interface_properties]: Properties for VZUSBKeyboardConfiguration */
+	
+/* debug [class_interface_properties]: Properties for VZUSBKeyboardConfiguration */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZUSBKeyboardConfiguration */
+	
+/* debug [class_interface_methods]: Methods for VZUSBKeyboardConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZUSBKeyboardConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -78,13 +83,15 @@ func (v_ VZUSBKeyboardConfiguration) Autorelease() VZUSBKeyboardConfiguration {
 func NewVZUSBKeyboardConfiguration() VZUSBKeyboardConfiguration {
 	return getVZUSBKeyboardConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZUSBKeyboardConfiguration */
 // A device that defines the configuration for a USB keyboard.
 //
 // A can use this device to send key events to the VM.
+
 
 // A device that defines the configuration for a USB keyboard.
 //
@@ -102,22 +109,34 @@ func VZUSBKeyboardConfigurationFrom(ptr unsafe.Pointer) VZUSBKeyboardConfigurati
 		VZKeyboardConfiguration: VZKeyboardConfigurationFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZUSBKeyboardConfiguration */
 /* debug [class_init_methods]: End init methods */
 
+
+
 /* debug [class_methods]: Class methods for VZUSBKeyboardConfiguration */
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZUSBKeyboardConfiguration */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZUSBKeyboardConfiguration */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZUSBKeyboardConfiguration */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZUSBKeyboardConfiguration */
+
+

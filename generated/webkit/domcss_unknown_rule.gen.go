@@ -11,6 +11,7 @@ import (
 
 /* debug [class.gen.go]: Generating class DOMCSSUnknownRule */
 
+
 /* debug [class_header]: Header for DOMCSSUnknownRule */
 // The class instance for the [DOMCSSUnknownRule] class.
 var (
@@ -28,25 +29,28 @@ func getDOMCSSUnknownRuleClass() _DOMCSSUnknownRuleClass {
 type _DOMCSSUnknownRuleClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMCSSUnknownRule */
 // An interface definition for the [DOMCSSUnknownRule] class.
 type IDOMCSSUnknownRule interface {
 	IDOMCSSRule
-
-	/* debug [class_interface_properties]: Properties for DOMCSSUnknownRule */
+	
+/* debug [class_interface_properties]: Properties for DOMCSSUnknownRule */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMCSSUnknownRule */
+	
+/* debug [class_interface_methods]: Methods for DOMCSSUnknownRule */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMCSSUnknownRule */
 // Alloc allocates a new instance without initialization.
@@ -78,10 +82,12 @@ func (d_ DOMCSSUnknownRule) Autorelease() DOMCSSUnknownRule {
 func NewDOMCSSUnknownRule() DOMCSSUnknownRule {
 	return getDOMCSSUnknownRuleClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMCSSUnknownRule */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMCSSUnknownRule
@@ -95,21 +101,34 @@ func DOMCSSUnknownRuleFrom(ptr unsafe.Pointer) DOMCSSUnknownRule {
 		DOMCSSRule: DOMCSSRuleFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMCSSUnknownRule */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMCSSUnknownRule *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMCSSUnknownRule */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMCSSUnknownRule */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for DOMCSSUnknownRule */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for DOMCSSUnknownRule */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMCSSUnknownRule */
+
+
+

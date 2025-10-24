@@ -19,3 +19,4 @@ var setMutedProtocol *objc.Protocol
 func init() {
 	setMutedProtocol = objc.GetProtocol("setMuted:")
 }
+

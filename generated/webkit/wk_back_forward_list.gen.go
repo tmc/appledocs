@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class WKBackForwardList */
 
+
 /* debug [class_header]: Header for WKBackForwardList */
 // The class instance for the [BackForwardList] class.
 var (
@@ -29,15 +30,16 @@ func getBackForwardListClass() _BackForwardListClass {
 type _BackForwardListClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for BackForwardList */
 // An interface definition for the [BackForwardList] class.
 type IBackForwardList interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for BackForwardList */
+	
+/* debug [class_interface_properties]: Properties for BackForwardList */
 	// properties:
 	BackItem() IWKBackForwardListItem
 	BackList() []BackForwardListItem
@@ -46,16 +48,18 @@ type IBackForwardList interface {
 	ForwardList() []BackForwardListItem
 	BackForwardList() IWKBackForwardList
 	SetBackForwardList(value IWKBackForwardList)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for BackForwardList */
+	
+/* debug [class_interface_methods]: Methods for BackForwardList */
 	// methods:
 	ItemAtIndex(index int) IBackForwardListItem
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for BackForwardList */
 // Alloc allocates a new instance without initialization.
@@ -87,13 +91,15 @@ func (b_ BackForwardList) Autorelease() BackForwardList {
 func NewBackForwardList() BackForwardList {
 	return getBackForwardListClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for BackForwardList */
 // An object that manages the list of previously loaded webpages, which the web view uses for forward and backward navigation.
 //
 // Use a object to retrieve a web view’s previously loaded pages. Typically, you don’t create objects directly. Each web view creates one automatically and uses it to store the history of all loaded pages. Fetch this object from your web view’s property and use its contents to facilitate programmatic navigation.
+
 
 // An object that manages the list of previously loaded webpages, which the web view uses for forward and backward navigation.
 //
@@ -109,16 +115,23 @@ type BackForwardList struct {
 func BackForwardListFrom(ptr unsafe.Pointer) BackForwardList {
 	return BackForwardList{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for BackForwardList */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for BackForwardList *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for BackForwardList */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for BackForwardList */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for BackForwardList */
 
@@ -129,9 +142,11 @@ func BackForwardListFrom(ptr unsafe.Pointer) BackForwardList {
 func (b_ BackForwardList) ItemAtIndex(index int) IBackForwardListItem {
 	rv := objc.Send[BackForwardListItem](b_.ID, objc.Sel("itemAtIndex:"), index)
 	return rv
-} /* debug [instance_methods/method]: ItemAtIndex */
+}/* debug [instance_methods/method]: ItemAtIndex */
 
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for BackForwardList */
 
@@ -142,7 +157,8 @@ func (b_ BackForwardList) ItemAtIndex(index int) IBackForwardListItem {
 func (b_ BackForwardList) BackItem() IWKBackForwardListItem {
 	rv := objc.Send[BackForwardListItem](b_.ID, objc.Sel("backItem"))
 	return rv
-} /* debug [instance_properties/getter]: backItem */
+}/* debug [instance_properties/getter]: backItem */
+
 
 // The array of items that precede the current item.
 //
@@ -151,7 +167,8 @@ func (b_ BackForwardList) BackItem() IWKBackForwardListItem {
 func (b_ BackForwardList) BackList() []BackForwardListItem {
 	rv := objc.Send[[]BackForwardListItem](b_.ID, objc.Sel("backList"))
 	return rv
-} /* debug [instance_properties/getter]: backList */
+}/* debug [instance_properties/getter]: backList */
+
 
 // The current item.
 //
@@ -160,7 +177,8 @@ func (b_ BackForwardList) BackList() []BackForwardListItem {
 func (b_ BackForwardList) CurrentItem() IWKBackForwardListItem {
 	rv := objc.Send[BackForwardListItem](b_.ID, objc.Sel("currentItem"))
 	return rv
-} /* debug [instance_properties/getter]: currentItem */
+}/* debug [instance_properties/getter]: currentItem */
+
 
 // The item immediately following the current item, if any.
 //
@@ -169,7 +187,8 @@ func (b_ BackForwardList) CurrentItem() IWKBackForwardListItem {
 func (b_ BackForwardList) ForwardItem() IWKBackForwardListItem {
 	rv := objc.Send[BackForwardListItem](b_.ID, objc.Sel("forwardItem"))
 	return rv
-} /* debug [instance_properties/getter]: forwardItem */
+}/* debug [instance_properties/getter]: forwardItem */
+
 
 // The array of items that follow the current item.
 //
@@ -178,7 +197,8 @@ func (b_ BackForwardList) ForwardItem() IWKBackForwardListItem {
 func (b_ BackForwardList) ForwardList() []BackForwardListItem {
 	rv := objc.Send[[]BackForwardListItem](b_.ID, objc.Sel("forwardList"))
 	return rv
-} /* debug [instance_properties/getter]: forwardList */
+}/* debug [instance_properties/getter]: forwardList */
+
 
 // The web view’s back-forward list.
 //
@@ -187,7 +207,8 @@ func (b_ BackForwardList) ForwardList() []BackForwardListItem {
 func (b_ BackForwardList) BackForwardList() IWKBackForwardList {
 	rv := objc.Send[BackForwardList](b_.ID, objc.Sel("backForwardList"))
 	return rv
-} /* debug [instance_properties/getter]: backForwardList */
+}/* debug [instance_properties/getter]: backForwardList */
+
 
 // The web view’s back-forward list.
 //
@@ -195,8 +216,12 @@ func (b_ BackForwardList) BackForwardList() IWKBackForwardList {
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/backforwardlist
 func (b_ BackForwardList) SetBackForwardList(value IWKBackForwardList) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBackForwardList:"), value)
-} /* debug [instance_properties/setter]: backForwardList */
+}/* debug [instance_properties/setter]: backForwardList */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class WKBackForwardList */
+
+
+

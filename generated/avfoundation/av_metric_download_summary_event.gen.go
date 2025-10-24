@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class AVMetricDownloadSummaryEvent */
 
 
-/* debug [class_header]: Header for AVMetricDownloadSummaryEvent */
+
+
 // The class instance for the [MetricDownloadSummaryEvent] class.
 var (
 	MetricDownloadSummaryEventClass     _MetricDownloadSummaryEventClass
@@ -29,16 +29,16 @@ func getMetricDownloadSummaryEventClass() _MetricDownloadSummaryEventClass {
 type _MetricDownloadSummaryEventClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MetricDownloadSummaryEvent */
+
+
 // An interface definition for the [MetricDownloadSummaryEvent] class.
 type IMetricDownloadSummaryEvent interface {
 	IMetricEvent
 	
-/* debug [class_interface_properties]: Properties for MetricDownloadSummaryEvent */
+
 	// properties:
 	BytesDownloadedCount() int
 	DownloadDuration() float64
@@ -46,19 +46,19 @@ type IMetricDownloadSummaryEvent interface {
 	MediaResourceRequestCount() int
 	RecoverableErrorCount() int
 	Variants() []AssetVariant
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MetricDownloadSummaryEvent */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MetricDownloadSummaryEvent */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MetricDownloadSummaryEventClass) Alloc() MetricDownloadSummaryEvent {
 	rv := objc.Send[MetricDownloadSummaryEvent](objc.ID(mc.class), objc.Sel("alloc"))
@@ -88,11 +88,11 @@ func (m_ MetricDownloadSummaryEvent) Autorelease() MetricDownloadSummaryEvent {
 func NewMetricDownloadSummaryEvent() MetricDownloadSummaryEvent {
 	return getMetricDownloadSummaryEventClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MetricDownloadSummaryEvent */
+
+
 // Represents a summary metric event with aggregated metrics for the entire download task.
 //
 // Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
@@ -114,30 +114,30 @@ func MetricDownloadSummaryEventFrom(ptr unsafe.Pointer) MetricDownloadSummaryEve
 		MetricEvent: MetricEventFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MetricDownloadSummaryEvent *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for MetricDownloadSummaryEvent */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MetricDownloadSummaryEvent */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MetricDownloadSummaryEvent */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MetricDownloadSummaryEvent */
+
+
+
+
+
+
+
+
+
 
 // Returns the total number of bytes downloaded by the download task.
 //
@@ -146,7 +146,7 @@ func MetricDownloadSummaryEventFrom(ptr unsafe.Pointer) MetricDownloadSummaryEve
 func (m_ MetricDownloadSummaryEvent) BytesDownloadedCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("bytesDownloadedCount"))
 	return rv
-}/* debug [instance_properties/getter]: bytesDownloadedCount */
+}
 
 
 // Returns the total duration of the download in seconds.
@@ -156,7 +156,7 @@ func (m_ MetricDownloadSummaryEvent) BytesDownloadedCount() int {
 func (m_ MetricDownloadSummaryEvent) DownloadDuration() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("downloadDuration"))
 	return rv
-}/* debug [instance_properties/getter]: downloadDuration */
+}
 
 
 // Returns the error event if any. If no value is available, returns nil.
@@ -166,7 +166,7 @@ func (m_ MetricDownloadSummaryEvent) DownloadDuration() float64 {
 func (m_ MetricDownloadSummaryEvent) ErrorEvent() IAVMetricErrorEvent {
 	rv := objc.Send[MetricErrorEvent](m_.ID, objc.Sel("errorEvent"))
 	return rv
-}/* debug [instance_properties/getter]: errorEvent */
+}
 
 
 // Returns the total number of media requests performed by the download task. This includes playlist requests, media segment requests, and content key requests.
@@ -176,7 +176,7 @@ func (m_ MetricDownloadSummaryEvent) ErrorEvent() IAVMetricErrorEvent {
 func (m_ MetricDownloadSummaryEvent) MediaResourceRequestCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("mediaResourceRequestCount"))
 	return rv
-}/* debug [instance_properties/getter]: mediaResourceRequestCount */
+}
 
 
 // Returns the total count of recoverable errors encountered during the download. If no errors were encountered, returns 0.
@@ -186,7 +186,7 @@ func (m_ MetricDownloadSummaryEvent) MediaResourceRequestCount() int {
 func (m_ MetricDownloadSummaryEvent) RecoverableErrorCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("recoverableErrorCount"))
 	return rv
-}/* debug [instance_properties/getter]: recoverableErrorCount */
+}
 
 
 // Returns the variants that were downloaded.
@@ -196,12 +196,12 @@ func (m_ MetricDownloadSummaryEvent) RecoverableErrorCount() int {
 func (m_ MetricDownloadSummaryEvent) Variants() []AssetVariant {
 	rv := objc.Send[[]AssetVariant](m_.ID, objc.Sel("variants"))
 	return rv
-}/* debug [instance_properties/getter]: variants */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVMetricDownloadSummaryEvent */
+
+
+
 
 
 

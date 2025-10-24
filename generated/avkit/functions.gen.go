@@ -2,7 +2,7 @@
 
 package avkit
 
-/* debug [functions.gen.go]: Generating 0 functions for AVKit */
+
 import (
 	"github.com/ebitengine/purego"
 )

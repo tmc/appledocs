@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSImageThresholdBinary */
 
 
-/* debug [class_header]: Header for MPSImageThresholdBinary */
+
+
 // The class instance for the [ImageThresholdBinary] class.
 var (
 	ImageThresholdBinaryClass     _ImageThresholdBinaryClass
@@ -31,16 +30,16 @@ func getImageThresholdBinaryClass() _ImageThresholdBinaryClass {
 type _ImageThresholdBinaryClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ImageThresholdBinary */
+
+
 // An interface definition for the [ImageThresholdBinary] class.
 type IImageThresholdBinary interface {
 	IUnaryImageKernel
 	
-/* debug [class_interface_properties]: Properties for ImageThresholdBinary */
+
 	// properties:
 	Transform() objectivec.IObject
 	SetTransform(value objectivec.IObject)
@@ -48,19 +47,19 @@ type IImageThresholdBinary interface {
 	SetThresholdValue(value objectivec.IObject)
 	MaximumValue() objectivec.IObject
 	SetMaximumValue(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ImageThresholdBinary */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ImageThresholdBinary */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageThresholdBinaryClass) Alloc() ImageThresholdBinary {
 	rv := objc.Send[ImageThresholdBinary](objc.ID(ic.class), objc.Sel("alloc"))
@@ -90,11 +89,11 @@ func (i_ ImageThresholdBinary) Autorelease() ImageThresholdBinary {
 func NewImageThresholdBinary() ImageThresholdBinary {
 	return getImageThresholdBinaryClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ImageThresholdBinary */
+
+
 // A filter that returns a specified value for each pixel with a value greater than a specified threshold or 0 otherwise.
 //
 // An filter converts a single channel image to a binary image. If the input image is not a single channel image, the function first converts the input image into a single channel luminance image using the linear gray color transform, and then it applies the threshold. The following listing shows the threshold binary function. Listing 1. Threshold binary function
@@ -116,11 +115,11 @@ func ImageThresholdBinaryFrom(ptr unsafe.Pointer) ImageThresholdBinary {
 		UnaryImageKernel: UnaryImageKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ImageThresholdBinary */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary/2865668-initwithcoder
@@ -129,7 +128,7 @@ func NewImageThresholdBinaryWithCoderDevice(aDecoder foundation.Coder, device un
 	rv := objc.Send[ImageThresholdBinary](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageThresholdBinaryWithCoderDevice */
+}
 
 
 // Initializes the kernel.
@@ -141,28 +140,28 @@ func NewImageThresholdBinaryWithDeviceThresholdValueMaximumValueLinearGrayColorT
 	rv := objc.Send[ImageThresholdBinary](instance.ID, objc.Sel("initWithDevice:thresholdValue:maximumValue:linearGrayColorTransform:"), device, thresholdValue, maximumValue, transform)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageThresholdBinaryWithDeviceThresholdValueMaximumValueLinearGrayColorTransform */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ImageThresholdBinary */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ImageThresholdBinary */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ImageThresholdBinary */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ImageThresholdBinary */
+
+
+
+
+
+
+
+
+
 
 // The color transform used to initialize the threshold filter.
 //
@@ -171,7 +170,7 @@ func NewImageThresholdBinaryWithDeviceThresholdValueMaximumValueLinearGrayColorT
 func (i_ ImageThresholdBinary) Transform() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](i_.ID, objc.Sel("transform"))
 	return rv
-}/* debug [instance_properties/getter]: transform */
+}
 
 
 // The color transform used to initialize the threshold filter.
@@ -180,7 +179,7 @@ func (i_ ImageThresholdBinary) Transform() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary/1618744-transform
 func (i_ ImageThresholdBinary) SetTransform(value objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransform:"), value)
-}/* debug [instance_properties/setter]: transform */
+}
 
 
 // The threshold value used to initialize the threshold filter.
@@ -190,7 +189,7 @@ func (i_ ImageThresholdBinary) SetTransform(value objectivec.IObject) {
 func (i_ ImageThresholdBinary) ThresholdValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](i_.ID, objc.Sel("thresholdValue"))
 	return rv
-}/* debug [instance_properties/getter]: thresholdValue */
+}
 
 
 // The threshold value used to initialize the threshold filter.
@@ -199,7 +198,7 @@ func (i_ ImageThresholdBinary) ThresholdValue() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary/1618851-thresholdvalue
 func (i_ ImageThresholdBinary) SetThresholdValue(value objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setThresholdValue:"), value)
-}/* debug [instance_properties/setter]: thresholdValue */
+}
 
 
 // The maximum value used to initialize the threshold filter.
@@ -209,7 +208,7 @@ func (i_ ImageThresholdBinary) SetThresholdValue(value objectivec.IObject) {
 func (i_ ImageThresholdBinary) MaximumValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](i_.ID, objc.Sel("maximumValue"))
 	return rv
-}/* debug [instance_properties/getter]: maximumValue */
+}
 
 
 // The maximum value used to initialize the threshold filter.
@@ -218,11 +217,11 @@ func (i_ ImageThresholdBinary) MaximumValue() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary/1618852-maximumvalue
 func (i_ ImageThresholdBinary) SetMaximumValue(value objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMaximumValue:"), value)
-}/* debug [instance_properties/setter]: maximumValue */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSImageThresholdBinary */
+
+
+
 
 

@@ -21,3 +21,4 @@ var SNResultProtocol *objc.Protocol
 func init() {
 	SNResultProtocol = objc.GetProtocol("SNResult")
 }
+

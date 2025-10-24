@@ -4,8 +4,11 @@ package storekit
 
 /* debug [functions.gen.go]: Generating 1 functions for StoreKit */
 import (
+	"unsafe"
+
 	"github.com/ebitengine/purego"
 )
+
 
 // StoreKit Functions (1 total)
 //
@@ -36,6 +39,8 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	purego.RegisterLibFunc(fn, lib, name)
 }
 
+
+
 // Terminates an app if the license to use the app has expired.
 //
 // Added in macOS 10.14.
@@ -45,4 +50,8 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKTerminateForInvalidReceipt()
 func SKTerminateForInvalidReceipt() {
 	_SKTerminateForInvalidReceipt()
-} /* debug [functions.gen.go/function]: SKTerminateForInvalidReceipt */
+}/* debug [functions.gen.go/function]: SKTerminateForInvalidReceipt */
+
+
+
+

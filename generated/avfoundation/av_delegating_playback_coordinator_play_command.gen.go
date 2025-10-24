@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class AVDelegatingPlaybackCoordinatorPlayCommand */
 
 
-/* debug [class_header]: Header for AVDelegatingPlaybackCoordinatorPlayCommand */
+
+
 // The class instance for the [DelegatingPlaybackCoordinatorPlayCommand] class.
 var (
 	DelegatingPlaybackCoordinatorPlayCommandClass     _DelegatingPlaybackCoordinatorPlayCommandClass
@@ -29,33 +29,33 @@ func getDelegatingPlaybackCoordinatorPlayCommandClass() _DelegatingPlaybackCoord
 type _DelegatingPlaybackCoordinatorPlayCommandClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for DelegatingPlaybackCoordinatorPlayCommand */
+
+
 // An interface definition for the [DelegatingPlaybackCoordinatorPlayCommand] class.
 type IDelegatingPlaybackCoordinatorPlayCommand interface {
 	IDelegatingPlaybackCoordinatorPlaybackControlCommand
 	
-/* debug [class_interface_properties]: Properties for DelegatingPlaybackCoordinatorPlayCommand */
+
 	// properties:
 	HostClockTime() objc.IObject /* cross-framework: Time */
 	ItemTime() objc.IObject /* cross-framework: Time */
 	Rate() float32
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for DelegatingPlaybackCoordinatorPlayCommand */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for DelegatingPlaybackCoordinatorPlayCommand */
+
+
 // Alloc allocates a new instance without initialization.
 func (dc _DelegatingPlaybackCoordinatorPlayCommandClass) Alloc() DelegatingPlaybackCoordinatorPlayCommand {
 	rv := objc.Send[DelegatingPlaybackCoordinatorPlayCommand](objc.ID(dc.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (d_ DelegatingPlaybackCoordinatorPlayCommand) Autorelease() DelegatingPlayb
 func NewDelegatingPlaybackCoordinatorPlayCommand() DelegatingPlaybackCoordinatorPlayCommand {
 	return getDelegatingPlaybackCoordinatorPlayCommandClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for DelegatingPlaybackCoordinatorPlayCommand */
+
+
 // A command that indicates to play at a specific rate and time.
 
 
@@ -109,30 +109,30 @@ func DelegatingPlaybackCoordinatorPlayCommandFrom(ptr unsafe.Pointer) Delegating
 		DelegatingPlaybackCoordinatorPlaybackControlCommand: DelegatingPlaybackCoordinatorPlaybackControlCommandFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for DelegatingPlaybackCoordinatorPlayCommand *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for DelegatingPlaybackCoordinatorPlayCommand */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for DelegatingPlaybackCoordinatorPlayCommand */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for DelegatingPlaybackCoordinatorPlayCommand */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for DelegatingPlaybackCoordinatorPlayCommand */
+
+
+
+
+
+
+
+
+
 
 // A host clock time to use to begin playback.
 //
@@ -141,7 +141,7 @@ func DelegatingPlaybackCoordinatorPlayCommandFrom(ptr unsafe.Pointer) Delegating
 func (d_ DelegatingPlaybackCoordinatorPlayCommand) HostClockTime() objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](d_.ID, objc.Sel("hostClockTime"))
 	return rv
-}/* debug [instance_properties/getter]: hostClockTime */
+}
 
 
 // A time in the item timeline to use to begin playback.
@@ -151,7 +151,7 @@ func (d_ DelegatingPlaybackCoordinatorPlayCommand) HostClockTime() objc.IObject 
 func (d_ DelegatingPlaybackCoordinatorPlayCommand) ItemTime() objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](d_.ID, objc.Sel("itemTime"))
 	return rv
-}/* debug [instance_properties/getter]: itemTime */
+}
 
 
 // A rate to use when starting playback.
@@ -161,12 +161,12 @@ func (d_ DelegatingPlaybackCoordinatorPlayCommand) ItemTime() objc.IObject /* cr
 func (d_ DelegatingPlaybackCoordinatorPlayCommand) Rate() float32 {
 	rv := objc.Send[float32](d_.ID, objc.Sel("rate"))
 	return rv
-}/* debug [instance_properties/getter]: rate */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVDelegatingPlaybackCoordinatorPlayCommand */
+
+
+
 
 
 

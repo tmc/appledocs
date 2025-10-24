@@ -11,6 +11,7 @@ import (
 
 /* debug [class.gen.go]: Generating class DOMHTMLDListElement */
 
+
 /* debug [class_header]: Header for DOMHTMLDListElement */
 // The class instance for the [DOMHTMLDListElement] class.
 var (
@@ -28,27 +29,30 @@ func getDOMHTMLDListElementClass() _DOMHTMLDListElementClass {
 type _DOMHTMLDListElementClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMHTMLDListElement */
 // An interface definition for the [DOMHTMLDListElement] class.
 type IDOMHTMLDListElement interface {
 	IDOMHTMLElement
-
-	/* debug [class_interface_properties]: Properties for DOMHTMLDListElement */
+	
+/* debug [class_interface_properties]: Properties for DOMHTMLDListElement */
 	// properties:
 	Compact() bool
 	SetCompact(value bool)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMHTMLDListElement */
+	
+/* debug [class_interface_methods]: Methods for DOMHTMLDListElement */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMHTMLDListElement */
 // Alloc allocates a new instance without initialization.
@@ -80,10 +84,12 @@ func (d_ DOMHTMLDListElement) Autorelease() DOMHTMLDListElement {
 func NewDOMHTMLDListElement() DOMHTMLDListElement {
 	return getDOMHTMLDListElementClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMHTMLDListElement */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDListElement
@@ -97,19 +103,28 @@ func DOMHTMLDListElementFrom(ptr unsafe.Pointer) DOMHTMLDListElement {
 		DOMHTMLElement: DOMHTMLElementFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMHTMLDListElement */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMHTMLDListElement *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMHTMLDListElement */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMHTMLDListElement */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMHTMLDListElement */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMHTMLDListElement */
 
@@ -118,14 +133,19 @@ func DOMHTMLDListElementFrom(ptr unsafe.Pointer) DOMHTMLDListElement {
 func (d_ DOMHTMLDListElement) Compact() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("compact"))
 	return rv
-} /* debug [instance_properties/getter]: compact */
+}/* debug [instance_properties/getter]: compact */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLDListElement/compact
 func (d_ DOMHTMLDListElement) SetCompact(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCompact:"), value)
-} /* debug [instance_properties/setter]: compact */
+}/* debug [instance_properties/setter]: compact */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMHTMLDListElement */
+
+
+

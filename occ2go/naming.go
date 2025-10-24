@@ -265,8 +265,9 @@ func CapitalizeFirst(s string) string {
 
 // ToSnakeCase converts CamelCase to snake_case and strips invalid filename characters
 func ToSnakeCase(s string) string {
-	// First strip colons and other invalid filename characters
+	// First strip colons, backticks, and other invalid filename characters
 	s = strings.ReplaceAll(s, ":", "")
+	s = strings.ReplaceAll(s, "`", "")
 
 	var result strings.Builder
 	for i, ch := range s {
@@ -374,7 +375,7 @@ func CleanConstantName(name string) string {
 //	NSView has a "window" property, NSWindow is the parent -> Window() conflicts with embedded Window field
 //	NSButton has a "view" property, NSView is the parent -> View() conflicts with embedded View field
 func PropertyConflictsWithParent(className, superClass, propertyName string) bool {
-	if superClass == "" || propertyName == "" {
+	if className == "" || superClass == "" || propertyName == "" {
 		return false
 	}
 
@@ -394,9 +395,10 @@ func CommentLine(s string) string {
 	if s == "" {
 		return ""
 	}
-	// Replace newlines with spaces
+	// Replace newlines and tabs with spaces
 	s = strings.ReplaceAll(s, "\n", " ")
 	s = strings.ReplaceAll(s, "\r", " ")
+	s = strings.ReplaceAll(s, "\t", " ")
 
 	// Collapse multiple spaces
 	for strings.Contains(s, "  ") {
@@ -424,10 +426,14 @@ func DisambiguateMethodName(method *ParsedMethod) string {
 	// Split selector by colons to get parameter labels
 	parts := strings.Split(selector, ":")
 
-	// If selector doesn't end with colon, the last part is not a parameter label
-	if !strings.HasSuffix(selector, ":") {
-		parts = parts[:len(parts)-1]
+	// Remove empty parts from the split (happens when selector ends with :)
+	var nonEmptyParts []string
+	for _, p := range parts {
+		if p != "" {
+			nonEmptyParts = append(nonEmptyParts, p)
+		}
 	}
+	parts = nonEmptyParts
 
 	// If we have parameter labels, build the disambiguated name
 	// For single-parameter methods, append "With" + capitalized parameter name

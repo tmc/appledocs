@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNReduceColumnMean */
 
 
-/* debug [class_header]: Header for MPSNNReduceColumnMean */
+
+
 // The class instance for the [ReduceColumnMean] class.
 var (
 	ReduceColumnMeanClass     _ReduceColumnMeanClass
@@ -31,30 +30,30 @@ func getReduceColumnMeanClass() _ReduceColumnMeanClass {
 type _ReduceColumnMeanClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ReduceColumnMean */
+
+
 // An interface definition for the [ReduceColumnMean] class.
 type IReduceColumnMean interface {
 	IReduceUnary
 	
-/* debug [class_interface_properties]: Properties for ReduceColumnMean */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ReduceColumnMean */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ReduceColumnMean */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _ReduceColumnMeanClass) Alloc() ReduceColumnMean {
 	rv := objc.Send[ReduceColumnMean](objc.ID(rc.class), objc.Sel("alloc"))
@@ -84,11 +83,11 @@ func (r_ ReduceColumnMean) Autorelease() ReduceColumnMean {
 func NewReduceColumnMean() ReduceColumnMean {
 	return getReduceColumnMeanClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ReduceColumnMean */
+
+
 // A reduction filter that returns the mean value for each column in an image.
 
 
@@ -108,11 +107,11 @@ func ReduceColumnMeanFrom(ptr unsafe.Pointer) ReduceColumnMean {
 		ReduceUnary: ReduceUnaryFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ReduceColumnMean */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducecolumnmean/3197831-initwithcoder
@@ -121,7 +120,7 @@ func NewReduceColumnMeanWithCoderDevice(aDecoder foundation.Coder, device unsafe
 	rv := objc.Send[ReduceColumnMean](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceColumnMeanWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -131,31 +130,31 @@ func NewReduceColumnMeanWithDevice(device unsafe.Pointer) ReduceColumnMean {
 	rv := objc.Send[ReduceColumnMean](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceColumnMeanWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ReduceColumnMean */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ReduceColumnMean */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ReduceColumnMean */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ReduceColumnMean */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNReduceColumnMean */
+
+
+
+
+
+
+
+
+
+
+
 
 

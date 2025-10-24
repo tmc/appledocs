@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 /* debug [class.gen.go]: Generating class MPSGraphStencilOpDescriptor */
@@ -43,20 +42,20 @@ type IGraphStencilOpDescriptor interface {
 	// properties:
 	BoundaryMode() GraphPaddingMode
 	SetBoundaryMode(value GraphPaddingMode)
-	DilationRates() objc.IObject /* cross-framework: NSNumber */
-	SetDilationRates(value objc.IObject /* cross-framework: NSNumber */)
-	ExplicitPadding() objc.IObject /* cross-framework: NSNumber */
-	SetExplicitPadding(value objc.IObject /* cross-framework: NSNumber */)
-	Offsets() objc.IObject /* cross-framework: NSNumber */
-	SetOffsets(value objc.IObject /* cross-framework: NSNumber */)
+	DilationRates() Shape /* not a class type */
+	SetDilationRates(value Shape /* not a class type */)
+	ExplicitPadding() Shape /* not a class type */
+	SetExplicitPadding(value Shape /* not a class type */)
+	Offsets() Shape /* not a class type */
+	SetOffsets(value Shape /* not a class type */)
 	PaddingConstant() float32
 	SetPaddingConstant(value float32)
 	PaddingStyle() GraphPaddingStyle
 	SetPaddingStyle(value GraphPaddingStyle)
 	ReductionMode() GraphReductionMode
 	SetReductionMode(value GraphReductionMode)
-	Strides() objc.IObject /* cross-framework: NSNumber */
-	SetStrides(value objc.IObject /* cross-framework: NSNumber */)
+	Strides() Shape /* not a class type */
+	SetStrides(value Shape /* not a class type */)
 /* debug [class_interface_properties]: End properties */
 
 	
@@ -129,11 +128,92 @@ func GraphStencilOpDescriptorFrom(ptr unsafe.Pointer) GraphStencilOpDescriptor {
 
 
 
-/* debug [class_init_methods]: Init methods for GraphStencilOpDescriptor *//* debug [class_init_methods]: End init methods */
+/* debug [class_init_methods]: Init methods for GraphStencilOpDescriptor */
+
+// Creates a stencil operation descriptor with default values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/init(explicitPadding:)
+func NewGraphStencilOpDescriptorWithExplicitPadding(explicitPadding Shape /* not a class type */) GraphStencilOpDescriptor {
+	rv := objc.Send[GraphStencilOpDescriptor](objc.ID(getGraphStencilOpDescriptorClass().class), objc.Sel("descriptorWithExplicitPadding:"), explicitPadding)
+	return rv
+}/* debug [class_init_methods/constructor]: NewGraphStencilOpDescriptorWithExplicitPadding */
+
+
+// Creates a stencil operation descriptor with default values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/init(offsets:explicitPadding:)
+func NewGraphStencilOpDescriptorWithOffsetsExplicitPadding(offsets Shape /* not a class type */, explicitPadding Shape /* not a class type */) GraphStencilOpDescriptor {
+	rv := objc.Send[GraphStencilOpDescriptor](objc.ID(getGraphStencilOpDescriptorClass().class), objc.Sel("descriptorWithOffsets:explicitPadding:"), offsets, explicitPadding)
+	return rv
+}/* debug [class_init_methods/constructor]: NewGraphStencilOpDescriptorWithOffsetsExplicitPadding */
+
+
+// Creates a stencil operation descriptor with default values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/init(paddingStyle:)
+func NewGraphStencilOpDescriptorWithPaddingStyle(paddingStyle GraphPaddingStyle) GraphStencilOpDescriptor {
+	rv := objc.Send[GraphStencilOpDescriptor](objc.ID(getGraphStencilOpDescriptorClass().class), objc.Sel("descriptorWithPaddingStyle:"), paddingStyle)
+	return rv
+}/* debug [class_init_methods/constructor]: NewGraphStencilOpDescriptorWithPaddingStyle */
+
+
+// Creates a stencil operation descriptor with given values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/init(reductionMode:offsets:strides:dilationRates:explicitPadding:boundaryMode:paddingStyle:paddingConstant:)
+func NewGraphStencilOpDescriptorWithReductionModeOffsetsStridesDilationRatesExplicitPaddingBoundaryModePaddingStylePaddingConstant(reductionMode GraphReductionMode, offsets Shape /* not a class type */, strides Shape /* not a class type */, dilationRates Shape /* not a class type */, explicitPadding Shape /* not a class type */, boundaryMode GraphPaddingMode, paddingStyle GraphPaddingStyle, paddingConstant float32) GraphStencilOpDescriptor {
+	rv := objc.Send[GraphStencilOpDescriptor](objc.ID(getGraphStencilOpDescriptorClass().class), objc.Sel("descriptorWithReductionMode:offsets:strides:dilationRates:explicitPadding:boundaryMode:paddingStyle:paddingConstant:"), reductionMode, offsets, strides, dilationRates, explicitPadding, boundaryMode, paddingStyle, paddingConstant)
+	return rv
+}/* debug [class_init_methods/constructor]: NewGraphStencilOpDescriptorWithReductionModeOffsetsStridesDilationRatesExplicitPaddingBoundaryModePaddingStylePaddingConstant */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
 /* debug [class_methods]: Class methods for GraphStencilOpDescriptor */
+
+// Creates a stencil operation descriptor with default values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/init(explicitPadding:)
+func (gc _GraphStencilOpDescriptorClass) DescriptorWithExplicitPadding(explicitPadding Shape /* not a class type */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("descriptorWithExplicitPadding:"), explicitPadding)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DescriptorWithExplicitPadding) */
+
+
+// Creates a stencil operation descriptor with default values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/init(offsets:explicitPadding:)
+func (gc _GraphStencilOpDescriptorClass) DescriptorWithOffsetsExplicitPadding(offsets Shape /* not a class type */, explicitPadding Shape /* not a class type */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("descriptorWithOffsets:explicitPadding:"), offsets, explicitPadding)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DescriptorWithOffsetsExplicitPadding) */
+
+
+// Creates a stencil operation descriptor with default values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/init(paddingStyle:)
+func (gc _GraphStencilOpDescriptorClass) DescriptorWithPaddingStyle(paddingStyle GraphPaddingStyle) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("descriptorWithPaddingStyle:"), paddingStyle)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DescriptorWithPaddingStyle) */
+
+
+// Creates a stencil operation descriptor with given values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/init(reductionMode:offsets:strides:dilationRates:explicitPadding:boundaryMode:paddingStyle:paddingConstant:)
+func (gc _GraphStencilOpDescriptorClass) DescriptorWithReductionModeOffsetsStridesDilationRatesExplicitPaddingBoundaryModePaddingStylePaddingConstant(reductionMode GraphReductionMode, offsets Shape /* not a class type */, strides Shape /* not a class type */, dilationRates Shape /* not a class type */, explicitPadding Shape /* not a class type */, boundaryMode GraphPaddingMode, paddingStyle GraphPaddingStyle, paddingConstant float32) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("descriptorWithReductionMode:offsets:strides:dilationRates:explicitPadding:boundaryMode:paddingStyle:paddingConstant:"), reductionMode, offsets, strides, dilationRates, explicitPadding, boundaryMode, paddingStyle, paddingConstant)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DescriptorWithReductionModeOffsetsStridesDilationRatesExplicitPaddingBoundaryModePaddingStylePaddingConstant) */
+
 /* debug [class_methods]: End class methods */
 
 
@@ -153,7 +233,7 @@ func GraphStencilOpDescriptorFrom(ptr unsafe.Pointer) GraphStencilOpDescriptor {
 // The property that determines which values to use for padding the input tensor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/boundarymode
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/boundaryMode
 func (g_ GraphStencilOpDescriptor) BoundaryMode() GraphPaddingMode {
 	rv := objc.Send[GraphPaddingMode](g_.ID, objc.Sel("boundaryMode"))
 	return rv
@@ -163,7 +243,7 @@ func (g_ GraphStencilOpDescriptor) BoundaryMode() GraphPaddingMode {
 // The property that determines which values to use for padding the input tensor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/boundarymode
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/boundaryMode
 func (g_ GraphStencilOpDescriptor) SetBoundaryMode(value GraphPaddingMode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setBoundaryMode:"), value)
 }/* debug [instance_properties/setter]: boundaryMode */
@@ -172,9 +252,9 @@ func (g_ GraphStencilOpDescriptor) SetBoundaryMode(value GraphPaddingMode) {
 // The property that defines dilation rates for spatial dimensions.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/dilationrates
-func (g_ GraphStencilOpDescriptor) DilationRates() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](g_.ID, objc.Sel("dilationRates"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/dilationRates
+func (g_ GraphStencilOpDescriptor) DilationRates() Shape /* not a class type */ {
+	rv := objc.Send[Shape](g_.ID, objc.Sel("dilationRates"))
 	return rv
 }/* debug [instance_properties/getter]: dilationRates */
 
@@ -182,8 +262,8 @@ func (g_ GraphStencilOpDescriptor) DilationRates() objc.IObject /* cross-framewo
 // The property that defines dilation rates for spatial dimensions.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/dilationrates
-func (g_ GraphStencilOpDescriptor) SetDilationRates(value objc.IObject /* cross-framework: NSNumber */) {
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/dilationRates
+func (g_ GraphStencilOpDescriptor) SetDilationRates(value Shape /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRates:"), value)
 }/* debug [instance_properties/setter]: dilationRates */
 
@@ -191,9 +271,9 @@ func (g_ GraphStencilOpDescriptor) SetDilationRates(value objc.IObject /* cross-
 // The property that defines padding values for spatial dimensions.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/explicitpadding
-func (g_ GraphStencilOpDescriptor) ExplicitPadding() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](g_.ID, objc.Sel("explicitPadding"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/explicitPadding
+func (g_ GraphStencilOpDescriptor) ExplicitPadding() Shape /* not a class type */ {
+	rv := objc.Send[Shape](g_.ID, objc.Sel("explicitPadding"))
 	return rv
 }/* debug [instance_properties/getter]: explicitPadding */
 
@@ -201,8 +281,8 @@ func (g_ GraphStencilOpDescriptor) ExplicitPadding() objc.IObject /* cross-frame
 // The property that defines padding values for spatial dimensions.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/explicitpadding
-func (g_ GraphStencilOpDescriptor) SetExplicitPadding(value objc.IObject /* cross-framework: NSNumber */) {
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/explicitPadding
+func (g_ GraphStencilOpDescriptor) SetExplicitPadding(value Shape /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setExplicitPadding:"), value)
 }/* debug [instance_properties/setter]: explicitPadding */
 
@@ -210,9 +290,9 @@ func (g_ GraphStencilOpDescriptor) SetExplicitPadding(value objc.IObject /* cros
 // An array of length four that determines from which offset to start reading the input tensor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/offsets
-func (g_ GraphStencilOpDescriptor) Offsets() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](g_.ID, objc.Sel("offsets"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/offsets
+func (g_ GraphStencilOpDescriptor) Offsets() Shape /* not a class type */ {
+	rv := objc.Send[Shape](g_.ID, objc.Sel("offsets"))
 	return rv
 }/* debug [instance_properties/getter]: offsets */
 
@@ -220,26 +300,26 @@ func (g_ GraphStencilOpDescriptor) Offsets() objc.IObject /* cross-framework: NS
 // An array of length four that determines from which offset to start reading the input tensor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/offsets
-func (g_ GraphStencilOpDescriptor) SetOffsets(value objc.IObject /* cross-framework: NSNumber */) {
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/offsets
+func (g_ GraphStencilOpDescriptor) SetOffsets(value Shape /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOffsets:"), value)
 }/* debug [instance_properties/setter]: offsets */
 
 
-// The padding value for
+// The padding value for .
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/paddingconstant
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/paddingConstant
 func (g_ GraphStencilOpDescriptor) PaddingConstant() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("paddingConstant"))
 	return rv
 }/* debug [instance_properties/getter]: paddingConstant */
 
 
-// The padding value for
+// The padding value for .
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/paddingconstant
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/paddingConstant
 func (g_ GraphStencilOpDescriptor) SetPaddingConstant(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingConstant:"), value)
 }/* debug [instance_properties/setter]: paddingConstant */
@@ -248,7 +328,7 @@ func (g_ GraphStencilOpDescriptor) SetPaddingConstant(value float32) {
 // The property that defines what kind of padding to apply to the stencil operation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/paddingstyle
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/paddingStyle
 func (g_ GraphStencilOpDescriptor) PaddingStyle() GraphPaddingStyle {
 	rv := objc.Send[GraphPaddingStyle](g_.ID, objc.Sel("paddingStyle"))
 	return rv
@@ -258,7 +338,7 @@ func (g_ GraphStencilOpDescriptor) PaddingStyle() GraphPaddingStyle {
 // The property that defines what kind of padding to apply to the stencil operation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/paddingstyle
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/paddingStyle
 func (g_ GraphStencilOpDescriptor) SetPaddingStyle(value GraphPaddingStyle) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingStyle:"), value)
 }/* debug [instance_properties/setter]: paddingStyle */
@@ -267,7 +347,7 @@ func (g_ GraphStencilOpDescriptor) SetPaddingStyle(value GraphPaddingStyle) {
 // The reduction mode to use within the stencil window.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/reductionmode
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/reductionMode
 func (g_ GraphStencilOpDescriptor) ReductionMode() GraphReductionMode {
 	rv := objc.Send[GraphReductionMode](g_.ID, objc.Sel("reductionMode"))
 	return rv
@@ -277,7 +357,7 @@ func (g_ GraphStencilOpDescriptor) ReductionMode() GraphReductionMode {
 // The reduction mode to use within the stencil window.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/reductionmode
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/reductionMode
 func (g_ GraphStencilOpDescriptor) SetReductionMode(value GraphReductionMode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReductionMode:"), value)
 }/* debug [instance_properties/setter]: reductionMode */
@@ -286,9 +366,9 @@ func (g_ GraphStencilOpDescriptor) SetReductionMode(value GraphReductionMode) {
 // The property that defines strides for spatial dimensions.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/strides
-func (g_ GraphStencilOpDescriptor) Strides() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](g_.ID, objc.Sel("strides"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/strides
+func (g_ GraphStencilOpDescriptor) Strides() Shape /* not a class type */ {
+	rv := objc.Send[Shape](g_.ID, objc.Sel("strides"))
 	return rv
 }/* debug [instance_properties/getter]: strides */
 
@@ -296,8 +376,8 @@ func (g_ GraphStencilOpDescriptor) Strides() objc.IObject /* cross-framework: NS
 // The property that defines strides for spatial dimensions.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/strides
-func (g_ GraphStencilOpDescriptor) SetStrides(value objc.IObject /* cross-framework: NSNumber */) {
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/strides
+func (g_ GraphStencilOpDescriptor) SetStrides(value Shape /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStrides:"), value)
 }/* debug [instance_properties/setter]: strides */
 
@@ -305,6 +385,5 @@ func (g_ GraphStencilOpDescriptor) SetStrides(value objc.IObject /* cross-framew
 
 
 /* debug [class.gen.go]: End class MPSGraphStencilOpDescriptor */
-
 
 

@@ -3,8 +3,12 @@
 package webkit
 
 import (
-	"github.com/tmc/appledocs/generated/foundation"
+
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/coretelephony"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PWebResourceLoadDelegate is the WebResourceLoadDelegate protocol interface.
@@ -41,15 +45,15 @@ type PWebResourceLoadDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type WebResourceLoadDelegate struct {
-	_WebViewIdentifierForInitialRequestFromDataSource               func(sender IWebView, request foundation.URLRequest, dataSource IWebDataSource) objc.ID
-	_WebViewPlugInFailedWithErrorDataSource                         func(sender IWebView, error_ objc.IObject /* cross-framework: Error */, dataSource IWebDataSource)
-	_WebViewResourceDidCancelAuthenticationChallengeFromDataSource  func(sender IWebView, identifier objc.IObject, challenge foundation.URLAuthenticationChallenge, dataSource IWebDataSource)
-	_WebViewResourceDidFailLoadingWithErrorFromDataSource           func(sender IWebView, identifier objc.IObject, error_ objc.IObject /* cross-framework: Error */, dataSource IWebDataSource)
-	_WebViewResourceDidFinishLoadingFromDataSource                  func(sender IWebView, identifier objc.IObject, dataSource IWebDataSource)
-	_WebViewResourceDidReceiveResponseFromDataSource                func(sender IWebView, identifier objc.IObject, response foundation.URLResponse, dataSource IWebDataSource)
+	_WebViewIdentifierForInitialRequestFromDataSource func(sender IWebView, request foundation.URLRequest, dataSource IWebDataSource) objc.ID
+	_WebViewPlugInFailedWithErrorDataSource func(sender IWebView, error_ objc.IObject /* cross-framework: Error */, dataSource IWebDataSource)
+	_WebViewResourceDidCancelAuthenticationChallengeFromDataSource func(sender IWebView, identifier objc.IObject, challenge foundation.URLAuthenticationChallenge, dataSource IWebDataSource)
+	_WebViewResourceDidFailLoadingWithErrorFromDataSource func(sender IWebView, identifier objc.IObject, error_ objc.IObject /* cross-framework: Error */, dataSource IWebDataSource)
+	_WebViewResourceDidFinishLoadingFromDataSource func(sender IWebView, identifier objc.IObject, dataSource IWebDataSource)
+	_WebViewResourceDidReceiveResponseFromDataSource func(sender IWebView, identifier objc.IObject, response foundation.URLResponse, dataSource IWebDataSource)
 	_WebViewResourceDidReceiveAuthenticationChallengeFromDataSource func(sender IWebView, identifier objc.IObject, challenge foundation.URLAuthenticationChallenge, dataSource IWebDataSource)
-	_WebViewResourceDidReceiveContentLengthFromDataSource           func(sender IWebView, identifier objc.IObject, length int, dataSource IWebDataSource)
-	_WebViewResourceWillSendRequestRedirectResponseFromDataSource   func(sender IWebView, identifier objc.IObject, request foundation.URLRequest, redirectResponse foundation.URLResponse, dataSource IWebDataSource) foundation.URLRequest
+	_WebViewResourceDidReceiveContentLengthFromDataSource func(sender IWebView, identifier objc.IObject, length int, dataSource IWebDataSource)
+	_WebViewResourceWillSendRequestRedirectResponseFromDataSource func(sender IWebView, identifier objc.IObject, request foundation.URLRequest, redirectResponse foundation.URLResponse, dataSource IWebDataSource) foundation.URLRequest
 }
 
 // SetWebViewIdentifierForInitialRequestFromDataSource sets the handler for the WebViewIdentifierForInitialRequestFromDataSource delegate method.

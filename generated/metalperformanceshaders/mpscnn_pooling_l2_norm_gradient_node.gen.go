@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNPoolingL2NormGradientNode */
 
 
-/* debug [class_header]: Header for MPSCNNPoolingL2NormGradientNode */
+
+
 // The class instance for the [CNNPoolingL2NormGradientNode] class.
 var (
 	CNNPoolingL2NormGradientNodeClass     _CNNPoolingL2NormGradientNodeClass
@@ -29,30 +29,30 @@ func getCNNPoolingL2NormGradientNodeClass() _CNNPoolingL2NormGradientNodeClass {
 type _CNNPoolingL2NormGradientNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNPoolingL2NormGradientNode */
+
+
 // An interface definition for the [CNNPoolingL2NormGradientNode] class.
 type ICNNPoolingL2NormGradientNode interface {
 	ICNNPoolingGradientNode
 	
-/* debug [class_interface_properties]: Properties for CNNPoolingL2NormGradientNode */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNPoolingL2NormGradientNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNPoolingL2NormGradientNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNPoolingL2NormGradientNodeClass) Alloc() CNNPoolingL2NormGradientNode {
 	rv := objc.Send[CNNPoolingL2NormGradientNode](objc.ID(cc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (c_ CNNPoolingL2NormGradientNode) Autorelease() CNNPoolingL2NormGradientNod
 func NewCNNPoolingL2NormGradientNode() CNNPoolingL2NormGradientNode {
 	return getCNNPoolingL2NormGradientNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNPoolingL2NormGradientNode */
+
+
 // A representation of a gradient L2-norm pooling filter.
 
 
@@ -106,34 +106,34 @@ func CNNPoolingL2NormGradientNodeFrom(ptr unsafe.Pointer) CNNPoolingL2NormGradie
 		CNNPoolingGradientNode: CNNPoolingGradientNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNPoolingL2NormGradientNode *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for CNNPoolingL2NormGradientNode */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNPoolingL2NormGradientNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNPoolingL2NormGradientNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNPoolingL2NormGradientNode */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNPoolingL2NormGradientNode */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -21,3 +21,4 @@ var RequestDelegateProtocol *objc.Protocol
 func init() {
 	RequestDelegateProtocol = objc.GetProtocol("SKRequestDelegate")
 }
+

@@ -13,7 +13,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/foundation"
 
-	"github.com/tmc/appledocs/generated/intents"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PApplicationDelegate is the NSApplicationDelegate protocol interface.
@@ -42,7 +42,7 @@ type PApplicationDelegate interface {
 	HasApplicationDidRegisterForRemoteNotificationsWithDeviceToken() bool
 	ApplicationDidUpdateUserActivity(application IApplication, userActivity foundation.UserActivity)
 	HasApplicationDidUpdateUserActivity() bool
-	ApplicationHandlerForIntent(application IApplication, intent objc.IObject) objc.ID
+	ApplicationHandlerForIntent(application IApplication, intent objectivec.IObject) objc.ID
 	HasApplicationHandlerForIntent() bool
 	ApplicationOpenURLs(application IApplication, urls []foundation.URL)
 	HasApplicationOpenURLs() bool
@@ -130,7 +130,7 @@ type ApplicationDelegate struct {
 	_ApplicationDidReceiveRemoteNotification func(application IApplication, userInfo foundation.IDictionary)
 	_ApplicationDidRegisterForRemoteNotificationsWithDeviceToken func(application IApplication, deviceToken objc.IObject /* cross-framework: NSData */)
 	_ApplicationDidUpdateUserActivity func(application IApplication, userActivity foundation.UserActivity)
-	_ApplicationHandlerForIntent func(application IApplication, intent objc.IObject) objc.ID
+	_ApplicationHandlerForIntent func(application IApplication, intent objectivec.IObject) objc.ID
 	_ApplicationOpenURLs func(application IApplication, urls []foundation.URL)
 	_ApplicationOpenFile func(sender IApplication, filename objc.IObject /* cross-framework: NSString */) bool
 	_ApplicationOpenFiles func(sender IApplication, filenames []string)
@@ -228,7 +228,7 @@ func (d *ApplicationDelegate) SetApplicationDidUpdateUserActivity(f func(applica
 // SetApplicationHandlerForIntent sets the handler for the ApplicationHandlerForIntent delegate method.
 //
 // Returns an intent handler that’s capable of handling the specified intent.
-func (d *ApplicationDelegate) SetApplicationHandlerForIntent(f func(application IApplication, intent objc.IObject) objc.ID) {
+func (d *ApplicationDelegate) SetApplicationHandlerForIntent(f func(application IApplication, intent objectivec.IObject) objc.ID) {
 	d._ApplicationHandlerForIntent = f
 }
 
@@ -585,7 +585,7 @@ func (d *ApplicationDelegate) HasApplicationDidUpdateUserActivity() bool {
 }
 
 // ApplicationHandlerForIntent implements the PApplicationDelegate interface.
-func (d *ApplicationDelegate) ApplicationHandlerForIntent(application IApplication, intent objc.IObject) objc.ID {
+func (d *ApplicationDelegate) ApplicationHandlerForIntent(application IApplication, intent objectivec.IObject) objc.ID {
 	if d._ApplicationHandlerForIntent != nil {
 		return d._ApplicationHandlerForIntent(application, intent)
 	}

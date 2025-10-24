@@ -15,3 +15,5 @@ func ExampleNewVZXHCIControllerConfiguration() {
 	_ = virtualization.NewVZXHCIControllerConfiguration()
 	// Output:
 }
+
+

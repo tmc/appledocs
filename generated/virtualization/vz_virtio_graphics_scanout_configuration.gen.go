@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZVirtioGraphicsScanoutConfiguration */
+
 
 /* debug [class_header]: Header for VZVirtioGraphicsScanoutConfiguration */
 // The class instance for the [VZVirtioGraphicsScanoutConfiguration] class.
@@ -28,15 +30,16 @@ func getVZVirtioGraphicsScanoutConfigurationClass() _VZVirtioGraphicsScanoutConf
 type _VZVirtioGraphicsScanoutConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZVirtioGraphicsScanoutConfiguration */
 // An interface definition for the [VZVirtioGraphicsScanoutConfiguration] class.
 type IVZVirtioGraphicsScanoutConfiguration interface {
 	IVZGraphicsDisplayConfiguration
-
-	/* debug [class_interface_properties]: Properties for VZVirtioGraphicsScanoutConfiguration */
+	
+/* debug [class_interface_properties]: Properties for VZVirtioGraphicsScanoutConfiguration */
 	// properties:
 	HeightInPixels() int
 	SetHeightInPixels(value int)
@@ -44,15 +47,17 @@ type IVZVirtioGraphicsScanoutConfiguration interface {
 	SetWidthInPixels(value int)
 	Scanouts() IVZVirtioGraphicsScanoutConfiguration
 	SetScanouts(value IVZVirtioGraphicsScanoutConfiguration)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZVirtioGraphicsScanoutConfiguration */
+	
+/* debug [class_interface_methods]: Methods for VZVirtioGraphicsScanoutConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZVirtioGraphicsScanoutConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -84,13 +89,15 @@ func (v_ VZVirtioGraphicsScanoutConfiguration) Autorelease() VZVirtioGraphicsSca
 func NewVZVirtioGraphicsScanoutConfiguration() VZVirtioGraphicsScanoutConfiguration {
 	return getVZVirtioGraphicsScanoutConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZVirtioGraphicsScanoutConfiguration */
 // The configuration for a Virtio graphics device that configures the dimensions of the graphics device for a Linux VM.
 //
 // Use a to configure the width and height of a Virtio graphics device.
+
 
 // The configuration for a Virtio graphics device that configures the dimensions of the graphics device for a Linux VM.
 //
@@ -108,8 +115,9 @@ func VZVirtioGraphicsScanoutConfigurationFrom(ptr unsafe.Pointer) VZVirtioGraphi
 		VZGraphicsDisplayConfiguration: VZGraphicsDisplayConfigurationFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZVirtioGraphicsScanoutConfiguration */
 
@@ -122,18 +130,26 @@ func NewVZVirtioGraphicsScanoutConfigurationWithWidthInPixelsHeightInPixels(widt
 	rv := objc.Send[VZVirtioGraphicsScanoutConfiguration](instance.ID, objc.Sel("initWithWidthInPixels:heightInPixels:"), widthInPixels, heightInPixels)
 	rv.Autorelease()
 	return rv
-} /* debug [class_init_methods/constructor]: NewVZVirtioGraphicsScanoutConfigurationWithWidthInPixelsHeightInPixels */
+}/* debug [class_init_methods/constructor]: NewVZVirtioGraphicsScanoutConfigurationWithWidthInPixelsHeightInPixels */
 
 /* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZVirtioGraphicsScanoutConfiguration */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZVirtioGraphicsScanoutConfiguration */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZVirtioGraphicsScanoutConfiguration */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZVirtioGraphicsScanoutConfiguration */
 
@@ -144,7 +160,8 @@ func NewVZVirtioGraphicsScanoutConfigurationWithWidthInPixelsHeightInPixels(widt
 func (v_ VZVirtioGraphicsScanoutConfiguration) HeightInPixels() int {
 	rv := objc.Send[int](v_.ID, objc.Sel("heightInPixels"))
 	return rv
-} /* debug [instance_properties/getter]: heightInPixels */
+}/* debug [instance_properties/getter]: heightInPixels */
+
 
 // An integer value that describes the height of the graphics device in pixels.
 //
@@ -152,7 +169,8 @@ func (v_ VZVirtioGraphicsScanoutConfiguration) HeightInPixels() int {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsScanoutConfiguration/heightInPixels
 func (v_ VZVirtioGraphicsScanoutConfiguration) SetHeightInPixels(value int) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setHeightInPixels:"), value)
-} /* debug [instance_properties/setter]: heightInPixels */
+}/* debug [instance_properties/setter]: heightInPixels */
+
 
 // An integer value that describes the width of the graphics device in pixels.
 //
@@ -161,7 +179,8 @@ func (v_ VZVirtioGraphicsScanoutConfiguration) SetHeightInPixels(value int) {
 func (v_ VZVirtioGraphicsScanoutConfiguration) WidthInPixels() int {
 	rv := objc.Send[int](v_.ID, objc.Sel("widthInPixels"))
 	return rv
-} /* debug [instance_properties/getter]: widthInPixels */
+}/* debug [instance_properties/getter]: widthInPixels */
+
 
 // An integer value that describes the width of the graphics device in pixels.
 //
@@ -169,7 +188,8 @@ func (v_ VZVirtioGraphicsScanoutConfiguration) WidthInPixels() int {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsScanoutConfiguration/widthInPixels
 func (v_ VZVirtioGraphicsScanoutConfiguration) SetWidthInPixels(value int) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setWidthInPixels:"), value)
-} /* debug [instance_properties/setter]: widthInPixels */
+}/* debug [instance_properties/setter]: widthInPixels */
+
 
 // The array of output devices.
 //
@@ -178,7 +198,8 @@ func (v_ VZVirtioGraphicsScanoutConfiguration) SetWidthInPixels(value int) {
 func (v_ VZVirtioGraphicsScanoutConfiguration) Scanouts() IVZVirtioGraphicsScanoutConfiguration {
 	rv := objc.Send[VZVirtioGraphicsScanoutConfiguration](v_.ID, objc.Sel("scanouts"))
 	return rv
-} /* debug [instance_properties/getter]: scanouts */
+}/* debug [instance_properties/getter]: scanouts */
+
 
 // The array of output devices.
 //
@@ -186,8 +207,11 @@ func (v_ VZVirtioGraphicsScanoutConfiguration) Scanouts() IVZVirtioGraphicsScano
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtiographicsdeviceconfiguration/scanouts
 func (v_ VZVirtioGraphicsScanoutConfiguration) SetScanouts(value IVZVirtioGraphicsScanoutConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setScanouts:"), value)
-} /* debug [instance_properties/setter]: scanouts */
+}/* debug [instance_properties/setter]: scanouts */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZVirtioGraphicsScanoutConfiguration */
+
+

@@ -2,7 +2,7 @@
 
 package metalperformanceshaders
 
-/* debug [functions.gen.go]: Generating 19 functions for MetalPerformanceShaders */
+
 import (
 	"unsafe"
 
@@ -86,7 +86,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/1618849-mpssupportsmtldevice
 func MPSSupportsMTLDevice(device unsafe.Pointer, p1   MTLDevice) unsafe.Pointer {
 	return _MPSSupportsMTLDevice(device, p1)
-}/* debug [functions.gen.go/function]: MPSSupportsMTLDevice */
+}
 
 // Increments or decrements the read count of an image batch by a specified amount.
 //
@@ -97,7 +97,7 @@ func MPSSupportsMTLDevice(device unsafe.Pointer, p1   MTLDevice) unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/2951916-mpsimagebatchincrementreadcount
 func MPSImageBatchIncrementReadCount(batch unsafe.Pointer, amount   [ MPSImage ] _, p2   Int) unsafe.Pointer {
 	return _MPSImageBatchIncrementReadCount(batch, amount, p2)
-}/* debug [functions.gen.go/function]: MPSImageBatchIncrementReadCount */
+}
 
 // Increments or decrements the read count of a state batch by a specified amount.
 //
@@ -108,7 +108,7 @@ func MPSImageBatchIncrementReadCount(batch unsafe.Pointer, amount   [ MPSImage ]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/2951920-mpsstatebatchincrementreadcount
 func MPSStateBatchIncrementReadCount(batch unsafe.Pointer, amount   [ MPSState ]? _, p2   Int) unsafe.Pointer {
 	return _MPSStateBatchIncrementReadCount(batch, amount, p2)
-}/* debug [functions.gen.go/function]: MPSStateBatchIncrementReadCount */
+}
 
 // Removes any copy of the specified state batch from the device's caches, and, if needed, invalidates any CPU caches.
 //
@@ -119,7 +119,7 @@ func MPSStateBatchIncrementReadCount(batch unsafe.Pointer, amount   [ MPSState ]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/2953920-mpsstatebatchsynchronize
 func MPSStateBatchSynchronize(batch unsafe.Pointer, cmdBuf   [ MPSState ] _, p2   any  MTLCommandBuffer) unsafe.Pointer {
 	return _MPSStateBatchSynchronize(batch, cmdBuf, p2)
-}/* debug [functions.gen.go/function]: MPSStateBatchSynchronize */
+}
 
 // Removes any copy of the specified image batch from the device's caches, and, if needed, invalidates any CPU caches.
 //
@@ -130,7 +130,7 @@ func MPSStateBatchSynchronize(batch unsafe.Pointer, cmdBuf   [ MPSState ] _, p2 
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/2953951-mpsimagebatchsynchronize
 func MPSImageBatchSynchronize(batch unsafe.Pointer, cmdBuf   [ MPSImage ] _, p2   any  MTLCommandBuffer) unsafe.Pointer {
 	return _MPSImageBatchSynchronize(batch, cmdBuf, p2)
-}/* debug [functions.gen.go/function]: MPSImageBatchSynchronize */
+}
 
 // Returns the integer division parameters for a specified divisor.
 //
@@ -141,7 +141,7 @@ func MPSImageBatchSynchronize(batch unsafe.Pointer, cmdBuf   [ MPSImage ] _, p2 
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/2954868-mpsfindintegerdivisionparams
 func MPSFindIntegerDivisionParams(divisor unsafe.Pointer, p1   UInt16) unsafe.Pointer {
 	return _MPSFindIntegerDivisionParams(divisor, p1)
-}/* debug [functions.gen.go/function]: MPSFindIntegerDivisionParams */
+}
 
 // Returns the number of bytes used to allocate the specified image batch.
 //
@@ -152,7 +152,7 @@ func MPSFindIntegerDivisionParams(divisor unsafe.Pointer, p1   UInt16) unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/2980727-mpsimagebatchresourcesize
 func MPSImageBatchResourceSize(batch unsafe.Pointer, p1   [ MPSImage ]) unsafe.Pointer {
 	return _MPSImageBatchResourceSize(batch, p1)
-}/* debug [functions.gen.go/function]: MPSImageBatchResourceSize */
+}
 
 // Returns the number of bytes used to allocate the specified state batch.
 //
@@ -163,7 +163,7 @@ func MPSImageBatchResourceSize(batch unsafe.Pointer, p1   [ MPSImage ]) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/2980728-mpsstatebatchresourcesize
 func MPSStateBatchResourceSize(batch unsafe.Pointer, p1   [ MPSState ]?) unsafe.Pointer {
 	return _MPSStateBatchResourceSize(batch, p1)
-}/* debug [functions.gen.go/function]: MPSStateBatchResourceSize */
+}
 
 // Returns the index of the first destination texture argument.
 //
@@ -174,7 +174,7 @@ func MPSStateBatchResourceSize(batch unsafe.Pointer, p1   [ MPSState ]?) unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/2990481-mpsgetcustomkernelbatcheddestina
 func MPSGetCustomKernelBatchedDestinationIndex(c unsafe.Pointer, p1   MPSCustomKernelArgumentCount) unsafe.Pointer {
 	return _MPSGetCustomKernelBatchedDestinationIndex(c, p1)
-}/* debug [functions.gen.go/function]: MPSGetCustomKernelBatchedDestinationIndex */
+}
 
 // Returns the index of the specified batched source texture argument.
 //
@@ -185,7 +185,7 @@ func MPSGetCustomKernelBatchedDestinationIndex(c unsafe.Pointer, p1   MPSCustomK
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/2990482-mpsgetcustomkernelbatchedsourcei
 func MPSGetCustomKernelBatchedSourceIndex(c unsafe.Pointer, sourceIndex   MPSCustomKernelArgumentCount _, MPSMaxTextures   UInt _, p3   UInt) unsafe.Pointer {
 	return _MPSGetCustomKernelBatchedSourceIndex(c, sourceIndex, MPSMaxTextures, p3)
-}/* debug [functions.gen.go/function]: MPSGetCustomKernelBatchedSourceIndex */
+}
 
 // Returns the index of the specified nonbatched source texture argument.
 //
@@ -196,7 +196,7 @@ func MPSGetCustomKernelBatchedSourceIndex(c unsafe.Pointer, sourceIndex   MPSCus
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/2990483-mpsgetcustomkernelbroadcastsourc
 func MPSGetCustomKernelBroadcastSourceIndex(c unsafe.Pointer, sourceIndex   MPSCustomKernelArgumentCount _, MPSMaxTextures   UInt _, p3   UInt) unsafe.Pointer {
 	return _MPSGetCustomKernelBroadcastSourceIndex(c, sourceIndex, MPSMaxTextures, p3)
-}/* debug [functions.gen.go/function]: MPSGetCustomKernelBroadcastSourceIndex */
+}
 
 // Returns the maximum allowed batch size.
 //
@@ -207,7 +207,7 @@ func MPSGetCustomKernelBroadcastSourceIndex(c unsafe.Pointer, sourceIndex   MPSC
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/2990484-mpsgetcustomkernelmaxbatchsize
 func MPSGetCustomKernelMaxBatchSize(c unsafe.Pointer, MPSMaxTextures   MPSCustomKernelArgumentCount _, p2   UInt) unsafe.Pointer {
 	return _MPSGetCustomKernelMaxBatchSize(c, MPSMaxTextures, p2)
-}/* debug [functions.gen.go/function]: MPSGetCustomKernelMaxBatchSize */
+}
 
 // Triggers Metal Performance Shaders to prefetch a Metal heap of the indicated size into its internal cache.
 //
@@ -218,7 +218,7 @@ func MPSGetCustomKernelMaxBatchSize(c unsafe.Pointer, MPSMaxTextures   MPSCustom
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/2990485-mpshinttemporarymemoryhighwaterm
 func MPSHintTemporaryMemoryHighWaterMark(cmdBuf unsafe.Pointer, bytes   any  MTLCommandBuffer _, p2   Int) unsafe.Pointer {
 	return _MPSHintTemporaryMemoryHighWaterMark(cmdBuf, bytes, p2)
-}/* debug [functions.gen.go/function]: MPSHintTemporaryMemoryHighWaterMark */
+}
 
 // Sets the timeout after which unused cached Metal heaps are released.
 //
@@ -229,7 +229,7 @@ func MPSHintTemporaryMemoryHighWaterMark(cmdBuf unsafe.Pointer, bytes   any  MTL
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/2990486-mpssetheapcacheduration
 func MPSSetHeapCacheDuration(cmdBuf unsafe.Pointer, seconds   any  MTLCommandBuffer _, p2   Double) unsafe.Pointer {
 	return _MPSSetHeapCacheDuration(cmdBuf, seconds, p2)
-}/* debug [functions.gen.go/function]: MPSSetHeapCacheDuration */
+}
 
 // Executes a callback block once for each unique image in a batch.
 //
@@ -240,7 +240,7 @@ func MPSSetHeapCacheDuration(cmdBuf unsafe.Pointer, seconds   any  MTLCommandBuf
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/3019319-mpsimagebatchiterate
 func MPSImageBatchIterate(batch unsafe.Pointer, iteratorBlock   [ MPSImage ] _, p2   @escaping MPSImage Int) unsafe.Pointer {
 	return _MPSImageBatchIterate(batch, iteratorBlock, p2)
-}/* debug [functions.gen.go/function]: MPSImageBatchIterate */
+}
 
 // MPSGetPreferredDevice is a MetalPerformanceShaders function.
 //
@@ -249,7 +249,7 @@ func MPSImageBatchIterate(batch unsafe.Pointer, iteratorBlock   [ MPSImage ] _, 
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/3088918-mpsgetpreferreddevice
 func MPSGetPreferredDevice(options unsafe.Pointer, p1   MPSDeviceOptions) unsafe.Pointer {
 	return _MPSGetPreferredDevice(options, p1)
-}/* debug [functions.gen.go/function]: MPSGetPreferredDevice */
+}
 
 // MPSGetImageType is a MetalPerformanceShaders function.
 //
@@ -258,7 +258,7 @@ func MPSGetPreferredDevice(options unsafe.Pointer, p1   MPSDeviceOptions) unsafe
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/3131717-mpsgetimagetype
 func MPSGetImageType(image unsafe.Pointer, p1   MPSImage) unsafe.Pointer {
 	return _MPSGetImageType(image, p1)
-}/* debug [functions.gen.go/function]: MPSGetImageType */
+}
 
 // MPSSizeofMPSDataType is a MetalPerformanceShaders function.
 //
@@ -267,7 +267,7 @@ func MPSGetImageType(image unsafe.Pointer, p1   MPSImage) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/4092019-mpssizeofmpsdatatype
 func MPSSizeofMPSDataType(t unsafe.Pointer, p1   MPSDataType) unsafe.Pointer {
 	return _MPSSizeofMPSDataType(t, p1)
-}/* debug [functions.gen.go/function]: MPSSizeofMPSDataType */
+}
 
 // MPSDataTypeBitsCount is a MetalPerformanceShaders function.
 //
@@ -276,7 +276,7 @@ func MPSSizeofMPSDataType(t unsafe.Pointer, p1   MPSDataType) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/4316495-mpsdatatypebitscount
 func MPSDataTypeBitsCount(t unsafe.Pointer, p1   MPSDataType) unsafe.Pointer {
 	return _MPSDataTypeBitsCount(t, p1)
-}/* debug [functions.gen.go/function]: MPSDataTypeBitsCount */
+}
 
 
 

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNCrossChannelNormalizationNode */
 
 
-/* debug [class_header]: Header for MPSCNNCrossChannelNormalizationNode */
+
+
 // The class instance for the [CNNCrossChannelNormalizationNode] class.
 var (
 	CNNCrossChannelNormalizationNodeClass     _CNNCrossChannelNormalizationNodeClass
@@ -30,32 +30,32 @@ func getCNNCrossChannelNormalizationNodeClass() _CNNCrossChannelNormalizationNod
 type _CNNCrossChannelNormalizationNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNCrossChannelNormalizationNode */
+
+
 // An interface definition for the [CNNCrossChannelNormalizationNode] class.
 type ICNNCrossChannelNormalizationNode interface {
 	ICNNNormalizationNode
 	
-/* debug [class_interface_properties]: Properties for CNNCrossChannelNormalizationNode */
+
 	// properties:
 	KernelSizeInFeatureChannels() objectivec.IObject
 	SetKernelSizeInFeatureChannels(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNCrossChannelNormalizationNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNCrossChannelNormalizationNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNCrossChannelNormalizationNodeClass) Alloc() CNNCrossChannelNormalizationNode {
 	rv := objc.Send[CNNCrossChannelNormalizationNode](objc.ID(cc.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (c_ CNNCrossChannelNormalizationNode) Autorelease() CNNCrossChannelNormaliz
 func NewCNNCrossChannelNormalizationNode() CNNCrossChannelNormalizationNode {
 	return getCNNCrossChannelNormalizationNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNCrossChannelNormalizationNode */
+
+
 // A representation of a normalization kernel across feature channels.
 
 
@@ -109,11 +109,11 @@ func CNNCrossChannelNormalizationNodeFrom(ptr unsafe.Pointer) CNNCrossChannelNor
 		CNNNormalizationNode: CNNNormalizationNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNCrossChannelNormalizationNode */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationnode/2866459-initwithsource
@@ -122,7 +122,7 @@ func NewCNNCrossChannelNormalizationNodeWithSource(sourceNode IImageNode) CNNCro
 	rv := objc.Send[CNNCrossChannelNormalizationNode](instance.ID, objc.Sel("initWithSource:"), sourceNode)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNCrossChannelNormalizationNodeWithSource */
+}
 
 
 // [Full Topic]
@@ -132,54 +132,54 @@ func NewCNNCrossChannelNormalizationNodeWithSourceKernelSize(sourceNode IImageNo
 	rv := objc.Send[CNNCrossChannelNormalizationNode](instance.ID, objc.Sel("initWithSource:kernelSize:"), sourceNode, kernelSize)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNCrossChannelNormalizationNodeWithSourceKernelSize */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNCrossChannelNormalizationNode */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationnode/2866476-nodewithsource
 func (cc _CNNCrossChannelNormalizationNodeClass) NodeWithSourceKernelSize(sourceNode IImageNode, kernelSize uint) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("nodeWithSource:kernelSize:"), sourceNode, kernelSize)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSourceKernelSize) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for CNNCrossChannelNormalizationNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNCrossChannelNormalizationNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNCrossChannelNormalizationNode */
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationnode/2866419-kernelsizeinfeaturechannels
 func (c_ CNNCrossChannelNormalizationNode) KernelSizeInFeatureChannels() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("kernelSizeInFeatureChannels"))
 	return rv
-}/* debug [instance_properties/getter]: kernelSizeInFeatureChannels */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationnode/2866419-kernelsizeinfeaturechannels
 func (c_ CNNCrossChannelNormalizationNode) SetKernelSizeInFeatureChannels(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKernelSizeInFeatureChannels:"), value)
-}/* debug [instance_properties/setter]: kernelSizeInFeatureChannels */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSCNNCrossChannelNormalizationNode */
+
+
+
 
 

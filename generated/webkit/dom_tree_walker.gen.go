@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class DOMTreeWalker */
+
 
 /* debug [class_header]: Header for DOMTreeWalker */
 // The class instance for the [DOMTreeWalker] class.
@@ -28,31 +30,34 @@ func getDOMTreeWalkerClass() _DOMTreeWalkerClass {
 type _DOMTreeWalkerClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMTreeWalker */
 // An interface definition for the [DOMTreeWalker] class.
 type IDOMTreeWalker interface {
 	IDOMObject
-
-	/* debug [class_interface_properties]: Properties for DOMTreeWalker */
+	
+/* debug [class_interface_properties]: Properties for DOMTreeWalker */
 	// properties:
 	CurrentNode() IDOMNode
 	SetCurrentNode(value IDOMNode)
 	ExpandEntityReferences() bool
 	Filter() unsafe.Pointer
 	Root() IDOMNode
-	WhatToShow() unsafe.Pointer
-	/* debug [class_interface_properties]: End properties */
+	WhatToShow() objectivec.IObject
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMTreeWalker */
+	
+/* debug [class_interface_methods]: Methods for DOMTreeWalker */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMTreeWalker */
 // Alloc allocates a new instance without initialization.
@@ -84,10 +89,12 @@ func (d_ DOMTreeWalker) Autorelease() DOMTreeWalker {
 func NewDOMTreeWalker() DOMTreeWalker {
 	return getDOMTreeWalkerClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMTreeWalker */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMTreeWalker
@@ -101,19 +108,28 @@ func DOMTreeWalkerFrom(ptr unsafe.Pointer) DOMTreeWalker {
 		DOMObject: DOMObjectFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMTreeWalker */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMTreeWalker *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMTreeWalker */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMTreeWalker */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMTreeWalker */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMTreeWalker */
 
@@ -122,42 +138,51 @@ func DOMTreeWalkerFrom(ptr unsafe.Pointer) DOMTreeWalker {
 func (d_ DOMTreeWalker) CurrentNode() IDOMNode {
 	rv := objc.Send[DOMNode](d_.ID, objc.Sel("currentNode"))
 	return rv
-} /* debug [instance_properties/getter]: currentNode */
+}/* debug [instance_properties/getter]: currentNode */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMTreeWalker/currentNode
 func (d_ DOMTreeWalker) SetCurrentNode(value IDOMNode) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCurrentNode:"), value)
-} /* debug [instance_properties/setter]: currentNode */
+}/* debug [instance_properties/setter]: currentNode */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMTreeWalker/expandEntityReferences
 func (d_ DOMTreeWalker) ExpandEntityReferences() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("expandEntityReferences"))
 	return rv
-} /* debug [instance_properties/getter]: expandEntityReferences */
+}/* debug [instance_properties/getter]: expandEntityReferences */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMTreeWalker/filter
 func (d_ DOMTreeWalker) Filter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("filter"))
 	return rv
-} /* debug [instance_properties/getter]: filter */
+}/* debug [instance_properties/getter]: filter */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMTreeWalker/root
 func (d_ DOMTreeWalker) Root() IDOMNode {
 	rv := objc.Send[DOMNode](d_.ID, objc.Sel("root"))
 	return rv
-} /* debug [instance_properties/getter]: root */
+}/* debug [instance_properties/getter]: root */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMTreeWalker/whatToShow
-func (d_ DOMTreeWalker) WhatToShow() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("whatToShow"))
+func (d_ DOMTreeWalker) WhatToShow() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](d_.ID, objc.Sel("whatToShow"))
 	return rv
-} /* debug [instance_properties/getter]: whatToShow */
+}/* debug [instance_properties/getter]: whatToShow */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMTreeWalker */
+
+
+

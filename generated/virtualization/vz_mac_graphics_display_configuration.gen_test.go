@@ -15,7 +15,7 @@ func ExampleNewVZMacGraphicsDisplayConfigurationWithWidthInPixelsHeightInPixelsP
 	_ = virtualization.NewVZMacGraphicsDisplayConfigurationWithWidthInPixelsHeightInPixelsPixelsPerInch(
 		100, // widthInPixels int
 		100, // heightInPixels int
-		0,   // pixelsPerInch int
+		0, // pixelsPerInch int
 	)
 	// Output:
 }

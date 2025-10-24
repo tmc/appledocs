@@ -21,3 +21,4 @@ var requestDidFinishProtocol *objc.Protocol
 func init() {
 	requestDidFinishProtocol = objc.GetProtocol("requestDidFinish:")
 }
+

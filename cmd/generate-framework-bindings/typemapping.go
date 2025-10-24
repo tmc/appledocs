@@ -89,6 +89,16 @@ var staticTypeRegistry = []TypeMapping{
 	{ObjCType: "AffineTransformComponents", GoType: "uintptr", Framework: "CoreGraphics"}, // Opaque handle (undocumented struct)
 	{ObjCType: "CGAffineTransformComponents", GoType: "uintptr", Framework: "CoreGraphics"}, // Opaque handle (undocumented struct)
 
+	// Foundation geometry types - NS-prefixed versions that should use CoreFoundation types
+	{ObjCType: "NSPoint", GoType: "corefoundation.CGPoint", Framework: ""},
+	{ObjCType: "NSSize", GoType: "corefoundation.CGSize", Framework: ""},
+	{ObjCType: "NSRect", GoType: "corefoundation.CGRect", Framework: ""},
+	{ObjCType: "CGVector", GoType: "corefoundation.CGVector", Framework: ""},
+	{ObjCType: "NSVector", GoType: "corefoundation.CGVector", Framework: ""},
+
+	// Foundation character types
+	{ObjCType: "unichar", GoType: "uint16", Framework: ""}, // UTF-16 character
+
 	// Foundation time types
 	// NSTimeInterval is a typedef for double (seconds since reference date)
 	{ObjCType: "NSTimeInterval", GoType: "float64", Framework: ""},

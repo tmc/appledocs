@@ -15,3 +15,4 @@ var documentSourceProtocol *objc.Protocol
 func init() {
 	documentSourceProtocol = objc.GetProtocol("documentSource")
 }
+

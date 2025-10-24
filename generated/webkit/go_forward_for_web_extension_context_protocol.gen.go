@@ -19,3 +19,4 @@ var goForwardForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	goForwardForWebExtensionContextProtocol = objc.GetProtocol("goForwardForWebExtensionContext:")
 }
+

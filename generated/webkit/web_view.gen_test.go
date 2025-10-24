@@ -15,4 +15,5 @@ func ExampleWebView_DeleteSelection() {
 	obj := webkit.NewWebView()
 	obj.DeleteSelection()
 	// Output:
-}
+	}
+

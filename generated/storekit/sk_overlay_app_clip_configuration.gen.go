@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class SKOverlayAppClipConfiguration */
+
 
 /* debug [class_header]: Header for SKOverlayAppClipConfiguration */
 // The class instance for the [OverlayAppClipConfiguration] class.
@@ -28,27 +31,30 @@ func getOverlayAppClipConfigurationClass() _OverlayAppClipConfigurationClass {
 type _OverlayAppClipConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for OverlayAppClipConfiguration */
 // An interface definition for the [OverlayAppClipConfiguration] class.
 type IOverlayAppClipConfiguration interface {
 	IOverlayConfiguration
-
-	/* debug [class_interface_properties]: Properties for OverlayAppClipConfiguration */
+	
+/* debug [class_interface_properties]: Properties for OverlayAppClipConfiguration */
 	// properties:
 	Configuration() ISKOverlayConfiguration
 	SetConfiguration(value ISKOverlayConfiguration)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for OverlayAppClipConfiguration */
+	
+/* debug [class_interface_methods]: Methods for OverlayAppClipConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for OverlayAppClipConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -80,11 +86,13 @@ func (o_ OverlayAppClipConfiguration) Autorelease() OverlayAppClipConfiguration 
 func NewOverlayAppClipConfiguration() OverlayAppClipConfiguration {
 	return getOverlayAppClipConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for OverlayAppClipConfiguration */
 // An object that represents the attributes of an overlay you use to recommend an App Clip’s corresponding full app.
+
 
 // An object that represents the attributes of an overlay you use to recommend an App Clip’s corresponding full app.
 //
@@ -102,8 +110,9 @@ func OverlayAppClipConfigurationFrom(ptr unsafe.Pointer) OverlayAppClipConfigura
 		OverlayConfiguration: OverlayConfigurationFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for OverlayAppClipConfiguration */
 
@@ -116,18 +125,26 @@ func NewOverlayAppClipConfigurationWithPosition(position OverlayPosition) Overla
 	rv := objc.Send[OverlayAppClipConfiguration](instance.ID, objc.Sel("initWithPosition:"), position)
 	rv.Autorelease()
 	return rv
-} /* debug [class_init_methods/constructor]: NewOverlayAppClipConfigurationWithPosition */
+}/* debug [class_init_methods/constructor]: NewOverlayAppClipConfigurationWithPosition */
 
 /* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for OverlayAppClipConfiguration */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for OverlayAppClipConfiguration */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for OverlayAppClipConfiguration */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for OverlayAppClipConfiguration */
 
@@ -138,7 +155,8 @@ func NewOverlayAppClipConfigurationWithPosition(position OverlayPosition) Overla
 func (o_ OverlayAppClipConfiguration) Configuration() ISKOverlayConfiguration {
 	rv := objc.Send[OverlayConfiguration](o_.ID, objc.Sel("configuration"))
 	return rv
-} /* debug [instance_properties/getter]: configuration */
+}/* debug [instance_properties/getter]: configuration */
+
 
 // An overlay’s attributes; for example, its position on the screen.
 //
@@ -146,8 +164,11 @@ func (o_ OverlayAppClipConfiguration) Configuration() ISKOverlayConfiguration {
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
 func (o_ OverlayAppClipConfiguration) SetConfiguration(value ISKOverlayConfiguration) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setConfiguration:"), value)
-} /* debug [instance_properties/setter]: configuration */
+}/* debug [instance_properties/setter]: configuration */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class SKOverlayAppClipConfiguration */
+
+

@@ -7,13 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
-/* debug [class.gen.go]: Generating class VNImageTranslationAlignmentObservation */
 
 
-/* debug [class_header]: Header for VNImageTranslationAlignmentObservation */
+
+
 // The class instance for the [ImageTranslationAlignmentObservation] class.
 var (
 	ImageTranslationAlignmentObservationClass     _ImageTranslationAlignmentObservationClass
@@ -30,32 +29,32 @@ func getImageTranslationAlignmentObservationClass() _ImageTranslationAlignmentOb
 type _ImageTranslationAlignmentObservationClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ImageTranslationAlignmentObservation */
+
+
 // An interface definition for the [ImageTranslationAlignmentObservation] class.
 type IImageTranslationAlignmentObservation interface {
 	IImageAlignmentObservation
 	
-/* debug [class_interface_properties]: Properties for ImageTranslationAlignmentObservation */
+
 	// properties:
 	AlignmentTransform() corefoundation.CGAffineTransform
 	VNTranslationalImageRegistrationRequestRevision1() int
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ImageTranslationAlignmentObservation */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ImageTranslationAlignmentObservation */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageTranslationAlignmentObservationClass) Alloc() ImageTranslationAlignmentObservation {
 	rv := objc.Send[ImageTranslationAlignmentObservation](objc.ID(ic.class), objc.Sel("alloc"))
@@ -85,11 +84,11 @@ func (i_ ImageTranslationAlignmentObservation) Autorelease() ImageTranslationAli
 func NewImageTranslationAlignmentObservation() ImageTranslationAlignmentObservation {
 	return getImageTranslationAlignmentObservationClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ImageTranslationAlignmentObservation */
+
+
 // Affine transform information that an image-alignment request produces.
 //
 // This type of observation results from a , informing the performed to align the input images.
@@ -111,30 +110,30 @@ func ImageTranslationAlignmentObservationFrom(ptr unsafe.Pointer) ImageTranslati
 		ImageAlignmentObservation: ImageAlignmentObservationFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ImageTranslationAlignmentObservation *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ImageTranslationAlignmentObservation */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ImageTranslationAlignmentObservation */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ImageTranslationAlignmentObservation */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ImageTranslationAlignmentObservation */
+
+
+
+
+
+
+
+
+
 
 // The alignment transform to align the floating image with the reference image.
 //
@@ -143,7 +142,7 @@ func ImageTranslationAlignmentObservationFrom(ptr unsafe.Pointer) ImageTranslati
 func (i_ ImageTranslationAlignmentObservation) AlignmentTransform() corefoundation.CGAffineTransform {
 	rv := objc.Send[corefoundation.CGAffineTransform](i_.ID, objc.Sel("alignmentTransform"))
 	return rv
-}/* debug [instance_properties/getter]: alignmentTransform */
+}
 
 
 // A constant for specifying revision 1 of the translational image registration request.
@@ -153,12 +152,12 @@ func (i_ ImageTranslationAlignmentObservation) AlignmentTransform() corefoundati
 func (i_ ImageTranslationAlignmentObservation) VNTranslationalImageRegistrationRequestRevision1() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("VNTranslationalImageRegistrationRequestRevision1"))
 	return rv
-}/* debug [instance_properties/getter]: VNTranslationalImageRegistrationRequestRevision1 */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class VNImageTranslationAlignmentObservation */
+
+
+
 
 
 

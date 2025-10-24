@@ -15,3 +15,4 @@ var viewWillMoveToHostWindowProtocol *objc.Protocol
 func init() {
 	viewWillMoveToHostWindowProtocol = objc.GetProtocol("viewWillMoveToHostWindow:")
 }
+

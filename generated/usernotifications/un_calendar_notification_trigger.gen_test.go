@@ -15,4 +15,5 @@ func ExampleUNCalendarNotificationTrigger_NextTriggerDate() {
 	obj := usernotifications.NewUNCalendarNotificationTrigger()
 	_ = obj.NextTriggerDate()
 	// Output:
-}
+	}
+

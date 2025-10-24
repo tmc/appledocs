@@ -13,7 +13,7 @@ var _ = foundation.NewValueTransformer
 // Returns the value transformer identified by a given identifier.
 func ExampleNewValueTransformerForName() {
 	_ = foundation.NewValueTransformerForName(
-		foundation.ValueTransformerName /* typedef */{}, // name ValueTransformerName /* typedef */
+		foundation.ValueTransformerName{}, // name ValueTransformerName
 	)
 	// Output:
 }

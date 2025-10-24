@@ -19,3 +19,4 @@ var didFinishProtocol *objc.Protocol
 func init() {
 	didFinishProtocol = objc.GetProtocol("didFinish")
 }
+

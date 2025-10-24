@@ -55,8 +55,8 @@ func (c_ Coder) DecodeCGSizeForKey(key IString) corefoundation.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeCGVector(forKey:)
-func (c_ Coder) DecodeCGVectorForKey(key IString) objc.IObject /* cross-framework: Vector */ {
-	rv := objc.Send[corefoundation.Vector](c_.ID, objc.Sel("decodeCGVectorForKey:"), key)
+func (c_ Coder) DecodeCGVectorForKey(key IString) corefoundation.CGVector {
+	rv := objc.Send[corefoundation.CGVector](c_.ID, objc.Sel("decodeCGVectorForKey:"), key)
 	return rv
 }
 
@@ -99,7 +99,7 @@ func (c_ Coder) EncodeCGRectForKey(rect corefoundation.CGRect, key IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:forKey:)-26fxa
-func (c_ Coder) EncodeCGVectorForKey(vector objc.IObject /* cross-framework: Vector */, key IString) {
+func (c_ Coder) EncodeCGVectorForKey(vector corefoundation.CGVector, key IString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeCGVector:forKey:"), vector, key)
 }
 

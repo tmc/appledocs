@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class AVMetadataHumanBodyObject */
 
 
-/* debug [class_header]: Header for AVMetadataHumanBodyObject */
+
+
 // The class instance for the [MetadataHumanBodyObject] class.
 var (
 	MetadataHumanBodyObjectClass     _MetadataHumanBodyObjectClass
@@ -29,30 +29,30 @@ func getMetadataHumanBodyObjectClass() _MetadataHumanBodyObjectClass {
 type _MetadataHumanBodyObjectClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MetadataHumanBodyObject */
+
+
 // An interface definition for the [MetadataHumanBodyObject] class.
 type IMetadataHumanBodyObject interface {
 	IMetadataBodyObject
 	
-/* debug [class_interface_properties]: Properties for MetadataHumanBodyObject */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MetadataHumanBodyObject */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MetadataHumanBodyObject */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MetadataHumanBodyObjectClass) Alloc() MetadataHumanBodyObject {
 	rv := objc.Send[MetadataHumanBodyObject](objc.ID(mc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (m_ MetadataHumanBodyObject) Autorelease() MetadataHumanBodyObject {
 func NewMetadataHumanBodyObject() MetadataHumanBodyObject {
 	return getMetadataHumanBodyObjectClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MetadataHumanBodyObject */
+
+
 // An object representing a single detected human body in a picture.
 //
 // This object is an immutable type that describes the various features found in the human body in a picture.
@@ -108,34 +108,34 @@ func MetadataHumanBodyObjectFrom(ptr unsafe.Pointer) MetadataHumanBodyObject {
 		MetadataBodyObject: MetadataBodyObjectFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MetadataHumanBodyObject *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for MetadataHumanBodyObject */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MetadataHumanBodyObject */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MetadataHumanBodyObject */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MetadataHumanBodyObject */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class AVMetadataHumanBodyObject */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

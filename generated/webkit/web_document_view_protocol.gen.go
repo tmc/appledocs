@@ -15,3 +15,4 @@ var WebDocumentViewProtocol *objc.Protocol
 func init() {
 	WebDocumentViewProtocol = objc.GetProtocol("WebDocumentView")
 }
+

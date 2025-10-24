@@ -7,10 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class WKPreviewElementInfo */
+
 
 /* debug [class_header]: Header for WKPreviewElementInfo */
 // The class instance for the [PreviewElementInfo] class.
@@ -29,25 +31,28 @@ func getPreviewElementInfoClass() _PreviewElementInfoClass {
 type _PreviewElementInfoClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for PreviewElementInfo */
 // An interface definition for the [PreviewElementInfo] class.
 type IPreviewElementInfo interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for PreviewElementInfo */
+	
+/* debug [class_interface_properties]: Properties for PreviewElementInfo */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for PreviewElementInfo */
+	
+/* debug [class_interface_methods]: Methods for PreviewElementInfo */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for PreviewElementInfo */
 // Alloc allocates a new instance without initialization.
@@ -79,11 +84,13 @@ func (p_ PreviewElementInfo) Autorelease() PreviewElementInfo {
 func NewPreviewElementInfo() PreviewElementInfo {
 	return getPreviewElementInfoClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for PreviewElementInfo */
 // The object contains information for previewing a webpage.
+
 
 // The object contains information for previewing a webpage.
 //
@@ -99,21 +106,33 @@ type PreviewElementInfo struct {
 func PreviewElementInfoFrom(ptr unsafe.Pointer) PreviewElementInfo {
 	return PreviewElementInfo{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for PreviewElementInfo */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for PreviewElementInfo *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for PreviewElementInfo */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for PreviewElementInfo */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for PreviewElementInfo */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for PreviewElementInfo */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class WKPreviewElementInfo */
+
+

@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNReductionRowSumNode */
 
 
-/* debug [class_header]: Header for MPSNNReductionRowSumNode */
+
+
 // The class instance for the [ReductionRowSumNode] class.
 var (
 	ReductionRowSumNodeClass     _ReductionRowSumNodeClass
@@ -29,30 +29,30 @@ func getReductionRowSumNodeClass() _ReductionRowSumNodeClass {
 type _ReductionRowSumNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ReductionRowSumNode */
+
+
 // An interface definition for the [ReductionRowSumNode] class.
 type IReductionRowSumNode interface {
 	IUnaryReductionNode
 	
-/* debug [class_interface_properties]: Properties for ReductionRowSumNode */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ReductionRowSumNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ReductionRowSumNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _ReductionRowSumNodeClass) Alloc() ReductionRowSumNode {
 	rv := objc.Send[ReductionRowSumNode](objc.ID(rc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (r_ ReductionRowSumNode) Autorelease() ReductionRowSumNode {
 func NewReductionRowSumNode() ReductionRowSumNode {
 	return getReductionRowSumNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ReductionRowSumNode */
+
+
 
 
 // [Full Topic]
@@ -101,34 +101,34 @@ func ReductionRowSumNodeFrom(ptr unsafe.Pointer) ReductionRowSumNode {
 		UnaryReductionNode: UnaryReductionNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ReductionRowSumNode *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ReductionRowSumNode */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ReductionRowSumNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ReductionRowSumNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ReductionRowSumNode */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNReductionRowSumNode */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

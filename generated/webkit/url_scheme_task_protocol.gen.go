@@ -19,3 +19,4 @@ var URLSchemeTaskProtocol *objc.Protocol
 func init() {
 	URLSchemeTaskProtocol = objc.GetProtocol("WKURLSchemeTask")
 }
+

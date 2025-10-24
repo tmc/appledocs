@@ -6,12 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class WKWebExtensionTabConfiguration */
+
 
 /* debug [class_header]: Header for WKWebExtensionTabConfiguration */
 // The class instance for the [WebExtensionTabConfiguration] class.
@@ -30,15 +31,16 @@ func getWebExtensionTabConfigurationClass() _WebExtensionTabConfigurationClass {
 type _WebExtensionTabConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for WebExtensionTabConfiguration */
 // An interface definition for the [WebExtensionTabConfiguration] class.
 type IWebExtensionTabConfiguration interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for WebExtensionTabConfiguration */
+	
+/* debug [class_interface_properties]: Properties for WebExtensionTabConfiguration */
 	// properties:
 	Index() uint
 	ParentTab() unsafe.Pointer
@@ -49,15 +51,17 @@ type IWebExtensionTabConfiguration interface {
 	ShouldReaderModeBeActive() bool
 	Url() objc.IObject /* cross-framework: NSURL */
 	Window() unsafe.Pointer
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for WebExtensionTabConfiguration */
+	
+/* debug [class_interface_methods]: Methods for WebExtensionTabConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for WebExtensionTabConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -89,13 +93,15 @@ func (w_ WebExtensionTabConfiguration) Autorelease() WebExtensionTabConfiguratio
 func NewWebExtensionTabConfiguration() WebExtensionTabConfiguration {
 	return getWebExtensionTabConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for WebExtensionTabConfiguration */
 // An object that encapsulates configuration options for a tab in an extension.
 //
 // This class holds various options that influence the behavior and initial state of a tab. The app retains the discretion to disregard any or all of these options, or even opt not to create a tab.
+
 
 // An object that encapsulates configuration options for a tab in an extension.
 //
@@ -111,19 +117,28 @@ type WebExtensionTabConfiguration struct {
 func WebExtensionTabConfigurationFrom(ptr unsafe.Pointer) WebExtensionTabConfiguration {
 	return WebExtensionTabConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for WebExtensionTabConfiguration */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for WebExtensionTabConfiguration *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for WebExtensionTabConfiguration */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for WebExtensionTabConfiguration */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for WebExtensionTabConfiguration */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for WebExtensionTabConfiguration */
 
@@ -134,7 +149,8 @@ func WebExtensionTabConfigurationFrom(ptr unsafe.Pointer) WebExtensionTabConfigu
 func (w_ WebExtensionTabConfiguration) Index() uint {
 	rv := objc.Send[uint](w_.ID, objc.Sel("index"))
 	return rv
-} /* debug [instance_properties/getter]: index */
+}/* debug [instance_properties/getter]: index */
+
 
 // Indicates the parent tab with which the tab should be related.
 //
@@ -143,7 +159,8 @@ func (w_ WebExtensionTabConfiguration) Index() uint {
 func (w_ WebExtensionTabConfiguration) ParentTab() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("parentTab"))
 	return rv
-} /* debug [instance_properties/getter]: parentTab */
+}/* debug [instance_properties/getter]: parentTab */
+
 
 // Indicates whether the tab should be added to the current tab selection.
 //
@@ -152,7 +169,8 @@ func (w_ WebExtensionTabConfiguration) ParentTab() unsafe.Pointer {
 func (w_ WebExtensionTabConfiguration) ShouldAddToSelection() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("shouldAddToSelection"))
 	return rv
-} /* debug [instance_properties/getter]: shouldAddToSelection */
+}/* debug [instance_properties/getter]: shouldAddToSelection */
+
 
 // Indicates whether the tab should be the active tab.
 //
@@ -161,7 +179,8 @@ func (w_ WebExtensionTabConfiguration) ShouldAddToSelection() bool {
 func (w_ WebExtensionTabConfiguration) ShouldBeActive() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("shouldBeActive"))
 	return rv
-} /* debug [instance_properties/getter]: shouldBeActive */
+}/* debug [instance_properties/getter]: shouldBeActive */
+
 
 // Indicates whether the tab should be muted.
 //
@@ -170,7 +189,8 @@ func (w_ WebExtensionTabConfiguration) ShouldBeActive() bool {
 func (w_ WebExtensionTabConfiguration) ShouldBeMuted() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("shouldBeMuted"))
 	return rv
-} /* debug [instance_properties/getter]: shouldBeMuted */
+}/* debug [instance_properties/getter]: shouldBeMuted */
+
 
 // Indicates whether the tab should be pinned.
 //
@@ -179,7 +199,8 @@ func (w_ WebExtensionTabConfiguration) ShouldBeMuted() bool {
 func (w_ WebExtensionTabConfiguration) ShouldBePinned() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("shouldBePinned"))
 	return rv
-} /* debug [instance_properties/getter]: shouldBePinned */
+}/* debug [instance_properties/getter]: shouldBePinned */
+
 
 // Indicates whether reader mode in the tab should be active.
 //
@@ -188,7 +209,8 @@ func (w_ WebExtensionTabConfiguration) ShouldBePinned() bool {
 func (w_ WebExtensionTabConfiguration) ShouldReaderModeBeActive() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("shouldReaderModeBeActive"))
 	return rv
-} /* debug [instance_properties/getter]: shouldReaderModeBeActive */
+}/* debug [instance_properties/getter]: shouldReaderModeBeActive */
+
 
 // Indicates the initial URL for the tab.
 //
@@ -197,7 +219,8 @@ func (w_ WebExtensionTabConfiguration) ShouldReaderModeBeActive() bool {
 func (w_ WebExtensionTabConfiguration) Url() objc.IObject /* cross-framework: NSURL */ {
 	rv := objc.Send[foundation.NSURL](w_.ID, objc.Sel("url"))
 	return rv
-} /* debug [instance_properties/getter]: url */
+}/* debug [instance_properties/getter]: url */
+
 
 // Indicates the window where the tab should be opened.
 //
@@ -206,8 +229,12 @@ func (w_ WebExtensionTabConfiguration) Url() objc.IObject /* cross-framework: NS
 func (w_ WebExtensionTabConfiguration) Window() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("window"))
 	return rv
-} /* debug [instance_properties/getter]: window */
+}/* debug [instance_properties/getter]: window */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class WKWebExtensionTabConfiguration */
+
+
+

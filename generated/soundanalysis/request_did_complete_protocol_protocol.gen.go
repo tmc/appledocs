@@ -18,3 +18,4 @@ package soundanalysis
 // See: doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNResultsObserving/requestDidComplete(_:)
 type PrequestDidComplete interface {
 }
+

@@ -2,9 +2,11 @@
 
 package extensionfoundation
 
+
 import (
 	"github.com/ebitengine/purego"
 )
+
 
 // ExtensionFoundation Functions (0 total)
 //
@@ -19,3 +21,13 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
+
+
+
+
+
+
+
+
+
+

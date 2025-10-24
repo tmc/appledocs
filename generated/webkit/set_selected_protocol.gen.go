@@ -19,3 +19,4 @@ var setSelectedProtocol *objc.Protocol
 func init() {
 	setSelectedProtocol = objc.GetProtocol("setSelected:")
 }
+

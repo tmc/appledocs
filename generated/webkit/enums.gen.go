@@ -2,7 +2,7 @@
 
 package webkit
 
-/* debug [enums.gen.go]: Generating 37 enums for WebKit */
+/* debug [enums.gen.go]: Generating 41 enums for WebKit */
 // Enum types and constants
 /* debug [enums.gen.go]: Processing enum WKDownloadPlaceholderPolicy (2 cases) */
 // WKDownloadPlaceholderPolicy enum type
@@ -195,7 +195,7 @@ const (
 	WebCacheModelPrimaryWebBrowser WebCacheModel = 0
 )
 
-/* debug [enums.gen.go]: Processing enum WebDragDestinationAction (4 cases) */
+/* debug [enums.gen.go]: Processing enum WebDragDestinationAction (5 cases) */
 // WebDragDestinationAction - Actions that the destination object of a drag operation can perform.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebDragDestinationAction
@@ -218,9 +218,13 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WebDragDestinationAction/load
 	WebDragDestinationActionLoad WebDragDestinationAction = 0
+	// WebDragDestinationActionNone - No action.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WebDragDestinationAction/WebDragDestinationActionNone
+	WebDragDestinationActionNone WebDragDestinationAction = 0
 )
 
-/* debug [enums.gen.go]: Processing enum WebDragSourceAction (5 cases) */
+/* debug [enums.gen.go]: Processing enum WebDragSourceAction (6 cases) */
 // WebDragSourceAction - Actions that the source object of a drag operation can perform.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebDragSourceAction
@@ -247,10 +251,14 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WebDragSourceAction/selection
 	WebDragSourceActionSelection WebDragSourceAction = 0
+	// WebDragSourceActionNone - No action.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WebDragSourceAction/WebDragSourceActionNone
+	WebDragSourceActionNone WebDragSourceAction = 0
 )
 
 /* debug [enums.gen.go]: Processing enum WebNavigationType (6 cases) */
-// WebNavigationType - Possible values for the
+// WebNavigationType - Possible values for the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebNavigationType
 type WebNavigationType uint
@@ -303,7 +311,7 @@ const (
 	WebViewInsertActionTyped WebViewInsertAction = 0
 )
 
-/* debug [enums.gen.go]: Processing enum WKAudiovisualMediaTypes (3 cases) */
+/* debug [enums.gen.go]: Processing enum WKAudiovisualMediaTypes (4 cases) */
 // WKAudiovisualMediaTypes - The media types that require a user gesture to begin playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKAudiovisualMediaTypes
@@ -322,9 +330,13 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKAudiovisualMediaTypes/video
 	WKAudiovisualMediaTypeVideo WKAudiovisualMediaTypes = 0
+	// WKAudiovisualMediaTypeNone - No media types require a user gesture to begin playing.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKAudiovisualMediaTypes/WKAudiovisualMediaTypeNone
+	WKAudiovisualMediaTypeNone WKAudiovisualMediaTypes = 0
 )
 
-/* debug [enums.gen.go]: Processing enum WKDataDetectorTypes (9 cases) */
+/* debug [enums.gen.go]: Processing enum WKDataDetectorTypes (10 cases) */
 // WKDataDetectorTypes - The data detector types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDataDetectorTypes
@@ -367,6 +379,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDataDetectorTypes/trackingNumber
 	WKDataDetectorTypeTrackingNumber WKDataDetectorTypes = 0
+	// WKDataDetectorTypeNone - No data detection.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDataDetectorTypes/WKDataDetectorTypeNone
+	WKDataDetectorTypeNone WKDataDetectorTypes = 0
 )
 
 /* debug [enums.gen.go]: Processing enum WKDialogResult (3 cases) */
@@ -719,8 +735,78 @@ const (
 	WKUserScriptInjectionTimeAtDocumentStart WKUserScriptInjectionTime = 0
 )
 
+/* debug [enums.gen.go]: Processing enum WKWebExtensionDataRecordError (4 cases) */
+// WKWebExtensionDataRecordError - Constants that indicate errors in the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/DataRecord/Error/Code
+type WKWebExtensionDataRecordError uint
+
+const (
+	// WKWebExtensionDataRecordErrorLocalStorageFailed - Indicates a failure occurred when either deleting or calculating local storage.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/DataRecord/Error/Code/localStorageFailed
+	WKWebExtensionDataRecordErrorLocalStorageFailed WKWebExtensionDataRecordError = 0
+	// WKWebExtensionDataRecordErrorSessionStorageFailed - Indicates a failure occurred when either deleting or calculating session storage.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/DataRecord/Error/Code/sessionStorageFailed
+	WKWebExtensionDataRecordErrorSessionStorageFailed WKWebExtensionDataRecordError = 0
+	// WKWebExtensionDataRecordErrorSynchronizedStorageFailed - Indicates a failure occurred when either deleting or calculating synchronized storage.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/DataRecord/Error/Code/synchronizedStorageFailed
+	WKWebExtensionDataRecordErrorSynchronizedStorageFailed WKWebExtensionDataRecordError = 0
+	// WKWebExtensionDataRecordErrorUnknown - Indicates that an unknown error occurred.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/DataRecord/Error/Code/unknown
+	WKWebExtensionDataRecordErrorUnknown WKWebExtensionDataRecordError = 0
+)
+
+/* debug [enums.gen.go]: Processing enum WKWebExtensionError (9 cases) */
+// WKWebExtensionError - Constants that indicate errors in the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/Error/Code
+type WKWebExtensionError uint
+
+const (
+	// WKWebExtensionErrorInvalidArchive - Indicates that the archive file is invalid or corrupt.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/Error/Code/invalidArchive
+	WKWebExtensionErrorInvalidArchive WKWebExtensionError = 0
+	// WKWebExtensionErrorInvalidBackgroundPersistence - Indicates that the extension specified background persistence that was not compatible with the platform or features requested.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/Error/Code/invalidBackgroundPersistence
+	WKWebExtensionErrorInvalidBackgroundPersistence WKWebExtensionError = 0
+	// WKWebExtensionErrorInvalidDeclarativeNetRequestEntry - Indicates that an invalid declarative net request entry was encountered.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/Error/Code/invalidDeclarativeNetRequestEntry
+	WKWebExtensionErrorInvalidDeclarativeNetRequestEntry WKWebExtensionError = 0
+	// WKWebExtensionErrorInvalidManifest - Indicates that an invalid   was encountered.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/Error/Code/invalidManifest
+	WKWebExtensionErrorInvalidManifest WKWebExtensionError = 0
+	// WKWebExtensionErrorInvalidManifestEntry - Indicates that an invalid manifest entry was encountered.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/Error/Code/invalidManifestEntry
+	WKWebExtensionErrorInvalidManifestEntry WKWebExtensionError = 0
+	// WKWebExtensionErrorInvalidResourceCodeSignature - Indicates that a resource failed the bundle’s code signature checks.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/Error/Code/invalidResourceCodeSignature
+	WKWebExtensionErrorInvalidResourceCodeSignature WKWebExtensionError = 0
+	// WKWebExtensionErrorResourceNotFound - Indicates that a specified resource was not found on disk.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/Error/Code/resourceNotFound
+	WKWebExtensionErrorResourceNotFound WKWebExtensionError = 0
+	// WKWebExtensionErrorUnknown - Indicates that an unknown error occurred.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/Error/Code/unknown
+	WKWebExtensionErrorUnknown WKWebExtensionError = 0
+	// WKWebExtensionErrorUnsupportedManifestVersion - Indicates that the manifest version is not supported.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/Error/Code/unsupportedManifestVersion
+	WKWebExtensionErrorUnsupportedManifestVersion WKWebExtensionError = 0
+)
+
 /* debug [enums.gen.go]: Processing enum WKWebExtensionMatchPatternError (4 cases) */
-// WKWebExtensionMatchPatternError - Constants that indicate errors in the
+// WKWebExtensionMatchPatternError - Constants that indicate errors in the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/MatchPattern/Error/Code
 type WKWebExtensionMatchPatternError uint
@@ -744,8 +830,8 @@ const (
 	WKWebExtensionMatchPatternErrorUnknown WKWebExtensionMatchPatternError = 0
 )
 
-/* debug [enums.gen.go]: Processing enum WKWebExtensionMatchPatternOptions (3 cases) */
-// WKWebExtensionMatchPatternOptions - Constants used by
+/* debug [enums.gen.go]: Processing enum WKWebExtensionMatchPatternOptions (4 cases) */
+// WKWebExtensionMatchPatternOptions - Constants used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/MatchPattern/Options
 type WKWebExtensionMatchPatternOptions uint
@@ -763,9 +849,34 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/MatchPattern/Options/matchBidirectionally
 	WKWebExtensionMatchPatternOptionsMatchBidirectionally WKWebExtensionMatchPatternOptions = 0
+	// WKWebExtensionMatchPatternOptionsNone - Indicates no special matching options.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtensionMatchPatternOptions/WKWebExtensionMatchPatternOptionsNone
+	WKWebExtensionMatchPatternOptionsNone WKWebExtensionMatchPatternOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum WKWebExtensionTabChangedProperties (9 cases) */
+/* debug [enums.gen.go]: Processing enum WKWebExtensionMessagePortError (3 cases) */
+// WKWebExtensionMessagePortError - Constants that indicate errors in the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/MessagePort/Error/Code
+type WKWebExtensionMessagePortError uint
+
+const (
+	// WKWebExtensionMessagePortErrorMessageInvalid - Indicates that the message is invalid.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/MessagePort/Error/Code/messageInvalid
+	WKWebExtensionMessagePortErrorMessageInvalid WKWebExtensionMessagePortError = 0
+	// WKWebExtensionMessagePortErrorNotConnected - Indicates that the message port is disconnected.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/MessagePort/Error/Code/notConnected
+	WKWebExtensionMessagePortErrorNotConnected WKWebExtensionMessagePortError = 0
+	// WKWebExtensionMessagePortErrorUnknown - Indicates that an unknown error occurred.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/MessagePort/Error/Code/unknown
+	WKWebExtensionMessagePortErrorUnknown WKWebExtensionMessagePortError = 0
+)
+
+/* debug [enums.gen.go]: Processing enum WKWebExtensionTabChangedProperties (10 cases) */
 // WKWebExtensionTabChangedProperties - Constants the web extension controller and web extension context use to indicate tab changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/TabChangedProperties
@@ -808,10 +919,14 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/TabChangedProperties/zoomFactor
 	WKWebExtensionTabChangedPropertiesZoomFactor WKWebExtensionTabChangedProperties = 0
+	// WKWebExtensionTabChangedPropertiesNone - Indicates nothing changed.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtensionTabChangedProperties/WKWebExtensionTabChangedPropertiesNone
+	WKWebExtensionTabChangedPropertiesNone WKWebExtensionTabChangedProperties = 0
 )
 
 /* debug [enums.gen.go]: Processing enum WKWebExtensionWindowState (4 cases) */
-// WKWebExtensionWindowState - Constants used by
+// WKWebExtensionWindowState - Constants used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/WindowState
 type WKWebExtensionWindowState uint
@@ -836,7 +951,7 @@ const (
 )
 
 /* debug [enums.gen.go]: Processing enum WKWebExtensionWindowType (2 cases) */
-// WKWebExtensionWindowType - Constants used by
+// WKWebExtensionWindowType - Constants used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/WindowType
 type WKWebExtensionWindowType uint
@@ -850,6 +965,39 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/WindowType/popup
 	WKWebExtensionWindowTypePopup WKWebExtensionWindowType = 0
+)
+
+/* debug [enums.gen.go]: Processing enum WKWebExtensionContextError (6 cases) */
+// WKWebExtensionContextError - Constants that indicate errors in the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtensionContext/Error/Code
+type WKWebExtensionContextError uint
+
+const (
+	// WKWebExtensionContextErrorAlreadyLoaded - Indicates that the context is already loaded by a  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtensionContext/Error/Code/alreadyLoaded
+	WKWebExtensionContextErrorAlreadyLoaded WKWebExtensionContextError = 0
+	// WKWebExtensionContextErrorBackgroundContentFailedToLoad - Indicates that an error occurred loading the background content.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtensionContext/Error/Code/backgroundContentFailedToLoad
+	WKWebExtensionContextErrorBackgroundContentFailedToLoad WKWebExtensionContextError = 0
+	// WKWebExtensionContextErrorBaseURLAlreadyInUse - Indicates that another context is already using the specified base URL.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtensionContext/Error/Code/baseURLAlreadyInUse
+	WKWebExtensionContextErrorBaseURLAlreadyInUse WKWebExtensionContextError = 0
+	// WKWebExtensionContextErrorNoBackgroundContent - Indicates that the extension does not have background content.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtensionContext/Error/Code/noBackgroundContent
+	WKWebExtensionContextErrorNoBackgroundContent WKWebExtensionContextError = 0
+	// WKWebExtensionContextErrorNotLoaded - Indicates that the context is not loaded by a  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtensionContext/Error/Code/notLoaded
+	WKWebExtensionContextErrorNotLoaded WKWebExtensionContextError = 0
+	// WKWebExtensionContextErrorUnknown - Indicates that an unknown error occurred.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtensionContext/Error/Code/unknown
+	WKWebExtensionContextErrorUnknown WKWebExtensionContextError = 0
 )
 
 /* debug [enums.gen.go]: Processing enum WKWebExtensionContextPermissionStatus (7 cases) */
@@ -921,3 +1069,5 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebViewDataType/sessionStorage
 	WKWebViewDataTypeSessionStorage WKWebViewDataType = 0
 )
+
+

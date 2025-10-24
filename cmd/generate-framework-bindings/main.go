@@ -31,6 +31,7 @@ var embeddedFS embed.FS
 
 var verbose bool
 var debugTypeAnnotations bool
+var debugTemplates bool
 
 func main() {
 	framework := flag.String("framework", "CoreGraphics", "Framework to generate bindings for (supports regexp patterns like 'Core.*' or '^(AppKit|Foundation)$')")
@@ -46,9 +47,10 @@ func main() {
 	verboseFlag := flag.Bool("v", false, "Enable verbose output")
 
 	// Debug and traceability flags
-	debugCategories := flag.String("debug", "", "Enable debug logging for categories (comma-separated, or 'all'). Use --debug-help to see available categories")
+	debugCategories := flag.String("debug", "", "Enable debug logging for categories (comma-separated, or 'all'). Special value 'templates' enables template debug comments. Use --debug-help to see available categories")
 	debugFilter := flag.String("debug-filter", "", "Filter debug output with regex pattern (e.g., 'Coder|Error' or 'typemap:Coder,hierarchy:Broadcast')")
 	debugHelp := flag.Bool("debug-help", false, "Show available debug categories and usage examples")
+
 	traceOrigin := flag.Bool("trace-origin", false, "Include source traceability comments in generated code")
 	debugTypeAnnotationsFlag := flag.Bool("debug-type-annotations", false, "Annotate generated code with type resolution decisions")
 
@@ -87,6 +89,25 @@ func main() {
 
 	verbose = *verboseFlag
 	debugTypeAnnotations = *debugTypeAnnotationsFlag
+
+	// Check if template debugging is enabled
+	debugTemplates = false
+
+	// Check environment variable first
+	if os.Getenv("DEBUG_TEMPLATES") == "1" {
+		debugTemplates = true
+	}
+
+	// Check --debug=templates flag (overrides environment)
+	if *debugCategories != "" {
+		categories := strings.Split(*debugCategories, ",")
+		for _, cat := range categories {
+			if strings.TrimSpace(cat) == "templates" {
+				debugTemplates = true
+				break
+			}
+		}
+	}
 
 	// Configure verbose logging
 	SetVerbose(verbose)
@@ -598,9 +619,14 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 
 		// Add manual types from manualFrameworkTypes (e.g., geometry types from rect_types.go)
 		if manualTypes, exists := manualFrameworkTypes[strings.ToLower(framework)]; exists {
+			fmt.Fprintf(os.Stderr, "DEBUG main.go: Adding manual types for %q: %v\n", framework, manualTypes)
 			for _, typeName := range manualTypes {
 				currentFrameworkStructs[typeName] = true
+				fmt.Fprintf(os.Stderr, "DEBUG main.go: Added %q to currentFrameworkStructs\n", typeName)
 			}
+			fmt.Fprintf(os.Stderr, "DEBUG main.go: currentFrameworkStructs after manual types: %v\n", currentFrameworkStructs)
+		} else {
+			fmt.Fprintf(os.Stderr, "DEBUG main.go: No manual types found for %q (looking for key %q)\n", framework, strings.ToLower(framework))
 		}
 
 		// Second pass: collect methods for each class
@@ -983,12 +1009,26 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	if verbose {
 		fmt.Fprintf(os.Stderr, "DEBUG: About to generate - functions=%d, classes=%d\n", len(functions), len(classes))
 	}
+
+	// Create generator config
+	config := GeneratorConfig{
+		Framework:        framework,
+		PackageName:      packageName,
+		InputDir:         inputDir,
+		OutputModule:     "github.com/tmc/appledocs/generated",
+		Variant:          variant,
+		WithRefMethods:   withRefMethods,
+		GenerateTests:    generateTests,
+		GenerateExamples: generateExamples,
+		DebugEnabled:     debugTemplates || verbose, // Enable with --debug=templates or -v
+	}
+
 	if txtarOutput {
-		if err := generateTxtar(os.Stdout, framework, packageName, inputDir, functions, classes, protocols, enums, typedefs, constants, structs, withRefMethods, generateTests, generateExamples, variant); err != nil {
+		if err := generateTxtar(os.Stdout, config, functions, classes, protocols, enums, typedefs, constants, structs); err != nil {
 			return fmt.Errorf("failed to generate bindings: %w", err)
 		}
 	} else {
-		if err := generateFiles(outDir, framework, packageName, inputDir, functions, classes, protocols, enums, typedefs, constants, structs, withRefMethods, generateTests, generateExamples, variant); err != nil {
+		if err := generateFiles(outDir, config, functions, classes, protocols, enums, typedefs, constants, structs); err != nil {
 			return fmt.Errorf("failed to generate bindings: %w", err)
 		}
 		if verbose {

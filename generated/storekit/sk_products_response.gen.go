@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class SKProductsResponse */
 
+
 /* debug [class_header]: Header for SKProductsResponse */
 // The class instance for the [ProductsResponse] class.
 var (
@@ -29,27 +30,30 @@ func getProductsResponseClass() _ProductsResponseClass {
 type _ProductsResponseClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for ProductsResponse */
 // An interface definition for the [ProductsResponse] class.
 type IProductsResponse interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for ProductsResponse */
+	
+/* debug [class_interface_properties]: Properties for ProductsResponse */
 	// properties:
 	InvalidProductIdentifiers() []string
 	Products() []Product
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for ProductsResponse */
+	
+/* debug [class_interface_methods]: Methods for ProductsResponse */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for ProductsResponse */
 // Alloc allocates a new instance without initialization.
@@ -81,11 +85,13 @@ func (p_ ProductsResponse) Autorelease() ProductsResponse {
 func NewProductsResponse() ProductsResponse {
 	return getProductsResponseClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for ProductsResponse */
 // An App Store response to a request for information about a list of products.
+
 
 // An App Store response to a request for information about a list of products.
 //
@@ -101,19 +107,28 @@ type ProductsResponse struct {
 func ProductsResponseFrom(ptr unsafe.Pointer) ProductsResponse {
 	return ProductsResponse{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for ProductsResponse */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for ProductsResponse *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for ProductsResponse */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for ProductsResponse */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for ProductsResponse */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for ProductsResponse */
 
@@ -124,7 +139,8 @@ func ProductsResponseFrom(ptr unsafe.Pointer) ProductsResponse {
 func (p_ ProductsResponse) InvalidProductIdentifiers() []string {
 	rv := objc.Send[[]string](p_.ID, objc.Sel("invalidProductIdentifiers"))
 	return rv
-} /* debug [instance_properties/getter]: invalidProductIdentifiers */
+}/* debug [instance_properties/getter]: invalidProductIdentifiers */
+
 
 // A list of products, one product for each valid product identifier provided in the original request.
 //
@@ -133,8 +149,12 @@ func (p_ ProductsResponse) InvalidProductIdentifiers() []string {
 func (p_ ProductsResponse) Products() []Product {
 	rv := objc.Send[[]Product](p_.ID, objc.Sel("products"))
 	return rv
-} /* debug [instance_properties/getter]: products */
+}/* debug [instance_properties/getter]: products */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class SKProductsResponse */
+
+
+

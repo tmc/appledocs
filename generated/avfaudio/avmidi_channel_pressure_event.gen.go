@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVMIDIChannelPressureEvent */
 
 
-/* debug [class_header]: Header for AVMIDIChannelPressureEvent */
+
+
 // The class instance for the [MIDIChannelPressureEvent] class.
 var (
 	MIDIChannelPressureEventClass     _MIDIChannelPressureEventClass
@@ -30,32 +30,32 @@ func getMIDIChannelPressureEventClass() _MIDIChannelPressureEventClass {
 type _MIDIChannelPressureEventClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MIDIChannelPressureEvent */
+
+
 // An interface definition for the [MIDIChannelPressureEvent] class.
 type IMIDIChannelPressureEvent interface {
 	IMIDIChannelEvent
 	
-/* debug [class_interface_properties]: Properties for MIDIChannelPressureEvent */
+
 	// properties:
 	Pressure() objectivec.IObject
 	SetPressure(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MIDIChannelPressureEvent */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MIDIChannelPressureEvent */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDIChannelPressureEventClass) Alloc() MIDIChannelPressureEvent {
 	rv := objc.Send[MIDIChannelPressureEvent](objc.ID(mc.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (m_ MIDIChannelPressureEvent) Autorelease() MIDIChannelPressureEvent {
 func NewMIDIChannelPressureEvent() MIDIChannelPressureEvent {
 	return getMIDIChannelPressureEventClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MIDIChannelPressureEvent */
+
+
 // An object that represents a MIDI channel pressure message.
 //
 // The effect of this message depends on the destination audio unit, and the capabilities of the destination’s loaded instrument.
@@ -111,11 +111,11 @@ func MIDIChannelPressureEventFrom(ptr unsafe.Pointer) MIDIChannelPressureEvent {
 		MIDIChannelEvent: MIDIChannelEventFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MIDIChannelPressureEvent */
+
+
 
 // Creates a pressure event with a channel and pressure value.
 //
@@ -126,28 +126,28 @@ func NewMIDIChannelPressureEventWithChannelPressure(channel objectivec.IObject, 
 	rv := objc.Send[MIDIChannelPressureEvent](instance.ID, objc.Sel("initWithChannel:pressure:"), channel, pressure)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewMIDIChannelPressureEventWithChannelPressure */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for MIDIChannelPressureEvent */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MIDIChannelPressureEvent */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MIDIChannelPressureEvent */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MIDIChannelPressureEvent */
+
+
+
+
+
+
+
+
+
 
 // The MIDI channel pressure.
 //
@@ -156,7 +156,7 @@ func NewMIDIChannelPressureEventWithChannelPressure(channel objectivec.IObject, 
 func (m_ MIDIChannelPressureEvent) Pressure() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](m_.ID, objc.Sel("pressure"))
 	return rv
-}/* debug [instance_properties/getter]: pressure */
+}
 
 
 // The MIDI channel pressure.
@@ -165,11 +165,11 @@ func (m_ MIDIChannelPressureEvent) Pressure() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIChannelPressureEvent/pressure
 func (m_ MIDIChannelPressureEvent) SetPressure(value objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPressure:"), value)
-}/* debug [instance_properties/setter]: pressure */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVMIDIChannelPressureEvent */
+
+
+
 
 

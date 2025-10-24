@@ -5,11 +5,16 @@
 package storekit
 
 import (
-	"github.com/tmc/appledocs/generated/foundation"
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for PaymentTransaction
+
 
 // iOS-only properties
 
@@ -21,3 +26,8 @@ func (p_ PaymentTransaction) TransactionReceipt() objc.IObject /* cross-framewor
 	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("transactionReceipt"))
 	return rv
 }
+
+
+
+
+

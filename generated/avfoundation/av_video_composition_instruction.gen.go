@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVVideoCompositionInstruction */
 
 
-/* debug [class_header]: Header for AVVideoCompositionInstruction */
+
+
 // The class instance for the [VideoCompositionInstruction] class.
 var (
 	VideoCompositionInstructionClass     _VideoCompositionInstructionClass
@@ -30,16 +30,16 @@ func getVideoCompositionInstructionClass() _VideoCompositionInstructionClass {
 type _VideoCompositionInstructionClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for VideoCompositionInstruction */
+
+
 // An interface definition for the [VideoCompositionInstruction] class.
 type IVideoCompositionInstruction interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for VideoCompositionInstruction */
+
 	// properties:
 	BackgroundColor() ColorRef /* not a class type */
 	EnablePostProcessing() bool
@@ -50,19 +50,19 @@ type IVideoCompositionInstruction interface {
 	TimeRange() TimeRange /* not a class type */
 	Instructions() VideoCompositionInstructionProtocol /* not a class type */
 	SetInstructions(value VideoCompositionInstructionProtocol /* not a class type */)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for VideoCompositionInstruction */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for VideoCompositionInstruction */
+
+
 // Alloc allocates a new instance without initialization.
 func (vc _VideoCompositionInstructionClass) Alloc() VideoCompositionInstruction {
 	rv := objc.Send[VideoCompositionInstruction](objc.ID(vc.class), objc.Sel("alloc"))
@@ -92,11 +92,11 @@ func (v_ VideoCompositionInstruction) Autorelease() VideoCompositionInstruction 
 func NewVideoCompositionInstruction() VideoCompositionInstruction {
 	return getVideoCompositionInstructionClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for VideoCompositionInstruction */
+
+
 // An operation that a compositor performs.
 //
 // An object maintains an array of to perform its composition.
@@ -116,15 +116,15 @@ type VideoCompositionInstruction struct {
 func VideoCompositionInstructionFrom(ptr unsafe.Pointer) VideoCompositionInstruction {
 	return VideoCompositionInstruction{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for VideoCompositionInstruction *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for VideoCompositionInstruction */
+
+
+
 
 // Pass-through initializer, for internal use in AVFoundation only
 //
@@ -133,23 +133,23 @@ func VideoCompositionInstructionFrom(ptr unsafe.Pointer) VideoCompositionInstruc
 func (vc _VideoCompositionInstructionClass) VideoCompositionInstructionWithInstruction(instruction IAVVideoCompositionInstruction) IVideoCompositionInstruction {
 	rv := objc.Send[VideoCompositionInstruction](objc.ID(vc.class), objc.Sel("videoCompositionInstructionWithInstruction:"), instruction)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=VideoCompositionInstructionWithInstruction) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for VideoCompositionInstruction */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for VideoCompositionInstruction */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for VideoCompositionInstruction */
+
+
+
+
+
+
+
 
 // The background color of the composition.
 //
@@ -158,7 +158,7 @@ func (vc _VideoCompositionInstructionClass) VideoCompositionInstructionWithInstr
 func (v_ VideoCompositionInstruction) BackgroundColor() ColorRef /* not a class type */ {
 	rv := objc.Send[ColorRef](v_.ID, objc.Sel("backgroundColor"))
 	return rv
-}/* debug [instance_properties/getter]: backgroundColor */
+}
 
 
 // A Boolean value that indicates whether the instruction requires post processing.
@@ -168,7 +168,7 @@ func (v_ VideoCompositionInstruction) BackgroundColor() ColorRef /* not a class 
 func (v_ VideoCompositionInstruction) EnablePostProcessing() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("enablePostProcessing"))
 	return rv
-}/* debug [instance_properties/getter]: enablePostProcessing */
+}
 
 
 // Instructions that specify how to layer and compose video frames from source tracks.
@@ -178,7 +178,7 @@ func (v_ VideoCompositionInstruction) EnablePostProcessing() bool {
 func (v_ VideoCompositionInstruction) LayerInstructions() []VideoCompositionLayerInstruction {
 	rv := objc.Send[[]VideoCompositionLayerInstruction](v_.ID, objc.Sel("layerInstructions"))
 	return rv
-}/* debug [instance_properties/getter]: layerInstructions */
+}
 
 
 // The track identifier from an instruction source frame.
@@ -188,7 +188,7 @@ func (v_ VideoCompositionInstruction) LayerInstructions() []VideoCompositionLaye
 func (v_ VideoCompositionInstruction) PassthroughTrackID() PersistentTrackID /* not a class type */ {
 	rv := objc.Send[PersistentTrackID](v_.ID, objc.Sel("passthroughTrackID"))
 	return rv
-}/* debug [instance_properties/getter]: passthroughTrackID */
+}
 
 
 // The identifiers of source sample data tracks that the compositor requires to compose frames for the instruction.
@@ -198,7 +198,7 @@ func (v_ VideoCompositionInstruction) PassthroughTrackID() PersistentTrackID /* 
 func (v_ VideoCompositionInstruction) RequiredSourceSampleDataTrackIDs() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](v_.ID, objc.Sel("requiredSourceSampleDataTrackIDs"))
 	return rv
-}/* debug [instance_properties/getter]: requiredSourceSampleDataTrackIDs */
+}
 
 
 // The identifiers of source video tracks that the compositor requires to compose frames for the instruction.
@@ -208,7 +208,7 @@ func (v_ VideoCompositionInstruction) RequiredSourceSampleDataTrackIDs() []found
 func (v_ VideoCompositionInstruction) RequiredSourceTrackIDs() []foundation.Value {
 	rv := objc.Send[[]foundation.Value](v_.ID, objc.Sel("requiredSourceTrackIDs"))
 	return rv
-}/* debug [instance_properties/getter]: requiredSourceTrackIDs */
+}
 
 
 // The time range to which the instruction applies.
@@ -218,7 +218,7 @@ func (v_ VideoCompositionInstruction) RequiredSourceTrackIDs() []foundation.Valu
 func (v_ VideoCompositionInstruction) TimeRange() TimeRange /* not a class type */ {
 	rv := objc.Send[TimeRange](v_.ID, objc.Sel("timeRange"))
 	return rv
-}/* debug [instance_properties/getter]: timeRange */
+}
 
 
 // The video composition instructions.
@@ -228,7 +228,7 @@ func (v_ VideoCompositionInstruction) TimeRange() TimeRange /* not a class type 
 func (v_ VideoCompositionInstruction) Instructions() VideoCompositionInstructionProtocol /* not a class type */ {
 	rv := objc.Send[VideoCompositionInstructionProtocol](v_.ID, objc.Sel("instructions"))
 	return rv
-}/* debug [instance_properties/getter]: instructions */
+}
 
 
 // The video composition instructions.
@@ -237,12 +237,12 @@ func (v_ VideoCompositionInstruction) Instructions() VideoCompositionInstruction
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocomposition/instructions
 func (v_ VideoCompositionInstruction) SetInstructions(value VideoCompositionInstructionProtocol /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setInstructions:"), value)
-}/* debug [instance_properties/setter]: instructions */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVVideoCompositionInstruction */
+
+
+
 
 
 

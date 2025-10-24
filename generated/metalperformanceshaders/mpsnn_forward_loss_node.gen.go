@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNForwardLossNode */
 
 
-/* debug [class_header]: Header for MPSNNForwardLossNode */
+
+
 // The class instance for the [ForwardLossNode] class.
 var (
 	ForwardLossNodeClass     _ForwardLossNodeClass
@@ -30,16 +30,16 @@ func getForwardLossNodeClass() _ForwardLossNodeClass {
 type _ForwardLossNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ForwardLossNode */
+
+
 // An interface definition for the [ForwardLossNode] class.
 type IForwardLossNode interface {
 	IFilterNode
 	
-/* debug [class_interface_properties]: Properties for ForwardLossNode */
+
 	// properties:
 	Delta() objectivec.IObject
 	SetDelta(value objectivec.IObject)
@@ -59,10 +59,10 @@ type IForwardLossNode interface {
 	SetWeight(value objectivec.IObject)
 	ReduceAcrossBatch() objectivec.IObject
 	SetReduceAcrossBatch(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ForwardLossNode */
+
 	// methods:
 	GradientFilter()
 	GradientFilterWithSource(sourceGradient IImageNode) ILossGradientNode
@@ -70,14 +70,14 @@ type IForwardLossNode interface {
 	GradientFilters()
 	GradientFiltersWithSource(sourceGradient IImageNode) unsafe.Pointer
 	GradientFiltersWithSources(sourceGradient unsafe.Pointer) unsafe.Pointer
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ForwardLossNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (fc _ForwardLossNodeClass) Alloc() ForwardLossNode {
 	rv := objc.Send[ForwardLossNode](objc.ID(fc.class), objc.Sel("alloc"))
@@ -107,11 +107,11 @@ func (f_ ForwardLossNode) Autorelease() ForwardLossNode {
 func NewForwardLossNode() ForwardLossNode {
 	return getForwardLossNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ForwardLossNode */
+
+
 
 
 // [Full Topic]
@@ -126,11 +126,11 @@ func ForwardLossNodeFrom(ptr unsafe.Pointer) ForwardLossNode {
 		FilterNode: FilterNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ForwardLossNode */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/3131832-initwithsource
@@ -139,7 +139,7 @@ func NewForwardLossNodeWithSourceLabelsLossDescriptor(source IImageNode, labels 
 	rv := objc.Send[ForwardLossNode](instance.ID, objc.Sel("initWithSource:labels:lossDescriptor:"), source, labels, descriptor)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewForwardLossNodeWithSourceLabelsLossDescriptor */
+}
 
 
 // [Full Topic]
@@ -149,7 +149,7 @@ func NewForwardLossNodeWithSourceLabelsWeightsLossDescriptor(source IImageNode, 
 	rv := objc.Send[ForwardLossNode](instance.ID, objc.Sel("initWithSource:labels:weights:lossDescriptor:"), source, labels, weights, descriptor)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewForwardLossNodeWithSourceLabelsWeightsLossDescriptor */
+}
 
 
 // [Full Topic]
@@ -159,20 +159,20 @@ func NewForwardLossNodeWithSourcesLossDescriptor(sourceNodes unsafe.Pointer, des
 	rv := objc.Send[ForwardLossNode](instance.ID, objc.Sel("initWithSources:lossDescriptor:"), sourceNodes, descriptor)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewForwardLossNodeWithSourcesLossDescriptor */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ForwardLossNode */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/3131837-nodewithsource
 func (fc _ForwardLossNodeClass) NodeWithSourceLabelsLossDescriptor(source IImageNode, labels IImageNode, descriptor ICNNLossDescriptor) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(fc.class), objc.Sel("nodeWithSource:labels:lossDescriptor:"), source, labels, descriptor)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSourceLabelsLossDescriptor) */
+}
 
 
 // [Full Topic]
@@ -180,7 +180,7 @@ func (fc _ForwardLossNodeClass) NodeWithSourceLabelsLossDescriptor(source IImage
 func (fc _ForwardLossNodeClass) NodeWithSourceLabelsWeightsLossDescriptor(source IImageNode, labels IImageNode, weights IImageNode, descriptor ICNNLossDescriptor) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(fc.class), objc.Sel("nodeWithSource:labels:weights:lossDescriptor:"), source, labels, weights, descriptor)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSourceLabelsWeightsLossDescriptor) */
+}
 
 
 // [Full Topic]
@@ -188,24 +188,24 @@ func (fc _ForwardLossNodeClass) NodeWithSourceLabelsWeightsLossDescriptor(source
 func (fc _ForwardLossNodeClass) NodeWithSourcesLossDescriptor(sourceNodes unsafe.Pointer, descriptor ICNNLossDescriptor) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(fc.class), objc.Sel("nodeWithSources:lossDescriptor:"), sourceNodes, descriptor)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSourcesLossDescriptor) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for ForwardLossNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ForwardLossNode */
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/3131828-gradientfilter
 func (f_ ForwardLossNode) GradientFilter() {
 	objc.Send[objc.ID](f_.ID, objc.Sel("gradientFilter"))
-}/* debug [instance_methods/method]: GradientFilter */
+}
 
 
 // [Full Topic]
@@ -213,7 +213,7 @@ func (f_ ForwardLossNode) GradientFilter() {
 func (f_ ForwardLossNode) GradientFilterWithSource(sourceGradient IImageNode) ILossGradientNode {
 	rv := objc.Send[LossGradientNode](f_.ID, objc.Sel("gradientFilterWithSource:"), sourceGradient)
 	return rv
-}/* debug [instance_methods/method]: GradientFilterWithSource */
+}
 
 
 // [Full Topic]
@@ -221,14 +221,14 @@ func (f_ ForwardLossNode) GradientFilterWithSource(sourceGradient IImageNode) IL
 func (f_ ForwardLossNode) GradientFilterWithSources(sourceGradient unsafe.Pointer) ILossGradientNode {
 	rv := objc.Send[LossGradientNode](f_.ID, objc.Sel("gradientFilterWithSources:"), sourceGradient)
 	return rv
-}/* debug [instance_methods/method]: GradientFilterWithSources */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/3131830-gradientfilters
 func (f_ ForwardLossNode) GradientFilters() {
 	objc.Send[objc.ID](f_.ID, objc.Sel("gradientFilters"))
-}/* debug [instance_methods/method]: GradientFilters */
+}
 
 
 // [Full Topic]
@@ -236,7 +236,7 @@ func (f_ ForwardLossNode) GradientFilters() {
 func (f_ ForwardLossNode) GradientFiltersWithSource(sourceGradient IImageNode) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("gradientFiltersWithSource:"), sourceGradient)
 	return rv
-}/* debug [instance_methods/method]: GradientFiltersWithSource */
+}
 
 
 // [Full Topic]
@@ -244,27 +244,27 @@ func (f_ ForwardLossNode) GradientFiltersWithSource(sourceGradient IImageNode) u
 func (f_ ForwardLossNode) GradientFiltersWithSources(sourceGradient unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("gradientFiltersWithSources:"), sourceGradient)
 	return rv
-}/* debug [instance_methods/method]: GradientFiltersWithSources */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for ForwardLossNode */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/3131826-delta
 func (f_ ForwardLossNode) Delta() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](f_.ID, objc.Sel("delta"))
 	return rv
-}/* debug [instance_properties/getter]: delta */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/3131826-delta
 func (f_ ForwardLossNode) SetDelta(value objectivec.IObject) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelta:"), value)
-}/* debug [instance_properties/setter]: delta */
+}
 
 
 // [Full Topic]
@@ -272,14 +272,14 @@ func (f_ ForwardLossNode) SetDelta(value objectivec.IObject) {
 func (f_ ForwardLossNode) Epsilon() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](f_.ID, objc.Sel("epsilon"))
 	return rv
-}/* debug [instance_properties/getter]: epsilon */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/3131827-epsilon
 func (f_ ForwardLossNode) SetEpsilon(value objectivec.IObject) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setEpsilon:"), value)
-}/* debug [instance_properties/setter]: epsilon */
+}
 
 
 // [Full Topic]
@@ -287,14 +287,14 @@ func (f_ ForwardLossNode) SetEpsilon(value objectivec.IObject) {
 func (f_ ForwardLossNode) LabelSmoothing() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](f_.ID, objc.Sel("labelSmoothing"))
 	return rv
-}/* debug [instance_properties/getter]: labelSmoothing */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/3131835-labelsmoothing
 func (f_ ForwardLossNode) SetLabelSmoothing(value objectivec.IObject) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLabelSmoothing:"), value)
-}/* debug [instance_properties/setter]: labelSmoothing */
+}
 
 
 // [Full Topic]
@@ -302,14 +302,14 @@ func (f_ ForwardLossNode) SetLabelSmoothing(value objectivec.IObject) {
 func (f_ ForwardLossNode) LossType() CNNLossType get /* not a class type */ {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("lossType"))
 	return rv
-}/* debug [instance_properties/getter]: lossType */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/3131836-losstype
 func (f_ ForwardLossNode) SetLossType(value CNNLossType get /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLossType:"), value)
-}/* debug [instance_properties/setter]: lossType */
+}
 
 
 // [Full Topic]
@@ -317,14 +317,14 @@ func (f_ ForwardLossNode) SetLossType(value CNNLossType get /* not a class type 
 func (f_ ForwardLossNode) NumberOfClasses() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](f_.ID, objc.Sel("numberOfClasses"))
 	return rv
-}/* debug [instance_properties/getter]: numberOfClasses */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/3131840-numberofclasses
 func (f_ ForwardLossNode) SetNumberOfClasses(value objectivec.IObject) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setNumberOfClasses:"), value)
-}/* debug [instance_properties/setter]: numberOfClasses */
+}
 
 
 // [Full Topic]
@@ -332,14 +332,14 @@ func (f_ ForwardLossNode) SetNumberOfClasses(value objectivec.IObject) {
 func (f_ ForwardLossNode) PropertyCallBack() LossCallback get set /* not a class type */ {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("propertyCallBack"))
 	return rv
-}/* debug [instance_properties/getter]: propertyCallBack */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/3131841-propertycallback
 func (f_ ForwardLossNode) SetPropertyCallBack(value LossCallback get set /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPropertyCallBack:"), value)
-}/* debug [instance_properties/setter]: propertyCallBack */
+}
 
 
 // [Full Topic]
@@ -347,14 +347,14 @@ func (f_ ForwardLossNode) SetPropertyCallBack(value LossCallback get set /* not 
 func (f_ ForwardLossNode) ReductionType() CNNReductionType get /* not a class type */ {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("reductionType"))
 	return rv
-}/* debug [instance_properties/getter]: reductionType */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/3131842-reductiontype
 func (f_ ForwardLossNode) SetReductionType(value CNNReductionType get /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setReductionType:"), value)
-}/* debug [instance_properties/setter]: reductionType */
+}
 
 
 // [Full Topic]
@@ -362,14 +362,14 @@ func (f_ ForwardLossNode) SetReductionType(value CNNReductionType get /* not a c
 func (f_ ForwardLossNode) Weight() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](f_.ID, objc.Sel("weight"))
 	return rv
-}/* debug [instance_properties/getter]: weight */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/3131843-weight
 func (f_ ForwardLossNode) SetWeight(value objectivec.IObject) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setWeight:"), value)
-}/* debug [instance_properties/setter]: weight */
+}
 
 
 // [Full Topic]
@@ -377,18 +377,18 @@ func (f_ ForwardLossNode) SetWeight(value objectivec.IObject) {
 func (f_ ForwardLossNode) ReduceAcrossBatch() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](f_.ID, objc.Sel("reduceAcrossBatch"))
 	return rv
-}/* debug [instance_properties/getter]: reduceAcrossBatch */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/3547987-reduceacrossbatch
 func (f_ ForwardLossNode) SetReduceAcrossBatch(value objectivec.IObject) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setReduceAcrossBatch:"), value)
-}/* debug [instance_properties/setter]: reduceAcrossBatch */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSNNForwardLossNode */
+
+
+
 
 

@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNReshape */
 
 
-/* debug [class_header]: Header for MPSNNReshape */
+
+
 // The class instance for the [Reshape] class.
 var (
 	ReshapeClass     _ReshapeClass
@@ -31,21 +30,21 @@ func getReshapeClass() _ReshapeClass {
 type _ReshapeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for Reshape */
+
+
 // An interface definition for the [Reshape] class.
 type IReshape interface {
 	ICNNKernel
 	
-/* debug [class_interface_properties]: Properties for Reshape */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for Reshape */
+
 	// methods:
 	EncodeBatch()
 	EncodeBatchToCommandBufferSourceImagesDestinationStatesDestinationStateIsTemporaryReshapedWidthReshapedHeightReshapedFeatureChannels(commandBuffer unsafe.Pointer, sourceImages ImageBatch /* not a class type */, outStates StateBatch /* not a class type */, isTemporary bool, reshapedWidth uint, reshapedHeight uint, reshapedFeatureChannels uint) ImageBatch /* not a class type */
@@ -53,14 +52,14 @@ type IReshape interface {
 	Encode()
 	EncodeToCommandBufferSourceImageDestinationStateDestinationStateIsTemporaryReshapedWidthReshapedHeightReshapedFeatureChannels(commandBuffer unsafe.Pointer, sourceImage IImage, outState objectivec.IObject, isTemporary bool, reshapedWidth uint, reshapedHeight uint, reshapedFeatureChannels uint) IImage
 	EncodeToCommandBufferSourceImageReshapedWidthReshapedHeightReshapedFeatureChannels(commandBuffer unsafe.Pointer, sourceImage IImage, reshapedWidth uint, reshapedHeight uint, reshapedFeatureChannels uint) IImage
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for Reshape */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _ReshapeClass) Alloc() Reshape {
 	rv := objc.Send[Reshape](objc.ID(rc.class), objc.Sel("alloc"))
@@ -90,11 +89,11 @@ func (r_ Reshape) Autorelease() Reshape {
 func NewReshape() Reshape {
 	return getReshapeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for Reshape */
+
+
 // The base class for reshape operations.
 
 
@@ -114,11 +113,11 @@ func ReshapeFrom(ptr unsafe.Pointer) Reshape {
 		CNNKernel: CNNKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for Reshape */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreshape/2951930-initwithcoder
@@ -127,7 +126,7 @@ func NewReshapeWithCoderDevice(aDecoder foundation.Coder, device unsafe.Pointer)
 	rv := objc.Send[Reshape](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReshapeWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -137,29 +136,29 @@ func NewReshapeWithDevice(device unsafe.Pointer) Reshape {
 	rv := objc.Send[Reshape](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReshapeWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for Reshape */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for Reshape */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for Reshape */
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreshape/3547989-encodebatch
 func (r_ Reshape) EncodeBatch() {
 	objc.Send[objc.ID](r_.ID, objc.Sel("encodeBatch"))
-}/* debug [instance_methods/method]: EncodeBatch */
+}
 
 
 // [Full Topic]
@@ -167,7 +166,7 @@ func (r_ Reshape) EncodeBatch() {
 func (r_ Reshape) EncodeBatchToCommandBufferSourceImagesDestinationStatesDestinationStateIsTemporaryReshapedWidthReshapedHeightReshapedFeatureChannels(commandBuffer unsafe.Pointer, sourceImages ImageBatch /* not a class type */, outStates StateBatch /* not a class type */, isTemporary bool, reshapedWidth uint, reshapedHeight uint, reshapedFeatureChannels uint) ImageBatch /* not a class type */ {
 	rv := objc.Send[ImageBatch](r_.ID, objc.Sel("encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:reshapedWidth:reshapedHeight:reshapedFeatureChannels:"), commandBuffer, sourceImages, outStates, isTemporary, reshapedWidth, reshapedHeight, reshapedFeatureChannels)
 	return rv
-}/* debug [instance_methods/method]: EncodeBatchToCommandBufferSourceImagesDestinationStatesDestinationStateIsTemporaryReshapedWidthReshapedHeightReshapedFeatureChannels */
+}
 
 
 // [Full Topic]
@@ -175,14 +174,14 @@ func (r_ Reshape) EncodeBatchToCommandBufferSourceImagesDestinationStatesDestina
 func (r_ Reshape) EncodeBatchToCommandBufferSourceImagesReshapedWidthReshapedHeightReshapedFeatureChannels(commandBuffer unsafe.Pointer, sourceImages ImageBatch /* not a class type */, reshapedWidth uint, reshapedHeight uint, reshapedFeatureChannels uint) ImageBatch /* not a class type */ {
 	rv := objc.Send[ImageBatch](r_.ID, objc.Sel("encodeBatchToCommandBuffer:sourceImages:reshapedWidth:reshapedHeight:reshapedFeatureChannels:"), commandBuffer, sourceImages, reshapedWidth, reshapedHeight, reshapedFeatureChannels)
 	return rv
-}/* debug [instance_methods/method]: EncodeBatchToCommandBufferSourceImagesReshapedWidthReshapedHeightReshapedFeatureChannels */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreshape/3547991-encode
 func (r_ Reshape) Encode() {
 	objc.Send[objc.ID](r_.ID, objc.Sel("encode"))
-}/* debug [instance_methods/method]: Encode */
+}
 
 
 // [Full Topic]
@@ -190,7 +189,7 @@ func (r_ Reshape) Encode() {
 func (r_ Reshape) EncodeToCommandBufferSourceImageDestinationStateDestinationStateIsTemporaryReshapedWidthReshapedHeightReshapedFeatureChannels(commandBuffer unsafe.Pointer, sourceImage IImage, outState objectivec.IObject, isTemporary bool, reshapedWidth uint, reshapedHeight uint, reshapedFeatureChannels uint) IImage {
 	rv := objc.Send[Image](r_.ID, objc.Sel("encodeToCommandBuffer:sourceImage:destinationState:destinationStateIsTemporary:reshapedWidth:reshapedHeight:reshapedFeatureChannels:"), commandBuffer, sourceImage, outState, isTemporary, reshapedWidth, reshapedHeight, reshapedFeatureChannels)
 	return rv
-}/* debug [instance_methods/method]: EncodeToCommandBufferSourceImageDestinationStateDestinationStateIsTemporaryReshapedWidthReshapedHeightReshapedFeatureChannels */
+}
 
 
 // [Full Topic]
@@ -198,16 +197,16 @@ func (r_ Reshape) EncodeToCommandBufferSourceImageDestinationStateDestinationSta
 func (r_ Reshape) EncodeToCommandBufferSourceImageReshapedWidthReshapedHeightReshapedFeatureChannels(commandBuffer unsafe.Pointer, sourceImage IImage, reshapedWidth uint, reshapedHeight uint, reshapedFeatureChannels uint) IImage {
 	rv := objc.Send[Image](r_.ID, objc.Sel("encodeToCommandBuffer:sourceImage:reshapedWidth:reshapedHeight:reshapedFeatureChannels:"), commandBuffer, sourceImage, reshapedWidth, reshapedHeight, reshapedFeatureChannels)
 	return rv
-}/* debug [instance_methods/method]: EncodeToCommandBufferSourceImageReshapedWidthReshapedHeightReshapedFeatureChannels */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for Reshape */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNReshape */
+
+
+
+
+
 
 

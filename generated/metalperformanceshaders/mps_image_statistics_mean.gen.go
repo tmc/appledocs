@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSImageStatisticsMean */
 
 
-/* debug [class_header]: Header for MPSImageStatisticsMean */
+
+
 // The class instance for the [ImageStatisticsMean] class.
 var (
 	ImageStatisticsMeanClass     _ImageStatisticsMeanClass
@@ -31,32 +30,32 @@ func getImageStatisticsMeanClass() _ImageStatisticsMeanClass {
 type _ImageStatisticsMeanClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ImageStatisticsMean */
+
+
 // An interface definition for the [ImageStatisticsMean] class.
 type IImageStatisticsMean interface {
 	IUnaryImageKernel
 	
-/* debug [class_interface_properties]: Properties for ImageStatisticsMean */
+
 	// properties:
 	ClipRectSource() Region get set /* not a class type */
 	SetClipRectSource(value Region get set /* not a class type */)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ImageStatisticsMean */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ImageStatisticsMean */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageStatisticsMeanClass) Alloc() ImageStatisticsMean {
 	rv := objc.Send[ImageStatisticsMean](objc.ID(ic.class), objc.Sel("alloc"))
@@ -86,11 +85,11 @@ func (i_ ImageStatisticsMean) Autorelease() ImageStatisticsMean {
 func NewImageStatisticsMean() ImageStatisticsMean {
 	return getImageStatisticsMeanClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ImageStatisticsMean */
+
+
 // A kernel that computes the mean for a given region of an image.
 
 
@@ -110,11 +109,11 @@ func ImageStatisticsMeanFrom(ptr unsafe.Pointer) ImageStatisticsMean {
 		UnaryImageKernel: UnaryImageKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ImageStatisticsMean */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagestatisticsmean/2867124-initwithcoder
@@ -123,7 +122,7 @@ func NewImageStatisticsMeanWithCoderDevice(aDecoder foundation.Coder, device uns
 	rv := objc.Send[ImageStatisticsMean](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageStatisticsMeanWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -133,46 +132,46 @@ func NewImageStatisticsMeanWithDevice(device unsafe.Pointer) ImageStatisticsMean
 	rv := objc.Send[ImageStatisticsMean](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageStatisticsMeanWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ImageStatisticsMean */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ImageStatisticsMean */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ImageStatisticsMean */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ImageStatisticsMean */
+
+
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagestatisticsmean/2867093-cliprectsource
 func (i_ ImageStatisticsMean) ClipRectSource() Region get set /* not a class type */ {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("clipRectSource"))
 	return rv
-}/* debug [instance_properties/getter]: clipRectSource */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagestatisticsmean/2867093-cliprectsource
 func (i_ ImageStatisticsMean) SetClipRectSource(value Region get set /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setClipRectSource:"), value)
-}/* debug [instance_properties/setter]: clipRectSource */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSImageStatisticsMean */
+
+
+
 
 

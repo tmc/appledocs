@@ -3,8 +3,10 @@
 package webkit
 
 import (
-	"github.com/tmc/appledocs/generated/foundation"
+
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PWebEditingDelegate is the WebEditingDelegate protocol interface.
@@ -51,21 +53,21 @@ type PWebEditingDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type WebEditingDelegate struct {
-	_UndoManagerForWebView                                               func(webView IWebView) foundation.UndoManager
-	_WebViewDoCommandBySelector                                          func(webView IWebView, selector objc.SEL) bool
-	_WebViewShouldApplyStyleToElementsInDOMRange                         func(webView IWebView, style IDOMCSSStyleDeclaration, range_ IDOMRange) bool
-	_WebViewShouldBeginEditingInDOMRange                                 func(webView IWebView, range_ IDOMRange) bool
+	_UndoManagerForWebView func(webView IWebView) foundation.UndoManager
+	_WebViewDoCommandBySelector func(webView IWebView, selector objc.SEL) bool
+	_WebViewShouldApplyStyleToElementsInDOMRange func(webView IWebView, style IDOMCSSStyleDeclaration, range_ IDOMRange) bool
+	_WebViewShouldBeginEditingInDOMRange func(webView IWebView, range_ IDOMRange) bool
 	_WebViewShouldChangeSelectedDOMRangeToDOMRangeAffinityStillSelecting func(webView IWebView, currentRange IDOMRange, proposedRange IDOMRange, selectionAffinity SelectionAffinity /* not a class type */, flag bool) bool
-	_WebViewShouldChangeTypingStyleToStyle                               func(webView IWebView, currentStyle IDOMCSSStyleDeclaration, proposedStyle IDOMCSSStyleDeclaration) bool
-	_WebViewShouldDeleteDOMRange                                         func(webView IWebView, range_ IDOMRange) bool
-	_WebViewShouldEndEditingInDOMRange                                   func(webView IWebView, range_ IDOMRange) bool
-	_WebViewShouldInsertNodeReplacingDOMRangeGivenAction                 func(webView IWebView, node IDOMNode, range_ IDOMRange, action WebViewInsertAction) bool
-	_WebViewShouldInsertTextReplacingDOMRangeGivenAction                 func(webView IWebView, text objc.IObject /* cross-framework: NSString */, range_ IDOMRange, action WebViewInsertAction) bool
-	_WebViewDidBeginEditing                                              func(notification foundation.Notification)
-	_WebViewDidChange                                                    func(notification foundation.Notification)
-	_WebViewDidChangeSelection                                           func(notification foundation.Notification)
-	_WebViewDidChangeTypingStyle                                         func(notification foundation.Notification)
-	_WebViewDidEndEditing                                                func(notification foundation.Notification)
+	_WebViewShouldChangeTypingStyleToStyle func(webView IWebView, currentStyle IDOMCSSStyleDeclaration, proposedStyle IDOMCSSStyleDeclaration) bool
+	_WebViewShouldDeleteDOMRange func(webView IWebView, range_ IDOMRange) bool
+	_WebViewShouldEndEditingInDOMRange func(webView IWebView, range_ IDOMRange) bool
+	_WebViewShouldInsertNodeReplacingDOMRangeGivenAction func(webView IWebView, node IDOMNode, range_ IDOMRange, action WebViewInsertAction) bool
+	_WebViewShouldInsertTextReplacingDOMRangeGivenAction func(webView IWebView, text objc.IObject /* cross-framework: NSString */, range_ IDOMRange, action WebViewInsertAction) bool
+	_WebViewDidBeginEditing func(notification foundation.Notification)
+	_WebViewDidChange func(notification foundation.Notification)
+	_WebViewDidChangeSelection func(notification foundation.Notification)
+	_WebViewDidChangeTypingStyle func(notification foundation.Notification)
+	_WebViewDidEndEditing func(notification foundation.Notification)
 }
 
 // SetUndoManagerForWebView sets the handler for the UndoManagerForWebView delegate method.

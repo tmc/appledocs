@@ -5,12 +5,14 @@
 package visionkit
 
 import (
-	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/foundation"
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for DocumentCameraScan
+
 
 // Requests the image of a page at a specified index.
 //
@@ -40,3 +42,8 @@ func (d_ DocumentCameraScan) Title() objc.IObject /* cross-framework: NSString *
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("title"))
 	return rv
 }
+
+
+
+
+

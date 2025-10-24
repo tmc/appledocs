@@ -8,3 +8,4 @@ package soundanalysis
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassifierIdentifier
 // SNClassifierIdentifier is a string typedef
 type SNClassifierIdentifier = string
+

@@ -15,3 +15,4 @@ var VZVirtioConsoleDeviceDelegateProtocol *objc.Protocol
 func init() {
 	VZVirtioConsoleDeviceDelegateProtocol = objc.GetProtocol("VZVirtioConsoleDeviceDelegate")
 }
+

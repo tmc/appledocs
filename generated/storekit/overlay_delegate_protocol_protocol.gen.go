@@ -3,7 +3,10 @@
 package storekit
 
 import (
+
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/coretelephony"
 )
 
 // POverlayDelegate is the SKOverlayDelegate protocol interface.
@@ -36,10 +39,10 @@ type POverlayDelegate interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type OverlayDelegate struct {
 	_StoreOverlayDidFailToLoadWithError func(overlay ISKOverlay, error_ objc.IObject /* cross-framework: Error */)
-	_StoreOverlayDidFinishDismissal     func(overlay ISKOverlay, transitionContext ISKOverlayTransitionContext)
-	_StoreOverlayDidFinishPresentation  func(overlay ISKOverlay, transitionContext ISKOverlayTransitionContext)
-	_StoreOverlayWillStartDismissal     func(overlay ISKOverlay, transitionContext ISKOverlayTransitionContext)
-	_StoreOverlayWillStartPresentation  func(overlay ISKOverlay, transitionContext ISKOverlayTransitionContext)
+	_StoreOverlayDidFinishDismissal func(overlay ISKOverlay, transitionContext ISKOverlayTransitionContext)
+	_StoreOverlayDidFinishPresentation func(overlay ISKOverlay, transitionContext ISKOverlayTransitionContext)
+	_StoreOverlayWillStartDismissal func(overlay ISKOverlay, transitionContext ISKOverlayTransitionContext)
+	_StoreOverlayWillStartPresentation func(overlay ISKOverlay, transitionContext ISKOverlayTransitionContext)
 }
 
 // SetStoreOverlayDidFailToLoadWithError sets the handler for the StoreOverlayDidFailToLoadWithError delegate method.

@@ -9,6 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	CachingOptions = _undefined // referenced in Virtualization
-	String         = _undefined // referenced in Virtualization
+	Size = _undefined // referenced in Virtualization
+	String = _undefined // referenced in Virtualization
 )
+
+

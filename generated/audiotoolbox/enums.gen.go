@@ -2,9 +2,9 @@
 
 package audiotoolbox
 
-/* debug [enums.gen.go]: Generating 52 enums for AudioToolbox */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum AUAudioMixRenderingStyle (10 cases) */
+
 // AUAudioMixRenderingStyle enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioMixRenderingStyle
@@ -43,7 +43,7 @@ const (
 	kAudioMixRenderingStyle_StudioForegroundStem AUAudioMixRenderingStyle = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CASoundStageSize (4 cases) */
+
 // CASoundStageSize - Configure the distribution of audio channels in 3D space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASoundStageSize
@@ -68,7 +68,7 @@ const (
 	CASoundStageSizeSmall CASoundStageSize = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AU3DMixerAttenuationCurve (4 cases) */
+
 // AU3DMixerAttenuationCurve enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AU3DMixerAttenuationCurve
@@ -93,7 +93,7 @@ const (
 	k3DMixerAttenuationCurve_Power AU3DMixerAttenuationCurve = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AU3DMixerRenderingFlags (7 cases) */
+
 // AU3DMixerRenderingFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AU3DMixerRenderingFlags
@@ -123,7 +123,7 @@ const (
 	k3DMixerRenderingFlags_LinearDistanceAttenuation AU3DMixerRenderingFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AUAudioUnitBusType (2 cases) */
+
 // AUAudioUnitBusType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusType
@@ -140,7 +140,7 @@ const (
 	AUAudioUnitBusTypeOutput AUAudioUnitBusType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioBalanceFadeType (2 cases) */
+
 // AudioBalanceFadeType - Identifiers for audio balance fade types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioBalanceFadeType
@@ -157,7 +157,7 @@ const (
 	kAudioBalanceFadeType_MaxUnityGain AudioBalanceFadeType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioBytePacketTranslationFlags (1 cases) */
+
 // AudioBytePacketTranslationFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioBytePacketTranslationFlags
@@ -170,7 +170,7 @@ const (
 	kBytePacketTranslationFlag_IsEstimate AudioBytePacketTranslationFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioComponentFlags (5 cases) */
+
 // AudioComponentFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioComponentFlags
@@ -194,7 +194,7 @@ const (
 	kAudioComponentFlag_Unsearchable AudioComponentFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioComponentInstantiationOptions (3 cases) */
+
 // AudioComponentInstantiationOptions enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioComponentInstantiationOptions
@@ -212,7 +212,7 @@ const (
 	kAudioComponentInstantiation_LoadOutOfProcess AudioComponentInstantiationOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioComponentValidationResult (6 cases) */
+
 // AudioComponentValidationResult enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioComponentValidationResult
@@ -239,7 +239,7 @@ const (
 	kAudioComponentValidationResult_Unknown AudioComponentValidationResult = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioConverterOptions (1 cases) */
+
 // AudioConverterOptions enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioConverterOptions
@@ -251,7 +251,7 @@ const (
 	kAudioConverterOption_Unbuffered AudioConverterOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioFileFlags (2 cases) */
+
 // AudioFileFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFileFlags
@@ -268,7 +268,7 @@ const (
 	kAudioFileFlags_EraseFile AudioFileFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioFilePermissions (3 cases) */
+
 // AudioFilePermissions - Flags for use when opening an audio file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFilePermissions
@@ -289,7 +289,7 @@ const (
 	kAudioFileWritePermission AudioFilePermissions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioFileRegionFlags (3 cases) */
+
 // AudioFileRegionFlags - Flags that specify a playback direction for an audio file region structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFileRegionFlags
@@ -310,7 +310,7 @@ const (
 	kAudioFileRegionFlag_PlayForward AudioFileRegionFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioFileStreamParseFlags (1 cases) */
+
 // AudioFileStreamParseFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFileStreamParseFlags
@@ -323,7 +323,7 @@ const (
 	kAudioFileStreamParseFlag_Discontinuity AudioFileStreamParseFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioFileStreamPropertyFlags (2 cases) */
+
 // AudioFileStreamPropertyFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFileStreamPropertyFlags
@@ -340,7 +340,7 @@ const (
 	kAudioFileStreamPropertyFlag_PropertyIsCached AudioFileStreamPropertyFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioFileStreamSeekFlags (1 cases) */
+
 // AudioFileStreamSeekFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFileStreamSeekFlags
@@ -353,7 +353,7 @@ const (
 	kAudioFileStreamSeekFlag_OffsetIsEstimated AudioFileStreamSeekFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioPanningMode (2 cases) */
+
 // AudioPanningMode - Identifiers for audio panning algorithms.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioPanningMode
@@ -370,7 +370,7 @@ const (
 	kPanningMode_VectorBasedPanning AudioPanningMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioQueueProcessingTapFlags (5 cases) */
+
 // AudioQueueProcessingTapFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioQueueProcessingTapFlags
@@ -394,7 +394,7 @@ const (
 	kAudioQueueProcessingTap_StartOfStream AudioQueueProcessingTapFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioSettingsFlags (4 cases) */
+
 // AudioSettingsFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioSettingsFlags
@@ -415,7 +415,7 @@ const (
 	kAudioSettingsFlags_UserInterfaceParameter AudioSettingsFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioUnitEventType (4 cases) */
+
 // AudioUnitEventType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioUnitEventType
@@ -436,7 +436,7 @@ const (
 	kAudioUnitEvent_PropertyChange AudioUnitEventType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioUnitParameterOptions (22 cases) */
+
 // AudioUnitParameterOptions - Value options for audio unit parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioUnitParameterOptions
@@ -513,7 +513,7 @@ const (
 	kAudioUnitParameterFlag_ValuesHaveStrings AudioUnitParameterOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioUnitParameterUnit (28 cases) */
+
 // AudioUnitParameterUnit - The unit-of-measure for an audio unit parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioUnitParameterUnit
@@ -633,7 +633,7 @@ const (
 	kAudioUnitParameterUnit_Seconds AudioUnitParameterUnit = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioUnitRemoteControlEvent (3 cases) */
+
 // AudioUnitRemoteControlEvent enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioUnitRemoteControlEvent
@@ -651,7 +651,7 @@ const (
 	kAudioUnitRemoteControlEvent_ToggleRecord AudioUnitRemoteControlEvent = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AudioUnitRenderActionFlags (8 cases) */
+
 // AudioUnitRenderActionFlags - Flags for configuring audio unit rendering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioUnitRenderActionFlags
@@ -692,7 +692,7 @@ const (
 	kAudioUnitRenderAction_PreRender AudioUnitRenderActionFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AUHostTransportStateFlags (4 cases) */
+
 // AUHostTransportStateFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUHostTransportStateFlags
@@ -717,7 +717,7 @@ const (
 	AUHostTransportStateRecording AUHostTransportStateFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AUParameterAutomationEventType (3 cases) */
+
 // AUParameterAutomationEventType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterAutomationEventType
@@ -735,7 +735,7 @@ const (
 	AUParameterAutomationEventTypeValue AUParameterAutomationEventType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AUParameterEventType (2 cases) */
+
 // AUParameterEventType - Audio unit parameter event types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterEventType
@@ -752,7 +752,7 @@ const (
 	kParameterEvent_Ramped AUParameterEventType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AUParameterMIDIMappingFlags (6 cases) */
+
 // AUParameterMIDIMappingFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterMIDIMappingFlags
@@ -779,7 +779,7 @@ const (
 	kAUParameterMIDIMapping_Toggle AUParameterMIDIMappingFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AURenderEventType (5 cases) */
+
 // AURenderEventType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AURenderEventType
@@ -807,7 +807,7 @@ const (
 	AURenderEventParameterRamp AURenderEventType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AUReverbRoomType (13 cases) */
+
 // AUReverbRoomType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUReverbRoomType
@@ -855,7 +855,7 @@ const (
 	kReverbRoomType_SmallRoom AUReverbRoomType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AUScheduledAudioSliceFlags (6 cases) */
+
 // AUScheduledAudioSliceFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUScheduledAudioSliceFlags
@@ -882,7 +882,7 @@ const (
 	kScheduledAudioSliceFlag_Loop AUScheduledAudioSliceFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AUSpatializationAlgorithm (8 cases) */
+
 // AUSpatializationAlgorithm enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatializationAlgorithm
@@ -915,7 +915,7 @@ const (
 	kSpatializationAlgorithm_VectorBasedPanning AUSpatializationAlgorithm = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AUSpatialMixerAttenuationCurve (4 cases) */
+
 // AUSpatialMixerAttenuationCurve enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerAttenuationCurve
@@ -936,7 +936,7 @@ const (
 	kSpatialMixerAttenuationCurve_Power AUSpatialMixerAttenuationCurve = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AUSpatialMixerOutputType (2 cases) */
+
 // AUSpatialMixerOutputType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerOutputType
@@ -951,7 +951,7 @@ const (
 	kSpatialMixerOutputType_Headphones AUSpatialMixerOutputType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AUSpatialMixerPersonalizedHRTFMode (3 cases) */
+
 // AUSpatialMixerPersonalizedHRTFMode enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerPersonalizedHRTFMode
@@ -969,7 +969,7 @@ const (
 	kSpatialMixerPersonalizedHRTFMode_On AUSpatialMixerPersonalizedHRTFMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AUSpatialMixerPointSourceInHeadMode (2 cases) */
+
 // AUSpatialMixerPointSourceInHeadMode enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerPointSourceInHeadMode
@@ -984,7 +984,7 @@ const (
 	kSpatialMixerPointSourceInHeadMode_Mono AUSpatialMixerPointSourceInHeadMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AUSpatialMixerRenderingFlags (2 cases) */
+
 // AUSpatialMixerRenderingFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerRenderingFlags
@@ -999,7 +999,7 @@ const (
 	kSpatialMixerRenderingFlags_InterAuralDelay AUSpatialMixerRenderingFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AUSpatialMixerSourceMode (4 cases) */
+
 // AUSpatialMixerSourceMode enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerSourceMode
@@ -1020,7 +1020,7 @@ const (
 	kSpatialMixerSourceMode_SpatializeIfMono AUSpatialMixerSourceMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AUVoiceIOOtherAudioDuckingLevel (4 cases) */
+
 // AUVoiceIOOtherAudioDuckingLevel - The ducking level to apply to other non-voice audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUVoiceIOOtherAudioDuckingLevel
@@ -1045,7 +1045,7 @@ const (
 	kAUVoiceIOOtherAudioDuckingLevelMin AUVoiceIOOtherAudioDuckingLevel = 0
 )
 
-/* debug [enums.gen.go]: Processing enum AUVoiceIOSpeechActivityEvent (2 cases) */
+
 // AUVoiceIOSpeechActivityEvent - Constants that indicate the state of muted speech.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUVoiceIOSpeechActivityEvent
@@ -1062,7 +1062,7 @@ const (
 	kAUVoiceIOSpeechActivityHasStarted AUVoiceIOSpeechActivityEvent = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CAClockMessage (7 cases) */
+
 // CAClockMessage enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockMessage
@@ -1092,7 +1092,7 @@ const (
 	kCAClockMessage_WrongSMPTEFormat CAClockMessage = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CAClockPropertyID (13 cases) */
+
 // CAClockPropertyID enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockPropertyID
@@ -1140,7 +1140,7 @@ const (
 	kCAClockProperty_TimebaseSource CAClockPropertyID = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CAClockSyncMode (3 cases) */
+
 // CAClockSyncMode enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockSyncMode
@@ -1158,7 +1158,7 @@ const (
 	kCAClockSyncMode_MTCTransport CAClockSyncMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CAClockTimebase (3 cases) */
+
 // CAClockTimebase enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockTimebase
@@ -1176,7 +1176,7 @@ const (
 	kCAClockTimebase_HostTime CAClockTimebase = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CAClockTimeFormat (7 cases) */
+
 // CAClockTimeFormat enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockTimeFormat
@@ -1206,7 +1206,7 @@ const (
 	kCAClockTimeFormat_SMPTETime CAClockTimeFormat = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CAFFormatFlags (2 cases) */
+
 // CAFFormatFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFFormatFlags
@@ -1221,7 +1221,7 @@ const (
 	kCAFLinearPCMFormatFlagIsLittleEndian CAFFormatFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum CAFRegionFlags (3 cases) */
+
 // CAFRegionFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFRegionFlags
@@ -1239,7 +1239,7 @@ const (
 	kCAFRegionFlag_PlayForward CAFRegionFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MusicSequenceFileFlags (2 cases) */
+
 // MusicSequenceFileFlags - Flags that configure the behavior of the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/MusicSequenceFileFlags
@@ -1255,7 +1255,7 @@ const (
 	kMusicSequenceFileFlags_Default MusicSequenceFileFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MusicSequenceFileTypeID (3 cases) */
+
 // MusicSequenceFileTypeID - The various types of files that can be parsed by a music sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/MusicSequenceFileTypeID
@@ -1275,7 +1275,7 @@ const (
 	kMusicSequenceFile_MIDIType MusicSequenceFileTypeID = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MusicSequenceLoadFlags (2 cases) */
+
 // MusicSequenceLoadFlags - Flags used to configure the behavior of the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/MusicSequenceLoadFlags
@@ -1291,7 +1291,7 @@ const (
 	kMusicSequenceLoadSMF_PreserveTracks MusicSequenceLoadFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MusicSequenceType (3 cases) */
+
 // MusicSequenceType - The various types of music sequences.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/MusicSequenceType

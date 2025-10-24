@@ -18,12 +18,12 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/NSConnectionDelegate
 type PConnectionDelegate interface {
 	// Required methods
-	AuthenticateComponentsWithData(components IArray, signature IData) bool/* debug [protocol_interface/required_method]: AuthenticateComponentsWithData */
-	AuthenticationDataForComponents(components IArray) Data/* debug [protocol_interface/required_method]: AuthenticationDataForComponents */
-	ConnectionHandleRequest(connection IConnection, doreq IDistantObjectRequest) bool/* debug [protocol_interface/required_method]: ConnectionHandleRequest */
-	ConnectionShouldMakeNewConnection(ancestor IConnection, conn IConnection) bool/* debug [protocol_interface/required_method]: ConnectionShouldMakeNewConnection */
-	CreateConversationForConnection(conn IConnection) objc.ID/* debug [protocol_interface/required_method]: CreateConversationForConnection */
-	MakeNewConnectionSender(conn IConnection, ancestor IConnection) bool/* debug [protocol_interface/required_method]: MakeNewConnectionSender */
+	AuthenticateComponentsWithData(components IArray, signature IData) bool
+	AuthenticationDataForComponents(components IArray) Data
+	ConnectionHandleRequest(connection IConnection, doreq IDistantObjectRequest) bool
+	ConnectionShouldMakeNewConnection(ancestor IConnection, conn IConnection) bool
+	CreateConversationForConnection(conn IConnection) objc.ID
+	MakeNewConnectionSender(conn IConnection, ancestor IConnection) bool
 }
 
 // ConnectionDelegate is a delegate implementation builder for the PConnectionDelegate protocol.

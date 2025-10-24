@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class DOMHTMLCollection */
+
 
 /* debug [class_header]: Header for DOMHTMLCollection */
 // The class instance for the [DOMHTMLCollection] class.
@@ -28,26 +31,29 @@ func getDOMHTMLCollectionClass() _DOMHTMLCollectionClass {
 type _DOMHTMLCollectionClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMHTMLCollection */
 // An interface definition for the [DOMHTMLCollection] class.
 type IDOMHTMLCollection interface {
 	IDOMObject
-
-	/* debug [class_interface_properties]: Properties for DOMHTMLCollection */
+	
+/* debug [class_interface_properties]: Properties for DOMHTMLCollection */
 	// properties:
-	Length() unsafe.Pointer
-	/* debug [class_interface_properties]: End properties */
+	Length() objectivec.IObject
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMHTMLCollection */
+	
+/* debug [class_interface_methods]: Methods for DOMHTMLCollection */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMHTMLCollection */
 // Alloc allocates a new instance without initialization.
@@ -79,10 +85,12 @@ func (d_ DOMHTMLCollection) Autorelease() DOMHTMLCollection {
 func NewDOMHTMLCollection() DOMHTMLCollection {
 	return getDOMHTMLCollectionClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMHTMLCollection */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLCollection
@@ -96,29 +104,42 @@ func DOMHTMLCollectionFrom(ptr unsafe.Pointer) DOMHTMLCollection {
 		DOMObject: DOMObjectFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMHTMLCollection */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMHTMLCollection *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMHTMLCollection */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMHTMLCollection */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMHTMLCollection */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMHTMLCollection */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLCollection/length
-func (d_ DOMHTMLCollection) Length() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("length"))
+func (d_ DOMHTMLCollection) Length() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](d_.ID, objc.Sel("length"))
 	return rv
-} /* debug [instance_properties/getter]: length */
+}/* debug [instance_properties/getter]: length */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMHTMLCollection */
+
+
+

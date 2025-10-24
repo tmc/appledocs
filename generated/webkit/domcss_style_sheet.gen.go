@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class DOMCSSStyleSheet */
+
 
 /* debug [class_header]: Header for DOMCSSStyleSheet */
 // The class instance for the [DOMCSSStyleSheet] class.
@@ -28,28 +31,31 @@ func getDOMCSSStyleSheetClass() _DOMCSSStyleSheetClass {
 type _DOMCSSStyleSheetClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMCSSStyleSheet */
 // An interface definition for the [DOMCSSStyleSheet] class.
 type IDOMCSSStyleSheet interface {
 	IDOMStyleSheet
-
-	/* debug [class_interface_properties]: Properties for DOMCSSStyleSheet */
+	
+/* debug [class_interface_properties]: Properties for DOMCSSStyleSheet */
 	// properties:
 	CssRules() IDOMCSSRuleList
 	OwnerRule() IDOMCSSRule
 	Rules() IDOMCSSRuleList
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMCSSStyleSheet */
+	
+/* debug [class_interface_methods]: Methods for DOMCSSStyleSheet */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMCSSStyleSheet */
 // Alloc allocates a new instance without initialization.
@@ -81,10 +87,12 @@ func (d_ DOMCSSStyleSheet) Autorelease() DOMCSSStyleSheet {
 func NewDOMCSSStyleSheet() DOMCSSStyleSheet {
 	return getDOMCSSStyleSheetClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMCSSStyleSheet */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMCSSStyleSheet
@@ -98,19 +106,28 @@ func DOMCSSStyleSheetFrom(ptr unsafe.Pointer) DOMCSSStyleSheet {
 		DOMStyleSheet: DOMStyleSheetFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMCSSStyleSheet */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMCSSStyleSheet *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMCSSStyleSheet */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMCSSStyleSheet */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMCSSStyleSheet */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMCSSStyleSheet */
 
@@ -119,22 +136,28 @@ func DOMCSSStyleSheetFrom(ptr unsafe.Pointer) DOMCSSStyleSheet {
 func (d_ DOMCSSStyleSheet) CssRules() IDOMCSSRuleList {
 	rv := objc.Send[DOMCSSRuleList](d_.ID, objc.Sel("cssRules"))
 	return rv
-} /* debug [instance_properties/getter]: cssRules */
+}/* debug [instance_properties/getter]: cssRules */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMCSSStyleSheet/ownerRule
 func (d_ DOMCSSStyleSheet) OwnerRule() IDOMCSSRule {
 	rv := objc.Send[DOMCSSRule](d_.ID, objc.Sel("ownerRule"))
 	return rv
-} /* debug [instance_properties/getter]: ownerRule */
+}/* debug [instance_properties/getter]: ownerRule */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMCSSStyleSheet/rules
 func (d_ DOMCSSStyleSheet) Rules() IDOMCSSRuleList {
 	rv := objc.Send[DOMCSSRuleList](d_.ID, objc.Sel("rules"))
 	return rv
-} /* debug [instance_properties/getter]: rules */
+}/* debug [instance_properties/getter]: rules */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMCSSStyleSheet */
+
+
+

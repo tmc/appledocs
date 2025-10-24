@@ -19,3 +19,4 @@ var parentTabForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	parentTabForWebExtensionContextProtocol = objc.GetProtocol("parentTabForWebExtensionContext:")
 }
+

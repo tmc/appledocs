@@ -15,3 +15,4 @@ var lookupNamespaceURIProtocol *objc.Protocol
 func init() {
 	lookupNamespaceURIProtocol = objc.GetProtocol("lookupNamespaceURI:")
 }
+

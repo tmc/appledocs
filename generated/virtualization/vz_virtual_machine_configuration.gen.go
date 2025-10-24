@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZVirtualMachineConfiguration */
 
+
 /* debug [class_header]: Header for VZVirtualMachineConfiguration */
 // The class instance for the [VZVirtualMachineConfiguration] class.
 var (
@@ -29,15 +30,16 @@ func getVZVirtualMachineConfigurationClass() _VZVirtualMachineConfigurationClass
 type _VZVirtualMachineConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZVirtualMachineConfiguration */
 // An interface definition for the [VZVirtualMachineConfiguration] class.
 type IVZVirtualMachineConfiguration interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZVirtualMachineConfiguration */
+	
+/* debug [class_interface_properties]: Properties for VZVirtualMachineConfiguration */
 	// properties:
 	AudioDevices() []VZAudioDeviceConfiguration
 	SetAudioDevices(value []VZAudioDeviceConfiguration)
@@ -75,17 +77,19 @@ type IVZVirtualMachineConfiguration interface {
 	SetUsbControllers(value []VZUSBControllerConfiguration)
 	CpuCount() uint
 	SetCpuCount(value uint)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZVirtualMachineConfiguration */
+	
+/* debug [class_interface_methods]: Methods for VZVirtualMachineConfiguration */
 	// methods:
-	ValidateWithError(error_ unsafe.Pointer) bool
-	ValidateSaveRestoreSupportWithError(error_ unsafe.Pointer) bool
-	/* debug [class_interface_methods]: End methods */
+	ValidateWithError(error_ objectivec.IObject) bool
+	ValidateSaveRestoreSupportWithError(error_ objectivec.IObject) bool
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZVirtualMachineConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -117,13 +121,15 @@ func (v_ VZVirtualMachineConfiguration) Autorelease() VZVirtualMachineConfigurat
 func NewVZVirtualMachineConfiguration() VZVirtualMachineConfiguration {
 	return getVZVirtualMachineConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZVirtualMachineConfiguration */
 // The environment attributes and list of devices to use during the configuration of macOS or Linux VMs.
 //
 // Use a object to configure the environment for a macOS or Linux VM. This configuration object contains information about the VM environment, including the devices that the VM exposes to the guest operating system. For example, use the configuration object to specify the network interfaces and storage devices that the operating system may access. For more information on the devices that macOS and Linux guests can support, see the Devices section on the framework page. You create and configure objects directly. After validating the configuration object, use it to initialize the object that manages the virtual environment. The smallest valid configuration includes a value for the property; you can also include more devices in the configuration depending on the needs of your app, such as graphics devices, shared directories, and so on. When you finish configuring the object, call the method to determine whether a VM can successfully support your configuration. A configuration object is invalid if your app doesn’t have the entitlement. For more information on using , see and .
+
 
 // The environment attributes and list of devices to use during the configuration of macOS or Linux VMs.
 //
@@ -139,13 +145,18 @@ type VZVirtualMachineConfiguration struct {
 func VZVirtualMachineConfigurationFrom(ptr unsafe.Pointer) VZVirtualMachineConfiguration {
 	return VZVirtualMachineConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZVirtualMachineConfiguration */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZVirtualMachineConfiguration *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZVirtualMachineConfiguration */
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZVirtualMachineConfiguration */
 
@@ -156,7 +167,7 @@ func VZVirtualMachineConfigurationFrom(ptr unsafe.Pointer) VZVirtualMachineConfi
 func (vc _VZVirtualMachineConfigurationClass) MaximumAllowedCPUCount() uint {
 	rv := objc.Send[uint](objc.ID(vc.class), objc.Sel("maximumAllowedCPUCount"))
 	return rv
-} /* debug [class_properties_class/property]: maximumAllowedCPUCount */
+}/* debug [class_properties_class/property]: maximumAllowedCPUCount */
 
 // The maximum amount of memory that you may configure for the VM.
 //
@@ -165,7 +176,7 @@ func (vc _VZVirtualMachineConfigurationClass) MaximumAllowedCPUCount() uint {
 func (vc _VZVirtualMachineConfigurationClass) MaximumAllowedMemorySize() uint64 {
 	rv := objc.Send[uint64](objc.ID(vc.class), objc.Sel("maximumAllowedMemorySize"))
 	return rv
-} /* debug [class_properties_class/property]: maximumAllowedMemorySize */
+}/* debug [class_properties_class/property]: maximumAllowedMemorySize */
 
 // The minimum number of CPUs you may configure for the VM.
 //
@@ -174,7 +185,7 @@ func (vc _VZVirtualMachineConfigurationClass) MaximumAllowedMemorySize() uint64 
 func (vc _VZVirtualMachineConfigurationClass) MinimumAllowedCPUCount() uint {
 	rv := objc.Send[uint](objc.ID(vc.class), objc.Sel("minimumAllowedCPUCount"))
 	return rv
-} /* debug [class_properties_class/property]: minimumAllowedCPUCount */
+}/* debug [class_properties_class/property]: minimumAllowedCPUCount */
 
 // The minimum amount of memory that you may configure for the VM.
 //
@@ -183,8 +194,10 @@ func (vc _VZVirtualMachineConfigurationClass) MinimumAllowedCPUCount() uint {
 func (vc _VZVirtualMachineConfigurationClass) MinimumAllowedMemorySize() uint64 {
 	rv := objc.Send[uint64](objc.ID(vc.class), objc.Sel("minimumAllowedMemorySize"))
 	return rv
-} /* debug [class_properties_class/property]: minimumAllowedMemorySize */
+}/* debug [class_properties_class/property]: minimumAllowedMemorySize */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZVirtualMachineConfiguration */
 
@@ -192,21 +205,24 @@ func (vc _VZVirtualMachineConfigurationClass) MinimumAllowedMemorySize() uint64 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/validate()
-func (v_ VZVirtualMachineConfiguration) ValidateWithError(error_ unsafe.Pointer) bool {
+func (v_ VZVirtualMachineConfiguration) ValidateWithError(error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("validateWithError:"), error_)
 	return rv
-} /* debug [instance_methods/method]: ValidateWithError */
+}/* debug [instance_methods/method]: ValidateWithError */
+
 
 // Determines whether the framework can save or restore the VM’s current configuration.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/validateSaveRestoreSupport()
-func (v_ VZVirtualMachineConfiguration) ValidateSaveRestoreSupportWithError(error_ unsafe.Pointer) bool {
+func (v_ VZVirtualMachineConfiguration) ValidateSaveRestoreSupportWithError(error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("validateSaveRestoreSupportWithError:"), error_)
 	return rv
-} /* debug [instance_methods/method]: ValidateSaveRestoreSupportWithError */
+}/* debug [instance_methods/method]: ValidateSaveRestoreSupportWithError */
 
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZVirtualMachineConfiguration */
 
@@ -217,7 +233,8 @@ func (v_ VZVirtualMachineConfiguration) ValidateSaveRestoreSupportWithError(erro
 func (v_ VZVirtualMachineConfiguration) AudioDevices() []VZAudioDeviceConfiguration {
 	rv := objc.Send[[]VZAudioDeviceConfiguration](v_.ID, objc.Sel("audioDevices"))
 	return rv
-} /* debug [instance_properties/getter]: audioDevices */
+}/* debug [instance_properties/getter]: audioDevices */
+
 
 // The list of audio devices.
 //
@@ -234,7 +251,8 @@ func (v_ VZVirtualMachineConfiguration) SetAudioDevices(value []VZAudioDeviceCon
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAudioDevices:"), nsArray)
-} /* debug [instance_properties/setter]: audioDevices */
+}/* debug [instance_properties/setter]: audioDevices */
+
 
 // The guest system to boot when the VM starts.
 //
@@ -243,7 +261,8 @@ func (v_ VZVirtualMachineConfiguration) SetAudioDevices(value []VZAudioDeviceCon
 func (v_ VZVirtualMachineConfiguration) BootLoader() IVZBootLoader {
 	rv := objc.Send[VZBootLoader](v_.ID, objc.Sel("bootLoader"))
 	return rv
-} /* debug [instance_properties/getter]: bootLoader */
+}/* debug [instance_properties/getter]: bootLoader */
+
 
 // The guest system to boot when the VM starts.
 //
@@ -251,7 +270,8 @@ func (v_ VZVirtualMachineConfiguration) BootLoader() IVZBootLoader {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/bootLoader
 func (v_ VZVirtualMachineConfiguration) SetBootLoader(value IVZBootLoader) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setBootLoader:"), value)
-} /* debug [instance_properties/setter]: bootLoader */
+}/* debug [instance_properties/setter]: bootLoader */
+
 
 // The array of console devices that you expose to the guest operating system.
 //
@@ -260,7 +280,8 @@ func (v_ VZVirtualMachineConfiguration) SetBootLoader(value IVZBootLoader) {
 func (v_ VZVirtualMachineConfiguration) ConsoleDevices() []VZConsoleDeviceConfiguration {
 	rv := objc.Send[[]VZConsoleDeviceConfiguration](v_.ID, objc.Sel("consoleDevices"))
 	return rv
-} /* debug [instance_properties/getter]: consoleDevices */
+}/* debug [instance_properties/getter]: consoleDevices */
+
 
 // The array of console devices that you expose to the guest operating system.
 //
@@ -277,7 +298,8 @@ func (v_ VZVirtualMachineConfiguration) SetConsoleDevices(value []VZConsoleDevic
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](v_.ID, objc.Sel("setConsoleDevices:"), nsArray)
-} /* debug [instance_properties/setter]: consoleDevices */
+}/* debug [instance_properties/setter]: consoleDevices */
+
 
 // The number of CPUs you make available to the guest operating system.
 //
@@ -286,7 +308,8 @@ func (v_ VZVirtualMachineConfiguration) SetConsoleDevices(value []VZConsoleDevic
 func (v_ VZVirtualMachineConfiguration) CPUCount() uint {
 	rv := objc.Send[uint](v_.ID, objc.Sel("CPUCount"))
 	return rv
-} /* debug [instance_properties/getter]: CPUCount */
+}/* debug [instance_properties/getter]: CPUCount */
+
 
 // The number of CPUs you make available to the guest operating system.
 //
@@ -294,7 +317,8 @@ func (v_ VZVirtualMachineConfiguration) CPUCount() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/cpuCount
 func (v_ VZVirtualMachineConfiguration) SetCPUCount(value uint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCPUCount:"), value)
-} /* debug [instance_properties/setter]: CPUCount */
+}/* debug [instance_properties/setter]: CPUCount */
+
 
 // The list of directory sharing devices.
 //
@@ -303,7 +327,8 @@ func (v_ VZVirtualMachineConfiguration) SetCPUCount(value uint) {
 func (v_ VZVirtualMachineConfiguration) DirectorySharingDevices() []VZDirectorySharingDeviceConfiguration {
 	rv := objc.Send[[]VZDirectorySharingDeviceConfiguration](v_.ID, objc.Sel("directorySharingDevices"))
 	return rv
-} /* debug [instance_properties/getter]: directorySharingDevices */
+}/* debug [instance_properties/getter]: directorySharingDevices */
+
 
 // The list of directory sharing devices.
 //
@@ -320,7 +345,8 @@ func (v_ VZVirtualMachineConfiguration) SetDirectorySharingDevices(value []VZDir
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDirectorySharingDevices:"), nsArray)
-} /* debug [instance_properties/setter]: directorySharingDevices */
+}/* debug [instance_properties/setter]: directorySharingDevices */
+
 
 // The array of randomization devices that you expose to the guest operating system.
 //
@@ -329,7 +355,8 @@ func (v_ VZVirtualMachineConfiguration) SetDirectorySharingDevices(value []VZDir
 func (v_ VZVirtualMachineConfiguration) EntropyDevices() []VZEntropyDeviceConfiguration {
 	rv := objc.Send[[]VZEntropyDeviceConfiguration](v_.ID, objc.Sel("entropyDevices"))
 	return rv
-} /* debug [instance_properties/getter]: entropyDevices */
+}/* debug [instance_properties/getter]: entropyDevices */
+
 
 // The array of randomization devices that you expose to the guest operating system.
 //
@@ -346,7 +373,8 @@ func (v_ VZVirtualMachineConfiguration) SetEntropyDevices(value []VZEntropyDevic
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](v_.ID, objc.Sel("setEntropyDevices:"), nsArray)
-} /* debug [instance_properties/setter]: entropyDevices */
+}/* debug [instance_properties/setter]: entropyDevices */
+
 
 // The list of graphics devices.
 //
@@ -355,7 +383,8 @@ func (v_ VZVirtualMachineConfiguration) SetEntropyDevices(value []VZEntropyDevic
 func (v_ VZVirtualMachineConfiguration) GraphicsDevices() []VZGraphicsDeviceConfiguration {
 	rv := objc.Send[[]VZGraphicsDeviceConfiguration](v_.ID, objc.Sel("graphicsDevices"))
 	return rv
-} /* debug [instance_properties/getter]: graphicsDevices */
+}/* debug [instance_properties/getter]: graphicsDevices */
+
 
 // The list of graphics devices.
 //
@@ -372,7 +401,8 @@ func (v_ VZVirtualMachineConfiguration) SetGraphicsDevices(value []VZGraphicsDev
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](v_.ID, objc.Sel("setGraphicsDevices:"), nsArray)
-} /* debug [instance_properties/setter]: graphicsDevices */
+}/* debug [instance_properties/setter]: graphicsDevices */
+
 
 // The list of keyboards.
 //
@@ -381,7 +411,8 @@ func (v_ VZVirtualMachineConfiguration) SetGraphicsDevices(value []VZGraphicsDev
 func (v_ VZVirtualMachineConfiguration) Keyboards() []VZKeyboardConfiguration {
 	rv := objc.Send[[]VZKeyboardConfiguration](v_.ID, objc.Sel("keyboards"))
 	return rv
-} /* debug [instance_properties/getter]: keyboards */
+}/* debug [instance_properties/getter]: keyboards */
+
 
 // The list of keyboards.
 //
@@ -398,7 +429,8 @@ func (v_ VZVirtualMachineConfiguration) SetKeyboards(value []VZKeyboardConfigura
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](v_.ID, objc.Sel("setKeyboards:"), nsArray)
-} /* debug [instance_properties/setter]: keyboards */
+}/* debug [instance_properties/setter]: keyboards */
+
 
 // The maximum number of CPUs you may configure for the VM.
 //
@@ -407,7 +439,8 @@ func (v_ VZVirtualMachineConfiguration) SetKeyboards(value []VZKeyboardConfigura
 func (v_ VZVirtualMachineConfiguration) MaximumAllowedCPUCount() uint {
 	rv := objc.Send[uint](v_.ID, objc.Sel("maximumAllowedCPUCount"))
 	return rv
-} /* debug [instance_properties/getter]: maximumAllowedCPUCount */
+}/* debug [instance_properties/getter]: maximumAllowedCPUCount */
+
 
 // The maximum amount of memory that you may configure for the VM.
 //
@@ -416,7 +449,8 @@ func (v_ VZVirtualMachineConfiguration) MaximumAllowedCPUCount() uint {
 func (v_ VZVirtualMachineConfiguration) MaximumAllowedMemorySize() uint64 {
 	rv := objc.Send[uint64](v_.ID, objc.Sel("maximumAllowedMemorySize"))
 	return rv
-} /* debug [instance_properties/getter]: maximumAllowedMemorySize */
+}/* debug [instance_properties/getter]: maximumAllowedMemorySize */
+
 
 // An array that you configure with a memory balloon device, used to update the memory in the VM.
 //
@@ -425,7 +459,8 @@ func (v_ VZVirtualMachineConfiguration) MaximumAllowedMemorySize() uint64 {
 func (v_ VZVirtualMachineConfiguration) MemoryBalloonDevices() []VZMemoryBalloonDeviceConfiguration {
 	rv := objc.Send[[]VZMemoryBalloonDeviceConfiguration](v_.ID, objc.Sel("memoryBalloonDevices"))
 	return rv
-} /* debug [instance_properties/getter]: memoryBalloonDevices */
+}/* debug [instance_properties/getter]: memoryBalloonDevices */
+
 
 // An array that you configure with a memory balloon device, used to update the memory in the VM.
 //
@@ -442,7 +477,8 @@ func (v_ VZVirtualMachineConfiguration) SetMemoryBalloonDevices(value []VZMemory
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMemoryBalloonDevices:"), nsArray)
-} /* debug [instance_properties/setter]: memoryBalloonDevices */
+}/* debug [instance_properties/setter]: memoryBalloonDevices */
+
 
 // The memory size in bytes for the virtual machine. Must be a multiple of 1MB and between minimumAllowedMemorySize and maximumAllowedMemorySize.
 //
@@ -451,7 +487,8 @@ func (v_ VZVirtualMachineConfiguration) SetMemoryBalloonDevices(value []VZMemory
 func (v_ VZVirtualMachineConfiguration) MemorySize() uint64 {
 	rv := objc.Send[uint64](v_.ID, objc.Sel("memorySize"))
 	return rv
-} /* debug [instance_properties/getter]: memorySize */
+}/* debug [instance_properties/getter]: memorySize */
+
 
 // The memory size in bytes for the virtual machine. Must be a multiple of 1MB and between minimumAllowedMemorySize and maximumAllowedMemorySize.
 //
@@ -459,7 +496,8 @@ func (v_ VZVirtualMachineConfiguration) MemorySize() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/memorySize
 func (v_ VZVirtualMachineConfiguration) SetMemorySize(value uint64) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMemorySize:"), value)
-} /* debug [instance_properties/setter]: memorySize */
+}/* debug [instance_properties/setter]: memorySize */
+
 
 // The minimum number of CPUs you may configure for the VM.
 //
@@ -468,7 +506,8 @@ func (v_ VZVirtualMachineConfiguration) SetMemorySize(value uint64) {
 func (v_ VZVirtualMachineConfiguration) MinimumAllowedCPUCount() uint {
 	rv := objc.Send[uint](v_.ID, objc.Sel("minimumAllowedCPUCount"))
 	return rv
-} /* debug [instance_properties/getter]: minimumAllowedCPUCount */
+}/* debug [instance_properties/getter]: minimumAllowedCPUCount */
+
 
 // The minimum amount of memory that you may configure for the VM.
 //
@@ -477,7 +516,8 @@ func (v_ VZVirtualMachineConfiguration) MinimumAllowedCPUCount() uint {
 func (v_ VZVirtualMachineConfiguration) MinimumAllowedMemorySize() uint64 {
 	rv := objc.Send[uint64](v_.ID, objc.Sel("minimumAllowedMemorySize"))
 	return rv
-} /* debug [instance_properties/getter]: minimumAllowedMemorySize */
+}/* debug [instance_properties/getter]: minimumAllowedMemorySize */
+
 
 // The array of network devices that you expose to the guest operating system.
 //
@@ -486,7 +526,8 @@ func (v_ VZVirtualMachineConfiguration) MinimumAllowedMemorySize() uint64 {
 func (v_ VZVirtualMachineConfiguration) NetworkDevices() []VZNetworkDeviceConfiguration {
 	rv := objc.Send[[]VZNetworkDeviceConfiguration](v_.ID, objc.Sel("networkDevices"))
 	return rv
-} /* debug [instance_properties/getter]: networkDevices */
+}/* debug [instance_properties/getter]: networkDevices */
+
 
 // The array of network devices that you expose to the guest operating system.
 //
@@ -503,7 +544,8 @@ func (v_ VZVirtualMachineConfiguration) SetNetworkDevices(value []VZNetworkDevic
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](v_.ID, objc.Sel("setNetworkDevices:"), nsArray)
-} /* debug [instance_properties/setter]: networkDevices */
+}/* debug [instance_properties/setter]: networkDevices */
+
 
 // The hardware platform to use.
 //
@@ -512,7 +554,8 @@ func (v_ VZVirtualMachineConfiguration) SetNetworkDevices(value []VZNetworkDevic
 func (v_ VZVirtualMachineConfiguration) Platform() IVZPlatformConfiguration {
 	rv := objc.Send[VZPlatformConfiguration](v_.ID, objc.Sel("platform"))
 	return rv
-} /* debug [instance_properties/getter]: platform */
+}/* debug [instance_properties/getter]: platform */
+
 
 // The hardware platform to use.
 //
@@ -520,7 +563,8 @@ func (v_ VZVirtualMachineConfiguration) Platform() IVZPlatformConfiguration {
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/platform
 func (v_ VZVirtualMachineConfiguration) SetPlatform(value IVZPlatformConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPlatform:"), value)
-} /* debug [instance_properties/setter]: platform */
+}/* debug [instance_properties/setter]: platform */
+
 
 // The list of pointing devices.
 //
@@ -529,7 +573,8 @@ func (v_ VZVirtualMachineConfiguration) SetPlatform(value IVZPlatformConfigurati
 func (v_ VZVirtualMachineConfiguration) PointingDevices() []VZPointingDeviceConfiguration {
 	rv := objc.Send[[]VZPointingDeviceConfiguration](v_.ID, objc.Sel("pointingDevices"))
 	return rv
-} /* debug [instance_properties/getter]: pointingDevices */
+}/* debug [instance_properties/getter]: pointingDevices */
+
 
 // The list of pointing devices.
 //
@@ -546,7 +591,8 @@ func (v_ VZVirtualMachineConfiguration) SetPointingDevices(value []VZPointingDev
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPointingDevices:"), nsArray)
-} /* debug [instance_properties/setter]: pointingDevices */
+}/* debug [instance_properties/setter]: pointingDevices */
+
 
 // The array of serial ports that you expose to the guest operating system.
 //
@@ -555,7 +601,8 @@ func (v_ VZVirtualMachineConfiguration) SetPointingDevices(value []VZPointingDev
 func (v_ VZVirtualMachineConfiguration) SerialPorts() []VZSerialPortConfiguration {
 	rv := objc.Send[[]VZSerialPortConfiguration](v_.ID, objc.Sel("serialPorts"))
 	return rv
-} /* debug [instance_properties/getter]: serialPorts */
+}/* debug [instance_properties/getter]: serialPorts */
+
 
 // The array of serial ports that you expose to the guest operating system.
 //
@@ -572,7 +619,8 @@ func (v_ VZVirtualMachineConfiguration) SetSerialPorts(value []VZSerialPortConfi
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSerialPorts:"), nsArray)
-} /* debug [instance_properties/setter]: serialPorts */
+}/* debug [instance_properties/setter]: serialPorts */
+
 
 // The socket device that you use to implement port-based communication with the guest operating system.
 //
@@ -581,7 +629,8 @@ func (v_ VZVirtualMachineConfiguration) SetSerialPorts(value []VZSerialPortConfi
 func (v_ VZVirtualMachineConfiguration) SocketDevices() []VZSocketDeviceConfiguration {
 	rv := objc.Send[[]VZSocketDeviceConfiguration](v_.ID, objc.Sel("socketDevices"))
 	return rv
-} /* debug [instance_properties/getter]: socketDevices */
+}/* debug [instance_properties/getter]: socketDevices */
+
 
 // The socket device that you use to implement port-based communication with the guest operating system.
 //
@@ -598,7 +647,8 @@ func (v_ VZVirtualMachineConfiguration) SetSocketDevices(value []VZSocketDeviceC
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSocketDevices:"), nsArray)
-} /* debug [instance_properties/setter]: socketDevices */
+}/* debug [instance_properties/setter]: socketDevices */
+
 
 // The array of storage devices that you expose to the guest operating system.
 //
@@ -607,7 +657,8 @@ func (v_ VZVirtualMachineConfiguration) SetSocketDevices(value []VZSocketDeviceC
 func (v_ VZVirtualMachineConfiguration) StorageDevices() []VZStorageDeviceConfiguration {
 	rv := objc.Send[[]VZStorageDeviceConfiguration](v_.ID, objc.Sel("storageDevices"))
 	return rv
-} /* debug [instance_properties/getter]: storageDevices */
+}/* debug [instance_properties/getter]: storageDevices */
+
 
 // The array of storage devices that you expose to the guest operating system.
 //
@@ -624,7 +675,8 @@ func (v_ VZVirtualMachineConfiguration) SetStorageDevices(value []VZStorageDevic
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](v_.ID, objc.Sel("setStorageDevices:"), nsArray)
-} /* debug [instance_properties/setter]: storageDevices */
+}/* debug [instance_properties/setter]: storageDevices */
+
 
 // The list of configured USB controllers for the VM.
 //
@@ -633,7 +685,8 @@ func (v_ VZVirtualMachineConfiguration) SetStorageDevices(value []VZStorageDevic
 func (v_ VZVirtualMachineConfiguration) UsbControllers() []VZUSBControllerConfiguration {
 	rv := objc.Send[[]VZUSBControllerConfiguration](v_.ID, objc.Sel("usbControllers"))
 	return rv
-} /* debug [instance_properties/getter]: usbControllers */
+}/* debug [instance_properties/getter]: usbControllers */
+
 
 // The list of configured USB controllers for the VM.
 //
@@ -650,19 +703,25 @@ func (v_ VZVirtualMachineConfiguration) SetUsbControllers(value []VZUSBControlle
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](v_.ID, objc.Sel("setUsbControllers:"), nsArray)
-} /* debug [instance_properties/setter]: usbControllers */
+}/* debug [instance_properties/setter]: usbControllers */
+
 
 // The number of CPUs for the virtual machine. Must be between minimumAllowedCPUCount and maximumAllowedCPUCount. [Full Topic]
 func (v_ VZVirtualMachineConfiguration) CpuCount() uint {
 	rv := objc.Send[uint](v_.ID, objc.Sel("cpuCount"))
 	return rv
-} /* debug [instance_properties/getter]: cpuCount */
+}/* debug [instance_properties/getter]: cpuCount */
+
 
 // The number of CPUs for the virtual machine. Must be between minimumAllowedCPUCount and maximumAllowedCPUCount. [Full Topic]
 func (v_ VZVirtualMachineConfiguration) SetCpuCount(value uint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCpuCount:"), value)
-} /* debug [instance_properties/setter]: cpuCount */
+}/* debug [instance_properties/setter]: cpuCount */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZVirtualMachineConfiguration */
+
+
+

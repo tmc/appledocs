@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class CIDataMatrixCodeDescriptor */
 
 
-/* debug [class_header]: Header for CIDataMatrixCodeDescriptor */
+
+
 // The class instance for the [DataMatrixCodeDescriptor] class.
 var (
 	DataMatrixCodeDescriptorClass     _DataMatrixCodeDescriptorClass
@@ -31,34 +30,34 @@ func getDataMatrixCodeDescriptorClass() _DataMatrixCodeDescriptorClass {
 type _DataMatrixCodeDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for DataMatrixCodeDescriptor */
+
+
 // An interface definition for the [DataMatrixCodeDescriptor] class.
 type IDataMatrixCodeDescriptor interface {
 	IBarcodeDescriptor
 	
-/* debug [class_interface_properties]: Properties for DataMatrixCodeDescriptor */
+
 	// properties:
 	ColumnCount() int
 	EccVersion() DataMatrixCodeECCVersion
 	ErrorCorrectedPayload() objc.IObject /* cross-framework: NSData */
 	RowCount() int
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for DataMatrixCodeDescriptor */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for DataMatrixCodeDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (dc _DataMatrixCodeDescriptorClass) Alloc() DataMatrixCodeDescriptor {
 	rv := objc.Send[DataMatrixCodeDescriptor](objc.ID(dc.class), objc.Sel("alloc"))
@@ -88,11 +87,11 @@ func (d_ DataMatrixCodeDescriptor) Autorelease() DataMatrixCodeDescriptor {
 func NewDataMatrixCodeDescriptor() DataMatrixCodeDescriptor {
 	return getDataMatrixCodeDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for DataMatrixCodeDescriptor */
+
+
 // A concrete subclass the Core Image Barcode Descriptor that represents an Data Matrix code symbol.
 //
 // A Data Matrix code symbol is a 2D barcode format defined by the ISO/IEC 16022:2006(E) standard. It encodes data in square or rectangular symbol with solid lines on the left and bottom sides
@@ -114,11 +113,11 @@ func DataMatrixCodeDescriptorFrom(ptr unsafe.Pointer) DataMatrixCodeDescriptor {
 		BarcodeDescriptor: BarcodeDescriptorFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for DataMatrixCodeDescriptor */
+
+
 
 // Initializes a Data Matrix code descriptor for the given payload and parameters.
 //
@@ -129,13 +128,13 @@ func NewDataMatrixCodeDescriptorWithPayloadRowCountColumnCountEccVersion(errorCo
 	rv := objc.Send[DataMatrixCodeDescriptor](instance.ID, objc.Sel("initWithPayload:rowCount:columnCount:eccVersion:"), errorCorrectedPayload, rowCount, columnCount, eccVersion)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewDataMatrixCodeDescriptorWithPayloadRowCountColumnCountEccVersion */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for DataMatrixCodeDescriptor */
+
+
+
 
 // Creates a Data Matrix code descriptor for the given payload and parameters.
 //
@@ -144,23 +143,23 @@ func NewDataMatrixCodeDescriptorWithPayloadRowCountColumnCountEccVersion(errorCo
 func (dc _DataMatrixCodeDescriptorClass) DescriptorWithPayloadRowCountColumnCountEccVersion(errorCorrectedPayload objc.IObject /* cross-framework: NSData */, rowCount int, columnCount int, eccVersion DataMatrixCodeECCVersion) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(dc.class), objc.Sel("descriptorWithPayload:rowCount:columnCount:eccVersion:"), errorCorrectedPayload, rowCount, columnCount, eccVersion)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DescriptorWithPayloadRowCountColumnCountEccVersion) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for DataMatrixCodeDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for DataMatrixCodeDescriptor */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for DataMatrixCodeDescriptor */
+
+
+
+
+
+
+
 
 // The number of columns in the Data Matrix code symbol.
 //
@@ -169,7 +168,7 @@ func (dc _DataMatrixCodeDescriptorClass) DescriptorWithPayloadRowCountColumnCoun
 func (d_ DataMatrixCodeDescriptor) ColumnCount() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("columnCount"))
 	return rv
-}/* debug [instance_properties/getter]: columnCount */
+}
 
 
 // The error correction version of the Data Matrix code symbol.
@@ -179,7 +178,7 @@ func (d_ DataMatrixCodeDescriptor) ColumnCount() int {
 func (d_ DataMatrixCodeDescriptor) EccVersion() DataMatrixCodeECCVersion {
 	rv := objc.Send[DataMatrixCodeECCVersion](d_.ID, objc.Sel("eccVersion"))
 	return rv
-}/* debug [instance_properties/getter]: eccVersion */
+}
 
 
 // The error-corrected payload containing the data encoded in the Data Matrix code symbol.
@@ -189,7 +188,7 @@ func (d_ DataMatrixCodeDescriptor) EccVersion() DataMatrixCodeECCVersion {
 func (d_ DataMatrixCodeDescriptor) ErrorCorrectedPayload() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("errorCorrectedPayload"))
 	return rv
-}/* debug [instance_properties/getter]: errorCorrectedPayload */
+}
 
 
 // The number of rows in the Data Matrix code symbol.
@@ -199,11 +198,11 @@ func (d_ DataMatrixCodeDescriptor) ErrorCorrectedPayload() objc.IObject /* cross
 func (d_ DataMatrixCodeDescriptor) RowCount() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("rowCount"))
 	return rv
-}/* debug [instance_properties/getter]: rowCount */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class CIDataMatrixCodeDescriptor */
+
+
+
 
 

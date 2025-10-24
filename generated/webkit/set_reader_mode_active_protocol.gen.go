@@ -19,3 +19,4 @@ var setReaderModeActiveProtocol *objc.Protocol
 func init() {
 	setReaderModeActiveProtocol = objc.GetProtocol("setReaderModeActive:")
 }
+

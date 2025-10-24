@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNReduceColumnMin */
 
 
-/* debug [class_header]: Header for MPSNNReduceColumnMin */
+
+
 // The class instance for the [ReduceColumnMin] class.
 var (
 	ReduceColumnMinClass     _ReduceColumnMinClass
@@ -31,30 +30,30 @@ func getReduceColumnMinClass() _ReduceColumnMinClass {
 type _ReduceColumnMinClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ReduceColumnMin */
+
+
 // An interface definition for the [ReduceColumnMin] class.
 type IReduceColumnMin interface {
 	IReduceUnary
 	
-/* debug [class_interface_properties]: Properties for ReduceColumnMin */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ReduceColumnMin */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ReduceColumnMin */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _ReduceColumnMinClass) Alloc() ReduceColumnMin {
 	rv := objc.Send[ReduceColumnMin](objc.ID(rc.class), objc.Sel("alloc"))
@@ -84,11 +83,11 @@ func (r_ ReduceColumnMin) Autorelease() ReduceColumnMin {
 func NewReduceColumnMin() ReduceColumnMin {
 	return getReduceColumnMinClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ReduceColumnMin */
+
+
 // A reduction filter that returns the minimum value for each column in an image.
 
 
@@ -108,11 +107,11 @@ func ReduceColumnMinFrom(ptr unsafe.Pointer) ReduceColumnMin {
 		ReduceUnary: ReduceUnaryFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ReduceColumnMin */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducecolumnmin/3197832-initwithcoder
@@ -121,7 +120,7 @@ func NewReduceColumnMinWithCoderDevice(aDecoder foundation.Coder, device unsafe.
 	rv := objc.Send[ReduceColumnMin](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceColumnMinWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -131,31 +130,31 @@ func NewReduceColumnMinWithDevice(device unsafe.Pointer) ReduceColumnMin {
 	rv := objc.Send[ReduceColumnMin](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceColumnMinWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ReduceColumnMin */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ReduceColumnMin */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ReduceColumnMin */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ReduceColumnMin */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNReduceColumnMin */
+
+
+
+
+
+
+
+
+
+
+
 
 

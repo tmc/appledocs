@@ -3,8 +3,8 @@
 package webkit
 
 import (
+
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objc"
 )
 
 // PDOMXPathNSResolver is the DOMXPathNSResolver protocol interface.
@@ -15,5 +15,5 @@ import (
 // See: doc://com.apple.webkit/documentation/WebKit/DOMXPathNSResolver
 type PDOMXPathNSResolver interface {
 	// Required methods
-	LookupNamespaceURI(prefix objc.IObject /* cross-framework: NSString */) foundation.String
+	LookupNamespaceURI(prefix objc.IObject /* cross-framework: NSString */) foundation.String/* debug [protocol_interface/required_method]: LookupNamespaceURI */
 }

@@ -15,3 +15,4 @@ var WebPolicyDecisionListenerProtocol *objc.Protocol
 func init() {
 	WebPolicyDecisionListenerProtocol = objc.GetProtocol("WebPolicyDecisionListener")
 }
+

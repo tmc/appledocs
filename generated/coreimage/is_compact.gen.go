@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class isCompact */
 
 
-/* debug [class_header]: Header for isCompact */
+
+
 // The class instance for the [isCompact] class.
 var (
 	IsCompactClass     _isCompactClass
@@ -30,30 +30,30 @@ func getisCompactClass() _isCompactClass {
 type _isCompactClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for isCompact */
+
+
 // An interface definition for the [isCompact] class.
 type IisCompact interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for isCompact */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for isCompact */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for isCompact */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _isCompactClass) Alloc() isCompact {
 	rv := objc.Send[isCompact](objc.ID(ic.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (i_ isCompact) Autorelease() isCompact {
 func NewisCompact() isCompact {
 	return getisCompactClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for isCompact */
+
+
 
 
 // [Full Topic]
@@ -100,34 +100,34 @@ type isCompact struct {
 func isCompactFrom(ptr unsafe.Pointer) isCompact {
 	return isCompact{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for isCompact *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for isCompact */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for isCompact */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for isCompact */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for isCompact */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class isCompact */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -19,3 +19,4 @@ var focusForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	focusForWebExtensionContextProtocol = objc.GetProtocol("focusForWebExtensionContext:")
 }
+

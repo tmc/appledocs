@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNDArrayLUTQuantizationDescriptor */
 
 
-/* debug [class_header]: Header for MPSNDArrayLUTQuantizationDescriptor */
+
+
 // The class instance for the [NDArrayLUTQuantizationDescriptor] class.
 var (
 	NDArrayLUTQuantizationDescriptorClass     _NDArrayLUTQuantizationDescriptorClass
@@ -30,30 +30,30 @@ func getNDArrayLUTQuantizationDescriptorClass() _NDArrayLUTQuantizationDescripto
 type _NDArrayLUTQuantizationDescriptorClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NDArrayLUTQuantizationDescriptor */
+
+
 // An interface definition for the [NDArrayLUTQuantizationDescriptor] class.
 type INDArrayLUTQuantizationDescriptor interface {
 	INDArrayQuantizationDescriptor
 	
-/* debug [class_interface_properties]: Properties for NDArrayLUTQuantizationDescriptor */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NDArrayLUTQuantizationDescriptor */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NDArrayLUTQuantizationDescriptor */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NDArrayLUTQuantizationDescriptorClass) Alloc() NDArrayLUTQuantizationDescriptor {
 	rv := objc.Send[NDArrayLUTQuantizationDescriptor](objc.ID(nc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (n_ NDArrayLUTQuantizationDescriptor) Autorelease() NDArrayLUTQuantizationD
 func NewNDArrayLUTQuantizationDescriptor() NDArrayLUTQuantizationDescriptor {
 	return getNDArrayLUTQuantizationDescriptorClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NDArrayLUTQuantizationDescriptor */
+
+
 
 
 // [Full Topic]
@@ -102,11 +102,11 @@ func NDArrayLUTQuantizationDescriptorFrom(ptr unsafe.Pointer) NDArrayLUTQuantiza
 		NDArrayQuantizationDescriptor: NDArrayQuantizationDescriptorFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NDArrayLUTQuantizationDescriptor */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraylutquantizationdescriptor/4446139-initwithdatatype
@@ -115,7 +115,7 @@ func NewNDArrayLUTQuantizationDescriptorWithDataType(quantizationDataType DataTy
 	rv := objc.Send[NDArrayLUTQuantizationDescriptor](instance.ID, objc.Sel("initWithDataType:"), quantizationDataType)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNDArrayLUTQuantizationDescriptorWithDataType */
+}
 
 
 // [Full Topic]
@@ -125,31 +125,31 @@ func NewNDArrayLUTQuantizationDescriptorWithDataTypeVectorAxis(quantizationDataT
 	rv := objc.Send[NDArrayLUTQuantizationDescriptor](instance.ID, objc.Sel("initWithDataType:vectorAxis:"), quantizationDataType, vectorAxis)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNDArrayLUTQuantizationDescriptorWithDataTypeVectorAxis */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for NDArrayLUTQuantizationDescriptor */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NDArrayLUTQuantizationDescriptor */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NDArrayLUTQuantizationDescriptor */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for NDArrayLUTQuantizationDescriptor */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNDArrayLUTQuantizationDescriptor */
+
+
+
+
+
+
+
+
+
+
+
 
 

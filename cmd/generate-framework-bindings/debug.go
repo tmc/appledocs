@@ -25,6 +25,7 @@ const (
 	DebugEnumCases    = "enum-cases"
 	DebugEnumAttach   = "enum-attach"
 	DebugParser       = "parser"
+	DebugTemplates    = "templates"
 )
 
 // AllCategories lists all available debug categories
@@ -32,6 +33,7 @@ var AllCategories = []string{
 	DebugTypeMap, DebugUndefined, DebugHierarchy, DebugEnumDedup,
 	DebugImports, DebugTimeInterval, DebugObject, DebugEnumType,
 	DebugEnumCreate, DebugEnumCases, DebugEnumAttach, DebugParser,
+	DebugTemplates,
 }
 
 // CategoryDescriptions provides help text for each category
@@ -48,6 +50,7 @@ var CategoryDescriptions = map[string]string{
 	DebugEnumCases:    "Enum case parsing",
 	DebugEnumAttach:   "Enum attachment to classes",
 	DebugParser:       "occ2go parser operations",
+	DebugTemplates:    "Template execution debug comments in generated code",
 }
 
 // DebugLogger provides structured debug logging with category-based filtering
@@ -364,6 +367,9 @@ func PrintDebugHelp() {
 	fmt.Println("  # Debug all type mapping")
 	fmt.Println("  --debug=typemap")
 	fmt.Println()
+	fmt.Println("  # Add debug comments in generated code (shows template execution)")
+	fmt.Println("  --debug=templates")
+	fmt.Println()
 	fmt.Println("  # Debug only Coder and Error types")
 	fmt.Println("  --debug=typemap --debug-filter='Coder|Error'")
 	fmt.Println()
@@ -380,6 +386,7 @@ func PrintDebugHelp() {
 	fmt.Println("  DEBUG=typemap                   Enable categories")
 	fmt.Println("  DEBUG_FILTER='Coder|Error'      Global filter pattern")
 	fmt.Println("  DEBUG_TYPEMAP=1                 Backwards compatible (no filter)")
+	fmt.Println("  DEBUG_TEMPLATES=1               Enable template debug comments")
 	fmt.Println()
 	fmt.Println("Filter patterns are Go regular expressions. Filters are matched against:")
 	fmt.Println("  - typemap: objcType and goType")

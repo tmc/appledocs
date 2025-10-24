@@ -19,3 +19,4 @@ var userContentControllerProtocol *objc.Protocol
 func init() {
 	userContentControllerProtocol = objc.GetProtocol("userContentController:")
 }
+

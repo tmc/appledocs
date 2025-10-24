@@ -10,5 +10,7 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	AudioFramePosition = _undefined // referenced in SoundAnalysis
-	TimeRange          = _undefined // referenced in SoundAnalysis
+	TimeRange = _undefined // referenced in SoundAnalysis
 )
+
+

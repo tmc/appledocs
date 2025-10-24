@@ -15,3 +15,4 @@ var webViewIsStatusBarVisibleProtocol *objc.Protocol
 func init() {
 	webViewIsStatusBarVisibleProtocol = objc.GetProtocol("webViewIsStatusBarVisible:")
 }
+

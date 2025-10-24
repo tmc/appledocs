@@ -5,11 +5,15 @@
 package storekit
 
 import (
-	"github.com/tmc/appledocs/generated/foundation"
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for OverlayAppClipConfiguration
+
 
 // Returns the object associated with the key.
 //
@@ -89,3 +93,7 @@ func (o_ OverlayAppClipConfiguration) ProviderToken() objc.IObject /* cross-fram
 func (o_ OverlayAppClipConfiguration) SetProviderToken(value objc.IObject /* cross-framework: NSString */) {
 	o_.ID.Send(objc.RegisterName("setProviderToken:"), value)
 }
+
+
+
+

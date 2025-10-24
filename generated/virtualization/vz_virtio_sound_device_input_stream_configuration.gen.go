@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZVirtioSoundDeviceInputStreamConfiguration */
+
 
 /* debug [class_header]: Header for VZVirtioSoundDeviceInputStreamConfiguration */
 // The class instance for the [VZVirtioSoundDeviceInputStreamConfiguration] class.
@@ -28,27 +30,30 @@ func getVZVirtioSoundDeviceInputStreamConfigurationClass() _VZVirtioSoundDeviceI
 type _VZVirtioSoundDeviceInputStreamConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZVirtioSoundDeviceInputStreamConfiguration */
 // An interface definition for the [VZVirtioSoundDeviceInputStreamConfiguration] class.
 type IVZVirtioSoundDeviceInputStreamConfiguration interface {
 	IVZVirtioSoundDeviceStreamConfiguration
-
-	/* debug [class_interface_properties]: Properties for VZVirtioSoundDeviceInputStreamConfiguration */
+	
+/* debug [class_interface_properties]: Properties for VZVirtioSoundDeviceInputStreamConfiguration */
 	// properties:
 	Source() IVZAudioInputStreamSource
 	SetSource(value IVZAudioInputStreamSource)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZVirtioSoundDeviceInputStreamConfiguration */
+	
+/* debug [class_interface_methods]: Methods for VZVirtioSoundDeviceInputStreamConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZVirtioSoundDeviceInputStreamConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -80,13 +85,15 @@ func (v_ VZVirtioSoundDeviceInputStreamConfiguration) Autorelease() VZVirtioSoun
 func NewVZVirtioSoundDeviceInputStreamConfiguration() VZVirtioSoundDeviceInputStreamConfiguration {
 	return getVZVirtioSoundDeviceInputStreamConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZVirtioSoundDeviceInputStreamConfiguration */
 // A PCM stream of input audio data, such as from a microphone.
 //
 // This device represents a PCM stream of audio data. Don’t instantiate directly. Instead, use one of its subclasses such as or .
+
 
 // A PCM stream of input audio data, such as from a microphone.
 //
@@ -104,20 +111,29 @@ func VZVirtioSoundDeviceInputStreamConfigurationFrom(ptr unsafe.Pointer) VZVirti
 		VZVirtioSoundDeviceStreamConfiguration: VZVirtioSoundDeviceStreamConfigurationFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZVirtioSoundDeviceInputStreamConfiguration */
 /* debug [class_init_methods]: End init methods */
 
+
+
 /* debug [class_methods]: Class methods for VZVirtioSoundDeviceInputStreamConfiguration */
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZVirtioSoundDeviceInputStreamConfiguration */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZVirtioSoundDeviceInputStreamConfiguration */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZVirtioSoundDeviceInputStreamConfiguration */
 
@@ -128,7 +144,8 @@ func VZVirtioSoundDeviceInputStreamConfigurationFrom(ptr unsafe.Pointer) VZVirti
 func (v_ VZVirtioSoundDeviceInputStreamConfiguration) Source() IVZAudioInputStreamSource {
 	rv := objc.Send[VZAudioInputStreamSource](v_.ID, objc.Sel("source"))
 	return rv
-} /* debug [instance_properties/getter]: source */
+}/* debug [instance_properties/getter]: source */
+
 
 // An audio stream source that defines how the host supplies audio data for the guest.
 //
@@ -136,8 +153,11 @@ func (v_ VZVirtioSoundDeviceInputStreamConfiguration) Source() IVZAudioInputStre
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSoundDeviceInputStreamConfiguration/source
 func (v_ VZVirtioSoundDeviceInputStreamConfiguration) SetSource(value IVZAudioInputStreamSource) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSource:"), value)
-} /* debug [instance_properties/setter]: source */
+}/* debug [instance_properties/setter]: source */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZVirtioSoundDeviceInputStreamConfiguration */
+
+

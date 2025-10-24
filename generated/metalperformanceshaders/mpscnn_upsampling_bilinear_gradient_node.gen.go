@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNUpsamplingBilinearGradientNode */
 
 
-/* debug [class_header]: Header for MPSCNNUpsamplingBilinearGradientNode */
+
+
 // The class instance for the [CNNUpsamplingBilinearGradientNode] class.
 var (
 	CNNUpsamplingBilinearGradientNodeClass     _CNNUpsamplingBilinearGradientNodeClass
@@ -30,34 +30,34 @@ func getCNNUpsamplingBilinearGradientNodeClass() _CNNUpsamplingBilinearGradientN
 type _CNNUpsamplingBilinearGradientNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNUpsamplingBilinearGradientNode */
+
+
 // An interface definition for the [CNNUpsamplingBilinearGradientNode] class.
 type ICNNUpsamplingBilinearGradientNode interface {
 	IGradientFilterNode
 	
-/* debug [class_interface_properties]: Properties for CNNUpsamplingBilinearGradientNode */
+
 	// properties:
 	ScaleFactorX() objectivec.IObject
 	SetScaleFactorX(value objectivec.IObject)
 	ScaleFactorY() objectivec.IObject
 	SetScaleFactorY(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNUpsamplingBilinearGradientNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNUpsamplingBilinearGradientNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNUpsamplingBilinearGradientNodeClass) Alloc() CNNUpsamplingBilinearGradientNode {
 	rv := objc.Send[CNNUpsamplingBilinearGradientNode](objc.ID(cc.class), objc.Sel("alloc"))
@@ -87,11 +87,11 @@ func (c_ CNNUpsamplingBilinearGradientNode) Autorelease() CNNUpsamplingBilinearG
 func NewCNNUpsamplingBilinearGradientNode() CNNUpsamplingBilinearGradientNode {
 	return getCNNUpsamplingBilinearGradientNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNUpsamplingBilinearGradientNode */
+
+
 // A representation of a gradient bilinear spatial upsampling filter.
 
 
@@ -111,11 +111,11 @@ func CNNUpsamplingBilinearGradientNodeFrom(ptr unsafe.Pointer) CNNUpsamplingBili
 		GradientFilterNode: GradientFilterNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNUpsamplingBilinearGradientNode */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilineargradientnode/2947991-initwithsourcegradient
@@ -124,50 +124,50 @@ func NewCNNUpsamplingBilinearGradientNodeWithSourceGradientSourceImageGradientSt
 	rv := objc.Send[CNNUpsamplingBilinearGradientNode](instance.ID, objc.Sel("initWithSourceGradient:sourceImage:gradientState:scaleFactorX:scaleFactorY:"), sourceGradient, sourceImage, gradientState, scaleFactorX, scaleFactorY)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNUpsamplingBilinearGradientNodeWithSourceGradientSourceImageGradientStateScaleFactorXScaleFactorY */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNUpsamplingBilinearGradientNode */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilineargradientnode/2948025-nodewithsourcegradient
 func (cc _CNNUpsamplingBilinearGradientNodeClass) NodeWithSourceGradientSourceImageGradientStateScaleFactorXScaleFactorY(sourceGradient IImageNode, sourceImage IImageNode, gradientState IGradientStateNode, scaleFactorX float64, scaleFactorY float64) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("nodeWithSourceGradient:sourceImage:gradientState:scaleFactorX:scaleFactorY:"), sourceGradient, sourceImage, gradientState, scaleFactorX, scaleFactorY)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSourceGradientSourceImageGradientStateScaleFactorXScaleFactorY) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for CNNUpsamplingBilinearGradientNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNUpsamplingBilinearGradientNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNUpsamplingBilinearGradientNode */
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilineargradientnode/2948051-scalefactorx
 func (c_ CNNUpsamplingBilinearGradientNode) ScaleFactorX() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("scaleFactorX"))
 	return rv
-}/* debug [instance_properties/getter]: scaleFactorX */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilineargradientnode/2948051-scalefactorx
 func (c_ CNNUpsamplingBilinearGradientNode) SetScaleFactorX(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setScaleFactorX:"), value)
-}/* debug [instance_properties/setter]: scaleFactorX */
+}
 
 
 // [Full Topic]
@@ -175,18 +175,18 @@ func (c_ CNNUpsamplingBilinearGradientNode) SetScaleFactorX(value objectivec.IOb
 func (c_ CNNUpsamplingBilinearGradientNode) ScaleFactorY() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("scaleFactorY"))
 	return rv
-}/* debug [instance_properties/getter]: scaleFactorY */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilineargradientnode/2948054-scalefactory
 func (c_ CNNUpsamplingBilinearGradientNode) SetScaleFactorY(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setScaleFactorY:"), value)
-}/* debug [instance_properties/setter]: scaleFactorY */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSCNNUpsamplingBilinearGradientNode */
+
+
+
 
 

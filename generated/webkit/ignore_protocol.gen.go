@@ -15,3 +15,4 @@ var ignoreProtocol *objc.Protocol
 func init() {
 	ignoreProtocol = objc.GetProtocol("ignore")
 }
+

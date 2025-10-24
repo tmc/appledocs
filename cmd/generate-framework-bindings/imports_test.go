@@ -52,7 +52,7 @@ func TestDetermineRequiredImports(t *testing.T) {
 			// (it would need to be appkit.BackingStoreType)
 		},
 		{
-			name: "AppKit with NSRect - no qualified import needed",
+			name: "AppKit with NSRect - requires CoreFoundation import",
 			methods: []MethodInfo{
 				{
 					Selector:   "initWithFrame:",
@@ -65,13 +65,12 @@ func TestDetermineRequiredImports(t *testing.T) {
 			framework: "AppKit",
 			wantImports: []string{
 				"github.com/tmc/appledocs/generated/objc",
+				"github.com/tmc/appledocs/generated/corefoundation", // NSRect → corefoundation.CGRect
 			},
-			// NSRect gets stripped to Rect (no cross-framework import needed)
-			// AppKit shouldn't import itself
+			// NSRect maps to corefoundation.CGRect (cross-framework import needed)
 			dontWantImports: []string{
 				"github.com/tmc/appledocs/generated/appkit",
 				"github.com/tmc/appledocs/generated/coregraphics",
-				"github.com/tmc/appledocs/generated/corefoundation",
 			},
 		},
 		{
@@ -257,11 +256,11 @@ func TestQualifiedTypeGeneration(t *testing.T) {
 			wantPkg:   "corefoundation", // Geometry types defined in CoreFoundation
 		},
 		{
-			name:      "Foundation unqualified",
+			name:      "Foundation NSRect",
 			objcType:  "NSRect",
 			framework: "Foundation",
-			wantType:  "Rect",
-			wantPkg:   "",
+			wantType:  "corefoundation.CGRect", // NSRect → corefoundation.CGRect
+			wantPkg:   "corefoundation",
 		},
 		{
 			name:      "CoreGraphics unqualified",

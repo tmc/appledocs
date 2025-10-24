@@ -7,12 +7,14 @@ package storekittest
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/storekit"
 )
 
 // iOS-only methods for AdTestSession
+
 
 // Sends the test postbacks and handles the responses.
 //
@@ -77,3 +79,7 @@ func (a_ AdTestSession) Postbacks() []AdTestPostback {
 	rv := objc.Send[[]AdTestPostback](a_.ID, objc.Sel("postbacks"))
 	return rv
 }
+
+
+
+

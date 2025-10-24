@@ -7,14 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coreimage"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
-/* debug [class.gen.go]: Generating class VNBarcodeObservation */
 
 
-/* debug [class_header]: Header for VNBarcodeObservation */
+
+
 // The class instance for the [BarcodeObservation] class.
 var (
 	BarcodeObservationClass     _BarcodeObservationClass
@@ -31,16 +29,16 @@ func getBarcodeObservationClass() _BarcodeObservationClass {
 type _BarcodeObservationClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for BarcodeObservation */
+
+
 // An interface definition for the [BarcodeObservation] class.
 type IBarcodeObservation interface {
 	IRectangleObservation
 	
-/* debug [class_interface_properties]: Properties for BarcodeObservation */
+
 	// properties:
 	BarcodeDescriptor() coreimage.BarcodeDescriptor
 	IsColorInverted() bool
@@ -53,19 +51,19 @@ type IBarcodeObservation interface {
 	Symbology() BarcodeSymbology /* typedef */
 	Results() IVNBarcodeObservation
 	SetResults(value IVNBarcodeObservation)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for BarcodeObservation */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for BarcodeObservation */
+
+
 // Alloc allocates a new instance without initialization.
 func (bc _BarcodeObservationClass) Alloc() BarcodeObservation {
 	rv := objc.Send[BarcodeObservation](objc.ID(bc.class), objc.Sel("alloc"))
@@ -95,11 +93,11 @@ func (b_ BarcodeObservation) Autorelease() BarcodeObservation {
 func NewBarcodeObservation() BarcodeObservation {
 	return getBarcodeObservationClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for BarcodeObservation */
+
+
 // An object that represents barcode information that an image analysis request detects.
 //
 // This type of observation results from a . It contains information about the detected barcode, including parsed payload data for supported symbologies.
@@ -121,30 +119,30 @@ func BarcodeObservationFrom(ptr unsafe.Pointer) BarcodeObservation {
 		RectangleObservation: RectangleObservationFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for BarcodeObservation *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for BarcodeObservation */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for BarcodeObservation */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for BarcodeObservation */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for BarcodeObservation */
+
+
+
+
+
+
+
+
+
 
 // An object that describes the low-level details about the barcode and its data.
 //
@@ -153,7 +151,7 @@ func BarcodeObservationFrom(ptr unsafe.Pointer) BarcodeObservation {
 func (b_ BarcodeObservation) BarcodeDescriptor() coreimage.BarcodeDescriptor {
 	rv := objc.Send[coreimage.BarcodeDescriptor](b_.ID, objc.Sel("barcodeDescriptor"))
 	return rv
-}/* debug [instance_properties/getter]: barcodeDescriptor */
+}
 
 
 // A Boolean value that indicates whether the barcode is color inverted.
@@ -163,7 +161,7 @@ func (b_ BarcodeObservation) BarcodeDescriptor() coreimage.BarcodeDescriptor {
 func (b_ BarcodeObservation) IsColorInverted() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isColorInverted"))
 	return rv
-}/* debug [instance_properties/getter]: isColorInverted */
+}
 
 
 // A Boolean value that indicates whether the barcode carries any global standards data.
@@ -173,7 +171,7 @@ func (b_ BarcodeObservation) IsColorInverted() bool {
 func (b_ BarcodeObservation) IsGS1DataCarrier() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isGS1DataCarrier"))
 	return rv
-}/* debug [instance_properties/getter]: isGS1DataCarrier */
+}
 
 
 // The raw data representation of the barcode’s payload.
@@ -183,7 +181,7 @@ func (b_ BarcodeObservation) IsGS1DataCarrier() bool {
 func (b_ BarcodeObservation) PayloadData() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](b_.ID, objc.Sel("payloadData"))
 	return rv
-}/* debug [instance_properties/getter]: payloadData */
+}
 
 
 // A string value that represents the barcode payload.
@@ -193,7 +191,7 @@ func (b_ BarcodeObservation) PayloadData() objc.IObject /* cross-framework: NSDa
 func (b_ BarcodeObservation) PayloadStringValue() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("payloadStringValue"))
 	return rv
-}/* debug [instance_properties/getter]: payloadStringValue */
+}
 
 
 // The supplemental composite type.
@@ -203,7 +201,7 @@ func (b_ BarcodeObservation) PayloadStringValue() objc.IObject /* cross-framewor
 func (b_ BarcodeObservation) SupplementalCompositeType() BarcodeCompositeType {
 	rv := objc.Send[BarcodeCompositeType](b_.ID, objc.Sel("supplementalCompositeType"))
 	return rv
-}/* debug [instance_properties/getter]: supplementalCompositeType */
+}
 
 
 // [Full Topic]
@@ -211,7 +209,7 @@ func (b_ BarcodeObservation) SupplementalCompositeType() BarcodeCompositeType {
 func (b_ BarcodeObservation) SupplementalPayloadData() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](b_.ID, objc.Sel("supplementalPayloadData"))
 	return rv
-}/* debug [instance_properties/getter]: supplementalPayloadData */
+}
 
 
 // The supplemental code decoded as a string value.
@@ -221,7 +219,7 @@ func (b_ BarcodeObservation) SupplementalPayloadData() objc.IObject /* cross-fra
 func (b_ BarcodeObservation) SupplementalPayloadString() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("supplementalPayloadString"))
 	return rv
-}/* debug [instance_properties/getter]: supplementalPayloadString */
+}
 
 
 // The symbology of the observed barcode.
@@ -231,7 +229,7 @@ func (b_ BarcodeObservation) SupplementalPayloadString() objc.IObject /* cross-f
 func (b_ BarcodeObservation) Symbology() BarcodeSymbology /* typedef */ {
 	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("symbology"))
 	return rv
-}/* debug [instance_properties/getter]: symbology */
+}
 
 
 // The results of a barcode detection request.
@@ -241,7 +239,7 @@ func (b_ BarcodeObservation) Symbology() BarcodeSymbology /* typedef */ {
 func (b_ BarcodeObservation) Results() IVNBarcodeObservation {
 	rv := objc.Send[BarcodeObservation](b_.ID, objc.Sel("results"))
 	return rv
-}/* debug [instance_properties/getter]: results */
+}
 
 
 // The results of a barcode detection request.
@@ -250,12 +248,12 @@ func (b_ BarcodeObservation) Results() IVNBarcodeObservation {
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/results
 func (b_ BarcodeObservation) SetResults(value IVNBarcodeObservation) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResults:"), value)
-}/* debug [instance_properties/setter]: results */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class VNBarcodeObservation */
+
+
+
 
 
 

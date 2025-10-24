@@ -11,6 +11,7 @@ import (
 
 /* debug [class.gen.go]: Generating class DOMHTMLMarqueeElement */
 
+
 /* debug [class_header]: Header for DOMHTMLMarqueeElement */
 // The class instance for the [DOMHTMLMarqueeElement] class.
 var (
@@ -28,25 +29,28 @@ func getDOMHTMLMarqueeElementClass() _DOMHTMLMarqueeElementClass {
 type _DOMHTMLMarqueeElementClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMHTMLMarqueeElement */
 // An interface definition for the [DOMHTMLMarqueeElement] class.
 type IDOMHTMLMarqueeElement interface {
 	IDOMHTMLElement
-
-	/* debug [class_interface_properties]: Properties for DOMHTMLMarqueeElement */
+	
+/* debug [class_interface_properties]: Properties for DOMHTMLMarqueeElement */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMHTMLMarqueeElement */
+	
+/* debug [class_interface_methods]: Methods for DOMHTMLMarqueeElement */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMHTMLMarqueeElement */
 // Alloc allocates a new instance without initialization.
@@ -78,10 +82,12 @@ func (d_ DOMHTMLMarqueeElement) Autorelease() DOMHTMLMarqueeElement {
 func NewDOMHTMLMarqueeElement() DOMHTMLMarqueeElement {
 	return getDOMHTMLMarqueeElementClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMHTMLMarqueeElement */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLMarqueeElement
@@ -95,21 +101,34 @@ func DOMHTMLMarqueeElementFrom(ptr unsafe.Pointer) DOMHTMLMarqueeElement {
 		DOMHTMLElement: DOMHTMLElementFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMHTMLMarqueeElement */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMHTMLMarqueeElement *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMHTMLMarqueeElement */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMHTMLMarqueeElement */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for DOMHTMLMarqueeElement */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for DOMHTMLMarqueeElement */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMHTMLMarqueeElement */
+
+
+

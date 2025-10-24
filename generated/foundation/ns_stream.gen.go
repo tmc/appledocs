@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSStream */
 
 
-/* debug [class_header]: Header for NSStream */
+
+
 // The class instance for the [Stream] class.
 var (
 	StreamClass     _StreamClass
@@ -30,16 +30,16 @@ func getStreamClass() _StreamClass {
 type _StreamClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for Stream */
+
+
 // An interface definition for the [Stream] class.
 type IStream interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for Stream */
+
 	// properties:
 	NSStreamSOCKSErrorDomain() IString
 	NSStreamSocketSSLErrorDomain() IString
@@ -49,20 +49,20 @@ type IStream interface {
 	SetStreamError(value objc.IObject)
 	StreamStatus() objectivec.IObject
 	SetStreamStatus(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for Stream */
+
 	// methods:
 	Open()
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for Stream */
+
+
 // Alloc allocates a new instance without initialization.
 func (sc _StreamClass) Alloc() Stream {
 	rv := objc.Send[Stream](objc.ID(sc.class), objc.Sel("alloc"))
@@ -92,11 +92,11 @@ func (s_ Stream) Autorelease() Stream {
 func NewStream() Stream {
 	return getStreamClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for Stream */
+
+
 // An abstract class representing a stream.
 //
 // This class’s interface is common to all Cocoa stream classes, including its concrete subclasses and . objects provide an easy way to read and write data to and from a variety of media in a device-independent way. You can create stream objects for data located in memory, in a file, or on a network (using sockets), and you can use stream objects without loading all of the data into memory at once. By default, instances that aren’t file-based are non-seekable, one-way streams (although custom seekable subclasses are possible). After you provide or consume data, you can’t retrieve the data from the stream.
@@ -116,25 +116,25 @@ type Stream struct {
 func StreamFrom(ptr unsafe.Pointer) Stream {
 	return Stream{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for Stream *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for Stream */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for Stream */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for Stream */
+
+
+
+
+
+
+
 
 // Opens the receiving stream.
 //
@@ -142,13 +142,13 @@ func StreamFrom(ptr unsafe.Pointer) Stream {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/open()
 func (s_ Stream) Open() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("open"))
-}/* debug [instance_methods/method]: Open */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for Stream */
+
+
+
 
 // The error domain used by
 //
@@ -157,7 +157,7 @@ func (s_ Stream) Open() {
 func (s_ Stream) NSStreamSOCKSErrorDomain() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("NSStreamSOCKSErrorDomain"))
 	return rv
-}/* debug [instance_properties/getter]: NSStreamSOCKSErrorDomain */
+}
 
 
 // The error domain used by
@@ -167,7 +167,7 @@ func (s_ Stream) NSStreamSOCKSErrorDomain() IString {
 func (s_ Stream) NSStreamSocketSSLErrorDomain() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
 	return rv
-}/* debug [instance_properties/getter]: NSStreamSocketSSLErrorDomain */
+}
 
 
 // Sets the receiver’s delegate.
@@ -177,7 +177,7 @@ func (s_ Stream) NSStreamSocketSSLErrorDomain() IString {
 func (s_ Stream) Delegate() objc.IObject /* cross-framework: StreamDelegate */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
-}/* debug [instance_properties/getter]: delegate */
+}
 
 
 // Sets the receiver’s delegate.
@@ -186,7 +186,7 @@ func (s_ Stream) Delegate() objc.IObject /* cross-framework: StreamDelegate */ {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/stream/delegate
 func (s_ Stream) SetDelegate(value objc.IObject /* cross-framework: StreamDelegate */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
-}/* debug [instance_properties/setter]: delegate */
+}
 
 
 // Returns an
@@ -196,7 +196,7 @@ func (s_ Stream) SetDelegate(value objc.IObject /* cross-framework: StreamDelega
 func (s_ Stream) StreamError() objc.IObject {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("streamError"))
 	return rv
-}/* debug [instance_properties/getter]: streamError */
+}
 
 
 // Returns an
@@ -205,7 +205,7 @@ func (s_ Stream) StreamError() objc.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/stream/streamerror
 func (s_ Stream) SetStreamError(value objc.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStreamError:"), value)
-}/* debug [instance_properties/setter]: streamError */
+}
 
 
 // Returns the receiver’s status.
@@ -215,7 +215,7 @@ func (s_ Stream) SetStreamError(value objc.IObject) {
 func (s_ Stream) StreamStatus() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](s_.ID, objc.Sel("streamStatus"))
 	return rv
-}/* debug [instance_properties/getter]: streamStatus */
+}
 
 
 // Returns the receiver’s status.
@@ -224,12 +224,12 @@ func (s_ Stream) StreamStatus() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/stream/streamstatus
 func (s_ Stream) SetStreamStatus(value objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStreamStatus:"), value)
-}/* debug [instance_properties/setter]: streamStatus */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSStream */
+
+
+
 
 
 

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNAddGradient */
 
 
-/* debug [class_header]: Header for MPSCNNAddGradient */
+
+
 // The class instance for the [CNNAddGradient] class.
 var (
 	CNNAddGradientClass     _CNNAddGradientClass
@@ -30,30 +30,30 @@ func getCNNAddGradientClass() _CNNAddGradientClass {
 type _CNNAddGradientClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNAddGradient */
+
+
 // An interface definition for the [CNNAddGradient] class.
 type ICNNAddGradient interface {
 	ICNNArithmeticGradient
 	
-/* debug [class_interface_properties]: Properties for CNNAddGradient */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNAddGradient */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNAddGradient */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNAddGradientClass) Alloc() CNNAddGradient {
 	rv := objc.Send[CNNAddGradient](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNAddGradient) Autorelease() CNNAddGradient {
 func NewCNNAddGradient() CNNAddGradient {
 	return getCNNAddGradientClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNAddGradient */
+
+
 // A gradient addition operator.
 
 
@@ -107,11 +107,11 @@ func CNNAddGradientFrom(ptr unsafe.Pointer) CNNAddGradient {
 		CNNArithmeticGradient: CNNArithmeticGradientFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNAddGradient */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnaddgradient/2956163-initwithdevice
@@ -120,31 +120,31 @@ func NewCNNAddGradientWithDeviceIsSecondarySourceFilter(device unsafe.Pointer, i
 	rv := objc.Send[CNNAddGradient](instance.ID, objc.Sel("initWithDevice:isSecondarySourceFilter:"), device, isSecondarySourceFilter)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNAddGradientWithDeviceIsSecondarySourceFilter */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNAddGradient */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNAddGradient */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNAddGradient */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNAddGradient */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNAddGradient */
+
+
+
+
+
+
+
+
+
+
+
 
 

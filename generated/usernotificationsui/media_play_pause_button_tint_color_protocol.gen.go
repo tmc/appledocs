@@ -19,3 +19,4 @@ var mediaPlayPauseButtonTintColorProtocol *objc.Protocol
 func init() {
 	mediaPlayPauseButtonTintColorProtocol = objc.GetProtocol("mediaPlayPauseButtonTintColor")
 }
+

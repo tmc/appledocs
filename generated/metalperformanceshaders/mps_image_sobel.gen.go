@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSImageSobel */
 
 
-/* debug [class_header]: Header for MPSImageSobel */
+
+
 // The class instance for the [ImageSobel] class.
 var (
 	ImageSobelClass     _ImageSobelClass
@@ -31,32 +30,32 @@ func getImageSobelClass() _ImageSobelClass {
 type _ImageSobelClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ImageSobel */
+
+
 // An interface definition for the [ImageSobel] class.
 type IImageSobel interface {
 	IUnaryImageKernel
 	
-/* debug [class_interface_properties]: Properties for ImageSobel */
+
 	// properties:
 	ColorTransform() objectivec.IObject
 	SetColorTransform(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ImageSobel */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ImageSobel */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageSobelClass) Alloc() ImageSobel {
 	rv := objc.Send[ImageSobel](objc.ID(ic.class), objc.Sel("alloc"))
@@ -86,11 +85,11 @@ func (i_ ImageSobel) Autorelease() ImageSobel {
 func NewImageSobel() ImageSobel {
 	return getImageSobelClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ImageSobel */
+
+
 // A filter that convolves an image with the Sobel operator.
 //
 // When the color model (e.g. RGB, two-channel, grayscale, etc.) of the source and destination textures match, the filter is applied to each color channel separately. If the destination is single-channel (i.e. monochrome) but the source is multi-channel, the pixel values are converted to grayscale before applying the Sobel operator by using the linear gray color transform vector shown in the code listing below.
@@ -112,11 +111,11 @@ func ImageSobelFrom(ptr unsafe.Pointer) ImageSobel {
 		UnaryImageKernel: UnaryImageKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ImageSobel */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagesobel/2866152-initwithcoder
@@ -125,7 +124,7 @@ func NewImageSobelWithCoderDevice(aDecoder foundation.Coder, device unsafe.Point
 	rv := objc.Send[ImageSobel](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageSobelWithCoderDevice */
+}
 
 
 // Initializes a Sobel filter on a given device using the default color transform.
@@ -137,7 +136,7 @@ func NewImageSobelWithDevice(device unsafe.Pointer) ImageSobel {
 	rv := objc.Send[ImageSobel](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageSobelWithDevice */
+}
 
 
 // Initializes a Sobel filter on a given device using a specific color transform.
@@ -149,28 +148,28 @@ func NewImageSobelWithDeviceLinearGrayColorTransform(device unsafe.Pointer, tran
 	rv := objc.Send[ImageSobel](instance.ID, objc.Sel("initWithDevice:linearGrayColorTransform:"), device, transform)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageSobelWithDeviceLinearGrayColorTransform */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ImageSobel */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ImageSobel */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ImageSobel */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ImageSobel */
+
+
+
+
+
+
+
+
+
 
 // The color transform used to initialize the Sobel filter.
 //
@@ -179,7 +178,7 @@ func NewImageSobelWithDeviceLinearGrayColorTransform(device unsafe.Pointer, tran
 func (i_ ImageSobel) ColorTransform() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](i_.ID, objc.Sel("colorTransform"))
 	return rv
-}/* debug [instance_properties/getter]: colorTransform */
+}
 
 
 // The color transform used to initialize the Sobel filter.
@@ -188,11 +187,11 @@ func (i_ ImageSobel) ColorTransform() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagesobel/1618777-colortransform
 func (i_ ImageSobel) SetColorTransform(value objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setColorTransform:"), value)
-}/* debug [instance_properties/setter]: colorTransform */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSImageSobel */
+
+
+
 
 

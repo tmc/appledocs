@@ -15,3 +15,4 @@ var webViewFooterHeightProtocol *objc.Protocol
 func init() {
 	webViewFooterHeightProtocol = objc.GetProtocol("webViewFooterHeight:")
 }
+

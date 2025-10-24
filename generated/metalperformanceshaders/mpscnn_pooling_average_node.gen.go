@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNPoolingAverageNode */
 
 
-/* debug [class_header]: Header for MPSCNNPoolingAverageNode */
+
+
 // The class instance for the [CNNPoolingAverageNode] class.
 var (
 	CNNPoolingAverageNodeClass     _CNNPoolingAverageNodeClass
@@ -29,30 +29,30 @@ func getCNNPoolingAverageNodeClass() _CNNPoolingAverageNodeClass {
 type _CNNPoolingAverageNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNPoolingAverageNode */
+
+
 // An interface definition for the [CNNPoolingAverageNode] class.
 type ICNNPoolingAverageNode interface {
 	ICNNPoolingNode
 	
-/* debug [class_interface_properties]: Properties for CNNPoolingAverageNode */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNPoolingAverageNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNPoolingAverageNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNPoolingAverageNodeClass) Alloc() CNNPoolingAverageNode {
 	rv := objc.Send[CNNPoolingAverageNode](objc.ID(cc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (c_ CNNPoolingAverageNode) Autorelease() CNNPoolingAverageNode {
 func NewCNNPoolingAverageNode() CNNPoolingAverageNode {
 	return getCNNPoolingAverageNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNPoolingAverageNode */
+
+
 // A representation of an average pooling filter.
 
 
@@ -106,34 +106,34 @@ func CNNPoolingAverageNodeFrom(ptr unsafe.Pointer) CNNPoolingAverageNode {
 		CNNPoolingNode: CNNPoolingNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNPoolingAverageNode *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for CNNPoolingAverageNode */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNPoolingAverageNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNPoolingAverageNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNPoolingAverageNode */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNPoolingAverageNode */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAudioUnitEQFilterParameters */
 
 
-/* debug [class_header]: Header for AVAudioUnitEQFilterParameters */
+
+
 // The class instance for the [AudioUnitEQFilterParameters] class.
 var (
 	AudioUnitEQFilterParametersClass     _AudioUnitEQFilterParametersClass
@@ -30,16 +30,16 @@ func getAudioUnitEQFilterParametersClass() _AudioUnitEQFilterParametersClass {
 type _AudioUnitEQFilterParametersClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AudioUnitEQFilterParameters */
+
+
 // An interface definition for the [AudioUnitEQFilterParameters] class.
 type IAudioUnitEQFilterParameters interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for AudioUnitEQFilterParameters */
+
 	// properties:
 	Bandwidth() float32
 	SetBandwidth(value float32)
@@ -55,19 +55,19 @@ type IAudioUnitEQFilterParameters interface {
 	SetBands(value IAVAudioUnitEQFilterParameters)
 	GlobalGain() float32
 	SetGlobalGain(value float32)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AudioUnitEQFilterParameters */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AudioUnitEQFilterParameters */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AudioUnitEQFilterParametersClass) Alloc() AudioUnitEQFilterParameters {
 	rv := objc.Send[AudioUnitEQFilterParameters](objc.ID(ac.class), objc.Sel("alloc"))
@@ -97,11 +97,11 @@ func (a_ AudioUnitEQFilterParameters) Autorelease() AudioUnitEQFilterParameters 
 func NewAudioUnitEQFilterParameters() AudioUnitEQFilterParameters {
 	return getAudioUnitEQFilterParametersClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AudioUnitEQFilterParameters */
+
+
 // An object that encapsulates the parameters that the equalizer uses.
 
 
@@ -119,30 +119,30 @@ type AudioUnitEQFilterParameters struct {
 func AudioUnitEQFilterParametersFrom(ptr unsafe.Pointer) AudioUnitEQFilterParameters {
 	return AudioUnitEQFilterParameters{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AudioUnitEQFilterParameters *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for AudioUnitEQFilterParameters */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AudioUnitEQFilterParameters */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AudioUnitEQFilterParameters */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AudioUnitEQFilterParameters */
+
+
+
+
+
+
+
+
+
 
 // The bandwidth of the equalizer filter, in octaves.
 //
@@ -151,7 +151,7 @@ func AudioUnitEQFilterParametersFrom(ptr unsafe.Pointer) AudioUnitEQFilterParame
 func (a_ AudioUnitEQFilterParameters) Bandwidth() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("bandwidth"))
 	return rv
-}/* debug [instance_properties/getter]: bandwidth */
+}
 
 
 // The bandwidth of the equalizer filter, in octaves.
@@ -160,7 +160,7 @@ func (a_ AudioUnitEQFilterParameters) Bandwidth() float32 {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitEQFilterParameters/bandwidth
 func (a_ AudioUnitEQFilterParameters) SetBandwidth(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBandwidth:"), value)
-}/* debug [instance_properties/setter]: bandwidth */
+}
 
 
 // The bypass state of the equalizer filter band.
@@ -170,7 +170,7 @@ func (a_ AudioUnitEQFilterParameters) SetBandwidth(value float32) {
 func (a_ AudioUnitEQFilterParameters) Bypass() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("bypass"))
 	return rv
-}/* debug [instance_properties/getter]: bypass */
+}
 
 
 // The bypass state of the equalizer filter band.
@@ -179,7 +179,7 @@ func (a_ AudioUnitEQFilterParameters) Bypass() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitEQFilterParameters/bypass
 func (a_ AudioUnitEQFilterParameters) SetBypass(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBypass:"), value)
-}/* debug [instance_properties/setter]: bypass */
+}
 
 
 // The equalizer filter type.
@@ -189,7 +189,7 @@ func (a_ AudioUnitEQFilterParameters) SetBypass(value bool) {
 func (a_ AudioUnitEQFilterParameters) FilterType() AudioUnitEQFilterType {
 	rv := objc.Send[AudioUnitEQFilterType](a_.ID, objc.Sel("filterType"))
 	return rv
-}/* debug [instance_properties/getter]: filterType */
+}
 
 
 // The equalizer filter type.
@@ -198,7 +198,7 @@ func (a_ AudioUnitEQFilterParameters) FilterType() AudioUnitEQFilterType {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitEQFilterParameters/filterType
 func (a_ AudioUnitEQFilterParameters) SetFilterType(value AudioUnitEQFilterType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFilterType:"), value)
-}/* debug [instance_properties/setter]: filterType */
+}
 
 
 // The frequency of the equalizer filter, in hertz.
@@ -208,7 +208,7 @@ func (a_ AudioUnitEQFilterParameters) SetFilterType(value AudioUnitEQFilterType)
 func (a_ AudioUnitEQFilterParameters) Frequency() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("frequency"))
 	return rv
-}/* debug [instance_properties/getter]: frequency */
+}
 
 
 // The frequency of the equalizer filter, in hertz.
@@ -217,7 +217,7 @@ func (a_ AudioUnitEQFilterParameters) Frequency() float32 {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitEQFilterParameters/frequency
 func (a_ AudioUnitEQFilterParameters) SetFrequency(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFrequency:"), value)
-}/* debug [instance_properties/setter]: frequency */
+}
 
 
 // The gain of the equalizer filter, in decibels.
@@ -227,7 +227,7 @@ func (a_ AudioUnitEQFilterParameters) SetFrequency(value float32) {
 func (a_ AudioUnitEQFilterParameters) Gain() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("gain"))
 	return rv
-}/* debug [instance_properties/getter]: gain */
+}
 
 
 // The gain of the equalizer filter, in decibels.
@@ -236,7 +236,7 @@ func (a_ AudioUnitEQFilterParameters) Gain() float32 {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitEQFilterParameters/gain
 func (a_ AudioUnitEQFilterParameters) SetGain(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setGain:"), value)
-}/* debug [instance_properties/setter]: gain */
+}
 
 
 // An array of equalizer filter parameters.
@@ -246,7 +246,7 @@ func (a_ AudioUnitEQFilterParameters) SetGain(value float32) {
 func (a_ AudioUnitEQFilterParameters) Bands() IAVAudioUnitEQFilterParameters {
 	rv := objc.Send[AudioUnitEQFilterParameters](a_.ID, objc.Sel("bands"))
 	return rv
-}/* debug [instance_properties/getter]: bands */
+}
 
 
 // An array of equalizer filter parameters.
@@ -255,7 +255,7 @@ func (a_ AudioUnitEQFilterParameters) Bands() IAVAudioUnitEQFilterParameters {
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiouniteq/bands
 func (a_ AudioUnitEQFilterParameters) SetBands(value IAVAudioUnitEQFilterParameters) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBands:"), value)
-}/* debug [instance_properties/setter]: bands */
+}
 
 
 // The overall gain adjustment that the audio unit applies to the signal, in decibels.
@@ -265,7 +265,7 @@ func (a_ AudioUnitEQFilterParameters) SetBands(value IAVAudioUnitEQFilterParamet
 func (a_ AudioUnitEQFilterParameters) GlobalGain() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("globalGain"))
 	return rv
-}/* debug [instance_properties/getter]: globalGain */
+}
 
 
 // The overall gain adjustment that the audio unit applies to the signal, in decibels.
@@ -274,12 +274,12 @@ func (a_ AudioUnitEQFilterParameters) GlobalGain() float32 {
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiouniteq/globalgain
 func (a_ AudioUnitEQFilterParameters) SetGlobalGain(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setGlobalGain:"), value)
-}/* debug [instance_properties/setter]: globalGain */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVAudioUnitEQFilterParameters */
+
+
+
 
 
 

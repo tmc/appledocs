@@ -18,5 +18,5 @@ package avfaudio
 // See: doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixing
 type PAudioMixing interface {
 	// Required methods
-	DestinationForMixerBus(mixer IAVAudioNode, bus AudioNodeBus /* typedef */) AudioMixingDestination/* debug [protocol_interface/required_method]: DestinationForMixerBus */
+	DestinationForMixerBus(mixer IAVAudioNode, bus AudioNodeBus /* typedef */) AudioMixingDestination
 }

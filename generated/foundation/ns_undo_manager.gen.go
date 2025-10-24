@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSUndoManager */
 
 
-/* debug [class_header]: Header for NSUndoManager */
+
+
 // The class instance for the [UndoManager] class.
 var (
 	UndoManagerClass     _UndoManagerClass
@@ -30,16 +30,16 @@ func getUndoManagerClass() _UndoManagerClass {
 type _UndoManagerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for UndoManager */
+
+
 // An interface definition for the [UndoManager] class.
 type IUndoManager interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for UndoManager */
+
 	// properties:
 	CanRedo() bool
 	CanUndo() bool
@@ -69,10 +69,10 @@ type IUndoManager interface {
 	SetIsUndoRegistrationEnabled(value bool)
 	IsUndoing() bool
 	SetIsUndoing(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for UndoManager */
+
 	// methods:
 	RegisterUndoWithTargetHandler(target objc.IObject, undoHandler func(objc.ID))
 	BeginUndoGrouping()
@@ -81,26 +81,26 @@ type IUndoManager interface {
 	EndUndoGrouping()
 	PrepareWithInvocationTarget(target objc.IObject) objc.ID
 	Redo()
-	RedoActionUserInfoValueForKey(key UndoManagerUserInfoKey /* typedef */) objc.ID
+	RedoActionUserInfoValueForKey(key UndoManagerUserInfoKey) objc.ID
 	RedoMenuTitleForUndoActionName(actionName IString) IString
 	RegisterUndoWithTargetSelectorObject(target objc.IObject, selector objc.SEL, object objc.IObject)
 	RemoveAllActions()
 	RemoveAllActionsWithTarget(target objc.IObject)
 	SetActionIsDiscardable(discardable bool)
 	SetActionName(actionName IString)
-	SetActionUserInfoValueForKey(info objc.IObject, key UndoManagerUserInfoKey /* typedef */)
+	SetActionUserInfoValueForKey(info objc.IObject, key UndoManagerUserInfoKey)
 	Undo()
-	UndoActionUserInfoValueForKey(key UndoManagerUserInfoKey /* typedef */) objc.ID
+	UndoActionUserInfoValueForKey(key UndoManagerUserInfoKey) objc.ID
 	UndoMenuTitleForUndoActionName(actionName IString) IString
 	UndoNestedGroup()
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for UndoManager */
+
+
 // Alloc allocates a new instance without initialization.
 func (uc _UndoManagerClass) Alloc() UndoManager {
 	rv := objc.Send[UndoManager](objc.ID(uc.class), objc.Sel("alloc"))
@@ -130,11 +130,11 @@ func (u_ UndoManager) Autorelease() UndoManager {
 func NewUndoManager() UndoManager {
 	return getUndoManagerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for UndoManager */
+
+
 // A general-purpose recorder of operations that enables undo and redo.
 //
 // You register an undo operation by calling one of the methods described in Registering undo operations. You specify the name of the object that’s changing (or the owner of that object) and provide a closure, method, or invocation to revert its state. After you register an undo operation, you can call on the undo manager to revert to the state of the last undo operation. When undoing an action, saves the operations you revert to so that you can call automatically. Typically, apps with UI interactions work with . For example, UIKit implements undo and redo in its text view object, making it easy for you to undo and redo actions in objects along the responder chain. also serves as a general-purpose state manager, which you can use to undo and redo many kinds of actions. For example, an interactive command-line utility can use this class to undo the last command run, or a networking library can undo a request by sending another request that invalidates the previous one.
@@ -154,25 +154,25 @@ type UndoManager struct {
 func UndoManagerFrom(ptr unsafe.Pointer) UndoManager {
 	return UndoManager{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for UndoManager *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for UndoManager */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for UndoManager */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for UndoManager */
+
+
+
+
+
+
+
 
 // Records a single undo operation for a given target so that when the manager performs an undo, it executes the specified block.
 //
@@ -180,7 +180,7 @@ func UndoManagerFrom(ptr unsafe.Pointer) UndoManager {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUndoManager/registerUndoWithTarget:handler:
 func (u_ UndoManager) RegisterUndoWithTargetHandler(target objc.IObject, undoHandler func(objc.ID)) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("registerUndoWithTarget:handler:"), target, undoHandler)
-}/* debug [instance_methods/method]: RegisterUndoWithTargetHandler */
+}
 
 
 // Marks the beginning of an undo group.
@@ -189,7 +189,7 @@ func (u_ UndoManager) RegisterUndoWithTargetHandler(target objc.IObject, undoHan
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/beginUndoGrouping()
 func (u_ UndoManager) BeginUndoGrouping() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("beginUndoGrouping"))
-}/* debug [instance_methods/method]: BeginUndoGrouping */
+}
 
 
 // Disables the recording of undo operations.
@@ -198,7 +198,7 @@ func (u_ UndoManager) BeginUndoGrouping() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/disableUndoRegistration()
 func (u_ UndoManager) DisableUndoRegistration() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("disableUndoRegistration"))
-}/* debug [instance_methods/method]: DisableUndoRegistration */
+}
 
 
 // Enables the recording of undo operations.
@@ -207,7 +207,7 @@ func (u_ UndoManager) DisableUndoRegistration() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/enableUndoRegistration()
 func (u_ UndoManager) EnableUndoRegistration() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("enableUndoRegistration"))
-}/* debug [instance_methods/method]: EnableUndoRegistration */
+}
 
 
 // Marks the end of an undo group.
@@ -216,7 +216,7 @@ func (u_ UndoManager) EnableUndoRegistration() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/endUndoGrouping()
 func (u_ UndoManager) EndUndoGrouping() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("endUndoGrouping"))
-}/* debug [instance_methods/method]: EndUndoGrouping */
+}
 
 
 // Prepares the undo manager for invocation-based undo with the given target as the subject of the next undo operation.
@@ -226,7 +226,7 @@ func (u_ UndoManager) EndUndoGrouping() {
 func (u_ UndoManager) PrepareWithInvocationTarget(target objc.IObject) objc.ID {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("prepareWithInvocationTarget:"), target)
 	return rv
-}/* debug [instance_methods/method]: PrepareWithInvocationTarget */
+}
 
 
 // Performs the operations in the last group on the redo stack, if there are any, recording them on the undo stack as a single group.
@@ -235,17 +235,17 @@ func (u_ UndoManager) PrepareWithInvocationTarget(target objc.IObject) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/redo()
 func (u_ UndoManager) Redo() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("redo"))
-}/* debug [instance_methods/method]: Redo */
+}
 
 
 // Retrieves the redo action’s user info value for the given key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/redoActionUserInfoValue(forKey:)
-func (u_ UndoManager) RedoActionUserInfoValueForKey(key UndoManagerUserInfoKey /* typedef */) objc.ID {
+func (u_ UndoManager) RedoActionUserInfoValueForKey(key UndoManagerUserInfoKey) objc.ID {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("redoActionUserInfoValueForKey:"), key)
 	return rv
-}/* debug [instance_methods/method]: RedoActionUserInfoValueForKey */
+}
 
 
 // Returns the localized title of the Redo menu command for the identified action.
@@ -255,7 +255,7 @@ func (u_ UndoManager) RedoActionUserInfoValueForKey(key UndoManagerUserInfoKey /
 func (u_ UndoManager) RedoMenuTitleForUndoActionName(actionName IString) IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("redoMenuTitleForUndoActionName:"), actionName)
 	return rv
-}/* debug [instance_methods/method]: RedoMenuTitleForUndoActionName */
+}
 
 
 // Registers the selector of the specified target to implement a single undo operation that the target receives.
@@ -264,7 +264,7 @@ func (u_ UndoManager) RedoMenuTitleForUndoActionName(actionName IString) IString
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/registerUndo(withTarget:selector:object:)
 func (u_ UndoManager) RegisterUndoWithTargetSelectorObject(target objc.IObject, selector objc.SEL, object objc.IObject) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("registerUndoWithTarget:selector:object:"), target, selector, object)
-}/* debug [instance_methods/method]: RegisterUndoWithTargetSelectorObject */
+}
 
 
 // Clears the undo and redo stacks and reenables the manager.
@@ -273,7 +273,7 @@ func (u_ UndoManager) RegisterUndoWithTargetSelectorObject(target objc.IObject, 
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/removeAllActions()
 func (u_ UndoManager) RemoveAllActions() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeAllActions"))
-}/* debug [instance_methods/method]: RemoveAllActions */
+}
 
 
 // Clears the undo and redo stacks of all operations involving the specified target as the recipient of the undo message.
@@ -282,7 +282,7 @@ func (u_ UndoManager) RemoveAllActions() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/removeAllActions(withTarget:)
 func (u_ UndoManager) RemoveAllActionsWithTarget(target objc.IObject) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeAllActionsWithTarget:"), target)
-}/* debug [instance_methods/method]: RemoveAllActionsWithTarget */
+}
 
 
 // Sets whether the next undo or redo action is discardable.
@@ -291,7 +291,7 @@ func (u_ UndoManager) RemoveAllActionsWithTarget(target objc.IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/setActionIsDiscardable(_:)
 func (u_ UndoManager) SetActionIsDiscardable(discardable bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setActionIsDiscardable:"), discardable)
-}/* debug [instance_methods/method]: SetActionIsDiscardable */
+}
 
 
 // Sets the name of the action associated with the Undo or Redo command.
@@ -300,16 +300,16 @@ func (u_ UndoManager) SetActionIsDiscardable(discardable bool) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/setActionName(_:)-8lzip
 func (u_ UndoManager) SetActionName(actionName IString) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setActionName:"), actionName)
-}/* debug [instance_methods/method]: SetActionName */
+}
 
 
 // Sets a user info value for an undo or redo action.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/setActionUserInfoValue(_:forKey:)
-func (u_ UndoManager) SetActionUserInfoValueForKey(info objc.IObject, key UndoManagerUserInfoKey /* typedef */) {
+func (u_ UndoManager) SetActionUserInfoValueForKey(info objc.IObject, key UndoManagerUserInfoKey) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setActionUserInfoValue:forKey:"), info, key)
-}/* debug [instance_methods/method]: SetActionUserInfoValueForKey */
+}
 
 
 // Closes the top-level undo group if necessary, and then performs undo operations on the group.
@@ -318,17 +318,17 @@ func (u_ UndoManager) SetActionUserInfoValueForKey(info objc.IObject, key UndoMa
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undo()
 func (u_ UndoManager) Undo() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("undo"))
-}/* debug [instance_methods/method]: Undo */
+}
 
 
 // Retrieves the undo action’s user info value for the given key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoActionUserInfoValue(forKey:)
-func (u_ UndoManager) UndoActionUserInfoValueForKey(key UndoManagerUserInfoKey /* typedef */) objc.ID {
+func (u_ UndoManager) UndoActionUserInfoValueForKey(key UndoManagerUserInfoKey) objc.ID {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("undoActionUserInfoValueForKey:"), key)
 	return rv
-}/* debug [instance_methods/method]: UndoActionUserInfoValueForKey */
+}
 
 
 // Returns the localized title of the Undo menu command for the identified action.
@@ -338,7 +338,7 @@ func (u_ UndoManager) UndoActionUserInfoValueForKey(key UndoManagerUserInfoKey /
 func (u_ UndoManager) UndoMenuTitleForUndoActionName(actionName IString) IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("undoMenuTitleForUndoActionName:"), actionName)
 	return rv
-}/* debug [instance_methods/method]: UndoMenuTitleForUndoActionName */
+}
 
 
 // Performs the undo operations in the last undo group (whether top-level or nested), recording the operations on the redo stack as a single group.
@@ -347,13 +347,13 @@ func (u_ UndoManager) UndoMenuTitleForUndoActionName(actionName IString) IString
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoNestedGroup()
 func (u_ UndoManager) UndoNestedGroup() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("undoNestedGroup"))
-}/* debug [instance_methods/method]: UndoNestedGroup */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for UndoManager */
+
+
+
 
 // A Boolean value that indicates whether the manager has any actions to redo.
 //
@@ -362,7 +362,7 @@ func (u_ UndoManager) UndoNestedGroup() {
 func (u_ UndoManager) CanRedo() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("canRedo"))
 	return rv
-}/* debug [instance_properties/getter]: canRedo */
+}
 
 
 // A Boolean value that indicates whether the manager has any actions to undo.
@@ -372,7 +372,7 @@ func (u_ UndoManager) CanRedo() bool {
 func (u_ UndoManager) CanUndo() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("canUndo"))
 	return rv
-}/* debug [instance_properties/getter]: canUndo */
+}
 
 
 // The number of nested undo groups (or redo groups, if redo is the most recent operation) in the current event loop.
@@ -382,7 +382,7 @@ func (u_ UndoManager) CanUndo() bool {
 func (u_ UndoManager) GroupingLevel() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("groupingLevel"))
 	return rv
-}/* debug [instance_properties/getter]: groupingLevel */
+}
 
 
 // A Boolean value that indicates whether the manager automatically creates undo groups around each pass of the run loop.
@@ -392,7 +392,7 @@ func (u_ UndoManager) GroupingLevel() int {
 func (u_ UndoManager) GroupsByEvent() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("groupsByEvent"))
 	return rv
-}/* debug [instance_properties/getter]: groupsByEvent */
+}
 
 
 // A Boolean value that indicates whether the manager automatically creates undo groups around each pass of the run loop.
@@ -401,7 +401,7 @@ func (u_ UndoManager) GroupsByEvent() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/groupsByEvent
 func (u_ UndoManager) SetGroupsByEvent(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setGroupsByEvent:"), value)
-}/* debug [instance_properties/setter]: groupsByEvent */
+}
 
 
 // Returns a Boolean value that indicates whether the manager is in the process of performing a redo action.
@@ -411,7 +411,7 @@ func (u_ UndoManager) SetGroupsByEvent(value bool) {
 func (u_ UndoManager) Redoing() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("redoing"))
 	return rv
-}/* debug [instance_properties/getter]: redoing */
+}
 
 
 // A Boolean value that indicates whether the recording of undo operations is enabled.
@@ -421,7 +421,7 @@ func (u_ UndoManager) Redoing() bool {
 func (u_ UndoManager) UndoRegistrationEnabled() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("undoRegistrationEnabled"))
 	return rv
-}/* debug [instance_properties/getter]: undoRegistrationEnabled */
+}
 
 
 // Returns a Boolean value that indicates whether the manager is in the process of performing an undo action.
@@ -431,7 +431,7 @@ func (u_ UndoManager) UndoRegistrationEnabled() bool {
 func (u_ UndoManager) Undoing() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("undoing"))
 	return rv
-}/* debug [instance_properties/getter]: undoing */
+}
 
 
 // The maximum number of top-level undo groups the undo manager holds.
@@ -441,7 +441,7 @@ func (u_ UndoManager) Undoing() bool {
 func (u_ UndoManager) LevelsOfUndo() uint {
 	rv := objc.Send[uint](u_.ID, objc.Sel("levelsOfUndo"))
 	return rv
-}/* debug [instance_properties/getter]: levelsOfUndo */
+}
 
 
 // The maximum number of top-level undo groups the undo manager holds.
@@ -450,7 +450,7 @@ func (u_ UndoManager) LevelsOfUndo() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/levelsOfUndo
 func (u_ UndoManager) SetLevelsOfUndo(value uint) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setLevelsOfUndo:"), value)
-}/* debug [instance_properties/setter]: levelsOfUndo */
+}
 
 
 // A Boolean value that indicates whether the next redo action is discardable.
@@ -460,7 +460,7 @@ func (u_ UndoManager) SetLevelsOfUndo(value uint) {
 func (u_ UndoManager) RedoActionIsDiscardable() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("redoActionIsDiscardable"))
 	return rv
-}/* debug [instance_properties/getter]: redoActionIsDiscardable */
+}
 
 
 // The name identifying the redo action.
@@ -470,7 +470,7 @@ func (u_ UndoManager) RedoActionIsDiscardable() bool {
 func (u_ UndoManager) RedoActionName() IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("redoActionName"))
 	return rv
-}/* debug [instance_properties/getter]: redoActionName */
+}
 
 
 // The number of times you can invoke redo before there are no actions left to redo.
@@ -480,7 +480,7 @@ func (u_ UndoManager) RedoActionName() IString {
 func (u_ UndoManager) RedoCount() uint {
 	rv := objc.Send[uint](u_.ID, objc.Sel("redoCount"))
 	return rv
-}/* debug [instance_properties/getter]: redoCount */
+}
 
 
 // The title of the Redo menu command, such as Redo Paste.
@@ -490,7 +490,7 @@ func (u_ UndoManager) RedoCount() uint {
 func (u_ UndoManager) RedoMenuItemTitle() IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("redoMenuItemTitle"))
 	return rv
-}/* debug [instance_properties/getter]: redoMenuItemTitle */
+}
 
 
 // The modes governing the types of input to handle during a cycle of the run loop.
@@ -500,7 +500,7 @@ func (u_ UndoManager) RedoMenuItemTitle() IString {
 func (u_ UndoManager) RunLoopModes() []string {
 	rv := objc.Send[[]string](u_.ID, objc.Sel("runLoopModes"))
 	return rv
-}/* debug [instance_properties/getter]: runLoopModes */
+}
 
 
 // The modes governing the types of input to handle during a cycle of the run loop.
@@ -518,7 +518,7 @@ func (u_ UndoManager) SetRunLoopModes(value []string) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRunLoopModes:"), nsArray)
-}/* debug [instance_properties/setter]: runLoopModes */
+}
 
 
 // A Boolean value that indicates whether the next undo action is discardable.
@@ -528,7 +528,7 @@ func (u_ UndoManager) SetRunLoopModes(value []string) {
 func (u_ UndoManager) UndoActionIsDiscardable() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("undoActionIsDiscardable"))
 	return rv
-}/* debug [instance_properties/getter]: undoActionIsDiscardable */
+}
 
 
 // The name identifying the undo action.
@@ -538,7 +538,7 @@ func (u_ UndoManager) UndoActionIsDiscardable() bool {
 func (u_ UndoManager) UndoActionName() IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("undoActionName"))
 	return rv
-}/* debug [instance_properties/getter]: undoActionName */
+}
 
 
 // The number of times you can invoke undo before there are no actions left to undo.
@@ -548,7 +548,7 @@ func (u_ UndoManager) UndoActionName() IString {
 func (u_ UndoManager) UndoCount() uint {
 	rv := objc.Send[uint](u_.ID, objc.Sel("undoCount"))
 	return rv
-}/* debug [instance_properties/getter]: undoCount */
+}
 
 
 // The title of the Undo menu command, such as Undo Paste.
@@ -558,7 +558,7 @@ func (u_ UndoManager) UndoCount() uint {
 func (u_ UndoManager) UndoMenuItemTitle() IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("undoMenuItemTitle"))
 	return rv
-}/* debug [instance_properties/getter]: undoMenuItemTitle */
+}
 
 
 // A priority to use when using a run loop to close an undo group.
@@ -568,7 +568,7 @@ func (u_ UndoManager) UndoMenuItemTitle() IString {
 func (u_ UndoManager) NSUndoCloseGroupingRunLoopOrdering() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("NSUndoCloseGroupingRunLoopOrdering"))
 	return rv
-}/* debug [instance_properties/getter]: NSUndoCloseGroupingRunLoopOrdering */
+}
 
 
 // A key, used in a notification’s user info, that indicates the undo group contains only discardable actions.
@@ -578,7 +578,7 @@ func (u_ UndoManager) NSUndoCloseGroupingRunLoopOrdering() int {
 func (u_ UndoManager) NSUndoManagerGroupIsDiscardableKey() IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("NSUndoManagerGroupIsDiscardableKey"))
 	return rv
-}/* debug [instance_properties/getter]: NSUndoManagerGroupIsDiscardableKey */
+}
 
 
 // Returns a Boolean value that indicates whether the manager is in the process of performing a redo action.
@@ -588,7 +588,7 @@ func (u_ UndoManager) NSUndoManagerGroupIsDiscardableKey() IString {
 func (u_ UndoManager) IsRedoing() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isRedoing"))
 	return rv
-}/* debug [instance_properties/getter]: isRedoing */
+}
 
 
 // Returns a Boolean value that indicates whether the manager is in the process of performing a redo action.
@@ -597,7 +597,7 @@ func (u_ UndoManager) IsRedoing() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isredoing
 func (u_ UndoManager) SetIsRedoing(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsRedoing:"), value)
-}/* debug [instance_properties/setter]: isRedoing */
+}
 
 
 // A Boolean value that indicates whether the recording of undo operations is enabled.
@@ -607,7 +607,7 @@ func (u_ UndoManager) SetIsRedoing(value bool) {
 func (u_ UndoManager) IsUndoRegistrationEnabled() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isUndoRegistrationEnabled"))
 	return rv
-}/* debug [instance_properties/getter]: isUndoRegistrationEnabled */
+}
 
 
 // A Boolean value that indicates whether the recording of undo operations is enabled.
@@ -616,7 +616,7 @@ func (u_ UndoManager) IsUndoRegistrationEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isundoregistrationenabled
 func (u_ UndoManager) SetIsUndoRegistrationEnabled(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsUndoRegistrationEnabled:"), value)
-}/* debug [instance_properties/setter]: isUndoRegistrationEnabled */
+}
 
 
 // Returns a Boolean value that indicates whether the manager is in the process of performing an undo action.
@@ -626,7 +626,7 @@ func (u_ UndoManager) SetIsUndoRegistrationEnabled(value bool) {
 func (u_ UndoManager) IsUndoing() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isUndoing"))
 	return rv
-}/* debug [instance_properties/getter]: isUndoing */
+}
 
 
 // Returns a Boolean value that indicates whether the manager is in the process of performing an undo action.
@@ -635,12 +635,12 @@ func (u_ UndoManager) IsUndoing() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isundoing
 func (u_ UndoManager) SetIsUndoing(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsUndoing:"), value)
-}/* debug [instance_properties/setter]: isUndoing */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSUndoManager */
+
+
+
 
 
 

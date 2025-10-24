@@ -1,3 +1,4 @@
+
 // Code generated from Apple documentation for ThreadNetwork. DO NOT EDIT.
 
 // Package threadnetwork provides Go bindings for the ThreadNetwork framework.
@@ -12,10 +13,10 @@ import (
 
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/ThreadNetwork.framework/ThreadNetwork"
-
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
+

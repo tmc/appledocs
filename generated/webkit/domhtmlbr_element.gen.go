@@ -6,11 +6,12 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 /* debug [class.gen.go]: Generating class DOMHTMLBRElement */
+
 
 /* debug [class_header]: Header for DOMHTMLBRElement */
 // The class instance for the [DOMHTMLBRElement] class.
@@ -29,27 +30,30 @@ func getDOMHTMLBRElementClass() _DOMHTMLBRElementClass {
 type _DOMHTMLBRElementClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMHTMLBRElement */
 // An interface definition for the [DOMHTMLBRElement] class.
 type IDOMHTMLBRElement interface {
 	IDOMHTMLElement
-
-	/* debug [class_interface_properties]: Properties for DOMHTMLBRElement */
+	
+/* debug [class_interface_properties]: Properties for DOMHTMLBRElement */
 	// properties:
 	Clear() objc.IObject /* cross-framework: NSString */
 	SetClear(value objc.IObject /* cross-framework: NSString */)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMHTMLBRElement */
+	
+/* debug [class_interface_methods]: Methods for DOMHTMLBRElement */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMHTMLBRElement */
 // Alloc allocates a new instance without initialization.
@@ -81,10 +85,12 @@ func (d_ DOMHTMLBRElement) Autorelease() DOMHTMLBRElement {
 func NewDOMHTMLBRElement() DOMHTMLBRElement {
 	return getDOMHTMLBRElementClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMHTMLBRElement */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLBRElement
@@ -98,19 +104,28 @@ func DOMHTMLBRElementFrom(ptr unsafe.Pointer) DOMHTMLBRElement {
 		DOMHTMLElement: DOMHTMLElementFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMHTMLBRElement */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMHTMLBRElement *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMHTMLBRElement */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMHTMLBRElement */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMHTMLBRElement */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMHTMLBRElement */
 
@@ -119,14 +134,19 @@ func DOMHTMLBRElementFrom(ptr unsafe.Pointer) DOMHTMLBRElement {
 func (d_ DOMHTMLBRElement) Clear() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("clear"))
 	return rv
-} /* debug [instance_properties/getter]: clear */
+}/* debug [instance_properties/getter]: clear */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLBRElement/clear
 func (d_ DOMHTMLBRElement) SetClear(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setClear:"), value)
-} /* debug [instance_properties/setter]: clear */
+}/* debug [instance_properties/setter]: clear */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMHTMLBRElement */
+
+
+

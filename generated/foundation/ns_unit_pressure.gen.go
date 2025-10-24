@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class NSUnitPressure */
 
 
-/* debug [class_header]: Header for NSUnitPressure */
+
+
 // The class instance for the [UnitPressure] class.
 var (
 	UnitPressureClass     _UnitPressureClass
@@ -29,30 +29,30 @@ func getUnitPressureClass() _UnitPressureClass {
 type _UnitPressureClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for UnitPressure */
+
+
 // An interface definition for the [UnitPressure] class.
 type IUnitPressure interface {
 	IDimension
 	
-/* debug [class_interface_properties]: Properties for UnitPressure */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for UnitPressure */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for UnitPressure */
+
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnitPressureClass) Alloc() UnitPressure {
 	rv := objc.Send[UnitPressure](objc.ID(uc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (u_ UnitPressure) Autorelease() UnitPressure {
 func NewUnitPressure() UnitPressure {
 	return getUnitPressureClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for UnitPressure */
+
+
 // A unit of measure for pressure.
 //
 // You typically use instances of to represent specific quantities of pressure using the class.
@@ -108,20 +108,20 @@ func UnitPressureFrom(ptr unsafe.Pointer) UnitPressure {
 		Dimension: DimensionFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for UnitPressure *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for UnitPressure */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for UnitPressure */
+
+
+
+
+
 
 // The millimeters of mercury unit of pressure.
 //
@@ -130,17 +130,17 @@ func UnitPressureFrom(ptr unsafe.Pointer) UnitPressure {
 func (uc _UnitPressureClass) MillimetersOfMercury() UnitPressure {
 	rv := objc.Send[UnitPressure](objc.ID(uc.class), objc.Sel("millimetersOfMercury"))
 	return rv
-}/* debug [class_properties_class/property]: millimetersOfMercury */
-/* debug [class_properties_class]: End class properties */
+}
 
 
 
-/* debug [instance_methods]: Instance methods for UnitPressure */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for UnitPressure */
+
+
+
+
 
 // The millimeters of mercury unit of pressure.
 //
@@ -149,12 +149,12 @@ func (uc _UnitPressureClass) MillimetersOfMercury() UnitPressure {
 func (u_ UnitPressure) MillimetersOfMercury() IUnitPressure {
 	rv := objc.Send[UnitPressure](u_.ID, objc.Sel("millimetersOfMercury"))
 	return rv
-}/* debug [instance_properties/getter]: millimetersOfMercury */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSUnitPressure */
+
+
+
 
 
 

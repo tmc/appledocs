@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNNeuronELUNode */
 
 
-/* debug [class_header]: Header for MPSCNNNeuronELUNode */
+
+
 // The class instance for the [CNNNeuronELUNode] class.
 var (
 	CNNNeuronELUNodeClass     _CNNNeuronELUNodeClass
@@ -30,30 +30,30 @@ func getCNNNeuronELUNodeClass() _CNNNeuronELUNodeClass {
 type _CNNNeuronELUNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNNeuronELUNode */
+
+
 // An interface definition for the [CNNNeuronELUNode] class.
 type ICNNNeuronELUNode interface {
 	ICNNNeuronNode
 	
-/* debug [class_interface_properties]: Properties for CNNNeuronELUNode */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNNeuronELUNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNNeuronELUNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNNeuronELUNodeClass) Alloc() CNNNeuronELUNode {
 	rv := objc.Send[CNNNeuronELUNode](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNNeuronELUNode) Autorelease() CNNNeuronELUNode {
 func NewCNNNeuronELUNode() CNNNeuronELUNode {
 	return getCNNNeuronELUNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNNeuronELUNode */
+
+
 // A representation of a parametric ELU neuron filter.
 
 
@@ -107,11 +107,11 @@ func CNNNeuronELUNodeFrom(ptr unsafe.Pointer) CNNNeuronELUNode {
 		CNNNeuronNode: CNNNeuronNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNNeuronELUNode */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronelunode/2921447-initwithsource
@@ -120,7 +120,7 @@ func NewCNNNeuronELUNodeWithSource(sourceNode IImageNode) CNNNeuronELUNode {
 	rv := objc.Send[CNNNeuronELUNode](instance.ID, objc.Sel("initWithSource:"), sourceNode)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNNeuronELUNodeWithSource */
+}
 
 
 // [Full Topic]
@@ -130,20 +130,20 @@ func NewCNNNeuronELUNodeWithSourceA(sourceNode IImageNode, a float32) CNNNeuronE
 	rv := objc.Send[CNNNeuronELUNode](instance.ID, objc.Sel("initWithSource:a:"), sourceNode, a)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNNeuronELUNodeWithSourceA */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNNeuronELUNode */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronelunode/2866463-nodewithsource
 func (cc _CNNNeuronELUNodeClass) NodeWithSourceA(sourceNode IImageNode, a float32) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("nodeWithSource:a:"), sourceNode, a)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSourceA) */
+}
 
 
 // [Full Topic]
@@ -151,26 +151,26 @@ func (cc _CNNNeuronELUNodeClass) NodeWithSourceA(sourceNode IImageNode, a float3
 func (cc _CNNNeuronELUNodeClass) NodeWithSource(sourceNode IImageNode) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("nodeWithSource:"), sourceNode)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSource) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for CNNNeuronELUNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNNeuronELUNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNNeuronELUNode */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNNeuronELUNode */
+
+
+
+
+
+
+
+
+
 
 

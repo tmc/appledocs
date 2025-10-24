@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNAdditionGradientNode */
 
 
-/* debug [class_header]: Header for MPSNNAdditionGradientNode */
+
+
 // The class instance for the [AdditionGradientNode] class.
 var (
 	AdditionGradientNodeClass     _AdditionGradientNodeClass
@@ -29,30 +29,30 @@ func getAdditionGradientNodeClass() _AdditionGradientNodeClass {
 type _AdditionGradientNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AdditionGradientNode */
+
+
 // An interface definition for the [AdditionGradientNode] class.
 type IAdditionGradientNode interface {
 	IArithmeticGradientNode
 	
-/* debug [class_interface_properties]: Properties for AdditionGradientNode */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AdditionGradientNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AdditionGradientNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AdditionGradientNodeClass) Alloc() AdditionGradientNode {
 	rv := objc.Send[AdditionGradientNode](objc.ID(ac.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (a_ AdditionGradientNode) Autorelease() AdditionGradientNode {
 func NewAdditionGradientNode() AdditionGradientNode {
 	return getAdditionGradientNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AdditionGradientNode */
+
+
 // A representation of a gradient addition operator.
 
 
@@ -106,34 +106,34 @@ func AdditionGradientNodeFrom(ptr unsafe.Pointer) AdditionGradientNode {
 		ArithmeticGradientNode: ArithmeticGradientNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AdditionGradientNode *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for AdditionGradientNode */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AdditionGradientNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AdditionGradientNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AdditionGradientNode */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNAdditionGradientNode */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

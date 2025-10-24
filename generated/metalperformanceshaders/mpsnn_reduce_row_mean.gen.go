@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNReduceRowMean */
 
 
-/* debug [class_header]: Header for MPSNNReduceRowMean */
+
+
 // The class instance for the [ReduceRowMean] class.
 var (
 	ReduceRowMeanClass     _ReduceRowMeanClass
@@ -31,30 +30,30 @@ func getReduceRowMeanClass() _ReduceRowMeanClass {
 type _ReduceRowMeanClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ReduceRowMean */
+
+
 // An interface definition for the [ReduceRowMean] class.
 type IReduceRowMean interface {
 	IReduceUnary
 	
-/* debug [class_interface_properties]: Properties for ReduceRowMean */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ReduceRowMean */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ReduceRowMean */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _ReduceRowMeanClass) Alloc() ReduceRowMean {
 	rv := objc.Send[ReduceRowMean](objc.ID(rc.class), objc.Sel("alloc"))
@@ -84,11 +83,11 @@ func (r_ ReduceRowMean) Autorelease() ReduceRowMean {
 func NewReduceRowMean() ReduceRowMean {
 	return getReduceRowMeanClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ReduceRowMean */
+
+
 // A reduction filter that returns the mean value for each row in an image.
 
 
@@ -108,11 +107,11 @@ func ReduceRowMeanFrom(ptr unsafe.Pointer) ReduceRowMean {
 		ReduceUnary: ReduceUnaryFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ReduceRowMean */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducerowmean/3197843-initwithcoder
@@ -121,7 +120,7 @@ func NewReduceRowMeanWithCoderDevice(aDecoder foundation.Coder, device unsafe.Po
 	rv := objc.Send[ReduceRowMean](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceRowMeanWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -131,31 +130,31 @@ func NewReduceRowMeanWithDevice(device unsafe.Pointer) ReduceRowMean {
 	rv := objc.Send[ReduceRowMean](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceRowMeanWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ReduceRowMean */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ReduceRowMean */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ReduceRowMean */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ReduceRowMean */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNReduceRowMean */
+
+
+
+
+
+
+
+
+
+
+
 
 

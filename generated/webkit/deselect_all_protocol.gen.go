@@ -15,3 +15,4 @@ var deselectAllProtocol *objc.Protocol
 func init() {
 	deselectAllProtocol = objc.GetProtocol("deselectAll")
 }
+

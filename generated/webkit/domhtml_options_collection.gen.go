@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class DOMHTMLOptionsCollection */
+
 
 /* debug [class_header]: Header for DOMHTMLOptionsCollection */
 // The class instance for the [DOMHTMLOptionsCollection] class.
@@ -28,29 +31,32 @@ func getDOMHTMLOptionsCollectionClass() _DOMHTMLOptionsCollectionClass {
 type _DOMHTMLOptionsCollectionClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMHTMLOptionsCollection */
 // An interface definition for the [DOMHTMLOptionsCollection] class.
 type IDOMHTMLOptionsCollection interface {
 	IDOMObject
-
-	/* debug [class_interface_properties]: Properties for DOMHTMLOptionsCollection */
+	
+/* debug [class_interface_properties]: Properties for DOMHTMLOptionsCollection */
 	// properties:
-	Length() unsafe.Pointer
-	SetLength(value unsafe.Pointer)
+	Length() objectivec.IObject
+	SetLength(value objectivec.IObject)
 	SelectedIndex() int
 	SetSelectedIndex(value int)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMHTMLOptionsCollection */
+	
+/* debug [class_interface_methods]: Methods for DOMHTMLOptionsCollection */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMHTMLOptionsCollection */
 // Alloc allocates a new instance without initialization.
@@ -82,10 +88,12 @@ func (d_ DOMHTMLOptionsCollection) Autorelease() DOMHTMLOptionsCollection {
 func NewDOMHTMLOptionsCollection() DOMHTMLOptionsCollection {
 	return getDOMHTMLOptionsCollectionClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMHTMLOptionsCollection */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionsCollection
@@ -99,48 +107,64 @@ func DOMHTMLOptionsCollectionFrom(ptr unsafe.Pointer) DOMHTMLOptionsCollection {
 		DOMObject: DOMObjectFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMHTMLOptionsCollection */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMHTMLOptionsCollection *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMHTMLOptionsCollection */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMHTMLOptionsCollection */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMHTMLOptionsCollection */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMHTMLOptionsCollection */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionsCollection/length
-func (d_ DOMHTMLOptionsCollection) Length() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("length"))
+func (d_ DOMHTMLOptionsCollection) Length() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](d_.ID, objc.Sel("length"))
 	return rv
-} /* debug [instance_properties/getter]: length */
+}/* debug [instance_properties/getter]: length */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionsCollection/length
-func (d_ DOMHTMLOptionsCollection) SetLength(value unsafe.Pointer) {
+func (d_ DOMHTMLOptionsCollection) SetLength(value objectivec.IObject) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLength:"), value)
-} /* debug [instance_properties/setter]: length */
+}/* debug [instance_properties/setter]: length */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionsCollection/selectedIndex
 func (d_ DOMHTMLOptionsCollection) SelectedIndex() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("selectedIndex"))
 	return rv
-} /* debug [instance_properties/getter]: selectedIndex */
+}/* debug [instance_properties/getter]: selectedIndex */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLOptionsCollection/selectedIndex
 func (d_ DOMHTMLOptionsCollection) SetSelectedIndex(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSelectedIndex:"), value)
-} /* debug [instance_properties/setter]: selectedIndex */
+}/* debug [instance_properties/setter]: selectedIndex */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMHTMLOptionsCollection */
+
+
+

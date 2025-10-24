@@ -6,13 +6,14 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class WebHistoryItem */
+
 
 /* debug [class_header]: Header for WebHistoryItem */
 // The class instance for the [WebHistoryItem] class.
@@ -31,34 +32,37 @@ func getWebHistoryItemClass() _WebHistoryItemClass {
 type _WebHistoryItemClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for WebHistoryItem */
 // An interface definition for the [WebHistoryItem] class.
 type IWebHistoryItem interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for WebHistoryItem */
+	
+/* debug [class_interface_properties]: Properties for WebHistoryItem */
 	// properties:
 	AlternateTitle() objc.IObject /* cross-framework: NSString */
 	SetAlternateTitle(value objc.IObject /* cross-framework: NSString */)
 	Icon() appkit.Image
 	LastVisitedTimeInterval() float64
 	OriginalURLString() objc.IObject /* cross-framework: NSString */
-	Title() objc.IObject             /* cross-framework: NSString */
-	URLString() objc.IObject         /* cross-framework: NSString */
-	OrderedLastVisitedDays() unsafe.Pointer
-	SetOrderedLastVisitedDays(value unsafe.Pointer)
-	/* debug [class_interface_properties]: End properties */
+	Title() objc.IObject /* cross-framework: NSString */
+	URLString() objc.IObject /* cross-framework: NSString */
+	OrderedLastVisitedDays() objectivec.IObject
+	SetOrderedLastVisitedDays(value objectivec.IObject)
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for WebHistoryItem */
+	
+/* debug [class_interface_methods]: Methods for WebHistoryItem */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for WebHistoryItem */
 // Alloc allocates a new instance without initialization.
@@ -90,11 +94,13 @@ func (w_ WebHistoryItem) Autorelease() WebHistoryItem {
 func NewWebHistoryItem() WebHistoryItem {
 	return getWebHistoryItemClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for WebHistoryItem */
 // WebHistoryItem objects encapsulate information about visiting a page so that users can return to that page. WebHistory and WebBackForwardList objects manage lists of WebHistoryItem objects. WebHistoryItem objects are created and added to these lists automatically when loading pages, so you do not need to create WebHistoryItem objects directly.
+
 
 // WebHistoryItem objects encapsulate information about visiting a page so that users can return to that page. WebHistory and WebBackForwardList objects manage lists of WebHistoryItem objects. WebHistoryItem objects are created and added to these lists automatically when loading pages, so you do not need to create WebHistoryItem objects directly.
 //
@@ -110,8 +116,9 @@ type WebHistoryItem struct {
 func WebHistoryItemFrom(ptr unsafe.Pointer) WebHistoryItem {
 	return WebHistoryItem{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for WebHistoryItem */
 
@@ -124,18 +131,26 @@ func NewWebHistoryItemWithURLStringTitleLastVisitedTimeInterval(URLString objc.I
 	rv := objc.Send[WebHistoryItem](instance.ID, objc.Sel("initWithURLString:title:lastVisitedTimeInterval:"), URLString, title, time)
 	rv.Autorelease()
 	return rv
-} /* debug [class_init_methods/constructor]: NewWebHistoryItemWithURLStringTitleLastVisitedTimeInterval */
+}/* debug [class_init_methods/constructor]: NewWebHistoryItemWithURLStringTitleLastVisitedTimeInterval */
 
 /* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for WebHistoryItem */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for WebHistoryItem */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for WebHistoryItem */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for WebHistoryItem */
 
@@ -146,7 +161,8 @@ func NewWebHistoryItemWithURLStringTitleLastVisitedTimeInterval(URLString objc.I
 func (w_ WebHistoryItem) AlternateTitle() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("alternateTitle"))
 	return rv
-} /* debug [instance_properties/getter]: alternateTitle */
+}/* debug [instance_properties/getter]: alternateTitle */
+
 
 // An alternate title that may be used in place of the receiver’s page title.
 //
@@ -154,7 +170,8 @@ func (w_ WebHistoryItem) AlternateTitle() objc.IObject /* cross-framework: NSStr
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebHistoryItem/alternateTitle
 func (w_ WebHistoryItem) SetAlternateTitle(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAlternateTitle:"), value)
-} /* debug [instance_properties/setter]: alternateTitle */
+}/* debug [instance_properties/setter]: alternateTitle */
+
 
 // The icon for the receiver’s page, or if none exists.
 //
@@ -163,7 +180,8 @@ func (w_ WebHistoryItem) SetAlternateTitle(value objc.IObject /* cross-framework
 func (w_ WebHistoryItem) Icon() appkit.Image {
 	rv := objc.Send[appkit.Image](w_.ID, objc.Sel("icon"))
 	return rv
-} /* debug [instance_properties/getter]: icon */
+}/* debug [instance_properties/getter]: icon */
+
 
 // The last time and date the receiver’s page was visited.
 //
@@ -172,7 +190,8 @@ func (w_ WebHistoryItem) Icon() appkit.Image {
 func (w_ WebHistoryItem) LastVisitedTimeInterval() float64 {
 	rv := objc.Send[float64](w_.ID, objc.Sel("lastVisitedTimeInterval"))
 	return rv
-} /* debug [instance_properties/getter]: lastVisitedTimeInterval */
+}/* debug [instance_properties/getter]: lastVisitedTimeInterval */
+
 
 // The string representation of the original URL for the receiver’s page.
 //
@@ -181,7 +200,8 @@ func (w_ WebHistoryItem) LastVisitedTimeInterval() float64 {
 func (w_ WebHistoryItem) OriginalURLString() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("originalURLString"))
 	return rv
-} /* debug [instance_properties/getter]: originalURLString */
+}/* debug [instance_properties/getter]: originalURLString */
+
 
 // The receiver’s original page title.
 //
@@ -190,7 +210,8 @@ func (w_ WebHistoryItem) OriginalURLString() objc.IObject /* cross-framework: NS
 func (w_ WebHistoryItem) Title() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("title"))
 	return rv
-} /* debug [instance_properties/getter]: title */
+}/* debug [instance_properties/getter]: title */
+
 
 // The string representation of the URL for the receiver’s page.
 //
@@ -199,25 +220,30 @@ func (w_ WebHistoryItem) Title() objc.IObject /* cross-framework: NSString */ {
 func (w_ WebHistoryItem) URLString() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("URLString"))
 	return rv
-} /* debug [instance_properties/getter]: URLString */
+}/* debug [instance_properties/getter]: URLString */
+
 
 // An array of all calendar days represented in the web history.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webhistory/orderedlastvisiteddays
-func (w_ WebHistoryItem) OrderedLastVisitedDays() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("orderedLastVisitedDays"))
+func (w_ WebHistoryItem) OrderedLastVisitedDays() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](w_.ID, objc.Sel("orderedLastVisitedDays"))
 	return rv
-} /* debug [instance_properties/getter]: orderedLastVisitedDays */
+}/* debug [instance_properties/getter]: orderedLastVisitedDays */
+
 
 // An array of all calendar days represented in the web history.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webhistory/orderedlastvisiteddays
-func (w_ WebHistoryItem) SetOrderedLastVisitedDays(value unsafe.Pointer) {
+func (w_ WebHistoryItem) SetOrderedLastVisitedDays(value objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setOrderedLastVisitedDays:"), value)
-} /* debug [instance_properties/setter]: orderedLastVisitedDays */
+}/* debug [instance_properties/setter]: orderedLastVisitedDays */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class WebHistoryItem */
+
+

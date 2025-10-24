@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZMacGraphicsDeviceConfiguration */
+
 
 /* debug [class_header]: Header for VZMacGraphicsDeviceConfiguration */
 // The class instance for the [VZMacGraphicsDeviceConfiguration] class.
@@ -28,27 +30,30 @@ func getVZMacGraphicsDeviceConfigurationClass() _VZMacGraphicsDeviceConfiguratio
 type _VZMacGraphicsDeviceConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZMacGraphicsDeviceConfiguration */
 // An interface definition for the [VZMacGraphicsDeviceConfiguration] class.
 type IVZMacGraphicsDeviceConfiguration interface {
 	IVZGraphicsDeviceConfiguration
-
-	/* debug [class_interface_properties]: Properties for VZMacGraphicsDeviceConfiguration */
+	
+/* debug [class_interface_properties]: Properties for VZMacGraphicsDeviceConfiguration */
 	// properties:
 	Displays() []VZMacGraphicsDisplayConfiguration
 	SetDisplays(value []VZMacGraphicsDisplayConfiguration)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZMacGraphicsDeviceConfiguration */
+	
+/* debug [class_interface_methods]: Methods for VZMacGraphicsDeviceConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZMacGraphicsDeviceConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -80,13 +85,15 @@ func (v_ VZMacGraphicsDeviceConfiguration) Autorelease() VZMacGraphicsDeviceConf
 func NewVZMacGraphicsDeviceConfiguration() VZMacGraphicsDeviceConfiguration {
 	return getVZMacGraphicsDeviceConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZMacGraphicsDeviceConfiguration */
 // Configuration for a display attached to a Mac graphics device.
 //
 // Use this device to attach a display that’s shown in a .
+
 
 // Configuration for a display attached to a Mac graphics device.
 //
@@ -104,20 +111,29 @@ func VZMacGraphicsDeviceConfigurationFrom(ptr unsafe.Pointer) VZMacGraphicsDevic
 		VZGraphicsDeviceConfiguration: VZGraphicsDeviceConfigurationFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZMacGraphicsDeviceConfiguration */
 /* debug [class_init_methods]: End init methods */
 
+
+
 /* debug [class_methods]: Class methods for VZMacGraphicsDeviceConfiguration */
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZMacGraphicsDeviceConfiguration */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZMacGraphicsDeviceConfiguration */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZMacGraphicsDeviceConfiguration */
 
@@ -128,7 +144,8 @@ func VZMacGraphicsDeviceConfigurationFrom(ptr unsafe.Pointer) VZMacGraphicsDevic
 func (v_ VZMacGraphicsDeviceConfiguration) Displays() []VZMacGraphicsDisplayConfiguration {
 	rv := objc.Send[[]VZMacGraphicsDisplayConfiguration](v_.ID, objc.Sel("displays"))
 	return rv
-} /* debug [instance_properties/getter]: displays */
+}/* debug [instance_properties/getter]: displays */
+
 
 // The displays associated with this graphics device.
 //
@@ -145,8 +162,11 @@ func (v_ VZMacGraphicsDeviceConfiguration) SetDisplays(value []VZMacGraphicsDisp
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDisplays:"), nsArray)
-} /* debug [instance_properties/setter]: displays */
+}/* debug [instance_properties/setter]: displays */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZMacGraphicsDeviceConfiguration */
+
+

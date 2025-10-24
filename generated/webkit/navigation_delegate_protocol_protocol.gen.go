@@ -5,8 +5,13 @@ package webkit
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/coretelephony"
+
+	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/func(unsafe"
 )
 
 // PNavigationDelegate is the WKNavigationDelegate protocol interface.
@@ -59,21 +64,21 @@ type PNavigationDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type NavigationDelegate struct {
-	_WebViewAuthenticationChallengeShouldAllowDeprecatedTLS                  func(webView IWKWebView, challenge foundation.URLAuthenticationChallenge, decisionHandler func(unsafe.Pointer))
-	_WebViewDecidePolicyForNavigationResponseDecisionHandler                 func(webView IWKWebView, navigationResponse IWKNavigationResponse, decisionHandler func(unsafe.Pointer))
-	_WebViewDecidePolicyForNavigationActionDecisionHandler                   func(webView IWKWebView, navigationAction IWKNavigationAction, decisionHandler func(unsafe.Pointer))
-	_WebViewDecidePolicyForNavigationActionPreferencesDecisionHandler        func(webView IWKWebView, navigationAction IWKNavigationAction, preferences IWKWebpagePreferences, decisionHandler func(unsafe.Pointer, unsafe.Pointer))
-	_WebViewDidCommitNavigation                                              func(webView IWKWebView, navigation IWKNavigation)
-	_WebViewDidFailNavigationWithError                                       func(webView IWKWebView, navigation IWKNavigation, error_ objc.IObject /* cross-framework: Error */)
-	_WebViewDidFailProvisionalNavigationWithError                            func(webView IWKWebView, navigation IWKNavigation, error_ objc.IObject /* cross-framework: Error */)
-	_WebViewDidFinishNavigation                                              func(webView IWKWebView, navigation IWKNavigation)
-	_WebViewDidReceiveAuthenticationChallengeCompletionHandler               func(webView IWKWebView, challenge foundation.URLAuthenticationChallenge, completionHandler func(unsafe.Pointer, unsafe.Pointer))
-	_WebViewDidReceiveServerRedirectForProvisionalNavigation                 func(webView IWKWebView, navigation IWKNavigation)
-	_WebViewDidStartProvisionalNavigation                                    func(webView IWKWebView, navigation IWKNavigation)
-	_WebViewNavigationActionDidBecomeDownload                                func(webView IWKWebView, navigationAction IWKNavigationAction, download IWKDownload)
-	_WebViewNavigationResponseDidBecomeDownload                              func(webView IWKWebView, navigationResponse IWKNavigationResponse, download IWKDownload)
+	_WebViewAuthenticationChallengeShouldAllowDeprecatedTLS func(webView IWKWebView, challenge foundation.URLAuthenticationChallenge, decisionHandler func(unsafe.Pointer))
+	_WebViewDecidePolicyForNavigationResponseDecisionHandler func(webView IWKWebView, navigationResponse IWKNavigationResponse, decisionHandler func(unsafe.Pointer))
+	_WebViewDecidePolicyForNavigationActionDecisionHandler func(webView IWKWebView, navigationAction IWKNavigationAction, decisionHandler func(unsafe.Pointer))
+	_WebViewDecidePolicyForNavigationActionPreferencesDecisionHandler func(webView IWKWebView, navigationAction IWKNavigationAction, preferences IWKWebpagePreferences, decisionHandler func(unsafe.Pointer, unsafe.Pointer))
+	_WebViewDidCommitNavigation func(webView IWKWebView, navigation IWKNavigation)
+	_WebViewDidFailNavigationWithError func(webView IWKWebView, navigation IWKNavigation, error_ objc.IObject /* cross-framework: Error */)
+	_WebViewDidFailProvisionalNavigationWithError func(webView IWKWebView, navigation IWKNavigation, error_ objc.IObject /* cross-framework: Error */)
+	_WebViewDidFinishNavigation func(webView IWKWebView, navigation IWKNavigation)
+	_WebViewDidReceiveAuthenticationChallengeCompletionHandler func(webView IWKWebView, challenge foundation.URLAuthenticationChallenge, completionHandler func(unsafe.Pointer, unsafe.Pointer))
+	_WebViewDidReceiveServerRedirectForProvisionalNavigation func(webView IWKWebView, navigation IWKNavigation)
+	_WebViewDidStartProvisionalNavigation func(webView IWKWebView, navigation IWKNavigation)
+	_WebViewNavigationActionDidBecomeDownload func(webView IWKWebView, navigationAction IWKNavigationAction, download IWKDownload)
+	_WebViewNavigationResponseDidBecomeDownload func(webView IWKWebView, navigationResponse IWKNavigationResponse, download IWKDownload)
 	_WebViewShouldGoToBackForwardListItemWillUseInstantBackCompletionHandler func(webView IWKWebView, backForwardListItem IWKBackForwardListItem, willUseInstantBack bool, completionHandler unsafe.Pointer)
-	_WebViewWebContentProcessDidTerminate                                    func(webView IWKWebView)
+	_WebViewWebContentProcessDidTerminate func(webView IWKWebView)
 }
 
 // SetWebViewAuthenticationChallengeShouldAllowDeprecatedTLS sets the handler for the WebViewAuthenticationChallengeShouldAllowDeprecatedTLS delegate method.

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNNeuronAbsoluteNode */
 
 
-/* debug [class_header]: Header for MPSCNNNeuronAbsoluteNode */
+
+
 // The class instance for the [CNNNeuronAbsoluteNode] class.
 var (
 	CNNNeuronAbsoluteNodeClass     _CNNNeuronAbsoluteNodeClass
@@ -30,30 +30,30 @@ func getCNNNeuronAbsoluteNodeClass() _CNNNeuronAbsoluteNodeClass {
 type _CNNNeuronAbsoluteNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNNeuronAbsoluteNode */
+
+
 // An interface definition for the [CNNNeuronAbsoluteNode] class.
 type ICNNNeuronAbsoluteNode interface {
 	ICNNNeuronNode
 	
-/* debug [class_interface_properties]: Properties for CNNNeuronAbsoluteNode */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNNeuronAbsoluteNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNNeuronAbsoluteNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNNeuronAbsoluteNodeClass) Alloc() CNNNeuronAbsoluteNode {
 	rv := objc.Send[CNNNeuronAbsoluteNode](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNNeuronAbsoluteNode) Autorelease() CNNNeuronAbsoluteNode {
 func NewCNNNeuronAbsoluteNode() CNNNeuronAbsoluteNode {
 	return getCNNNeuronAbsoluteNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNNeuronAbsoluteNode */
+
+
 // A representation of an absolute neuron filter.
 
 
@@ -107,11 +107,11 @@ func CNNNeuronAbsoluteNodeFrom(ptr unsafe.Pointer) CNNNeuronAbsoluteNode {
 		CNNNeuronNode: CNNNeuronNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNNeuronAbsoluteNode */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronabsolutenode/2921448-initwithsource
@@ -120,39 +120,39 @@ func NewCNNNeuronAbsoluteNodeWithSource(sourceNode IImageNode) CNNNeuronAbsolute
 	rv := objc.Send[CNNNeuronAbsoluteNode](instance.ID, objc.Sel("initWithSource:"), sourceNode)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNNeuronAbsoluteNodeWithSource */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNNeuronAbsoluteNode */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronabsolutenode/2866431-nodewithsource
 func (cc _CNNNeuronAbsoluteNodeClass) NodeWithSource(sourceNode IImageNode) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("nodeWithSource:"), sourceNode)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSource) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for CNNNeuronAbsoluteNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNNeuronAbsoluteNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNNeuronAbsoluteNode */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNNeuronAbsoluteNode */
+
+
+
+
+
+
+
+
+
 
 

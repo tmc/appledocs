@@ -19,3 +19,4 @@ var sizeForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	sizeForWebExtensionContextProtocol = objc.GetProtocol("sizeForWebExtensionContext:")
 }
+

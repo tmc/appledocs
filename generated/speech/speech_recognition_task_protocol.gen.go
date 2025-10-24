@@ -19,3 +19,4 @@ var speechRecognitionTaskProtocol *objc.Protocol
 func init() {
 	speechRecognitionTaskProtocol = objc.GetProtocol("speechRecognitionTask:")
 }
+

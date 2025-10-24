@@ -6,11 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZVirtioBlockDeviceConfiguration */
+
 
 /* debug [class_header]: Header for VZVirtioBlockDeviceConfiguration */
 // The class instance for the [VZVirtioBlockDeviceConfiguration] class.
@@ -29,29 +31,32 @@ func getVZVirtioBlockDeviceConfigurationClass() _VZVirtioBlockDeviceConfiguratio
 type _VZVirtioBlockDeviceConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZVirtioBlockDeviceConfiguration */
 // An interface definition for the [VZVirtioBlockDeviceConfiguration] class.
 type IVZVirtioBlockDeviceConfiguration interface {
 	IVZStorageDeviceConfiguration
-
-	/* debug [class_interface_properties]: Properties for VZVirtioBlockDeviceConfiguration */
+	
+/* debug [class_interface_properties]: Properties for VZVirtioBlockDeviceConfiguration */
 	// properties:
 	BlockDeviceIdentifier() objc.IObject /* cross-framework: NSString */
 	SetBlockDeviceIdentifier(value objc.IObject /* cross-framework: NSString */)
 	StorageDevices() IVZStorageDeviceConfiguration
 	SetStorageDevices(value IVZStorageDeviceConfiguration)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZVirtioBlockDeviceConfiguration */
+	
+/* debug [class_interface_methods]: Methods for VZVirtioBlockDeviceConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZVirtioBlockDeviceConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -83,13 +88,15 @@ func (v_ VZVirtioBlockDeviceConfiguration) Autorelease() VZVirtioBlockDeviceConf
 func NewVZVirtioBlockDeviceConfiguration() VZVirtioBlockDeviceConfiguration {
 	return getVZVirtioBlockDeviceConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZVirtioBlockDeviceConfiguration */
 // The configuration object that requests the creation of a virtual storage device in the guest system.
 //
 // Use a object to create an emulated storage device in your virtual machine. When you add this object to your virtual machine configuration, the virtual machine creates an emulated disk for the guest operating system to use to read and write files. The emulated storage device conforms to the Virtio Block Device specification. When you create a object, specify the attachment object that implements the underlying storage. For example, specify a object to configure the storage device using a disk image in the local file system. Assign your configuration object to the property of your object before creating your virtual machine.
+
 
 // The configuration object that requests the creation of a virtual storage device in the guest system.
 //
@@ -107,8 +114,9 @@ func VZVirtioBlockDeviceConfigurationFrom(ptr unsafe.Pointer) VZVirtioBlockDevic
 		VZStorageDeviceConfiguration: VZStorageDeviceConfigurationFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZVirtioBlockDeviceConfiguration */
 
@@ -121,9 +129,11 @@ func NewVZVirtioBlockDeviceConfigurationWithAttachment(attachment IVZStorageDevi
 	rv := objc.Send[VZVirtioBlockDeviceConfiguration](instance.ID, objc.Sel("initWithAttachment:"), attachment)
 	rv.Autorelease()
 	return rv
-} /* debug [class_init_methods/constructor]: NewVZVirtioBlockDeviceConfigurationWithAttachment */
+}/* debug [class_init_methods/constructor]: NewVZVirtioBlockDeviceConfigurationWithAttachment */
 
 /* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZVirtioBlockDeviceConfiguration */
 
@@ -131,18 +141,24 @@ func NewVZVirtioBlockDeviceConfigurationWithAttachment(attachment IVZStorageDevi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioBlockDeviceConfiguration/validateBlockDeviceIdentifier(_:)
-func (vc _VZVirtioBlockDeviceConfigurationClass) ValidateBlockDeviceIdentifierError(blockDeviceIdentifier objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool {
+func (vc _VZVirtioBlockDeviceConfigurationClass) ValidateBlockDeviceIdentifierError(blockDeviceIdentifier objc.IObject /* cross-framework: NSString */, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("validateBlockDeviceIdentifier:error:"), blockDeviceIdentifier, error_)
 	return rv
-} /* debug [class_methods/method]: Class method for%!(EXTRA string=ValidateBlockDeviceIdentifierError) */
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValidateBlockDeviceIdentifierError) */
 
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZVirtioBlockDeviceConfiguration */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZVirtioBlockDeviceConfiguration */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZVirtioBlockDeviceConfiguration */
 
@@ -153,7 +169,8 @@ func (vc _VZVirtioBlockDeviceConfigurationClass) ValidateBlockDeviceIdentifierEr
 func (v_ VZVirtioBlockDeviceConfiguration) BlockDeviceIdentifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("blockDeviceIdentifier"))
 	return rv
-} /* debug [instance_properties/getter]: blockDeviceIdentifier */
+}/* debug [instance_properties/getter]: blockDeviceIdentifier */
+
 
 // The string that identifies the VIRTIO block device.
 //
@@ -161,7 +178,8 @@ func (v_ VZVirtioBlockDeviceConfiguration) BlockDeviceIdentifier() objc.IObject 
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioBlockDeviceConfiguration/blockDeviceIdentifier
 func (v_ VZVirtioBlockDeviceConfiguration) SetBlockDeviceIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setBlockDeviceIdentifier:"), value)
-} /* debug [instance_properties/setter]: blockDeviceIdentifier */
+}/* debug [instance_properties/setter]: blockDeviceIdentifier */
+
 
 // The array of storage devices that you expose to the guest operating system.
 //
@@ -170,7 +188,8 @@ func (v_ VZVirtioBlockDeviceConfiguration) SetBlockDeviceIdentifier(value objc.I
 func (v_ VZVirtioBlockDeviceConfiguration) StorageDevices() IVZStorageDeviceConfiguration {
 	rv := objc.Send[VZStorageDeviceConfiguration](v_.ID, objc.Sel("storageDevices"))
 	return rv
-} /* debug [instance_properties/getter]: storageDevices */
+}/* debug [instance_properties/getter]: storageDevices */
+
 
 // The array of storage devices that you expose to the guest operating system.
 //
@@ -178,8 +197,11 @@ func (v_ VZVirtioBlockDeviceConfiguration) StorageDevices() IVZStorageDeviceConf
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/storagedevices
 func (v_ VZVirtioBlockDeviceConfiguration) SetStorageDevices(value IVZStorageDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setStorageDevices:"), value)
-} /* debug [instance_properties/setter]: storageDevices */
+}/* debug [instance_properties/setter]: storageDevices */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZVirtioBlockDeviceConfiguration */
+
+

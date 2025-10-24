@@ -8,9 +8,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for Overlay
+
 
 // Presents an overlay in a window scene.
 //
@@ -42,3 +44,7 @@ func (o_ Overlay) Delegate() unsafe.Pointer {
 func (o_ Overlay) SetDelegate(value unsafe.Pointer) {
 	o_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
+
+
+
+

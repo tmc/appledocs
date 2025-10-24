@@ -7,13 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNGradientStateNode */
 
 
-/* debug [class_header]: Header for MPSNNGradientStateNode */
+
+
 // The class instance for the [GradientStateNode] class.
 var (
 	GradientStateNodeClass     _GradientStateNodeClass
@@ -30,16 +29,16 @@ func getGradientStateNodeClass() _GradientStateNodeClass {
 type _GradientStateNodeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for GradientStateNode */
+
+
 // An interface definition for the [GradientStateNode] class.
 type IGradientStateNode interface {
 	IStateNode
 	
-/* debug [class_interface_properties]: Properties for GradientStateNode */
+
 	// properties:
 	Label() objc.IObject /* cross-framework: NSString */
 	SetLabel(value objc.IObject /* cross-framework: NSString */)
@@ -51,19 +50,19 @@ type IGradientStateNode interface {
 	SetResultState(value IMPSNNStateNode)
 	ResultStates() IMPSNNStateNode
 	SetResultStates(value IMPSNNStateNode)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for GradientStateNode */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for GradientStateNode */
+
+
 // Alloc allocates a new instance without initialization.
 func (gc _GradientStateNodeClass) Alloc() GradientStateNode {
 	rv := objc.Send[GradientStateNode](objc.ID(gc.class), objc.Sel("alloc"))
@@ -93,11 +92,11 @@ func (g_ GradientStateNode) Autorelease() GradientStateNode {
 func NewGradientStateNode() GradientStateNode {
 	return getGradientStateNodeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for GradientStateNode */
+
+
 // A representation of the state created to record the properties of a gradient kernel at the time it was encoded.
 
 
@@ -117,44 +116,44 @@ func GradientStateNodeFrom(ptr unsafe.Pointer) GradientStateNode {
 		StateNode: StateNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for GradientStateNode *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for GradientStateNode */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for GradientStateNode */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for GradientStateNode */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for GradientStateNode */
+
+
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/label
 func (g_ GradientStateNode) Label() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("label"))
 	return rv
-}/* debug [instance_properties/getter]: label */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/label
 func (g_ GradientStateNode) SetLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), value)
-}/* debug [instance_properties/setter]: label */
+}
 
 
 // [Full Topic]
@@ -162,14 +161,14 @@ func (g_ GradientStateNode) SetLabel(value objc.IObject /* cross-framework: NSSt
 func (g_ GradientStateNode) PaddingPolicy() Padding /* not a class type */ {
 	rv := objc.Send[Padding](g_.ID, objc.Sel("paddingPolicy"))
 	return rv
-}/* debug [instance_properties/getter]: paddingPolicy */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/paddingpolicy
 func (g_ GradientStateNode) SetPaddingPolicy(value Padding /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingPolicy:"), value)
-}/* debug [instance_properties/setter]: paddingPolicy */
+}
 
 
 // [Full Topic]
@@ -177,14 +176,14 @@ func (g_ GradientStateNode) SetPaddingPolicy(value Padding /* not a class type *
 func (g_ GradientStateNode) ResultImage() IMPSNNImageNode {
 	rv := objc.Send[ImageNode](g_.ID, objc.Sel("resultImage"))
 	return rv
-}/* debug [instance_properties/getter]: resultImage */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/resultimage
 func (g_ GradientStateNode) SetResultImage(value IMPSNNImageNode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResultImage:"), value)
-}/* debug [instance_properties/setter]: resultImage */
+}
 
 
 // [Full Topic]
@@ -192,14 +191,14 @@ func (g_ GradientStateNode) SetResultImage(value IMPSNNImageNode) {
 func (g_ GradientStateNode) ResultState() IMPSNNStateNode {
 	rv := objc.Send[StateNode](g_.ID, objc.Sel("resultState"))
 	return rv
-}/* debug [instance_properties/getter]: resultState */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/resultstate
 func (g_ GradientStateNode) SetResultState(value IMPSNNStateNode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResultState:"), value)
-}/* debug [instance_properties/setter]: resultState */
+}
 
 
 // [Full Topic]
@@ -207,19 +206,19 @@ func (g_ GradientStateNode) SetResultState(value IMPSNNStateNode) {
 func (g_ GradientStateNode) ResultStates() IMPSNNStateNode {
 	rv := objc.Send[StateNode](g_.ID, objc.Sel("resultStates"))
 	return rv
-}/* debug [instance_properties/getter]: resultStates */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/resultstates
 func (g_ GradientStateNode) SetResultStates(value IMPSNNStateNode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResultStates:"), value)
-}/* debug [instance_properties/setter]: resultStates */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSNNGradientStateNode */
+
+
+
 
 
 

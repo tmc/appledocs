@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNReduceFeatureChannelsArgumentMin */
 
 
-/* debug [class_header]: Header for MPSNNReduceFeatureChannelsArgumentMin */
+
+
 // The class instance for the [ReduceFeatureChannelsArgumentMin] class.
 var (
 	ReduceFeatureChannelsArgumentMinClass     _ReduceFeatureChannelsArgumentMinClass
@@ -31,30 +30,30 @@ func getReduceFeatureChannelsArgumentMinClass() _ReduceFeatureChannelsArgumentMi
 type _ReduceFeatureChannelsArgumentMinClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ReduceFeatureChannelsArgumentMin */
+
+
 // An interface definition for the [ReduceFeatureChannelsArgumentMin] class.
 type IReduceFeatureChannelsArgumentMin interface {
 	IReduceUnary
 	
-/* debug [class_interface_properties]: Properties for ReduceFeatureChannelsArgumentMin */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ReduceFeatureChannelsArgumentMin */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ReduceFeatureChannelsArgumentMin */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _ReduceFeatureChannelsArgumentMinClass) Alloc() ReduceFeatureChannelsArgumentMin {
 	rv := objc.Send[ReduceFeatureChannelsArgumentMin](objc.ID(rc.class), objc.Sel("alloc"))
@@ -84,11 +83,11 @@ func (r_ ReduceFeatureChannelsArgumentMin) Autorelease() ReduceFeatureChannelsAr
 func NewReduceFeatureChannelsArgumentMin() ReduceFeatureChannelsArgumentMin {
 	return getReduceFeatureChannelsArgumentMinClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ReduceFeatureChannelsArgumentMin */
+
+
 // A reduction filter that returns the index of the location of the minimum value for each feature channel in an image.
 
 
@@ -108,11 +107,11 @@ func ReduceFeatureChannelsArgumentMinFrom(ptr unsafe.Pointer) ReduceFeatureChann
 		ReduceUnary: ReduceUnaryFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ReduceFeatureChannelsArgumentMin */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsargumentmin/3197837-initwithcoder
@@ -121,7 +120,7 @@ func NewReduceFeatureChannelsArgumentMinWithCoderDevice(aDecoder foundation.Code
 	rv := objc.Send[ReduceFeatureChannelsArgumentMin](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceFeatureChannelsArgumentMinWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -131,31 +130,31 @@ func NewReduceFeatureChannelsArgumentMinWithDevice(device unsafe.Pointer) Reduce
 	rv := objc.Send[ReduceFeatureChannelsArgumentMin](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceFeatureChannelsArgumentMinWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ReduceFeatureChannelsArgumentMin */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ReduceFeatureChannelsArgumentMin */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ReduceFeatureChannelsArgumentMin */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ReduceFeatureChannelsArgumentMin */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNReduceFeatureChannelsArgumentMin */
+
+
+
+
+
+
+
+
+
+
+
 
 

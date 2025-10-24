@@ -15,3 +15,4 @@ var VZUSBDeviceConfigurationProtocol *objc.Protocol
 func init() {
 	VZUSBDeviceConfigurationProtocol = objc.GetProtocol("VZUSBDeviceConfiguration")
 }
+

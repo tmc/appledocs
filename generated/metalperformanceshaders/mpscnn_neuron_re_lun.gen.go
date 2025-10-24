@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNNeuronReLUN */
 
 
-/* debug [class_header]: Header for MPSCNNNeuronReLUN */
+
+
 // The class instance for the [CNNNeuronReLUN] class.
 var (
 	CNNNeuronReLUNClass     _CNNNeuronReLUNClass
@@ -30,30 +30,30 @@ func getCNNNeuronReLUNClass() _CNNNeuronReLUNClass {
 type _CNNNeuronReLUNClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNNeuronReLUN */
+
+
 // An interface definition for the [CNNNeuronReLUN] class.
 type ICNNNeuronReLUN interface {
 	ICNNNeuron
 	
-/* debug [class_interface_properties]: Properties for CNNNeuronReLUN */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNNeuronReLUN */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNNeuronReLUN */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNNeuronReLUNClass) Alloc() CNNNeuronReLUN {
 	rv := objc.Send[CNNNeuronReLUN](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNNeuronReLUN) Autorelease() CNNNeuronReLUN {
 func NewCNNNeuronReLUN() CNNNeuronReLUN {
 	return getCNNNeuronReLUNClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNNeuronReLUN */
+
+
 // A ReLUN neuron filter.
 //
 // For each pixel in an image, the filter applies the following function: The default value of is 1.0 and the default value of is 6.0.
@@ -109,11 +109,11 @@ func CNNNeuronReLUNFrom(ptr unsafe.Pointer) CNNNeuronReLUN {
 		CNNNeuron: CNNNeuronFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNNeuronReLUN */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronrelun/2921658-initwithdevice
@@ -122,31 +122,31 @@ func NewCNNNeuronReLUNWithDeviceAB(device unsafe.Pointer, a float32, b float32) 
 	rv := objc.Send[CNNNeuronReLUN](instance.ID, objc.Sel("initWithDevice:a:b:"), device, a, b)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNNeuronReLUNWithDeviceAB */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNNeuronReLUN */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNNeuronReLUN */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNNeuronReLUN */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNNeuronReLUN */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNNeuronReLUN */
+
+
+
+
+
+
+
+
+
+
+
 
 

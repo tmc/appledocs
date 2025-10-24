@@ -15,3 +15,4 @@ var screenFrameForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	screenFrameForWebExtensionContextProtocol = objc.GetProtocol("screenFrameForWebExtensionContext:")
 }
+

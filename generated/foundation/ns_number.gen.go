@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSNumber */
 
 
-/* debug [class_header]: Header for NSNumber */
+
+
 // The class instance for the [Number] class.
 var (
 	NumberClass     _NumberClass
@@ -30,16 +30,16 @@ func getNumberClass() _NumberClass {
 type _NumberClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for Number */
+
+
 // An interface definition for the [Number] class.
 type INumber interface {
 	IValue
 	
-/* debug [class_interface_properties]: Properties for Number */
+
 	// properties:
 	BoolValue() bool
 	DecimalValue() objc.IObject /* cross-framework: Decimal */
@@ -78,22 +78,22 @@ type INumber interface {
 	SetUintValue(value uint)
 	ObjCType() objectivec.IObject
 	SetObjCType(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for Number */
+
 	// methods:
 	Compare(otherNumber INumber) ComparisonResult
 	DescriptionWithLocale(locale objc.IObject) IString
 	IsEqualToNumber(number INumber) bool
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for Number */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NumberClass) Alloc() Number {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("alloc"))
@@ -123,11 +123,11 @@ func (n_ Number) Autorelease() Number {
 func NewNumber() Number {
 	return getNumberClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for Number */
+
+
 // An object wrapper for primitive scalar numeric values.
 //
 // is a subclass of that offers a value as any C scalar (numeric) type. It defines a set of methods specifically for setting and accessing the value as a signed or unsigned , , , , , , or or as a . (Note that number objects do not necessarily preserve the type they are created with.) It also defines a method to determine the ordering of two objects. is “toll-free bridged” with its Core Foundation counterparts: for integer and floating point values, and for Boolean values. See for more information on toll-free bridging.
@@ -149,11 +149,11 @@ func NumberFrom(ptr unsafe.Pointer) Number {
 		Value: ValueFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for Number */
+
+
 
 // Returns an object initialized to contain a given value, treated as a .
 //
@@ -164,7 +164,7 @@ func NewNumberWithBool(value bool) Number {
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithBool:"), value)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNumberWithBool */
+}
 
 
 // Returns an object initialized to contain a given value, treated as a signed .
@@ -176,7 +176,7 @@ func NewNumberWithChar(value objectivec.IObject) Number {
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithChar:"), value)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNumberWithChar */
+}
 
 
 // [Full Topic]
@@ -186,7 +186,7 @@ func NewNumberWithCoder(coder ICoder) Number {
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNumberWithCoder */
+}
 
 
 // Returns an object initialized to contain , treated as a .
@@ -198,7 +198,7 @@ func NewNumberWithDouble(value float64) Number {
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithDouble:"), value)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNumberWithDouble */
+}
 
 
 // Returns an object initialized to contain a given value, treated as a .
@@ -210,7 +210,7 @@ func NewNumberWithFloat(value float32) Number {
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithFloat:"), value)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNumberWithFloat */
+}
 
 
 // Returns an object initialized to contain a given value, treated as a signed .
@@ -222,7 +222,7 @@ func NewNumberWithInt(value int) Number {
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithInt:"), value)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNumberWithInt */
+}
 
 
 // Returns an object initialized to contain a given value, treated as an .
@@ -234,7 +234,7 @@ func NewNumberWithInteger(value int) Number {
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithInteger:"), value)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNumberWithInteger */
+}
 
 
 // Returns an object initialized to contain a given value, treated as a signed .
@@ -246,7 +246,7 @@ func NewNumberWithLong(value objectivec.IObject) Number {
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithLong:"), value)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNumberWithLong */
+}
 
 
 // Returns an object initialized to contain , treated as a signed .
@@ -258,7 +258,7 @@ func NewNumberWithLongLong(value objectivec.IObject) Number {
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithLongLong:"), value)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNumberWithLongLong */
+}
 
 
 // Returns an object initialized to contain a given value, treated as a signed .
@@ -270,7 +270,7 @@ func NewNumberWithShort(value objectivec.IObject) Number {
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithShort:"), value)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNumberWithShort */
+}
 
 
 // Returns an object initialized to contain a given value, treated as an .
@@ -282,7 +282,7 @@ func NewNumberWithUnsignedChar(value objectivec.IObject) Number {
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedChar:"), value)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNumberWithUnsignedChar */
+}
 
 
 // Returns an object initialized to contain a given value, treated as an .
@@ -294,7 +294,7 @@ func NewNumberWithUnsignedInt(value objectivec.IObject) Number {
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedInt:"), value)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNumberWithUnsignedInt */
+}
 
 
 // Returns an object initialized to contain a given value, treated as an .
@@ -306,7 +306,7 @@ func NewNumberWithUnsignedInteger(value uint) Number {
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedInteger:"), value)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNumberWithUnsignedInteger */
+}
 
 
 // Returns an object initialized to contain a given value, treated as an .
@@ -318,7 +318,7 @@ func NewNumberWithUnsignedLong(value objectivec.IObject) Number {
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedLong:"), value)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNumberWithUnsignedLong */
+}
 
 
 // Returns an object initialized to contain a given value, treated as an .
@@ -330,7 +330,7 @@ func NewNumberWithUnsignedLongLong(value uint64) Number {
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedLongLong:"), value)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNumberWithUnsignedLongLong */
+}
 
 
 // Returns an object initialized to contain a given value, treated as an .
@@ -342,13 +342,13 @@ func NewNumberWithUnsignedShort(value objectivec.IObject) Number {
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedShort:"), value)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNumberWithUnsignedShort */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for Number */
+
+
+
 
 // Creates and returns an object containing a given value, treating it as a .
 //
@@ -357,7 +357,7 @@ func NewNumberWithUnsignedShort(value objectivec.IObject) Number {
 func (nc _NumberClass) NumberWithBool(value bool) INumber {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithBool:"), value)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NumberWithBool) */
+}
 
 
 // Creates and returns an object containing a given value, treating it as a signed .
@@ -367,7 +367,7 @@ func (nc _NumberClass) NumberWithBool(value bool) INumber {
 func (nc _NumberClass) NumberWithChar(value objectivec.IObject) INumber {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithChar:"), value)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NumberWithChar) */
+}
 
 
 // Creates and returns an object containing a given value, treating it as a .
@@ -377,7 +377,7 @@ func (nc _NumberClass) NumberWithChar(value objectivec.IObject) INumber {
 func (nc _NumberClass) NumberWithDouble(value float64) INumber {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithDouble:"), value)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NumberWithDouble) */
+}
 
 
 // Creates and returns an object containing a given value, treating it as a .
@@ -387,7 +387,7 @@ func (nc _NumberClass) NumberWithDouble(value float64) INumber {
 func (nc _NumberClass) NumberWithFloat(value float32) INumber {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithFloat:"), value)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NumberWithFloat) */
+}
 
 
 // Creates and returns an object containing a given value, treating it as a signed .
@@ -397,7 +397,7 @@ func (nc _NumberClass) NumberWithFloat(value float32) INumber {
 func (nc _NumberClass) NumberWithInt(value int) INumber {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithInt:"), value)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NumberWithInt) */
+}
 
 
 // Creates and returns an object containing a given value, treating it as an .
@@ -407,7 +407,7 @@ func (nc _NumberClass) NumberWithInt(value int) INumber {
 func (nc _NumberClass) NumberWithInteger(value int) INumber {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithInteger:"), value)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NumberWithInteger) */
+}
 
 
 // Creates and returns an object containing a given value, treating it as a signed .
@@ -417,7 +417,7 @@ func (nc _NumberClass) NumberWithInteger(value int) INumber {
 func (nc _NumberClass) NumberWithLong(value objectivec.IObject) INumber {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithLong:"), value)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NumberWithLong) */
+}
 
 
 // Creates and returns an object containing a given value, treating it as a signed .
@@ -427,7 +427,7 @@ func (nc _NumberClass) NumberWithLong(value objectivec.IObject) INumber {
 func (nc _NumberClass) NumberWithLongLong(value objectivec.IObject) INumber {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithLongLong:"), value)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NumberWithLongLong) */
+}
 
 
 // Creates and returns an object containing , treating it as a signed .
@@ -437,7 +437,7 @@ func (nc _NumberClass) NumberWithLongLong(value objectivec.IObject) INumber {
 func (nc _NumberClass) NumberWithShort(value objectivec.IObject) INumber {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithShort:"), value)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NumberWithShort) */
+}
 
 
 // Creates and returns an object containing a given value, treating it as an .
@@ -447,7 +447,7 @@ func (nc _NumberClass) NumberWithShort(value objectivec.IObject) INumber {
 func (nc _NumberClass) NumberWithUnsignedChar(value objectivec.IObject) INumber {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithUnsignedChar:"), value)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NumberWithUnsignedChar) */
+}
 
 
 // Creates and returns an object containing a given value, treating it as an .
@@ -457,7 +457,7 @@ func (nc _NumberClass) NumberWithUnsignedChar(value objectivec.IObject) INumber 
 func (nc _NumberClass) NumberWithUnsignedInt(value objectivec.IObject) INumber {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithUnsignedInt:"), value)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NumberWithUnsignedInt) */
+}
 
 
 // Creates and returns an object containing a given value, treating it as an .
@@ -467,7 +467,7 @@ func (nc _NumberClass) NumberWithUnsignedInt(value objectivec.IObject) INumber {
 func (nc _NumberClass) NumberWithUnsignedInteger(value uint) INumber {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithUnsignedInteger:"), value)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NumberWithUnsignedInteger) */
+}
 
 
 // Creates and returns an object containing a given value, treating it as an .
@@ -477,7 +477,7 @@ func (nc _NumberClass) NumberWithUnsignedInteger(value uint) INumber {
 func (nc _NumberClass) NumberWithUnsignedLong(value objectivec.IObject) INumber {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithUnsignedLong:"), value)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NumberWithUnsignedLong) */
+}
 
 
 // Creates and returns an object containing a given value, treating it as an .
@@ -487,7 +487,7 @@ func (nc _NumberClass) NumberWithUnsignedLong(value objectivec.IObject) INumber 
 func (nc _NumberClass) NumberWithUnsignedLongLong(value uint64) INumber {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithUnsignedLongLong:"), value)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NumberWithUnsignedLongLong) */
+}
 
 
 // Creates and returns an object containing a given value, treating it as an .
@@ -497,18 +497,18 @@ func (nc _NumberClass) NumberWithUnsignedLongLong(value uint64) INumber {
 func (nc _NumberClass) NumberWithUnsignedShort(value objectivec.IObject) INumber {
 	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithUnsignedShort:"), value)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NumberWithUnsignedShort) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for Number */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for Number */
+
+
+
+
+
 
 // Returns an value that indicates whether the number object’s value is greater than, equal to, or less than a given number.
 //
@@ -517,7 +517,7 @@ func (nc _NumberClass) NumberWithUnsignedShort(value objectivec.IObject) INumber
 func (n_ Number) Compare(otherNumber INumber) ComparisonResult {
 	rv := objc.Send[ComparisonResult](n_.ID, objc.Sel("compare:"), otherNumber)
 	return rv
-}/* debug [instance_methods/method]: Compare */
+}
 
 
 // Returns a string that represents the contents of the number object for a given locale.
@@ -527,7 +527,7 @@ func (n_ Number) Compare(otherNumber INumber) ComparisonResult {
 func (n_ Number) DescriptionWithLocale(locale objc.IObject) IString {
 	rv := objc.Send[String](n_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
-}/* debug [instance_methods/method]: DescriptionWithLocale */
+}
 
 
 // Returns a Boolean value that indicates whether the number object’s value and a given number are equal.
@@ -537,13 +537,13 @@ func (n_ Number) DescriptionWithLocale(locale objc.IObject) IString {
 func (n_ Number) IsEqualToNumber(number INumber) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isEqualToNumber:"), number)
 	return rv
-}/* debug [instance_methods/method]: IsEqualToNumber */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for Number */
+
+
+
 
 // The number object’s value expressed as a Boolean value.
 //
@@ -552,7 +552,7 @@ func (n_ Number) IsEqualToNumber(number INumber) bool {
 func (n_ Number) BoolValue() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("boolValue"))
 	return rv
-}/* debug [instance_properties/getter]: boolValue */
+}
 
 
 // The number object’s value expressed as an structure.
@@ -562,7 +562,7 @@ func (n_ Number) BoolValue() bool {
 func (n_ Number) DecimalValue() objc.IObject /* cross-framework: Decimal */ {
 	rv := objc.Send[objc.ID](n_.ID, objc.Sel("decimalValue"))
 	return rv
-}/* debug [instance_properties/getter]: decimalValue */
+}
 
 
 // The number object’s value expressed as a , converted as necessary.
@@ -572,7 +572,7 @@ func (n_ Number) DecimalValue() objc.IObject /* cross-framework: Decimal */ {
 func (n_ Number) DoubleValue() float64 {
 	rv := objc.Send[float64](n_.ID, objc.Sel("doubleValue"))
 	return rv
-}/* debug [instance_properties/getter]: doubleValue */
+}
 
 
 // The number object’s value expressed as a , converted as necessary.
@@ -582,7 +582,7 @@ func (n_ Number) DoubleValue() float64 {
 func (n_ Number) FloatValue() float32 {
 	rv := objc.Send[float32](n_.ID, objc.Sel("floatValue"))
 	return rv
-}/* debug [instance_properties/getter]: floatValue */
+}
 
 
 // The number object’s value expressed as a , converted as necessary.
@@ -592,7 +592,7 @@ func (n_ Number) FloatValue() float32 {
 func (n_ Number) ShortValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("shortValue"))
 	return rv
-}/* debug [instance_properties/getter]: shortValue */
+}
 
 
 // The number object’s value expressed as an , converted as necessary.
@@ -602,7 +602,7 @@ func (n_ Number) ShortValue() objectivec.IObject {
 func (n_ Number) IntValue() int {
 	rv := objc.Send[int](n_.ID, objc.Sel("intValue"))
 	return rv
-}/* debug [instance_properties/getter]: intValue */
+}
 
 
 // The number object’s value expressed as a , converted as necessary.
@@ -612,7 +612,7 @@ func (n_ Number) IntValue() int {
 func (n_ Number) LongLongValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("longLongValue"))
 	return rv
-}/* debug [instance_properties/getter]: longLongValue */
+}
 
 
 // The number object’s value expressed as a .
@@ -622,7 +622,7 @@ func (n_ Number) LongLongValue() objectivec.IObject {
 func (n_ Number) CharValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("charValue"))
 	return rv
-}/* debug [instance_properties/getter]: charValue */
+}
 
 
 // The number object’s value expressed as an object, converted as necessary.
@@ -632,7 +632,7 @@ func (n_ Number) CharValue() objectivec.IObject {
 func (n_ Number) IntegerValue() int {
 	rv := objc.Send[int](n_.ID, objc.Sel("integerValue"))
 	return rv
-}/* debug [instance_properties/getter]: integerValue */
+}
 
 
 // The number object’s value expressed as a , converted as necessary.
@@ -642,7 +642,7 @@ func (n_ Number) IntegerValue() int {
 func (n_ Number) LongValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("longValue"))
 	return rv
-}/* debug [instance_properties/getter]: longValue */
+}
 
 
 // The number object’s value expressed as a human-readable string.
@@ -652,7 +652,7 @@ func (n_ Number) LongValue() objectivec.IObject {
 func (n_ Number) StringValue() IString {
 	rv := objc.Send[String](n_.ID, objc.Sel("stringValue"))
 	return rv
-}/* debug [instance_properties/getter]: stringValue */
+}
 
 
 // The number object’s value expressed as an unsigned , converted as necessary.
@@ -662,7 +662,7 @@ func (n_ Number) StringValue() IString {
 func (n_ Number) UnsignedShortValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("unsignedShortValue"))
 	return rv
-}/* debug [instance_properties/getter]: unsignedShortValue */
+}
 
 
 // The number object’s value expressed as an unsigned , converted as necessary.
@@ -672,7 +672,7 @@ func (n_ Number) UnsignedShortValue() objectivec.IObject {
 func (n_ Number) UnsignedIntValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("unsignedIntValue"))
 	return rv
-}/* debug [instance_properties/getter]: unsignedIntValue */
+}
 
 
 // The number object’s value expressed as an unsigned , converted as necessary.
@@ -682,7 +682,7 @@ func (n_ Number) UnsignedIntValue() objectivec.IObject {
 func (n_ Number) UnsignedLongLongValue() uint64 {
 	rv := objc.Send[uint64](n_.ID, objc.Sel("unsignedLongLongValue"))
 	return rv
-}/* debug [instance_properties/getter]: unsignedLongLongValue */
+}
 
 
 // The number object’s value expressed as an unsigned , converted as necessary.
@@ -692,7 +692,7 @@ func (n_ Number) UnsignedLongLongValue() uint64 {
 func (n_ Number) UnsignedCharValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("unsignedCharValue"))
 	return rv
-}/* debug [instance_properties/getter]: unsignedCharValue */
+}
 
 
 // The number object’s value expressed as an object, converted as necessary.
@@ -702,7 +702,7 @@ func (n_ Number) UnsignedCharValue() objectivec.IObject {
 func (n_ Number) UnsignedIntegerValue() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("unsignedIntegerValue"))
 	return rv
-}/* debug [instance_properties/getter]: unsignedIntegerValue */
+}
 
 
 // The number object’s value expressed as an unsigned , converted as necessary.
@@ -712,7 +712,7 @@ func (n_ Number) UnsignedIntegerValue() uint {
 func (n_ Number) UnsignedLongValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("unsignedLongValue"))
 	return rv
-}/* debug [instance_properties/getter]: unsignedLongValue */
+}
 
 
 // The number object’s value expressed as a
@@ -722,7 +722,7 @@ func (n_ Number) UnsignedLongValue() objectivec.IObject {
 func (n_ Number) Int16Value() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("int16Value"))
 	return rv
-}/* debug [instance_properties/getter]: int16Value */
+}
 
 
 // The number object’s value expressed as a
@@ -731,7 +731,7 @@ func (n_ Number) Int16Value() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/int16value
 func (n_ Number) SetInt16Value(value objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setInt16Value:"), value)
-}/* debug [instance_properties/setter]: int16Value */
+}
 
 
 // The number object’s value expressed as an
@@ -741,7 +741,7 @@ func (n_ Number) SetInt16Value(value objectivec.IObject) {
 func (n_ Number) Int32Value() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("int32Value"))
 	return rv
-}/* debug [instance_properties/getter]: int32Value */
+}
 
 
 // The number object’s value expressed as an
@@ -750,7 +750,7 @@ func (n_ Number) Int32Value() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/int32value
 func (n_ Number) SetInt32Value(value objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setInt32Value:"), value)
-}/* debug [instance_properties/setter]: int32Value */
+}
 
 
 // The number object’s value expressed as a
@@ -760,7 +760,7 @@ func (n_ Number) SetInt32Value(value objectivec.IObject) {
 func (n_ Number) Int64Value() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("int64Value"))
 	return rv
-}/* debug [instance_properties/getter]: int64Value */
+}
 
 
 // The number object’s value expressed as a
@@ -769,7 +769,7 @@ func (n_ Number) Int64Value() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/int64value
 func (n_ Number) SetInt64Value(value objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setInt64Value:"), value)
-}/* debug [instance_properties/setter]: int64Value */
+}
 
 
 // The number object’s value expressed as a
@@ -779,7 +779,7 @@ func (n_ Number) SetInt64Value(value objectivec.IObject) {
 func (n_ Number) Int8Value() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("int8Value"))
 	return rv
-}/* debug [instance_properties/getter]: int8Value */
+}
 
 
 // The number object’s value expressed as a
@@ -788,7 +788,7 @@ func (n_ Number) Int8Value() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/int8value
 func (n_ Number) SetInt8Value(value objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setInt8Value:"), value)
-}/* debug [instance_properties/setter]: int8Value */
+}
 
 
 // The number object’s value expressed as an unsigned
@@ -798,7 +798,7 @@ func (n_ Number) SetInt8Value(value objectivec.IObject) {
 func (n_ Number) Uint16Value() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("uint16Value"))
 	return rv
-}/* debug [instance_properties/getter]: uint16Value */
+}
 
 
 // The number object’s value expressed as an unsigned
@@ -807,7 +807,7 @@ func (n_ Number) Uint16Value() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint16value
 func (n_ Number) SetUint16Value(value objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUint16Value:"), value)
-}/* debug [instance_properties/setter]: uint16Value */
+}
 
 
 // The number object’s value expressed as an unsigned
@@ -817,7 +817,7 @@ func (n_ Number) SetUint16Value(value objectivec.IObject) {
 func (n_ Number) Uint32Value() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("uint32Value"))
 	return rv
-}/* debug [instance_properties/getter]: uint32Value */
+}
 
 
 // The number object’s value expressed as an unsigned
@@ -826,7 +826,7 @@ func (n_ Number) Uint32Value() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint32value
 func (n_ Number) SetUint32Value(value objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUint32Value:"), value)
-}/* debug [instance_properties/setter]: uint32Value */
+}
 
 
 // The number object’s value expressed as an unsigned
@@ -836,7 +836,7 @@ func (n_ Number) SetUint32Value(value objectivec.IObject) {
 func (n_ Number) Uint64Value() uint64 {
 	rv := objc.Send[uint64](n_.ID, objc.Sel("uint64Value"))
 	return rv
-}/* debug [instance_properties/getter]: uint64Value */
+}
 
 
 // The number object’s value expressed as an unsigned
@@ -845,7 +845,7 @@ func (n_ Number) Uint64Value() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint64value
 func (n_ Number) SetUint64Value(value uint64) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUint64Value:"), value)
-}/* debug [instance_properties/setter]: uint64Value */
+}
 
 
 // The number object’s value expressed as an unsigned
@@ -855,7 +855,7 @@ func (n_ Number) SetUint64Value(value uint64) {
 func (n_ Number) Uint8Value() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("uint8Value"))
 	return rv
-}/* debug [instance_properties/getter]: uint8Value */
+}
 
 
 // The number object’s value expressed as an unsigned
@@ -864,7 +864,7 @@ func (n_ Number) Uint8Value() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint8value
 func (n_ Number) SetUint8Value(value objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUint8Value:"), value)
-}/* debug [instance_properties/setter]: uint8Value */
+}
 
 
 // The number object’s value expressed as an
@@ -874,7 +874,7 @@ func (n_ Number) SetUint8Value(value objectivec.IObject) {
 func (n_ Number) UintValue() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("uintValue"))
 	return rv
-}/* debug [instance_properties/getter]: uintValue */
+}
 
 
 // The number object’s value expressed as an
@@ -883,7 +883,7 @@ func (n_ Number) UintValue() uint {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uintvalue
 func (n_ Number) SetUintValue(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUintValue:"), value)
-}/* debug [instance_properties/setter]: uintValue */
+}
 
 
 // A C string containing the Objective-C type of the data contained in the value object.
@@ -893,7 +893,7 @@ func (n_ Number) SetUintValue(value uint) {
 func (n_ Number) ObjCType() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("objCType"))
 	return rv
-}/* debug [instance_properties/getter]: objCType */
+}
 
 
 // A C string containing the Objective-C type of the data contained in the value object.
@@ -902,11 +902,11 @@ func (n_ Number) ObjCType() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/objctype
 func (n_ Number) SetObjCType(value objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setObjCType:"), value)
-}/* debug [instance_properties/setter]: objCType */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSNumber */
+
+
+
 
 

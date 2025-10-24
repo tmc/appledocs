@@ -15,3 +15,4 @@ var DOMEventListenerProtocol *objc.Protocol
 func init() {
 	DOMEventListenerProtocol = objc.GetProtocol("DOMEventListener")
 }
+

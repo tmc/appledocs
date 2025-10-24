@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNReduceFeatureChannelsArgumentMax */
 
 
-/* debug [class_header]: Header for MPSNNReduceFeatureChannelsArgumentMax */
+
+
 // The class instance for the [ReduceFeatureChannelsArgumentMax] class.
 var (
 	ReduceFeatureChannelsArgumentMaxClass     _ReduceFeatureChannelsArgumentMaxClass
@@ -31,30 +30,30 @@ func getReduceFeatureChannelsArgumentMaxClass() _ReduceFeatureChannelsArgumentMa
 type _ReduceFeatureChannelsArgumentMaxClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ReduceFeatureChannelsArgumentMax */
+
+
 // An interface definition for the [ReduceFeatureChannelsArgumentMax] class.
 type IReduceFeatureChannelsArgumentMax interface {
 	IReduceUnary
 	
-/* debug [class_interface_properties]: Properties for ReduceFeatureChannelsArgumentMax */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ReduceFeatureChannelsArgumentMax */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ReduceFeatureChannelsArgumentMax */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _ReduceFeatureChannelsArgumentMaxClass) Alloc() ReduceFeatureChannelsArgumentMax {
 	rv := objc.Send[ReduceFeatureChannelsArgumentMax](objc.ID(rc.class), objc.Sel("alloc"))
@@ -84,11 +83,11 @@ func (r_ ReduceFeatureChannelsArgumentMax) Autorelease() ReduceFeatureChannelsAr
 func NewReduceFeatureChannelsArgumentMax() ReduceFeatureChannelsArgumentMax {
 	return getReduceFeatureChannelsArgumentMaxClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ReduceFeatureChannelsArgumentMax */
+
+
 // A reduction filter that returns the index of the location of the maximum value for each feature channel in an image.
 
 
@@ -108,11 +107,11 @@ func ReduceFeatureChannelsArgumentMaxFrom(ptr unsafe.Pointer) ReduceFeatureChann
 		ReduceUnary: ReduceUnaryFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ReduceFeatureChannelsArgumentMax */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsargumentmax/3197836-initwithcoder
@@ -121,7 +120,7 @@ func NewReduceFeatureChannelsArgumentMaxWithCoderDevice(aDecoder foundation.Code
 	rv := objc.Send[ReduceFeatureChannelsArgumentMax](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceFeatureChannelsArgumentMaxWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -131,31 +130,31 @@ func NewReduceFeatureChannelsArgumentMaxWithDevice(device unsafe.Pointer) Reduce
 	rv := objc.Send[ReduceFeatureChannelsArgumentMax](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceFeatureChannelsArgumentMaxWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ReduceFeatureChannelsArgumentMax */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ReduceFeatureChannelsArgumentMax */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ReduceFeatureChannelsArgumentMax */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ReduceFeatureChannelsArgumentMax */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNNReduceFeatureChannelsArgumentMax */
+
+
+
+
+
+
+
+
+
+
+
 
 

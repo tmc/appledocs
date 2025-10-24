@@ -7,15 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class CIFilter */
 
 
-/* debug [class_header]: Header for CIFilter */
+
+
 // The class instance for the [Filter] class.
 var (
 	FilterClass     _FilterClass
@@ -32,16 +30,16 @@ func getFilterClass() _FilterClass {
 type _FilterClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for Filter */
+
+
 // An interface definition for the [Filter] class.
 type IFilter interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for Filter */
+
 	// properties:
 	Attributes() foundation.IDictionary
 	InputKeys() []string
@@ -53,23 +51,23 @@ type IFilter interface {
 	OutputKeys() []string
 	IsEnabled() bool
 	SetIsEnabled(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for Filter */
+
 	// methods:
 	ApplyArgumentsOptions(k ICIKernel, args objc.IObject /* cross-framework: NSArray */, dict foundation.IDictionary) IImage
 	Apply(k ICIKernel) IImage
 	SetDefaults()
 	ViewForUIConfigurationExcludedKeys(inUIConfiguration objc.IObject /* cross-framework: NSDictionary */, inKeys objc.IObject /* cross-framework: NSArray */) objc.IObject
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for Filter */
+
+
 // Alloc allocates a new instance without initialization.
 func (fc _FilterClass) Alloc() Filter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("alloc"))
@@ -99,11 +97,11 @@ func (f_ Filter) Autorelease() Filter {
 func NewFilter() Filter {
 	return getFilterClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for Filter */
+
+
 // An image processor that produces an image by manipulating one or more input images or by generating new image data.
 //
 // The class produces a object as output. Typically, a filter takes one or more images as input. Some filters, however, generate an image based on other types of input parameters. The par swift.class` object are set and retrieved through the use of key-value pairs. You use the object in conjunction with other Core Image classes, such as , , and , to take advantage of the built-in Core Image filters when processing images, creating filter generators, or writing custom filters. objects are mutable, and thus cannot be shared safely among threads. Each thread must create its own objects, but you can pass a filter’s immutable input and output objects between threads. To get a quick overview of how to set up and use Core Image filters, see .
@@ -123,11 +121,11 @@ type Filter struct {
 func FilterFrom(ptr unsafe.Pointer) Filter {
 	return Filter{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for Filter */
+
+
 
 // Creates a filter from a Core Video pixel buffer.
 //
@@ -136,7 +134,7 @@ func FilterFrom(ptr unsafe.Pointer) Filter {
 func NewFilterWithCVPixelBufferPropertiesOptions(pixelBuffer PixelBufferRef /* not a class type */, properties objc.IObject /* cross-framework: NSDictionary */, options foundation.IDictionary) Filter {
 	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithCVPixelBuffer:properties:options:"), pixelBuffer, properties, options)
 	return rv
-}/* debug [class_init_methods/constructor]: NewFilterWithCVPixelBufferPropertiesOptions */
+}
 
 
 // Creates a filter that allows the processing of RAW images.
@@ -146,7 +144,7 @@ func NewFilterWithCVPixelBufferPropertiesOptions(pixelBuffer PixelBufferRef /* n
 func NewFilterWithImageDataOptions(data objc.IObject /* cross-framework: NSData */, options foundation.IDictionary) Filter {
 	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithImageData:options:"), data, options)
 	return rv
-}/* debug [class_init_methods/constructor]: NewFilterWithImageDataOptions */
+}
 
 
 // Creates a filter that allows the processing of RAW images.
@@ -156,7 +154,7 @@ func NewFilterWithImageDataOptions(data objc.IObject /* cross-framework: NSData 
 func NewFilterWithImageURLOptions(url objc.IObject /* cross-framework: NSURL */, options foundation.IDictionary) Filter {
 	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithImageURL:options:"), url, options)
 	return rv
-}/* debug [class_init_methods/constructor]: NewFilterWithImageURLOptions */
+}
 
 
 // Creates a object for a specific kind of filter.
@@ -166,7 +164,7 @@ func NewFilterWithImageURLOptions(url objc.IObject /* cross-framework: NSURL */,
 func NewFilterWithName(name objc.IObject /* cross-framework: NSString */) Filter {
 	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithName:"), name)
 	return rv
-}/* debug [class_init_methods/constructor]: NewFilterWithName */
+}
 
 
 // Creates a object for a specific kind of filter and initializes the input values.
@@ -176,13 +174,13 @@ func NewFilterWithName(name objc.IObject /* cross-framework: NSString */) Filter
 func NewFilterWithNameWithInputParameters(name objc.IObject /* cross-framework: NSString */, params foundation.IDictionary) Filter {
 	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithName:withInputParameters:"), name, params)
 	return rv
-}/* debug [class_init_methods/constructor]: NewFilterWithNameWithInputParameters */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for Filter */
+
+
+
 
 // Transitions by folding and crossfading an image to reveal the target image.
 //
@@ -191,7 +189,7 @@ func NewFilterWithNameWithInputParameters(name objc.IObject /* cross-framework: 
 func (fc _FilterClass) AccordionFoldTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("accordionFoldTransitionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AccordionFoldTransitionFilter) */
+}
 
 
 // Blends colors from two images by addition.
@@ -201,7 +199,7 @@ func (fc _FilterClass) AccordionFoldTransitionFilter() unsafe.Pointer {
 func (fc _FilterClass) AdditionCompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("additionCompositingFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AdditionCompositingFilter) */
+}
 
 
 // Performs a transform on the image and extends the image edges to infinity.
@@ -211,7 +209,7 @@ func (fc _FilterClass) AdditionCompositingFilter() unsafe.Pointer {
 func (fc _FilterClass) AffineClampFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("affineClampFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AffineClampFilter) */
+}
 
 
 // Performs a transform on the image and tiles the result.
@@ -221,7 +219,7 @@ func (fc _FilterClass) AffineClampFilter() unsafe.Pointer {
 func (fc _FilterClass) AffineTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("affineTileFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AffineTileFilter) */
+}
 
 
 // [Full Topic]
@@ -229,7 +227,7 @@ func (fc _FilterClass) AffineTileFilter() unsafe.Pointer {
 func (fc _FilterClass) AreaAlphaWeightedHistogramFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaAlphaWeightedHistogramFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AreaAlphaWeightedHistogramFilter) */
+}
 
 
 // Returns a 1 x 1 pixel image that contains the average color for the region of interest.
@@ -239,7 +237,7 @@ func (fc _FilterClass) AreaAlphaWeightedHistogramFilter() unsafe.Pointer {
 func (fc _FilterClass) AreaAverageFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaAverageFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AreaAverageFilter) */
+}
 
 
 // [Full Topic]
@@ -247,7 +245,7 @@ func (fc _FilterClass) AreaAverageFilter() unsafe.Pointer {
 func (fc _FilterClass) AreaAverageMaximumRedFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaAverageMaximumRedFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AreaAverageMaximumRedFilter) */
+}
 
 
 // [Full Topic]
@@ -255,7 +253,7 @@ func (fc _FilterClass) AreaAverageMaximumRedFilter() unsafe.Pointer {
 func (fc _FilterClass) AreaBoundsRedFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaBoundsRedFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AreaBoundsRedFilter) */
+}
 
 
 // Returns a histogram of a specified area of the image.
@@ -265,7 +263,7 @@ func (fc _FilterClass) AreaBoundsRedFilter() unsafe.Pointer {
 func (fc _FilterClass) AreaHistogramFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaHistogramFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AreaHistogramFilter) */
+}
 
 
 // Returns a logarithmic histogram of a specified area of the image.
@@ -275,7 +273,7 @@ func (fc _FilterClass) AreaHistogramFilter() unsafe.Pointer {
 func (fc _FilterClass) AreaLogarithmicHistogramFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaLogarithmicHistogramFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AreaLogarithmicHistogramFilter) */
+}
 
 
 // Calculates the maximum color components of a specified area of the image.
@@ -285,7 +283,7 @@ func (fc _FilterClass) AreaLogarithmicHistogramFilter() unsafe.Pointer {
 func (fc _FilterClass) AreaMaximumFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaMaximumFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AreaMaximumFilter) */
+}
 
 
 // Finds the pixel with the highest alpha value.
@@ -295,7 +293,7 @@ func (fc _FilterClass) AreaMaximumFilter() unsafe.Pointer {
 func (fc _FilterClass) AreaMaximumAlphaFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaMaximumAlphaFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AreaMaximumAlphaFilter) */
+}
 
 
 // Calculates the minimum color component values for a specified area of the image.
@@ -305,7 +303,7 @@ func (fc _FilterClass) AreaMaximumAlphaFilter() unsafe.Pointer {
 func (fc _FilterClass) AreaMinimumFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaMinimumFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AreaMinimumFilter) */
+}
 
 
 // Calculates the pixel within a specified area that has the smallest alpha value.
@@ -315,7 +313,7 @@ func (fc _FilterClass) AreaMinimumFilter() unsafe.Pointer {
 func (fc _FilterClass) AreaMinimumAlphaFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaMinimumAlphaFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AreaMinimumAlphaFilter) */
+}
 
 
 // Calculates minimum and maximum color components for a specified area of the image.
@@ -325,7 +323,7 @@ func (fc _FilterClass) AreaMinimumAlphaFilter() unsafe.Pointer {
 func (fc _FilterClass) AreaMinMaxFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaMinMaxFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AreaMinMaxFilter) */
+}
 
 
 // Calculates the minimum and maximum red component value.
@@ -335,7 +333,7 @@ func (fc _FilterClass) AreaMinMaxFilter() unsafe.Pointer {
 func (fc _FilterClass) AreaMinMaxRedFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("areaMinMaxRedFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AreaMinMaxRedFilter) */
+}
 
 
 // Generates an attributed-text image.
@@ -345,7 +343,7 @@ func (fc _FilterClass) AreaMinMaxRedFilter() unsafe.Pointer {
 func (fc _FilterClass) AttributedTextImageGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("attributedTextImageGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AttributedTextImageGeneratorFilter) */
+}
 
 
 // Generates a low-density barcode.
@@ -355,7 +353,7 @@ func (fc _FilterClass) AttributedTextImageGeneratorFilter() unsafe.Pointer {
 func (fc _FilterClass) AztecCodeGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("aztecCodeGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=AztecCodeGeneratorFilter) */
+}
 
 
 // Generates a barcode as an image from the descriptor.
@@ -365,7 +363,7 @@ func (fc _FilterClass) AztecCodeGeneratorFilter() unsafe.Pointer {
 func (fc _FilterClass) BarcodeGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("barcodeGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=BarcodeGeneratorFilter) */
+}
 
 
 // Transitions between two images by removing rectangular portions of an image.
@@ -375,7 +373,7 @@ func (fc _FilterClass) BarcodeGeneratorFilter() unsafe.Pointer {
 func (fc _FilterClass) BarsSwipeTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("barsSwipeTransitionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=BarsSwipeTransitionFilter) */
+}
 
 
 // Produces a high-quality scaled version of an image.
@@ -385,7 +383,7 @@ func (fc _FilterClass) BarsSwipeTransitionFilter() unsafe.Pointer {
 func (fc _FilterClass) BicubicScaleTransformFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("bicubicScaleTransformFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=BicubicScaleTransformFilter) */
+}
 
 
 // Blends two images by using an alpha mask image.
@@ -395,7 +393,7 @@ func (fc _FilterClass) BicubicScaleTransformFilter() unsafe.Pointer {
 func (fc _FilterClass) BlendWithAlphaMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("blendWithAlphaMaskFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=BlendWithAlphaMaskFilter) */
+}
 
 
 // Blends two images by using a blue mask image.
@@ -405,7 +403,7 @@ func (fc _FilterClass) BlendWithAlphaMaskFilter() unsafe.Pointer {
 func (fc _FilterClass) BlendWithBlueMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("blendWithBlueMaskFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=BlendWithBlueMaskFilter) */
+}
 
 
 // Blends two images by using a mask image.
@@ -415,7 +413,7 @@ func (fc _FilterClass) BlendWithBlueMaskFilter() unsafe.Pointer {
 func (fc _FilterClass) BlendWithMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("blendWithMaskFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=BlendWithMaskFilter) */
+}
 
 
 // Blends two images by using a red mask image.
@@ -425,7 +423,7 @@ func (fc _FilterClass) BlendWithMaskFilter() unsafe.Pointer {
 func (fc _FilterClass) BlendWithRedMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("blendWithRedMaskFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=BlendWithRedMaskFilter) */
+}
 
 
 // Adjusts an image’s colors by applying a blur effect.
@@ -435,7 +433,7 @@ func (fc _FilterClass) BlendWithRedMaskFilter() unsafe.Pointer {
 func (fc _FilterClass) BloomFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("bloomFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=BloomFilter) */
+}
 
 
 // Generates a blurred rectangle.
@@ -445,7 +443,7 @@ func (fc _FilterClass) BloomFilter() unsafe.Pointer {
 func (fc _FilterClass) BlurredRectangleGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("blurredRectangleGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=BlurredRectangleGeneratorFilter) */
+}
 
 
 // [Full Topic]
@@ -453,7 +451,7 @@ func (fc _FilterClass) BlurredRectangleGeneratorFilter() unsafe.Pointer {
 func (fc _FilterClass) BlurredRoundedRectangleGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("blurredRoundedRectangleGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=BlurredRoundedRectangleGeneratorFilter) */
+}
 
 
 // Applies a bokeh effect to an image.
@@ -463,7 +461,7 @@ func (fc _FilterClass) BlurredRoundedRectangleGeneratorFilter() unsafe.Pointer {
 func (fc _FilterClass) BokehBlurFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("bokehBlurFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=BokehBlurFilter) */
+}
 
 
 // Applies a square-shaped blur to an area of an image.
@@ -473,7 +471,7 @@ func (fc _FilterClass) BokehBlurFilter() unsafe.Pointer {
 func (fc _FilterClass) BoxBlurFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("boxBlurFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=BoxBlurFilter) */
+}
 
 
 // Distorts an image with a concave or convex bump.
@@ -483,7 +481,7 @@ func (fc _FilterClass) BoxBlurFilter() unsafe.Pointer {
 func (fc _FilterClass) BumpDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("bumpDistortionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=BumpDistortionFilter) */
+}
 
 
 // Linearly distorts an image with a concave or convex bump.
@@ -493,7 +491,7 @@ func (fc _FilterClass) BumpDistortionFilter() unsafe.Pointer {
 func (fc _FilterClass) BumpDistortionLinearFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("bumpDistortionLinearFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=BumpDistortionLinearFilter) */
+}
 
 
 // Applies the Canny edge-detection algorithm to an image.
@@ -503,7 +501,7 @@ func (fc _FilterClass) BumpDistortionLinearFilter() unsafe.Pointer {
 func (fc _FilterClass) CannyEdgeDetectorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("cannyEdgeDetectorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CannyEdgeDetectorFilter) */
+}
 
 
 // Generates a checkerboard image.
@@ -513,7 +511,7 @@ func (fc _FilterClass) CannyEdgeDetectorFilter() unsafe.Pointer {
 func (fc _FilterClass) CheckerboardGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("checkerboardGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CheckerboardGeneratorFilter) */
+}
 
 
 // Distorts an image with radiating circles to the periphery of the image.
@@ -523,7 +521,7 @@ func (fc _FilterClass) CheckerboardGeneratorFilter() unsafe.Pointer {
 func (fc _FilterClass) CircleSplashDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("circleSplashDistortionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CircleSplashDistortionFilter) */
+}
 
 
 // Adds a circular overlay to an image.
@@ -533,7 +531,7 @@ func (fc _FilterClass) CircleSplashDistortionFilter() unsafe.Pointer {
 func (fc _FilterClass) CircularScreenFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("circularScreenFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CircularScreenFilter) */
+}
 
 
 // Distorts an image by increasing the distance of the center of the image.
@@ -543,7 +541,7 @@ func (fc _FilterClass) CircularScreenFilter() unsafe.Pointer {
 func (fc _FilterClass) CircularWrapFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("circularWrapFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CircularWrapFilter) */
+}
 
 
 // Adds a series of colorful dots to an image.
@@ -553,7 +551,7 @@ func (fc _FilterClass) CircularWrapFilter() unsafe.Pointer {
 func (fc _FilterClass) CMYKHalftone() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("CMYKHalftone"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CMYKHalftone) */
+}
 
 
 // Generates a high-density, linear barcode.
@@ -563,7 +561,7 @@ func (fc _FilterClass) CMYKHalftone() unsafe.Pointer {
 func (fc _FilterClass) Code128BarcodeGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("code128BarcodeGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=Code128BarcodeGeneratorFilter) */
+}
 
 
 // Calculates the absolute difference between each color component in the input images.
@@ -573,7 +571,7 @@ func (fc _FilterClass) Code128BarcodeGeneratorFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorAbsoluteDifferenceFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorAbsoluteDifferenceFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorAbsoluteDifferenceFilter) */
+}
 
 
 // Blends color from two images using the luminance values from the background image and the hue and saturation values from the input image.
@@ -583,7 +581,7 @@ func (fc _FilterClass) ColorAbsoluteDifferenceFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorBlendModeFilter) */
+}
 
 
 // Blends color from two images while darkening the image.
@@ -593,7 +591,7 @@ func (fc _FilterClass) ColorBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorBurnBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorBurnBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorBurnBlendModeFilter) */
+}
 
 
 // Alters the colors in an image based on color components.
@@ -603,7 +601,7 @@ func (fc _FilterClass) ColorBurnBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorClampFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorClampFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorClampFilter) */
+}
 
 
 // Alters the brightness, contrast, and saturation of an image’s colors.
@@ -613,7 +611,7 @@ func (fc _FilterClass) ColorClampFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorControlsFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorControlsFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorControlsFilter) */
+}
 
 
 // Adjusts an image’s color by applying polynomial cross-products.
@@ -623,7 +621,7 @@ func (fc _FilterClass) ColorControlsFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorCrossPolynomialFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorCrossPolynomialFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorCrossPolynomialFilter) */
+}
 
 
 // Adjusts an image’s pixels using a three-dimensional color table.
@@ -633,7 +631,7 @@ func (fc _FilterClass) ColorCrossPolynomialFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorCubeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorCubeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorCubeFilter) */
+}
 
 
 // Alters an image’s pixels using a three-dimensional color tables and a mask image.
@@ -643,7 +641,7 @@ func (fc _FilterClass) ColorCubeFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorCubesMixedWithMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorCubesMixedWithMaskFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorCubesMixedWithMaskFilter) */
+}
 
 
 // Adjusts an image’s pixels using a three-dimensional color table in specified color space.
@@ -653,7 +651,7 @@ func (fc _FilterClass) ColorCubesMixedWithMaskFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorCubeWithColorSpaceFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorCubeWithColorSpaceFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorCubeWithColorSpaceFilter) */
+}
 
 
 // Adjusts an image’s color curves.
@@ -663,7 +661,7 @@ func (fc _FilterClass) ColorCubeWithColorSpaceFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorCurvesFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorCurvesFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorCurvesFilter) */
+}
 
 
 // Blends color from two images using dodging.
@@ -673,7 +671,7 @@ func (fc _FilterClass) ColorCurvesFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorDodgeBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorDodgeBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorDodgeBlendModeFilter) */
+}
 
 
 // Inverts an image’s colors.
@@ -683,7 +681,7 @@ func (fc _FilterClass) ColorDodgeBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorInvertFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorInvertFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorInvertFilter) */
+}
 
 
 // Performs a transformation of the input image colors to colors from a gradient image.
@@ -693,7 +691,7 @@ func (fc _FilterClass) ColorInvertFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorMapFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorMapFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorMapFilter) */
+}
 
 
 // Alters the colors in an image based on vectors provided.
@@ -703,7 +701,7 @@ func (fc _FilterClass) ColorMapFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorMatrixFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorMatrixFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorMatrixFilter) */
+}
 
 
 // Adjusts an image’s colors to shades of a single color.
@@ -713,7 +711,7 @@ func (fc _FilterClass) ColorMatrixFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorMonochromeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorMonochromeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorMonochromeFilter) */
+}
 
 
 // Alters an image’s colors.
@@ -723,7 +721,7 @@ func (fc _FilterClass) ColorMonochromeFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorPolynomialFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorPolynomialFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorPolynomialFilter) */
+}
 
 
 // Flattens an image’s colors.
@@ -733,7 +731,7 @@ func (fc _FilterClass) ColorPolynomialFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorPosterizeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorPosterizeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorPosterizeFilter) */
+}
 
 
 // Compares the red, green, and blue components of the input image to a threshold and sets them to 1 or 0.
@@ -743,7 +741,7 @@ func (fc _FilterClass) ColorPosterizeFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorThresholdFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorThresholdFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorThresholdFilter) */
+}
 
 
 // Compares the red, green, and blue components of the input image against a threshold calculated using Otsu’s algorithm.
@@ -753,7 +751,7 @@ func (fc _FilterClass) ColorThresholdFilter() unsafe.Pointer {
 func (fc _FilterClass) ColorThresholdOtsuFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("colorThresholdOtsuFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColorThresholdOtsuFilter) */
+}
 
 
 // Calculates the average color for a specified column of an image.
@@ -763,7 +761,7 @@ func (fc _FilterClass) ColorThresholdOtsuFilter() unsafe.Pointer {
 func (fc _FilterClass) ColumnAverageFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("columnAverageFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ColumnAverageFilter) */
+}
 
 
 // Creates an image with a comic book effect.
@@ -773,7 +771,7 @@ func (fc _FilterClass) ColumnAverageFilter() unsafe.Pointer {
 func (fc _FilterClass) ComicEffectFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("comicEffectFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ComicEffectFilter) */
+}
 
 
 // Converts an image from CIELAB to RGB color space.
@@ -783,7 +781,7 @@ func (fc _FilterClass) ComicEffectFilter() unsafe.Pointer {
 func (fc _FilterClass) ConvertLabToRGBFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convertLabToRGBFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ConvertLabToRGBFilter) */
+}
 
 
 // Converts an image from RGB to CIELAB color space.
@@ -793,7 +791,7 @@ func (fc _FilterClass) ConvertLabToRGBFilter() unsafe.Pointer {
 func (fc _FilterClass) ConvertRGBtoLabFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convertRGBtoLabFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ConvertRGBtoLabFilter) */
+}
 
 
 // Applies a convolution 3 x 3 filter to the components of an image.
@@ -803,7 +801,7 @@ func (fc _FilterClass) ConvertRGBtoLabFilter() unsafe.Pointer {
 func (fc _FilterClass) Convolution3X3Filter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolution3X3Filter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=Convolution3X3Filter) */
+}
 
 
 // Applies a convolution 5 x 5 filter to the components image.
@@ -813,7 +811,7 @@ func (fc _FilterClass) Convolution3X3Filter() unsafe.Pointer {
 func (fc _FilterClass) Convolution5X5Filter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolution5X5Filter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=Convolution5X5Filter) */
+}
 
 
 // Applies a convolution 7 x 7 filter to the color components of an image.
@@ -823,7 +821,7 @@ func (fc _FilterClass) Convolution5X5Filter() unsafe.Pointer {
 func (fc _FilterClass) Convolution7X7Filter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolution7X7Filter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=Convolution7X7Filter) */
+}
 
 
 // Applies a convolution-9 horizontal filter to the components of an image.
@@ -833,7 +831,7 @@ func (fc _FilterClass) Convolution7X7Filter() unsafe.Pointer {
 func (fc _FilterClass) Convolution9HorizontalFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolution9HorizontalFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=Convolution9HorizontalFilter) */
+}
 
 
 // Applies a convolution-9 vertical filter to the components of an image.
@@ -843,7 +841,7 @@ func (fc _FilterClass) Convolution9HorizontalFilter() unsafe.Pointer {
 func (fc _FilterClass) Convolution9VerticalFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolution9VerticalFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=Convolution9VerticalFilter) */
+}
 
 
 // Applies a convolution 3 x 3 filter to the components of an image.
@@ -853,7 +851,7 @@ func (fc _FilterClass) Convolution9VerticalFilter() unsafe.Pointer {
 func (fc _FilterClass) ConvolutionRGB3X3Filter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolutionRGB3X3Filter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ConvolutionRGB3X3Filter) */
+}
 
 
 // Applies a convolution 5 x 5 filter to the components of an image.
@@ -863,7 +861,7 @@ func (fc _FilterClass) ConvolutionRGB3X3Filter() unsafe.Pointer {
 func (fc _FilterClass) ConvolutionRGB5X5Filter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolutionRGB5X5Filter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ConvolutionRGB5X5Filter) */
+}
 
 
 // Applies a convolution 7 x 7 filter to the RGB components of an image.
@@ -873,7 +871,7 @@ func (fc _FilterClass) ConvolutionRGB5X5Filter() unsafe.Pointer {
 func (fc _FilterClass) ConvolutionRGB7X7Filter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolutionRGB7X7Filter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ConvolutionRGB7X7Filter) */
+}
 
 
 // Applies a convolution 9 x 1 filter to the RGB components of an image.
@@ -883,7 +881,7 @@ func (fc _FilterClass) ConvolutionRGB7X7Filter() unsafe.Pointer {
 func (fc _FilterClass) ConvolutionRGB9HorizontalFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolutionRGB9HorizontalFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ConvolutionRGB9HorizontalFilter) */
+}
 
 
 // Applies a convolution 1 x 9 filter to the RGB components of an image.
@@ -893,7 +891,7 @@ func (fc _FilterClass) ConvolutionRGB9HorizontalFilter() unsafe.Pointer {
 func (fc _FilterClass) ConvolutionRGB9VerticalFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("convolutionRGB9VerticalFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ConvolutionRGB9VerticalFilter) */
+}
 
 
 // Simulates the effect of a copy machine scanner light to transiton between two images.
@@ -903,7 +901,7 @@ func (fc _FilterClass) ConvolutionRGB9VerticalFilter() unsafe.Pointer {
 func (fc _FilterClass) CopyMachineTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("copyMachineTransitionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CopyMachineTransitionFilter) */
+}
 
 
 // Filters an image with a Core ML model.
@@ -913,7 +911,7 @@ func (fc _FilterClass) CopyMachineTransitionFilter() unsafe.Pointer {
 func (fc _FilterClass) CoreMLModelFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("coreMLModelFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CoreMLModelFilter) */
+}
 
 
 // Creates an image made with a series of colorful polygons.
@@ -923,7 +921,7 @@ func (fc _FilterClass) CoreMLModelFilter() unsafe.Pointer {
 func (fc _FilterClass) CrystallizeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("crystallizeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=CrystallizeFilter) */
+}
 
 
 // Blends colors from two images while darkening lighter pixels.
@@ -933,7 +931,7 @@ func (fc _FilterClass) CrystallizeFilter() unsafe.Pointer {
 func (fc _FilterClass) DarkenBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("darkenBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DarkenBlendModeFilter) */
+}
 
 
 // Simulates a depth of field effect.
@@ -943,7 +941,7 @@ func (fc _FilterClass) DarkenBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) DepthOfFieldFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("depthOfFieldFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DepthOfFieldFilter) */
+}
 
 
 // Converts from an image containing depth data to an image containing disparity data.
@@ -953,7 +951,7 @@ func (fc _FilterClass) DepthOfFieldFilter() unsafe.Pointer {
 func (fc _FilterClass) DepthToDisparityFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("depthToDisparityFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DepthToDisparityFilter) */
+}
 
 
 // Subtracts color values to blend colors.
@@ -963,7 +961,7 @@ func (fc _FilterClass) DepthToDisparityFilter() unsafe.Pointer {
 func (fc _FilterClass) DifferenceBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("differenceBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DifferenceBlendModeFilter) */
+}
 
 
 // Applies a circle-shaped blur to an area of an image.
@@ -973,7 +971,7 @@ func (fc _FilterClass) DifferenceBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) DiscBlurFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("discBlurFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DiscBlurFilter) */
+}
 
 
 // Transitions between two images using a mask image.
@@ -983,7 +981,7 @@ func (fc _FilterClass) DiscBlurFilter() unsafe.Pointer {
 func (fc _FilterClass) DisintegrateWithMaskTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("disintegrateWithMaskTransitionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DisintegrateWithMaskTransitionFilter) */
+}
 
 
 // Creates depth data from an image containing disparity data.
@@ -993,7 +991,7 @@ func (fc _FilterClass) DisintegrateWithMaskTransitionFilter() unsafe.Pointer {
 func (fc _FilterClass) DisparityToDepthFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("disparityToDepthFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DisparityToDepthFilter) */
+}
 
 
 // Applies the grayscale values of the second image to the first image.
@@ -1003,7 +1001,7 @@ func (fc _FilterClass) DisparityToDepthFilter() unsafe.Pointer {
 func (fc _FilterClass) DisplacementDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("displacementDistortionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DisplacementDistortionFilter) */
+}
 
 
 // Transitions between two images with a fade effect.
@@ -1013,7 +1011,7 @@ func (fc _FilterClass) DisplacementDistortionFilter() unsafe.Pointer {
 func (fc _FilterClass) DissolveTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("dissolveTransitionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DissolveTransitionFilter) */
+}
 
 
 // [Full Topic]
@@ -1021,7 +1019,7 @@ func (fc _FilterClass) DissolveTransitionFilter() unsafe.Pointer {
 func (fc _FilterClass) DistanceGradientFromRedMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("distanceGradientFromRedMaskFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DistanceGradientFromRedMaskFilter) */
+}
 
 
 // Applies randomized noise to produce a processed look.
@@ -1031,7 +1029,7 @@ func (fc _FilterClass) DistanceGradientFromRedMaskFilter() unsafe.Pointer {
 func (fc _FilterClass) DitherFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("ditherFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DitherFilter) */
+}
 
 
 // Divides color values to blend colors.
@@ -1041,7 +1039,7 @@ func (fc _FilterClass) DitherFilter() unsafe.Pointer {
 func (fc _FilterClass) DivideBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("divideBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DivideBlendModeFilter) */
+}
 
 
 // Adjusts an image’s shadows and contrast.
@@ -1051,7 +1049,7 @@ func (fc _FilterClass) DivideBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) DocumentEnhancerFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("documentEnhancerFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DocumentEnhancerFilter) */
+}
 
 
 // Creates a monochrome image with a series of dots to add detail.
@@ -1061,7 +1059,7 @@ func (fc _FilterClass) DocumentEnhancerFilter() unsafe.Pointer {
 func (fc _FilterClass) DotScreenFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("dotScreenFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DotScreenFilter) */
+}
 
 
 // Stylizes an image with the Droste effect.
@@ -1071,7 +1069,7 @@ func (fc _FilterClass) DotScreenFilter() unsafe.Pointer {
 func (fc _FilterClass) DrosteFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("drosteFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DrosteFilter) */
+}
 
 
 // Creates a high-quality upscaled image.
@@ -1081,7 +1079,7 @@ func (fc _FilterClass) DrosteFilter() unsafe.Pointer {
 func (fc _FilterClass) EdgePreserveUpsampleFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("edgePreserveUpsampleFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=EdgePreserveUpsampleFilter) */
+}
 
 
 // Hilghlights edges of objects found within an image.
@@ -1091,7 +1089,7 @@ func (fc _FilterClass) EdgePreserveUpsampleFilter() unsafe.Pointer {
 func (fc _FilterClass) EdgesFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("edgesFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=EdgesFilter) */
+}
 
 
 // Produces a black-and-white image that looks similar to a woodblock print.
@@ -1101,7 +1099,7 @@ func (fc _FilterClass) EdgesFilter() unsafe.Pointer {
 func (fc _FilterClass) EdgeWorkFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("edgeWorkFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=EdgeWorkFilter) */
+}
 
 
 // Creates an eight-way reflected pattern.
@@ -1111,7 +1109,7 @@ func (fc _FilterClass) EdgeWorkFilter() unsafe.Pointer {
 func (fc _FilterClass) EightfoldReflectedTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("eightfoldReflectedTileFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=EightfoldReflectedTileFilter) */
+}
 
 
 // Subtracts color values to blend colors with less contrast.
@@ -1121,7 +1119,7 @@ func (fc _FilterClass) EightfoldReflectedTileFilter() unsafe.Pointer {
 func (fc _FilterClass) ExclusionBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("exclusionBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ExclusionBlendModeFilter) */
+}
 
 
 // Adjusts an image’s exposure.
@@ -1131,7 +1129,7 @@ func (fc _FilterClass) ExclusionBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) ExposureAdjustFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("exposureAdjustFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ExposureAdjustFilter) */
+}
 
 
 // Replaces an image’s colors with specified colors.
@@ -1141,7 +1139,7 @@ func (fc _FilterClass) ExposureAdjustFilter() unsafe.Pointer {
 func (fc _FilterClass) FalseColorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("falseColorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=FalseColorFilter) */
+}
 
 
 // Returns an array of filter objects de-serialized from XMP data.
@@ -1151,7 +1149,7 @@ func (fc _FilterClass) FalseColorFilter() unsafe.Pointer {
 func (fc _FilterClass) FilterArrayFromSerializedXMPInputImageExtentError(xmpData objc.IObject /* cross-framework: NSData */, extent corefoundation.CGRect, outError objectivec.IObject) []Filter {
 	rv := objc.Send[[]Filter](objc.ID(fc.class), objc.Sel("filterArrayFromSerializedXMP:inputImageExtent:error:"), xmpData, extent, outError)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=FilterArrayFromSerializedXMPInputImageExtentError) */
+}
 
 
 // Returns an array of all published filter names that match all the specified categories.
@@ -1161,7 +1159,7 @@ func (fc _FilterClass) FilterArrayFromSerializedXMPInputImageExtentError(xmpData
 func (fc _FilterClass) FilterNamesInCategories(categories []string) []string {
 	rv := objc.Send[[]string](objc.ID(fc.class), objc.Sel("filterNamesInCategories:"), categories)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=FilterNamesInCategories) */
+}
 
 
 // Returns an array of all published filter names in the specified category.
@@ -1171,7 +1169,7 @@ func (fc _FilterClass) FilterNamesInCategories(categories []string) []string {
 func (fc _FilterClass) FilterNamesInCategory(category objc.IObject /* cross-framework: NSString */) []string {
 	rv := objc.Send[[]string](objc.ID(fc.class), objc.Sel("filterNamesInCategory:"), category)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=FilterNamesInCategory) */
+}
 
 
 // Creates a object for a specific kind of filter and initializes the input values with a -terminated list of arguments.
@@ -1181,7 +1179,7 @@ func (fc _FilterClass) FilterNamesInCategory(category objc.IObject /* cross-fram
 func (fc _FilterClass) FilterWithNameKeysAndValues(name objc.IObject /* cross-framework: NSString */, key0 objc.IObject) IFilter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithName:keysAndValues:"), name, key0)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=FilterWithNameKeysAndValues) */
+}
 
 
 // Creates a flash of light to transition between two images.
@@ -1191,7 +1189,7 @@ func (fc _FilterClass) FilterWithNameKeysAndValues(name objc.IObject /* cross-fr
 func (fc _FilterClass) FlashTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("flashTransitionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=FlashTransitionFilter) */
+}
 
 
 // Creates a four-way reflected pattern.
@@ -1201,7 +1199,7 @@ func (fc _FilterClass) FlashTransitionFilter() unsafe.Pointer {
 func (fc _FilterClass) FourfoldReflectedTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fourfoldReflectedTileFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=FourfoldReflectedTileFilter) */
+}
 
 
 // Creates a tiled image by rotating a tile in increments of 90 degrees.
@@ -1211,7 +1209,7 @@ func (fc _FilterClass) FourfoldReflectedTileFilter() unsafe.Pointer {
 func (fc _FilterClass) FourfoldRotatedTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fourfoldRotatedTileFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=FourfoldRotatedTileFilter) */
+}
 
 
 // Creates a tiled image by applying four translation operations.
@@ -1221,7 +1219,7 @@ func (fc _FilterClass) FourfoldRotatedTileFilter() unsafe.Pointer {
 func (fc _FilterClass) FourfoldTranslatedTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fourfoldTranslatedTileFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=FourfoldTranslatedTileFilter) */
+}
 
 
 // Highlights textures in an image.
@@ -1231,7 +1229,7 @@ func (fc _FilterClass) FourfoldTranslatedTileFilter() unsafe.Pointer {
 func (fc _FilterClass) GaborGradientsFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("gaborGradientsFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=GaborGradientsFilter) */
+}
 
 
 // Alters an image’s transition between black and white.
@@ -1241,7 +1239,7 @@ func (fc _FilterClass) GaborGradientsFilter() unsafe.Pointer {
 func (fc _FilterClass) GammaAdjustFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("gammaAdjustFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=GammaAdjustFilter) */
+}
 
 
 // Blurs an image with a Gaussian distribution pattern.
@@ -1251,7 +1249,7 @@ func (fc _FilterClass) GammaAdjustFilter() unsafe.Pointer {
 func (fc _FilterClass) GaussianBlurFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("gaussianBlurFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=GaussianBlurFilter) */
+}
 
 
 // Generates a gradient that varies from one color to another using a Gaussian distribution.
@@ -1261,7 +1259,7 @@ func (fc _FilterClass) GaussianBlurFilter() unsafe.Pointer {
 func (fc _FilterClass) GaussianGradientFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("gaussianGradientFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=GaussianGradientFilter) */
+}
 
 
 // Distorts an image by applying a glass-like texture.
@@ -1271,7 +1269,7 @@ func (fc _FilterClass) GaussianGradientFilter() unsafe.Pointer {
 func (fc _FilterClass) GlassDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("glassDistortionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=GlassDistortionFilter) */
+}
 
 
 // Creates a lozenge-shaped lens and distorts the image.
@@ -1281,7 +1279,7 @@ func (fc _FilterClass) GlassDistortionFilter() unsafe.Pointer {
 func (fc _FilterClass) GlassLozengeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("glassLozengeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=GlassLozengeFilter) */
+}
 
 
 // Tiles an image by rotating and reflecting a tile from the image.
@@ -1291,7 +1289,7 @@ func (fc _FilterClass) GlassLozengeFilter() unsafe.Pointer {
 func (fc _FilterClass) GlideReflectedTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("glideReflectedTileFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=GlideReflectedTileFilter) */
+}
 
 
 // Adjusts an image’s color by applying a gloom filter.
@@ -1301,7 +1299,7 @@ func (fc _FilterClass) GlideReflectedTileFilter() unsafe.Pointer {
 func (fc _FilterClass) GloomFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("gloomFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=GloomFilter) */
+}
 
 
 // Blends colors of two images by screening and multiplying.
@@ -1311,7 +1309,7 @@ func (fc _FilterClass) GloomFilter() unsafe.Pointer {
 func (fc _FilterClass) HardLightBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("hardLightBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=HardLightBlendModeFilter) */
+}
 
 
 // Creates a monochrome image with a series of lines to add detail.
@@ -1321,7 +1319,7 @@ func (fc _FilterClass) HardLightBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) HatchedScreenFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("hatchedScreenFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=HatchedScreenFilter) */
+}
 
 
 // Creates a realistic shaded height-field image.
@@ -1331,7 +1329,7 @@ func (fc _FilterClass) HatchedScreenFilter() unsafe.Pointer {
 func (fc _FilterClass) HeightFieldFromMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("heightFieldFromMaskFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=HeightFieldFromMaskFilter) */
+}
 
 
 // Creates an image made of a series of colorful hexagons.
@@ -1341,7 +1339,7 @@ func (fc _FilterClass) HeightFieldFromMaskFilter() unsafe.Pointer {
 func (fc _FilterClass) HexagonalPixellateFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("hexagonalPixellateFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=HexagonalPixellateFilter) */
+}
 
 
 // Adjusts the highlights of colors to reduce shadows.
@@ -1351,7 +1349,7 @@ func (fc _FilterClass) HexagonalPixellateFilter() unsafe.Pointer {
 func (fc _FilterClass) HighlightShadowAdjustFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("highlightShadowAdjustFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=HighlightShadowAdjustFilter) */
+}
 
 
 // Generates a histogram map from the image.
@@ -1361,7 +1359,7 @@ func (fc _FilterClass) HighlightShadowAdjustFilter() unsafe.Pointer {
 func (fc _FilterClass) HistogramDisplayFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("histogramDisplayFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=HistogramDisplayFilter) */
+}
 
 
 // Distorts an image with a circular area that pushes the image outward.
@@ -1371,7 +1369,7 @@ func (fc _FilterClass) HistogramDisplayFilter() unsafe.Pointer {
 func (fc _FilterClass) HoleDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("holeDistortionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=HoleDistortionFilter) */
+}
 
 
 // Modifies an image’s hue.
@@ -1381,7 +1379,7 @@ func (fc _FilterClass) HoleDistortionFilter() unsafe.Pointer {
 func (fc _FilterClass) HueAdjustFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("hueAdjustFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=HueAdjustFilter) */
+}
 
 
 // Blends colors of two images by computing the sum of image color values.
@@ -1391,7 +1389,7 @@ func (fc _FilterClass) HueAdjustFilter() unsafe.Pointer {
 func (fc _FilterClass) HueBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("hueBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=HueBlendModeFilter) */
+}
 
 
 // Generates a gradient representing a specified color space.
@@ -1401,7 +1399,7 @@ func (fc _FilterClass) HueBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) HueSaturationValueGradientFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("hueSaturationValueGradientFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=HueSaturationValueGradientFilter) */
+}
 
 
 // Creates a filter from a Core Video pixel buffer.
@@ -1411,7 +1409,7 @@ func (fc _FilterClass) HueSaturationValueGradientFilter() unsafe.Pointer {
 func (fc _FilterClass) FilterWithCVPixelBufferPropertiesOptions(pixelBuffer PixelBufferRef /* not a class type */, properties objc.IObject /* cross-framework: NSDictionary */, options foundation.IDictionary) IFilter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithCVPixelBuffer:properties:options:"), pixelBuffer, properties, options)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=FilterWithCVPixelBufferPropertiesOptions) */
+}
 
 
 // Creates a filter that allows the processing of RAW images.
@@ -1421,7 +1419,7 @@ func (fc _FilterClass) FilterWithCVPixelBufferPropertiesOptions(pixelBuffer Pixe
 func (fc _FilterClass) FilterWithImageDataOptions(data objc.IObject /* cross-framework: NSData */, options foundation.IDictionary) IFilter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithImageData:options:"), data, options)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=FilterWithImageDataOptions) */
+}
 
 
 // Creates a filter that allows the processing of RAW images.
@@ -1431,7 +1429,7 @@ func (fc _FilterClass) FilterWithImageDataOptions(data objc.IObject /* cross-fra
 func (fc _FilterClass) FilterWithImageURLOptions(url objc.IObject /* cross-framework: NSURL */, options foundation.IDictionary) IFilter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithImageURL:options:"), url, options)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=FilterWithImageURLOptions) */
+}
 
 
 // Creates a object for a specific kind of filter.
@@ -1441,7 +1439,7 @@ func (fc _FilterClass) FilterWithImageURLOptions(url objc.IObject /* cross-frame
 func (fc _FilterClass) FilterWithName(name objc.IObject /* cross-framework: NSString */) IFilter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithName:"), name)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=FilterWithName) */
+}
 
 
 // Creates a object for a specific kind of filter and initializes the input values.
@@ -1451,7 +1449,7 @@ func (fc _FilterClass) FilterWithName(name objc.IObject /* cross-framework: NSSt
 func (fc _FilterClass) FilterWithNameWithInputParameters(name objc.IObject /* cross-framework: NSString */, params foundation.IDictionary) IFilter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithName:withInputParameters:"), name, params)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=FilterWithNameWithInputParameters) */
+}
 
 
 // Creates a 12-way kaleidoscopic image from an image.
@@ -1461,7 +1459,7 @@ func (fc _FilterClass) FilterWithNameWithInputParameters(name objc.IObject /* cr
 func (fc _FilterClass) KaleidoscopeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("kaleidoscopeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=KaleidoscopeFilter) */
+}
 
 
 // Adjusts the image vertically and horizontally to remove distortion.
@@ -1471,7 +1469,7 @@ func (fc _FilterClass) KaleidoscopeFilter() unsafe.Pointer {
 func (fc _FilterClass) KeystoneCorrectionCombinedFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("keystoneCorrectionCombinedFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=KeystoneCorrectionCombinedFilter) */
+}
 
 
 // Horizontally adjusts an image to remove distortion.
@@ -1481,7 +1479,7 @@ func (fc _FilterClass) KeystoneCorrectionCombinedFilter() unsafe.Pointer {
 func (fc _FilterClass) KeystoneCorrectionHorizontalFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("keystoneCorrectionHorizontalFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=KeystoneCorrectionHorizontalFilter) */
+}
 
 
 // Vertically adjusts an image to remove distortion.
@@ -1491,7 +1489,7 @@ func (fc _FilterClass) KeystoneCorrectionHorizontalFilter() unsafe.Pointer {
 func (fc _FilterClass) KeystoneCorrectionVerticalFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("keystoneCorrectionVerticalFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=KeystoneCorrectionVerticalFilter) */
+}
 
 
 // Applies the k-means algorithm to find the most common colors in an image.
@@ -1501,7 +1499,7 @@ func (fc _FilterClass) KeystoneCorrectionVerticalFilter() unsafe.Pointer {
 func (fc _FilterClass) KMeansFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("KMeansFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=KMeansFilter) */
+}
 
 
 // Compares an image’s color values.
@@ -1511,7 +1509,7 @@ func (fc _FilterClass) KMeansFilter() unsafe.Pointer {
 func (fc _FilterClass) LabDeltaE() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("LabDeltaE"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LabDeltaE) */
+}
 
 
 // Creates a high-quality, scaled version of a source image.
@@ -1521,7 +1519,7 @@ func (fc _FilterClass) LabDeltaE() unsafe.Pointer {
 func (fc _FilterClass) LanczosScaleTransformFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("lanczosScaleTransformFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LanczosScaleTransformFilter) */
+}
 
 
 // Generates a lenticular halo image.
@@ -1531,7 +1529,7 @@ func (fc _FilterClass) LanczosScaleTransformFilter() unsafe.Pointer {
 func (fc _FilterClass) LenticularHaloGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("lenticularHaloGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LenticularHaloGeneratorFilter) */
+}
 
 
 // Blends colors from two images by brightening colors.
@@ -1541,7 +1539,7 @@ func (fc _FilterClass) LenticularHaloGeneratorFilter() unsafe.Pointer {
 func (fc _FilterClass) LightenBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("lightenBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LightenBlendModeFilter) */
+}
 
 
 // Distorts an image by generating a light tunnel.
@@ -1551,7 +1549,7 @@ func (fc _FilterClass) LightenBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) LightTunnelFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("lightTunnelFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LightTunnelFilter) */
+}
 
 
 // Blends color from two images while increasing contrast.
@@ -1561,7 +1559,7 @@ func (fc _FilterClass) LightTunnelFilter() unsafe.Pointer {
 func (fc _FilterClass) LinearBurnBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("linearBurnBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LinearBurnBlendModeFilter) */
+}
 
 
 // Blends colors of two images with dodging.
@@ -1571,7 +1569,7 @@ func (fc _FilterClass) LinearBurnBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) LinearDodgeBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("linearDodgeBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LinearDodgeBlendModeFilter) */
+}
 
 
 // Generates a color gradient that varies along a linear axis between two defined endpoints.
@@ -1581,7 +1579,7 @@ func (fc _FilterClass) LinearDodgeBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) LinearGradientFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("linearGradientFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LinearGradientFilter) */
+}
 
 
 // A combination of linear burn and linear dodge blend modes.
@@ -1591,7 +1589,7 @@ func (fc _FilterClass) LinearGradientFilter() unsafe.Pointer {
 func (fc _FilterClass) LinearLightBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("linearLightBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LinearLightBlendModeFilter) */
+}
 
 
 // Alters an image’s color intensity.
@@ -1601,7 +1599,7 @@ func (fc _FilterClass) LinearLightBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) LinearToSRGBToneCurveFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("linearToSRGBToneCurveFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LinearToSRGBToneCurveFilter) */
+}
 
 
 // Creates an image that resembles a sketch of the outlines of objects.
@@ -1611,7 +1609,7 @@ func (fc _FilterClass) LinearToSRGBToneCurveFilter() unsafe.Pointer {
 func (fc _FilterClass) LineOverlayFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("lineOverlayFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LineOverlayFilter) */
+}
 
 
 // Creates a monochrome image with a series of small lines to add detail.
@@ -1621,7 +1619,7 @@ func (fc _FilterClass) LineOverlayFilter() unsafe.Pointer {
 func (fc _FilterClass) LineScreenFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("lineScreenFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LineScreenFilter) */
+}
 
 
 // Returns the localized description of a filter for display in the user interface.
@@ -1631,7 +1629,7 @@ func (fc _FilterClass) LineScreenFilter() unsafe.Pointer {
 func (fc _FilterClass) LocalizedDescriptionForFilterName(filterName objc.IObject /* cross-framework: NSString */) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(fc.class), objc.Sel("localizedDescriptionForFilterName:"), filterName)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LocalizedDescriptionForFilterName) */
+}
 
 
 // Returns the localized name for the specified filter category.
@@ -1641,7 +1639,7 @@ func (fc _FilterClass) LocalizedDescriptionForFilterName(filterName objc.IObject
 func (fc _FilterClass) LocalizedNameForCategory(category objc.IObject /* cross-framework: NSString */) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(fc.class), objc.Sel("localizedNameForCategory:"), category)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LocalizedNameForCategory) */
+}
 
 
 // Returns the localized name for the specified filter name.
@@ -1651,7 +1649,7 @@ func (fc _FilterClass) LocalizedNameForCategory(category objc.IObject /* cross-f
 func (fc _FilterClass) LocalizedNameForFilterName(filterName objc.IObject /* cross-framework: NSString */) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(fc.class), objc.Sel("localizedNameForFilterName:"), filterName)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LocalizedNameForFilterName) */
+}
 
 
 // Returns the location of the localized reference documentation that describes the filter.
@@ -1661,7 +1659,7 @@ func (fc _FilterClass) LocalizedNameForFilterName(filterName objc.IObject /* cro
 func (fc _FilterClass) LocalizedReferenceDocumentationForFilterName(filterName objc.IObject /* cross-framework: NSString */) foundation.URL {
 	rv := objc.Send[foundation.URL](objc.ID(fc.class), objc.Sel("localizedReferenceDocumentationForFilterName:"), filterName)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LocalizedReferenceDocumentationForFilterName) */
+}
 
 
 // Blends color from two images by calculating the color, hue, and saturation.
@@ -1671,7 +1669,7 @@ func (fc _FilterClass) LocalizedReferenceDocumentationForFilterName(filterName o
 func (fc _FilterClass) LuminosityBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("luminosityBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=LuminosityBlendModeFilter) */
+}
 
 
 // Blurs a specified portion of an image.
@@ -1681,7 +1679,7 @@ func (fc _FilterClass) LuminosityBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) MaskedVariableBlurFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("maskedVariableBlurFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MaskedVariableBlurFilter) */
+}
 
 
 // Converts an image to a white image with an alpha component.
@@ -1691,7 +1689,7 @@ func (fc _FilterClass) MaskedVariableBlurFilter() unsafe.Pointer {
 func (fc _FilterClass) MaskToAlphaFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("maskToAlphaFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MaskToAlphaFilter) */
+}
 
 
 // Creates a maximum RGB grayscale image.
@@ -1701,7 +1699,7 @@ func (fc _FilterClass) MaskToAlphaFilter() unsafe.Pointer {
 func (fc _FilterClass) MaximumComponentFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("maximumComponentFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MaximumComponentFilter) */
+}
 
 
 // Applies a maximum compositing filter to an image.
@@ -1711,7 +1709,7 @@ func (fc _FilterClass) MaximumComponentFilter() unsafe.Pointer {
 func (fc _FilterClass) MaximumCompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("maximumCompositingFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MaximumCompositingFilter) */
+}
 
 
 // [Full Topic]
@@ -1719,7 +1717,7 @@ func (fc _FilterClass) MaximumCompositingFilter() unsafe.Pointer {
 func (fc _FilterClass) MaximumScaleTransformFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("maximumScaleTransformFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MaximumScaleTransformFilter) */
+}
 
 
 // Calculates the median of an image to refine detail.
@@ -1729,7 +1727,7 @@ func (fc _FilterClass) MaximumScaleTransformFilter() unsafe.Pointer {
 func (fc _FilterClass) MedianFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("medianFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MedianFilter) */
+}
 
 
 // Generates a pattern made from an array of line segments.
@@ -1739,7 +1737,7 @@ func (fc _FilterClass) MedianFilter() unsafe.Pointer {
 func (fc _FilterClass) MeshGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("meshGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MeshGeneratorFilter) */
+}
 
 
 // Creates a minimum RGB grayscale image.
@@ -1749,7 +1747,7 @@ func (fc _FilterClass) MeshGeneratorFilter() unsafe.Pointer {
 func (fc _FilterClass) MinimumComponentFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("minimumComponentFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MinimumComponentFilter) */
+}
 
 
 // Blends colors from two images by computing minimum values.
@@ -1759,7 +1757,7 @@ func (fc _FilterClass) MinimumComponentFilter() unsafe.Pointer {
 func (fc _FilterClass) MinimumCompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("minimumCompositingFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MinimumCompositingFilter) */
+}
 
 
 // Blends two images together.
@@ -1769,7 +1767,7 @@ func (fc _FilterClass) MinimumCompositingFilter() unsafe.Pointer {
 func (fc _FilterClass) MixFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("mixFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MixFilter) */
+}
 
 
 // Transitions between two images by applying irregularly shaped holes.
@@ -1779,7 +1777,7 @@ func (fc _FilterClass) MixFilter() unsafe.Pointer {
 func (fc _FilterClass) ModTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("modTransitionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ModTransitionFilter) */
+}
 
 
 // Detects and highlights edges of objects.
@@ -1789,7 +1787,7 @@ func (fc _FilterClass) ModTransitionFilter() unsafe.Pointer {
 func (fc _FilterClass) MorphologyGradientFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("morphologyGradientFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MorphologyGradientFilter) */
+}
 
 
 // Blurs a circular area by enlarging contrasting pixels.
@@ -1799,7 +1797,7 @@ func (fc _FilterClass) MorphologyGradientFilter() unsafe.Pointer {
 func (fc _FilterClass) MorphologyMaximumFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("morphologyMaximumFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MorphologyMaximumFilter) */
+}
 
 
 // Blurs a circular area by reducing contrasting pixels.
@@ -1809,7 +1807,7 @@ func (fc _FilterClass) MorphologyMaximumFilter() unsafe.Pointer {
 func (fc _FilterClass) MorphologyMinimumFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("morphologyMinimumFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MorphologyMinimumFilter) */
+}
 
 
 // Blurs a rectangular area by enlarging contrasting pixels.
@@ -1819,7 +1817,7 @@ func (fc _FilterClass) MorphologyMinimumFilter() unsafe.Pointer {
 func (fc _FilterClass) MorphologyRectangleMaximumFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("morphologyRectangleMaximumFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MorphologyRectangleMaximumFilter) */
+}
 
 
 // Blurs a rectangular area by reducing contrasting pixels.
@@ -1829,7 +1827,7 @@ func (fc _FilterClass) MorphologyRectangleMaximumFilter() unsafe.Pointer {
 func (fc _FilterClass) MorphologyRectangleMinimumFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("morphologyRectangleMinimumFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MorphologyRectangleMinimumFilter) */
+}
 
 
 // Creates motion blur on an image.
@@ -1839,7 +1837,7 @@ func (fc _FilterClass) MorphologyRectangleMinimumFilter() unsafe.Pointer {
 func (fc _FilterClass) MotionBlurFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("motionBlurFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MotionBlurFilter) */
+}
 
 
 // Blends colors from two images by multiplying color components.
@@ -1849,7 +1847,7 @@ func (fc _FilterClass) MotionBlurFilter() unsafe.Pointer {
 func (fc _FilterClass) MultiplyBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("multiplyBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MultiplyBlendModeFilter) */
+}
 
 
 // Blurs the colors of two images by multiplying color components.
@@ -1859,7 +1857,7 @@ func (fc _FilterClass) MultiplyBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) MultiplyCompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("multiplyCompositingFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=MultiplyCompositingFilter) */
+}
 
 
 // Distorts an image by stretching it between two breakpoints.
@@ -1869,7 +1867,7 @@ func (fc _FilterClass) MultiplyCompositingFilter() unsafe.Pointer {
 func (fc _FilterClass) NinePartStretchedFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("ninePartStretchedFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NinePartStretchedFilter) */
+}
 
 
 // Distorts an image by tiling portions of it.
@@ -1879,7 +1877,7 @@ func (fc _FilterClass) NinePartStretchedFilter() unsafe.Pointer {
 func (fc _FilterClass) NinePartTiledFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("ninePartTiledFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NinePartTiledFilter) */
+}
 
 
 // Reduces noise by sharpening the edges of objects.
@@ -1889,7 +1887,7 @@ func (fc _FilterClass) NinePartTiledFilter() unsafe.Pointer {
 func (fc _FilterClass) NoiseReductionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("noiseReductionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=NoiseReductionFilter) */
+}
 
 
 // Produces an effect that mimics a style of visual art that uses optical illusions.
@@ -1899,7 +1897,7 @@ func (fc _FilterClass) NoiseReductionFilter() unsafe.Pointer {
 func (fc _FilterClass) OpTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("opTileFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=OpTileFilter) */
+}
 
 
 // Blends colors by overlaying images.
@@ -1909,7 +1907,7 @@ func (fc _FilterClass) OpTileFilter() unsafe.Pointer {
 func (fc _FilterClass) OverlayBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("overlayBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=OverlayBlendModeFilter) */
+}
 
 
 // Simulates the curl of a page, revealing the target image.
@@ -1919,7 +1917,7 @@ func (fc _FilterClass) OverlayBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) PageCurlTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("pageCurlTransitionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PageCurlTransitionFilter) */
+}
 
 
 // Simulates the curl of a page, revealing the target image with added shadow.
@@ -1929,7 +1927,7 @@ func (fc _FilterClass) PageCurlTransitionFilter() unsafe.Pointer {
 func (fc _FilterClass) PageCurlWithShadowTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("pageCurlWithShadowTransitionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PageCurlWithShadowTransitionFilter) */
+}
 
 
 // Calculates the location of an image’s colors.
@@ -1939,7 +1937,7 @@ func (fc _FilterClass) PageCurlWithShadowTransitionFilter() unsafe.Pointer {
 func (fc _FilterClass) PaletteCentroidFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("paletteCentroidFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PaletteCentroidFilter) */
+}
 
 
 // Replaces colors with colors from a palette image.
@@ -1949,7 +1947,7 @@ func (fc _FilterClass) PaletteCentroidFilter() unsafe.Pointer {
 func (fc _FilterClass) PalettizeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("palettizeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PalettizeFilter) */
+}
 
 
 // Warps the image to create a parallelogram and tiles the result.
@@ -1959,7 +1957,7 @@ func (fc _FilterClass) PalettizeFilter() unsafe.Pointer {
 func (fc _FilterClass) ParallelogramTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("parallelogramTileFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ParallelogramTileFilter) */
+}
 
 
 // Generates a high-density linear barcode.
@@ -1969,7 +1967,7 @@ func (fc _FilterClass) ParallelogramTileFilter() unsafe.Pointer {
 func (fc _FilterClass) PDF417BarcodeGenerator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("PDF417BarcodeGenerator"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PDF417BarcodeGenerator) */
+}
 
 
 // Creates a mask where red pixels indicate areas of the image that are likely to contain a person.
@@ -1979,7 +1977,7 @@ func (fc _FilterClass) PDF417BarcodeGenerator() unsafe.Pointer {
 func (fc _FilterClass) PersonSegmentationFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("personSegmentationFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PersonSegmentationFilter) */
+}
 
 
 // Transforms an image’s perspective.
@@ -1989,7 +1987,7 @@ func (fc _FilterClass) PersonSegmentationFilter() unsafe.Pointer {
 func (fc _FilterClass) PerspectiveCorrectionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("perspectiveCorrectionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PerspectiveCorrectionFilter) */
+}
 
 
 // Rotates an image in a 3D space.
@@ -1999,7 +1997,7 @@ func (fc _FilterClass) PerspectiveCorrectionFilter() unsafe.Pointer {
 func (fc _FilterClass) PerspectiveRotateFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("perspectiveRotateFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PerspectiveRotateFilter) */
+}
 
 
 // Tiles an image by adjusting the perspective of the image.
@@ -2009,7 +2007,7 @@ func (fc _FilterClass) PerspectiveRotateFilter() unsafe.Pointer {
 func (fc _FilterClass) PerspectiveTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("perspectiveTileFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PerspectiveTileFilter) */
+}
 
 
 // Alters an image’s geometry to adjust the perspective.
@@ -2019,7 +2017,7 @@ func (fc _FilterClass) PerspectiveTileFilter() unsafe.Pointer {
 func (fc _FilterClass) PerspectiveTransformFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("perspectiveTransformFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PerspectiveTransformFilter) */
+}
 
 
 // Alters an image’s geometry to adjust the perspective while applying constraints.
@@ -2029,7 +2027,7 @@ func (fc _FilterClass) PerspectiveTransformFilter() unsafe.Pointer {
 func (fc _FilterClass) PerspectiveTransformWithExtentFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("perspectiveTransformWithExtentFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PerspectiveTransformWithExtentFilter) */
+}
 
 
 // Exaggerates an image’s colors.
@@ -2039,7 +2037,7 @@ func (fc _FilterClass) PerspectiveTransformWithExtentFilter() unsafe.Pointer {
 func (fc _FilterClass) PhotoEffectChromeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("photoEffectChromeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PhotoEffectChromeFilter) */
+}
 
 
 // Diminishes an image’s colors.
@@ -2049,7 +2047,7 @@ func (fc _FilterClass) PhotoEffectChromeFilter() unsafe.Pointer {
 func (fc _FilterClass) PhotoEffectFadeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("photoEffectFadeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PhotoEffectFadeFilter) */
+}
 
 
 // Desaturates an image’s colors.
@@ -2059,7 +2057,7 @@ func (fc _FilterClass) PhotoEffectFadeFilter() unsafe.Pointer {
 func (fc _FilterClass) PhotoEffectInstantFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("photoEffectInstantFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PhotoEffectInstantFilter) */
+}
 
 
 // Adjust an image’s colors to black and white.
@@ -2069,7 +2067,7 @@ func (fc _FilterClass) PhotoEffectInstantFilter() unsafe.Pointer {
 func (fc _FilterClass) PhotoEffectMonoFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("photoEffectMonoFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PhotoEffectMonoFilter) */
+}
 
 
 // Adjusts an image’s colors to black and white and intensifies the contrast.
@@ -2079,7 +2077,7 @@ func (fc _FilterClass) PhotoEffectMonoFilter() unsafe.Pointer {
 func (fc _FilterClass) PhotoEffectNoirFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("photoEffectNoirFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PhotoEffectNoirFilter) */
+}
 
 
 // Lowers the contrast of the input image.
@@ -2089,7 +2087,7 @@ func (fc _FilterClass) PhotoEffectNoirFilter() unsafe.Pointer {
 func (fc _FilterClass) PhotoEffectProcessFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("photoEffectProcessFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PhotoEffectProcessFilter) */
+}
 
 
 // Adjusts an image’s colors to black and white.
@@ -2099,7 +2097,7 @@ func (fc _FilterClass) PhotoEffectProcessFilter() unsafe.Pointer {
 func (fc _FilterClass) PhotoEffectTonalFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("photoEffectTonalFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PhotoEffectTonalFilter) */
+}
 
 
 // Brightens an image’s colors.
@@ -2109,7 +2107,7 @@ func (fc _FilterClass) PhotoEffectTonalFilter() unsafe.Pointer {
 func (fc _FilterClass) PhotoEffectTransferFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("photoEffectTransferFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PhotoEffectTransferFilter) */
+}
 
 
 // Distorts an image by creating a pinch effect with stronger distortion in the center.
@@ -2119,7 +2117,7 @@ func (fc _FilterClass) PhotoEffectTransferFilter() unsafe.Pointer {
 func (fc _FilterClass) PinchDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("pinchDistortionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PinchDistortionFilter) */
+}
 
 
 // Blends colors of two images by replacing brighter colors.
@@ -2129,7 +2127,7 @@ func (fc _FilterClass) PinchDistortionFilter() unsafe.Pointer {
 func (fc _FilterClass) PinLightBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("pinLightBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PinLightBlendModeFilter) */
+}
 
 
 // Enlarges the colors of the pixels to create a blurred effect.
@@ -2139,7 +2137,7 @@ func (fc _FilterClass) PinLightBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) PixellateFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("pixellateFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PixellateFilter) */
+}
 
 
 // Applies a pointillize effect to an image.
@@ -2149,7 +2147,7 @@ func (fc _FilterClass) PixellateFilter() unsafe.Pointer {
 func (fc _FilterClass) PointillizeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("pointillizeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=PointillizeFilter) */
+}
 
 
 // Generates a quick response (QR) code image.
@@ -2159,7 +2157,7 @@ func (fc _FilterClass) PointillizeFilter() unsafe.Pointer {
 func (fc _FilterClass) QRCodeGenerator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("QRCodeGenerator"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=QRCodeGenerator) */
+}
 
 
 // Generates a gradient that varies radially between two circles having the same center.
@@ -2169,7 +2167,7 @@ func (fc _FilterClass) QRCodeGenerator() unsafe.Pointer {
 func (fc _FilterClass) RadialGradientFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("radialGradientFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=RadialGradientFilter) */
+}
 
 
 // Generates a random filter image.
@@ -2179,7 +2177,7 @@ func (fc _FilterClass) RadialGradientFilter() unsafe.Pointer {
 func (fc _FilterClass) RandomGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("randomGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=RandomGeneratorFilter) */
+}
 
 
 // Publishes a custom filter that is not packaged as an image unit.
@@ -2188,7 +2186,7 @@ func (fc _FilterClass) RandomGeneratorFilter() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/registerName(_:constructor:classAttributes:)
 func (fc _FilterClass) RegisterFilterNameConstructorClassAttributes(name objc.IObject /* cross-framework: NSString */, anObject unsafe.Pointer, attributes foundation.IDictionary) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("registerFilterName:constructor:classAttributes:"), name, anObject, attributes)
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=RegisterFilterNameConstructorClassAttributes) */
+}
 
 
 // Simulates a ripple in a pond to transiton from one image to another.
@@ -2198,7 +2196,7 @@ func (fc _FilterClass) RegisterFilterNameConstructorClassAttributes(name objc.IO
 func (fc _FilterClass) RippleTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("rippleTransitionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=RippleTransitionFilter) */
+}
 
 
 // [Full Topic]
@@ -2206,7 +2204,7 @@ func (fc _FilterClass) RippleTransitionFilter() unsafe.Pointer {
 func (fc _FilterClass) RoundedQRCodeGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("roundedQRCodeGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=RoundedQRCodeGeneratorFilter) */
+}
 
 
 // Generates a rounded rectangle image.
@@ -2216,7 +2214,7 @@ func (fc _FilterClass) RoundedQRCodeGeneratorFilter() unsafe.Pointer {
 func (fc _FilterClass) RoundedRectangleGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("roundedRectangleGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=RoundedRectangleGeneratorFilter) */
+}
 
 
 // Creates an image containing the outline of a rounded rectangle.
@@ -2226,7 +2224,7 @@ func (fc _FilterClass) RoundedRectangleGeneratorFilter() unsafe.Pointer {
 func (fc _FilterClass) RoundedRectangleStrokeGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("roundedRectangleStrokeGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=RoundedRectangleStrokeGeneratorFilter) */
+}
 
 
 // Calculates the average color for the specified row of pixels in an image.
@@ -2236,7 +2234,7 @@ func (fc _FilterClass) RoundedRectangleStrokeGeneratorFilter() unsafe.Pointer {
 func (fc _FilterClass) RowAverageFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("rowAverageFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=RowAverageFilter) */
+}
 
 
 // Creates a saliency map from an image.
@@ -2246,7 +2244,7 @@ func (fc _FilterClass) RowAverageFilter() unsafe.Pointer {
 func (fc _FilterClass) SaliencyMapFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("saliencyMapFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SaliencyMapFilter) */
+}
 
 
 // Blends the colors and saturation values of two images.
@@ -2256,7 +2254,7 @@ func (fc _FilterClass) SaliencyMapFilter() unsafe.Pointer {
 func (fc _FilterClass) SaturationBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("saturationBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SaturationBlendModeFilter) */
+}
 
 
 // Blends colors of two images by multiplying colors.
@@ -2266,7 +2264,7 @@ func (fc _FilterClass) SaturationBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) ScreenBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("screenBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ScreenBlendModeFilter) */
+}
 
 
 // Adjusts an image’s colors to shades of brown.
@@ -2276,7 +2274,7 @@ func (fc _FilterClass) ScreenBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) SepiaToneFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sepiaToneFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SepiaToneFilter) */
+}
 
 
 // Serializes filter parameters into XMP form that is suitable for embedding in an image.
@@ -2286,7 +2284,7 @@ func (fc _FilterClass) SepiaToneFilter() unsafe.Pointer {
 func (fc _FilterClass) SerializedXMPFromFiltersInputImageExtent(filters []Filter, extent corefoundation.CGRect) foundation.Data {
 	rv := objc.Send[foundation.Data](objc.ID(fc.class), objc.Sel("serializedXMPFromFilters:inputImageExtent:"), filters, extent)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SerializedXMPFromFiltersInputImageExtent) */
+}
 
 
 // Creates a shaded image from a height-field image.
@@ -2296,7 +2294,7 @@ func (fc _FilterClass) SerializedXMPFromFiltersInputImageExtent(filters []Filter
 func (fc _FilterClass) ShadedMaterialFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("shadedMaterialFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ShadedMaterialFilter) */
+}
 
 
 // Applies a sharpening effect to an image.
@@ -2306,7 +2304,7 @@ func (fc _FilterClass) ShadedMaterialFilter() unsafe.Pointer {
 func (fc _FilterClass) SharpenLuminanceFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sharpenLuminanceFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SharpenLuminanceFilter) */
+}
 
 
 // [Full Topic]
@@ -2314,7 +2312,7 @@ func (fc _FilterClass) SharpenLuminanceFilter() unsafe.Pointer {
 func (fc _FilterClass) SignedDistanceGradientFromRedMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("signedDistanceGradientFromRedMaskFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SignedDistanceGradientFromRedMaskFilter) */
+}
 
 
 // Produces a tiled image from a source image by applying a six-way reflected symmetry.
@@ -2324,7 +2322,7 @@ func (fc _FilterClass) SignedDistanceGradientFromRedMaskFilter() unsafe.Pointer 
 func (fc _FilterClass) SixfoldReflectedTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sixfoldReflectedTileFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SixfoldReflectedTileFilter) */
+}
 
 
 // Creates a tiled image by rotating in increments of 60 degrees.
@@ -2334,7 +2332,7 @@ func (fc _FilterClass) SixfoldReflectedTileFilter() unsafe.Pointer {
 func (fc _FilterClass) SixfoldRotatedTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sixfoldRotatedTileFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SixfoldRotatedTileFilter) */
+}
 
 
 // Generates a gradient that blends colors along a linear axis between two defined endpoints.
@@ -2344,7 +2342,7 @@ func (fc _FilterClass) SixfoldRotatedTileFilter() unsafe.Pointer {
 func (fc _FilterClass) SmoothLinearGradientFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("smoothLinearGradientFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SmoothLinearGradientFilter) */
+}
 
 
 // Calculates the Sobel gradients for an image.
@@ -2354,7 +2352,7 @@ func (fc _FilterClass) SmoothLinearGradientFilter() unsafe.Pointer {
 func (fc _FilterClass) SobelGradientsFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sobelGradientsFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SobelGradientsFilter) */
+}
 
 
 // Blurs the colors of two images by calculating luminance.
@@ -2364,7 +2362,7 @@ func (fc _FilterClass) SobelGradientsFilter() unsafe.Pointer {
 func (fc _FilterClass) SoftLightBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("softLightBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SoftLightBlendModeFilter) */
+}
 
 
 // Overlaps two images to create one cropped image.
@@ -2374,7 +2372,7 @@ func (fc _FilterClass) SoftLightBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) SourceAtopCompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sourceAtopCompositingFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SourceAtopCompositingFilter) */
+}
 
 
 // Subtracts non-overlapping areas of two images, resulting in one image.
@@ -2384,7 +2382,7 @@ func (fc _FilterClass) SourceAtopCompositingFilter() unsafe.Pointer {
 func (fc _FilterClass) SourceInCompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sourceInCompositingFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SourceInCompositingFilter) */
+}
 
 
 // Subtracts overlapping area of two images to create the output image.
@@ -2394,7 +2392,7 @@ func (fc _FilterClass) SourceInCompositingFilter() unsafe.Pointer {
 func (fc _FilterClass) SourceOutCompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sourceOutCompositingFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SourceOutCompositingFilter) */
+}
 
 
 // Places one image over a second image.
@@ -2404,7 +2402,7 @@ func (fc _FilterClass) SourceOutCompositingFilter() unsafe.Pointer {
 func (fc _FilterClass) SourceOverCompositingFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sourceOverCompositingFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SourceOverCompositingFilter) */
+}
 
 
 // Replaces colors of an image with specifed colors.
@@ -2414,7 +2412,7 @@ func (fc _FilterClass) SourceOverCompositingFilter() unsafe.Pointer {
 func (fc _FilterClass) SpotColorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("spotColorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SpotColorFilter) */
+}
 
 
 // Highlights a definined area of the image.
@@ -2424,7 +2422,7 @@ func (fc _FilterClass) SpotColorFilter() unsafe.Pointer {
 func (fc _FilterClass) SpotLightFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("spotLightFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SpotLightFilter) */
+}
 
 
 // Converts the colors in an image from sRGB to linear.
@@ -2434,7 +2432,7 @@ func (fc _FilterClass) SpotLightFilter() unsafe.Pointer {
 func (fc _FilterClass) SRGBToneCurveToLinearFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sRGBToneCurveToLinearFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SRGBToneCurveToLinearFilter) */
+}
 
 
 // Generates a star-shine image.
@@ -2444,7 +2442,7 @@ func (fc _FilterClass) SRGBToneCurveToLinearFilter() unsafe.Pointer {
 func (fc _FilterClass) StarShineGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("starShineGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=StarShineGeneratorFilter) */
+}
 
 
 // Rotates and crops an image.
@@ -2454,7 +2452,7 @@ func (fc _FilterClass) StarShineGeneratorFilter() unsafe.Pointer {
 func (fc _FilterClass) StraightenFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("straightenFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=StraightenFilter) */
+}
 
 
 // Distorts an image by stretching or cropping to fit a specified size.
@@ -2464,7 +2462,7 @@ func (fc _FilterClass) StraightenFilter() unsafe.Pointer {
 func (fc _FilterClass) StretchCropFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("stretchCropFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=StretchCropFilter) */
+}
 
 
 // Generates a line of stripes as an image
@@ -2474,7 +2472,7 @@ func (fc _FilterClass) StretchCropFilter() unsafe.Pointer {
 func (fc _FilterClass) StripesGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("stripesGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=StripesGeneratorFilter) */
+}
 
 
 // Blends colors by subtracting color values from two images.
@@ -2484,7 +2482,7 @@ func (fc _FilterClass) StripesGeneratorFilter() unsafe.Pointer {
 func (fc _FilterClass) SubtractBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("subtractBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SubtractBlendModeFilter) */
+}
 
 
 // Generates an image resembling the sun.
@@ -2494,7 +2492,7 @@ func (fc _FilterClass) SubtractBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) SunbeamsGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("sunbeamsGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SunbeamsGeneratorFilter) */
+}
 
 
 // [Full Topic]
@@ -2502,7 +2500,7 @@ func (fc _FilterClass) SunbeamsGeneratorFilter() unsafe.Pointer {
 func (fc _FilterClass) SupportedRawCameraModels() []string {
 	rv := objc.Send[[]string](objc.ID(fc.class), objc.Sel("supportedRawCameraModels"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SupportedRawCameraModels) */
+}
 
 
 // Gradually transitions from one image to another with a swiping motion.
@@ -2512,7 +2510,7 @@ func (fc _FilterClass) SupportedRawCameraModels() []string {
 func (fc _FilterClass) SwipeTransitionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("swipeTransitionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SwipeTransitionFilter) */
+}
 
 
 // [Full Topic]
@@ -2520,7 +2518,7 @@ func (fc _FilterClass) SwipeTransitionFilter() unsafe.Pointer {
 func (fc _FilterClass) SystemToneMapFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("systemToneMapFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=SystemToneMapFilter) */
+}
 
 
 // Alters an image’s temperature and tint.
@@ -2530,7 +2528,7 @@ func (fc _FilterClass) SystemToneMapFilter() unsafe.Pointer {
 func (fc _FilterClass) TemperatureAndTintFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("temperatureAndTintFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=TemperatureAndTintFilter) */
+}
 
 
 // Generates a text image.
@@ -2540,7 +2538,7 @@ func (fc _FilterClass) TemperatureAndTintFilter() unsafe.Pointer {
 func (fc _FilterClass) TextImageGeneratorFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("textImageGeneratorFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=TextImageGeneratorFilter) */
+}
 
 
 // Alters the image to make it look like it was taken by a thermal camera.
@@ -2550,7 +2548,7 @@ func (fc _FilterClass) TextImageGeneratorFilter() unsafe.Pointer {
 func (fc _FilterClass) ThermalFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("thermalFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ThermalFilter) */
+}
 
 
 // Alters an image’s tone curve according to a series of data points.
@@ -2560,7 +2558,7 @@ func (fc _FilterClass) ThermalFilter() unsafe.Pointer {
 func (fc _FilterClass) ToneCurveFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("toneCurveFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ToneCurveFilter) */
+}
 
 
 // [Full Topic]
@@ -2568,7 +2566,7 @@ func (fc _FilterClass) ToneCurveFilter() unsafe.Pointer {
 func (fc _FilterClass) ToneMapHeadroomFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("toneMapHeadroomFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ToneMapHeadroomFilter) */
+}
 
 
 // Creates a torus-shaped lens to distort the image.
@@ -2578,7 +2576,7 @@ func (fc _FilterClass) ToneMapHeadroomFilter() unsafe.Pointer {
 func (fc _FilterClass) TorusLensDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("torusLensDistortionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=TorusLensDistortionFilter) */
+}
 
 
 // Create a triangular kaleidoscope effect and then tiles the result.
@@ -2588,7 +2586,7 @@ func (fc _FilterClass) TorusLensDistortionFilter() unsafe.Pointer {
 func (fc _FilterClass) TriangleKaleidoscopeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("triangleKaleidoscopeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=TriangleKaleidoscopeFilter) */
+}
 
 
 // Tiles a triangular area of an image.
@@ -2598,7 +2596,7 @@ func (fc _FilterClass) TriangleKaleidoscopeFilter() unsafe.Pointer {
 func (fc _FilterClass) TriangleTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("triangleTileFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=TriangleTileFilter) */
+}
 
 
 // Creates a tiled image by rotating in increments of 30 degrees.
@@ -2608,7 +2606,7 @@ func (fc _FilterClass) TriangleTileFilter() unsafe.Pointer {
 func (fc _FilterClass) TwelvefoldReflectedTileFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("twelvefoldReflectedTileFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=TwelvefoldReflectedTileFilter) */
+}
 
 
 // Distorts an image by rotating pixels around a center point.
@@ -2618,7 +2616,7 @@ func (fc _FilterClass) TwelvefoldReflectedTileFilter() unsafe.Pointer {
 func (fc _FilterClass) TwirlDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("twirlDistortionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=TwirlDistortionFilter) */
+}
 
 
 // Increases an image’s contrast between two colors.
@@ -2628,7 +2626,7 @@ func (fc _FilterClass) TwirlDistortionFilter() unsafe.Pointer {
 func (fc _FilterClass) UnsharpMaskFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("unsharpMaskFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=UnsharpMaskFilter) */
+}
 
 
 // Adjusts an image’s vibrancy.
@@ -2638,7 +2636,7 @@ func (fc _FilterClass) UnsharpMaskFilter() unsafe.Pointer {
 func (fc _FilterClass) VibranceFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("vibranceFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=VibranceFilter) */
+}
 
 
 // Gradually darkens an image’s edges.
@@ -2648,7 +2646,7 @@ func (fc _FilterClass) VibranceFilter() unsafe.Pointer {
 func (fc _FilterClass) VignetteFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("vignetteFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=VignetteFilter) */
+}
 
 
 // Gradually darkens a specified area of an image.
@@ -2658,7 +2656,7 @@ func (fc _FilterClass) VignetteFilter() unsafe.Pointer {
 func (fc _FilterClass) VignetteEffectFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("vignetteEffectFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=VignetteEffectFilter) */
+}
 
 
 // A combination of color-burn and color-dodge blend modes.
@@ -2668,7 +2666,7 @@ func (fc _FilterClass) VignetteEffectFilter() unsafe.Pointer {
 func (fc _FilterClass) VividLightBlendModeFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("vividLightBlendModeFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=VividLightBlendModeFilter) */
+}
 
 
 // Distorts an image by using a vortex effect created by rotating pixels around a point.
@@ -2678,7 +2676,7 @@ func (fc _FilterClass) VividLightBlendModeFilter() unsafe.Pointer {
 func (fc _FilterClass) VortexDistortionFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("vortexDistortionFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=VortexDistortionFilter) */
+}
 
 
 // Adjusts the image’s white-point.
@@ -2688,7 +2686,7 @@ func (fc _FilterClass) VortexDistortionFilter() unsafe.Pointer {
 func (fc _FilterClass) WhitePointAdjustFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("whitePointAdjustFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=WhitePointAdjustFilter) */
+}
 
 
 // Alters an image to make it look like an X-ray image.
@@ -2698,7 +2696,7 @@ func (fc _FilterClass) WhitePointAdjustFilter() unsafe.Pointer {
 func (fc _FilterClass) XRayFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("xRayFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=XRayFilter) */
+}
 
 
 // Creates a zoom blur centered around a single point on the image.
@@ -2708,18 +2706,18 @@ func (fc _FilterClass) XRayFilter() unsafe.Pointer {
 func (fc _FilterClass) ZoomBlurFilter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("zoomBlurFilter"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ZoomBlurFilter) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for Filter */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for Filter */
+
+
+
+
+
 
 // Produces a object by applying arguments to a kernel function and using options to control how the kernel function is evaluated.
 //
@@ -2728,7 +2726,7 @@ func (fc _FilterClass) ZoomBlurFilter() unsafe.Pointer {
 func (f_ Filter) ApplyArgumentsOptions(k ICIKernel, args objc.IObject /* cross-framework: NSArray */, dict foundation.IDictionary) IImage {
 	rv := objc.Send[Image](f_.ID, objc.Sel("apply:arguments:options:"), k, args, dict)
 	return rv
-}/* debug [instance_methods/method]: ApplyArgumentsOptions */
+}
 
 
 // Produces a object by applying a kernel function.
@@ -2738,7 +2736,7 @@ func (f_ Filter) ApplyArgumentsOptions(k ICIKernel, args objc.IObject /* cross-f
 func (f_ Filter) Apply(k ICIKernel) IImage {
 	rv := objc.Send[Image](f_.ID, objc.Sel("apply:"), k)
 	return rv
-}/* debug [instance_methods/method]: Apply */
+}
 
 
 // Sets all input values for a filter to default values.
@@ -2747,7 +2745,7 @@ func (f_ Filter) Apply(k ICIKernel) IImage {
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/setDefaults()
 func (f_ Filter) SetDefaults() {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDefaults"))
-}/* debug [instance_methods/method]: SetDefaults */
+}
 
 
 // Returns a filter view for the filter.
@@ -2757,13 +2755,13 @@ func (f_ Filter) SetDefaults() {
 func (f_ Filter) ViewForUIConfigurationExcludedKeys(inUIConfiguration objc.IObject /* cross-framework: NSDictionary */, inKeys objc.IObject /* cross-framework: NSArray */) objc.IObject {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("viewForUIConfiguration:excludedKeys:"), inUIConfiguration, inKeys)
 	return rv
-}/* debug [instance_methods/method]: ViewForUIConfigurationExcludedKeys */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for Filter */
+
+
+
 
 // A dictionary of key-value pairs that describe the filter.
 //
@@ -2772,7 +2770,7 @@ func (f_ Filter) ViewForUIConfigurationExcludedKeys(inUIConfiguration objc.IObje
 func (f_ Filter) Attributes() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](f_.ID, objc.Sel("attributes"))
 	return rv
-}/* debug [instance_properties/getter]: attributes */
+}
 
 
 // The names of all input parameters to the filter.
@@ -2782,7 +2780,7 @@ func (f_ Filter) Attributes() foundation.IDictionary {
 func (f_ Filter) InputKeys() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("inputKeys"))
 	return rv
-}/* debug [instance_properties/getter]: inputKeys */
+}
 
 
 // A Boolean value that determines whether the filter is enabled. Animatable.
@@ -2792,7 +2790,7 @@ func (f_ Filter) InputKeys() []string {
 func (f_ Filter) Enabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("enabled"))
 	return rv
-}/* debug [instance_properties/getter]: enabled */
+}
 
 
 // A Boolean value that determines whether the filter is enabled. Animatable.
@@ -2801,7 +2799,7 @@ func (f_ Filter) Enabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/isEnabled
 func (f_ Filter) SetEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setEnabled:"), value)
-}/* debug [instance_properties/setter]: enabled */
+}
 
 
 // A name associated with a filter.
@@ -2811,7 +2809,7 @@ func (f_ Filter) SetEnabled(value bool) {
 func (f_ Filter) Name() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("name"))
 	return rv
-}/* debug [instance_properties/getter]: name */
+}
 
 
 // A name associated with a filter.
@@ -2820,7 +2818,7 @@ func (f_ Filter) Name() objc.IObject /* cross-framework: NSString */ {
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/name
 func (f_ Filter) SetName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setName:"), value)
-}/* debug [instance_properties/setter]: name */
+}
 
 
 // Returns a object that encapsulates the operations configured in the filter.
@@ -2830,7 +2828,7 @@ func (f_ Filter) SetName(value objc.IObject /* cross-framework: NSString */) {
 func (f_ Filter) OutputImage() ICIImage {
 	rv := objc.Send[Image](f_.ID, objc.Sel("outputImage"))
 	return rv
-}/* debug [instance_properties/getter]: outputImage */
+}
 
 
 // The names of all output parameters from the filter.
@@ -2840,7 +2838,7 @@ func (f_ Filter) OutputImage() ICIImage {
 func (f_ Filter) OutputKeys() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("outputKeys"))
 	return rv
-}/* debug [instance_properties/getter]: outputKeys */
+}
 
 
 // A Boolean value that determines whether the filter is enabled. Animatable.
@@ -2850,7 +2848,7 @@ func (f_ Filter) OutputKeys() []string {
 func (f_ Filter) IsEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isEnabled"))
 	return rv
-}/* debug [instance_properties/getter]: isEnabled */
+}
 
 
 // A Boolean value that determines whether the filter is enabled. Animatable.
@@ -2859,11 +2857,11 @@ func (f_ Filter) IsEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifilter-swift.class/isenabled
 func (f_ Filter) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsEnabled:"), value)
-}/* debug [instance_properties/setter]: isEnabled */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class CIFilter */
+
+
+
 
 

@@ -510,3 +510,89 @@ func TestMapObjCTypeToGo_BlockTypes(t *testing.T) {
 		})
 	}
 }
+
+// TestMapObjCTypeToGo_BlockTypes_ErrorCases tests error handling and edge cases for block type mapping
+func TestMapObjCTypeToGo_BlockTypes_ErrorCases(t *testing.T) {
+	tests := []struct {
+		name      string
+		objcType  string
+		framework string
+		expected  string
+	}{
+		{
+			name:      "malformed block - missing closing paren",
+			objcType:  "void (^)(void",
+			framework: "Foundation",
+			expected:  "unsafe.Pointer", // Malformed blocks fall through to occ2go which returns unsafe.Pointer
+		},
+		{
+			name:      "malformed block - unbalanced parens in nested block",
+			objcType:  "NSProgress * (^)(void (^)(NSData *",
+			framework: "Foundation",
+			expected:  "unsafe.Pointer", // Falls through to unsafe.Pointer
+		},
+		{
+			name:      "deeply nested blocks - quadruple nesting",
+			objcType:  "void (^)(void (^)(void (^)(void (^)(void))))",
+			framework: "Foundation",
+			expected:  "func(func(func(func())))",
+		},
+		{
+			name:      "block with generic array parameter",
+			objcType:  "void (^)(NSArray<NSString *> *)",
+			framework: "Foundation",
+			expected:  "func([]unsafe.Pointer)", // Generic NSArray<T> maps to []unsafe.Pointer when T is NSString *
+		},
+		{
+			name:      "block returning block",
+			objcType:  "void (^)(void) (^)(void)",
+			framework: "Foundation",
+			expected:  "func()", // Parses first block, ignores malformed second part
+		},
+		{
+			name:      "block with nullable parameter",
+			objcType:  "void (^)(NSString * _Nullable)",
+			framework: "Foundation",
+			expected:  "func(unsafe.Pointer)", // _Nullable stripped but NSString * in block context maps to unsafe.Pointer
+		},
+		{
+			name:      "block with nonnull parameter",
+			objcType:  "void (^)(NSString * _Nonnull)",
+			framework: "Foundation",
+			expected:  "func(unsafe.Pointer)", // _Nonnull stripped but NSString * in block context maps to unsafe.Pointer
+		},
+		{
+			name:      "block with __kindof modifier",
+			objcType:  "void (^)(__kindof NSView *)",
+			framework: "AppKit",
+			expected:  "func(unsafe.Pointer)", // __kindof should be stripped
+		},
+		{
+			name:      "block with const qualifier",
+			objcType:  "void (^)(const char *)",
+			framework: "Foundation",
+			expected:  "func(unsafe.Pointer)", // const char * in block context maps to unsafe.Pointer
+		},
+		{
+			name:      "empty block parameter (edge case)",
+			objcType:  "void (^)()",
+			framework: "Foundation",
+			expected:  "func()",
+		},
+		{
+			name:      "block with multiple nested blocks as parameters",
+			objcType:  "void (^)(void (^)(void), void (^)(BOOL))",
+			framework: "Foundation",
+			expected:  "func(func(), func(bool))",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := mapObjCTypeToGo(tt.objcType, tt.framework)
+			if result != tt.expected {
+				t.Errorf("mapObjCTypeToGo(%q, %q) = %q, want %q", tt.objcType, tt.framework, result, tt.expected)
+			}
+		})
+	}
+}

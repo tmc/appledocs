@@ -15,3 +15,4 @@ var webViewDidChangeSelectionProtocol *objc.Protocol
 func init() {
 	webViewDidChangeSelectionProtocol = objc.GetProtocol("webViewDidChangeSelection:")
 }
+

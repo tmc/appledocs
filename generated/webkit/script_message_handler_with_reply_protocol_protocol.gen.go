@@ -3,9 +3,10 @@
 package webkit
 
 import (
-	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/func(objc"
 )
 
 // PScriptMessageHandlerWithReply is the WKScriptMessageHandlerWithReply protocol interface.
@@ -22,5 +23,5 @@ import (
 // See: doc://com.apple.webkit/documentation/WebKit/WKScriptMessageHandlerWithReply
 type PScriptMessageHandlerWithReply interface {
 	// Required methods
-	UserContentControllerDidReceiveScriptMessageReplyHandler(userContentController IWKUserContentController, message IWKScriptMessage, replyHandler func(objc.ID, unsafe.Pointer))
+	UserContentControllerDidReceiveScriptMessageReplyHandler(userContentController IWKUserContentController, message IWKScriptMessage, replyHandler func(objc.ID, unsafe.Pointer))/* debug [protocol_interface/required_method]: UserContentControllerDidReceiveScriptMessageReplyHandler */
 }

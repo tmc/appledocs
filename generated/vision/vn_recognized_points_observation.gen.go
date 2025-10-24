@@ -7,15 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coreml"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class VNRecognizedPointsObservation */
 
 
-/* debug [class_header]: Header for VNRecognizedPointsObservation */
+
+
 // The class instance for the [RecognizedPointsObservation] class.
 var (
 	RecognizedPointsObservationClass     _RecognizedPointsObservationClass
@@ -32,35 +30,35 @@ func getRecognizedPointsObservationClass() _RecognizedPointsObservationClass {
 type _RecognizedPointsObservationClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for RecognizedPointsObservation */
+
+
 // An interface definition for the [RecognizedPointsObservation] class.
 type IRecognizedPointsObservation interface {
 	IObservation
 	
-/* debug [class_interface_properties]: Properties for RecognizedPointsObservation */
+
 	// properties:
 	AvailableGroupKeys() []string
 	AvailableKeys() []string
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for RecognizedPointsObservation */
+
 	// methods:
 	KeypointsMultiArrayAndReturnError(error_ objectivec.IObject) coreml.MultiArray
 	RecognizedPointForKeyError(pointKey RecognizedPointKey /* typedef */, error_ objectivec.IObject) IRecognizedPoint
 	RecognizedPointsForGroupKeyError(groupKey RecognizedPointGroupKey /* typedef */, error_ objectivec.IObject) foundation.IDictionary
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for RecognizedPointsObservation */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _RecognizedPointsObservationClass) Alloc() RecognizedPointsObservation {
 	rv := objc.Send[RecognizedPointsObservation](objc.ID(rc.class), objc.Sel("alloc"))
@@ -90,11 +88,11 @@ func (r_ RecognizedPointsObservation) Autorelease() RecognizedPointsObservation 
 func NewRecognizedPointsObservation() RecognizedPointsObservation {
 	return getRecognizedPointsObservationClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for RecognizedPointsObservation */
+
+
 // An observation that provides the points the analysis recognized.
 
 
@@ -114,25 +112,25 @@ func RecognizedPointsObservationFrom(ptr unsafe.Pointer) RecognizedPointsObserva
 		Observation: ObservationFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for RecognizedPointsObservation *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for RecognizedPointsObservation */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for RecognizedPointsObservation */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for RecognizedPointsObservation */
+
+
+
+
+
+
+
 
 // Retrieves the grouping of normalized point coordinates and confidence scores in a format compatible with Core ML.
 //
@@ -141,7 +139,7 @@ func RecognizedPointsObservationFrom(ptr unsafe.Pointer) RecognizedPointsObserva
 func (r_ RecognizedPointsObservation) KeypointsMultiArrayAndReturnError(error_ objectivec.IObject) coreml.MultiArray {
 	rv := objc.Send[coreml.MultiArray](r_.ID, objc.Sel("keypointsMultiArrayAndReturnError:"), error_)
 	return rv
-}/* debug [instance_methods/method]: KeypointsMultiArrayAndReturnError */
+}
 
 
 // Retrieves a recognized point for a key.
@@ -151,7 +149,7 @@ func (r_ RecognizedPointsObservation) KeypointsMultiArrayAndReturnError(error_ o
 func (r_ RecognizedPointsObservation) RecognizedPointForKeyError(pointKey RecognizedPointKey /* typedef */, error_ objectivec.IObject) IRecognizedPoint {
 	rv := objc.Send[RecognizedPoint](r_.ID, objc.Sel("recognizedPointForKey:error:"), pointKey, error_)
 	return rv
-}/* debug [instance_methods/method]: RecognizedPointForKeyError */
+}
 
 
 // Retrieves the recognized points for a key.
@@ -161,13 +159,13 @@ func (r_ RecognizedPointsObservation) RecognizedPointForKeyError(pointKey Recogn
 func (r_ RecognizedPointsObservation) RecognizedPointsForGroupKeyError(groupKey RecognizedPointGroupKey /* typedef */, error_ objectivec.IObject) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](r_.ID, objc.Sel("recognizedPointsForGroupKey:error:"), groupKey, error_)
 	return rv
-}/* debug [instance_methods/method]: RecognizedPointsForGroupKeyError */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for RecognizedPointsObservation */
+
+
+
 
 // The available point group keys in the observation.
 //
@@ -176,7 +174,7 @@ func (r_ RecognizedPointsObservation) RecognizedPointsForGroupKeyError(groupKey 
 func (r_ RecognizedPointsObservation) AvailableGroupKeys() []string {
 	rv := objc.Send[[]string](r_.ID, objc.Sel("availableGroupKeys"))
 	return rv
-}/* debug [instance_properties/getter]: availableGroupKeys */
+}
 
 
 // The available point keys in the observation.
@@ -186,12 +184,12 @@ func (r_ RecognizedPointsObservation) AvailableGroupKeys() []string {
 func (r_ RecognizedPointsObservation) AvailableKeys() []string {
 	rv := objc.Send[[]string](r_.ID, objc.Sel("availableKeys"))
 	return rv
-}/* debug [instance_properties/getter]: availableKeys */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class VNRecognizedPointsObservation */
+
+
+
 
 
 

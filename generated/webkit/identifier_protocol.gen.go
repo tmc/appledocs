@@ -18,3 +18,4 @@ var identifierProtocol *objc.Protocol
 func init() {
 	identifierProtocol = objc.GetProtocol("identifier")
 }
+

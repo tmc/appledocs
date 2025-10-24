@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSImageHistogramEqualization */
 
 
-/* debug [class_header]: Header for MPSImageHistogramEqualization */
+
+
 // The class instance for the [ImageHistogramEqualization] class.
 var (
 	ImageHistogramEqualizationClass     _ImageHistogramEqualizationClass
@@ -31,34 +30,34 @@ func getImageHistogramEqualizationClass() _ImageHistogramEqualizationClass {
 type _ImageHistogramEqualizationClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ImageHistogramEqualization */
+
+
 // An interface definition for the [ImageHistogramEqualization] class.
 type IImageHistogramEqualization interface {
 	IUnaryImageKernel
 	
-/* debug [class_interface_properties]: Properties for ImageHistogramEqualization */
+
 	// properties:
 	HistogramInfo() ImageHistogramInfo get /* not a class type */
 	SetHistogramInfo(value ImageHistogramInfo get /* not a class type */)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ImageHistogramEqualization */
+
 	// methods:
 	EncodeTransform()
 	EncodeTransformToCommandBufferSourceTextureHistogramHistogramOffset(commandBuffer unsafe.Pointer, source unsafe.Pointer, histogram unsafe.Pointer, histogramOffset uint)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ImageHistogramEqualization */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageHistogramEqualizationClass) Alloc() ImageHistogramEqualization {
 	rv := objc.Send[ImageHistogramEqualization](objc.ID(ic.class), objc.Sel("alloc"))
@@ -88,11 +87,11 @@ func (i_ ImageHistogramEqualization) Autorelease() ImageHistogramEqualization {
 func NewImageHistogramEqualization() ImageHistogramEqualization {
 	return getImageHistogramEqualizationClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ImageHistogramEqualization */
+
+
 // A filter that equalizes the histogram of an image.
 //
 // The process is divided into three steps: Call the method to create a object. Call the method. This creates a privately held image transform (i.e. a cumulative distribution function of the histogram) which will be used to equalize the distribution of the histogram of the source image. This process runs on a command buffer when it is committed to a command queue. It must complete before the next step can be run. It may be performed on the same command buffer. The argument specifies the histogram buffer which contains the histogram values for the source texture. The argument is used by the method to determine the number of channels and therefore which histogram data in the histogram buffer to use. The histogram for the source texture must have been computed either on the CPU or using the kernel. Call the method to read data from the source texture, apply the equalization transform to it, and write to the destination texture. This step is also done on the GPU on a command queue.
@@ -114,11 +113,11 @@ func ImageHistogramEqualizationFrom(ptr unsafe.Pointer) ImageHistogramEqualizati
 		UnaryImageKernel: UnaryImageKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ImageHistogramEqualization */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramequalization/2866993-initwithcoder
@@ -127,7 +126,7 @@ func NewImageHistogramEqualizationWithCoderDevice(aDecoder foundation.Coder, dev
 	rv := objc.Send[ImageHistogramEqualization](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageHistogramEqualizationWithCoderDevice */
+}
 
 
 // Initializes a histogram with specific information.
@@ -139,23 +138,23 @@ func NewImageHistogramEqualizationWithDeviceHistogramInfo(device unsafe.Pointer,
 	rv := objc.Send[ImageHistogramEqualization](instance.ID, objc.Sel("initWithDevice:histogramInfo:"), device, histogramInfo)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageHistogramEqualizationWithDeviceHistogramInfo */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ImageHistogramEqualization */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ImageHistogramEqualization */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ImageHistogramEqualization */
+
+
+
+
+
+
+
 
 // Encodes the transform function to a command buffer using a compute command encoder. The transform function computes the equalization lookup table.
 //
@@ -163,7 +162,7 @@ func NewImageHistogramEqualizationWithDeviceHistogramInfo(device unsafe.Pointer,
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramequalization/1618746-encodetransform
 func (i_ ImageHistogramEqualization) EncodeTransform() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("encodeTransform"))
-}/* debug [instance_methods/method]: EncodeTransform */
+}
 
 
 // Encodes the transform function to a command buffer using a compute command encoder. The transform function computes the equalization lookup table.
@@ -172,13 +171,13 @@ func (i_ ImageHistogramEqualization) EncodeTransform() {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramequalization/1618746-encodetransformtocommandbuffer
 func (i_ ImageHistogramEqualization) EncodeTransformToCommandBufferSourceTextureHistogramHistogramOffset(commandBuffer unsafe.Pointer, source unsafe.Pointer, histogram unsafe.Pointer, histogramOffset uint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("encodeTransformToCommandBuffer:sourceTexture:histogram:histogramOffset:"), commandBuffer, source, histogram, histogramOffset)
-}/* debug [instance_methods/method]: EncodeTransformToCommandBufferSourceTextureHistogramHistogramOffset */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for ImageHistogramEqualization */
+
+
+
 
 // A structure describing the histogram content.
 //
@@ -187,7 +186,7 @@ func (i_ ImageHistogramEqualization) EncodeTransformToCommandBufferSourceTexture
 func (i_ ImageHistogramEqualization) HistogramInfo() ImageHistogramInfo get /* not a class type */ {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("histogramInfo"))
 	return rv
-}/* debug [instance_properties/getter]: histogramInfo */
+}
 
 
 // A structure describing the histogram content.
@@ -196,11 +195,11 @@ func (i_ ImageHistogramEqualization) HistogramInfo() ImageHistogramInfo get /* n
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramequalization/1618775-histograminfo
 func (i_ ImageHistogramEqualization) SetHistogramInfo(value ImageHistogramInfo get /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setHistogramInfo:"), value)
-}/* debug [instance_properties/setter]: histogramInfo */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSImageHistogramEqualization */
+
+
+
 
 

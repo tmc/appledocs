@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSUnarchiver */
 
 
-/* debug [class_header]: Header for NSUnarchiver */
+
+
 // The class instance for the [Unarchiver] class.
 var (
 	UnarchiverClass     _UnarchiverClass
@@ -30,34 +30,34 @@ func getUnarchiverClass() _UnarchiverClass {
 type _UnarchiverClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for Unarchiver */
+
+
 // An interface definition for the [Unarchiver] class.
 type IUnarchiver interface {
 	ICoder
 	
-/* debug [class_interface_properties]: Properties for Unarchiver */
+
 	// properties:
 	AtEnd() bool
 	SystemVersion() objectivec.IObject
 	IsAtEnd() bool
 	SetIsAtEnd(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for Unarchiver */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for Unarchiver */
+
+
 // Alloc allocates a new instance without initialization.
 func (uc _UnarchiverClass) Alloc() Unarchiver {
 	rv := objc.Send[Unarchiver](objc.ID(uc.class), objc.Sel("alloc"))
@@ -87,11 +87,11 @@ func (u_ Unarchiver) Autorelease() Unarchiver {
 func NewUnarchiver() Unarchiver {
 	return getUnarchiverClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for Unarchiver */
+
+
 // A decoder that restores data from an archive.
 //
 // , a concrete subclass of , defines methods for decoding a set of Objective-C objects from an archive. Such archives are produced by objects of the class. In macOS 10.2 and later, and have been replaced by and respectively—see .
@@ -113,11 +113,11 @@ func UnarchiverFrom(ptr unsafe.Pointer) Unarchiver {
 		Coder: CoderFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for Unarchiver */
+
+
 
 // Returns an object initialized to read an archive from a given data object.
 //
@@ -128,13 +128,13 @@ func NewUnarchiverForReadingWithData(data IData) Unarchiver {
 	rv := objc.Send[Unarchiver](instance.ID, objc.Sel("initForReadingWithData:"), data)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewUnarchiverForReadingWithData */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for Unarchiver */
+
+
+
 
 // Returns the name of the class used when instantiating objects whose ostensible class, according to the archived data, is a given name.
 //
@@ -143,7 +143,7 @@ func NewUnarchiverForReadingWithData(data IData) Unarchiver {
 func (uc _UnarchiverClass) ClassNameDecodedForArchiveClassName(inArchiveName IString) IString {
 	rv := objc.Send[String](objc.ID(uc.class), objc.Sel("classNameDecodedForArchiveClassName:"), inArchiveName)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ClassNameDecodedForArchiveClassName) */
+}
 
 
 // Instructs instances of to use the class with a given name when instantiating objects whose ostensible class, according to the archived data, is another given name.
@@ -152,7 +152,7 @@ func (uc _UnarchiverClass) ClassNameDecodedForArchiveClassName(inArchiveName ISt
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/decodeClassName(_:asClassName:)-swift.type.method
 func (uc _UnarchiverClass) DecodeClassNameAsClassName(inArchiveName IString, trueName IString) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("decodeClassName:asClassName:"), inArchiveName, trueName)
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=DecodeClassNameAsClassName) */
+}
 
 
 // Decodes and returns the object archived in a given object.
@@ -162,7 +162,7 @@ func (uc _UnarchiverClass) DecodeClassNameAsClassName(inArchiveName IString, tru
 func (uc _UnarchiverClass) UnarchiveObjectWithData(data IData) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unarchiveObjectWithData:"), data)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=UnarchiveObjectWithData) */
+}
 
 
 // Decodes and returns the object archived in the file .
@@ -172,23 +172,23 @@ func (uc _UnarchiverClass) UnarchiveObjectWithData(data IData) objc.ID {
 func (uc _UnarchiverClass) UnarchiveObjectWithFile(path IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unarchiveObjectWithFile:"), path)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=UnarchiveObjectWithFile) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for Unarchiver */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for Unarchiver */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for Unarchiver */
+
+
+
+
+
+
+
 
 // A Boolean value that indicates whether the receiver has reached the end of the encoded data while decoding.
 //
@@ -197,7 +197,7 @@ func (uc _UnarchiverClass) UnarchiveObjectWithFile(path IString) objc.ID {
 func (u_ Unarchiver) AtEnd() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("atEnd"))
 	return rv
-}/* debug [instance_properties/getter]: atEnd */
+}
 
 
 // The system version number in effect when the archive was created.
@@ -207,7 +207,7 @@ func (u_ Unarchiver) AtEnd() bool {
 func (u_ Unarchiver) SystemVersion() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](u_.ID, objc.Sel("systemVersion"))
 	return rv
-}/* debug [instance_properties/getter]: systemVersion */
+}
 
 
 // A Boolean value that indicates whether the receiver has reached the end of the encoded data while decoding.
@@ -217,7 +217,7 @@ func (u_ Unarchiver) SystemVersion() objectivec.IObject {
 func (u_ Unarchiver) IsAtEnd() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isAtEnd"))
 	return rv
-}/* debug [instance_properties/getter]: isAtEnd */
+}
 
 
 // A Boolean value that indicates whether the receiver has reached the end of the encoded data while decoding.
@@ -226,11 +226,11 @@ func (u_ Unarchiver) IsAtEnd() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/isatend
 func (u_ Unarchiver) SetIsAtEnd(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsAtEnd:"), value)
-}/* debug [instance_properties/setter]: isAtEnd */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSUnarchiver */
+
+
+
 
 

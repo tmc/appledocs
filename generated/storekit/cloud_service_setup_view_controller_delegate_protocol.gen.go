@@ -17,3 +17,4 @@ var CloudServiceSetupViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	CloudServiceSetupViewControllerDelegateProtocol = objc.GetProtocol("SKCloudServiceSetupViewControllerDelegate")
 }
+

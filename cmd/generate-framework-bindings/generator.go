@@ -228,6 +228,72 @@ func (g *Generator) IsTypedefType(typeName string) bool {
 	return false
 }
 
+// GetTypedefGoName returns the Go name for a typedef given its ObjC name.
+// For example: "unichar" -> "Unichar", "NSInteger" -> "Integer"
+// Returns empty string if the typedef is not found.
+func (g *Generator) GetTypedefGoName(objcName string) string {
+	if objcName == "" {
+		return ""
+	}
+
+	// Look up the typedef in the index
+	var typedef *occ2go.ParsedTypedef
+	if g.typedefIndex != nil {
+		typedef = g.typedefIndex[objcName]
+	} else {
+		// Fallback to linear search if index not built
+		for _, td := range g.Typedefs {
+			if td.Name == objcName {
+				typedef = td
+				break
+			}
+		}
+	}
+
+	if typedef == nil {
+		return ""
+	}
+
+	// Apply the same naming logic as the typedef template
+	// See templates.txtar line 1481
+	if strings.ToLower(g.Framework) == "objectivec" {
+		return typedef.Name
+	}
+	return titleString(stripObjCPrefix(typedef.Name))
+}
+
+// IsStringBasedTypedef checks if a typedef is based on NSString *.
+// String-based typedefs (like NSCalendarIdentifier, NSErrorDomain) need special
+// handling in method returns because objc.Send returns a String struct but the
+// typedef is actually a string type alias.
+func (g *Generator) IsStringBasedTypedef(typeName string) bool {
+	if typeName == "" {
+		return false
+	}
+
+	// Look up the typedef
+	var typedef *occ2go.ParsedTypedef
+	if g.typedefIndex != nil {
+		typedef = g.typedefIndex[typeName]
+	} else {
+		// Fallback to linear search if index not built
+		for _, td := range g.Typedefs {
+			if td.Name == typeName {
+				typedef = td
+				break
+			}
+		}
+	}
+
+	if typedef == nil {
+		return false
+	}
+
+	// Check if base type is NSString * or NSString*
+	baseType := strings.TrimSpace(typedef.BaseType)
+	return baseType == "NSString *" || baseType == "NSString*"
+}
+
 // TypeToInterfaceType converts a struct type name to its interface type name using
 // data-driven type checking. For example: "Data" becomes "IData", "Window" becomes "IWindow".
 // For qualified types: "foundation.Coder" becomes "foundation.ICoder".
@@ -302,7 +368,18 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 			}
 
 			// Don't convert runtime types (objc.ID, unsafe.Pointer, etc.)
-			if pkg == "objc" || pkg == "unsafe" || pkg == "objectivec" {
+			if pkg == "objc" || pkg == "unsafe" {
+				return goType
+			}
+
+			// If the package matches the current framework, strip the qualification
+			// e.g., "objectivec.IObject" in ObjectiveC framework becomes "IObject"
+			if pkg == strings.ToLower(g.Framework) {
+				return typeName
+			}
+
+			// For objectivec package types in other frameworks, keep them
+			if pkg == "objectivec" {
 				return goType
 			}
 
@@ -316,18 +393,9 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 			if strings.ToLower(g.Framework) == "objectivec" {
 				fallbackType = "IObject"
 			}
-			if currentLevel >= 0 && targetLevel > currentLevel {
-				// Known higher-level framework
+			if targetLevel > currentLevel {
+				// Higher-level framework (or unknown framework, which defaults to level 999)
 				Debug.TypeMap("framework layering violation in TypeToInterfaceType", typeName, fallbackType,
-					"framework", g.Framework,
-					"currentLevel", currentLevel,
-					"targetPkg", pkg,
-					"targetLevel", targetLevel,
-					"objcType", goType)
-				return fallbackType
-			} else if currentLevel == 0 && targetLevel == -1 {
-				// ObjectiveC importing unknown framework - assume it's higher
-				Debug.TypeMap("framework layering violation (unknown target) in TypeToInterfaceType", typeName, fallbackType,
 					"framework", g.Framework,
 					"currentLevel", currentLevel,
 					"targetPkg", pkg,
@@ -364,6 +432,18 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		return goType + " /* malformed qualified type */"
 	}
 
+	// Handle pointer to typedef (e.g., "unichar *" -> "*Unichar")
+	// Check for space-separated pointer syntax from ObjC
+	if strings.HasSuffix(goType, " *") {
+		baseType := strings.TrimSuffix(goType, " *")
+		if g.IsTypedefType(baseType) {
+			if goName := g.GetTypedefGoName(baseType); goName != "" {
+				return "*" + goName
+			}
+		}
+		// Not a typedef, fall through to general pointer handling
+	}
+
 	// Don't convert primitives, pointers, maps
 	if strings.HasPrefix(goType, "*") ||
 		strings.HasPrefix(goType, "map[") ||
@@ -384,11 +464,6 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		return goType
 	}
 
-	// Don't convert NSInteger/NSUInteger - these are typedefs, not classes
-	if strings.HasPrefix(goType, "NS") && (strings.HasSuffix(goType, "Integer") || strings.HasSuffix(goType, "UInteger")) {
-		return goType
-	}
-
 	// If it already starts with I and next char is uppercase, it's already an interface
 	if strings.HasPrefix(goType, "I") && len(goType) > 1 && goType[1] >= 'A' && goType[1] <= 'Z' {
 		return goType
@@ -405,7 +480,15 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		return goType // Return the mapped Go type name, not the original ObjC name
 	}
 	if g.IsTypedefType(goType) {
-		return goType + " /* typedef */"
+		// Try to get the Go typedef name
+		if goName := g.GetTypedefGoName(goType); goName != "" {
+			Debug.TypeMap("TypeToInterfaceType typedef resolved", goType, goName,
+				"objcType", goType,
+				"goName", goName)
+			return goName
+		}
+		// Fallback if typedef lookup fails (shouldn't happen but defensive)
+		return goType
 	}
 
 	// Strip ObjC prefixes first before checking if it's a class

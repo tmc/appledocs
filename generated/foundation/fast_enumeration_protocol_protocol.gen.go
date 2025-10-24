@@ -23,5 +23,5 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/NSFastEnumeration
 type PFastEnumeration interface {
 	// Required methods
-	CountByEnumeratingWithStateObjectsCount(state objc.IObject /* cross-framework: FastEnumerationState */, buffer []objc.ID, len_ uint) uint/* debug [protocol_interface/required_method]: CountByEnumeratingWithStateObjectsCount */
+	CountByEnumeratingWithStateObjectsCount(state objc.IObject /* cross-framework: FastEnumerationState */, buffer []objc.ID, len_ uint) uint
 }

@@ -15,3 +15,4 @@ var webViewDidChangeTypingStyleProtocol *objc.Protocol
 func init() {
 	webViewDidChangeTypingStyleProtocol = objc.GetProtocol("webViewDidChangeTypingStyle:")
 }
+

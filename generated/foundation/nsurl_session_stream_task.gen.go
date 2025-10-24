@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSURLSessionStreamTask */
 
 
-/* debug [class_header]: Header for NSURLSessionStreamTask */
+
+
 // The class instance for the [URLSessionStreamTask] class.
 var (
 	URLSessionStreamTaskClass     _URLSessionStreamTaskClass
@@ -30,23 +30,23 @@ func getURLSessionStreamTaskClass() _URLSessionStreamTaskClass {
 type _URLSessionStreamTaskClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for URLSessionStreamTask */
+
+
 // An interface definition for the [URLSessionStreamTask] class.
 type IURLSessionStreamTask interface {
 	IURLSessionTask
 	
-/* debug [class_interface_properties]: Properties for URLSessionStreamTask */
+
 	// properties:
 	HttpShouldUsePipelining() bool
 	SetHttpShouldUsePipelining(value bool)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for URLSessionStreamTask */
+
 	// methods:
 	CaptureStreams()
 	CloseRead()
@@ -54,14 +54,14 @@ type IURLSessionStreamTask interface {
 	ReadDataOfMinLengthMaxLengthTimeoutCompletionHandler(minBytes uint, maxBytes uint, timeout float64, completionHandler unsafe.Pointer)
 	StartSecureConnection()
 	WriteDataTimeoutCompletionHandler(data IData, timeout float64, completionHandler unsafe.Pointer)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for URLSessionStreamTask */
+
+
 // Alloc allocates a new instance without initialization.
 func (uc _URLSessionStreamTaskClass) Alloc() URLSessionStreamTask {
 	rv := objc.Send[URLSessionStreamTask](objc.ID(uc.class), objc.Sel("alloc"))
@@ -91,11 +91,11 @@ func (u_ URLSessionStreamTask) Autorelease() URLSessionStreamTask {
 func NewURLSessionStreamTask() URLSessionStreamTask {
 	return getURLSessionStreamTaskClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for URLSessionStreamTask */
+
+
 // A URL session task that is stream-based.
 //
 // is a concrete subclass of . Many of the methods in the class are documented in . The class provides an interface a TCP/IP connection created via . Tasks may be created from an using the and methods. They may also be created as a result of an being upgraded via the HTTP response header and appropriate use of the option of . A object performs asynchronous reads and writes, which are enqueued and executed serially, calling a handler upon completion being on the session delegate queue. If the task is canceled, all enqueued reads and writes will call their completion handlers with an appropriate error. When working with APIs that accept objects, you can create and objects from an object by calling the method.
@@ -117,26 +117,26 @@ func URLSessionStreamTaskFrom(ptr unsafe.Pointer) URLSessionStreamTask {
 		URLSessionTask: URLSessionTaskFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for URLSessionStreamTask */
-/* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for URLSessionStreamTask */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for URLSessionStreamTask */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for URLSessionStreamTask */
+
+
+
+
+
+
+
+
 
 // Completes any already enqueued reads and writes, and then invokes the delegate message.
 //
@@ -144,7 +144,7 @@ func URLSessionStreamTaskFrom(ptr unsafe.Pointer) URLSessionStreamTask {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/captureStreams()
 func (u_ URLSessionStreamTask) CaptureStreams() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("captureStreams"))
-}/* debug [instance_methods/method]: CaptureStreams */
+}
 
 
 // Completes any enqueued reads and writes, and then closes the read side of the underlying socket.
@@ -153,7 +153,7 @@ func (u_ URLSessionStreamTask) CaptureStreams() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/closeRead()
 func (u_ URLSessionStreamTask) CloseRead() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("closeRead"))
-}/* debug [instance_methods/method]: CloseRead */
+}
 
 
 // Completes any enqueued reads and writes, and then closes the write side of the underlying socket.
@@ -162,7 +162,7 @@ func (u_ URLSessionStreamTask) CloseRead() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/closeWrite()
 func (u_ URLSessionStreamTask) CloseWrite() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("closeWrite"))
-}/* debug [instance_methods/method]: CloseWrite */
+}
 
 
 // Asynchronously reads a number of bytes from the stream, and calls a handler upon completion.
@@ -171,7 +171,7 @@ func (u_ URLSessionStreamTask) CloseWrite() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/readData(ofMinLength:maxLength:timeout:completionHandler:)
 func (u_ URLSessionStreamTask) ReadDataOfMinLengthMaxLengthTimeoutCompletionHandler(minBytes uint, maxBytes uint, timeout float64, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("readDataOfMinLength:maxLength:timeout:completionHandler:"), minBytes, maxBytes, timeout, completionHandler)
-}/* debug [instance_methods/method]: ReadDataOfMinLengthMaxLengthTimeoutCompletionHandler */
+}
 
 
 // Completes any enqueued reads and writes, and establishes a secure connection.
@@ -180,7 +180,7 @@ func (u_ URLSessionStreamTask) ReadDataOfMinLengthMaxLengthTimeoutCompletionHand
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/startSecureConnection()
 func (u_ URLSessionStreamTask) StartSecureConnection() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("startSecureConnection"))
-}/* debug [instance_methods/method]: StartSecureConnection */
+}
 
 
 // Asynchronously writes the specified data to the stream, and calls a handler upon completion.
@@ -189,13 +189,13 @@ func (u_ URLSessionStreamTask) StartSecureConnection() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/write(_:timeout:completionHandler:)
 func (u_ URLSessionStreamTask) WriteDataTimeoutCompletionHandler(data IData, timeout float64, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("writeData:timeout:completionHandler:"), data, timeout, completionHandler)
-}/* debug [instance_methods/method]: WriteDataTimeoutCompletionHandler */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for URLSessionStreamTask */
+
+
+
 
 // A Boolean value that determines whether the session should use HTTP pipelining.
 //
@@ -204,7 +204,7 @@ func (u_ URLSessionStreamTask) WriteDataTimeoutCompletionHandler(data IData, tim
 func (u_ URLSessionStreamTask) HttpShouldUsePipelining() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("httpShouldUsePipelining"))
 	return rv
-}/* debug [instance_properties/getter]: httpShouldUsePipelining */
+}
 
 
 // A Boolean value that determines whether the session should use HTTP pipelining.
@@ -213,11 +213,11 @@ func (u_ URLSessionStreamTask) HttpShouldUsePipelining() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpshouldusepipelining
 func (u_ URLSessionStreamTask) SetHttpShouldUsePipelining(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpShouldUsePipelining:"), value)
-}/* debug [instance_properties/setter]: httpShouldUsePipelining */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSURLSessionStreamTask */
+
+
+
 
 

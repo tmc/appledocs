@@ -5,11 +5,15 @@
 package storekit
 
 import (
-	"github.com/tmc/appledocs/generated/foundation"
+	"unsafe"
+
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for AdImpression
+
 
 // iOS-only properties
 
@@ -156,3 +160,7 @@ func (a_ AdImpression) Version() objc.IObject /* cross-framework: NSString */ {
 func (a_ AdImpression) SetVersion(value objc.IObject /* cross-framework: NSString */) {
 	a_.ID.Send(objc.RegisterName("setVersion:"), value)
 }
+
+
+
+

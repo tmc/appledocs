@@ -11,6 +11,7 @@ import (
 
 /* debug [class.gen.go]: Generating class DOMAbstractView */
 
+
 /* debug [class_header]: Header for DOMAbstractView */
 // The class instance for the [DOMAbstractView] class.
 var (
@@ -28,26 +29,29 @@ func getDOMAbstractViewClass() _DOMAbstractViewClass {
 type _DOMAbstractViewClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMAbstractView */
 // An interface definition for the [DOMAbstractView] class.
 type IDOMAbstractView interface {
 	IDOMObject
-
-	/* debug [class_interface_properties]: Properties for DOMAbstractView */
+	
+/* debug [class_interface_properties]: Properties for DOMAbstractView */
 	// properties:
 	Document() IDOMDocument
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMAbstractView */
+	
+/* debug [class_interface_methods]: Methods for DOMAbstractView */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMAbstractView */
 // Alloc allocates a new instance without initialization.
@@ -79,10 +83,12 @@ func (d_ DOMAbstractView) Autorelease() DOMAbstractView {
 func NewDOMAbstractView() DOMAbstractView {
 	return getDOMAbstractViewClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMAbstractView */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMAbstractView
@@ -96,19 +102,28 @@ func DOMAbstractViewFrom(ptr unsafe.Pointer) DOMAbstractView {
 		DOMObject: DOMObjectFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMAbstractView */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMAbstractView *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMAbstractView */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMAbstractView */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMAbstractView */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMAbstractView */
 
@@ -117,8 +132,12 @@ func DOMAbstractViewFrom(ptr unsafe.Pointer) DOMAbstractView {
 func (d_ DOMAbstractView) Document() IDOMDocument {
 	rv := objc.Send[DOMDocument](d_.ID, objc.Sel("document"))
 	return rv
-} /* debug [instance_properties/getter]: document */
+}/* debug [instance_properties/getter]: document */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMAbstractView */
+
+
+

@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNInstanceNormalization */
 
 
-/* debug [class_header]: Header for MPSCNNInstanceNormalization */
+
+
 // The class instance for the [CNNInstanceNormalization] class.
 var (
 	CNNInstanceNormalizationClass     _CNNInstanceNormalizationClass
@@ -31,25 +30,25 @@ func getCNNInstanceNormalizationClass() _CNNInstanceNormalizationClass {
 type _CNNInstanceNormalizationClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNInstanceNormalization */
+
+
 // An interface definition for the [CNNInstanceNormalization] class.
 type ICNNInstanceNormalization interface {
 	ICNNKernel
 	
-/* debug [class_interface_properties]: Properties for CNNInstanceNormalization */
+
 	// properties:
 	Epsilon() objectivec.IObject
 	SetEpsilon(value objectivec.IObject)
 	DataSource() CNNInstanceNormalizationDataSource get /* not a class type */
 	SetDataSource(value CNNInstanceNormalizationDataSource get /* not a class type */)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNInstanceNormalization */
+
 	// methods:
 	ResultState()
 	ResultStateForSourceImageSourceStatesDestinationImage(sourceImage IImage, sourceStates unsafe.Pointer, destinationImage IImage) ICNNInstanceNormalizationGradientState
@@ -58,14 +57,14 @@ type ICNNInstanceNormalization interface {
 	TemporaryResultState()
 	TemporaryResultStateForCommandBufferSourceImageSourceStatesDestinationImage(commandBuffer unsafe.Pointer, sourceImage IImage, sourceStates unsafe.Pointer, destinationImage IImage) ICNNInstanceNormalizationGradientState
 	ReloadGammaAndBetaFromDataSource()
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNInstanceNormalization */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNInstanceNormalizationClass) Alloc() CNNInstanceNormalization {
 	rv := objc.Send[CNNInstanceNormalization](objc.ID(cc.class), objc.Sel("alloc"))
@@ -95,11 +94,11 @@ func (c_ CNNInstanceNormalization) Autorelease() CNNInstanceNormalization {
 func NewCNNInstanceNormalization() CNNInstanceNormalization {
 	return getCNNInstanceNormalizationClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNInstanceNormalization */
+
+
 // An instance normalization kernel.
 
 
@@ -119,11 +118,11 @@ func CNNInstanceNormalizationFrom(ptr unsafe.Pointer) CNNInstanceNormalization {
 		CNNKernel: CNNKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNInstanceNormalization */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalization/2947948-initwithcoder
@@ -132,7 +131,7 @@ func NewCNNInstanceNormalizationWithCoderDevice(aDecoder foundation.Coder, devic
 	rv := objc.Send[CNNInstanceNormalization](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNInstanceNormalizationWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -142,29 +141,29 @@ func NewCNNInstanceNormalizationWithDeviceDataSource(device unsafe.Pointer, data
 	rv := objc.Send[CNNInstanceNormalization](instance.ID, objc.Sel("initWithDevice:dataSource:"), device, dataSource)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNInstanceNormalizationWithDeviceDataSource */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNInstanceNormalization */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNInstanceNormalization */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNInstanceNormalization */
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalization/2947959-resultstate
 func (c_ CNNInstanceNormalization) ResultState() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("resultState"))
-}/* debug [instance_methods/method]: ResultState */
+}
 
 
 // [Full Topic]
@@ -172,28 +171,28 @@ func (c_ CNNInstanceNormalization) ResultState() {
 func (c_ CNNInstanceNormalization) ResultStateForSourceImageSourceStatesDestinationImage(sourceImage IImage, sourceStates unsafe.Pointer, destinationImage IImage) ICNNInstanceNormalizationGradientState {
 	rv := objc.Send[CNNInstanceNormalizationGradientState](c_.ID, objc.Sel("resultStateForSourceImage:sourceStates:destinationImage:"), sourceImage, sourceStates, destinationImage)
 	return rv
-}/* debug [instance_methods/method]: ResultStateForSourceImageSourceStatesDestinationImage */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalization/2953921-reloadgammaandbeta
 func (c_ CNNInstanceNormalization) ReloadGammaAndBeta() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reloadGammaAndBeta"))
-}/* debug [instance_methods/method]: ReloadGammaAndBeta */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalization/2953921-reloadgammaandbetawithcommandbuf
 func (c_ CNNInstanceNormalization) ReloadGammaAndBetaWithCommandBufferGammaAndBetaState(commandBuffer unsafe.Pointer, gammaAndBetaState ICNNNormalizationGammaAndBetaState) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reloadGammaAndBetaWithCommandBuffer:gammaAndBetaState:"), commandBuffer, gammaAndBetaState)
-}/* debug [instance_methods/method]: ReloadGammaAndBetaWithCommandBufferGammaAndBetaState */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalization/2956160-temporaryresultstate
 func (c_ CNNInstanceNormalization) TemporaryResultState() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("temporaryResultState"))
-}/* debug [instance_methods/method]: TemporaryResultState */
+}
 
 
 // [Full Topic]
@@ -201,34 +200,34 @@ func (c_ CNNInstanceNormalization) TemporaryResultState() {
 func (c_ CNNInstanceNormalization) TemporaryResultStateForCommandBufferSourceImageSourceStatesDestinationImage(commandBuffer unsafe.Pointer, sourceImage IImage, sourceStates unsafe.Pointer, destinationImage IImage) ICNNInstanceNormalizationGradientState {
 	rv := objc.Send[CNNInstanceNormalizationGradientState](c_.ID, objc.Sel("temporaryResultStateForCommandBuffer:sourceImage:sourceStates:destinationImage:"), commandBuffer, sourceImage, sourceStates, destinationImage)
 	return rv
-}/* debug [instance_methods/method]: TemporaryResultStateForCommandBufferSourceImageSourceStatesDestinationImage */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalization/2976471-reloadgammaandbetafromdatasource
 func (c_ CNNInstanceNormalization) ReloadGammaAndBetaFromDataSource() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reloadGammaAndBetaFromDataSource"))
-}/* debug [instance_methods/method]: ReloadGammaAndBetaFromDataSource */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for CNNInstanceNormalization */
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalization/2947943-epsilon
 func (c_ CNNInstanceNormalization) Epsilon() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("epsilon"))
 	return rv
-}/* debug [instance_properties/getter]: epsilon */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalization/2947943-epsilon
 func (c_ CNNInstanceNormalization) SetEpsilon(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEpsilon:"), value)
-}/* debug [instance_properties/setter]: epsilon */
+}
 
 
 // [Full Topic]
@@ -236,18 +235,18 @@ func (c_ CNNInstanceNormalization) SetEpsilon(value objectivec.IObject) {
 func (c_ CNNInstanceNormalization) DataSource() CNNInstanceNormalizationDataSource get /* not a class type */ {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("dataSource"))
 	return rv
-}/* debug [instance_properties/getter]: dataSource */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalization/2953927-datasource
 func (c_ CNNInstanceNormalization) SetDataSource(value CNNInstanceNormalizationDataSource get /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDataSource:"), value)
-}/* debug [instance_properties/setter]: dataSource */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSCNNInstanceNormalization */
+
+
+
 
 

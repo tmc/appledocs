@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVMIDIPolyPressureEvent */
 
 
-/* debug [class_header]: Header for AVMIDIPolyPressureEvent */
+
+
 // The class instance for the [MIDIPolyPressureEvent] class.
 var (
 	MIDIPolyPressureEventClass     _MIDIPolyPressureEventClass
@@ -30,34 +30,34 @@ func getMIDIPolyPressureEventClass() _MIDIPolyPressureEventClass {
 type _MIDIPolyPressureEventClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MIDIPolyPressureEvent */
+
+
 // An interface definition for the [MIDIPolyPressureEvent] class.
 type IMIDIPolyPressureEvent interface {
 	IMIDIChannelEvent
 	
-/* debug [class_interface_properties]: Properties for MIDIPolyPressureEvent */
+
 	// properties:
 	Key() objectivec.IObject
 	SetKey(value objectivec.IObject)
 	Pressure() objectivec.IObject
 	SetPressure(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MIDIPolyPressureEvent */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MIDIPolyPressureEvent */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MIDIPolyPressureEventClass) Alloc() MIDIPolyPressureEvent {
 	rv := objc.Send[MIDIPolyPressureEvent](objc.ID(mc.class), objc.Sel("alloc"))
@@ -87,11 +87,11 @@ func (m_ MIDIPolyPressureEvent) Autorelease() MIDIPolyPressureEvent {
 func NewMIDIPolyPressureEvent() MIDIPolyPressureEvent {
 	return getMIDIPolyPressureEventClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MIDIPolyPressureEvent */
+
+
 // An object that represents a MIDI poly or key pressure event.
 
 
@@ -111,11 +111,11 @@ func MIDIPolyPressureEventFrom(ptr unsafe.Pointer) MIDIPolyPressureEvent {
 		MIDIChannelEvent: MIDIChannelEventFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MIDIPolyPressureEvent */
+
+
 
 // Creates an event with a channel, MIDI key number, and a key pressure value.
 //
@@ -126,28 +126,28 @@ func NewMIDIPolyPressureEventWithChannelKeyPressure(channel objectivec.IObject, 
 	rv := objc.Send[MIDIPolyPressureEvent](instance.ID, objc.Sel("initWithChannel:key:pressure:"), channel, key, pressure)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewMIDIPolyPressureEventWithChannelKeyPressure */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for MIDIPolyPressureEvent */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MIDIPolyPressureEvent */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MIDIPolyPressureEvent */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MIDIPolyPressureEvent */
+
+
+
+
+
+
+
+
+
 
 // The MIDI key number.
 //
@@ -156,7 +156,7 @@ func NewMIDIPolyPressureEventWithChannelKeyPressure(channel objectivec.IObject, 
 func (m_ MIDIPolyPressureEvent) Key() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](m_.ID, objc.Sel("key"))
 	return rv
-}/* debug [instance_properties/getter]: key */
+}
 
 
 // The MIDI key number.
@@ -165,7 +165,7 @@ func (m_ MIDIPolyPressureEvent) Key() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPolyPressureEvent/key
 func (m_ MIDIPolyPressureEvent) SetKey(value objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKey:"), value)
-}/* debug [instance_properties/setter]: key */
+}
 
 
 // The poly pressure value for the requested key.
@@ -175,7 +175,7 @@ func (m_ MIDIPolyPressureEvent) SetKey(value objectivec.IObject) {
 func (m_ MIDIPolyPressureEvent) Pressure() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](m_.ID, objc.Sel("pressure"))
 	return rv
-}/* debug [instance_properties/getter]: pressure */
+}
 
 
 // The poly pressure value for the requested key.
@@ -184,11 +184,11 @@ func (m_ MIDIPolyPressureEvent) Pressure() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPolyPressureEvent/pressure
 func (m_ MIDIPolyPressureEvent) SetPressure(value objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPressure:"), value)
-}/* debug [instance_properties/setter]: pressure */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVMIDIPolyPressureEvent */
+
+
+
 
 

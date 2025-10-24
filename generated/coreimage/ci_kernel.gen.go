@@ -7,15 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class CIKernel */
 
 
-/* debug [class_header]: Header for CIKernel */
+
+
 // The class instance for the [Kernel] class.
 var (
 	KernelClass     _KernelClass
@@ -32,33 +30,33 @@ func getKernelClass() _KernelClass {
 type _KernelClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for Kernel */
+
+
 // An interface definition for the [Kernel] class.
 type IKernel interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for Kernel */
+
 	// properties:
 	Name() objc.IObject /* cross-framework: NSString */
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for Kernel */
+
 	// methods:
 	ApplyWithExtentRoiCallbackArguments(extent corefoundation.CGRect, callback KernelROICallback /* not a class type */, args []objc.ID) IImage
 	SetROISelector(method objc.SEL)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for Kernel */
+
+
 // Alloc allocates a new instance without initialization.
 func (kc _KernelClass) Alloc() Kernel {
 	rv := objc.Send[Kernel](objc.ID(kc.class), objc.Sel("alloc"))
@@ -88,11 +86,11 @@ func (k_ Kernel) Autorelease() Kernel {
 func NewKernel() Kernel {
 	return getKernelClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for Kernel */
+
+
 // A GPU-based image-processing routine used to create custom Core Image filters.
 //
 // The kernel language routine for a general-purpose filter kernel has the following characteristics: Its return type is (Core Image Kernel Language) or (Metal Shading Language); that is, it returns a pixel color for the output image. It may use zero or more input images. Each input image is represented by a parameter of type . A kernel routine typically produces its output by calculating source image coordinates (using the and functions or the function), samples from the source images (using the function), and computes a final pixel color (output using the keyword). For example, the Metal Shading Language source below implements a filter that passes through its input image unchanged. The equivalent code in Core Image Kernel Language is: The Core Image Kernel Language is a dialect of the OpenGL Shading Language. See and for more details.
@@ -112,11 +110,11 @@ type Kernel struct {
 func KernelFrom(ptr unsafe.Pointer) Kernel {
 	return Kernel{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for Kernel */
+
+
 
 // Creates a single kernel object using a Metal Shading Language (MSL) kernel function.
 //
@@ -125,7 +123,7 @@ func KernelFrom(ptr unsafe.Pointer) Kernel {
 func NewKernelWithFunctionNameFromMetalLibraryDataError(name objc.IObject /* cross-framework: NSString */, data objc.IObject /* cross-framework: NSData */, error_ objectivec.IObject) Kernel {
 	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:error:"), name, data, error_)
 	return rv
-}/* debug [class_init_methods/constructor]: NewKernelWithFunctionNameFromMetalLibraryDataError */
+}
 
 
 // Creates a single kernel object using a Metal Shading Language kernel function with optional pixel format.
@@ -135,7 +133,7 @@ func NewKernelWithFunctionNameFromMetalLibraryDataError(name objc.IObject /* cro
 func NewKernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(name objc.IObject /* cross-framework: NSString */, data objc.IObject /* cross-framework: NSData */, format Format /* typedef */, error_ objectivec.IObject) Kernel {
 	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:"), name, data, format, error_)
 	return rv
-}/* debug [class_init_methods/constructor]: NewKernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError */
+}
 
 
 // Creates a single kernel object.
@@ -145,13 +143,13 @@ func NewKernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(name ob
 func NewKernelWithString(string_ objc.IObject /* cross-framework: NSString */) Kernel {
 	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithString:"), string_)
 	return rv
-}/* debug [class_init_methods/constructor]: NewKernelWithString */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for Kernel */
+
+
+
 
 // Creates a single kernel object using a Metal Shading Language (MSL) kernel function.
 //
@@ -160,7 +158,7 @@ func NewKernelWithString(string_ objc.IObject /* cross-framework: NSString */) K
 func (kc _KernelClass) KernelWithFunctionNameFromMetalLibraryDataError(name objc.IObject /* cross-framework: NSString */, data objc.IObject /* cross-framework: NSData */, error_ objectivec.IObject) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(kc.class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:error:"), name, data, error_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=KernelWithFunctionNameFromMetalLibraryDataError) */
+}
 
 
 // Creates a single kernel object using a Metal Shading Language kernel function with optional pixel format.
@@ -170,7 +168,7 @@ func (kc _KernelClass) KernelWithFunctionNameFromMetalLibraryDataError(name objc
 func (kc _KernelClass) KernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(name objc.IObject /* cross-framework: NSString */, data objc.IObject /* cross-framework: NSData */, format Format /* typedef */, error_ objectivec.IObject) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(kc.class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:"), name, data, format, error_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=KernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError) */
+}
 
 
 // Creates a single kernel object.
@@ -180,7 +178,7 @@ func (kc _KernelClass) KernelWithFunctionNameFromMetalLibraryDataOutputPixelForm
 func (kc _KernelClass) KernelWithString(string_ objc.IObject /* cross-framework: NSString */) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(kc.class), objc.Sel("kernelWithString:"), string_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=KernelWithString) */
+}
 
 
 // Return an array of strings containing the names of all of the kernels contained in the Metal library.
@@ -190,7 +188,7 @@ func (kc _KernelClass) KernelWithString(string_ objc.IObject /* cross-framework:
 func (kc _KernelClass) KernelNamesFromMetalLibraryData(data objc.IObject /* cross-framework: NSData */) []string {
 	rv := objc.Send[[]string](objc.ID(kc.class), objc.Sel("kernelNamesFromMetalLibraryData:"), data)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=KernelNamesFromMetalLibraryData) */
+}
 
 
 // Load kernels from a Metal language string.
@@ -200,7 +198,7 @@ func (kc _KernelClass) KernelNamesFromMetalLibraryData(data objc.IObject /* cros
 func (kc _KernelClass) KernelsWithMetalStringError(source objc.IObject /* cross-framework: NSString */, error_ objectivec.IObject) []Kernel {
 	rv := objc.Send[[]Kernel](objc.ID(kc.class), objc.Sel("kernelsWithMetalString:error:"), source, error_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=KernelsWithMetalStringError) */
+}
 
 
 // Creates and returns and array of objects.
@@ -210,18 +208,18 @@ func (kc _KernelClass) KernelsWithMetalStringError(source objc.IObject /* cross-
 func (kc _KernelClass) KernelsWithString(string_ objc.IObject /* cross-framework: NSString */) []Kernel {
 	rv := objc.Send[[]Kernel](objc.ID(kc.class), objc.Sel("kernelsWithString:"), string_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=KernelsWithString) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for Kernel */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for Kernel */
+
+
+
+
+
 
 // Creates a new image using the kernel and specified arguments.
 //
@@ -230,7 +228,7 @@ func (kc _KernelClass) KernelsWithString(string_ objc.IObject /* cross-framework
 func (k_ Kernel) ApplyWithExtentRoiCallbackArguments(extent corefoundation.CGRect, callback KernelROICallback /* not a class type */, args []objc.ID) IImage {
 	rv := objc.Send[Image](k_.ID, objc.Sel("applyWithExtent:roiCallback:arguments:"), extent, callback, args)
 	return rv
-}/* debug [instance_methods/method]: ApplyWithExtentRoiCallbackArguments */
+}
 
 
 // Sets the selector Core Image uses to query the region of interest for image processing with the kernel.
@@ -239,13 +237,13 @@ func (k_ Kernel) ApplyWithExtentRoiCallbackArguments(extent corefoundation.CGRec
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/setROISelector(_:)
 func (k_ Kernel) SetROISelector(method objc.SEL) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setROISelector:"), method)
-}/* debug [instance_methods/method]: SetROISelector */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for Kernel */
+
+
+
 
 // The name of the kernel routine.
 //
@@ -254,11 +252,11 @@ func (k_ Kernel) SetROISelector(method objc.SEL) {
 func (k_ Kernel) Name() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](k_.ID, objc.Sel("name"))
 	return rv
-}/* debug [instance_properties/getter]: name */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class CIKernel */
+
+
+
 
 

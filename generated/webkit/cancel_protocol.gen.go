@@ -15,3 +15,4 @@ var cancelProtocol *objc.Protocol
 func init() {
 	cancelProtocol = objc.GetProtocol("cancel")
 }
+

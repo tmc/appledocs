@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVFrameRateRange */
 
 
-/* debug [class_header]: Header for AVFrameRateRange */
+
+
 // The class instance for the [FrameRateRange] class.
 var (
 	FrameRateRangeClass     _FrameRateRangeClass
@@ -30,16 +30,16 @@ func getFrameRateRangeClass() _FrameRateRangeClass {
 type _FrameRateRangeClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for FrameRateRange */
+
+
 // An interface definition for the [FrameRateRange] class.
 type IFrameRateRange interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for FrameRateRange */
+
 	// properties:
 	MaxFrameDuration() objc.IObject /* cross-framework: Time */
 	MaxFrameRate() objectivec.IObject
@@ -55,19 +55,19 @@ type IFrameRateRange interface {
 	SetIsVideoHDRSupported(value bool)
 	VideoSupportedFrameRateRanges() IAVFrameRateRange
 	SetVideoSupportedFrameRateRanges(value IAVFrameRateRange)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for FrameRateRange */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for FrameRateRange */
+
+
 // Alloc allocates a new instance without initialization.
 func (fc _FrameRateRangeClass) Alloc() FrameRateRange {
 	rv := objc.Send[FrameRateRange](objc.ID(fc.class), objc.Sel("alloc"))
@@ -97,11 +97,11 @@ func (f_ FrameRateRange) Autorelease() FrameRateRange {
 func NewFrameRateRange() FrameRateRange {
 	return getFrameRateRangeClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for FrameRateRange */
+
+
 // An immutable type that represents a range of valid frame rates.
 //
 // An AVFrameRateRange object is immutable. An object wraps a CMFormatDescription and expresses a range of valid video frame rates as an array of objects. An object uses to describe the formats it supports and the currently-active format.
@@ -121,30 +121,30 @@ type FrameRateRange struct {
 func FrameRateRangeFrom(ptr unsafe.Pointer) FrameRateRange {
 	return FrameRateRange{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for FrameRateRange *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for FrameRateRange */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for FrameRateRange */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for FrameRateRange */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for FrameRateRange */
+
+
+
+
+
+
+
+
+
 
 // The maximum frame duration supported by the range.
 //
@@ -153,7 +153,7 @@ func FrameRateRangeFrom(ptr unsafe.Pointer) FrameRateRange {
 func (f_ FrameRateRange) MaxFrameDuration() objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](f_.ID, objc.Sel("maxFrameDuration"))
 	return rv
-}/* debug [instance_properties/getter]: maxFrameDuration */
+}
 
 
 // The maximum frame rate supported by the range.
@@ -163,7 +163,7 @@ func (f_ FrameRateRange) MaxFrameDuration() objc.IObject /* cross-framework: Tim
 func (f_ FrameRateRange) MaxFrameRate() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](f_.ID, objc.Sel("maxFrameRate"))
 	return rv
-}/* debug [instance_properties/getter]: maxFrameRate */
+}
 
 
 // The minimum frame duration supported by the range.
@@ -173,7 +173,7 @@ func (f_ FrameRateRange) MaxFrameRate() objectivec.IObject {
 func (f_ FrameRateRange) MinFrameDuration() objc.IObject /* cross-framework: Time */ {
 	rv := objc.Send[corevideo.Time](f_.ID, objc.Sel("minFrameDuration"))
 	return rv
-}/* debug [instance_properties/getter]: minFrameDuration */
+}
 
 
 // The minimum frame rate supported by the range.
@@ -183,7 +183,7 @@ func (f_ FrameRateRange) MinFrameDuration() objc.IObject /* cross-framework: Tim
 func (f_ FrameRateRange) MinFrameRate() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](f_.ID, objc.Sel("minFrameRate"))
 	return rv
-}/* debug [instance_properties/getter]: minFrameRate */
+}
 
 
 // A Boolean value that Indicates whether the format supports performing automatic video frame rate adjustments.
@@ -193,7 +193,7 @@ func (f_ FrameRateRange) MinFrameRate() objectivec.IObject {
 func (f_ FrameRateRange) IsAutoVideoFrameRateSupported() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isAutoVideoFrameRateSupported"))
 	return rv
-}/* debug [instance_properties/getter]: isAutoVideoFrameRateSupported */
+}
 
 
 // A Boolean value that Indicates whether the format supports performing automatic video frame rate adjustments.
@@ -202,7 +202,7 @@ func (f_ FrameRateRange) IsAutoVideoFrameRateSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isautovideoframeratesupported
 func (f_ FrameRateRange) SetIsAutoVideoFrameRateSupported(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsAutoVideoFrameRateSupported:"), value)
-}/* debug [instance_properties/setter]: isAutoVideoFrameRateSupported */
+}
 
 
 // A Boolean value that indicates whether a multi-camera capture session supports this format.
@@ -212,7 +212,7 @@ func (f_ FrameRateRange) SetIsAutoVideoFrameRateSupported(value bool) {
 func (f_ FrameRateRange) IsMultiCamSupported() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isMultiCamSupported"))
 	return rv
-}/* debug [instance_properties/getter]: isMultiCamSupported */
+}
 
 
 // A Boolean value that indicates whether a multi-camera capture session supports this format.
@@ -221,7 +221,7 @@ func (f_ FrameRateRange) IsMultiCamSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/ismulticamsupported
 func (f_ FrameRateRange) SetIsMultiCamSupported(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsMultiCamSupported:"), value)
-}/* debug [instance_properties/setter]: isMultiCamSupported */
+}
 
 
 // A Boolean value that indicates whether the format produces video data in a binned format.
@@ -231,7 +231,7 @@ func (f_ FrameRateRange) SetIsMultiCamSupported(value bool) {
 func (f_ FrameRateRange) IsVideoBinned() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isVideoBinned"))
 	return rv
-}/* debug [instance_properties/getter]: isVideoBinned */
+}
 
 
 // A Boolean value that indicates whether the format produces video data in a binned format.
@@ -240,7 +240,7 @@ func (f_ FrameRateRange) IsVideoBinned() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isvideobinned
 func (f_ FrameRateRange) SetIsVideoBinned(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsVideoBinned:"), value)
-}/* debug [instance_properties/setter]: isVideoBinned */
+}
 
 
 // A Boolean value that indicates whether the format supports high dynamic range streaming.
@@ -250,7 +250,7 @@ func (f_ FrameRateRange) SetIsVideoBinned(value bool) {
 func (f_ FrameRateRange) IsVideoHDRSupported() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isVideoHDRSupported"))
 	return rv
-}/* debug [instance_properties/getter]: isVideoHDRSupported */
+}
 
 
 // A Boolean value that indicates whether the format supports high dynamic range streaming.
@@ -259,7 +259,7 @@ func (f_ FrameRateRange) IsVideoHDRSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isvideohdrsupported
 func (f_ FrameRateRange) SetIsVideoHDRSupported(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsVideoHDRSupported:"), value)
-}/* debug [instance_properties/setter]: isVideoHDRSupported */
+}
 
 
 // A list of frame rate ranges that a format supports.
@@ -269,7 +269,7 @@ func (f_ FrameRateRange) SetIsVideoHDRSupported(value bool) {
 func (f_ FrameRateRange) VideoSupportedFrameRateRanges() IAVFrameRateRange {
 	rv := objc.Send[FrameRateRange](f_.ID, objc.Sel("videoSupportedFrameRateRanges"))
 	return rv
-}/* debug [instance_properties/getter]: videoSupportedFrameRateRanges */
+}
 
 
 // A list of frame rate ranges that a format supports.
@@ -278,12 +278,12 @@ func (f_ FrameRateRange) VideoSupportedFrameRateRanges() IAVFrameRateRange {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videosupportedframerateranges
 func (f_ FrameRateRange) SetVideoSupportedFrameRateRanges(value IAVFrameRateRange) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setVideoSupportedFrameRateRanges:"), value)
-}/* debug [instance_properties/setter]: videoSupportedFrameRateRanges */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVFrameRateRange */
+
+
+
 
 
 

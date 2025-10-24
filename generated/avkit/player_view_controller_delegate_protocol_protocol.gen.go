@@ -30,7 +30,7 @@ import (
 // See: doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate
 type PPlayerViewControllerDelegate interface {
 	// Required methods
-	PlayerViewControllerDidSelectExternalSubtitleOptionLanguage(playerViewController IAVPlayerViewController, language objc.IObject /* cross-framework: NSString */)/* debug [protocol_interface/required_method]: PlayerViewControllerDidSelectExternalSubtitleOptionLanguage */
+	PlayerViewControllerDidSelectExternalSubtitleOptionLanguage(playerViewController IAVPlayerViewController, language objc.IObject /* cross-framework: NSString */)
 	// Optional methods
 	NextChannelInterstitialViewControllerForPlayerViewController(playerViewController IAVPlayerViewController) ViewController
 	HasNextChannelInterstitialViewControllerForPlayerViewController() bool

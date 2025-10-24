@@ -8,9 +8,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // iOS-only methods for CloudServiceSetupViewController
+
 
 // iOS-only properties
 
@@ -25,3 +27,8 @@ func (c_ CloudServiceSetupViewController) Delegate() unsafe.Pointer {
 func (c_ CloudServiceSetupViewController) SetDelegate(value unsafe.Pointer) {
 	c_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
+
+
+
+
+

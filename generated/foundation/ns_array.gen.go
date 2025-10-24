@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSArray */
 
 
-/* debug [class_header]: Header for NSArray */
+
+
 // The class instance for the [Array] class.
 var (
 	ArrayClass     _ArrayClass
@@ -30,26 +30,26 @@ func getArrayClass() _ArrayClass {
 type _ArrayClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for Array */
+
+
 // An interface definition for the [Array] class.
 type IArray interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for Array */
+
 	// properties:
 	Count() uint
 	Description() IString
 	FirstObject() objectivec.IObject
 	LastObject() objectivec.IObject
 	SortedArrayHint() IData
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for Array */
+
 	// methods:
 	AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer objc.IObject /* cross-framework: NSObject */, indexes IIndexSet, keyPath IString, options uint, context objectivec.IObject)
 	ArrayByAddingObject(anObject objectivec.IObject) []objc.ID
@@ -100,14 +100,14 @@ type IArray interface {
 	SubarrayWithRange(range_ objc.IObject /* cross-framework: Range */) []objc.ID
 	ObjectAtIndexedSubscript(idx uint) objectivec.IObject
 	WriteToURLError(url IURL, error_ IError) bool
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for Array */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _ArrayClass) Alloc() Array {
 	rv := objc.Send[Array](objc.ID(ac.class), objc.Sel("alloc"))
@@ -137,11 +137,11 @@ func (a_ Array) Autorelease() Array {
 func NewArray() Array {
 	return getArrayClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for Array */
+
+
 // A static ordered collection of objects.
 //
 // You can use this type in Swift instead of an constant in cases that require reference semantics. and its subclass manage ordered collections of objects called . creates static arrays, and creates dynamic arrays. You can use arrays when you need an ordered collection of objects. is “toll-free bridged” with its Core Foundation counterpart, . See for more information on toll-free bridging.
@@ -161,11 +161,11 @@ type Array struct {
 func ArrayFrom(ptr unsafe.Pointer) Array {
 	return Array{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for Array */
+
+
 
 // Initializes a newly allocated array by placing in it the objects contained in a given array.
 //
@@ -176,7 +176,7 @@ func NewArrayWithArray(array []objc.ID) Array {
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:"), array)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewArrayWithArray */
+}
 
 
 // Initializes a newly allocated array using as the source of data objects for the array.
@@ -188,7 +188,7 @@ func NewArrayWithArrayCopyItems(array []objc.ID, flag bool) Array {
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:copyItems:"), array, flag)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewArrayWithArrayCopyItems */
+}
 
 
 // [Full Topic]
@@ -198,7 +198,7 @@ func NewArrayWithCoder(coder ICoder) Array {
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewArrayWithCoder */
+}
 
 
 // Initializes a newly allocated array with the contents of the file specified by a given path.
@@ -210,7 +210,7 @@ func NewArrayWithContentsOfFile(path IString) Array {
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewArrayWithContentsOfFile */
+}
 
 
 // Initializes a newly allocated array with the contents of the location specified by a given URL.
@@ -222,7 +222,7 @@ func NewArrayWithContentsOfURL(url IURL) Array {
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewArrayWithContentsOfURL */
+}
 
 
 // [Full Topic]
@@ -232,7 +232,7 @@ func NewArrayWithContentsOfURLError(url IURL, error_ IError) Array {
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error_)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewArrayWithContentsOfURLError */
+}
 
 
 // Creates and returns an array containing a given object.
@@ -242,7 +242,7 @@ func NewArrayWithContentsOfURLError(url IURL, error_ IError) Array {
 func NewArrayWithObject(anObject objectivec.IObject) Array {
 	rv := objc.Send[Array](objc.ID(getArrayClass().class), objc.Sel("arrayWithObject:"), anObject)
 	return rv
-}/* debug [class_init_methods/constructor]: NewArrayWithObject */
+}
 
 
 // Initializes a newly allocated array by placing in it the objects in the argument list.
@@ -254,7 +254,7 @@ func NewArrayWithObjects(firstObj objectivec.IObject) Array {
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:"), firstObj)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewArrayWithObjects */
+}
 
 
 // Initializes a newly allocated array to include a given number of objects from a given C array.
@@ -266,13 +266,13 @@ func NewArrayWithObjectsCount(objects []objc.ID, cnt uint) Array {
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:count:"), objects, cnt)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewArrayWithObjectsCount */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for Array */
+
+
+
 
 // Creates and returns an empty array.
 //
@@ -281,7 +281,7 @@ func NewArrayWithObjectsCount(objects []objc.ID, cnt uint) Array {
 func (ac _ArrayClass) Array() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(ac.class), objc.Sel("array"))
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=Array) */
+}
 
 
 // Creates and returns an array containing the objects in another given array.
@@ -291,7 +291,7 @@ func (ac _ArrayClass) Array() objectivec.IObject {
 func (ac _ArrayClass) ArrayWithArray(array []objc.ID) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(ac.class), objc.Sel("arrayWithArray:"), array)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ArrayWithArray) */
+}
 
 
 // Creates and returns an array containing the contents of the file specified by a given path.
@@ -301,7 +301,7 @@ func (ac _ArrayClass) ArrayWithArray(array []objc.ID) objectivec.IObject {
 func (ac _ArrayClass) ArrayWithContentsOfFile(path IString) []objc.ID {
 	rv := objc.Send[[]objc.ID](objc.ID(ac.class), objc.Sel("arrayWithContentsOfFile:"), path)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ArrayWithContentsOfFile) */
+}
 
 
 // [Full Topic]
@@ -309,7 +309,7 @@ func (ac _ArrayClass) ArrayWithContentsOfFile(path IString) []objc.ID {
 func (ac _ArrayClass) ArrayWithContentsOfURLError(url IURL, error_ IError) []objc.ID {
 	rv := objc.Send[[]objc.ID](objc.ID(ac.class), objc.Sel("arrayWithContentsOfURL:error:"), url, error_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ArrayWithContentsOfURLError) */
+}
 
 
 // Creates and returns an array containing the objects in the argument list.
@@ -319,7 +319,7 @@ func (ac _ArrayClass) ArrayWithContentsOfURLError(url IURL, error_ IError) []obj
 func (ac _ArrayClass) ArrayWithObjects(firstObj objectivec.IObject) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(ac.class), objc.Sel("arrayWithObjects:"), firstObj)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ArrayWithObjects) */
+}
 
 
 // Creates and returns an array containing the contents specified by a given URL.
@@ -329,7 +329,7 @@ func (ac _ArrayClass) ArrayWithObjects(firstObj objectivec.IObject) objectivec.I
 func (ac _ArrayClass) ArrayWithContentsOfURL(url IURL) []objc.ID {
 	rv := objc.Send[[]objc.ID](objc.ID(ac.class), objc.Sel("arrayWithContentsOfURL:"), url)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ArrayWithContentsOfURL) */
+}
 
 
 // Creates and returns an array containing a given object.
@@ -339,7 +339,7 @@ func (ac _ArrayClass) ArrayWithContentsOfURL(url IURL) []objc.ID {
 func (ac _ArrayClass) ArrayWithObject(anObject objectivec.IObject) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(ac.class), objc.Sel("arrayWithObject:"), anObject)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ArrayWithObject) */
+}
 
 
 // Creates and returns an array that includes a given number of objects from a given C array.
@@ -349,18 +349,18 @@ func (ac _ArrayClass) ArrayWithObject(anObject objectivec.IObject) objectivec.IO
 func (ac _ArrayClass) ArrayWithObjectsCount(objects []objc.ID, cnt uint) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(ac.class), objc.Sel("arrayWithObjects:count:"), objects, cnt)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ArrayWithObjectsCount) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for Array */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for Array */
+
+
+
+
+
 
 // Raises an exception.
 //
@@ -368,7 +368,7 @@ func (ac _ArrayClass) ArrayWithObjectsCount(objects []objc.ID, cnt uint) objecti
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/addObserver(_:forKeyPath:options:context:)
 func (a_ Array) AddObserverForKeyPathOptionsContext(observer objc.IObject /* cross-framework: NSObject */, keyPath IString, options uint, context objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, keyPath, options, context)
-}/* debug [instance_methods/method]: AddObserverForKeyPathOptionsContext */
+}
 
 
 // Registers an observer to receive key value observer notifications for the specified key-path relative to the objects at the indexes.
@@ -377,7 +377,7 @@ func (a_ Array) AddObserverForKeyPathOptionsContext(observer objc.IObject /* cro
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/addObserver(_:toObjectsAt:forKeyPath:options:context:)
 func (a_ Array) AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer objc.IObject /* cross-framework: NSObject */, indexes IIndexSet, keyPath IString, options uint, context objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("addObserver:toObjectsAtIndexes:forKeyPath:options:context:"), observer, indexes, keyPath, options, context)
-}/* debug [instance_methods/method]: AddObserverToObjectsAtIndexesForKeyPathOptionsContext */
+}
 
 
 // Returns a new array that is a copy of the receiving array with a given object added to the end.
@@ -387,7 +387,7 @@ func (a_ Array) AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer o
 func (a_ Array) ArrayByAddingObject(anObject objectivec.IObject) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("arrayByAddingObject:"), anObject)
 	return rv
-}/* debug [instance_methods/method]: ArrayByAddingObject */
+}
 
 
 // Returns a new array that is a copy of the receiving array with the objects contained in another array added to the end.
@@ -397,7 +397,7 @@ func (a_ Array) ArrayByAddingObject(anObject objectivec.IObject) []objc.ID {
 func (a_ Array) ArrayByAddingObjectsFromArray(otherArray []objc.ID) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("arrayByAddingObjectsFromArray:"), otherArray)
 	return rv
-}/* debug [instance_methods/method]: ArrayByAddingObjectsFromArray */
+}
 
 
 // Creates a new array by applying a difference object to an existing array.
@@ -407,7 +407,7 @@ func (a_ Array) ArrayByAddingObjectsFromArray(otherArray []objc.ID) []objc.ID {
 func (a_ Array) ArrayByApplyingDifference(difference unsafe.Pointer) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("arrayByApplyingDifference:"), difference)
 	return rv
-}/* debug [instance_methods/method]: ArrayByApplyingDifference */
+}
 
 
 // Constructs and returns an object that is the result of interposing a given separator between the elements of the array.
@@ -417,7 +417,7 @@ func (a_ Array) ArrayByApplyingDifference(difference unsafe.Pointer) []objc.ID {
 func (a_ Array) ComponentsJoinedByString(separator IString) IString {
 	rv := objc.Send[String](a_.ID, objc.Sel("componentsJoinedByString:"), separator)
 	return rv
-}/* debug [instance_methods/method]: ComponentsJoinedByString */
+}
 
 
 // Returns a Boolean value that indicates whether a given object is present in the array.
@@ -427,7 +427,7 @@ func (a_ Array) ComponentsJoinedByString(separator IString) IString {
 func (a_ Array) ContainsObject(anObject objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("containsObject:"), anObject)
 	return rv
-}/* debug [instance_methods/method]: ContainsObject */
+}
 
 
 // Returns a string that represents the contents of the array, formatted as a property list.
@@ -437,7 +437,7 @@ func (a_ Array) ContainsObject(anObject objectivec.IObject) bool {
 func (a_ Array) DescriptionWithLocale(locale objc.IObject) IString {
 	rv := objc.Send[String](a_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
-}/* debug [instance_methods/method]: DescriptionWithLocale */
+}
 
 
 // Returns a string that represents the contents of the array, formatted as a property list.
@@ -447,7 +447,7 @@ func (a_ Array) DescriptionWithLocale(locale objc.IObject) IString {
 func (a_ Array) DescriptionWithLocaleIndent(locale objc.IObject, level uint) IString {
 	rv := objc.Send[String](a_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
 	return rv
-}/* debug [instance_methods/method]: DescriptionWithLocaleIndent */
+}
 
 
 // Compares two arrays to create a difference object that represents the changes between them.
@@ -457,7 +457,7 @@ func (a_ Array) DescriptionWithLocaleIndent(locale objc.IObject, level uint) ISt
 func (a_ Array) DifferenceFromArray(other []objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("differenceFromArray:"), other)
 	return rv
-}/* debug [instance_methods/method]: DifferenceFromArray */
+}
 
 
 // Compares two arrays, with options, to create a difference object that represents the changes between them.
@@ -467,7 +467,7 @@ func (a_ Array) DifferenceFromArray(other []objc.ID) unsafe.Pointer {
 func (a_ Array) DifferenceFromArrayWithOptions(other []objc.ID, options OrderedCollectionDifferenceCalculationOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("differenceFromArray:withOptions:"), other, options)
 	return rv
-}/* debug [instance_methods/method]: DifferenceFromArrayWithOptions */
+}
 
 
 // Compares two arrays, using the provided block and with options, to create a difference object that represents the changes between them.
@@ -477,7 +477,7 @@ func (a_ Array) DifferenceFromArrayWithOptions(other []objc.ID, options OrderedC
 func (a_ Array) DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID, options OrderedCollectionDifferenceCalculationOptions, block bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("differenceFromArray:withOptions:usingEquivalenceTest:"), other, options, block)
 	return rv
-}/* debug [instance_methods/method]: DifferenceFromArrayWithOptionsUsingEquivalenceTest */
+}
 
 
 // Executes a given closure or block using each object in the array, starting with the first object and continuing through the array to the last object.
@@ -486,7 +486,7 @@ func (a_ Array) DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/enumerateObjects(_:)
 func (a_ Array) EnumerateObjectsUsingBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("enumerateObjectsUsingBlock:"), block)
-}/* debug [instance_methods/method]: EnumerateObjectsUsingBlock */
+}
 
 
 // Executes a given block using the objects in the array at the specified indexes.
@@ -495,7 +495,7 @@ func (a_ Array) EnumerateObjectsUsingBlock(block unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/enumerateObjects(at:options:using:)
 func (a_ Array) EnumerateObjectsAtIndexesOptionsUsingBlock(s IIndexSet, opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("enumerateObjectsAtIndexes:options:usingBlock:"), s, opts, block)
-}/* debug [instance_methods/method]: EnumerateObjectsAtIndexesOptionsUsingBlock */
+}
 
 
 // Executes a given closure or block using each object in the array with the specified options.
@@ -504,7 +504,7 @@ func (a_ Array) EnumerateObjectsAtIndexesOptionsUsingBlock(s IIndexSet, opts Enu
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/enumerateObjects(options:using:)
 func (a_ Array) EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("enumerateObjectsWithOptions:usingBlock:"), opts, block)
-}/* debug [instance_methods/method]: EnumerateObjectsWithOptionsUsingBlock */
+}
 
 
 // Evaluates a given predicate against each object in the receiving array and returns a new array containing the objects for which the predicate returns true.
@@ -514,7 +514,7 @@ func (a_ Array) EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, b
 func (a_ Array) FilteredArrayUsingPredicate(predicate IPredicate) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("filteredArrayUsingPredicate:"), predicate)
 	return rv
-}/* debug [instance_methods/method]: FilteredArrayUsingPredicate */
+}
 
 
 // Returns the first object contained in the receiving array that’s equal to an object in another given array.
@@ -524,7 +524,7 @@ func (a_ Array) FilteredArrayUsingPredicate(predicate IPredicate) []objc.ID {
 func (a_ Array) FirstObjectCommonWithArray(otherArray []objc.ID) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](a_.ID, objc.Sel("firstObjectCommonWithArray:"), otherArray)
 	return rv
-}/* debug [instance_methods/method]: FirstObjectCommonWithArray */
+}
 
 
 // Copies references to objects contained in the array that fall within the specified range to .
@@ -533,7 +533,7 @@ func (a_ Array) FirstObjectCommonWithArray(otherArray []objc.ID) objectivec.IObj
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/getObjects:range:
 func (a_ Array) GetObjectsRange(objects []objc.ID, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("getObjects:range:"), objects, range_)
-}/* debug [instance_methods/method]: GetObjectsRange */
+}
 
 
 // Returns the lowest index whose corresponding array value is equal to a given object.
@@ -543,7 +543,7 @@ func (a_ Array) GetObjectsRange(objects []objc.ID, range_ objc.IObject /* cross-
 func (a_ Array) IndexOfObject(anObject objectivec.IObject) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObject:"), anObject)
 	return rv
-}/* debug [instance_methods/method]: IndexOfObject */
+}
 
 
 // Returns the lowest index within a specified range whose corresponding array value is equal to a given object .
@@ -553,7 +553,7 @@ func (a_ Array) IndexOfObject(anObject objectivec.IObject) uint {
 func (a_ Array) IndexOfObjectInRange(anObject objectivec.IObject, range_ objc.IObject /* cross-framework: Range */) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObject:inRange:"), anObject, range_)
 	return rv
-}/* debug [instance_methods/method]: IndexOfObjectInRange */
+}
 
 
 // Returns the index, within a specified range, of an object compared with elements in the array using a given block.
@@ -563,7 +563,7 @@ func (a_ Array) IndexOfObjectInRange(anObject objectivec.IObject, range_ objc.IO
 func (a_ Array) IndexOfObjectInSortedRangeOptionsUsingComparator(obj objectivec.IObject, r objc.IObject /* cross-framework: Range */, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObject:inSortedRange:options:usingComparator:"), obj, r, opts, cmp)
 	return rv
-}/* debug [instance_methods/method]: IndexOfObjectInSortedRangeOptionsUsingComparator */
+}
 
 
 // Returns the index, from a given set of indexes, of the first object in the array that passes a test in a given block for a given set of enumeration options.
@@ -573,7 +573,7 @@ func (a_ Array) IndexOfObjectInSortedRangeOptionsUsingComparator(obj objectivec.
 func (a_ Array) IndexOfObjectAtIndexesOptionsPassingTest(s IIndexSet, opts EnumerationOptions, predicate unsafe.Pointer) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObjectAtIndexes:options:passingTest:"), s, opts, predicate)
 	return rv
-}/* debug [instance_methods/method]: IndexOfObjectAtIndexesOptionsPassingTest */
+}
 
 
 // Returns the index of an object in the array that passes a test in a given block for a given set of enumeration options.
@@ -583,7 +583,7 @@ func (a_ Array) IndexOfObjectAtIndexesOptionsPassingTest(s IIndexSet, opts Enume
 func (a_ Array) IndexOfObjectWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObjectWithOptions:passingTest:"), opts, predicate)
 	return rv
-}/* debug [instance_methods/method]: IndexOfObjectWithOptionsPassingTest */
+}
 
 
 // Returns the index of the first object in the array that passes a test in a given block.
@@ -593,7 +593,7 @@ func (a_ Array) IndexOfObjectWithOptionsPassingTest(opts EnumerationOptions, pre
 func (a_ Array) IndexOfObjectPassingTest(predicate unsafe.Pointer) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObjectPassingTest:"), predicate)
 	return rv
-}/* debug [instance_methods/method]: IndexOfObjectPassingTest */
+}
 
 
 // Returns the lowest index whose corresponding array value is identical to a given object.
@@ -603,7 +603,7 @@ func (a_ Array) IndexOfObjectPassingTest(predicate unsafe.Pointer) uint {
 func (a_ Array) IndexOfObjectIdenticalTo(anObject objectivec.IObject) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObjectIdenticalTo:"), anObject)
 	return rv
-}/* debug [instance_methods/method]: IndexOfObjectIdenticalTo */
+}
 
 
 // Returns the lowest index within a specified range whose corresponding array value is equal to a given object .
@@ -613,7 +613,7 @@ func (a_ Array) IndexOfObjectIdenticalTo(anObject objectivec.IObject) uint {
 func (a_ Array) IndexOfObjectIdenticalToInRange(anObject objectivec.IObject, range_ objc.IObject /* cross-framework: Range */) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObjectIdenticalTo:inRange:"), anObject, range_)
 	return rv
-}/* debug [instance_methods/method]: IndexOfObjectIdenticalToInRange */
+}
 
 
 // Returns the indexes, from a given set of indexes, of objects in the array that pass a test in a given block for a given set of enumeration options.
@@ -623,7 +623,7 @@ func (a_ Array) IndexOfObjectIdenticalToInRange(anObject objectivec.IObject, ran
 func (a_ Array) IndexesOfObjectsAtIndexesOptionsPassingTest(s IIndexSet, opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet {
 	rv := objc.Send[IndexSet](a_.ID, objc.Sel("indexesOfObjectsAtIndexes:options:passingTest:"), s, opts, predicate)
 	return rv
-}/* debug [instance_methods/method]: IndexesOfObjectsAtIndexesOptionsPassingTest */
+}
 
 
 // Returns the indexes of objects in the array that pass a test in a given block for a given set of enumeration options.
@@ -633,7 +633,7 @@ func (a_ Array) IndexesOfObjectsAtIndexesOptionsPassingTest(s IIndexSet, opts En
 func (a_ Array) IndexesOfObjectsWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet {
 	rv := objc.Send[IndexSet](a_.ID, objc.Sel("indexesOfObjectsWithOptions:passingTest:"), opts, predicate)
 	return rv
-}/* debug [instance_methods/method]: IndexesOfObjectsWithOptionsPassingTest */
+}
 
 
 // Returns the indexes of objects in the array that pass a test in a given block.
@@ -643,7 +643,7 @@ func (a_ Array) IndexesOfObjectsWithOptionsPassingTest(opts EnumerationOptions, 
 func (a_ Array) IndexesOfObjectsPassingTest(predicate unsafe.Pointer) IIndexSet {
 	rv := objc.Send[IndexSet](a_.ID, objc.Sel("indexesOfObjectsPassingTest:"), predicate)
 	return rv
-}/* debug [instance_methods/method]: IndexesOfObjectsPassingTest */
+}
 
 
 // Compares the receiving array to another array.
@@ -653,7 +653,7 @@ func (a_ Array) IndexesOfObjectsPassingTest(predicate unsafe.Pointer) IIndexSet 
 func (a_ Array) IsEqualToArray(otherArray []objc.ID) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEqualToArray:"), otherArray)
 	return rv
-}/* debug [instance_methods/method]: IsEqualToArray */
+}
 
 
 // Sends to each object in the array the message identified by a given selector, starting with the first object and continuing through the array to the last object.
@@ -662,7 +662,7 @@ func (a_ Array) IsEqualToArray(otherArray []objc.ID) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/makeObjectsPerformSelector:
 func (a_ Array) MakeObjectsPerformSelector(aSelector objc.SEL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("makeObjectsPerformSelector:"), aSelector)
-}/* debug [instance_methods/method]: MakeObjectsPerformSelector */
+}
 
 
 // Sends the message to each object in the array, starting with the first object and continuing through the array to the last object.
@@ -671,7 +671,7 @@ func (a_ Array) MakeObjectsPerformSelector(aSelector objc.SEL) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/makeObjectsPerformSelector:withObject:
 func (a_ Array) MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argument objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("makeObjectsPerformSelector:withObject:"), aSelector, argument)
-}/* debug [instance_methods/method]: MakeObjectsPerformSelectorWithObject */
+}
 
 
 // Returns the object located at the specified index.
@@ -681,7 +681,7 @@ func (a_ Array) MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argumen
 func (a_ Array) ObjectAtIndex(index uint) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](a_.ID, objc.Sel("objectAtIndex:"), index)
 	return rv
-}/* debug [instance_methods/method]: ObjectAtIndex */
+}
 
 
 // Returns an enumerator object that lets you access each object in the array.
@@ -691,7 +691,7 @@ func (a_ Array) ObjectAtIndex(index uint) objectivec.IObject {
 func (a_ Array) ObjectEnumerator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("objectEnumerator"))
 	return rv
-}/* debug [instance_methods/method]: ObjectEnumerator */
+}
 
 
 // Returns an array containing the objects in the array at the indexes specified by a given index set.
@@ -701,7 +701,7 @@ func (a_ Array) ObjectEnumerator() unsafe.Pointer {
 func (a_ Array) ObjectsAtIndexes(indexes IIndexSet) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("objectsAtIndexes:"), indexes)
 	return rv
-}/* debug [instance_methods/method]: ObjectsAtIndexes */
+}
 
 
 // Returns an array containing all the pathname elements in the receiving array that have filename extensions from a given array.
@@ -711,7 +711,7 @@ func (a_ Array) ObjectsAtIndexes(indexes IIndexSet) []objc.ID {
 func (a_ Array) PathsMatchingExtensions(filterTypes []string) []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("pathsMatchingExtensions:"), filterTypes)
 	return rv
-}/* debug [instance_methods/method]: PathsMatchingExtensions */
+}
 
 
 // Raises an exception.
@@ -720,7 +720,7 @@ func (a_ Array) PathsMatchingExtensions(filterTypes []string) []string {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:forKeyPath:)
 func (a_ Array) RemoveObserverForKeyPath(observer objc.IObject /* cross-framework: NSObject */, keyPath IString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:forKeyPath:"), observer, keyPath)
-}/* debug [instance_methods/method]: RemoveObserverForKeyPath */
+}
 
 
 // Raises an exception.
@@ -729,7 +729,7 @@ func (a_ Array) RemoveObserverForKeyPath(observer objc.IObject /* cross-framewor
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:forKeyPath:context:)
 func (a_ Array) RemoveObserverForKeyPathContext(observer objc.IObject /* cross-framework: NSObject */, keyPath IString, context objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, keyPath, context)
-}/* debug [instance_methods/method]: RemoveObserverForKeyPathContext */
+}
 
 
 // Removes from all key value observer notifications associated with the specified relative to the array’s objects at .
@@ -738,7 +738,7 @@ func (a_ Array) RemoveObserverForKeyPathContext(observer objc.IObject /* cross-f
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:fromObjectsAt:forKeyPath:)
 func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPath(observer objc.IObject /* cross-framework: NSObject */, indexes IIndexSet, keyPath IString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:fromObjectsAtIndexes:forKeyPath:"), observer, indexes, keyPath)
-}/* debug [instance_methods/method]: RemoveObserverFromObjectsAtIndexesForKeyPath */
+}
 
 
 // Raises an exception.
@@ -747,7 +747,7 @@ func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPath(observer objc.IObje
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:fromObjectsAt:forKeyPath:context:)
 func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer objc.IObject /* cross-framework: NSObject */, indexes IIndexSet, keyPath IString, context objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:fromObjectsAtIndexes:forKeyPath:context:"), observer, indexes, keyPath, context)
-}/* debug [instance_methods/method]: RemoveObserverFromObjectsAtIndexesForKeyPathContext */
+}
 
 
 // Returns an enumerator object that lets you access each object in the array, in reverse order.
@@ -757,7 +757,7 @@ func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer obj
 func (a_ Array) ReverseObjectEnumerator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("reverseObjectEnumerator"))
 	return rv
-}/* debug [instance_methods/method]: ReverseObjectEnumerator */
+}
 
 
 // Invokes on each of the array’s items using the specified and .
@@ -766,7 +766,7 @@ func (a_ Array) ReverseObjectEnumerator() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/setValue(_:forKey:)
 func (a_ Array) SetValueForKey(value objc.IObject, key IString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:forKey:"), value, key)
-}/* debug [instance_methods/method]: SetValueForKey */
+}
 
 
 // Returns a new array that lists this array’s elements in a random order.
@@ -776,7 +776,7 @@ func (a_ Array) SetValueForKey(value objc.IObject, key IString) {
 func (a_ Array) ShuffledArray() []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("shuffledArray"))
 	return rv
-}/* debug [instance_methods/method]: ShuffledArray */
+}
 
 
 // Returns a new array that lists this array’s elements in a random order, using the specified random source.
@@ -786,7 +786,7 @@ func (a_ Array) ShuffledArray() []objc.ID {
 func (a_ Array) ShuffledArrayWithRandomSource(randomSource objectivec.IObject) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("shuffledArrayWithRandomSource:"), randomSource)
 	return rv
-}/* debug [instance_methods/method]: ShuffledArrayWithRandomSource */
+}
 
 
 // Returns a new array that lists the receiving array’s elements in ascending order as defined by the comparison function .
@@ -796,7 +796,7 @@ func (a_ Array) ShuffledArrayWithRandomSource(randomSource objectivec.IObject) [
 func (a_ Array) SortedArrayUsingFunctionContext(comparator objectivec.IObject, context objectivec.IObject) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("sortedArrayUsingFunction:context:"), comparator, context)
 	return rv
-}/* debug [instance_methods/method]: SortedArrayUsingFunctionContext */
+}
 
 
 // Returns a new array that lists the receiving array’s elements in ascending order as defined by the comparison function .
@@ -806,7 +806,7 @@ func (a_ Array) SortedArrayUsingFunctionContext(comparator objectivec.IObject, c
 func (a_ Array) SortedArrayUsingFunctionContextHint(comparator objectivec.IObject, context objectivec.IObject, hint IData) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("sortedArrayUsingFunction:context:hint:"), comparator, context, hint)
 	return rv
-}/* debug [instance_methods/method]: SortedArrayUsingFunctionContextHint */
+}
 
 
 // Returns an array that lists the receiving array’s elements in ascending order, as determined by the comparison method specified by a given block.
@@ -816,7 +816,7 @@ func (a_ Array) SortedArrayUsingFunctionContextHint(comparator objectivec.IObjec
 func (a_ Array) SortedArrayUsingComparator(cmptr Comparator /* not a class type */) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("sortedArrayUsingComparator:"), cmptr)
 	return rv
-}/* debug [instance_methods/method]: SortedArrayUsingComparator */
+}
 
 
 // Returns an array that lists the receiving array’s elements in ascending order, as determined by the comparison method specified by a given block.
@@ -826,7 +826,7 @@ func (a_ Array) SortedArrayUsingComparator(cmptr Comparator /* not a class type 
 func (a_ Array) SortedArrayWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("sortedArrayWithOptions:usingComparator:"), opts, cmptr)
 	return rv
-}/* debug [instance_methods/method]: SortedArrayWithOptionsUsingComparator */
+}
 
 
 // Returns a copy of the receiving array sorted as specified by a given array of sort descriptors.
@@ -836,7 +836,7 @@ func (a_ Array) SortedArrayWithOptionsUsingComparator(opts SortOptions, cmptr Co
 func (a_ Array) SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("sortedArrayUsingDescriptors:"), sortDescriptors)
 	return rv
-}/* debug [instance_methods/method]: SortedArrayUsingDescriptors */
+}
 
 
 // Returns an array that lists the receiving array’s elements in ascending order, as determined by the comparison method specified by a given selector.
@@ -846,7 +846,7 @@ func (a_ Array) SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []
 func (a_ Array) SortedArrayUsingSelector(comparator objc.SEL) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("sortedArrayUsingSelector:"), comparator)
 	return rv
-}/* debug [instance_methods/method]: SortedArrayUsingSelector */
+}
 
 
 // Returns a new array containing the receiving array’s elements that fall within the limits specified by a given range.
@@ -856,7 +856,7 @@ func (a_ Array) SortedArrayUsingSelector(comparator objc.SEL) []objc.ID {
 func (a_ Array) SubarrayWithRange(range_ objc.IObject /* cross-framework: Range */) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("subarrayWithRange:"), range_)
 	return rv
-}/* debug [instance_methods/method]: SubarrayWithRange */
+}
 
 
 // Returns the object at the specified index.
@@ -866,7 +866,7 @@ func (a_ Array) SubarrayWithRange(range_ objc.IObject /* cross-framework: Range 
 func (a_ Array) ObjectAtIndexedSubscript(idx uint) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](a_.ID, objc.Sel("objectAtIndexedSubscript:"), idx)
 	return rv
-}/* debug [instance_methods/method]: ObjectAtIndexedSubscript */
+}
 
 
 // Returns an array containing the results of invoking using on each of the array’s objects.
@@ -876,7 +876,7 @@ func (a_ Array) ObjectAtIndexedSubscript(idx uint) objectivec.IObject {
 func (a_ Array) ValueForKey(key IString) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForKey:"), key)
 	return rv
-}/* debug [instance_methods/method]: ValueForKey */
+}
 
 
 // [Full Topic]
@@ -884,13 +884,13 @@ func (a_ Array) ValueForKey(key IString) objc.ID {
 func (a_ Array) WriteToURLError(url IURL, error_ IError) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("writeToURL:error:"), url, error_)
 	return rv
-}/* debug [instance_methods/method]: WriteToURLError */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for Array */
+
+
+
 
 // The number of objects in the array.
 //
@@ -899,7 +899,7 @@ func (a_ Array) WriteToURLError(url IURL, error_ IError) bool {
 func (a_ Array) Count() uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("count"))
 	return rv
-}/* debug [instance_properties/getter]: count */
+}
 
 
 // A string that represents the contents of the array, formatted as a property list.
@@ -909,7 +909,7 @@ func (a_ Array) Count() uint {
 func (a_ Array) Description() IString {
 	rv := objc.Send[String](a_.ID, objc.Sel("description"))
 	return rv
-}/* debug [instance_properties/getter]: description */
+}
 
 
 // The first object in the array.
@@ -919,7 +919,7 @@ func (a_ Array) Description() IString {
 func (a_ Array) FirstObject() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](a_.ID, objc.Sel("firstObject"))
 	return rv
-}/* debug [instance_properties/getter]: firstObject */
+}
 
 
 // The last object in the array.
@@ -929,7 +929,7 @@ func (a_ Array) FirstObject() objectivec.IObject {
 func (a_ Array) LastObject() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](a_.ID, objc.Sel("lastObject"))
 	return rv
-}/* debug [instance_properties/getter]: lastObject */
+}
 
 
 // Analyzes the array and returns a “hint” that speeds the sorting of the array when the hint is supplied to .
@@ -939,11 +939,11 @@ func (a_ Array) LastObject() objectivec.IObject {
 func (a_ Array) SortedArrayHint() IData {
 	rv := objc.Send[Data](a_.ID, objc.Sel("sortedArrayHint"))
 	return rv
-}/* debug [instance_properties/getter]: sortedArrayHint */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSArray */
+
+
+
 
 

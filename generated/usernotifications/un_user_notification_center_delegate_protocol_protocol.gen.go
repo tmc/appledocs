@@ -4,6 +4,8 @@ package usernotifications
 
 import (
 	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // PUNUserNotificationCenterDelegate is the UNUserNotificationCenterDelegate protocol interface.
@@ -35,8 +37,8 @@ type PUNUserNotificationCenterDelegate interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type UNUserNotificationCenterDelegate struct {
 	_UserNotificationCenterDidReceiveNotificationResponseWithCompletionHandler func(center IUNUserNotificationCenter, response IUNNotificationResponse, completionHandler unsafe.Pointer)
-	_UserNotificationCenterOpenSettingsForNotification                         func(center IUNUserNotificationCenter, notification IUNNotification)
-	_UserNotificationCenterWillPresentNotificationWithCompletionHandler        func(center IUNUserNotificationCenter, notification IUNNotification, completionHandler unsafe.Pointer)
+	_UserNotificationCenterOpenSettingsForNotification func(center IUNUserNotificationCenter, notification IUNNotification)
+	_UserNotificationCenterWillPresentNotificationWithCompletionHandler func(center IUNUserNotificationCenter, notification IUNNotification, completionHandler unsafe.Pointer)
 }
 
 // SetUserNotificationCenterDidReceiveNotificationResponseWithCompletionHandler sets the handler for the UserNotificationCenterDidReceiveNotificationResponseWithCompletionHandler delegate method.

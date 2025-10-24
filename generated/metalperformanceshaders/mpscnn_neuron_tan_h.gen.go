@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNNeuronTanH */
 
 
-/* debug [class_header]: Header for MPSCNNNeuronTanH */
+
+
 // The class instance for the [CNNNeuronTanH] class.
 var (
 	CNNNeuronTanHClass     _CNNNeuronTanHClass
@@ -30,30 +30,30 @@ func getCNNNeuronTanHClass() _CNNNeuronTanHClass {
 type _CNNNeuronTanHClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNNeuronTanH */
+
+
 // An interface definition for the [CNNNeuronTanH] class.
 type ICNNNeuronTanH interface {
 	ICNNNeuron
 	
-/* debug [class_interface_properties]: Properties for CNNNeuronTanH */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNNeuronTanH */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNNeuronTanH */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNNeuronTanHClass) Alloc() CNNNeuronTanH {
 	rv := objc.Send[CNNNeuronTanH](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNNeuronTanH) Autorelease() CNNNeuronTanH {
 func NewCNNNeuronTanH() CNNNeuronTanH {
 	return getCNNNeuronTanHClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNNeuronTanH */
+
+
 // A hyperbolic tangent neuron filter.
 //
 // For each pixel in an image, the filter applies the following function:
@@ -109,11 +109,11 @@ func CNNNeuronTanHFrom(ptr unsafe.Pointer) CNNNeuronTanH {
 		CNNNeuron: CNNNeuronFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNNeuronTanH */
+
+
 
 // Initializes a hyperbolic tangent neuron filter.
 //
@@ -124,31 +124,31 @@ func NewCNNNeuronTanHWithDeviceAB(device unsafe.Pointer, a float32, b float32) C
 	rv := objc.Send[CNNNeuronTanH](instance.ID, objc.Sel("initWithDevice:a:b:"), device, a, b)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNNeuronTanHWithDeviceAB */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNNeuronTanH */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNNeuronTanH */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNNeuronTanH */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNNeuronTanH */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNNeuronTanH */
+
+
+
+
+
+
+
+
+
+
+
 
 

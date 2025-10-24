@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZVirtioConsoleDeviceSerialPortConfiguration */
+
 
 /* debug [class_header]: Header for VZVirtioConsoleDeviceSerialPortConfiguration */
 // The class instance for the [VZVirtioConsoleDeviceSerialPortConfiguration] class.
@@ -28,27 +30,30 @@ func getVZVirtioConsoleDeviceSerialPortConfigurationClass() _VZVirtioConsoleDevi
 type _VZVirtioConsoleDeviceSerialPortConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZVirtioConsoleDeviceSerialPortConfiguration */
 // An interface definition for the [VZVirtioConsoleDeviceSerialPortConfiguration] class.
 type IVZVirtioConsoleDeviceSerialPortConfiguration interface {
 	IVZSerialPortConfiguration
-
-	/* debug [class_interface_properties]: Properties for VZVirtioConsoleDeviceSerialPortConfiguration */
+	
+/* debug [class_interface_properties]: Properties for VZVirtioConsoleDeviceSerialPortConfiguration */
 	// properties:
 	Attachment() IVZSerialPortAttachment
 	SetAttachment(value IVZSerialPortAttachment)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZVirtioConsoleDeviceSerialPortConfiguration */
+	
+/* debug [class_interface_methods]: Methods for VZVirtioConsoleDeviceSerialPortConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZVirtioConsoleDeviceSerialPortConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -80,13 +85,15 @@ func (v_ VZVirtioConsoleDeviceSerialPortConfiguration) Autorelease() VZVirtioCon
 func NewVZVirtioConsoleDeviceSerialPortConfiguration() VZVirtioConsoleDeviceSerialPortConfiguration {
 	return getVZVirtioConsoleDeviceSerialPortConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZVirtioConsoleDeviceSerialPortConfiguration */
 // A configuration object that requests the creation of a console device to communicate with the guest system.
 //
 // A object enables serial communication between the guest operating system and host computer through the Virtio interface. After you create this configuration object, configure its inherited property with an object that defines the type of serial communication you want to enable. Use a object to enable two-way communication between the guest and host, and use a object to enable one-way communication from the guest to the file you designate.
+
 
 // A configuration object that requests the creation of a console device to communicate with the guest system.
 //
@@ -104,20 +111,29 @@ func VZVirtioConsoleDeviceSerialPortConfigurationFrom(ptr unsafe.Pointer) VZVirt
 		VZSerialPortConfiguration: VZSerialPortConfigurationFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZVirtioConsoleDeviceSerialPortConfiguration */
 /* debug [class_init_methods]: End init methods */
 
+
+
 /* debug [class_methods]: Class methods for VZVirtioConsoleDeviceSerialPortConfiguration */
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZVirtioConsoleDeviceSerialPortConfiguration */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZVirtioConsoleDeviceSerialPortConfiguration */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZVirtioConsoleDeviceSerialPortConfiguration */
 
@@ -128,7 +144,8 @@ func VZVirtioConsoleDeviceSerialPortConfigurationFrom(ptr unsafe.Pointer) VZVirt
 func (v_ VZVirtioConsoleDeviceSerialPortConfiguration) Attachment() IVZSerialPortAttachment {
 	rv := objc.Send[VZSerialPortAttachment](v_.ID, objc.Sel("attachment"))
 	return rv
-} /* debug [instance_properties/getter]: attachment */
+}/* debug [instance_properties/getter]: attachment */
+
 
 // The object that defines how the configuration of the virtual machine’s serial port interfaces.
 //
@@ -136,8 +153,11 @@ func (v_ VZVirtioConsoleDeviceSerialPortConfiguration) Attachment() IVZSerialPor
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzserialportconfiguration/attachment
 func (v_ VZVirtioConsoleDeviceSerialPortConfiguration) SetAttachment(value IVZSerialPortAttachment) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
-} /* debug [instance_properties/setter]: attachment */
+}/* debug [instance_properties/setter]: attachment */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZVirtioConsoleDeviceSerialPortConfiguration */
+
+

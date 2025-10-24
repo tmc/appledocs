@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/tmc/appledocs/occ2go"
@@ -10,6 +11,13 @@ import (
 // mapCTypeToGoWithFramework wraps occ2go.MapCTypeToGo and applies framework-specific type mappings.
 // This ensures C types like CGAffineTransform are properly qualified with their framework package.
 func mapCTypeToGoWithFramework(cType, framework string) string {
+	// Strip any existing package qualifications from the type
+	// This handles cases where the parsed type already contains package names like "corefoundation.CGPoint"
+	if strings.Contains(cType, ".") {
+		parts := strings.Split(cType, ".")
+		// Get the unqualified type name (last part)
+		cType = parts[len(parts)-1]
+	}
 	// Special case: CGFloat should ALWAYS be mapped to float64 via type registry, never treated as local typedef
 	if cType == "CGFloat" || cType == "CGFloat *" {
 		if goType, found := lookupTypeMapping(strings.TrimSuffix(cType, " *"), framework); found {
@@ -24,6 +32,13 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 	// This handles CF*Ref types (CFTypeRef, CFAllocatorRef, etc.) and CG geometry types
 	strippedCType := stripObjCPrefix(cType)
 
+	// DEBUG: Log CGPoint processing
+	if strings.Contains(cType, "Point") && framework == "CoreGraphics" {
+		fmt.Fprintf(os.Stderr, "DEBUG mapCTypeToGoWithFramework: cType=%q strippedCType=%q framework=%q\n", cType, strippedCType, framework)
+		fmt.Fprintf(os.Stderr, "DEBUG: currentFrameworkTypedefs[%q]=%v\n", strippedCType, currentFrameworkTypedefs[strippedCType])
+		fmt.Fprintf(os.Stderr, "DEBUG: currentFrameworkStructs[%q]=%v\n", strippedCType, currentFrameworkStructs[strippedCType])
+	}
+
 	// Check both typedefs and structs
 	if currentFrameworkTypedefs[strippedCType] || currentFrameworkStructs[strippedCType] {
 		// For ObjectiveC framework, preserve original typedef names (objc_property_t, etc.)
@@ -33,14 +48,35 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 		}
 
 		// Special handling for CG-prefixed types
-		// Preserve CG prefix for structs (CGPoint, CGRect, CGColorBufferFormat, etc.)
-		// Strip prefix for typedefs, callbacks, and Ref types
+		// Manual geometry types (Point, Size, Rect) defined in rect_types.go without CG prefix
+		// vs documented structs (CGColorBufferFormat) that keep CG prefix
 		if strings.HasPrefix(cType, "CG") {
-			// Check if this is a struct - if so, preserve the CG prefix
+			// Check if this is a manual geometry type (Point, Size, Rect, AffineTransform, Float)
+			// These are defined locally WITHOUT the CG prefix
+			if manualTypes, exists := manualFrameworkTypes[strings.ToLower(framework)]; exists {
+				for _, manualType := range manualTypes {
+					if strippedCType == manualType {
+						// DEBUG
+						if strings.Contains(cType, "Point") {
+							fmt.Fprintf(os.Stderr, "DEBUG: Matched manual type %q -> returning %q\n", cType, strippedCType)
+						}
+						// Manual type: return stripped name
+						// E.g., CGPoint -> Point, CGSize -> Size
+						result := strippedCType
+						// DEBUG: Verify return value
+						if strings.Contains(cType, "Point") {
+							fmt.Fprintf(os.Stderr, "DEBUG: RETURNING %q for input %q\n", result, cType)
+						}
+						return result
+					}
+				}
+			}
+
+			// Check if this is a struct defined in Apple's docs - if so, preserve the CG prefix
 			// Structs in CoreGraphics are used as value types in function parameters
 			if currentFrameworkStructs[cType] || currentFrameworkStructs[strippedCType] {
-				// Preserve CG prefix for structs
-				// E.g., CGPoint, CGSize, CGRect, CGColorBufferFormat
+				// Documented struct: preserve CG prefix
+				// E.g., CGColorBufferFormat, CGContentToneMappingInfo
 				return cType
 			} else {
 				// Strip CG prefix for typedefs, callbacks, and Ref types
@@ -144,78 +180,26 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		"objcType", objcType,
 		"framework", framework)
 
+	// Check for block types BEFORE any other processing (prefix stripping, typedef checking, etc.)
+	// Block types contain (^) syntax and must be handled by occ2go.MapCTypeToGo
+	// without any preprocessing that might corrupt the syntax
+	if strings.Contains(objcType, "(^") {
+		blockFunc := occ2go.MapCTypeToGo(objcType, framework)
+		if blockFunc != "" && blockFunc != objcType {
+			// Successfully mapped as a block type
+			Debug.TypeMap("block type detected and mapped", objcType, blockFunc,
+				"objcType", objcType,
+				"blockFunc", blockFunc)
+			return blockFunc
+		}
+	}
+
 	// Strip type qualifiers (__kindof, const, etc.) FIRST before any typedef checking
 	// This is critical for types like "const unichar *" to be recognized as typedef pointers
 	objcType = occ2go.StripTypeQualifiers(objcType)
 
-	// Early check: if this is a typedef in the current framework, return the title-cased name immediately
-	// This prevents occ2go.MapCTypeToGo from mapping unknown types to unsafe.Pointer
-	strippedObjCType := stripObjCPrefix(objcType)
-	if currentFrameworkTypedefs[strippedObjCType] {
-		titleCasedType := titleString(strippedObjCType)
-		Debug.TypeMap("early typedef check, returning title-cased", objcType, titleCasedType,
-			"objcType", objcType,
-			"strippedObjCType", strippedObjCType,
-			"titleCasedType", titleCasedType)
-		return titleCasedType
-	}
-
-	// Also check if objcType is a pointer to a typedef (e.g., "unichar *")
-	if occ2go.IsPointerType(objcType) {
-		baseType := occ2go.StripPointer(objcType)
-		strippedBaseType := stripObjCPrefix(baseType)
-		if currentFrameworkTypedefs[strippedBaseType] {
-			titleCasedType := titleString(strippedBaseType)
-			Debug.TypeMap("early typedef pointer check, returning title-cased", objcType, titleCasedType,
-				"objcType", objcType,
-				"baseType", baseType,
-				"strippedBaseType", strippedBaseType,
-				"titleCasedType", titleCasedType)
-			return titleCasedType
-		}
-	}
-
-	// Strip self-package qualifications from Swift documentation
-	// Swift docs often use module.Type format (e.g., uniformtypeidentifiers.UTType)
-	// When generating the same framework, we should use unqualified names
-	if framework != "" {
-		// Build package prefix (e.g., "uniformtypeidentifiers." from "UniformTypeIdentifiers")
-		packagePrefix := strings.ToLower(framework) + "."
-		// Check for exact package.Type pattern
-		if strings.HasPrefix(strings.ToLower(objcType), packagePrefix) {
-			// Extract the type name after the dot
-			// E.g., "uniformtypeidentifiers.UTType" -> "UTType"
-			parts := strings.SplitN(objcType, ".", 2)
-			if len(parts) == 2 {
-				objcType = parts[1]
-			}
-		}
-	}
-
-	// Handle id<Protocol> pattern (e.g., "id<NSFetchRequestResult>" -> "objc.ID")
-	// This is Objective-C's protocol conformance syntax
-	if occ2go.IsProtocolType(objcType) {
-		return "objc.ID"
-	}
-
-	// Handle []id<Protocol> pattern (e.g., "[]id<NSFetchRequestResult>" -> "[]objc.ID")
-	if occ2go.IsArrayType(objcType) {
-		elementType := occ2go.GetArrayElementType(objcType)
-		if occ2go.IsProtocolType(elementType) {
-			return "[]objc.ID"
-		}
-	}
-
-	// Handle array types that are already converted by occ2go (e.g., "[]void (^)(void)" -> "[]unsafe.Pointer")
-	// This handles cases where occ2go has already converted NSArray<T> to []T
-	// We need to recursively map the element type
-	if occ2go.IsArrayType(objcType) {
-		elementType := occ2go.GetArrayElementType(objcType)
-		goElementType := mapObjCTypeToGo(elementType, framework)
-		return "[]" + goElementType
-	}
-
-	// Handle Objective-C generic types (e.g., NSArray<NSString *>, NSArray<SCDisplay *>)
+	// Handle Objective-C generic types EARLY (e.g., NSArray<NSString *>, NSDictionary<K,V>)
+	// This must come before explicit type mapping to avoid mapping "NSArray<id>" to "Array<id>"
 	if occ2go.IsGenericType(objcType) {
 		// Check if this is NSDictionary - map to IDictionary
 		if strings.Contains(objcType, "NSDictionary") {
@@ -285,6 +269,83 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		}
 		// For other generic types, fall back to unsafe.Pointer
 		return "unsafe.Pointer"
+	}
+
+	// Check explicit type mapping registry, before typedef checks
+	// This ensures that types like NSInteger -> int take precedence over typedef NSInteger -> Integer
+	if goType, found := lookupTypeMapping(objcType, framework); found {
+		Debug.TypeMap("found explicit mapping before typedef check", objcType, goType,
+			"objcType", objcType,
+			"goType", goType,
+			"framework", framework)
+		return goType
+	}
+
+	// Early check: if this is a typedef in the current framework, return the title-cased name immediately
+	// This prevents occ2go.MapCTypeToGo from mapping unknown types to unsafe.Pointer
+	strippedObjCType := stripObjCPrefix(objcType)
+	if currentFrameworkTypedefs[strippedObjCType] {
+		titleCasedType := titleString(strippedObjCType)
+		Debug.TypeMap("early typedef check, returning title-cased", objcType, titleCasedType,
+			"objcType", objcType,
+			"strippedObjCType", strippedObjCType,
+			"titleCasedType", titleCasedType)
+		return titleCasedType
+	}
+
+	// Also check if objcType is a pointer to a typedef (e.g., "unichar *")
+	if occ2go.IsPointerType(objcType) {
+		baseType := occ2go.StripPointer(objcType)
+		strippedBaseType := stripObjCPrefix(baseType)
+		if currentFrameworkTypedefs[strippedBaseType] {
+			titleCasedType := titleString(strippedBaseType)
+			Debug.TypeMap("early typedef pointer check, returning title-cased", objcType, titleCasedType,
+				"objcType", objcType,
+				"baseType", baseType,
+				"strippedBaseType", strippedBaseType,
+				"titleCasedType", titleCasedType)
+			return titleCasedType
+		}
+	}
+
+	// Strip self-package qualifications from Swift documentation
+	// Swift docs often use module.Type format (e.g., uniformtypeidentifiers.UTType)
+	// When generating the same framework, we should use unqualified names
+	if framework != "" {
+		// Build package prefix (e.g., "uniformtypeidentifiers." from "UniformTypeIdentifiers")
+		packagePrefix := strings.ToLower(framework) + "."
+		// Check for exact package.Type pattern
+		if strings.HasPrefix(strings.ToLower(objcType), packagePrefix) {
+			// Extract the type name after the dot
+			// E.g., "uniformtypeidentifiers.UTType" -> "UTType"
+			parts := strings.SplitN(objcType, ".", 2)
+			if len(parts) == 2 {
+				objcType = parts[1]
+			}
+		}
+	}
+
+	// Handle id<Protocol> pattern (e.g., "id<NSFetchRequestResult>" -> "objc.ID")
+	// This is Objective-C's protocol conformance syntax
+	if occ2go.IsProtocolType(objcType) {
+		return "objc.ID"
+	}
+
+	// Handle []id<Protocol> pattern (e.g., "[]id<NSFetchRequestResult>" -> "[]objc.ID")
+	if occ2go.IsArrayType(objcType) {
+		elementType := occ2go.GetArrayElementType(objcType)
+		if occ2go.IsProtocolType(elementType) {
+			return "[]objc.ID"
+		}
+	}
+
+	// Handle array types that are already converted by occ2go (e.g., "[]void (^)(void)" -> "[]unsafe.Pointer")
+	// This handles cases where occ2go has already converted NSArray<T> to []T
+	// We need to recursively map the element type
+	if occ2go.IsArrayType(objcType) {
+		elementType := occ2go.GetArrayElementType(objcType)
+		goElementType := mapObjCTypeToGo(elementType, framework)
+		return "[]" + goElementType
 	}
 
 	// Special built-in types (before checking pointers)
@@ -426,7 +487,24 @@ func mapObjCTypeToGo(objcType, framework string) string {
 			}
 			// Let it fall through to use strippedType and then resolve it
 			// resolveType will check crossFrameworkTypeRegistry to properly qualify cross-framework types
-			resolvedType := resolveType(framework, strippedType)
+			//
+			// Special case: Foundation types like NSPoint, NSSize, NSRect are typedefs for CGPoint, CGSize, CGRect
+			// The cross-framework registry has entries for "CGPoint", "CGSize", "CGRect" but NOT "Point", "Size", "Rect"
+			// So we need to try prepending "CG" to see if we get a match
+			typeToResolve := strippedType
+			if framework != "" && strings.ToLower(framework) != "coregraphics" && strings.ToLower(framework) != "corefoundation" {
+				// Try with CG prefix (e.g., "Point" -> "CGPoint")
+				cgPrefixed := "CG" + strippedType
+				if _, found := crossFrameworkTypeRegistry[cgPrefixed]; found {
+					Debug.TypeMap("found CG-prefixed type in registry", strippedType, cgPrefixed,
+						"objcType", objcType,
+						"strippedType", strippedType,
+						"cgPrefixed", cgPrefixed,
+						"framework", framework)
+					typeToResolve = cgPrefixed
+				}
+			}
+			resolvedType := resolveType(framework, typeToResolve)
 			Debug.TypeMap("resolveType called", strippedType, resolvedType,
 				"framework", framework,
 				"strippedType", strippedType,
@@ -548,14 +626,18 @@ func mapObjCTypeToGo(objcType, framework string) string {
 				"targetLevel", targetLevel)
 
 			if currentLevel >= 0 && targetLevel > currentLevel {
-				// Hierarchy violation - map to objectivec.IObject
+				// Hierarchy violation - map to objectivec.IObject (or IObject if in objectivec framework)
+				fallbackType := "objectivec.IObject"
+				if strings.ToLower(framework) == "objectivec" {
+					fallbackType = "IObject"
+				}
 				Debug.Hierarchy("hierarchy violation", framework, targetFramework,
 					"currentFramework", framework,
 					"currentLevel", currentLevel,
 					"targetFramework", targetFramework,
 					"targetLevel", targetLevel,
-					"mapping", "objectivec.IObject")
-				return "objectivec.IObject"
+					"mapping", fallbackType)
+				return fallbackType
 			}
 		}
 	}
@@ -631,7 +713,11 @@ func getFrameworkLevel(framework string) int {
 	if level, ok := levels[strings.ToLower(framework)]; ok {
 		return level
 	}
-	return -1
+	// Unknown frameworks are presumed to be high-level application frameworks.
+	// This prevents import cycles by treating any unmapped framework as higher-level
+	// than core frameworks (Foundation, CoreGraphics, etc.).
+	// It's safer to relax types to unsafe.Pointer/objc.ID than to create import cycles.
+	return 999
 }
 
 // resolveType resolves a type name to its fully qualified name, handling cross-framework dependencies.
@@ -717,15 +803,11 @@ func resolveType(framework, typeName string) string {
 		return typeName
 	}
 
-	// ALSO check for capital-S String which should map to lowercase string
-	// This happens when NSString typedef resolves to "String" instead of "string"
-	if typeName == "String" {
-		Debug.TypeMap("converting String to string", typeName, "string",
-			"from", "String",
-			"to", "string",
-			"framework", framework)
-		return "string"
-	}
+	// NOTE: We do NOT convert "String" → "string" here because "String" is a valid
+	// class name in Foundation (NSString becomes String). Converting it to primitive
+	// "string" breaks class inheritance for SimpleCString, ConstantString, etc.
+	// If we need string primitives in type signatures, that should be handled
+	// at the mapping level (mapObjCTypeToGo), not in resolveType.
 
 	// Strip self-package qualifications (e.g., foundation.NSString in Foundation -> NSString)
 	// This prevents incorrect qualification like foundation.NSOrderedCollectionChange in the foundation package
@@ -765,18 +847,11 @@ func resolveType(framework, typeName string) string {
 
 		// Check for framework hierarchy violations BEFORE adding the package qualification
 		// If the target framework is at a higher level than the current framework, return
-		// objectivec.IObject (or IObject if we're IN objectivec) instead to avoid import cycles (fixes appledocs-496, appledocs-519)
+		// objectivec.IObject (or IObject if we're IN objectivec) instead to avoid import cycles
 		currentLevel := getFrameworkLevel(strings.ToLower(framework))
 		targetLevel := getFrameworkLevel(frameworkPkg)
-		// For ObjectiveC framework (level 0), treat ANY unknown framework as higher-level
-		// Most application frameworks aren't in the levels map, so we conservatively assume they're higher
-		shouldUseIObject := false
-		if currentLevel >= 0 && targetLevel > currentLevel {
-			shouldUseIObject = true // Known higher-level framework
-		} else if currentLevel == 0 && targetLevel == -1 {
-			shouldUseIObject = true // ObjectiveC importing unknown framework - assume it's higher
-		}
-		if shouldUseIObject {
+
+		if targetLevel > currentLevel {
 			fallbackType := "objectivec.IObject"
 			if strings.ToLower(framework) == "objectivec" {
 				fallbackType = "IObject"
@@ -793,7 +868,23 @@ func resolveType(framework, typeName string) string {
 			"typeName", typeName,
 			"framework", framework,
 			"targetFramework", frameworkPkg)
-		return frameworkPkg + "." + typeName
+
+		// Don't qualify with own package name (e.g., "objectivec.IObject" in objectivec package)
+		if strings.ToLower(framework) == frameworkPkg {
+			Debug.TypeMap("same framework, returning unqualified", typeName, framework,
+				"typeName", typeName,
+				"framework", framework,
+				"frameworkPkg", frameworkPkg)
+			return typeName
+		}
+
+		qualified := frameworkPkg + "." + typeName
+		Debug.TypeMap("cross-framework qualified", typeName, qualified,
+			"typeName", typeName,
+			"framework", framework,
+			"frameworkPkg", frameworkPkg,
+			"qualified", qualified)
+		return qualified
 	}
 
 	// Before falling back to unsafe.Pointer, check if this type belongs to the current framework

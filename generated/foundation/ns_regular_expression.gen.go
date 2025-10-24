@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class NSRegularExpression */
 
 
-/* debug [class_header]: Header for NSRegularExpression */
+
+
 // The class instance for the [RegularExpression] class.
 var (
 	RegularExpressionClass     _RegularExpressionClass
@@ -30,16 +30,16 @@ func getRegularExpressionClass() _RegularExpressionClass {
 type _RegularExpressionClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for RegularExpression */
+
+
 // An interface definition for the [RegularExpression] class.
 type IRegularExpression interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for RegularExpression */
+
 	// properties:
 	NumberOfCaptureGroups() uint
 	Options() RegularExpressionOptions
@@ -47,10 +47,10 @@ type IRegularExpression interface {
 	NSNotFound() int
 	Range() objc.IObject /* cross-framework: Range */
 	SetRange(value objc.IObject /* cross-framework: Range */)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for RegularExpression */
+
 	// methods:
 	EnumerateMatchesInStringOptionsRangeUsingBlock(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */, block unsafe.Pointer)
 	FirstMatchInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) ITextCheckingResult
@@ -60,14 +60,14 @@ type IRegularExpression interface {
 	ReplaceMatchesInStringOptionsRangeWithTemplate(string_ IMutableString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */, templ IString) uint
 	ReplacementStringForResultInStringOffsetTemplate(result ITextCheckingResult, string_ IString, offset int, templ IString) IString
 	StringByReplacingMatchesInStringOptionsRangeWithTemplate(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */, templ IString) IString
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for RegularExpression */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _RegularExpressionClass) Alloc() RegularExpression {
 	rv := objc.Send[RegularExpression](objc.ID(rc.class), objc.Sel("alloc"))
@@ -97,11 +97,11 @@ func (r_ RegularExpression) Autorelease() RegularExpression {
 func NewRegularExpression() RegularExpression {
 	return getRegularExpressionClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for RegularExpression */
+
+
 // An immutable representation of a compiled regular expression that you apply to Unicode strings.
 //
 // The fundamental matching method for is a Block iterator method that allows clients to supply a Block object which will be invoked each time the regular expression matches a portion of the target string. There are additional convenience methods for returning all the matches as an array, the total number of matches, the first match, and the range of the first match. An individual match is represented by an instance of the class, which carries information about the overall matched range (via its property), and the range of each individual capture group (via the method). For basic objects, these match results will be of type , but subclasses may use other types.
@@ -121,11 +121,11 @@ type RegularExpression struct {
 func RegularExpressionFrom(ptr unsafe.Pointer) RegularExpression {
 	return RegularExpression{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for RegularExpression */
+
+
 
 // Returns an initialized NSRegularExpression instance with the specified regular expression pattern and options.
 //
@@ -136,13 +136,13 @@ func NewRegularExpressionWithPatternOptionsError(pattern IString, options Regula
 	rv := objc.Send[RegularExpression](instance.ID, objc.Sel("initWithPattern:options:error:"), pattern, options, error_)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewRegularExpressionWithPatternOptionsError */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for RegularExpression */
+
+
+
 
 // Returns a string by adding backslash escapes as necessary to protect any characters that would match as pattern metacharacters.
 //
@@ -151,7 +151,7 @@ func NewRegularExpressionWithPatternOptionsError(pattern IString, options Regula
 func (rc _RegularExpressionClass) EscapedPatternForString(string_ IString) IString {
 	rv := objc.Send[String](objc.ID(rc.class), objc.Sel("escapedPatternForString:"), string_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=EscapedPatternForString) */
+}
 
 
 // Returns a template string by adding backslash escapes as necessary to protect any characters that would match as pattern metacharacters
@@ -161,7 +161,7 @@ func (rc _RegularExpressionClass) EscapedPatternForString(string_ IString) IStri
 func (rc _RegularExpressionClass) EscapedTemplateForString(string_ IString) IString {
 	rv := objc.Send[String](objc.ID(rc.class), objc.Sel("escapedTemplateForString:"), string_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=EscapedTemplateForString) */
+}
 
 
 // Creates an NSRegularExpression instance with the specified regular expression pattern and options.
@@ -171,18 +171,18 @@ func (rc _RegularExpressionClass) EscapedTemplateForString(string_ IString) IStr
 func (rc _RegularExpressionClass) RegularExpressionWithPatternOptionsError(pattern IString, options RegularExpressionOptions, error_ IError) IRegularExpression {
 	rv := objc.Send[RegularExpression](objc.ID(rc.class), objc.Sel("regularExpressionWithPattern:options:error:"), pattern, options, error_)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=RegularExpressionWithPatternOptionsError) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for RegularExpression */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for RegularExpression */
+
+
+
+
+
 
 // Enumerates the string allowing the Block to handle each regular expression match.
 //
@@ -190,7 +190,7 @@ func (rc _RegularExpressionClass) RegularExpressionWithPatternOptionsError(patte
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/enumerateMatches(in:options:range:using:)
 func (r_ RegularExpression) EnumerateMatchesInStringOptionsRangeUsingBlock(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */, block unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("enumerateMatchesInString:options:range:usingBlock:"), string_, options, range_, block)
-}/* debug [instance_methods/method]: EnumerateMatchesInStringOptionsRangeUsingBlock */
+}
 
 
 // Returns the first match of the regular expression within the specified range of the string.
@@ -200,7 +200,7 @@ func (r_ RegularExpression) EnumerateMatchesInStringOptionsRangeUsingBlock(strin
 func (r_ RegularExpression) FirstMatchInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](r_.ID, objc.Sel("firstMatchInString:options:range:"), string_, options, range_)
 	return rv
-}/* debug [instance_methods/method]: FirstMatchInStringOptionsRange */
+}
 
 
 // Returns an array containing all the matches of the regular expression in the string.
@@ -210,7 +210,7 @@ func (r_ RegularExpression) FirstMatchInStringOptionsRange(string_ IString, opti
 func (r_ RegularExpression) MatchesInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) []TextCheckingResult {
 	rv := objc.Send[[]TextCheckingResult](r_.ID, objc.Sel("matchesInString:options:range:"), string_, options, range_)
 	return rv
-}/* debug [instance_methods/method]: MatchesInStringOptionsRange */
+}
 
 
 // Returns the number of matches of the regular expression within the specified range of the string.
@@ -220,7 +220,7 @@ func (r_ RegularExpression) MatchesInStringOptionsRange(string_ IString, options
 func (r_ RegularExpression) NumberOfMatchesInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("numberOfMatchesInString:options:range:"), string_, options, range_)
 	return rv
-}/* debug [instance_methods/method]: NumberOfMatchesInStringOptionsRange */
+}
 
 
 // Returns the range of the first match of the regular expression within the specified range of the string.
@@ -230,7 +230,7 @@ func (r_ RegularExpression) NumberOfMatchesInStringOptionsRange(string_ IString,
 func (r_ RegularExpression) RangeOfFirstMatchInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](r_.ID, objc.Sel("rangeOfFirstMatchInString:options:range:"), string_, options, range_)
 	return rv
-}/* debug [instance_methods/method]: RangeOfFirstMatchInStringOptionsRange */
+}
 
 
 // Replaces regular expression matches within the mutable string using the template string.
@@ -240,7 +240,7 @@ func (r_ RegularExpression) RangeOfFirstMatchInStringOptionsRange(string_ IStrin
 func (r_ RegularExpression) ReplaceMatchesInStringOptionsRangeWithTemplate(string_ IMutableString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */, templ IString) uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("replaceMatchesInString:options:range:withTemplate:"), string_, options, range_, templ)
 	return rv
-}/* debug [instance_methods/method]: ReplaceMatchesInStringOptionsRangeWithTemplate */
+}
 
 
 // Used to perform template substitution for a single result for clients implementing their own replace functionality.
@@ -250,7 +250,7 @@ func (r_ RegularExpression) ReplaceMatchesInStringOptionsRangeWithTemplate(strin
 func (r_ RegularExpression) ReplacementStringForResultInStringOffsetTemplate(result ITextCheckingResult, string_ IString, offset int, templ IString) IString {
 	rv := objc.Send[String](r_.ID, objc.Sel("replacementStringForResult:inString:offset:template:"), result, string_, offset, templ)
 	return rv
-}/* debug [instance_methods/method]: ReplacementStringForResultInStringOffsetTemplate */
+}
 
 
 // Returns a new string containing matching regular expressions replaced with the template string.
@@ -260,13 +260,13 @@ func (r_ RegularExpression) ReplacementStringForResultInStringOffsetTemplate(res
 func (r_ RegularExpression) StringByReplacingMatchesInStringOptionsRangeWithTemplate(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */, templ IString) IString {
 	rv := objc.Send[String](r_.ID, objc.Sel("stringByReplacingMatchesInString:options:range:withTemplate:"), string_, options, range_, templ)
 	return rv
-}/* debug [instance_methods/method]: StringByReplacingMatchesInStringOptionsRangeWithTemplate */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for RegularExpression */
+
+
+
 
 // Returns the number of capture groups in the regular expression.
 //
@@ -275,7 +275,7 @@ func (r_ RegularExpression) StringByReplacingMatchesInStringOptionsRangeWithTemp
 func (r_ RegularExpression) NumberOfCaptureGroups() uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("numberOfCaptureGroups"))
 	return rv
-}/* debug [instance_properties/getter]: numberOfCaptureGroups */
+}
 
 
 // Returns the options used when the regular expression option was created.
@@ -285,7 +285,7 @@ func (r_ RegularExpression) NumberOfCaptureGroups() uint {
 func (r_ RegularExpression) Options() RegularExpressionOptions {
 	rv := objc.Send[RegularExpressionOptions](r_.ID, objc.Sel("options"))
 	return rv
-}/* debug [instance_properties/getter]: options */
+}
 
 
 // Returns the regular expression pattern.
@@ -295,7 +295,7 @@ func (r_ RegularExpression) Options() RegularExpressionOptions {
 func (r_ RegularExpression) Pattern() IString {
 	rv := objc.Send[String](r_.ID, objc.Sel("pattern"))
 	return rv
-}/* debug [instance_properties/getter]: pattern */
+}
 
 
 // A value indicating that a requested item couldn’t be found or doesn’t exist.
@@ -305,7 +305,7 @@ func (r_ RegularExpression) Pattern() IString {
 func (r_ RegularExpression) NSNotFound() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("NSNotFound"))
 	return rv
-}/* debug [instance_properties/getter]: NSNotFound */
+}
 
 
 // Returns the range of the result that the receiver represents.
@@ -315,7 +315,7 @@ func (r_ RegularExpression) NSNotFound() int {
 func (r_ RegularExpression) Range() objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](r_.ID, objc.Sel("range"))
 	return rv
-}/* debug [instance_properties/getter]: range */
+}
 
 
 // Returns the range of the result that the receiver represents.
@@ -324,11 +324,11 @@ func (r_ RegularExpression) Range() objc.IObject /* cross-framework: Range */ {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
 func (r_ RegularExpression) SetRange(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRange:"), value)
-}/* debug [instance_properties/setter]: range */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class NSRegularExpression */
+
+
+
 
 

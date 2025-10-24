@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNPoolingMaxGradient */
 
 
-/* debug [class_header]: Header for MPSCNNPoolingMaxGradient */
+
+
 // The class instance for the [CNNPoolingMaxGradient] class.
 var (
 	CNNPoolingMaxGradientClass     _CNNPoolingMaxGradientClass
@@ -31,30 +30,30 @@ func getCNNPoolingMaxGradientClass() _CNNPoolingMaxGradientClass {
 type _CNNPoolingMaxGradientClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNPoolingMaxGradient */
+
+
 // An interface definition for the [CNNPoolingMaxGradient] class.
 type ICNNPoolingMaxGradient interface {
 	ICNNPoolingGradient
 	
-/* debug [class_interface_properties]: Properties for CNNPoolingMaxGradient */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNPoolingMaxGradient */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNPoolingMaxGradient */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNPoolingMaxGradientClass) Alloc() CNNPoolingMaxGradient {
 	rv := objc.Send[CNNPoolingMaxGradient](objc.ID(cc.class), objc.Sel("alloc"))
@@ -84,11 +83,11 @@ func (c_ CNNPoolingMaxGradient) Autorelease() CNNPoolingMaxGradient {
 func NewCNNPoolingMaxGradient() CNNPoolingMaxGradient {
 	return getCNNPoolingMaxGradientClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNPoolingMaxGradient */
+
+
 // A gradient max pooling filter.
 
 
@@ -108,11 +107,11 @@ func CNNPoolingMaxGradientFrom(ptr unsafe.Pointer) CNNPoolingMaxGradient {
 		CNNPoolingGradient: CNNPoolingGradientFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNPoolingMaxGradient */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingmaxgradient/2942342-initwithcoder
@@ -121,7 +120,7 @@ func NewCNNPoolingMaxGradientWithCoderDevice(aDecoder foundation.Coder, device u
 	rv := objc.Send[CNNPoolingMaxGradient](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNPoolingMaxGradientWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -131,31 +130,31 @@ func NewCNNPoolingMaxGradientWithDeviceKernelWidthKernelHeightStrideInPixelsXStr
 	rv := objc.Send[CNNPoolingMaxGradient](instance.ID, objc.Sel("initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:"), device, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNPoolingMaxGradientWithDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNPoolingMaxGradient */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNPoolingMaxGradient */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNPoolingMaxGradient */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNPoolingMaxGradient */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNPoolingMaxGradient */
+
+
+
+
+
+
+
+
+
+
+
 
 

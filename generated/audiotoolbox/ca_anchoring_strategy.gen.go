@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class CAAnchoringStrategy */
 
 
-/* debug [class_header]: Header for CAAnchoringStrategy */
+
+
 // The class instance for the [AnchoringStrategy] class.
 var (
 	AnchoringStrategyClass     _AnchoringStrategyClass
@@ -30,30 +30,30 @@ func getAnchoringStrategyClass() _AnchoringStrategyClass {
 type _AnchoringStrategyClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AnchoringStrategy */
+
+
 // An interface definition for the [AnchoringStrategy] class.
 type IAnchoringStrategy interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for AnchoringStrategy */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AnchoringStrategy */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AnchoringStrategy */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AnchoringStrategyClass) Alloc() AnchoringStrategy {
 	rv := objc.Send[AnchoringStrategy](objc.ID(ac.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (a_ AnchoringStrategy) Autorelease() AnchoringStrategy {
 func NewAnchoringStrategy() AnchoringStrategy {
 	return getAnchoringStrategyClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AnchoringStrategy */
+
+
 // The center of a head-tracked spatial experience.
 //
 // The Objective-C version of the Swift type.
@@ -107,34 +107,34 @@ type AnchoringStrategy struct {
 func AnchoringStrategyFrom(ptr unsafe.Pointer) AnchoringStrategy {
 	return AnchoringStrategy{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AnchoringStrategy *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for AnchoringStrategy */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AnchoringStrategy */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AnchoringStrategy */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AnchoringStrategy */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class CAAnchoringStrategy */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

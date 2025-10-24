@@ -25,11 +25,11 @@ import (
 // See: doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureSampleBufferPlaybackDelegate
 type PPictureInPictureSampleBufferPlaybackDelegate interface {
 	// Required methods
-	PictureInPictureControllerDidTransitionToRenderSize(pictureInPictureController IAVPictureInPictureController, newRenderSize VideoDimensions /* not a class type */)/* debug [protocol_interface/required_method]: PictureInPictureControllerDidTransitionToRenderSize */
-	PictureInPictureControllerSetPlaying(pictureInPictureController IAVPictureInPictureController, playing bool)/* debug [protocol_interface/required_method]: PictureInPictureControllerSetPlaying */
-	PictureInPictureControllerSkipByIntervalCompletionHandler(pictureInPictureController IAVPictureInPictureController, skipInterval objc.IObject /* cross-framework: Time */, completionHandler unsafe.Pointer)/* debug [protocol_interface/required_method]: PictureInPictureControllerSkipByIntervalCompletionHandler */
-	PictureInPictureControllerIsPlaybackPaused(pictureInPictureController IAVPictureInPictureController) bool/* debug [protocol_interface/required_method]: PictureInPictureControllerIsPlaybackPaused */
-	PictureInPictureControllerTimeRangeForPlayback(pictureInPictureController IAVPictureInPictureController) TimeRange/* debug [protocol_interface/required_method]: PictureInPictureControllerTimeRangeForPlayback */
+	PictureInPictureControllerDidTransitionToRenderSize(pictureInPictureController IAVPictureInPictureController, newRenderSize VideoDimensions /* not a class type */)
+	PictureInPictureControllerSetPlaying(pictureInPictureController IAVPictureInPictureController, playing bool)
+	PictureInPictureControllerSkipByIntervalCompletionHandler(pictureInPictureController IAVPictureInPictureController, skipInterval objc.IObject /* cross-framework: Time */, completionHandler unsafe.Pointer)
+	PictureInPictureControllerIsPlaybackPaused(pictureInPictureController IAVPictureInPictureController) bool
+	PictureInPictureControllerTimeRangeForPlayback(pictureInPictureController IAVPictureInPictureController) TimeRange
 	// Optional methods
 	PictureInPictureControllerShouldProhibitBackgroundAudioPlayback(pictureInPictureController IAVPictureInPictureController) bool
 	HasPictureInPictureControllerShouldProhibitBackgroundAudioPlayback() bool

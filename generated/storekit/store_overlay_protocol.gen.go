@@ -18,3 +18,4 @@ var storeOverlayProtocol *objc.Protocol
 func init() {
 	storeOverlayProtocol = objc.GetProtocol("storeOverlay:")
 }
+

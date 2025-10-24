@@ -148,7 +148,7 @@ const (
 )
 
 /* debug [enums.gen.go]: Processing enum SCPreferencesNotification (2 cases) */
-// SCPreferencesNotification - The type of notification (used with the
+// SCPreferencesNotification - The type of notification (used with the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesNotification
 type SCPreferencesNotification uint
@@ -163,3 +163,5 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesNotification/commit
 	kSCPreferencesNotificationCommit SCPreferencesNotification = 0
 )
+
+

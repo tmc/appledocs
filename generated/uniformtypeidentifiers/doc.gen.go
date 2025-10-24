@@ -1,3 +1,4 @@
+
 // Code generated from Apple documentation for UniformTypeIdentifiers. DO NOT EDIT.
 
 // Package uniformtypeidentifiers provides Go bindings for the UniformTypeIdentifiers framework.
@@ -12,10 +13,10 @@ import (
 
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/UniformTypeIdentifiers.framework/UniformTypeIdentifiers"
-
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
+

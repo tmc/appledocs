@@ -27,14 +27,14 @@ import (
 // See: doc://com.apple.metalperformanceshaders/documentation/MetalPerformanceShaders/MPSCNNInstanceNormalizationDataSource
 type PCNNInstanceNormalizationDataSource interface {
 	// Required methods
-	EncodeWithCoder(aCoder foundation.Coder)/* debug [protocol_interface/required_method]: EncodeWithCoder */
-	InitWithCoder(aDecoder foundation.Coder) objectivec.IObject/* debug [protocol_interface/required_method]: InitWithCoder */
-	Label()/* debug [protocol_interface/required_method]: Label */
-	Beta()/* debug [protocol_interface/required_method]: Beta */
-	Gamma()/* debug [protocol_interface/required_method]: Gamma */
-	UpdateGammaAndBetaWithCommandBufferInstanceNormalizationStateBatch(commandBuffer unsafe.Pointer, instanceNormalizationStateBatch CNNInstanceNormalizationGradientStateBatch /* not a class type */) CNNNormalizationGammaAndBetaState/* debug [protocol_interface/required_method]: UpdateGammaAndBetaWithCommandBufferInstanceNormalizationStateBatch */
-	UpdateGammaAndBetaWithInstanceNormalizationStateBatch(instanceNormalizationStateBatch CNNInstanceNormalizationGradientStateBatch /* not a class type */) bool/* debug [protocol_interface/required_method]: UpdateGammaAndBetaWithInstanceNormalizationStateBatch */
-	CopyWithZoneDevice(zone Zone /* not a class type */, device unsafe.Pointer) objectivec.IObject/* debug [protocol_interface/required_method]: CopyWithZoneDevice */
+	EncodeWithCoder(aCoder foundation.Coder)
+	InitWithCoder(aDecoder foundation.Coder) objectivec.IObject
+	Label()
+	Beta()
+	Gamma()
+	UpdateGammaAndBetaWithCommandBufferInstanceNormalizationStateBatch(commandBuffer unsafe.Pointer, instanceNormalizationStateBatch CNNInstanceNormalizationGradientStateBatch /* not a class type */) CNNNormalizationGammaAndBetaState
+	UpdateGammaAndBetaWithInstanceNormalizationStateBatch(instanceNormalizationStateBatch CNNInstanceNormalizationGradientStateBatch /* not a class type */) bool
+	CopyWithZoneDevice(zone Zone /* not a class type */, device unsafe.Pointer) objectivec.IObject
 	// Optional methods
 	Encode()
 	HasEncode() bool

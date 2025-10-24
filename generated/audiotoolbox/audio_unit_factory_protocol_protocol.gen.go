@@ -22,5 +22,5 @@ import (
 // See: doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitFactory
 type PAudioUnitFactory interface {
 	// Required methods
-	CreateAudioUnitWithComponentDescriptionError(desc objc.IObject /* cross-framework: AudioComponentDescription */, error_ objectivec.IObject) AudioUnit/* debug [protocol_interface/required_method]: CreateAudioUnitWithComponentDescriptionError */
+	CreateAudioUnitWithComponentDescriptionError(desc objc.IObject /* cross-framework: AudioComponentDescription */, error_ objectivec.IObject) AudioUnit
 }

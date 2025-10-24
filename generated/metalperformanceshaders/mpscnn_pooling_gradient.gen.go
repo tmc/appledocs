@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNPoolingGradient */
 
 
-/* debug [class_header]: Header for MPSCNNPoolingGradient */
+
+
 // The class instance for the [CNNPoolingGradient] class.
 var (
 	CNNPoolingGradientClass     _CNNPoolingGradientClass
@@ -31,32 +30,32 @@ func getCNNPoolingGradientClass() _CNNPoolingGradientClass {
 type _CNNPoolingGradientClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNPoolingGradient */
+
+
 // An interface definition for the [CNNPoolingGradient] class.
 type ICNNPoolingGradient interface {
 	ICNNGradientKernel
 	
-/* debug [class_interface_properties]: Properties for CNNPoolingGradient */
+
 	// properties:
 	SourceSize() Size get set /* not a class type */
 	SetSourceSize(value Size get set /* not a class type */)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNPoolingGradient */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNPoolingGradient */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNPoolingGradientClass) Alloc() CNNPoolingGradient {
 	rv := objc.Send[CNNPoolingGradient](objc.ID(cc.class), objc.Sel("alloc"))
@@ -86,11 +85,11 @@ func (c_ CNNPoolingGradient) Autorelease() CNNPoolingGradient {
 func NewCNNPoolingGradient() CNNPoolingGradient {
 	return getCNNPoolingGradientClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNPoolingGradient */
+
+
 // A gradient pooling kernel.
 
 
@@ -110,11 +109,11 @@ func CNNPoolingGradientFrom(ptr unsafe.Pointer) CNNPoolingGradient {
 		CNNGradientKernel: CNNGradientKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNPoolingGradient */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolinggradient/2942350-initwithcoder
@@ -123,7 +122,7 @@ func NewCNNPoolingGradientWithCoderDevice(aDecoder foundation.Coder, device unsa
 	rv := objc.Send[CNNPoolingGradient](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNPoolingGradientWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -133,7 +132,7 @@ func NewCNNPoolingGradientWithDeviceKernelWidthKernelHeight(device unsafe.Pointe
 	rv := objc.Send[CNNPoolingGradient](instance.ID, objc.Sel("initWithDevice:kernelWidth:kernelHeight:"), device, kernelWidth, kernelHeight)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNPoolingGradientWithDeviceKernelWidthKernelHeight */
+}
 
 
 // [Full Topic]
@@ -143,46 +142,46 @@ func NewCNNPoolingGradientWithDeviceKernelWidthKernelHeightStrideInPixelsXStride
 	rv := objc.Send[CNNPoolingGradient](instance.ID, objc.Sel("initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:"), device, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNPoolingGradientWithDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNPoolingGradient */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNPoolingGradient */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNPoolingGradient */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNPoolingGradient */
+
+
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolinggradient/2942343-sourcesize
 func (c_ CNNPoolingGradient) SourceSize() Size get set /* not a class type */ {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("sourceSize"))
 	return rv
-}/* debug [instance_properties/getter]: sourceSize */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolinggradient/2942343-sourcesize
 func (c_ CNNPoolingGradient) SetSourceSize(value Size get set /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceSize:"), value)
-}/* debug [instance_properties/setter]: sourceSize */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSCNNPoolingGradient */
+
+
+
 
 

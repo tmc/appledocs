@@ -19,3 +19,4 @@ var reloadFromOriginProtocol *objc.Protocol
 func init() {
 	reloadFromOriginProtocol = objc.GetProtocol("reloadFromOrigin:")
 }
+

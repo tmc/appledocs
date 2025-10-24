@@ -13,7 +13,7 @@ var _ = foundation.NewCalendar
 // Initializes a calendar according to a given identifier.
 func ExampleNewCalendarWithCalendarIdentifier() {
 	_ = foundation.NewCalendarWithCalendarIdentifier(
-		foundation.CalendarIdentifier /* typedef */{}, // ident CalendarIdentifier /* typedef */
+		foundation.CalendarIdentifier{}, // ident CalendarIdentifier
 	)
 	// Output:
 }
@@ -21,7 +21,7 @@ func ExampleNewCalendarWithCalendarIdentifier() {
 // Creates a new calendar specified by a given identifier.
 func ExampleNewCalendarWithIdentifier() {
 	_ = foundation.NewCalendarWithIdentifier(
-		foundation.CalendarIdentifier /* typedef */{}, // calendarIdentifierConstant CalendarIdentifier /* typedef */
+		foundation.CalendarIdentifier{}, // calendarIdentifierConstant CalendarIdentifier
 	)
 	// Output:
 }

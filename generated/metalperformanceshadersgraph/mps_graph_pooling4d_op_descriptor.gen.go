@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 /* debug [class.gen.go]: Generating class MPSGraphPooling4DOpDescriptor */
@@ -53,8 +52,8 @@ type IGraphPooling4DOpDescriptor interface {
 	SetPaddingStyle(value GraphPaddingStyle)
 	PaddingValues() []foundation.Number
 	SetPaddingValues(value []foundation.Number)
-	ReturnIndicesDataType() DataType /* not a class type */
-	SetReturnIndicesDataType(value DataType /* not a class type */)
+	ReturnIndicesDataType() objc.IObject /* cross-framework: DataType */
+	SetReturnIndicesDataType(value objc.IObject /* cross-framework: DataType */)
 	ReturnIndicesMode() GraphPoolingReturnIndicesMode
 	SetReturnIndicesMode(value GraphPoolingReturnIndicesMode)
 	Strides() []foundation.Number
@@ -338,8 +337,8 @@ func (g_ GraphPooling4DOpDescriptor) SetPaddingValues(value []foundation.Number)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling4DOpDescriptor/returnIndicesDataType
-func (g_ GraphPooling4DOpDescriptor) ReturnIndicesDataType() DataType /* not a class type */ {
-	rv := objc.Send[DataType](g_.ID, objc.Sel("returnIndicesDataType"))
+func (g_ GraphPooling4DOpDescriptor) ReturnIndicesDataType() objc.IObject /* cross-framework: DataType */ {
+	rv := objc.Send[metalperformanceshaders.DataType](g_.ID, objc.Sel("returnIndicesDataType"))
 	return rv
 }/* debug [instance_properties/getter]: returnIndicesDataType */
 
@@ -348,7 +347,7 @@ func (g_ GraphPooling4DOpDescriptor) ReturnIndicesDataType() DataType /* not a c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling4DOpDescriptor/returnIndicesDataType
-func (g_ GraphPooling4DOpDescriptor) SetReturnIndicesDataType(value DataType /* not a class type */) {
+func (g_ GraphPooling4DOpDescriptor) SetReturnIndicesDataType(value objc.IObject /* cross-framework: DataType */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReturnIndicesDataType:"), value)
 }/* debug [instance_properties/setter]: returnIndicesDataType */
 

@@ -19,3 +19,4 @@ var mediaPauseProtocol *objc.Protocol
 func init() {
 	mediaPauseProtocol = objc.GetProtocol("mediaPause")
 }
+

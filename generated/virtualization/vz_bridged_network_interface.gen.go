@@ -6,12 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZBridgedNetworkInterface */
+
 
 /* debug [class_header]: Header for VZBridgedNetworkInterface */
 // The class instance for the [VZBridgedNetworkInterface] class.
@@ -30,27 +31,30 @@ func getVZBridgedNetworkInterfaceClass() _VZBridgedNetworkInterfaceClass {
 type _VZBridgedNetworkInterfaceClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZBridgedNetworkInterface */
 // An interface definition for the [VZBridgedNetworkInterface] class.
 type IVZBridgedNetworkInterface interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZBridgedNetworkInterface */
+	
+/* debug [class_interface_properties]: Properties for VZBridgedNetworkInterface */
 	// properties:
-	Identifier() objc.IObject           /* cross-framework: NSString */
+	Identifier() objc.IObject /* cross-framework: NSString */
 	LocalizedDisplayName() objc.IObject /* cross-framework: NSString */
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZBridgedNetworkInterface */
+	
+/* debug [class_interface_methods]: Methods for VZBridgedNetworkInterface */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZBridgedNetworkInterface */
 // Alloc allocates a new instance without initialization.
@@ -82,13 +86,15 @@ func (v_ VZBridgedNetworkInterface) Autorelease() VZBridgedNetworkInterface {
 func NewVZBridgedNetworkInterface() VZBridgedNetworkInterface {
 	return getVZBridgedNetworkInterfaceClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZBridgedNetworkInterface */
 // An object that identifies the supported network interfaces of the host computer.
 //
 // Use a object to retrieve the physical interfaces on the host computer. Use a bridged network interface to create a object, which maps that interface to one of your virtual machine’s network devices. The host computer and your virtual machine share access to the physical network interface, but communicate over it using distinct network layers. You don’t create objects directly. Instead, the system creates one object for each physical interface of the host computer and stores those objects in the property. Iterate over the objects in that property to retrieve the network interfaces you need.
+
 
 // An object that identifies the supported network interfaces of the host computer.
 //
@@ -104,13 +110,18 @@ type VZBridgedNetworkInterface struct {
 func VZBridgedNetworkInterfaceFrom(ptr unsafe.Pointer) VZBridgedNetworkInterface {
 	return VZBridgedNetworkInterface{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZBridgedNetworkInterface */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZBridgedNetworkInterface *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZBridgedNetworkInterface */
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZBridgedNetworkInterface */
 
@@ -121,11 +132,15 @@ func VZBridgedNetworkInterfaceFrom(ptr unsafe.Pointer) VZBridgedNetworkInterface
 func (vc _VZBridgedNetworkInterfaceClass) NetworkInterfaces() []VZBridgedNetworkInterface {
 	rv := objc.Send[[]VZBridgedNetworkInterface](objc.ID(vc.class), objc.Sel("networkInterfaces"))
 	return rv
-} /* debug [class_properties_class/property]: networkInterfaces */
+}/* debug [class_properties_class/property]: networkInterfaces */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZBridgedNetworkInterface */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZBridgedNetworkInterface */
 
@@ -136,7 +151,8 @@ func (vc _VZBridgedNetworkInterfaceClass) NetworkInterfaces() []VZBridgedNetwork
 func (v_ VZBridgedNetworkInterface) Identifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("identifier"))
 	return rv
-} /* debug [instance_properties/getter]: identifier */
+}/* debug [instance_properties/getter]: identifier */
+
 
 // A user-visible name for the network interface.
 //
@@ -145,7 +161,8 @@ func (v_ VZBridgedNetworkInterface) Identifier() objc.IObject /* cross-framework
 func (v_ VZBridgedNetworkInterface) LocalizedDisplayName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("localizedDisplayName"))
 	return rv
-} /* debug [instance_properties/getter]: localizedDisplayName */
+}/* debug [instance_properties/getter]: localizedDisplayName */
+
 
 // The bridged network interfaces that you may use in your virtual machine.
 //
@@ -154,8 +171,12 @@ func (v_ VZBridgedNetworkInterface) LocalizedDisplayName() objc.IObject /* cross
 func (v_ VZBridgedNetworkInterface) NetworkInterfaces() []VZBridgedNetworkInterface {
 	rv := objc.Send[[]VZBridgedNetworkInterface](v_.ID, objc.Sel("networkInterfaces"))
 	return rv
-} /* debug [instance_properties/getter]: networkInterfaces */
+}/* debug [instance_properties/getter]: networkInterfaces */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZBridgedNetworkInterface */
+
+
+

@@ -16,3 +16,4 @@ package usernotificationsui
 // See: doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/mediaPlayPauseButtonType
 type PmediaPlayPauseButtonType interface {
 }
+

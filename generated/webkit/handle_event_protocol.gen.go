@@ -15,3 +15,4 @@ var handleEventProtocol *objc.Protocol
 func init() {
 	handleEventProtocol = objc.GetProtocol("handleEvent:")
 }
+

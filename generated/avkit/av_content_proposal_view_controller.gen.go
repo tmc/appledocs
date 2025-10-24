@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class AVContentProposalViewController */
 
 
-/* debug [class_header]: Header for AVContentProposalViewController */
+
+
 // The class instance for the [ContentProposalViewController] class.
 var (
 	ContentProposalViewControllerClass     _ContentProposalViewControllerClass
@@ -29,30 +29,30 @@ func getContentProposalViewControllerClass() _ContentProposalViewControllerClass
 type _ContentProposalViewControllerClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ContentProposalViewController */
+
+
 // An interface definition for the [ContentProposalViewController] class.
 type IContentProposalViewController interface {
 	IViewController
 	
-/* debug [class_interface_properties]: Properties for ContentProposalViewController */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ContentProposalViewController */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ContentProposalViewController */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _ContentProposalViewControllerClass) Alloc() ContentProposalViewController {
 	rv := objc.Send[ContentProposalViewController](objc.ID(cc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (c_ ContentProposalViewController) Autorelease() ContentProposalViewControl
 func NewContentProposalViewController() ContentProposalViewController {
 	return getContentProposalViewControllerClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ContentProposalViewController */
+
+
 // A view controller that proposes content to watch next.
 //
 // Subclass this class to define the user interface for your content proposal.
@@ -108,33 +108,33 @@ func ContentProposalViewControllerFrom(ptr unsafe.Pointer) ContentProposalViewCo
 		ViewController: ViewControllerFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ContentProposalViewController *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for ContentProposalViewController */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ContentProposalViewController */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ContentProposalViewController */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ContentProposalViewController */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class AVContentProposalViewController */
+
+
+
+
+
+
+
+
+
+
+
 
 

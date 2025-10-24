@@ -19,3 +19,4 @@ var webViewForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	webViewForWebExtensionContextProtocol = objc.GetProtocol("webViewForWebExtensionContext:")
 }
+

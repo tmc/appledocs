@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNNReduceFeatureChannelsAndWeightsSum */
 
 
-/* debug [class_header]: Header for MPSNNReduceFeatureChannelsAndWeightsSum */
+
+
 // The class instance for the [ReduceFeatureChannelsAndWeightsSum] class.
 var (
 	ReduceFeatureChannelsAndWeightsSumClass     _ReduceFeatureChannelsAndWeightsSumClass
@@ -31,32 +30,32 @@ func getReduceFeatureChannelsAndWeightsSumClass() _ReduceFeatureChannelsAndWeigh
 type _ReduceFeatureChannelsAndWeightsSumClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ReduceFeatureChannelsAndWeightsSum */
+
+
 // An interface definition for the [ReduceFeatureChannelsAndWeightsSum] class.
 type IReduceFeatureChannelsAndWeightsSum interface {
 	IReduceBinary
 	
-/* debug [class_interface_properties]: Properties for ReduceFeatureChannelsAndWeightsSum */
+
 	// properties:
 	DoWeightedSumByNonZeroWeights() objectivec.IObject
 	SetDoWeightedSumByNonZeroWeights(value objectivec.IObject)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ReduceFeatureChannelsAndWeightsSum */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ReduceFeatureChannelsAndWeightsSum */
+
+
 // Alloc allocates a new instance without initialization.
 func (rc _ReduceFeatureChannelsAndWeightsSumClass) Alloc() ReduceFeatureChannelsAndWeightsSum {
 	rv := objc.Send[ReduceFeatureChannelsAndWeightsSum](objc.ID(rc.class), objc.Sel("alloc"))
@@ -86,11 +85,11 @@ func (r_ ReduceFeatureChannelsAndWeightsSum) Autorelease() ReduceFeatureChannels
 func NewReduceFeatureChannelsAndWeightsSum() ReduceFeatureChannelsAndWeightsSum {
 	return getReduceFeatureChannelsAndWeightsSumClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ReduceFeatureChannelsAndWeightsSum */
+
+
 // A reduction filter that returns the weighted sum of all values for each feature channel in an image.
 
 
@@ -110,11 +109,11 @@ func ReduceFeatureChannelsAndWeightsSumFrom(ptr unsafe.Pointer) ReduceFeatureCha
 		ReduceBinary: ReduceBinaryFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ReduceFeatureChannelsAndWeightsSum */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsandweightssum/3197835-initwithcoder
@@ -123,7 +122,7 @@ func NewReduceFeatureChannelsAndWeightsSumWithCoderDevice(aDecoder foundation.Co
 	rv := objc.Send[ReduceFeatureChannelsAndWeightsSum](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceFeatureChannelsAndWeightsSumWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -133,7 +132,7 @@ func NewReduceFeatureChannelsAndWeightsSumWithDevice(device unsafe.Pointer) Redu
 	rv := objc.Send[ReduceFeatureChannelsAndWeightsSum](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceFeatureChannelsAndWeightsSumWithDevice */
+}
 
 
 // [Full Topic]
@@ -143,46 +142,46 @@ func NewReduceFeatureChannelsAndWeightsSumWithDeviceDoWeightedSumByNonZeroWeight
 	rv := objc.Send[ReduceFeatureChannelsAndWeightsSum](instance.ID, objc.Sel("initWithDevice:doWeightedSumByNonZeroWeights:"), device, doWeightedSumByNonZeroWeights)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewReduceFeatureChannelsAndWeightsSumWithDeviceDoWeightedSumByNonZeroWeights */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ReduceFeatureChannelsAndWeightsSum */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ReduceFeatureChannelsAndWeightsSum */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ReduceFeatureChannelsAndWeightsSum */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ReduceFeatureChannelsAndWeightsSum */
+
+
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsandweightssum/2942543-doweightedsumbynonzeroweights
 func (r_ ReduceFeatureChannelsAndWeightsSum) DoWeightedSumByNonZeroWeights() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](r_.ID, objc.Sel("doWeightedSumByNonZeroWeights"))
 	return rv
-}/* debug [instance_properties/getter]: doWeightedSumByNonZeroWeights */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsandweightssum/2942543-doweightedsumbynonzeroweights
 func (r_ ReduceFeatureChannelsAndWeightsSum) SetDoWeightedSumByNonZeroWeights(value objectivec.IObject) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDoWeightedSumByNonZeroWeights:"), value)
-}/* debug [instance_properties/setter]: doWeightedSumByNonZeroWeights */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class MPSNNReduceFeatureChannelsAndWeightsSum */
+
+
+
 
 

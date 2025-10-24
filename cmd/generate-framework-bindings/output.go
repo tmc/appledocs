@@ -18,32 +18,14 @@ import (
 	"golang.org/x/tools/txtar"
 )
 
-func generateFiles(outDir, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, enums []*occ2go.ParsedEnum, typedefs []*occ2go.ParsedTypedef, constants []*occ2go.ParsedConstant, structs []*occ2go.ParsedStruct, withRefMethods, generateTests, generateExamples bool, variant string) error {
-	// Determine output module - default to github.com/tmc/appledocs/generated for now
-	outputModule := "github.com/tmc/appledocs/generated"
-
-	// Create generator to get gen.go data
-	gen := NewGenerator(framework, packageName, inputDir, outputModule, variant, withRefMethods, generateTests, generateExamples)
-	gen.Functions = functions
-	gen.Classes = classes
-	gen.Protocols = protocols
-	gen.Enums = enums
-	gen.Typedefs = typedefs
-	gen.Constants = constants
-	gen.Structs = structs
-
-	// DEBUG: Check if enums have cases after assignment
-	if verbose {
-		// for _, enum := range gen.Enums {
-		// 	if len(enum.Cases) > 0 {
-		// 		fmt.Fprintf(os.Stderr, "DEBUG generateFiles: enum %s has %d cases\n", enum.Name, len(enum.Cases))
-		// 	}
-		// }
-	}
+func generateFiles(outDir string, config GeneratorConfig, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, enums []*occ2go.ParsedEnum, typedefs []*occ2go.ParsedTypedef, constants []*occ2go.ParsedConstant, structs []*occ2go.ParsedStruct) error {
+	// Create generator with config
+	gen := NewGenerator(config)
+	gen.SetParsedData(functions, classes, protocols, enums, typedefs, constants, structs)
 
 	// Apply property overrides for undocumented properties
 	for _, cls := range gen.Classes {
-		MergePropertyOverrides(framework, cls.Name, cls)
+		MergePropertyOverrides(config.Framework, cls.Name, cls)
 	}
 
 	gen.prepare()
@@ -94,23 +76,14 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 }
 
 // generateTxtar generates all files as txtar format
-func generateTxtar(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, enums []*occ2go.ParsedEnum, typedefs []*occ2go.ParsedTypedef, constants []*occ2go.ParsedConstant, structs []*occ2go.ParsedStruct, withRefMethods, generateTests, generateExamples bool, variant string) error {
-	// Determine output module - default to github.com/tmc/appledocs/generated for now
-	outputModule := "github.com/tmc/appledocs/generated"
-
+func generateTxtar(w io.Writer, config GeneratorConfig, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, enums []*occ2go.ParsedEnum, typedefs []*occ2go.ParsedTypedef, constants []*occ2go.ParsedConstant, structs []*occ2go.ParsedStruct) error {
 	// Create generator instance
-	gen := NewGenerator(framework, packageName, inputDir, outputModule, variant, withRefMethods, generateTests, generateExamples)
-	gen.Functions = functions
-	gen.Classes = classes
-	gen.Protocols = protocols
-	gen.Enums = enums
-	gen.Typedefs = typedefs
-	gen.Constants = constants
-	gen.Structs = structs
+	gen := NewGenerator(config)
+	gen.SetParsedData(functions, classes, protocols, enums, typedefs, constants, structs)
 
 	// Apply property overrides
 	for _, cls := range gen.Classes {
-		MergePropertyOverrides(framework, cls.Name, cls)
+		MergePropertyOverrides(config.Framework, cls.Name, cls)
 	}
 
 	gen.prepare()

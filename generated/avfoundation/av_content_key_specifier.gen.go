@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVContentKeySpecifier */
 
 
-/* debug [class_header]: Header for AVContentKeySpecifier */
+
+
 // The class instance for the [ContentKeySpecifier] class.
 var (
 	ContentKeySpecifierClass     _ContentKeySpecifierClass
@@ -31,33 +30,33 @@ func getContentKeySpecifierClass() _ContentKeySpecifierClass {
 type _ContentKeySpecifierClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ContentKeySpecifier */
+
+
 // An interface definition for the [ContentKeySpecifier] class.
 type IContentKeySpecifier interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for ContentKeySpecifier */
+
 	// properties:
 	Identifier() objc.ID
 	KeySystem() ContentKeySystem /* typedef */
 	Options() foundation.IDictionary
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ContentKeySpecifier */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ContentKeySpecifier */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _ContentKeySpecifierClass) Alloc() ContentKeySpecifier {
 	rv := objc.Send[ContentKeySpecifier](objc.ID(cc.class), objc.Sel("alloc"))
@@ -87,11 +86,11 @@ func (c_ ContentKeySpecifier) Autorelease() ContentKeySpecifier {
 func NewContentKeySpecifier() ContentKeySpecifier {
 	return getContentKeySpecifierClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ContentKeySpecifier */
+
+
 // An object that uniquely identifies a content key.
 
 
@@ -109,11 +108,11 @@ type ContentKeySpecifier struct {
 func ContentKeySpecifierFrom(ptr unsafe.Pointer) ContentKeySpecifier {
 	return ContentKeySpecifier{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ContentKeySpecifier */
+
+
 
 // Creates a content key specifier.
 //
@@ -124,13 +123,13 @@ func NewContentKeySpecifierForKeySystemIdentifierOptions(keySystem ContentKeySys
 	rv := objc.Send[ContentKeySpecifier](instance.ID, objc.Sel("initForKeySystem:identifier:options:"), keySystem, contentKeyIdentifier, options)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewContentKeySpecifierForKeySystemIdentifierOptions */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ContentKeySpecifier */
+
+
+
 
 // A convenience initializer to create a content key specifier.
 //
@@ -139,23 +138,23 @@ func NewContentKeySpecifierForKeySystemIdentifierOptions(keySystem ContentKeySys
 func (cc _ContentKeySpecifierClass) ContentKeySpecifierForKeySystemIdentifierOptions(keySystem ContentKeySystem /* typedef */, contentKeyIdentifier objc.IObject, options foundation.IDictionary) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("contentKeySpecifierForKeySystem:identifier:options:"), keySystem, contentKeyIdentifier, options)
 	return rv
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=ContentKeySpecifierForKeySystemIdentifierOptions) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for ContentKeySpecifier */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ContentKeySpecifier */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ContentKeySpecifier */
+
+
+
+
+
+
+
 
 // The container and protocol-specific key identifier.
 //
@@ -164,7 +163,7 @@ func (cc _ContentKeySpecifierClass) ContentKeySpecifierForKeySystemIdentifierOpt
 func (c_ ContentKeySpecifier) Identifier() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("identifier"))
 	return rv
-}/* debug [instance_properties/getter]: identifier */
+}
 
 
 // The key system that generates content keys.
@@ -174,7 +173,7 @@ func (c_ ContentKeySpecifier) Identifier() objc.ID {
 func (c_ ContentKeySpecifier) KeySystem() ContentKeySystem /* typedef */ {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("keySystem"))
 	return rv
-}/* debug [instance_properties/getter]: keySystem */
+}
 
 
 // A dictionary of options with which you initialized the specifier.
@@ -184,11 +183,11 @@ func (c_ ContentKeySpecifier) KeySystem() ContentKeySystem /* typedef */ {
 func (c_ ContentKeySpecifier) Options() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](c_.ID, objc.Sel("options"))
 	return rv
-}/* debug [instance_properties/getter]: options */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVContentKeySpecifier */
+
+
+
 
 

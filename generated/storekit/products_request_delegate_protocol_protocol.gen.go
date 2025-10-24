@@ -2,6 +2,11 @@
 
 package storekit
 
+import (
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
 // PProductsRequestDelegate is the SKProductsRequestDelegate protocol interface.
 //
 // A set of methods the delegate implements so it receives the product information your app requests.
@@ -18,7 +23,7 @@ package storekit
 // See: doc://com.apple.storekit/documentation/StoreKit/SKProductsRequestDelegate
 type PProductsRequestDelegate interface {
 	// Required methods
-	ProductsRequestDidReceiveResponse(request ISKProductsRequest, response ISKProductsResponse)
+	ProductsRequestDidReceiveResponse(request ISKProductsRequest, response ISKProductsResponse)/* debug [protocol_interface/required_method]: ProductsRequestDidReceiveResponse */
 }
 
 // ProductsRequestDelegate is a delegate implementation builder for the PProductsRequestDelegate protocol.

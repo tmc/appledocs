@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVCaptureEventSound */
 
 
-/* debug [class_header]: Header for AVCaptureEventSound */
+
+
 // The class instance for the [CaptureEventSound] class.
 var (
 	CaptureEventSoundClass     _CaptureEventSoundClass
@@ -31,30 +30,30 @@ func getCaptureEventSoundClass() _CaptureEventSoundClass {
 type _CaptureEventSoundClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CaptureEventSound */
+
+
 // An interface definition for the [CaptureEventSound] class.
 type ICaptureEventSound interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for CaptureEventSound */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CaptureEventSound */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CaptureEventSound */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureEventSoundClass) Alloc() CaptureEventSound {
 	rv := objc.Send[CaptureEventSound](objc.ID(cc.class), objc.Sel("alloc"))
@@ -84,11 +83,11 @@ func (c_ CaptureEventSound) Autorelease() CaptureEventSound {
 func NewCaptureEventSound() CaptureEventSound {
 	return getCaptureEventSoundClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CaptureEventSound */
+
+
 // A sound object for a capture event.
 
 
@@ -106,11 +105,11 @@ type CaptureEventSound struct {
 func CaptureEventSoundFrom(ptr unsafe.Pointer) CaptureEventSound {
 	return CaptureEventSound{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CaptureEventSound */
+
+
 
 // Creates a sound object for a capture event.
 //
@@ -121,18 +120,18 @@ func NewCaptureEventSoundWithURLError(url objc.IObject /* cross-framework: NSURL
 	rv := objc.Send[CaptureEventSound](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCaptureEventSoundWithURLError */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CaptureEventSound */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CaptureEventSound */
+
+
+
+
+
 
 // The default sound for starting a video recording.
 //
@@ -141,7 +140,7 @@ func NewCaptureEventSoundWithURLError(url objc.IObject /* cross-framework: NSURL
 func (cc _CaptureEventSoundClass) BeginVideoRecordingSound() CaptureEventSound {
 	rv := objc.Send[CaptureEventSound](objc.ID(cc.class), objc.Sel("beginVideoRecordingSound"))
 	return rv
-}/* debug [class_properties_class/property]: beginVideoRecordingSound */
+}
 
 // The default sound for photo capture.
 //
@@ -150,7 +149,7 @@ func (cc _CaptureEventSoundClass) BeginVideoRecordingSound() CaptureEventSound {
 func (cc _CaptureEventSoundClass) CameraShutterSound() CaptureEventSound {
 	rv := objc.Send[CaptureEventSound](objc.ID(cc.class), objc.Sel("cameraShutterSound"))
 	return rv
-}/* debug [class_properties_class/property]: cameraShutterSound */
+}
 
 // The default sound for ending a video recording.
 //
@@ -159,20 +158,20 @@ func (cc _CaptureEventSoundClass) CameraShutterSound() CaptureEventSound {
 func (cc _CaptureEventSoundClass) EndVideoRecordingSound() CaptureEventSound {
 	rv := objc.Send[CaptureEventSound](objc.ID(cc.class), objc.Sel("endVideoRecordingSound"))
 	return rv
-}/* debug [class_properties_class/property]: endVideoRecordingSound */
-/* debug [class_properties_class]: End class properties */
+}
 
 
 
-/* debug [instance_methods]: Instance methods for CaptureEventSound */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CaptureEventSound */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class AVCaptureEventSound */
+
+
+
+
+
+
 
 

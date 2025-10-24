@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAudioSessionChannelDescription */
 
 
-/* debug [class_header]: Header for AVAudioSessionChannelDescription */
+
+
 // The class instance for the [AudioSessionChannelDescription] class.
 var (
 	AudioSessionChannelDescriptionClass     _AudioSessionChannelDescriptionClass
@@ -30,16 +30,16 @@ func getAudioSessionChannelDescriptionClass() _AudioSessionChannelDescriptionCla
 type _AudioSessionChannelDescriptionClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AudioSessionChannelDescription */
+
+
 // An interface definition for the [AudioSessionChannelDescription] class.
 type IAudioSessionChannelDescription interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for AudioSessionChannelDescription */
+
 	// properties:
 	Channels() IAVAudioSessionChannelDescription
 	SetChannels(value IAVAudioSessionChannelDescription)
@@ -53,19 +53,19 @@ type IAudioSessionChannelDescription interface {
 	SetPortType(value foundation.Port)
 	Uid() objc.IObject /* cross-framework: NSString */
 	SetUid(value objc.IObject /* cross-framework: NSString */)
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AudioSessionChannelDescription */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AudioSessionChannelDescription */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AudioSessionChannelDescriptionClass) Alloc() AudioSessionChannelDescription {
 	rv := objc.Send[AudioSessionChannelDescription](objc.ID(ac.class), objc.Sel("alloc"))
@@ -95,11 +95,11 @@ func (a_ AudioSessionChannelDescription) Autorelease() AudioSessionChannelDescri
 func NewAudioSessionChannelDescription() AudioSessionChannelDescription {
 	return getAudioSessionChannelDescriptionClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AudioSessionChannelDescription */
+
+
 // A class that describes a hardware channel on the current device.
 
 
@@ -117,30 +117,30 @@ type AudioSessionChannelDescription struct {
 func AudioSessionChannelDescriptionFrom(ptr unsafe.Pointer) AudioSessionChannelDescription {
 	return AudioSessionChannelDescription{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AudioSessionChannelDescription *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for AudioSessionChannelDescription */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for AudioSessionChannelDescription */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AudioSessionChannelDescription */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for AudioSessionChannelDescription */
+
+
+
+
+
+
+
+
+
 
 // An array of channel objects that describe the port’s input or output channels.
 //
@@ -149,7 +149,7 @@ func AudioSessionChannelDescriptionFrom(ptr unsafe.Pointer) AudioSessionChannelD
 func (a_ AudioSessionChannelDescription) Channels() IAVAudioSessionChannelDescription {
 	rv := objc.Send[AudioSessionChannelDescription](a_.ID, objc.Sel("channels"))
 	return rv
-}/* debug [instance_properties/getter]: channels */
+}
 
 
 // An array of channel objects that describe the port’s input or output channels.
@@ -158,7 +158,7 @@ func (a_ AudioSessionChannelDescription) Channels() IAVAudioSessionChannelDescri
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/channels
 func (a_ AudioSessionChannelDescription) SetChannels(value IAVAudioSessionChannelDescription) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setChannels:"), value)
-}/* debug [instance_properties/setter]: channels */
+}
 
 
 // A Boolean value that indicates whether the associated hardware port has built-in processing for two-way voice communication.
@@ -168,7 +168,7 @@ func (a_ AudioSessionChannelDescription) SetChannels(value IAVAudioSessionChanne
 func (a_ AudioSessionChannelDescription) HasHardwareVoiceCallProcessing() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hasHardwareVoiceCallProcessing"))
 	return rv
-}/* debug [instance_properties/getter]: hasHardwareVoiceCallProcessing */
+}
 
 
 // A Boolean value that indicates whether the associated hardware port has built-in processing for two-way voice communication.
@@ -177,7 +177,7 @@ func (a_ AudioSessionChannelDescription) HasHardwareVoiceCallProcessing() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/hashardwarevoicecallprocessing
 func (a_ AudioSessionChannelDescription) SetHasHardwareVoiceCallProcessing(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHasHardwareVoiceCallProcessing:"), value)
-}/* debug [instance_properties/setter]: hasHardwareVoiceCallProcessing */
+}
 
 
 // A Boolean value that indicates whether the port supports spatial audio playback.
@@ -187,7 +187,7 @@ func (a_ AudioSessionChannelDescription) SetHasHardwareVoiceCallProcessing(value
 func (a_ AudioSessionChannelDescription) IsSpatialAudioEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSpatialAudioEnabled"))
 	return rv
-}/* debug [instance_properties/getter]: isSpatialAudioEnabled */
+}
 
 
 // A Boolean value that indicates whether the port supports spatial audio playback.
@@ -196,7 +196,7 @@ func (a_ AudioSessionChannelDescription) IsSpatialAudioEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/isspatialaudioenabled
 func (a_ AudioSessionChannelDescription) SetIsSpatialAudioEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSpatialAudioEnabled:"), value)
-}/* debug [instance_properties/setter]: isSpatialAudioEnabled */
+}
 
 
 // A descriptive name for the port.
@@ -206,7 +206,7 @@ func (a_ AudioSessionChannelDescription) SetIsSpatialAudioEnabled(value bool) {
 func (a_ AudioSessionChannelDescription) PortName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("portName"))
 	return rv
-}/* debug [instance_properties/getter]: portName */
+}
 
 
 // A descriptive name for the port.
@@ -215,7 +215,7 @@ func (a_ AudioSessionChannelDescription) PortName() objc.IObject /* cross-framew
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/portname
 func (a_ AudioSessionChannelDescription) SetPortName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPortName:"), value)
-}/* debug [instance_properties/setter]: portName */
+}
 
 
 // The type of the port.
@@ -225,7 +225,7 @@ func (a_ AudioSessionChannelDescription) SetPortName(value objc.IObject /* cross
 func (a_ AudioSessionChannelDescription) PortType() foundation.Port {
 	rv := objc.Send[foundation.Port](a_.ID, objc.Sel("portType"))
 	return rv
-}/* debug [instance_properties/getter]: portType */
+}
 
 
 // The type of the port.
@@ -234,7 +234,7 @@ func (a_ AudioSessionChannelDescription) PortType() foundation.Port {
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/porttype
 func (a_ AudioSessionChannelDescription) SetPortType(value foundation.Port) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPortType:"), value)
-}/* debug [instance_properties/setter]: portType */
+}
 
 
 // A system-assigned unique identifier (UID) for the port.
@@ -244,7 +244,7 @@ func (a_ AudioSessionChannelDescription) SetPortType(value foundation.Port) {
 func (a_ AudioSessionChannelDescription) Uid() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("uid"))
 	return rv
-}/* debug [instance_properties/getter]: uid */
+}
 
 
 // A system-assigned unique identifier (UID) for the port.
@@ -253,11 +253,11 @@ func (a_ AudioSessionChannelDescription) Uid() objc.IObject /* cross-framework: 
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/uid
 func (a_ AudioSessionChannelDescription) SetUid(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUid:"), value)
-}/* debug [instance_properties/setter]: uid */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVAudioSessionChannelDescription */
+
+
+
 
 

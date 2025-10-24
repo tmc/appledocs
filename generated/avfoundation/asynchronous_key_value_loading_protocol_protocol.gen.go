@@ -26,6 +26,6 @@ import (
 // See: doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousKeyValueLoading
 type PAsynchronousKeyValueLoading interface {
 	// Required methods
-	LoadValuesAsynchronouslyForKeysCompletionHandler(keys []string, handler unsafe.Pointer)/* debug [protocol_interface/required_method]: LoadValuesAsynchronouslyForKeysCompletionHandler */
-	StatusOfValueForKeyError(key objc.IObject /* cross-framework: NSString */, outError objectivec.IObject) KeyValueStatus/* debug [protocol_interface/required_method]: StatusOfValueForKeyError */
+	LoadValuesAsynchronouslyForKeysCompletionHandler(keys []string, handler unsafe.Pointer)
+	StatusOfValueForKeyError(key objc.IObject /* cross-framework: NSString */, outError objectivec.IObject) KeyValueStatus
 }

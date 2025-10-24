@@ -15,3 +15,4 @@ var displayDidBeginReconfigurationProtocol *objc.Protocol
 func init() {
 	displayDidBeginReconfigurationProtocol = objc.GetProtocol("displayDidBeginReconfiguration:")
 }
+

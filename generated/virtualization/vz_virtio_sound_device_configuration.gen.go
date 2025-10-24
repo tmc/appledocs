@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZVirtioSoundDeviceConfiguration */
+
 
 /* debug [class_header]: Header for VZVirtioSoundDeviceConfiguration */
 // The class instance for the [VZVirtioSoundDeviceConfiguration] class.
@@ -28,29 +30,32 @@ func getVZVirtioSoundDeviceConfigurationClass() _VZVirtioSoundDeviceConfiguratio
 type _VZVirtioSoundDeviceConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZVirtioSoundDeviceConfiguration */
 // An interface definition for the [VZVirtioSoundDeviceConfiguration] class.
 type IVZVirtioSoundDeviceConfiguration interface {
 	IVZAudioDeviceConfiguration
-
-	/* debug [class_interface_properties]: Properties for VZVirtioSoundDeviceConfiguration */
+	
+/* debug [class_interface_properties]: Properties for VZVirtioSoundDeviceConfiguration */
 	// properties:
 	Streams() []VZVirtioSoundDeviceStreamConfiguration
 	SetStreams(value []VZVirtioSoundDeviceStreamConfiguration)
 	AudioDevices() IVZAudioDeviceConfiguration
 	SetAudioDevices(value IVZAudioDeviceConfiguration)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZVirtioSoundDeviceConfiguration */
+	
+/* debug [class_interface_methods]: Methods for VZVirtioSoundDeviceConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZVirtioSoundDeviceConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -82,13 +87,15 @@ func (v_ VZVirtioSoundDeviceConfiguration) Autorelease() VZVirtioSoundDeviceConf
 func NewVZVirtioSoundDeviceConfiguration() VZVirtioSoundDeviceConfiguration {
 	return getVZVirtioSoundDeviceConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZVirtioSoundDeviceConfiguration */
 // An object that defines a Virtio sound device configuration.
 //
 // Use a object to configure an audio device for your VM. After creating this object, assign appropriate values to the array property which defines the behaviors of the underlying audio streams for this audio device. After creating and configuring a object, assign it to the property of your VM’s configuration.
+
 
 // An object that defines a Virtio sound device configuration.
 //
@@ -106,20 +113,29 @@ func VZVirtioSoundDeviceConfigurationFrom(ptr unsafe.Pointer) VZVirtioSoundDevic
 		VZAudioDeviceConfiguration: VZAudioDeviceConfigurationFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZVirtioSoundDeviceConfiguration */
 /* debug [class_init_methods]: End init methods */
 
+
+
 /* debug [class_methods]: Class methods for VZVirtioSoundDeviceConfiguration */
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZVirtioSoundDeviceConfiguration */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZVirtioSoundDeviceConfiguration */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZVirtioSoundDeviceConfiguration */
 
@@ -130,7 +146,8 @@ func VZVirtioSoundDeviceConfigurationFrom(ptr unsafe.Pointer) VZVirtioSoundDevic
 func (v_ VZVirtioSoundDeviceConfiguration) Streams() []VZVirtioSoundDeviceStreamConfiguration {
 	rv := objc.Send[[]VZVirtioSoundDeviceStreamConfiguration](v_.ID, objc.Sel("streams"))
 	return rv
-} /* debug [instance_properties/getter]: streams */
+}/* debug [instance_properties/getter]: streams */
+
 
 // List of audio streams exposed by this device.
 //
@@ -147,7 +164,8 @@ func (v_ VZVirtioSoundDeviceConfiguration) SetStreams(value []VZVirtioSoundDevic
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](v_.ID, objc.Sel("setStreams:"), nsArray)
-} /* debug [instance_properties/setter]: streams */
+}/* debug [instance_properties/setter]: streams */
+
 
 // The list of audio devices.
 //
@@ -156,7 +174,8 @@ func (v_ VZVirtioSoundDeviceConfiguration) SetStreams(value []VZVirtioSoundDevic
 func (v_ VZVirtioSoundDeviceConfiguration) AudioDevices() IVZAudioDeviceConfiguration {
 	rv := objc.Send[VZAudioDeviceConfiguration](v_.ID, objc.Sel("audioDevices"))
 	return rv
-} /* debug [instance_properties/getter]: audioDevices */
+}/* debug [instance_properties/getter]: audioDevices */
+
 
 // The list of audio devices.
 //
@@ -164,8 +183,11 @@ func (v_ VZVirtioSoundDeviceConfiguration) AudioDevices() IVZAudioDeviceConfigur
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/audiodevices
 func (v_ VZVirtioSoundDeviceConfiguration) SetAudioDevices(value IVZAudioDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAudioDevices:"), value)
-} /* debug [instance_properties/setter]: audioDevices */
+}/* debug [instance_properties/setter]: audioDevices */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZVirtioSoundDeviceConfiguration */
+
+

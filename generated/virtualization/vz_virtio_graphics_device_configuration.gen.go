@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZVirtioGraphicsDeviceConfiguration */
+
 
 /* debug [class_header]: Header for VZVirtioGraphicsDeviceConfiguration */
 // The class instance for the [VZVirtioGraphicsDeviceConfiguration] class.
@@ -28,27 +30,30 @@ func getVZVirtioGraphicsDeviceConfigurationClass() _VZVirtioGraphicsDeviceConfig
 type _VZVirtioGraphicsDeviceConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZVirtioGraphicsDeviceConfiguration */
 // An interface definition for the [VZVirtioGraphicsDeviceConfiguration] class.
 type IVZVirtioGraphicsDeviceConfiguration interface {
 	IVZGraphicsDeviceConfiguration
-
-	/* debug [class_interface_properties]: Properties for VZVirtioGraphicsDeviceConfiguration */
+	
+/* debug [class_interface_properties]: Properties for VZVirtioGraphicsDeviceConfiguration */
 	// properties:
 	Scanouts() []VZVirtioGraphicsScanoutConfiguration
 	SetScanouts(value []VZVirtioGraphicsScanoutConfiguration)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZVirtioGraphicsDeviceConfiguration */
+	
+/* debug [class_interface_methods]: Methods for VZVirtioGraphicsDeviceConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZVirtioGraphicsDeviceConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -80,11 +85,13 @@ func (v_ VZVirtioGraphicsDeviceConfiguration) Autorelease() VZVirtioGraphicsDevi
 func NewVZVirtioGraphicsDeviceConfiguration() VZVirtioGraphicsDeviceConfiguration {
 	return getVZVirtioGraphicsDeviceConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZVirtioGraphicsDeviceConfiguration */
 // Configuration that represents the configuration of a Virtio graphics device for a Linux VM.
+
 
 // Configuration that represents the configuration of a Virtio graphics device for a Linux VM.
 //
@@ -102,20 +109,29 @@ func VZVirtioGraphicsDeviceConfigurationFrom(ptr unsafe.Pointer) VZVirtioGraphic
 		VZGraphicsDeviceConfiguration: VZGraphicsDeviceConfigurationFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZVirtioGraphicsDeviceConfiguration */
 /* debug [class_init_methods]: End init methods */
 
+
+
 /* debug [class_methods]: Class methods for VZVirtioGraphicsDeviceConfiguration */
 /* debug [class_methods]: End class methods */
+
+
 
 /* debug [class_properties_class]: Class properties for VZVirtioGraphicsDeviceConfiguration */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZVirtioGraphicsDeviceConfiguration */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZVirtioGraphicsDeviceConfiguration */
 
@@ -126,7 +142,8 @@ func VZVirtioGraphicsDeviceConfigurationFrom(ptr unsafe.Pointer) VZVirtioGraphic
 func (v_ VZVirtioGraphicsDeviceConfiguration) Scanouts() []VZVirtioGraphicsScanoutConfiguration {
 	rv := objc.Send[[]VZVirtioGraphicsScanoutConfiguration](v_.ID, objc.Sel("scanouts"))
 	return rv
-} /* debug [instance_properties/getter]: scanouts */
+}/* debug [instance_properties/getter]: scanouts */
+
 
 // The array of output devices.
 //
@@ -143,8 +160,11 @@ func (v_ VZVirtioGraphicsDeviceConfiguration) SetScanouts(value []VZVirtioGraphi
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](v_.ID, objc.Sel("setScanouts:"), nsArray)
-} /* debug [instance_properties/setter]: scanouts */
+}/* debug [instance_properties/setter]: scanouts */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZVirtioGraphicsDeviceConfiguration */
+
+

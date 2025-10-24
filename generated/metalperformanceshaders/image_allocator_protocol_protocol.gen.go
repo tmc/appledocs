@@ -19,9 +19,9 @@ import (
 // See: doc://com.apple.metalperformanceshaders/documentation/MetalPerformanceShaders/MPSImageAllocator
 type PImageAllocator interface {
 	// Required methods
-	Image()/* debug [protocol_interface/required_method]: Image */
-	ImageForCommandBufferImageDescriptorKernel(cmdBuf unsafe.Pointer, descriptor IImageDescriptor, kernel IKernel) Image/* debug [protocol_interface/required_method]: ImageForCommandBufferImageDescriptorKernel */
-	ImageBatchForCommandBufferImageDescriptorKernelCount(cmdBuf unsafe.Pointer, descriptor IImageDescriptor, kernel IKernel, count uint) ImageBatch/* debug [protocol_interface/required_method]: ImageBatchForCommandBufferImageDescriptorKernelCount */
+	Image()
+	ImageForCommandBufferImageDescriptorKernel(cmdBuf unsafe.Pointer, descriptor IImageDescriptor, kernel IKernel) Image
+	ImageBatchForCommandBufferImageDescriptorKernelCount(cmdBuf unsafe.Pointer, descriptor IImageDescriptor, kernel IKernel, count uint) ImageBatch
 	// Optional methods
 	ImageBatch()
 	HasImageBatch() bool

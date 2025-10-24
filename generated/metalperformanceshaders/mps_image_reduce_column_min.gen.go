@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSImageReduceColumnMin */
 
 
-/* debug [class_header]: Header for MPSImageReduceColumnMin */
+
+
 // The class instance for the [ImageReduceColumnMin] class.
 var (
 	ImageReduceColumnMinClass     _ImageReduceColumnMinClass
@@ -30,30 +30,30 @@ func getImageReduceColumnMinClass() _ImageReduceColumnMinClass {
 type _ImageReduceColumnMinClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for ImageReduceColumnMin */
+
+
 // An interface definition for the [ImageReduceColumnMin] class.
 type IImageReduceColumnMin interface {
 	IImageReduceUnary
 	
-/* debug [class_interface_properties]: Properties for ImageReduceColumnMin */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for ImageReduceColumnMin */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for ImageReduceColumnMin */
+
+
 // Alloc allocates a new instance without initialization.
 func (ic _ImageReduceColumnMinClass) Alloc() ImageReduceColumnMin {
 	rv := objc.Send[ImageReduceColumnMin](objc.ID(ic.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (i_ ImageReduceColumnMin) Autorelease() ImageReduceColumnMin {
 func NewImageReduceColumnMin() ImageReduceColumnMin {
 	return getImageReduceColumnMinClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for ImageReduceColumnMin */
+
+
 // A filter that returns the minimum value for each column in an image.
 
 
@@ -107,11 +107,11 @@ func ImageReduceColumnMinFrom(ptr unsafe.Pointer) ImageReduceColumnMin {
 		ImageReduceUnary: ImageReduceUnaryFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for ImageReduceColumnMin */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagereducecolumnmin/2942333-initwithdevice
@@ -120,31 +120,31 @@ func NewImageReduceColumnMinWithDevice(device unsafe.Pointer) ImageReduceColumnM
 	rv := objc.Send[ImageReduceColumnMin](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewImageReduceColumnMinWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for ImageReduceColumnMin */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for ImageReduceColumnMin */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for ImageReduceColumnMin */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for ImageReduceColumnMin */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSImageReduceColumnMin */
+
+
+
+
+
+
+
+
+
+
+
 
 

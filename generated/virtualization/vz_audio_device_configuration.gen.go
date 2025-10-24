@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZAudioDeviceConfiguration */
 
+
 /* debug [class_header]: Header for VZAudioDeviceConfiguration */
 // The class instance for the [VZAudioDeviceConfiguration] class.
 var (
@@ -29,25 +30,28 @@ func getVZAudioDeviceConfigurationClass() _VZAudioDeviceConfigurationClass {
 type _VZAudioDeviceConfigurationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZAudioDeviceConfiguration */
 // An interface definition for the [VZAudioDeviceConfiguration] class.
 type IVZAudioDeviceConfiguration interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZAudioDeviceConfiguration */
+	
+/* debug [class_interface_properties]: Properties for VZAudioDeviceConfiguration */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZAudioDeviceConfiguration */
+	
+/* debug [class_interface_methods]: Methods for VZAudioDeviceConfiguration */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZAudioDeviceConfiguration */
 // Alloc allocates a new instance without initialization.
@@ -79,13 +83,15 @@ func (v_ VZAudioDeviceConfiguration) Autorelease() VZAudioDeviceConfiguration {
 func NewVZAudioDeviceConfiguration() VZAudioDeviceConfiguration {
 	return getVZAudioDeviceConfigurationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZAudioDeviceConfiguration */
 // The base class for an audio device configuration.
 //
 // Don’t instantiate this abstract class directly. Instead, instantiate one of its subclasses such as .
+
 
 // The base class for an audio device configuration.
 //
@@ -101,21 +107,34 @@ type VZAudioDeviceConfiguration struct {
 func VZAudioDeviceConfigurationFrom(ptr unsafe.Pointer) VZAudioDeviceConfiguration {
 	return VZAudioDeviceConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZAudioDeviceConfiguration */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZAudioDeviceConfiguration *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZAudioDeviceConfiguration */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZAudioDeviceConfiguration */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZAudioDeviceConfiguration */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for VZAudioDeviceConfiguration */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZAudioDeviceConfiguration */
+
+
+

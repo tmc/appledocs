@@ -6,12 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class SNClassification */
+
 
 /* debug [class_header]: Header for SNClassification */
 // The class instance for the [SNClassification] class.
@@ -30,15 +31,16 @@ func getSNClassificationClass() _SNClassificationClass {
 type _SNClassificationClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for SNClassification */
 // An interface definition for the [SNClassification] class.
 type ISNClassification interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for SNClassification */
+	
+/* debug [class_interface_properties]: Properties for SNClassification */
 	// properties:
 	Confidence() float64
 	Identifier() objc.IObject /* cross-framework: NSString */
@@ -46,15 +48,17 @@ type ISNClassification interface {
 	SetClassifications(value ISNClassification)
 	TimeRange() TimeRange /* not a class type */
 	SetTimeRange(value TimeRange /* not a class type */)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for SNClassification */
+	
+/* debug [class_interface_methods]: Methods for SNClassification */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for SNClassification */
 // Alloc allocates a new instance without initialization.
@@ -86,13 +90,15 @@ func (s_ SNClassification) Autorelease() SNClassification {
 func NewSNClassification() SNClassification {
 	return getSNClassificationClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for SNClassification */
 // A type that pairs a sound classifier’s prediction with its confidence in that prediction.
 //
 // An represents a single sound classification prediction, and the sound classifier model’s confidence in that prediction.
+
 
 // A type that pairs a sound classifier’s prediction with its confidence in that prediction.
 //
@@ -108,19 +114,28 @@ type SNClassification struct {
 func SNClassificationFrom(ptr unsafe.Pointer) SNClassification {
 	return SNClassification{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for SNClassification */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for SNClassification *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for SNClassification */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for SNClassification */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for SNClassification */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for SNClassification */
 
@@ -131,7 +146,8 @@ func SNClassificationFrom(ptr unsafe.Pointer) SNClassification {
 func (s_ SNClassification) Confidence() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("confidence"))
 	return rv
-} /* debug [instance_properties/getter]: confidence */
+}/* debug [instance_properties/getter]: confidence */
+
 
 // A prediction label that’s one of the classifications a sound classifier’s underlying model defines.
 //
@@ -140,7 +156,8 @@ func (s_ SNClassification) Confidence() float64 {
 func (s_ SNClassification) Identifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("identifier"))
 	return rv
-} /* debug [instance_properties/getter]: identifier */
+}/* debug [instance_properties/getter]: identifier */
+
 
 // A sorted array of the request’s top classification candidates.
 //
@@ -149,7 +166,8 @@ func (s_ SNClassification) Identifier() objc.IObject /* cross-framework: NSStrin
 func (s_ SNClassification) Classifications() ISNClassification {
 	rv := objc.Send[SNClassification](s_.ID, objc.Sel("classifications"))
 	return rv
-} /* debug [instance_properties/getter]: classifications */
+}/* debug [instance_properties/getter]: classifications */
+
 
 // A sorted array of the request’s top classification candidates.
 //
@@ -157,7 +175,8 @@ func (s_ SNClassification) Classifications() ISNClassification {
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/classifications
 func (s_ SNClassification) SetClassifications(value ISNClassification) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setClassifications:"), value)
-} /* debug [instance_properties/setter]: classifications */
+}/* debug [instance_properties/setter]: classifications */
+
 
 // The time span that corresponds to the result’s classifications.
 //
@@ -166,7 +185,8 @@ func (s_ SNClassification) SetClassifications(value ISNClassification) {
 func (s_ SNClassification) TimeRange() TimeRange /* not a class type */ {
 	rv := objc.Send[TimeRange](s_.ID, objc.Sel("timeRange"))
 	return rv
-} /* debug [instance_properties/getter]: timeRange */
+}/* debug [instance_properties/getter]: timeRange */
+
 
 // The time span that corresponds to the result’s classifications.
 //
@@ -174,8 +194,12 @@ func (s_ SNClassification) TimeRange() TimeRange /* not a class type */ {
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/timerange
 func (s_ SNClassification) SetTimeRange(value TimeRange /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTimeRange:"), value)
-} /* debug [instance_properties/setter]: timeRange */
+}/* debug [instance_properties/setter]: timeRange */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class SNClassification */
+
+
+

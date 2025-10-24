@@ -7,14 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSNDArrayBinarySecondaryGradientKernel */
 
 
-/* debug [class_header]: Header for MPSNDArrayBinarySecondaryGradientKernel */
+
+
 // The class instance for the [NDArrayBinarySecondaryGradientKernel] class.
 var (
 	NDArrayBinarySecondaryGradientKernelClass     _NDArrayBinarySecondaryGradientKernelClass
@@ -31,33 +30,33 @@ func getNDArrayBinarySecondaryGradientKernelClass() _NDArrayBinarySecondaryGradi
 type _NDArrayBinarySecondaryGradientKernelClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for NDArrayBinarySecondaryGradientKernel */
+
+
 // An interface definition for the [NDArrayBinarySecondaryGradientKernel] class.
 type INDArrayBinarySecondaryGradientKernel interface {
 	INDArrayMultiaryGradientKernel
 	
-/* debug [class_interface_properties]: Properties for NDArrayBinarySecondaryGradientKernel */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for NDArrayBinarySecondaryGradientKernel */
+
 	// methods:
 	Encode()
 	EncodeToCommandBufferPrimarySourceArraySecondarySourceArraySourceGradientGradientState(cmdBuf unsafe.Pointer, primarySourceArray INDArray, secondarySourceArray INDArray, gradient INDArray, state IState) INDArray
 	EncodeToCommandBufferPrimarySourceArraySecondarySourceArraySourceGradientGradientStateDestinationArray(cmdBuf unsafe.Pointer, primarySourceArray INDArray, secondarySourceArray INDArray, gradient INDArray, state IState, destination INDArray)
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for NDArrayBinarySecondaryGradientKernel */
+
+
 // Alloc allocates a new instance without initialization.
 func (nc _NDArrayBinarySecondaryGradientKernelClass) Alloc() NDArrayBinarySecondaryGradientKernel {
 	rv := objc.Send[NDArrayBinarySecondaryGradientKernel](objc.ID(nc.class), objc.Sel("alloc"))
@@ -87,11 +86,11 @@ func (n_ NDArrayBinarySecondaryGradientKernel) Autorelease() NDArrayBinarySecond
 func NewNDArrayBinarySecondaryGradientKernel() NDArrayBinarySecondaryGradientKernel {
 	return getNDArrayBinarySecondaryGradientKernelClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for NDArrayBinarySecondaryGradientKernel */
+
+
 
 
 // [Full Topic]
@@ -106,11 +105,11 @@ func NDArrayBinarySecondaryGradientKernelFrom(ptr unsafe.Pointer) NDArrayBinaryS
 		NDArrayMultiaryGradientKernel: NDArrayMultiaryGradientKernelFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for NDArrayBinarySecondaryGradientKernel */
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarysecondarygradientkernel/3175007-initwithcoder
@@ -119,7 +118,7 @@ func NewNDArrayBinarySecondaryGradientKernelWithCoderDevice(coder foundation.Cod
 	rv := objc.Send[NDArrayBinarySecondaryGradientKernel](instance.ID, objc.Sel("initWithCoder:device:"), coder, device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNDArrayBinarySecondaryGradientKernelWithCoderDevice */
+}
 
 
 // [Full Topic]
@@ -129,29 +128,29 @@ func NewNDArrayBinarySecondaryGradientKernelWithDevice(device unsafe.Pointer) ND
 	rv := objc.Send[NDArrayBinarySecondaryGradientKernel](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewNDArrayBinarySecondaryGradientKernelWithDevice */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for NDArrayBinarySecondaryGradientKernel */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for NDArrayBinarySecondaryGradientKernel */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for NDArrayBinarySecondaryGradientKernel */
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarysecondarygradientkernel/3143517-encode
 func (n_ NDArrayBinarySecondaryGradientKernel) Encode() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("encode"))
-}/* debug [instance_methods/method]: Encode */
+}
 
 
 // [Full Topic]
@@ -159,23 +158,23 @@ func (n_ NDArrayBinarySecondaryGradientKernel) Encode() {
 func (n_ NDArrayBinarySecondaryGradientKernel) EncodeToCommandBufferPrimarySourceArraySecondarySourceArraySourceGradientGradientState(cmdBuf unsafe.Pointer, primarySourceArray INDArray, secondarySourceArray INDArray, gradient INDArray, state IState) INDArray {
 	rv := objc.Send[NDArray](n_.ID, objc.Sel("encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:"), cmdBuf, primarySourceArray, secondarySourceArray, gradient, state)
 	return rv
-}/* debug [instance_methods/method]: EncodeToCommandBufferPrimarySourceArraySecondarySourceArraySourceGradientGradientState */
+}
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarysecondarygradientkernel/3143518-encodetocommandbuffer
 func (n_ NDArrayBinarySecondaryGradientKernel) EncodeToCommandBufferPrimarySourceArraySecondarySourceArraySourceGradientGradientStateDestinationArray(cmdBuf unsafe.Pointer, primarySourceArray INDArray, secondarySourceArray INDArray, gradient INDArray, state IState, destination INDArray) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:destinationArray:"), cmdBuf, primarySourceArray, secondarySourceArray, gradient, state, destination)
-}/* debug [instance_methods/method]: EncodeToCommandBufferPrimarySourceArraySecondarySourceArraySourceGradientGradientStateDestinationArray */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for NDArrayBinarySecondaryGradientKernel */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSNDArrayBinarySecondaryGradientKernel */
+
+
+
+
+
 
 

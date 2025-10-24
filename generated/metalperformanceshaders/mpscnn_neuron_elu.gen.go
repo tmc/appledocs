@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNNeuronELU */
 
 
-/* debug [class_header]: Header for MPSCNNNeuronELU */
+
+
 // The class instance for the [CNNNeuronELU] class.
 var (
 	CNNNeuronELUClass     _CNNNeuronELUClass
@@ -30,30 +30,30 @@ func getCNNNeuronELUClass() _CNNNeuronELUClass {
 type _CNNNeuronELUClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNNeuronELU */
+
+
 // An interface definition for the [CNNNeuronELU] class.
 type ICNNNeuronELU interface {
 	ICNNNeuron
 	
-/* debug [class_interface_properties]: Properties for CNNNeuronELU */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNNeuronELU */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNNeuronELU */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNNeuronELUClass) Alloc() CNNNeuronELU {
 	rv := objc.Send[CNNNeuronELU](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNNeuronELU) Autorelease() CNNNeuronELU {
 func NewCNNNeuronELU() CNNNeuronELU {
 	return getCNNNeuronELUClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNNeuronELU */
+
+
 // A parametric ELU neuron filter.
 //
 // For each pixel in an image, the filter applies the following function: ![f(x) = a * (exp(x) - 1) if x < 0 | f(x) =
@@ -109,11 +109,11 @@ func CNNNeuronELUFrom(ptr unsafe.Pointer) CNNNeuronELU {
 		CNNNeuron: CNNNeuronFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNNeuronELU */
+
+
 
 // Initializes a parametric ELU neuron filter.
 //
@@ -124,31 +124,31 @@ func NewCNNNeuronELUWithDeviceA(device unsafe.Pointer, a float32) CNNNeuronELU {
 	rv := objc.Send[CNNNeuronELU](instance.ID, objc.Sel("initWithDevice:a:"), device, a)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNNeuronELUWithDeviceA */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNNeuronELU */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNNeuronELU */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNNeuronELU */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNNeuronELU */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNNeuronELU */
+
+
+
+
+
+
+
+
+
+
+
 
 

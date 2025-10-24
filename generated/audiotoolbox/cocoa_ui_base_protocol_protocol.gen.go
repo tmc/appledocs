@@ -17,6 +17,6 @@ import (
 // See: doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUCocoaUIBase
 type PCocoaUIBase interface {
 	// Required methods
-	InterfaceVersion() objectivec.IObject/* debug [protocol_interface/required_method]: InterfaceVersion */
-	UiViewForAudioUnitWithSize(inAudioUnit AudioUnit /* typedef */, inPreferredSize Size /* not a class type */) appkit.View/* debug [protocol_interface/required_method]: UiViewForAudioUnitWithSize */
+	InterfaceVersion() objectivec.IObject
+	UiViewForAudioUnitWithSize(inAudioUnit AudioUnit /* typedef */, inPreferredSize Size /* not a class type */) appkit.View
 }

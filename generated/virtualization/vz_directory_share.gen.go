@@ -12,6 +12,7 @@ import (
 
 /* debug [class.gen.go]: Generating class VZDirectoryShare */
 
+
 /* debug [class_header]: Header for VZDirectoryShare */
 // The class instance for the [VZDirectoryShare] class.
 var (
@@ -29,25 +30,28 @@ func getVZDirectoryShareClass() _VZDirectoryShareClass {
 type _VZDirectoryShareClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZDirectoryShare */
 // An interface definition for the [VZDirectoryShare] class.
 type IVZDirectoryShare interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for VZDirectoryShare */
+	
+/* debug [class_interface_properties]: Properties for VZDirectoryShare */
 	// properties:
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZDirectoryShare */
+	
+/* debug [class_interface_methods]: Methods for VZDirectoryShare */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZDirectoryShare */
 // Alloc allocates a new instance without initialization.
@@ -79,13 +83,15 @@ func (v_ VZDirectoryShare) Autorelease() VZDirectoryShare {
 func NewVZDirectoryShare() VZDirectoryShare {
 	return getVZDirectoryShareClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZDirectoryShare */
 // The base class for a directory share.
 //
 // A directory share defines how the system exposes host directories to a guest VM. Don’t instantiate directly, use one of its subclasses such as or instead.
+
 
 // The base class for a directory share.
 //
@@ -101,21 +107,34 @@ type VZDirectoryShare struct {
 func VZDirectoryShareFrom(ptr unsafe.Pointer) VZDirectoryShare {
 	return VZDirectoryShare{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for VZDirectoryShare */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for VZDirectoryShare *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZDirectoryShare */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZDirectoryShare */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for VZDirectoryShare */
 /* debug [instance_methods]: End instance methods */
 
+
+
 /* debug [instance_properties]: Instance properties for VZDirectoryShare */
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZDirectoryShare */
+
+
+

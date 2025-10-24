@@ -2,9 +2,9 @@
 
 package metalperformanceshaders
 
-/* debug [enums.gen.go]: Generating 45 enums for MetalPerformanceShaders */
+
 // Enum types and constants
-/* debug [enums.gen.go]: Processing enum MPSAccelerationStructureStatus (2 cases) */
+
 // MPSAccelerationStructureStatus - Constants that indicate an acceleration structure build state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAccelerationStructureStatus
@@ -19,7 +19,7 @@ const (
 	MPSAccelerationStructureStatusUnbuilt MPSAccelerationStructureStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSAccelerationStructureUsage (9 cases) */
+
 // MPSAccelerationStructureUsage - Options that describe how an acceleration structure will be used.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAccelerationStructureUsage
@@ -42,7 +42,7 @@ const (
 	preferGPUBuild MPSAccelerationStructureUsage = 0
 	// MPSAccelerationStructureUsageFrequentRebuild - Option indicating that the acceleration structure will be rebuilt frequently.
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructureusage/mpsaccelerationstructureusagefrequentrebuild
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAccelerationStructureUsage/frequentRebuild
 	MPSAccelerationStructureUsageFrequentRebuild MPSAccelerationStructureUsage = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAccelerationStructureUsage/MPSAccelerationStructureUsageNone
@@ -59,7 +59,7 @@ const (
 	MPSAccelerationStructureUsageRefit MPSAccelerationStructureUsage = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSAliasingStrategy (13 cases) */
+
 // MPSAliasingStrategy enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAliasingStrategy
@@ -85,10 +85,10 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaliasingstrategy/3114023-shallnotalias
 	shallNotAlias MPSAliasingStrategy = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaliasingstrategy/mpsaliasingstrategyaliasingreserved
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAliasingStrategy/aliasingReserved
 	MPSAliasingStrategyAliasingReserved MPSAliasingStrategy = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaliasingstrategy/mpsaliasingstrategydefault
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAliasingStrategy/default
 	MPSAliasingStrategyDefault MPSAliasingStrategy = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAliasingStrategy/MPSAliasingStrategyDontCare
@@ -107,7 +107,7 @@ const (
 	MPSAliasingStrategyShallNotAlias MPSAliasingStrategy = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSAlphaType (3 cases) */
+
 // MPSAlphaType - Premultiplication description for the color channels of an image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAlphaType
@@ -128,7 +128,7 @@ const (
 	MPSAlphaTypePremultiplied MPSAlphaType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSBoundingBoxIntersectionTestType (3 cases) */
+
 // MPSBoundingBoxIntersectionTestType - Options for the intersection test type for a ray intersector bounding box.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSBoundingBoxIntersectionTestType
@@ -146,7 +146,7 @@ const (
 	MPSBoundingBoxIntersectionTestTypeFast MPSBoundingBoxIntersectionTestType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSCNNBatchNormalizationFlags (10 cases) */
+
 // MPSCNNBatchNormalizationFlags - Options that define how statistics are calculated during batch normalization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNBatchNormalizationFlags
@@ -169,23 +169,23 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags/2953950-default
 	Default MPSCNNBatchNormalizationFlags = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags/mpscnnbatchnormalizationflagscalculatestatisticsalways
-	MPSCNNBatchNormalizationFlagsCalculateStatisticsAlways MPSCNNBatchNormalizationFlags = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags/mpscnnbatchnormalizationflagscalculatestatisticsautomatic
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNBatchNormalizationFlags/CalculateStatisticsAutomatic
 	MPSCNNBatchNormalizationFlagsCalculateStatisticsAutomatic MPSCNNBatchNormalizationFlags = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags/mpscnnbatchnormalizationflagscalculatestatisticsmask
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNBatchNormalizationFlags/Default
+	MPSCNNBatchNormalizationFlagsDefault MPSCNNBatchNormalizationFlags = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNBatchNormalizationFlags/calculateStatisticsAlways
+	MPSCNNBatchNormalizationFlagsCalculateStatisticsAlways MPSCNNBatchNormalizationFlags = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNBatchNormalizationFlags/calculateStatisticsMask
 	MPSCNNBatchNormalizationFlagsCalculateStatisticsMask MPSCNNBatchNormalizationFlags = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags/mpscnnbatchnormalizationflagscalculatestatisticsnever
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNBatchNormalizationFlags/calculateStatisticsNever
 	MPSCNNBatchNormalizationFlagsCalculateStatisticsNever MPSCNNBatchNormalizationFlags = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags/mpscnnbatchnormalizationflagsdefault
-	MPSCNNBatchNormalizationFlagsDefault MPSCNNBatchNormalizationFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSCNNBinaryConvolutionFlags (2 cases) */
+
 // MPSCNNBinaryConvolutionFlags - Options used to control binary convolution kernels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNBinaryConvolutionFlags
@@ -200,7 +200,7 @@ const (
 	MPSCNNBinaryConvolutionFlagsUseBetaScaling MPSCNNBinaryConvolutionFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSCNNBinaryConvolutionType (3 cases) */
+
 // MPSCNNBinaryConvolutionType - Options that defines what operations are used to perform binary convolution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNBinaryConvolutionType
@@ -221,7 +221,7 @@ const (
 	MPSCNNBinaryConvolutionTypeXNOR MPSCNNBinaryConvolutionType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSCNNConvolutionFlags (1 cases) */
+
 // MPSCNNConvolutionFlags - Options used to control how kernel weights are stored and used in the CNN kernels
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolutionFlags
@@ -233,7 +233,7 @@ const (
 	MPSCNNConvolutionFlagsNone MPSCNNConvolutionFlags = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSCNNConvolutionGradientOption (6 cases) */
+
 // MPSCNNConvolutionGradientOption - Options that control which gradient to compute during backward propagation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolutionGradientOption
@@ -250,17 +250,17 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientoption/2942431-all
 	all MPSCNNConvolutionGradientOption = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientoption/mpscnnconvolutiongradientoptionall
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolutionGradientOption/all
 	MPSCNNConvolutionGradientOptionAll MPSCNNConvolutionGradientOption = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientoption/mpscnnconvolutiongradientoptiongradientwithdata
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolutionGradientOption/gradientWithData
 	MPSCNNConvolutionGradientOptionGradientWithData MPSCNNConvolutionGradientOption = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientoption/mpscnnconvolutiongradientoptiongradientwithweightsandbias
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolutionGradientOption/gradientWithWeightsAndBias
 	MPSCNNConvolutionGradientOptionGradientWithWeightsAndBias MPSCNNConvolutionGradientOption = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSCNNConvolutionWeightsLayout (1 cases) */
+
 // MPSCNNConvolutionWeightsLayout enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolutionWeightsLayout
@@ -272,7 +272,7 @@ const (
 	MPSCNNConvolutionWeightsLayoutOHWI MPSCNNConvolutionWeightsLayout = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSCNNLossType (11 cases) */
+
 // MPSCNNLossType - Constants that indicate supported loss filter types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNLossType
@@ -314,7 +314,7 @@ const (
 	MPSCNNLossTypeSoftMaxCrossEntropy MPSCNNLossType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSCNNNeuronType (17 cases) */
+
 // MPSCNNNeuronType - The types of neuron filter to append to a convolution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNNeuronType
@@ -384,7 +384,7 @@ const (
 	MPSCNNNeuronTypeTanH MPSCNNNeuronType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSCNNReductionType (5 cases) */
+
 // MPSCNNReductionType - Constants that indicate supported reduction types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNReductionType
@@ -408,7 +408,7 @@ const (
 	MPSCNNReductionTypeSumByNonZeroWeights MPSCNNReductionType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSCNNWeightsQuantizationType (3 cases) */
+
 // MPSCNNWeightsQuantizationType - Options that specify the type of quantization used to generate unsigned integer weights.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNWeightsQuantizationType
@@ -426,7 +426,7 @@ const (
 	MPSCNNWeightsQuantizationTypeNone MPSCNNWeightsQuantizationType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSDataLayout (2 cases) */
+
 // MPSDataLayout - Options that define how buffer data is arranged.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSDataLayout
@@ -441,7 +441,7 @@ const (
 	MPSDataLayoutHeightxWidthxFeatureChannels MPSDataLayout = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSDataType (28 cases) */
+
 // MPSDataType - A value to specify a type of data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSDataType
@@ -499,11 +499,11 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSDataType/int8
 	MPSDataTypeInt8 MPSDataType = 0
 	//
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSDataType/intBit
+	MPSDataTypeIntBit MPSDataType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSDataType/invalid
 	MPSDataTypeInvalid MPSDataType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/mpsdatatypeintbit
-	MPSDataTypeIntBit MPSDataType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/mpsdatatypenormalizedbit
 	MPSDataTypeNormalizedBit MPSDataType = 0
@@ -536,7 +536,7 @@ const (
 	MPSDataTypeUnorm8 MPSDataType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSDeviceOptions (6 cases) */
+
 // MPSDeviceOptions enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSDeviceOptions
@@ -553,17 +553,17 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsdeviceoptions/3088917-skipremovable
 	skipRemovable MPSDeviceOptions = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsdeviceoptions/mpsdeviceoptionsdefault
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSDeviceOptions/Default
 	MPSDeviceOptionsDefault MPSDeviceOptions = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsdeviceoptions/mpsdeviceoptionslowpower
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSDeviceOptions/lowPower
 	MPSDeviceOptionsLowPower MPSDeviceOptions = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsdeviceoptions/mpsdeviceoptionsskipremovable
 	MPSDeviceOptionsSkipRemovable MPSDeviceOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSFloatDataTypeBit (3 cases) */
+
 // MPSFloatDataTypeBit enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSFloatDataTypeBit
@@ -581,7 +581,7 @@ const (
 	MPSFloatDataTypeSignBit MPSFloatDataTypeBit = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSFloatDataTypeShift (3 cases) */
+
 // MPSFloatDataTypeShift enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSFloatDataTypeShift
@@ -599,7 +599,7 @@ const (
 	MPSFloatDataTypeSignShift MPSFloatDataTypeShift = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSImageEdgeMode (5 cases) */
+
 // MPSImageEdgeMode - The options used to control the edge behavior of an image filter when it reads outside the bounds of a source texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageEdgeMode
@@ -625,7 +625,7 @@ const (
 	MPSImageEdgeModeZero MPSImageEdgeMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSImageFeatureChannelFormat (7 cases) */
+
 // MPSImageFeatureChannelFormat - Encodes the representation of a single channel within an image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageFeatureChannelFormat
@@ -659,7 +659,7 @@ const (
 	MPSImageFeatureChannelFormatUnorm8 MPSImageFeatureChannelFormat = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSIntersectionDataType (9 cases) */
+
 // MPSIntersectionDataType - Options that determine the data contained in an intersection result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSIntersectionDataType
@@ -695,7 +695,7 @@ const (
 	MPSIntersectionDataTypeDistancePrimitiveIndexInstanceIndexCoordinates MPSIntersectionDataType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSIntersectionType (2 cases) */
+
 // MPSIntersectionType - Options that determine an intersection type for a ray intersector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSIntersectionType
@@ -710,7 +710,7 @@ const (
 	MPSIntersectionTypeNearest MPSIntersectionType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSKernelOptions (12 cases) */
+
 // MPSKernelOptions - The options used when creating a kernel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSKernelOptions
@@ -765,7 +765,7 @@ const (
 	MPSKernelOptionsVerbose MPSKernelOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSMatrixDecompositionStatus (4 cases) */
+
 // MPSMatrixDecompositionStatus enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixDecompositionStatus
@@ -790,7 +790,7 @@ const (
 	MPSMatrixDecompositionStatusSuccess MPSMatrixDecompositionStatus = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSMatrixRandomDistribution (6 cases) */
+
 // MPSMatrixRandomDistribution enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomDistribution
@@ -807,7 +807,7 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistribution/3547978-normal
 	normal MPSMatrixRandomDistribution = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistribution/mpsmatrixrandomdistributiondefault
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomDistribution/default
 	MPSMatrixRandomDistributionDefault MPSMatrixRandomDistribution = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistribution/mpsmatrixrandomdistributionnormal
@@ -817,7 +817,7 @@ const (
 	MPSMatrixRandomDistributionUniform MPSMatrixRandomDistribution = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSNDArrayQuantizationScheme (6 cases) */
+
 // MPSNDArrayQuantizationScheme enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayQuantizationScheme
@@ -844,7 +844,7 @@ const (
 	MPSNDArrayQuantizationTypeNone MPSNDArrayQuantizationScheme = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSNNComparisonType (12 cases) */
+
 // MPSNNComparisonType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNComparisonType
@@ -870,26 +870,26 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/3037383-notequal
 	notEqual MPSNNComparisonType = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/mpsnncomparisontypeequal
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNComparisonType/equal
 	MPSNNComparisonTypeEqual MPSNNComparisonType = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/mpsnncomparisontypegreater
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNComparisonType/greater
 	MPSNNComparisonTypeGreater MPSNNComparisonType = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/mpsnncomparisontypegreaterorequal
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNComparisonType/greaterOrEqual
 	MPSNNComparisonTypeGreaterOrEqual MPSNNComparisonType = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/mpsnncomparisontypeless
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNComparisonType/less
 	MPSNNComparisonTypeLess MPSNNComparisonType = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/mpsnncomparisontypelessorequal
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNComparisonType/lessOrEqual
 	MPSNNComparisonTypeLessOrEqual MPSNNComparisonType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/mpsnncomparisontypenotequal
 	MPSNNComparisonTypeNotEqual MPSNNComparisonType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSNNConvolutionAccumulatorPrecisionOption (4 cases) */
+
 // MPSNNConvolutionAccumulatorPrecisionOption - Options that specify convolution accumulator precision.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNConvolutionAccumulatorPrecisionOption
@@ -903,14 +903,14 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconvolutionaccumulatorprecisionoption/2942458-half
 	half MPSNNConvolutionAccumulatorPrecisionOption = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconvolutionaccumulatorprecisionoption/mpsnnconvolutionaccumulatorprecisionoptionfloat
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNConvolutionAccumulatorPrecisionOption/float
 	MPSNNConvolutionAccumulatorPrecisionOptionFloat MPSNNConvolutionAccumulatorPrecisionOption = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconvolutionaccumulatorprecisionoption/mpsnnconvolutionaccumulatorprecisionoptionhalf
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNConvolutionAccumulatorPrecisionOption/half
 	MPSNNConvolutionAccumulatorPrecisionOptionHalf MPSNNConvolutionAccumulatorPrecisionOption = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSNNPaddingMethod (38 cases) */
+
 // MPSNNPaddingMethod - Options that define a graph’s padding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPaddingMethod
@@ -977,48 +977,48 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/3763056-customallowfornodefusion
 	customAllowForNodeFusion MPSNNPaddingMethod = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/mpsnnpaddingmethodaddremaindertobottomleft
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPaddingMethod/addRemainderToBottomLeft
 	MPSNNPaddingMethodAddRemainderToBottomLeft MPSNNPaddingMethod = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/mpsnnpaddingmethodaddremaindertobottomright
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPaddingMethod/addRemainderToBottomRight
 	MPSNNPaddingMethodAddRemainderToBottomRight MPSNNPaddingMethod = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/mpsnnpaddingmethodaddremaindertomask
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPaddingMethod/addRemainderToMask
 	MPSNNPaddingMethodAddRemainderToMask MPSNNPaddingMethod = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPaddingMethod/addRemainderToTopRight
+	MPSNNPaddingMethodAddRemainderToTopRight MPSNNPaddingMethod = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPaddingMethod/alignBottomRight
+	MPSNNPaddingMethodAlignBottomRight MPSNNPaddingMethod = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPaddingMethod/alignMask
+	MPSNNPaddingMethodAlignMask MPSNNPaddingMethod = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPaddingMethod/alignTopLeft
+	MPSNNPaddingMethodAlignTopLeft MPSNNPaddingMethod = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPaddingMethod/align_reserved
+	MPSNNPaddingMethodAlign_reserved MPSNNPaddingMethod = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPaddingMethod/centered
+	MPSNNPaddingMethodAlignCentered MPSNNPaddingMethod = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPaddingMethod/custom
+	MPSNNPaddingMethodCustom MPSNNPaddingMethod = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPaddingMethod/customAllowForNodeFusion
+	MPSNNPaddingMethodCustomAllowForNodeFusion MPSNNPaddingMethod = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPaddingMethod/customWhitelistForNodeFusion
+	MPSNNPaddingMethodCustomWhitelistForNodeFusion MPSNNPaddingMethod = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPaddingMethod/excludeEdges
+	MPSNNPaddingMethodExcludeEdges MPSNNPaddingMethod = 0
 	// MPSNNPaddingMethodAddRemainderToTopLeft - A padding method where leftover padding is added to the top or left side of image as appropriate.	  
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/mpsnnpaddingmethodaddremaindertotopleft
 	MPSNNPaddingMethodAddRemainderToTopLeft MPSNNPaddingMethod = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/mpsnnpaddingmethodaddremaindertotopright
-	MPSNNPaddingMethodAddRemainderToTopRight MPSNNPaddingMethod = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/mpsnnpaddingmethodalign_reserved
-	MPSNNPaddingMethodAlign_reserved MPSNNPaddingMethod = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/mpsnnpaddingmethodalignbottomright
-	MPSNNPaddingMethodAlignBottomRight MPSNNPaddingMethod = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/mpsnnpaddingmethodaligncentered
-	MPSNNPaddingMethodAlignCentered MPSNNPaddingMethod = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/mpsnnpaddingmethodalignmask
-	MPSNNPaddingMethodAlignMask MPSNNPaddingMethod = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/mpsnnpaddingmethodaligntopleft
-	MPSNNPaddingMethodAlignTopLeft MPSNNPaddingMethod = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/mpsnnpaddingmethodcustom
-	MPSNNPaddingMethodCustom MPSNNPaddingMethod = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/mpsnnpaddingmethodcustomallowfornodefusion
-	MPSNNPaddingMethodCustomAllowForNodeFusion MPSNNPaddingMethod = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/mpsnnpaddingmethodcustomwhitelistfornodefusion
-	MPSNNPaddingMethodCustomWhitelistForNodeFusion MPSNNPaddingMethod = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/mpsnnpaddingmethodexcludeedges
-	MPSNNPaddingMethodExcludeEdges MPSNNPaddingMethod = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/mpsnnpaddingmethodsize_reserved
 	MPSNNPaddingMethodSize_reserved MPSNNPaddingMethod = 0
@@ -1037,7 +1037,7 @@ const (
 	MPSNNPaddingMethodSizeValidOnly MPSNNPaddingMethod = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSNNRegularizationType (3 cases) */
+
 // MPSNNRegularizationType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNRegularizationType
@@ -1055,7 +1055,7 @@ const (
 	MPSNNRegularizationTypeNone MPSNNRegularizationType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSNNTrainingStyle (6 cases) */
+
 // MPSNNTrainingStyle - Options that control how graph nodes are trained.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNTrainingStyle
@@ -1072,17 +1072,17 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnntrainingstyle/2952963-updatedevicegpu
 	updateDeviceGPU MPSNNTrainingStyle = 0
 	//
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNTrainingStyle/UpdateDeviceNone
+	MPSNNTrainingStyleUpdateDeviceNone MPSNNTrainingStyle = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnntrainingstyle/mpsnntrainingstyleupdatedevicecpu
 	MPSNNTrainingStyleUpdateDeviceCPU MPSNNTrainingStyle = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnntrainingstyle/mpsnntrainingstyleupdatedevicegpu
 	MPSNNTrainingStyleUpdateDeviceGPU MPSNNTrainingStyle = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnntrainingstyle/mpsnntrainingstyleupdatedevicenone
-	MPSNNTrainingStyleUpdateDeviceNone MPSNNTrainingStyle = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSPolygonType (2 cases) */
+
 // MPSPolygonType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPolygonType
@@ -1097,7 +1097,7 @@ const (
 	MPSPolygonTypeTriangle MPSPolygonType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSPurgeableState (5 cases) */
+
 // MPSPurgeableState - The purgeable state of an image’s underlying texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPurgeableState
@@ -1126,7 +1126,7 @@ const (
 	MPSPurgeableStateVolatile MPSPurgeableState = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSRayDataType (4 cases) */
+
 // MPSRayDataType - Options for the data type for an intersector ray.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSRayDataType
@@ -1147,7 +1147,7 @@ const (
 	MPSRayDataTypePackedOriginDirection MPSRayDataType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSRayMaskOperator (12 cases) */
+
 // MPSRayMaskOperator enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSRayMaskOperator
@@ -1192,7 +1192,7 @@ const (
 	MPSRayMaskOperatorXor MPSRayMaskOperator = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSRayMaskOptions (5 cases) */
+
 // MPSRayMaskOptions - Options for ray intersector mask options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSRayMaskOptions
@@ -1206,7 +1206,7 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoptions/2980819-primitive
 	primitive MPSRayMaskOptions = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoptions/mpsraymaskoptioninstance
+	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSRayMaskOptions/instance
 	MPSRayMaskOptionInstance MPSRayMaskOptions = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSRayMaskOptions/MPSRayMaskOptionNone
@@ -1216,7 +1216,7 @@ const (
 	MPSRayMaskOptionPrimitive MPSRayMaskOptions = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSRNNBidirectionalCombineMode (3 cases) */
+
 // MPSRNNBidirectionalCombineMode - Modes that define how two images or matrices are combined.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSRNNBidirectionalCombineMode
@@ -1237,7 +1237,7 @@ const (
 	MPSRNNBidirectionalCombineModeNone MPSRNNBidirectionalCombineMode = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSRNNMatrixId (30 cases) */
+
 // MPSRNNMatrixId - Options that define which matrix is copied in or out of a trainable RNN layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSRNNMatrixId
@@ -1336,7 +1336,7 @@ const (
 	MPSRNNMatrixIdSingleGateRecurrentWeights MPSRNNMatrixId = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSRNNSequenceDirection (2 cases) */
+
 // MPSRNNSequenceDirection - Directions that a sequence of inputs can be processed by a recurrent neural network layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSRNNSequenceDirection
@@ -1351,7 +1351,7 @@ const (
 	MPSRNNSequenceDirectionForward MPSRNNSequenceDirection = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSStateResourceType (3 cases) */
+
 // MPSStateResourceType - Options for the underlying resource type for a state object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSStateResourceType
@@ -1369,7 +1369,7 @@ const (
 	MPSStateResourceTypeTexture MPSStateResourceType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSTemporalWeighting (2 cases) */
+
 // MPSTemporalWeighting enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTemporalWeighting
@@ -1384,7 +1384,7 @@ const (
 	MPSTemporalWeightingExponentialMovingAverage MPSTemporalWeighting = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSTransformType (2 cases) */
+
 // MPSTransformType - Constants that indicate instance transformation types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTransformType
@@ -1399,7 +1399,7 @@ const (
 	MPSTransformTypeIdentity MPSTransformType = 0
 )
 
-/* debug [enums.gen.go]: Processing enum MPSTriangleIntersectionTestType (2 cases) */
+
 // MPSTriangleIntersectionTestType - Options for the ray-triangle intersection test.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTriangleIntersectionTestType

@@ -11,6 +11,7 @@ import (
 
 /* debug [class.gen.go]: Generating class DOMObject */
 
+
 /* debug [class_header]: Header for DOMObject */
 // The class instance for the [DOMObject] class.
 var (
@@ -28,26 +29,29 @@ func getDOMObjectClass() _DOMObjectClass {
 type _DOMObjectClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMObject */
 // An interface definition for the [DOMObject] class.
 type IDOMObject interface {
 	IWebScriptObject
-
-	/* debug [class_interface_properties]: Properties for DOMObject */
+	
+/* debug [class_interface_properties]: Properties for DOMObject */
 	// properties:
 	Sheet() IDOMStyleSheet
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMObject */
+	
+/* debug [class_interface_methods]: Methods for DOMObject */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMObject */
 // Alloc allocates a new instance without initialization.
@@ -79,10 +83,12 @@ func (d_ DOMObject) Autorelease() DOMObject {
 func NewDOMObject() DOMObject {
 	return getDOMObjectClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMObject */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMObject
@@ -96,19 +102,28 @@ func DOMObjectFrom(ptr unsafe.Pointer) DOMObject {
 		WebScriptObject: WebScriptObjectFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMObject */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMObject *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMObject */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMObject */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMObject */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMObject */
 
@@ -117,8 +132,12 @@ func DOMObjectFrom(ptr unsafe.Pointer) DOMObject {
 func (d_ DOMObject) Sheet() IDOMStyleSheet {
 	rv := objc.Send[DOMStyleSheet](d_.ID, objc.Sel("sheet"))
 	return rv
-} /* debug [instance_properties/getter]: sheet */
+}/* debug [instance_properties/getter]: sheet */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMObject */
+
+
+

@@ -12,7 +12,7 @@ package webkit
 // See: doc://com.apple.webkit/documentation/WebKit/WebPolicyDecisionListener
 type PWebPolicyDecisionListener interface {
 	// Required methods
-	Download()
-	Ignore()
-	Use()
+	Download()/* debug [protocol_interface/required_method]: Download */
+	Ignore()/* debug [protocol_interface/required_method]: Ignore */
+	Use()/* debug [protocol_interface/required_method]: Use */
 }

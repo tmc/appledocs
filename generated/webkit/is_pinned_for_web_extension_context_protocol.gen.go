@@ -19,3 +19,4 @@ var isPinnedForWebExtensionContextProtocol *objc.Protocol
 func init() {
 	isPinnedForWebExtensionContextProtocol = objc.GetProtocol("isPinnedForWebExtensionContext:")
 }
+

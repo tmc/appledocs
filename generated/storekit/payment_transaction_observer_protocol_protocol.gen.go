@@ -2,7 +2,10 @@
 
 package storekit
 
-import "github.com/tmc/appledocs/generated/objc"
+import (
+
+	"github.com/tmc/appledocs/generated/coretelephony"
+)
 
 // PPaymentTransactionObserver is the SKPaymentTransactionObserver protocol interface.
 //
@@ -20,7 +23,7 @@ import "github.com/tmc/appledocs/generated/objc"
 // See: doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver
 type PPaymentTransactionObserver interface {
 	// Required methods
-	PaymentQueueUpdatedTransactions(queue ISKPaymentQueue, transactions []PaymentTransaction)
+	PaymentQueueUpdatedTransactions(queue ISKPaymentQueue, transactions []PaymentTransaction)/* debug [protocol_interface/required_method]: PaymentQueueUpdatedTransactions */
 	// Optional methods
 	PaymentQueueDidRevokeEntitlementsForProductIdentifiers(queue ISKPaymentQueue, productIdentifiers []string)
 	HasPaymentQueueDidRevokeEntitlementsForProductIdentifiers() bool

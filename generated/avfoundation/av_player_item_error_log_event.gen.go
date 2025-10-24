@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVPlayerItemErrorLogEvent */
 
 
-/* debug [class_header]: Header for AVPlayerItemErrorLogEvent */
+
+
 // The class instance for the [PlayerItemErrorLogEvent] class.
 var (
 	PlayerItemErrorLogEventClass     _PlayerItemErrorLogEventClass
@@ -30,16 +30,16 @@ func getPlayerItemErrorLogEventClass() _PlayerItemErrorLogEventClass {
 type _PlayerItemErrorLogEventClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for PlayerItemErrorLogEvent */
+
+
 // An interface definition for the [PlayerItemErrorLogEvent] class.
 type IPlayerItemErrorLogEvent interface {
 	objectivec.IObject
 	
-/* debug [class_interface_properties]: Properties for PlayerItemErrorLogEvent */
+
 	// properties:
 	AllHTTPResponseHeaderFields() foundation.IDictionary
 	Date() objc.IObject /* cross-framework: NSDate */
@@ -49,19 +49,19 @@ type IPlayerItemErrorLogEvent interface {
 	PlaybackSessionID() objc.IObject /* cross-framework: NSString */
 	ServerAddress() objc.IObject /* cross-framework: NSString */
 	URI() objc.IObject /* cross-framework: NSString */
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for PlayerItemErrorLogEvent */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for PlayerItemErrorLogEvent */
+
+
 // Alloc allocates a new instance without initialization.
 func (pc _PlayerItemErrorLogEventClass) Alloc() PlayerItemErrorLogEvent {
 	rv := objc.Send[PlayerItemErrorLogEvent](objc.ID(pc.class), objc.Sel("alloc"))
@@ -91,11 +91,11 @@ func (p_ PlayerItemErrorLogEvent) Autorelease() PlayerItemErrorLogEvent {
 func NewPlayerItemErrorLogEvent() PlayerItemErrorLogEvent {
 	return getPlayerItemErrorLogEventClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for PlayerItemErrorLogEvent */
+
+
 // A single item in a player item’s error log.
 //
 // This object provides properties for accessing the data fields of each log event. Each event is a single entry in an object’s error log. These properties aren’t observable. For more information about key-value observing, see .
@@ -115,30 +115,30 @@ type PlayerItemErrorLogEvent struct {
 func PlayerItemErrorLogEventFrom(ptr unsafe.Pointer) PlayerItemErrorLogEvent {
 	return PlayerItemErrorLogEvent{objectivec.Object{objc.ID(ptr)}}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for PlayerItemErrorLogEvent *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for PlayerItemErrorLogEvent */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for PlayerItemErrorLogEvent */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for PlayerItemErrorLogEvent */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for PlayerItemErrorLogEvent */
+
+
+
+
+
+
+
+
+
 
 // The HTTP header fields the server returns.
 //
@@ -147,7 +147,7 @@ func PlayerItemErrorLogEventFrom(ptr unsafe.Pointer) PlayerItemErrorLogEvent {
 func (p_ PlayerItemErrorLogEvent) AllHTTPResponseHeaderFields() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("allHTTPResponseHeaderFields"))
 	return rv
-}/* debug [instance_properties/getter]: allHTTPResponseHeaderFields */
+}
 
 
 // The date and time when the error occurred.
@@ -157,7 +157,7 @@ func (p_ PlayerItemErrorLogEvent) AllHTTPResponseHeaderFields() foundation.IDict
 func (p_ PlayerItemErrorLogEvent) Date() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("date"))
 	return rv
-}/* debug [instance_properties/getter]: date */
+}
 
 
 // A description of the error encountered.
@@ -167,7 +167,7 @@ func (p_ PlayerItemErrorLogEvent) Date() objc.IObject /* cross-framework: NSDate
 func (p_ PlayerItemErrorLogEvent) ErrorComment() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("errorComment"))
 	return rv
-}/* debug [instance_properties/getter]: errorComment */
+}
 
 
 // The domain of the error.
@@ -177,7 +177,7 @@ func (p_ PlayerItemErrorLogEvent) ErrorComment() objc.IObject /* cross-framework
 func (p_ PlayerItemErrorLogEvent) ErrorDomain() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("errorDomain"))
 	return rv
-}/* debug [instance_properties/getter]: errorDomain */
+}
 
 
 // A unique error code identifier.
@@ -187,7 +187,7 @@ func (p_ PlayerItemErrorLogEvent) ErrorDomain() objc.IObject /* cross-framework:
 func (p_ PlayerItemErrorLogEvent) ErrorStatusCode() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("errorStatusCode"))
 	return rv
-}/* debug [instance_properties/getter]: errorStatusCode */
+}
 
 
 // A GUID that identifies the playback session that had an error.
@@ -197,7 +197,7 @@ func (p_ PlayerItemErrorLogEvent) ErrorStatusCode() int {
 func (p_ PlayerItemErrorLogEvent) PlaybackSessionID() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("playbackSessionID"))
 	return rv
-}/* debug [instance_properties/getter]: playbackSessionID */
+}
 
 
 // The IP address of the server that was the source of the error.
@@ -207,7 +207,7 @@ func (p_ PlayerItemErrorLogEvent) PlaybackSessionID() objc.IObject /* cross-fram
 func (p_ PlayerItemErrorLogEvent) ServerAddress() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("serverAddress"))
 	return rv
-}/* debug [instance_properties/getter]: serverAddress */
+}
 
 
 // The URI of the playback item that had an error.
@@ -217,12 +217,12 @@ func (p_ PlayerItemErrorLogEvent) ServerAddress() objc.IObject /* cross-framewor
 func (p_ PlayerItemErrorLogEvent) URI() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("URI"))
 	return rv
-}/* debug [instance_properties/getter]: URI */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVPlayerItemErrorLogEvent */
+
+
+
 
 
 

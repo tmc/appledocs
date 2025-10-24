@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class MPSCNNNeuronSoftPlus */
 
 
-/* debug [class_header]: Header for MPSCNNNeuronSoftPlus */
+
+
 // The class instance for the [CNNNeuronSoftPlus] class.
 var (
 	CNNNeuronSoftPlusClass     _CNNNeuronSoftPlusClass
@@ -30,30 +30,30 @@ func getCNNNeuronSoftPlusClass() _CNNNeuronSoftPlusClass {
 type _CNNNeuronSoftPlusClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for CNNNeuronSoftPlus */
+
+
 // An interface definition for the [CNNNeuronSoftPlus] class.
 type ICNNNeuronSoftPlus interface {
 	ICNNNeuron
 	
-/* debug [class_interface_properties]: Properties for CNNNeuronSoftPlus */
+
 	// properties:
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for CNNNeuronSoftPlus */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for CNNNeuronSoftPlus */
+
+
 // Alloc allocates a new instance without initialization.
 func (cc _CNNNeuronSoftPlusClass) Alloc() CNNNeuronSoftPlus {
 	rv := objc.Send[CNNNeuronSoftPlus](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CNNNeuronSoftPlus) Autorelease() CNNNeuronSoftPlus {
 func NewCNNNeuronSoftPlus() CNNNeuronSoftPlus {
 	return getCNNNeuronSoftPlusClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for CNNNeuronSoftPlus */
+
+
 // A parametric softplus neuron filter.
 //
 // For each pixel in an image, the filter applies the following function:
@@ -109,11 +109,11 @@ func CNNNeuronSoftPlusFrom(ptr unsafe.Pointer) CNNNeuronSoftPlus {
 		CNNNeuron: CNNNeuronFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for CNNNeuronSoftPlus */
+
+
 
 // Initializes a parametric softplus neuron filter.
 //
@@ -124,31 +124,31 @@ func NewCNNNeuronSoftPlusWithDeviceAB(device unsafe.Pointer, a float32, b float3
 	rv := objc.Send[CNNNeuronSoftPlus](instance.ID, objc.Sel("initWithDevice:a:b:"), device, a, b)
 	rv.Autorelease()
 	return rv
-}/* debug [class_init_methods/constructor]: NewCNNNeuronSoftPlusWithDeviceAB */
-
-/* debug [class_init_methods]: End init methods */
+}
 
 
 
-/* debug [class_methods]: Class methods for CNNNeuronSoftPlus */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for CNNNeuronSoftPlus */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for CNNNeuronSoftPlus */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for CNNNeuronSoftPlus */
-/* debug [instance_properties]: End instance properties */
 
 
-/* debug [class.gen.go]: End class MPSCNNNeuronSoftPlus */
+
+
+
+
+
+
+
+
+
+
+
 
 

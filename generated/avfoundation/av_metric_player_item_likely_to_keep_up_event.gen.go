@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-/* debug [class.gen.go]: Generating class AVMetricPlayerItemLikelyToKeepUpEvent */
 
 
-/* debug [class_header]: Header for AVMetricPlayerItemLikelyToKeepUpEvent */
+
+
 // The class instance for the [MetricPlayerItemLikelyToKeepUpEvent] class.
 var (
 	MetricPlayerItemLikelyToKeepUpEventClass     _MetricPlayerItemLikelyToKeepUpEventClass
@@ -29,33 +29,33 @@ func getMetricPlayerItemLikelyToKeepUpEventClass() _MetricPlayerItemLikelyToKeep
 type _MetricPlayerItemLikelyToKeepUpEventClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for MetricPlayerItemLikelyToKeepUpEvent */
+
+
 // An interface definition for the [MetricPlayerItemLikelyToKeepUpEvent] class.
 type IMetricPlayerItemLikelyToKeepUpEvent interface {
 	IMetricEvent
 	
-/* debug [class_interface_properties]: Properties for MetricPlayerItemLikelyToKeepUpEvent */
+
 	// properties:
 	LoadedTimeRanges() []foundation.Value
 	TimeTaken() float64
 	Variant() IAVAssetVariant
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for MetricPlayerItemLikelyToKeepUpEvent */
+
 	// methods:
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for MetricPlayerItemLikelyToKeepUpEvent */
+
+
 // Alloc allocates a new instance without initialization.
 func (mc _MetricPlayerItemLikelyToKeepUpEventClass) Alloc() MetricPlayerItemLikelyToKeepUpEvent {
 	rv := objc.Send[MetricPlayerItemLikelyToKeepUpEvent](objc.ID(mc.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (m_ MetricPlayerItemLikelyToKeepUpEvent) Autorelease() MetricPlayerItemLike
 func NewMetricPlayerItemLikelyToKeepUpEvent() MetricPlayerItemLikelyToKeepUpEvent {
 	return getMetricPlayerItemLikelyToKeepUpEventClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for MetricPlayerItemLikelyToKeepUpEvent */
+
+
 // An event that represents when playback is likely to continue without stalling.
 
 
@@ -109,37 +109,37 @@ func MetricPlayerItemLikelyToKeepUpEventFrom(ptr unsafe.Pointer) MetricPlayerIte
 		MetricEvent: MetricEventFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for MetricPlayerItemLikelyToKeepUpEvent *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for MetricPlayerItemLikelyToKeepUpEvent */
-/* debug [class_methods]: End class methods */
 
 
 
-/* debug [class_properties_class]: Class properties for MetricPlayerItemLikelyToKeepUpEvent */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for MetricPlayerItemLikelyToKeepUpEvent */
-/* debug [instance_methods]: End instance methods */
 
 
 
-/* debug [instance_properties]: Instance properties for MetricPlayerItemLikelyToKeepUpEvent */
+
+
+
+
+
+
+
+
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetricPlayerItemLikelyToKeepUpEvent/loadedTimeRanges-960vi
 func (m_ MetricPlayerItemLikelyToKeepUpEvent) LoadedTimeRanges() []foundation.Value {
 	rv := objc.Send[[]foundation.Value](m_.ID, objc.Sel("loadedTimeRanges"))
 	return rv
-}/* debug [instance_properties/getter]: loadedTimeRanges */
+}
 
 
 // [Full Topic]
@@ -147,7 +147,7 @@ func (m_ MetricPlayerItemLikelyToKeepUpEvent) LoadedTimeRanges() []foundation.Va
 func (m_ MetricPlayerItemLikelyToKeepUpEvent) TimeTaken() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("timeTaken"))
 	return rv
-}/* debug [instance_properties/getter]: timeTaken */
+}
 
 
 // [Full Topic]
@@ -155,12 +155,12 @@ func (m_ MetricPlayerItemLikelyToKeepUpEvent) TimeTaken() float64 {
 func (m_ MetricPlayerItemLikelyToKeepUpEvent) Variant() IAVAssetVariant {
 	rv := objc.Send[AssetVariant](m_.ID, objc.Sel("variant"))
 	return rv
-}/* debug [instance_properties/getter]: variant */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVMetricPlayerItemLikelyToKeepUpEvent */
+
+
+
 
 
 

@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class VZSingleDirectoryShare */
+
 
 /* debug [class_header]: Header for VZSingleDirectoryShare */
 // The class instance for the [VZSingleDirectoryShare] class.
@@ -28,26 +30,29 @@ func getVZSingleDirectoryShareClass() _VZSingleDirectoryShareClass {
 type _VZSingleDirectoryShareClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for VZSingleDirectoryShare */
 // An interface definition for the [VZSingleDirectoryShare] class.
 type IVZSingleDirectoryShare interface {
 	IVZDirectoryShare
-
-	/* debug [class_interface_properties]: Properties for VZSingleDirectoryShare */
+	
+/* debug [class_interface_properties]: Properties for VZSingleDirectoryShare */
 	// properties:
 	Directory() IVZSharedDirectory
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for VZSingleDirectoryShare */
+	
+/* debug [class_interface_methods]: Methods for VZSingleDirectoryShare */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for VZSingleDirectoryShare */
 // Alloc allocates a new instance without initialization.
@@ -79,13 +84,15 @@ func (v_ VZSingleDirectoryShare) Autorelease() VZSingleDirectoryShare {
 func NewVZSingleDirectoryShare() VZSingleDirectoryShare {
 	return getVZSingleDirectoryShareClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for VZSingleDirectoryShare */
 // An object that defines the directory share for a single directory.
 //
 // This directory share exposes a single directory from the host file system to the guest.
+
 
 // An object that defines the directory share for a single directory.
 //
@@ -103,8 +110,9 @@ func VZSingleDirectoryShareFrom(ptr unsafe.Pointer) VZSingleDirectoryShare {
 		VZDirectoryShare: VZDirectoryShareFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
+
+
 
 /* debug [class_init_methods]: Init methods for VZSingleDirectoryShare */
 
@@ -117,18 +125,26 @@ func NewVZSingleDirectoryShareWithDirectory(directory IVZSharedDirectory) VZSing
 	rv := objc.Send[VZSingleDirectoryShare](instance.ID, objc.Sel("initWithDirectory:"), directory)
 	rv.Autorelease()
 	return rv
-} /* debug [class_init_methods/constructor]: NewVZSingleDirectoryShareWithDirectory */
+}/* debug [class_init_methods/constructor]: NewVZSingleDirectoryShareWithDirectory */
 
 /* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for VZSingleDirectoryShare */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for VZSingleDirectoryShare */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for VZSingleDirectoryShare */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for VZSingleDirectoryShare */
 
@@ -139,8 +155,11 @@ func NewVZSingleDirectoryShareWithDirectory(directory IVZSharedDirectory) VZSing
 func (v_ VZSingleDirectoryShare) Directory() IVZSharedDirectory {
 	rv := objc.Send[VZSharedDirectory](v_.ID, objc.Sel("directory"))
 	return rv
-} /* debug [instance_properties/getter]: directory */
+}/* debug [instance_properties/getter]: directory */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class VZSingleDirectoryShare */
+
+

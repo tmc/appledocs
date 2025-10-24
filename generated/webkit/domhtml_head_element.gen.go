@@ -6,11 +6,12 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 /* debug [class.gen.go]: Generating class DOMHTMLHeadElement */
+
 
 /* debug [class_header]: Header for DOMHTMLHeadElement */
 // The class instance for the [DOMHTMLHeadElement] class.
@@ -29,27 +30,30 @@ func getDOMHTMLHeadElementClass() _DOMHTMLHeadElementClass {
 type _DOMHTMLHeadElementClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for DOMHTMLHeadElement */
 // An interface definition for the [DOMHTMLHeadElement] class.
 type IDOMHTMLHeadElement interface {
 	IDOMHTMLElement
-
-	/* debug [class_interface_properties]: Properties for DOMHTMLHeadElement */
+	
+/* debug [class_interface_properties]: Properties for DOMHTMLHeadElement */
 	// properties:
 	Profile() objc.IObject /* cross-framework: NSString */
 	SetProfile(value objc.IObject /* cross-framework: NSString */)
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for DOMHTMLHeadElement */
+	
+/* debug [class_interface_methods]: Methods for DOMHTMLHeadElement */
 	// methods:
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for DOMHTMLHeadElement */
 // Alloc allocates a new instance without initialization.
@@ -81,10 +85,12 @@ func (d_ DOMHTMLHeadElement) Autorelease() DOMHTMLHeadElement {
 func NewDOMHTMLHeadElement() DOMHTMLHeadElement {
 	return getDOMHTMLHeadElementClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
 
+
+
 /* debug [class_struct]: Struct for DOMHTMLHeadElement */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLHeadElement
@@ -98,19 +104,28 @@ func DOMHTMLHeadElementFrom(ptr unsafe.Pointer) DOMHTMLHeadElement {
 		DOMHTMLElement: DOMHTMLElementFrom(ptr),
 	}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for DOMHTMLHeadElement */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for DOMHTMLHeadElement *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for DOMHTMLHeadElement */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for DOMHTMLHeadElement */
 /* debug [class_properties_class]: End class properties */
 
+
+
 /* debug [instance_methods]: Instance methods for DOMHTMLHeadElement */
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for DOMHTMLHeadElement */
 
@@ -119,14 +134,19 @@ func DOMHTMLHeadElementFrom(ptr unsafe.Pointer) DOMHTMLHeadElement {
 func (d_ DOMHTMLHeadElement) Profile() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("profile"))
 	return rv
-} /* debug [instance_properties/getter]: profile */
+}/* debug [instance_properties/getter]: profile */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/DOMHTMLHeadElement/profile
 func (d_ DOMHTMLHeadElement) SetProfile(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setProfile:"), value)
-} /* debug [instance_properties/setter]: profile */
+}/* debug [instance_properties/setter]: profile */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class DOMHTMLHeadElement */
+
+
+

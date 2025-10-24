@@ -12,3 +12,4 @@ package virtualization
 // See: doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineDelegate/virtualMachine(_:didStopWithError:)
 type PvirtualMachine interface {
 }
+

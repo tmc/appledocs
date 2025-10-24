@@ -6,13 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coretelephony"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 /* debug [class.gen.go]: Generating class WKWebExtensionDataRecord */
+
 
 /* debug [class_header]: Header for WKWebExtensionDataRecord */
 // The class instance for the [WebExtensionDataRecord] class.
@@ -31,31 +31,34 @@ func getWebExtensionDataRecordClass() _WebExtensionDataRecordClass {
 type _WebExtensionDataRecordClass struct {
 	class objc.Class
 }
-
 /* debug [class_header]: End header */
+
+
 
 /* debug [class_interface]: Interface for WebExtensionDataRecord */
 // An interface definition for the [WebExtensionDataRecord] class.
 type IWebExtensionDataRecord interface {
 	objectivec.IObject
-
-	/* debug [class_interface_properties]: Properties for WebExtensionDataRecord */
+	
+/* debug [class_interface_properties]: Properties for WebExtensionDataRecord */
 	// properties:
 	ContainedDataTypes() unsafe.Pointer
 	DisplayName() objc.IObject /* cross-framework: NSString */
-	Errors() []objc.IObject    /* cross-framework: Error */
+	Errors() []objc.IObject /* cross-framework: Error */
 	TotalSizeInBytes() uint
 	UniqueIdentifier() objc.IObject /* cross-framework: NSString */
-	/* debug [class_interface_properties]: End properties */
+/* debug [class_interface_properties]: End properties */
 
-	/* debug [class_interface_methods]: Methods for WebExtensionDataRecord */
+	
+/* debug [class_interface_methods]: Methods for WebExtensionDataRecord */
 	// methods:
 	SizeInBytesOfTypes(dataTypes unsafe.Pointer) uint
-	/* debug [class_interface_methods]: End methods */
+/* debug [class_interface_methods]: End methods */
 
 }
-
 /* debug [class_interface]: End interface */
+
+
 
 /* debug [class_constructors]: Constructors for WebExtensionDataRecord */
 // Alloc allocates a new instance without initialization.
@@ -87,13 +90,15 @@ func (w_ WebExtensionDataRecord) Autorelease() WebExtensionDataRecord {
 func NewWebExtensionDataRecord() WebExtensionDataRecord {
 	return getWebExtensionDataRecordClass().New()
 }
-
 /* debug [class_constructors]: End constructors */
+
+
 
 /* debug [class_struct]: Struct for WebExtensionDataRecord */
 // An object that represents a record of stored data for a specific web extension context.
 //
 // Contains properties and methods to query the data types and sizes.
+
 
 // An object that represents a record of stored data for a specific web extension context.
 //
@@ -109,16 +114,23 @@ type WebExtensionDataRecord struct {
 func WebExtensionDataRecordFrom(ptr unsafe.Pointer) WebExtensionDataRecord {
 	return WebExtensionDataRecord{objectivec.Object{objc.ID(ptr)}}
 }
-
 /* debug [class_struct]: End struct */
 
-/* debug [class_init_methods]: Init methods for WebExtensionDataRecord */ /* debug [class_init_methods]: End init methods */
+
+
+/* debug [class_init_methods]: Init methods for WebExtensionDataRecord *//* debug [class_init_methods]: End init methods */
+
+
 
 /* debug [class_methods]: Class methods for WebExtensionDataRecord */
 /* debug [class_methods]: End class methods */
 
+
+
 /* debug [class_properties_class]: Class properties for WebExtensionDataRecord */
 /* debug [class_properties_class]: End class properties */
+
+
 
 /* debug [instance_methods]: Instance methods for WebExtensionDataRecord */
 
@@ -129,9 +141,11 @@ func WebExtensionDataRecordFrom(ptr unsafe.Pointer) WebExtensionDataRecord {
 func (w_ WebExtensionDataRecord) SizeInBytesOfTypes(dataTypes unsafe.Pointer) uint {
 	rv := objc.Send[uint](w_.ID, objc.Sel("sizeInBytesOfTypes:"), dataTypes)
 	return rv
-} /* debug [instance_methods/method]: SizeInBytesOfTypes */
+}/* debug [instance_methods/method]: SizeInBytesOfTypes */
 
 /* debug [instance_methods]: End instance methods */
+
+
 
 /* debug [instance_properties]: Instance properties for WebExtensionDataRecord */
 
@@ -142,7 +156,8 @@ func (w_ WebExtensionDataRecord) SizeInBytesOfTypes(dataTypes unsafe.Pointer) ui
 func (w_ WebExtensionDataRecord) ContainedDataTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("containedDataTypes"))
 	return rv
-} /* debug [instance_properties/getter]: containedDataTypes */
+}/* debug [instance_properties/getter]: containedDataTypes */
+
 
 // The display name for the web extension to which this data record belongs.
 //
@@ -151,7 +166,8 @@ func (w_ WebExtensionDataRecord) ContainedDataTypes() unsafe.Pointer {
 func (w_ WebExtensionDataRecord) DisplayName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("displayName"))
 	return rv
-} /* debug [instance_properties/getter]: displayName */
+}/* debug [instance_properties/getter]: displayName */
+
 
 // An array of errors that may have occurred when either calculating or deleting storage.
 //
@@ -160,7 +176,8 @@ func (w_ WebExtensionDataRecord) DisplayName() objc.IObject /* cross-framework: 
 func (w_ WebExtensionDataRecord) Errors() []objc.IObject /* cross-framework: Error */ {
 	rv := objc.Send[[]coretelephony.Error](w_.ID, objc.Sel("errors"))
 	return rv
-} /* debug [instance_properties/getter]: errors */
+}/* debug [instance_properties/getter]: errors */
+
 
 // The total size in bytes of all data types contained in this data record.
 //
@@ -169,7 +186,8 @@ func (w_ WebExtensionDataRecord) Errors() []objc.IObject /* cross-framework: Err
 func (w_ WebExtensionDataRecord) TotalSizeInBytes() uint {
 	rv := objc.Send[uint](w_.ID, objc.Sel("totalSizeInBytes"))
 	return rv
-} /* debug [instance_properties/getter]: totalSizeInBytes */
+}/* debug [instance_properties/getter]: totalSizeInBytes */
+
 
 // Unique identifier for the web extension context to which this data record belongs.
 //
@@ -178,8 +196,12 @@ func (w_ WebExtensionDataRecord) TotalSizeInBytes() uint {
 func (w_ WebExtensionDataRecord) UniqueIdentifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
-} /* debug [instance_properties/getter]: uniqueIdentifier */
+}/* debug [instance_properties/getter]: uniqueIdentifier */
 
 /* debug [instance_properties]: End instance properties */
 
+
 /* debug [class.gen.go]: End class WKWebExtensionDataRecord */
+
+
+

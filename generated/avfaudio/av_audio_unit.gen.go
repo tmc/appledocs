@@ -7,15 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/audiotoolbox"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-/* debug [class.gen.go]: Generating class AVAudioUnit */
 
 
-/* debug [class_header]: Header for AVAudioUnit */
+
+
 // The class instance for the [AudioUnit] class.
 var (
 	AudioUnitClass     _AudioUnitClass
@@ -32,16 +30,16 @@ func getAudioUnitClass() _AudioUnitClass {
 type _AudioUnitClass struct {
 	class objc.Class
 }
-/* debug [class_header]: End header */
 
 
 
-/* debug [class_interface]: Interface for AudioUnit */
+
+
 // An interface definition for the [AudioUnit] class.
 type IAudioUnit interface {
 	IAudioNode
 	
-/* debug [class_interface_properties]: Properties for AudioUnit */
+
 	// properties:
 	AUAudioUnit() IAudioUnit
 	AudioComponentDescription() audiotoolbox.AudioComponentDescription
@@ -49,20 +47,20 @@ type IAudioUnit interface {
 	ManufacturerName() objc.IObject /* cross-framework: NSString */
 	Name() objc.IObject /* cross-framework: NSString */
 	Version() uint
-/* debug [class_interface_properties]: End properties */
+
 
 	
-/* debug [class_interface_methods]: Methods for AudioUnit */
+
 	// methods:
 	LoadAudioUnitPresetAtURLError(url objc.IObject /* cross-framework: NSURL */, outError objectivec.IObject) bool
-/* debug [class_interface_methods]: End methods */
+
 
 }
-/* debug [class_interface]: End interface */
 
 
 
-/* debug [class_constructors]: Constructors for AudioUnit */
+
+
 // Alloc allocates a new instance without initialization.
 func (ac _AudioUnitClass) Alloc() AudioUnit {
 	rv := objc.Send[AudioUnit](objc.ID(ac.class), objc.Sel("alloc"))
@@ -92,11 +90,11 @@ func (a_ AudioUnit) Autorelease() AudioUnit {
 func NewAudioUnit() AudioUnit {
 	return getAudioUnitClass().New()
 }
-/* debug [class_constructors]: End constructors */
 
 
 
-/* debug [class_struct]: Struct for AudioUnit */
+
+
 // A subclass of the audio node class that, processes audio either in real time or nonreal time, depending on the type of the audio unit.
 
 
@@ -116,15 +114,15 @@ func AudioUnitFrom(ptr unsafe.Pointer) AudioUnit {
 		AudioNode: AudioNodeFrom(ptr),
 	}
 }
-/* debug [class_struct]: End struct */
 
 
 
-/* debug [class_init_methods]: Init methods for AudioUnit *//* debug [class_init_methods]: End init methods */
 
 
 
-/* debug [class_methods]: Class methods for AudioUnit */
+
+
+
 
 // Creates an instance of an audio unit component asynchronously and wraps it in an audio unit class.
 //
@@ -132,18 +130,18 @@ func AudioUnitFrom(ptr unsafe.Pointer) AudioUnit {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnit/instantiate(with:options:completionHandler:)
 func (ac _AudioUnitClass) InstantiateWithComponentDescriptionOptionsCompletionHandler(audioComponentDescription audiotoolbox.AudioComponentDescription, options objectivec.IObject, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("instantiateWithComponentDescription:options:completionHandler:"), audioComponentDescription, options, completionHandler)
-}/* debug [class_methods/method]: Class method for%!(EXTRA string=InstantiateWithComponentDescriptionOptionsCompletionHandler) */
-
-/* debug [class_methods]: End class methods */
+}
 
 
 
-/* debug [class_properties_class]: Class properties for AudioUnit */
-/* debug [class_properties_class]: End class properties */
 
 
 
-/* debug [instance_methods]: Instance methods for AudioUnit */
+
+
+
+
+
 
 // Loads an audio unit using a specified preset.
 //
@@ -152,13 +150,13 @@ func (ac _AudioUnitClass) InstantiateWithComponentDescriptionOptionsCompletionHa
 func (a_ AudioUnit) LoadAudioUnitPresetAtURLError(url objc.IObject /* cross-framework: NSURL */, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("loadAudioUnitPresetAtURL:error:"), url, outError)
 	return rv
-}/* debug [instance_methods/method]: LoadAudioUnitPresetAtURLError */
-
-/* debug [instance_methods]: End instance methods */
+}
 
 
 
-/* debug [instance_properties]: Instance properties for AudioUnit */
+
+
+
 
 // The audio unit class wrapping or underlying the implementation’s audio unit.
 //
@@ -167,7 +165,7 @@ func (a_ AudioUnit) LoadAudioUnitPresetAtURLError(url objc.IObject /* cross-fram
 func (a_ AudioUnit) AUAudioUnit() IAudioUnit {
 	rv := objc.Send[AudioUnit](a_.ID, objc.Sel("AUAudioUnit"))
 	return rv
-}/* debug [instance_properties/getter]: AUAudioUnit */
+}
 
 
 // The audio component description that represents the underlying Core Audio audio unit.
@@ -177,7 +175,7 @@ func (a_ AudioUnit) AUAudioUnit() IAudioUnit {
 func (a_ AudioUnit) AudioComponentDescription() audiotoolbox.AudioComponentDescription {
 	rv := objc.Send[audiotoolbox.AudioComponentDescription](a_.ID, objc.Sel("audioComponentDescription"))
 	return rv
-}/* debug [instance_properties/getter]: audioComponentDescription */
+}
 
 
 // The underlying Core Audio audio unit.
@@ -187,7 +185,7 @@ func (a_ AudioUnit) AudioComponentDescription() audiotoolbox.AudioComponentDescr
 func (a_ AudioUnit) AudioUnit() audiotoolbox.AudioUnit {
 	rv := objc.Send[audiotoolbox.AudioUnit](a_.ID, objc.Sel("audioUnit"))
 	return rv
-}/* debug [instance_properties/getter]: audioUnit */
+}
 
 
 // The name of the manufacturer of the audio unit.
@@ -197,7 +195,7 @@ func (a_ AudioUnit) AudioUnit() audiotoolbox.AudioUnit {
 func (a_ AudioUnit) ManufacturerName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("manufacturerName"))
 	return rv
-}/* debug [instance_properties/getter]: manufacturerName */
+}
 
 
 // The name of the audio unit.
@@ -207,7 +205,7 @@ func (a_ AudioUnit) ManufacturerName() objc.IObject /* cross-framework: NSString
 func (a_ AudioUnit) Name() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("name"))
 	return rv
-}/* debug [instance_properties/getter]: name */
+}
 
 
 // The version number of the audio unit.
@@ -217,12 +215,12 @@ func (a_ AudioUnit) Name() objc.IObject /* cross-framework: NSString */ {
 func (a_ AudioUnit) Version() uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("version"))
 	return rv
-}/* debug [instance_properties/getter]: version */
-
-/* debug [instance_properties]: End instance properties */
+}
 
 
-/* debug [class.gen.go]: End class AVAudioUnit */
+
+
+
 
 
 

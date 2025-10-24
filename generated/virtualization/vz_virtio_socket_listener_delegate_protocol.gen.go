@@ -15,3 +15,4 @@ var VZVirtioSocketListenerDelegateProtocol *objc.Protocol
 func init() {
 	VZVirtioSocketListenerDelegateProtocol = objc.GetProtocol("VZVirtioSocketListenerDelegate")
 }
+

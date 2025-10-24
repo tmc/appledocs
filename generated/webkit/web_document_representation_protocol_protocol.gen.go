@@ -3,8 +3,10 @@
 package webkit
 
 import (
+
+	"github.com/tmc/appledocs/generated/coretelephony"
+
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objc"
 )
 
 // PWebDocumentRepresentation is the WebDocumentRepresentation protocol interface.
@@ -17,11 +19,11 @@ import (
 // See: doc://com.apple.webkit/documentation/WebKit/WebDocumentRepresentation
 type PWebDocumentRepresentation interface {
 	// Required methods
-	CanProvideDocumentSource() bool
-	DocumentSource() foundation.String
-	FinishedLoadingWithDataSource(dataSource IWebDataSource)
-	ReceivedDataWithDataSource(data objc.IObject /* cross-framework: NSData */, dataSource IWebDataSource)
-	ReceivedErrorWithDataSource(error_ objc.IObject /* cross-framework: Error */, dataSource IWebDataSource)
-	SetDataSource(dataSource IWebDataSource)
-	Title() foundation.String
+	CanProvideDocumentSource() bool/* debug [protocol_interface/required_method]: CanProvideDocumentSource */
+	DocumentSource() foundation.String/* debug [protocol_interface/required_method]: DocumentSource */
+	FinishedLoadingWithDataSource(dataSource IWebDataSource)/* debug [protocol_interface/required_method]: FinishedLoadingWithDataSource */
+	ReceivedDataWithDataSource(data objc.IObject /* cross-framework: NSData */, dataSource IWebDataSource)/* debug [protocol_interface/required_method]: ReceivedDataWithDataSource */
+	ReceivedErrorWithDataSource(error_ objc.IObject /* cross-framework: Error */, dataSource IWebDataSource)/* debug [protocol_interface/required_method]: ReceivedErrorWithDataSource */
+	SetDataSource(dataSource IWebDataSource)/* debug [protocol_interface/required_method]: SetDataSource */
+	Title() foundation.String/* debug [protocol_interface/required_method]: Title */
 }

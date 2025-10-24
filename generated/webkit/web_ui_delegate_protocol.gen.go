@@ -15,3 +15,4 @@ var WebUIDelegateProtocol *objc.Protocol
 func init() {
 	WebUIDelegateProtocol = objc.GetProtocol("WebUIDelegate")
 }
+
