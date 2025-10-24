@@ -369,10 +369,17 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if
 	rv := objc.Send[{{concreteReturnType $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
 	return Object{ID: rv}
-	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (eq $returnType "[]IObject")}}
-	result := make([]IObject, len(rv))
+	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (or (eq $returnType "[]IObject") (eq $returnType "[]objc.IObject"))}}
+	result := make([]objc.IObject, len(rv))
 	for i, id := range rv {
-		result[i] = Object{ID: id}
+		result[i] = objc.Object{ID: id}
+	}
+	return result
+	{{- else if and (hasPrefix (concreteReturnType $goType) "[]") (ne (concreteReturnType $goType) $returnType)}}
+	// Slice of concrete type to slice of interface - needs conversion
+	result := make({{$returnType}}, len(rv))
+	for i, v := range rv {
+		result[i] = v
 	}
 	return result
 	{{- else}}
@@ -708,10 +715,17 @@ func ({{$.InstReceiver}} {{$.StructName}}) {{$capitalizedName}}() {{$returnType}
 	rv := objc.Send[{{concreteReturnType $goType}}]({{$.InstReceiver}}.ID, objc.Sel("{{.Name}}"))
 	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
 	return Object{ID: rv}
-	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (eq $returnType "[]IObject")}}
-	result := make([]IObject, len(rv))
+	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (or (eq $returnType "[]IObject") (eq $returnType "[]objc.IObject"))}}
+	result := make([]objc.IObject, len(rv))
 	for i, id := range rv {
-		result[i] = Object{ID: id}
+		result[i] = objc.Object{ID: id}
+	}
+	return result
+	{{- else if and (hasPrefix (concreteReturnType $goType) "[]") (ne (concreteReturnType $goType) $returnType)}}
+	// Slice of concrete type to slice of interface - needs conversion
+	result := make({{$returnType}}, len(rv))
+	for i, v := range rv {
+		result[i] = v
 	}
 	return result
 	{{- else}}
