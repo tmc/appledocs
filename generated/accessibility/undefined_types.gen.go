@@ -1,0 +1,21 @@
+// Code generated from Apple documentation for Accessibility. DO NOT EDIT.
+
+package accessibility
+
+// _undefined is the base type for all undefined types referenced in documentation
+// but not defined. These types are typically enums, options, or type aliases that
+// weren't extracted from the documentation.
+type _undefined = int
+
+// Undefined types - referenced but not defined in documentation
+type (
+	AXDataPointValue = _undefined // referenced in Accessibility
+	AttributedString = _undefined // referenced in Accessibility
+	Bool = _undefined // referenced in Accessibility
+	ColorRef = _undefined // referenced in Accessibility
+	Importance = _undefined // referenced in Accessibility
+	Language = _undefined // referenced in Accessibility
+	Locale = _undefined // referenced in Accessibility
+)
+
+

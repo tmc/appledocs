@@ -14,8 +14,15 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 	// This handles CF*Ref types (CFTypeRef, CFAllocatorRef, etc.)
 	strippedCType := stripObjCPrefix(cType)
 	if currentFrameworkTypedefs[strippedCType] {
-		// This is a typedef in the current framework - return the stripped name
+		// For ObjectiveC framework, preserve original typedef names (objc_property_t, etc.)
+		// For other frameworks, strip prefix and title-case
+		if framework == "ObjectiveC" {
+			return cType // Return original name unchanged
+		}
 		// E.g., CFTypeRef -> TypeRef, CFAllocatorRef -> AllocatorRef
+		if strippedCType != "" {
+			return strings.ToUpper(strippedCType[:1]) + strippedCType[1:]
+		}
 		return strippedCType
 	}
 

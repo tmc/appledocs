@@ -198,8 +198,12 @@ func buildTypeRegistryFromParsedData(framework string, classes []*occ2go.ParsedC
 		if typedef.Name == "" {
 			continue
 		}
-		// Strip NS/CG/CA prefix to get Go type name
+		// Strip NS/CG/CA prefix to get Go type name, then title-case it
 		goTypeName := occ2go.StripObjCPrefix(typedef.Name)
+		// Title-case the typedef name (e.g., objc_property_t → Objc_property_t)
+		if goTypeName != "" {
+			goTypeName = strings.ToUpper(goTypeName[:1]) + goTypeName[1:]
+		}
 		// Register both ObjC name and Go name for lookup, but don't overwrite existing entries
 		if _, exists := crossFrameworkTypeRegistry[typedef.Name]; !exists {
 			crossFrameworkTypeRegistry[typedef.Name] = frameworkLower

@@ -1,0 +1,145 @@
+// Code generated from Apple documentation for MetalPerformanceShaders. DO NOT EDIT.
+
+package metalperformanceshaders
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [ImageBox] class.
+var (
+	ImageBoxClass     _ImageBoxClass
+	ImageBoxClassOnce sync.Once
+)
+
+func getImageBoxClass() _ImageBoxClass {
+	ImageBoxClassOnce.Do(func() {
+		ImageBoxClass = _ImageBoxClass{objc.GetClass("MPSImageBox")}
+	})
+	return ImageBoxClass
+}
+
+type _ImageBoxClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [ImageBox] class.
+type IImageBox interface {
+	IUnaryImageKernel
+	// properties:
+	KernelHeight() int /* primitive/slice/pointer. */
+	SetKernelHeight(value int /* primitive/slice/pointer. */)
+	KernelWidth() int /* primitive/slice/pointer. */
+	SetKernelWidth(value int /* primitive/slice/pointer. */)
+	// methods:
+}
+
+// A filter that convolves an image with a given kernel of odd width and height.
+//
+// The kernel elements all have equal weight, achieving a blur effect (each result is the unweighted average of the surrounding pixels). This allows for much faster algorithms, especially for larger blur radii. The box height and width must be odd numbers. The box blur is a separable filter and the Metal Performance Shaders framework will act accordingly to give best performance for multi-dimensional blurs.
+
+
+// A filter that convolves an image with a given kernel of odd width and height.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageBox
+type ImageBox struct {
+	UnaryImageKernel
+}
+
+// ImageBoxFrom constructs a [ImageBox] from an unsafe.Pointer.
+//
+// A filter that convolves an image with a given kernel of odd width and height.
+func ImageBoxFrom(ptr unsafe.Pointer) ImageBox {
+	return ImageBox{
+		UnaryImageKernel: UnaryImageKernelFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (ic _ImageBoxClass) Alloc() ImageBox {
+	rv := objc.Send[ImageBox](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (ic _ImageBoxClass) New() ImageBox {
+	rv := objc.Send[ImageBox](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ ImageBox) Init() ImageBox {
+	rv := objc.Send[ImageBox](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ ImageBox) Autorelease() ImageBox {
+	rv := objc.Send[ImageBox](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewImageBox creates a new ImageBox instance.
+func NewImageBox() ImageBox {
+	return getImageBoxClass().New()
+}
+
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageBox/init(coder:device:)
+func NewImageBoxWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) ImageBox {
+	instance := getImageBoxClass().Alloc()
+	rv := objc.Send[ImageBox](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// The height of the filter window. Must be an odd number.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebox/kernelheight
+func (i_ ImageBox) KernelHeight() int /* primitive/slice/pointer. */ {
+	rv := objc.Send[int](i_.ID, objc.Sel("kernelHeight"))
+	return rv
+}
+
+
+// The height of the filter window. Must be an odd number.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebox/kernelheight
+func (i_ ImageBox) SetKernelHeight(value int /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setKernelHeight:"), value)
+}
+
+
+// The width of the filter window. Must be an odd number.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebox/kernelwidth
+func (i_ ImageBox) KernelWidth() int /* primitive/slice/pointer. */ {
+	rv := objc.Send[int](i_.ID, objc.Sel("kernelWidth"))
+	return rv
+}
+
+
+// The width of the filter window. Must be an odd number.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebox/kernelwidth
+func (i_ ImageBox) SetKernelWidth(value int /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setKernelWidth:"), value)
+}
+
+

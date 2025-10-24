@@ -1,0 +1,112 @@
+// Code generated from Apple documentation for MetalPerformanceShaders. DO NOT EDIT.
+
+package metalperformanceshaders
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [ImageErode] class.
+var (
+	ImageErodeClass     _ImageErodeClass
+	ImageErodeClassOnce sync.Once
+)
+
+func getImageErodeClass() _ImageErodeClass {
+	ImageErodeClassOnce.Do(func() {
+		ImageErodeClass = _ImageErodeClass{objc.GetClass("MPSImageErode")}
+	})
+	return ImageErodeClass
+}
+
+type _ImageErodeClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [ImageErode] class.
+type IImageErode interface {
+	IImageDilate
+	// properties:
+	EdgeMode() ImageEdgeMode
+	SetEdgeMode(value ImageEdgeMode)
+	// methods:
+}
+
+// A filter that finds the minimum pixel value in a rectangular region by applying an erosion function.
+//
+// An behaves like the filter, except that Metal calculates the intensity at each position relative to a different value before determining which is the maximum pixel value, allowing for shaped, nonrectangular morphological probes. The code example below shows pseudocode for the calculation that returns each pixel value: The definition of the filter is different from its counterpart ( ). This allows and to use the same filter, making open and close operators easier to write. A filter that contains all zeros is identical to an filter. Metal handles the center filter element as to avoid causing a general lightening of the image, and it handles the property as for this filter.
+
+
+// A filter that finds the minimum pixel value in a rectangular region by applying an erosion function.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageErode
+type ImageErode struct {
+	ImageDilate
+}
+
+// ImageErodeFrom constructs a [ImageErode] from an unsafe.Pointer.
+//
+// A filter that finds the minimum pixel value in a rectangular region by applying an erosion function.
+func ImageErodeFrom(ptr unsafe.Pointer) ImageErode {
+	return ImageErode{
+		ImageDilate: ImageDilateFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (ic _ImageErodeClass) Alloc() ImageErode {
+	rv := objc.Send[ImageErode](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (ic _ImageErodeClass) New() ImageErode {
+	rv := objc.Send[ImageErode](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ ImageErode) Init() ImageErode {
+	rv := objc.Send[ImageErode](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ ImageErode) Autorelease() ImageErode {
+	rv := objc.Send[ImageErode](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewImageErode creates a new ImageErode instance.
+func NewImageErode() ImageErode {
+	return getImageErodeClass().New()
+}
+
+
+
+// The edge mode to use when texture reads stray off the edge of an image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/edgemode
+func (i_ ImageErode) EdgeMode() ImageEdgeMode {
+	rv := objc.Send[ImageEdgeMode](i_.ID, objc.Sel("edgeMode"))
+	return rv
+}
+
+
+// The edge mode to use when texture reads stray off the edge of an image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/edgemode
+func (i_ ImageErode) SetEdgeMode(value ImageEdgeMode) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setEdgeMode:"), value)
+}
+
+
+

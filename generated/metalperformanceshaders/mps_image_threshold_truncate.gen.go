@@ -1,0 +1,145 @@
+// Code generated from Apple documentation for MetalPerformanceShaders. DO NOT EDIT.
+
+package metalperformanceshaders
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [ImageThresholdTruncate] class.
+var (
+	ImageThresholdTruncateClass     _ImageThresholdTruncateClass
+	ImageThresholdTruncateClassOnce sync.Once
+)
+
+func getImageThresholdTruncateClass() _ImageThresholdTruncateClass {
+	ImageThresholdTruncateClassOnce.Do(func() {
+		ImageThresholdTruncateClass = _ImageThresholdTruncateClass{objc.GetClass("MPSImageThresholdTruncate")}
+	})
+	return ImageThresholdTruncateClass
+}
+
+type _ImageThresholdTruncateClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [ImageThresholdTruncate] class.
+type IImageThresholdTruncate interface {
+	IUnaryImageKernel
+	// properties:
+	ThresholdValue() float32 /* primitive/slice/pointer. */
+	SetThresholdValue(value float32 /* primitive/slice/pointer. */)
+	Transform() float32 /* primitive/slice/pointer. */
+	SetTransform(value float32 /* primitive/slice/pointer. */)
+	// methods:
+}
+
+// A filter that clamps the return value to an upper specified value.
+//
+// An filter converts a single channel image to a binary image. If the input image is not a single channel image, the function first converts the input image into a single channel luminance image using the linear gray color transform, and then it applies the threshold. The following listing shows the threshold truncate function. Listing 1. Threshold truncate function
+
+
+// A filter that clamps the return value to an upper specified value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageThresholdTruncate
+type ImageThresholdTruncate struct {
+	UnaryImageKernel
+}
+
+// ImageThresholdTruncateFrom constructs a [ImageThresholdTruncate] from an unsafe.Pointer.
+//
+// A filter that clamps the return value to an upper specified value.
+func ImageThresholdTruncateFrom(ptr unsafe.Pointer) ImageThresholdTruncate {
+	return ImageThresholdTruncate{
+		UnaryImageKernel: UnaryImageKernelFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (ic _ImageThresholdTruncateClass) Alloc() ImageThresholdTruncate {
+	rv := objc.Send[ImageThresholdTruncate](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (ic _ImageThresholdTruncateClass) New() ImageThresholdTruncate {
+	rv := objc.Send[ImageThresholdTruncate](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ ImageThresholdTruncate) Init() ImageThresholdTruncate {
+	rv := objc.Send[ImageThresholdTruncate](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ ImageThresholdTruncate) Autorelease() ImageThresholdTruncate {
+	rv := objc.Send[ImageThresholdTruncate](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewImageThresholdTruncate creates a new ImageThresholdTruncate instance.
+func NewImageThresholdTruncate() ImageThresholdTruncate {
+	return getImageThresholdTruncateClass().New()
+}
+
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageThresholdTruncate/init(coder:device:)
+func NewImageThresholdTruncateWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) ImageThresholdTruncate {
+	instance := getImageThresholdTruncateClass().Alloc()
+	rv := objc.Send[ImageThresholdTruncate](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// The threshold value used to initialize the threshold filter.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdtruncate/thresholdvalue
+func (i_ ImageThresholdTruncate) ThresholdValue() float32 /* primitive/slice/pointer. */ {
+	rv := objc.Send[float32](i_.ID, objc.Sel("thresholdValue"))
+	return rv
+}
+
+
+// The threshold value used to initialize the threshold filter.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdtruncate/thresholdvalue
+func (i_ ImageThresholdTruncate) SetThresholdValue(value float32 /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setThresholdValue:"), value)
+}
+
+
+// The color transform used to initialize the threshold filter.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdtruncate/transform
+func (i_ ImageThresholdTruncate) Transform() float32 /* primitive/slice/pointer. */ {
+	rv := objc.Send[float32](i_.ID, objc.Sel("transform"))
+	return rv
+}
+
+
+// The color transform used to initialize the threshold filter.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdtruncate/transform
+func (i_ ImageThresholdTruncate) SetTransform(value float32 /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTransform:"), value)
+}
+
+
