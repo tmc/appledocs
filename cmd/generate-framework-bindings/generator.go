@@ -172,12 +172,31 @@ func (g *Generator) IsTypedefType(typeName string) bool {
 // the Generator's data-driven type checking (enum/typedef/class indices).
 // This allows templates to use accurate type resolution instead of heuristics.
 func (g *Generator) TypeToInterfaceType(goType string) string {
+	// Foundation types that should map to primitives
+	// TimeInterval is NSTimeInterval which is typedef for double
+	if goType == "TimeInterval" || goType == "NSTimeInterval" {
+		return "float64"
+	}
+
+	// Handle slices FIRST - before checking for qualified types
+	// This ensures []foundation.Number is processed correctly (element type contains ".")
+	if strings.HasPrefix(goType, "[]") {
+		elemType := goType[2:]
+		convertedElemType := g.TypeToInterfaceType(elemType)
+		return "[]" + convertedElemType
+	}
+
 	// Handle qualified types (e.g., "foundation.Coder" -> "foundation.ICoder")
 	if strings.Contains(goType, ".") {
 		parts := strings.SplitN(goType, ".", 2)
 		if len(parts) == 2 {
 			pkg := parts[0]
 			typeName := parts[1]
+
+			// Special case: In ObjectiveC framework, objc.ID should become IObject
+			if pkg == "objc" && typeName == "ID" && strings.ToLower(g.Framework) == "objectivec" {
+				return "IObject"
+			}
 
 			// Don't convert runtime types (objc.ID, unsafe.Pointer, etc.)
 			if pkg == "objc" || pkg == "unsafe" || pkg == "objectivec" {
@@ -233,15 +252,8 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		return goType + " /* malformed qualified type */"
 	}
 
-	// Foundation types that should map to primitives
-	// TimeInterval is NSTimeInterval which is typedef for double
-	if goType == "TimeInterval" || goType == "NSTimeInterval" {
-		return "float64"
-	}
-
-	// Don't convert primitives, slices, pointers
-	if strings.HasPrefix(goType, "[]") ||
-		strings.HasPrefix(goType, "*") ||
+	// Don't convert primitives, pointers, maps
+	if strings.HasPrefix(goType, "*") ||
 		strings.HasPrefix(goType, "map[") ||
 		goType == "string" ||
 		goType == "int" ||
@@ -252,22 +264,22 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		goType == "float64" ||
 		goType == "bool" ||
 		goType == "unsafe.Pointer" {
-		return goType + " /* primitive/slice/pointer. */"
+		return goType
 	}
 
 	// Don't convert CoreGraphics types (structs and refs like CGPoint, CGContextRef)
 	if strings.HasPrefix(goType, "CG") {
-		return goType + " /* CoreGraphics type */"
+		return goType
 	}
 
 	// Don't convert NSInteger/NSUInteger - these are typedefs, not classes
 	if strings.HasPrefix(goType, "NS") && (strings.HasSuffix(goType, "Integer") || strings.HasSuffix(goType, "UInteger")) {
-		return goType + " /* NSInteger/NSUInteger typedef */"
+		return goType
 	}
 
 	// If it already starts with I and next char is uppercase, it's already an interface
 	if strings.HasPrefix(goType, "I") && len(goType) > 1 && goType[1] >= 'A' && goType[1] <= 'Z' {
-		return goType + " /* already interface */"
+		return goType
 	}
 
 	// DATA-DRIVEN: Check if this is an enum or typedef - don't convert those

@@ -173,11 +173,15 @@ func mapObjCTypeToGo(objcType, framework string) string {
 			}
 
 			// Special case: NSObject with protocol conformance (e.g., NSObject<SomeProtocol>)
-			// These should map to []objectivec.IObject
+			// These should map to []IObject or []objectivec.IObject depending on framework
 			if strings.HasPrefix(elementType, "NSObject<") {
+				iObjectType := "objectivec.IObject"
+				if strings.ToLower(framework) == "objectivec" {
+					iObjectType = "IObject"
+				}
 				Debug.Object("NSObject< pattern match", objcType, elementType,
-					"returning", "[]objectivec.IObject")
-				return "[]objectivec.IObject"
+					"returning", "[]"+iObjectType)
+				return "[]" + iObjectType
 			}
 
 			// Strip common Apple prefixes from element types

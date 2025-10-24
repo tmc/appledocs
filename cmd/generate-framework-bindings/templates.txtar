@@ -446,14 +446,23 @@ func {{$constructorName}}({{formatMethodParams .}}) {{$structName}} {
 {{- /* If the method returns the same type as the class, use the wrapper type instead of the underlying struct */}}
 {{- $returnType := $goType}}
 {{- if eq $goType $className}}{{$returnType = $structName}}{{else}}{{$returnType = typeToInterfaceType $goType}}{{end}}
-
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
 {{end -}}
 func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	rv := objc.Send[{{concreteReturnType $goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
+	return Object{ID: rv}
+	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (eq $returnType "[]IObject")}}
+	result := make([]IObject, len(rv))
+	for i, id := range rv {
+		result[i] = Object{ID: id}
+	}
+	return result
+	{{- else}}
 	return rv
+	{{- end}}
 	{{- else}}
 	objc.Send[objc.ID](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- end}}
@@ -508,7 +517,17 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if
 	return rv
 	{{- else if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	rv := objc.Send[{{concreteReturnType $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
+	return Object{ID: rv}
+	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (eq $returnType "[]IObject")}}
+	result := make([]IObject, len(rv))
+	for i, id := range rv {
+		result[i] = Object{ID: id}
+	}
+	return result
+	{{- else}}
 	return rv
+	{{- end}}
 	{{- else}}
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- end}}
