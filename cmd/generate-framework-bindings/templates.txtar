@@ -90,14 +90,16 @@ package {{.PackageName}}
 // Package {{.PackageName}} provides Go bindings for the {{.Framework}} framework.
 //
 // {{.Abstract}}
+//
 {{else -}}
 // Package {{.PackageName}} provides Go bindings for the {{.Framework}} framework.
-{{end -}}
 //
+{{end -}}
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to {{.Framework}} without requiring cgo.
 {{if .DocURL -}}
-{{template "doc_comment" .}}
+//
+// See: {{convertDocURL .DocURL}}
 {{end -}}
 package {{.PackageName}}
 
@@ -673,7 +675,7 @@ func Example{{$constructorName}}() {
 
 {{/* Generate tests for parameterless instance methods */}}
 {{- range filterPropertyMethods .}}
-{{- if and (not .IsClassMethod) (eq (len .Parameters) 0) (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector)) (eq (len .Availability.DeprecatedAt) 0)}}
+{{- if and (not .IsClassMethod) (eq (len .Parameters) 0) (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector)) (eq (len .Availability.DeprecatedAt) 0) (isSafeToTestOnNSObject .Selector)}}
 {{- $methodName := disambiguateMethodName .}}
 {{- $testMethodName := printf "Example%s_%s" $structName $methodName}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}

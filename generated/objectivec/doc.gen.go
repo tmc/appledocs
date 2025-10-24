@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ObjectiveC without requiring cgo.
-
-// Gain low-level access to the Objective-C runtime and the Objective-C root types.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC
+// See: https://developer.apple.com/documentation/ObjectiveC
 package objectivec
 
 import (
