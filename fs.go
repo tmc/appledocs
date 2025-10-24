@@ -196,6 +196,11 @@ func ListSymbols(fsys *FS, framework string) ([]string, error) {
 			symbol = strings.TrimSuffix(symbol, ".json.language%3Dswift")
 			symbol = strings.TrimSuffix(symbol, ".json.language%3Dobjc")
 			symbol = strings.TrimSuffix(symbol, ".json")
+
+			// Apple's documentation uses /index.json for class/protocol/type definitions
+			// Remove /index suffix to get the actual symbol name
+			// e.g., "NSObject-swift.class/index" -> "NSObject-swift.class"
+			symbol = strings.TrimSuffix(symbol, string(filepath.Separator)+"index")
 			symbolsMap[symbol] = true
 		}
 		return nil
@@ -336,7 +341,20 @@ func Symbols(fsys *FS, framework string) func(yield func(string, *Document) bool
 		}
 
 		for _, symbol := range symbols {
-			path := filepath.Join(framework, symbol+".json")
+			// Apple's documentation structure:
+			// - Classes: ClassName.class/index.json
+			// - Protocols: ProtocolName.protocol/index.json
+			// - Other symbols: SymbolName.json or SymbolName/index.json
+			// ListSymbols returns symbols without the /index suffix, so we need to:
+			// 1. Check if symbol ends with .class or .protocol
+			// 2. If so, append /index.json instead of .json
+			var path string
+			if strings.HasSuffix(symbol, ".class") || strings.HasSuffix(symbol, ".protocol") {
+				path = filepath.Join(framework, symbol, "index.json")
+			} else {
+				path = filepath.Join(framework, symbol+".json")
+			}
+
 			doc, err := fsys.ReadDocument(path)
 			if err != nil {
 				continue // Skip symbols that can't be read
