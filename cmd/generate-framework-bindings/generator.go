@@ -238,7 +238,8 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 			}
 
 			// Don't convert CoreGraphics types (structs and refs)
-			if strings.HasPrefix(typeName, "CG") {
+			// Check both CG-prefixed names (CGRect) and stripped names (AffineTransform)
+			if pkg == "coregraphics" || pkg == "corefoundation" || strings.HasPrefix(typeName, "CG") || strings.HasPrefix(typeName, "CF") {
 				return goType
 			}
 

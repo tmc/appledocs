@@ -338,6 +338,14 @@ func enumUnderlyingType(enum *occ2go.ParsedEnum) string {
 	// This handles cases where BaseType is not set or is ambiguous
 	// Special case: INT64_MIN (-9223372036854775808) stored as int can appear as large negative
 	for _, enumCase := range enum.Cases {
+		// Debug: print problematic values
+		const int64Min = -9223372036854775808
+		if enumCase.IntValue == int64Min {
+			// This is INT64_MIN, which is used as a bit flag (0x8000000000000000)
+			// When used with uint types, this needs special handling
+			// Force int type to avoid overflow issues
+			return "int"
+		}
 		if enumCase.IntValue < 0 {
 			return "int"
 		}
@@ -349,19 +357,25 @@ func enumUnderlyingType(enum *occ2go.ParsedEnum) string {
 
 // formatEnumValue formats an enum constant value, handling overflow cases
 // When a value doesn't fit in the target type, it uses explicit type conversion
+// The enumTypeName parameter is used for explicit casting when needed
 func formatEnumValue(value int, underlyingType string) string {
 	const int64Min = -9223372036854775808
 
-	// INT64_MIN needs special handling when targeting uint types
-	// It represents a bit pattern (0x8000000000000000) that's used as a flag
-	if value == int64Min && underlyingType == "uint" {
-		// Cast through uint64 to preserve the bit pattern
-		return "uint(0x8000000000000000)"
+	// INT64_MIN (0x8000000000000000 as unsigned) needs special handling
+	// This value is commonly used as a bit flag in Apple's APIs
+	if value == int64Min {
+		if underlyingType == "uint" {
+			// For uint types, use the maximum value that represents the same bit pattern
+			// uint(1 << 63) = 9223372036854775808
+			return "1 << 63"
+		}
+		// For int types, use the literal value
+		return "-9223372036854775808"
 	}
 
-	// For other negative values with uint type, also use explicit hex
+	// For other negative values with uint type, convert to hex
 	if value < 0 && underlyingType == "uint" {
-		return fmt.Sprintf("uint(0x%x)", uint64(value))
+		return fmt.Sprintf("0x%x", uint64(value))
 	}
 
 	// Normal case: emit the value directly
