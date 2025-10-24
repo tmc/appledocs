@@ -15,13 +15,22 @@ func ExampleNewObject() {
 	_ = objectivec.NewObject()
 	// Output:
 }
-// ExampleObject_AccessibilityElementCount demonstrates using AccessibilityElementCount on a Object instance.
+// ExampleObject_AccessibilityLineEndPositionFromCurrentSelection demonstrates using AccessibilityLineEndPositionFromCurrentSelection on a Object instance.
 //
-// Note: This example is not executed because AccessibilityElementCount crashes when called on bare NSObject
+// Note: This example is not executed because AccessibilityLineEndPositionFromCurrentSelection crashes when called on bare NSObject
 // (it's a protocol/category method that should be overridden by subclasses).
-func ExampleObject_AccessibilityElementCount() {
+func ExampleObject_AccessibilityLineEndPositionFromCurrentSelection() {
 	obj := objectivec.NewObject()
-	_ = obj.AccessibilityElementCount()
+	_ = obj.AccessibilityLineEndPositionFromCurrentSelection()
+	}
+
+// ExampleObject_AccessibilityLineStartPositionFromCurrentSelection demonstrates using AccessibilityLineStartPositionFromCurrentSelection on a Object instance.
+//
+// Note: This example is not executed because AccessibilityLineStartPositionFromCurrentSelection crashes when called on bare NSObject
+// (it's a protocol/category method that should be overridden by subclasses).
+func ExampleObject_AccessibilityLineStartPositionFromCurrentSelection() {
+	obj := objectivec.NewObject()
+	_ = obj.AccessibilityLineStartPositionFromCurrentSelection()
 	}
 
 // ExampleObject_ActionProperty demonstrates using ActionProperty on a Object instance.
@@ -32,6 +41,16 @@ func ExampleObject_AccessibilityElementCount() {
 func ExampleObject_ActionProperty() {
 	obj := objectivec.NewObject()
 	_ = obj.ActionProperty()
+	}
+
+// ExampleObject_BrowserAccessibilitySelectedTextRange demonstrates using BrowserAccessibilitySelectedTextRange on a Object instance.
+// Returns the range of selected text in the element.
+//
+// Note: This example is not executed because BrowserAccessibilitySelectedTextRange crashes when called on bare NSObject
+// (it's a protocol/category method that should be overridden by subclasses).
+func ExampleObject_BrowserAccessibilitySelectedTextRange() {
+	obj := objectivec.NewObject()
+	_ = obj.BrowserAccessibilitySelectedTextRange()
 	}
 
 // ExampleObject_Dealloc demonstrates using Dealloc on a Object instance.

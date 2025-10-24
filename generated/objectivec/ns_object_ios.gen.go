@@ -39,6 +39,20 @@ func (o_ Object) AccessibilityDecrement() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityDecrement"))
 }
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElement(at:)
+func (o_ Object) AccessibilityElementAtIndex(index objc.IObject /* cross-framework: Integer */) IObject {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityElementAtIndex:"), index)
+	return Object{ID: rv}
+}
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementCount()
+func (o_ Object) AccessibilityElementCount() objc.IObject /* cross-framework: Integer */ {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityElementCount"))
+	return rv
+}
+
 // Sent after an assistive technology has set its virtual focus on the accessibility element.
 //
 // [Full Topic]
@@ -77,27 +91,6 @@ func (o_ Object) AccessibilityHitTestWithEvent(point IObject, event IObject) IOb
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityIncrement()
 func (o_ Object) AccessibilityIncrement() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityIncrement"))
-}
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLineEndPositionFromCurrentSelection()
-func (o_ Object) AccessibilityLineEndPositionFromCurrentSelection() objc.IObject /* cross-framework: Integer */ {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityLineEndPositionFromCurrentSelection"))
-	return rv
-}
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLineRange(forPosition:)
-func (o_ Object) AccessibilityLineRangeForPosition(position objc.IObject /* cross-framework: Integer */) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityLineRangeForPosition:"), position)
-	return Object{ID: rv}
-}
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLineStartPositionFromCurrentSelection()
-func (o_ Object) AccessibilityLineStartPositionFromCurrentSelection() objc.IObject /* cross-framework: Integer */ {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityLineStartPositionFromCurrentSelection"))
-	return rv
 }
 
 // Dismisses a modal view and returns the success or failure of the action.
@@ -145,55 +138,11 @@ func (o_ Object) AccessibilityZoomOutAtPoint(point IObject) bool {
 	return rv
 }
 
-// Returns the value for this element within the given range, as an attributed string.
-//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityAttributedValue(in:)
-func (o_ Object) BrowserAccessibilityAttributedValueInRange(range_ IObject) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilityAttributedValueInRange:"), range_)
-	return Object{ID: rv}
-}
-
-// Deletes text from the element at the current cursor position.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityDeleteTextAtCursor(numberOfCharacters:)
-func (o_ Object) BrowserAccessibilityDeleteTextAtCursor(numberOfCharacters objc.IObject /* cross-framework: Integer */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilityDeleteTextAtCursor:"), numberOfCharacters)
-}
-
-// Inserts text into the element at the current cursor position.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityInsertTextAtCursor(text:)
-func (o_ Object) BrowserAccessibilityInsertTextAtCursor(text IObject) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilityInsertTextAtCursor:"), text)
-}
-
-// Returns the range of selected text in the element.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilitySelectedTextRange()
-func (o_ Object) BrowserAccessibilitySelectedTextRange() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilitySelectedTextRange"))
-	return Object{ID: rv}
-}
-
-// Updates the element’s selected text.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilitySetSelectedTextRange(_:)
-func (o_ Object) BrowserAccessibilitySetSelectedTextRange(range_ IObject) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilitySetSelectedTextRange:"), range_)
-}
-
-// Returns this element’s value in the given range.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityValue(in:)
-func (o_ Object) BrowserAccessibilityValueInRange(range_ IObject) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilityValueInRange:"), range_)
-	return Object{ID: rv}
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/index(ofAccessibilityElement:)
+func (o_ Object) IndexOfAccessibilityElement(element IObject) objc.IObject /* cross-framework: Integer */ {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("indexOfAccessibilityElement:"), element)
+	return rv
 }
 
 // iOS-only properties
@@ -206,16 +155,6 @@ func (o_ Object) AccessibilityActivateBlock() unsafe.Pointer {
 }
 func (o_ Object) SetAccessibilityActivateBlock(value unsafe.Pointer) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityActivateBlock:"), value)
-}
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityActivationPoint
-func (o_ Object) AccessibilityActivationPoint() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityActivationPoint"))
-	return Object{ID: rv}
-}
-func (o_ Object) SetAccessibilityActivationPoint(value IObject) {
-	o_.ID.Send(objc.RegisterName("setAccessibilityActivationPoint:"), value)
 }
 
 // [Full Topic]
@@ -435,6 +374,16 @@ func (o_ Object) SetAccessibilityDropPointDescriptors(value []IObject) {
 }
 
 // [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElements
+func (o_ Object) AccessibilityElements() IObject {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityElements"))
+	return Object{ID: rv}
+}
+func (o_ Object) SetAccessibilityElements(value IObject) {
+	o_.ID.Send(objc.RegisterName("setAccessibilityElements:"), value)
+}
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementsBlock
 func (o_ Object) AccessibilityElementsBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityElementsBlock"))
@@ -495,6 +444,16 @@ func (o_ Object) SetAccessibilityFrameBlock(value unsafe.Pointer) {
 }
 
 // [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHeaderElements
+func (o_ Object) AccessibilityHeaderElements() IObject {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityHeaderElements"))
+	return Object{ID: rv}
+}
+func (o_ Object) SetAccessibilityHeaderElements(value IObject) {
+	o_.ID.Send(objc.RegisterName("setAccessibilityHeaderElements:"), value)
+}
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHeaderElementsBlock
 func (o_ Object) AccessibilityHeaderElementsBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityHeaderElementsBlock"))
@@ -502,6 +461,16 @@ func (o_ Object) AccessibilityHeaderElementsBlock() unsafe.Pointer {
 }
 func (o_ Object) SetAccessibilityHeaderElementsBlock(value unsafe.Pointer) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityHeaderElementsBlock:"), value)
+}
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHint
+func (o_ Object) AccessibilityHint() IObject {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityHint"))
+	return Object{ID: rv}
+}
+func (o_ Object) SetAccessibilityHint(value IObject) {
+	o_.ID.Send(objc.RegisterName("setAccessibilityHint:"), value)
 }
 
 // [Full Topic]
@@ -535,6 +504,16 @@ func (o_ Object) SetAccessibilityIncrementBlock(value unsafe.Pointer) {
 }
 
 // [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLabel
+func (o_ Object) AccessibilityLabel() IObject {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityLabel"))
+	return Object{ID: rv}
+}
+func (o_ Object) SetAccessibilityLabel(value IObject) {
+	o_.ID.Send(objc.RegisterName("setAccessibilityLabel:"), value)
+}
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLabelBlock
 func (o_ Object) AccessibilityLabelBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityLabelBlock"))
@@ -542,6 +521,16 @@ func (o_ Object) AccessibilityLabelBlock() unsafe.Pointer {
 }
 func (o_ Object) SetAccessibilityLabelBlock(value unsafe.Pointer) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityLabelBlock:"), value)
+}
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLanguage
+func (o_ Object) AccessibilityLanguage() IObject {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityLanguage"))
+	return Object{ID: rv}
+}
+func (o_ Object) SetAccessibilityLanguage(value IObject) {
+	o_.ID.Send(objc.RegisterName("setAccessibilityLanguage:"), value)
 }
 
 // [Full Topic]
@@ -725,6 +714,16 @@ func (o_ Object) SetAccessibilityTextualContextBlock(value unsafe.Pointer) {
 }
 
 // [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTraits
+func (o_ Object) AccessibilityTraits() IObject {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityTraits"))
+	return Object{ID: rv}
+}
+func (o_ Object) SetAccessibilityTraits(value IObject) {
+	o_.ID.Send(objc.RegisterName("setAccessibilityTraits:"), value)
+}
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTraitsBlock
 func (o_ Object) AccessibilityTraitsBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityTraitsBlock"))
@@ -752,6 +751,16 @@ func (o_ Object) AccessibilityUserInputLabelsBlock() unsafe.Pointer {
 }
 func (o_ Object) SetAccessibilityUserInputLabelsBlock(value unsafe.Pointer) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityUserInputLabelsBlock:"), value)
+}
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityValue
+func (o_ Object) AccessibilityValue() IObject {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityValue"))
+	return Object{ID: rv}
+}
+func (o_ Object) SetAccessibilityValue(value IObject) {
+	o_.ID.Send(objc.RegisterName("setAccessibilityValue:"), value)
 }
 
 // [Full Topic]
@@ -785,6 +794,16 @@ func (o_ Object) SetAccessibilityViewIsModalBlock(value unsafe.Pointer) {
 }
 
 // [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/automationElements
+func (o_ Object) AutomationElements() IObject {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("automationElements"))
+	return Object{ID: rv}
+}
+func (o_ Object) SetAutomationElements(value IObject) {
+	o_.ID.Send(objc.RegisterName("setAutomationElements:"), value)
+}
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/automationElementsBlock
 func (o_ Object) AutomationElementsBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("automationElementsBlock"))
@@ -794,52 +813,14 @@ func (o_ Object) SetAutomationElementsBlock(value unsafe.Pointer) {
 	o_.ID.Send(objc.RegisterName("setAutomationElementsBlock:"), value)
 }
 
-// The kind of container that contains this element.
-//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityContainerType
-func (o_ Object) BrowserAccessibilityContainerType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("browserAccessibilityContainerType"))
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isAccessibilityElement
+func (o_ Object) IsAccessibilityElement() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("isAccessibilityElement"))
 	return rv
 }
-func (o_ Object) SetBrowserAccessibilityContainerType(value unsafe.Pointer) {
-	o_.ID.Send(objc.RegisterName("setBrowserAccessibilityContainerType:"), value)
-}
-
-// A Boolean value that indicates whether the element has native focus in the browser Document Object Model.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityHasDOMFocus
-func (o_ Object) BrowserAccessibilityHasDOMFocus() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("browserAccessibilityHasDOMFocus"))
-	return rv
-}
-func (o_ Object) SetBrowserAccessibilityHasDOMFocus(value bool) {
-	o_.ID.Send(objc.RegisterName("setBrowserAccessibilityHasDOMFocus:"), value)
-}
-
-// A Boolean value that’s the element’s value for aria-required.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityIsRequired
-func (o_ Object) BrowserAccessibilityIsRequired() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("browserAccessibilityIsRequired"))
-	return rv
-}
-func (o_ Object) SetBrowserAccessibilityIsRequired(value bool) {
-	o_.ID.Send(objc.RegisterName("setBrowserAccessibilityIsRequired:"), value)
-}
-
-// The element’s value for aria-pressed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityPressedState
-func (o_ Object) BrowserAccessibilityPressedState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("browserAccessibilityPressedState"))
-	return rv
-}
-func (o_ Object) SetBrowserAccessibilityPressedState(value unsafe.Pointer) {
-	o_.ID.Send(objc.RegisterName("setBrowserAccessibilityPressedState:"), value)
+func (o_ Object) SetIsAccessibilityElement(value bool) {
+	o_.ID.Send(objc.RegisterName("setIsAccessibilityElement:"), value)
 }
 
 // [Full Topic]
