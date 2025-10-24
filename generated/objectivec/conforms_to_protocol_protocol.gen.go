@@ -6,6 +6,15 @@ import "github.com/ebitengine/purego/objc"
 
 // conformsToProtocolProtocol is the conformsToProtocol: protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//   - watchOS +
+//
 // Use this protocol when registering custom classes that conform to conformsToProtocol:.
 var conformsToProtocolProtocol *objc.Protocol
 

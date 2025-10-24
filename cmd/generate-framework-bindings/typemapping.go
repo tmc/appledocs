@@ -195,6 +195,30 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 	// IMPORTANT: Check if the stripped type exists in the current framework BEFORE checking cross-framework registry
 	// This prevents "Cursor" in CloudKit from resolving to appkit.Cursor instead of CKQueryCursor
 	if strippedType != objcType {
+		// CRITICAL: Check static type registry FIRST before checking enums/classes
+		// This ensures explicit type mappings (e.g., BluetoothL2CAPChannelRef -> uintptr)
+		// take precedence over auto-discovered framework types
+		for _, mapping := range staticTypeRegistry {
+			if mapping.ObjCType == strippedType && strings.EqualFold(mapping.Framework, framework) {
+				Debug.TypeMap("found stripped type in static registry (framework-specific)", strippedType, mapping.GoType,
+					"objcType", objcType,
+					"strippedType", strippedType,
+					"goType", mapping.GoType,
+					"framework", framework)
+				return mapping.GoType, true
+			}
+		}
+		// Check framework-agnostic static mappings
+		for _, mapping := range staticTypeRegistry {
+			if mapping.ObjCType == strippedType && mapping.Framework == "" {
+				Debug.TypeMap("found stripped type in static registry (framework-agnostic)", strippedType, mapping.GoType,
+					"objcType", objcType,
+					"strippedType", strippedType,
+					"goType", mapping.GoType)
+				return mapping.GoType, true
+			}
+		}
+
 		// Check if this stripped type is a class in the current framework
 		if currentFrameworkClasses[strippedType] {
 			Debug.TypeMap("lookupTypeMapping: found in current framework classes", objcType, strippedType,

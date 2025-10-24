@@ -36,25 +36,18 @@ type IObject interface {
 	AutoContentAccessingProxy() IObject
 	BrowserAccessibilityContainerType() unsafe.Pointer
 	SetBrowserAccessibilityContainerType(value unsafe.Pointer)
-	BrowserAccessibilityCurrentStatus() IObject
-	SetBrowserAccessibilityCurrentStatus(value IObject)
 	BrowserAccessibilityHasDOMFocus() bool
 	SetBrowserAccessibilityHasDOMFocus(value bool)
 	BrowserAccessibilityIsRequired() bool
 	SetBrowserAccessibilityIsRequired(value bool)
 	BrowserAccessibilityPressedState() unsafe.Pointer
 	SetBrowserAccessibilityPressedState(value unsafe.Pointer)
-	BrowserAccessibilityRoleDescription() IObject
-	SetBrowserAccessibilityRoleDescription(value IObject)
-	BrowserAccessibilitySortDirection() IObject
-	SetBrowserAccessibilitySortDirection(value IObject)
 	ClassCode() uint32 /* not a class type */
 	ClassDescription() IObject
 	ClassForArchiver() objc.Class
 	ClassForCoder() objc.Class
 	ClassForKeyedArchiver() objc.Class
 	ClassForPortCoder() objc.Class
-	ClassName() IObject
 	ExposedBindings() []string
 	Selectable() bool
 	ObjectForWebScript() IObject
@@ -63,7 +56,6 @@ type IObject interface {
 	SetObservationInfo(value unsafe.Pointer)
 	ToManyRelationshipKeys() []string
 	ToOneRelationshipKeys() []string
-	WebFrame() IObject
 	WebPlugInContainerSelectionColor() IObject
 	IsSelectable() bool
 	SetIsSelectable(value bool)
@@ -354,8 +346,8 @@ func (oc _ObjectClass) ConformsToProtocol(protocol_ IProtocol) bool {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/debugDescription()
 func (oc _ObjectClass) DebugDescription() IObject {
-	rv := objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("debugDescription"))
-	return Object{ID: rv}
+	rv := objc.Send[Object](objc.ID(oc.class), objc.Sel("debugDescription"))
+	return rv
 }
 
 
@@ -374,8 +366,8 @@ func (oc _ObjectClass) DefaultPlaceholderForMarkerWithBinding(marker IObject, bi
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/description()
 func (oc _ObjectClass) Description() IObject {
-	rv := objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("description"))
-	return Object{ID: rv}
+	rv := objc.Send[Object](objc.ID(oc.class), objc.Sel("description"))
+	return rv
 }
 
 
@@ -420,8 +412,8 @@ func (oc _ObjectClass) InstanceMethodForSelector(aSelector objc.SEL) IMP {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/instanceMethodSignatureForSelector:
 func (oc _ObjectClass) InstanceMethodSignatureForSelector(aSelector objc.SEL) IObject {
-	rv := objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("instanceMethodSignatureForSelector:"), aSelector)
-	return Object{ID: rv}
+	rv := objc.Send[Object](objc.ID(oc.class), objc.Sel("instanceMethodSignatureForSelector:"), aSelector)
+	return rv
 }
 
 
@@ -566,8 +558,8 @@ func (oc _ObjectClass) Version() objc.IObject /* cross-framework: Integer */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webScriptName(for:)
 func (oc _ObjectClass) WebScriptNameForSelector(selector objc.SEL) IObject {
-	rv := objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("webScriptNameForSelector:"), selector)
-	return Object{ID: rv}
+	rv := objc.Send[Object](objc.ID(oc.class), objc.Sel("webScriptNameForSelector:"), selector)
+	return rv
 }
 
 
@@ -576,16 +568,16 @@ func (oc _ObjectClass) WebScriptNameForSelector(selector objc.SEL) IObject {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webScriptName(forKey:)
 func (oc _ObjectClass) WebScriptNameForKey(name unsafe.Pointer) IObject {
-	rv := objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("webScriptNameForKey:"), name)
-	return Object{ID: rv}
+	rv := objc.Send[Object](objc.ID(oc.class), objc.Sel("webScriptNameForKey:"), name)
+	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/withL2CAPChannelRef:
-func (oc _ObjectClass) WithL2CAPChannelRef(l2capChannelRef BluetoothL2CAPChannelRef /* not a class type */) IObject {
-	rv := objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("withL2CAPChannelRef:"), l2capChannelRef)
-	return Object{ID: rv}
+func (oc _ObjectClass) WithL2CAPChannelRef(l2capChannelRef uintptr /* not a class type */) IObject {
+	rv := objc.Send[Object](objc.ID(oc.class), objc.Sel("withL2CAPChannelRef:"), l2capChannelRef)
+	return rv
 }
 
 
@@ -621,8 +613,8 @@ func (o_ Object) AccessibilityArrayAttributeCount(attribute string) uint {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityArrayAttributeValues(_:index:maxCount:)
 func (o_ Object) AccessibilityArrayAttributeValuesIndexMaxCount(attribute string, index uint, maxCount uint) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityArrayAttributeValues:index:maxCount:"), objc.String(attribute), index, maxCount)
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityArrayAttributeValues:index:maxCount:"), objc.String(attribute), index, maxCount)
+	return rv
 }
 
 
@@ -655,8 +647,8 @@ func (o_ Object) AccessibilityLineEndPositionFromCurrentSelection() objc.IObject
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLineRange(forPosition:)
 func (o_ Object) AccessibilityLineRangeForPosition(position objc.IObject /* cross-framework: Integer */) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityLineRangeForPosition:"), position)
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityLineRangeForPosition:"), position)
+	return rv
 }
 
 
@@ -673,8 +665,8 @@ func (o_ Object) AccessibilityLineStartPositionFromCurrentSelection() objc.IObje
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/actionProperty()
 func (o_ Object) ActionProperty() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("actionProperty"))
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("actionProperty"))
+	return rv
 }
 
 
@@ -792,8 +784,8 @@ func (o_ Object) BindToObjectWithKeyPathOptions(binding string, observable IObje
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityAttributedValue(in:)
 func (o_ Object) BrowserAccessibilityAttributedValueInRange(range_ IObject) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilityAttributedValueInRange:"), range_)
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("browserAccessibilityAttributedValueInRange:"), range_)
+	return rv
 }
 
 
@@ -820,8 +812,8 @@ func (o_ Object) BrowserAccessibilityInsertTextAtCursor(text IObject) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilitySelectedTextRange()
 func (o_ Object) BrowserAccessibilitySelectedTextRange() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilitySelectedTextRange"))
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("browserAccessibilitySelectedTextRange"))
+	return rv
 }
 
 
@@ -839,8 +831,8 @@ func (o_ Object) BrowserAccessibilitySetSelectedTextRange(range_ IObject) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityValue(in:)
 func (o_ Object) BrowserAccessibilityValueInRange(range_ IObject) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilityValueInRange:"), range_)
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("browserAccessibilityValueInRange:"), range_)
+	return rv
 }
 
 
@@ -877,8 +869,8 @@ func (o_ Object) BurnProgressPanelWillBegin(aNotification IObject) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/candidates(_:)
 func (o_ Object) Candidates(sender IObject) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("candidates:"), sender)
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("candidates:"), sender)
+	return rv
 }
 
 
@@ -1224,8 +1216,8 @@ func (o_ Object) ImageBrowserCellWasRightClickedAtIndexWithEvent(aBrowser IObjec
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:groupAt:)
 func (o_ Object) ImageBrowserGroupAtIndex(aBrowser IObject, index uint) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowser:groupAtIndex:"), aBrowser, index)
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("imageBrowser:groupAtIndex:"), aBrowser, index)
+	return rv
 }
 
 
@@ -1292,8 +1284,8 @@ func (o_ Object) ImageRepresentation() IObject {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageRepresentationType()
 func (o_ Object) ImageRepresentationType() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("imageRepresentationType"))
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("imageRepresentationType"))
+	return rv
 }
 
 
@@ -1302,8 +1294,8 @@ func (o_ Object) ImageRepresentationType() IObject {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageSubtitle()
 func (o_ Object) ImageSubtitle() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("imageSubtitle"))
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("imageSubtitle"))
+	return rv
 }
 
 
@@ -1312,8 +1304,8 @@ func (o_ Object) ImageSubtitle() IObject {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageTitle()
 func (o_ Object) ImageTitle() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("imageTitle"))
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("imageTitle"))
+	return rv
 }
 
 
@@ -1322,8 +1314,8 @@ func (o_ Object) ImageTitle() IObject {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageUID()
 func (o_ Object) ImageUID() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("imageUID"))
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("imageUID"))
+	return rv
 }
 
 
@@ -1394,8 +1386,8 @@ func (o_ Object) InsertValueInPropertyWithKey(value IObject, key IObject) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/inverse(forRelationshipKey:)
 func (o_ Object) InverseForRelationshipKey(relationshipKey IObject) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("inverseForRelationshipKey:"), relationshipKey)
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("inverseForRelationshipKey:"), relationshipKey)
+	return rv
 }
 
 
@@ -1514,8 +1506,8 @@ func (o_ Object) MethodForSelector(aSelector objc.SEL) IMP {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/methodSignatureForSelector:
 func (o_ Object) MethodSignatureForSelector(aSelector objc.SEL) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("methodSignatureForSelector:"), aSelector)
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("methodSignatureForSelector:"), aSelector)
+	return rv
 }
 
 
@@ -1524,8 +1516,8 @@ func (o_ Object) MethodSignatureForSelector(aSelector objc.SEL) IObject {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/mutableArrayValue(forKey:)
 func (o_ Object) MutableArrayValueForKey(key IObject) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("mutableArrayValueForKey:"), key)
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("mutableArrayValueForKey:"), key)
+	return rv
 }
 
 
@@ -1534,8 +1526,8 @@ func (o_ Object) MutableArrayValueForKey(key IObject) IObject {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/mutableArrayValue(forKeyPath:)
 func (o_ Object) MutableArrayValueForKeyPath(keyPath IObject) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("mutableArrayValueForKeyPath:"), keyPath)
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("mutableArrayValueForKeyPath:"), keyPath)
+	return rv
 }
 
 
@@ -1544,8 +1536,8 @@ func (o_ Object) MutableArrayValueForKeyPath(keyPath IObject) IObject {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/mutableOrderedSetValue(forKey:)
 func (o_ Object) MutableOrderedSetValueForKey(key IObject) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("mutableOrderedSetValueForKey:"), key)
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("mutableOrderedSetValueForKey:"), key)
+	return rv
 }
 
 
@@ -1554,8 +1546,8 @@ func (o_ Object) MutableOrderedSetValueForKey(key IObject) IObject {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/mutableOrderedSetValue(forKeyPath:)
 func (o_ Object) MutableOrderedSetValueForKeyPath(keyPath IObject) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("mutableOrderedSetValueForKeyPath:"), keyPath)
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("mutableOrderedSetValueForKeyPath:"), keyPath)
+	return rv
 }
 
 
@@ -1564,8 +1556,8 @@ func (o_ Object) MutableOrderedSetValueForKeyPath(keyPath IObject) IObject {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/mutableSetValue(forKey:)
 func (o_ Object) MutableSetValueForKey(key IObject) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("mutableSetValueForKey:"), key)
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("mutableSetValueForKey:"), key)
+	return rv
 }
 
 
@@ -1574,8 +1566,8 @@ func (o_ Object) MutableSetValueForKey(key IObject) IObject {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/mutableSetValue(forKeyPath:)
 func (o_ Object) MutableSetValueForKeyPath(keyPath IObject) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("mutableSetValueForKeyPath:"), keyPath)
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("mutableSetValueForKeyPath:"), keyPath)
+	return rv
 }
 
 
@@ -1637,8 +1629,8 @@ func (o_ Object) OptionDescriptionsForBinding(binding string) []IObject {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/originalString(_:)
 func (o_ Object) OriginalString(sender IObject) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("originalString:"), sender)
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("originalString:"), sender)
+	return rv
 }
 
 
@@ -2046,8 +2038,8 @@ func (o_ Object) ShouldEnableActionForPersonIdentifier(person IObject, identifie
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/title(for:identifier:)
 func (o_ Object) TitleForPersonIdentifier(person IObject, identifier IObject) IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("titleForPerson:identifier:"), person, identifier)
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("titleForPerson:identifier:"), person, identifier)
+	return rv
 }
 
 
@@ -2343,25 +2335,6 @@ func (o_ Object) SetBrowserAccessibilityContainerType(value unsafe.Pointer) {
 }
 
 
-// A string that’s the element’s value for aria-current.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityCurrentStatus
-func (o_ Object) BrowserAccessibilityCurrentStatus() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilityCurrentStatus"))
-	return Object{ID: rv}
-}
-
-
-// A string that’s the element’s value for aria-current.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityCurrentStatus
-func (o_ Object) SetBrowserAccessibilityCurrentStatus(value IObject) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBrowserAccessibilityCurrentStatus:"), value)
-}
-
-
 // A Boolean value that indicates whether the element has native focus in the browser Document Object Model.
 //
 // [Full Topic]
@@ -2419,44 +2392,6 @@ func (o_ Object) SetBrowserAccessibilityPressedState(value unsafe.Pointer) {
 }
 
 
-// A string that describes the element’s role for assistive technologies.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityRoleDescription
-func (o_ Object) BrowserAccessibilityRoleDescription() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilityRoleDescription"))
-	return Object{ID: rv}
-}
-
-
-// A string that describes the element’s role for assistive technologies.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityRoleDescription
-func (o_ Object) SetBrowserAccessibilityRoleDescription(value IObject) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBrowserAccessibilityRoleDescription:"), value)
-}
-
-
-// A string that’s the element’s value for aria-sort.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilitySortDirection
-func (o_ Object) BrowserAccessibilitySortDirection() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilitySortDirection"))
-	return Object{ID: rv}
-}
-
-
-// A string that’s the element’s value for aria-sort.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilitySortDirection
-func (o_ Object) SetBrowserAccessibilitySortDirection(value IObject) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBrowserAccessibilitySortDirection:"), value)
-}
-
-
 // The receiver’s Apple event type code, as stored in the object for the object’s class.
 //
 // [Full Topic]
@@ -2472,8 +2407,8 @@ func (o_ Object) ClassCode() uint32 /* not a class type */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/classDescription
 func (o_ Object) ClassDescription() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("classDescription"))
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("classDescription"))
+	return rv
 }
 
 
@@ -2517,16 +2452,6 @@ func (o_ Object) ClassForPortCoder() objc.Class {
 }
 
 
-// A string containing the name of the class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/className
-func (o_ Object) ClassName() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("className"))
-	return Object{ID: rv}
-}
-
-
 // Returns an array containing the bindings exposed by the receiver.
 //
 // [Full Topic]
@@ -2560,8 +2485,8 @@ func (o_ Object) ObjectForWebScript() IObject {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/objectSpecifier
 func (o_ Object) ObjectSpecifier() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("objectSpecifier"))
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("objectSpecifier"))
+	return rv
 }
 
 
@@ -2604,23 +2529,13 @@ func (o_ Object) ToOneRelationshipKeys() []string {
 }
 
 
-// Returns the that contains the plug-in.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webFrame
-func (o_ Object) WebFrame() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("webFrame"))
-	return Object{ID: rv}
-}
-
-
 // Returns the plug-in selection color.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInContainerSelectionColor
 func (o_ Object) WebPlugInContainerSelectionColor() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInContainerSelectionColor"))
-	return Object{ID: rv}
+	rv := objc.Send[Object](o_.ID, objc.Sel("webPlugInContainerSelectionColor"))
+	return rv
 }
 
 

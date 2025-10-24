@@ -6,6 +6,15 @@ import "github.com/ebitengine/purego/objc"
 
 // classProtocol is the class protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//   - watchOS +
+//
 // Use this protocol when registering custom classes that conform to class.
 var classProtocol *objc.Protocol
 

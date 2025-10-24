@@ -19,8 +19,8 @@ var (
 	_NXCompareHashTables func(unsafe.Pointer, unsafe.Pointer) bool
 	_NXCopyHashTable func(unsafe.Pointer) unsafe.Pointer
 	_NXCountHashTable func(unsafe.Pointer) unsafe.Pointer
-	_NXCreateHashTable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NXCreateHashTableFromZone func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NXCreateHashTable func(NXHashTablePrototype, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NXCreateHashTableFromZone func(NXHashTablePrototype, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NXEmptyHashTable func(unsafe.Pointer)
 	_NXFreeHashTable func(unsafe.Pointer)
 	_NXHashGet func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -28,7 +28,7 @@ var (
 	_NXHashInsertIfAbsent func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NXHashMember func(unsafe.Pointer, unsafe.Pointer) int
 	_NXHashRemove func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NXInitHashState func(unsafe.Pointer) unsafe.Pointer
+	_NXInitHashState func(unsafe.Pointer) NXHashState
 	_NXNextHashState func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
 	_NXNoEffectFree func(unsafe.Pointer, unsafe.Pointer)
 	_NXPtrHash func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -128,7 +128,7 @@ var (
 	_objc_registerProtocol func(unsafe.Pointer)
 	_objc_removeAssociatedObjects func(objc.ID)
 	_objc_removeExceptionHandler func(unsafe.Pointer)
-	_objc_setAssociatedObject func(objc.ID, unsafe.Pointer, objc.ID, unsafe.Pointer)
+	_objc_setAssociatedObject func(objc.ID, unsafe.Pointer, objc.ID, objc_AssociationPolicy)
 	_objc_setEnumerationMutationHandler func()
 	_objc_setExceptionMatcher func(objc_exception_matcher) objc_exception_matcher
 	_objc_setExceptionPreprocessor func(objc_exception_preprocessor) objc_exception_preprocessor
@@ -399,7 +399,7 @@ func NXCountHashTable(table unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXCreateHashTable
-func NXCreateHashTable(prototype unsafe.Pointer, capacity unsafe.Pointer, info unsafe.Pointer) unsafe.Pointer {
+func NXCreateHashTable(prototype NXHashTablePrototype, capacity unsafe.Pointer, info unsafe.Pointer) unsafe.Pointer {
 	return _NXCreateHashTable(prototype, capacity, info)
 }
 
@@ -410,7 +410,7 @@ func NXCreateHashTable(prototype unsafe.Pointer, capacity unsafe.Pointer, info u
 // Added in macOS 10.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXCreateHashTableFromZone
-func NXCreateHashTableFromZone(prototype unsafe.Pointer, capacity unsafe.Pointer, info unsafe.Pointer, zone unsafe.Pointer) unsafe.Pointer {
+func NXCreateHashTableFromZone(prototype NXHashTablePrototype, capacity unsafe.Pointer, info unsafe.Pointer, zone unsafe.Pointer) unsafe.Pointer {
 	return _NXCreateHashTableFromZone(prototype, capacity, info, zone)
 }
 
@@ -498,7 +498,7 @@ func NXHashRemove(table unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXInitHashState
-func NXInitHashState(table unsafe.Pointer) unsafe.Pointer {
+func NXInitHashState(table unsafe.Pointer) NXHashState {
 	return _NXInitHashState(table)
 }
 
@@ -1575,7 +1575,7 @@ func objc_removeExceptionHandler(token unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_setAssociatedObject(_:_:_:_:)
-func objc_setAssociatedObject(object objc.ID, key unsafe.Pointer, value objc.ID, policy unsafe.Pointer) {
+func objc_setAssociatedObject(object objc.ID, key unsafe.Pointer, value objc.ID, policy objc_AssociationPolicy) {
 	_objc_setAssociatedObject(object, key, value, policy)
 }
 
