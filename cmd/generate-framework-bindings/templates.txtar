@@ -669,7 +669,31 @@ func Example{{$constructorName}}() {
 	)
 	{{- end}}
 	// Output:
-}{{end}}{{end}}{{end}}{{end -}}
+}{{end}}{{end}}{{end -}}
+
+{{/* Generate tests for parameterless instance methods */}}
+{{- range filterPropertyMethods .}}
+{{- if and (not .IsClassMethod) (eq (len .Parameters) 0) (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector)) (eq (len .Availability.DeprecatedAt) 0)}}
+{{- $methodName := disambiguateMethodName .}}
+{{- $testMethodName := printf "Example%s_%s" $structName $methodName}}
+{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+{{- $hasReturnValue := and (ne .ReturnType "") (ne .ReturnType "void")}}
+{{- if not (shouldExcludeTestMethod $framework $testMethodName)}}
+// Example{{$structName}}_{{$methodName}} demonstrates using {{$methodName}} on a {{$structName}} instance.
+{{if .Abstract -}}
+// {{.Abstract}}
+{{end -}}
+func Example{{$structName}}_{{$methodName}}() {
+	obj := {{$packageName}}.New{{$structName}}()
+	{{if $hasReturnValue -}}
+	_ = obj.{{$methodName}}()
+	{{- else -}}
+	obj.{{$methodName}}()
+	{{- end}}
+	// Output:
+}
+{{end}}{{end}}{{end -}}
+{{end -}}
 -- protocols.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 

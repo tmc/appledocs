@@ -131,7 +131,8 @@ var templateFuncs = template.FuncMap{
 	"classDependsOnCoreGraphics": classDependsOnCoreGraphics,
 
 	// Method name disambiguation
-	"methodGoName": methodGoName,
+	"methodGoName":           methodGoName,
+	"disambiguateMethodName": disambiguateMethodName,
 
 	// Class-level helpers
 	"getClassImports":        getClassImports,
