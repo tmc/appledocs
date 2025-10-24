@@ -9,7 +9,9 @@ import (
 
 // Config represents the configuration for framework binding generation.
 type Config struct {
-	Frameworks map[string]FrameworkConfig `yaml:"frameworks"`
+	UnsafeSelectorPatterns         []string                   `yaml:"unsafe_selector_patterns"`
+	unsafeSelectorPatternsCompiled []*regexp.Regexp           // Compiled patterns
+	Frameworks                     map[string]FrameworkConfig `yaml:"frameworks"`
 }
 
 // FrameworkConfig represents configuration for a specific framework.
@@ -41,6 +43,15 @@ func loadConfig() error {
 
 	if config.Frameworks == nil {
 		config.Frameworks = make(map[string]FrameworkConfig)
+	}
+
+	// Compile unsafe selector patterns
+	for _, pattern := range config.UnsafeSelectorPatterns {
+		re, err := regexp.Compile(pattern)
+		if err != nil {
+			return fmt.Errorf("failed to compile unsafe selector pattern %q: %w", pattern, err)
+		}
+		config.unsafeSelectorPatternsCompiled = append(config.unsafeSelectorPatternsCompiled, re)
 	}
 
 	// Compile regex patterns for each framework

@@ -173,3 +173,38 @@ func (a *Availability) Platforms() []string {
 	sort.Strings(platforms)
 	return platforms
 }
+
+// HasPlatform returns true if the API is available on the specified platform.
+func (a *Availability) HasPlatform(platform string) bool {
+	_, ok := a.IntroducedAt[platform]
+	return ok
+}
+
+// AvailableOnMacOS returns true if the API is available on macOS.
+func (a *Availability) AvailableOnMacOS() bool {
+	return a.HasPlatform("macOS")
+}
+
+// IOSOnly returns true if the API is available on iOS/iPadOS/tvOS/visionOS but NOT on macOS.
+// These APIs should go into *_ios.gen.go files with //go:build darwin && ios tag.
+func (a *Availability) IOSOnly() bool {
+	// If no platform info, assume universal (macOS compatible)
+	if len(a.IntroducedAt) == 0 {
+		return false
+	}
+
+	// If available on macOS, not iOS-only
+	if a.AvailableOnMacOS() {
+		return false
+	}
+
+	// Check if available on any iOS-family platform
+	hasIOSPlatform := a.HasPlatform("iOS") ||
+		a.HasPlatform("iPadOS") ||
+		a.HasPlatform("tvOS") ||
+		a.HasPlatform("visionOS") ||
+		a.HasPlatform("watchOS") ||
+		a.HasPlatform("Mac Catalyst")
+
+	return hasIOSPlatform
+}

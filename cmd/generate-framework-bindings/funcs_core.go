@@ -98,6 +98,7 @@ var templateFuncs = template.FuncMap{
 	"classHasInit":                        classHasInit,
 	"shouldExcludeTestExample":            shouldExcludeTestExample,
 	"shouldExcludeTestMethod":             shouldExcludeTestMethod,
+	"isSafeToTestOnNSObject":              isSafeToTestOnNSObject,
 	"sortMethodsByName":                   sortMethodsByName,
 	"generateTestValue":                   generateTestValue,
 	"generateTestValueWithPackage":        generateTestValueWithPackage,

@@ -546,3 +546,44 @@ func classHasInit(methods []*occ2go.ParsedMethod) bool {
 	DebugWithFunc("classHasInit", "No init methods found")
 	return false
 }
+
+// isSafeToTestOnNSObject returns true if a method is safe to test on a bare NSObject instance.
+// Many NSObject methods come from categories/protocols and crash when called on NSObject itself.
+func isSafeToTestOnNSObject(selector string) bool {
+	// Methods that are safe to test on bare NSObject
+	safeSelectors := []string{
+		"init",
+		"dealloc",
+		"finalize",
+		"description",
+		"debugDescription",
+		"class",
+		"superclass",
+		"hash",
+		"isEqual:",
+		"self",
+		"zone",
+		"retainCount",
+		"autorelease",
+		"retain",
+		"release",
+	}
+
+	for _, safe := range safeSelectors {
+		if selector == safe {
+			return true
+		}
+	}
+
+	// Check against unsafe patterns from config.yaml
+	if config != nil {
+		lowerSelector := strings.ToLower(selector)
+		for _, pattern := range config.unsafeSelectorPatternsCompiled {
+			if pattern.MatchString(lowerSelector) {
+				return false
+			}
+		}
+	}
+
+	return true
+}

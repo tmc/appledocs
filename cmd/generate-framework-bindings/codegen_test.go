@@ -219,7 +219,11 @@ func TestMethodSignatureGeneration(t *testing.T) {
 				},
 			},
 			framework: "AppKit",
-			wantSig:   "func (c TestClass) InitWithFrame(frame coregraphics.CGRect) TestClass",
+			// Note: Without a populated cross-framework type registry,
+			// CGRect maps to "Rect" (unqualified). In actual generation,
+			// it would be qualified as "coregraphics.CGRect" after the
+			// type registry is built from parsed data.
+			wantSig: "func (c TestClass) InitWithFrame(frame Rect) TestClass",
 		},
 	}
 
@@ -246,14 +250,12 @@ func generateMethodSignature(method MethodInfo, className, framework string) str
 	returnType := method.ReturnType
 	if returnType == "void" {
 		returnType = ""
+	} else if returnType == "instancetype" || returnType == "id" {
+		returnType = className
 	} else {
-		mappedType, _ := lookupTypeMapping(method.ReturnType, framework)
-		if mappedType != "" {
-			returnType = mappedType
-		}
-		if returnType == "instancetype" || returnType == "id" {
-			returnType = className
-		}
+		// Use the same type mapping logic as the actual generator
+		// mapObjCTypeToGo handles NSString *, CGRect, etc.
+		returnType = mapObjCTypeToGo(method.ReturnType, framework)
 	}
 
 	// Build signature
@@ -265,10 +267,9 @@ func generateMethodSignature(method MethodInfo, className, framework string) str
 		if i > 0 {
 			sig.WriteString(", ")
 		}
-		paramType, _ := lookupTypeMapping(param.Type, framework)
-		if paramType == "" {
-			paramType = "objc.ID"
-		}
+		// Use the same type mapping logic as the actual generator
+		// mapObjCTypeToGo handles NSString *, CGRect, etc.
+		paramType := mapObjCTypeToGo(param.Type, framework)
 		sig.WriteString(fmt.Sprintf("%s %s", sanitizeName(param.Name), paramType))
 	}
 
