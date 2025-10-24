@@ -11,15 +11,15 @@ import (
 
 // The class instance for the [Protocol] class.
 var (
-	protocolClass     _ProtocolClass
-	protocolClassOnce sync.Once
+	ProtocolClass     _ProtocolClass
+	ProtocolClassOnce sync.Once
 )
 
 func getProtocolClass() _ProtocolClass {
-	protocolClassOnce.Do(func() {
-		protocolClass = _ProtocolClass{objc.GetClass("Protocol")}
+	ProtocolClassOnce.Do(func() {
+		ProtocolClass = _ProtocolClass{objc.GetClass("Protocol")}
 	})
-	return protocolClass
+	return ProtocolClass
 }
 
 type _ProtocolClass struct {
@@ -28,10 +28,14 @@ type _ProtocolClass struct {
 
 // An interface definition for the [Protocol] class.
 type IProtocol interface {
-	IObject
+	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/Protocol
 type Protocol struct {
 	Object
@@ -72,6 +76,7 @@ func (p_ Protocol) Autorelease() Protocol {
 func NewProtocol() Protocol {
 	return getProtocolClass().New()
 }
+
 
 
 

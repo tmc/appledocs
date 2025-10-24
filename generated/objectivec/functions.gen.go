@@ -9,35 +9,14 @@ import (
 )
 
 
-// ObjectiveC Functions (160 total)
+// ObjectiveC Functions (118 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_NXCompareHashTables func(unsafe.Pointer, unsafe.Pointer) bool
-	_NXCopyHashTable func(unsafe.Pointer) unsafe.Pointer
-	_NXCountHashTable func(unsafe.Pointer) unsafe.Pointer
-	_NXCreateHashTable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NXCreateHashTableFromZone func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NXEmptyHashTable func(unsafe.Pointer)
-	_NXFreeHashTable func(unsafe.Pointer)
-	_NXHashGet func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NXHashInsert func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NXHashInsertIfAbsent func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NXHashMember func(unsafe.Pointer, unsafe.Pointer) int
-	_NXHashRemove func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NXInitHashState func(unsafe.Pointer) unsafe.Pointer
-	_NXNextHashState func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
-	_NXNoEffectFree func(unsafe.Pointer, unsafe.Pointer)
-	_NXPtrHash func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NXPtrIsEqual func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
-	_NXReallyFree func(unsafe.Pointer, unsafe.Pointer)
-	_NXResetHashTable func(unsafe.Pointer)
-	_NXStrHash func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NXStrIsEqual func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
 	_class_addIvar func(unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer) bool
-	_class_addMethod func(unsafe.Pointer, unsafe.Pointer, IMP, unsafe.Pointer) bool
+	_class_addMethod func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_class_addProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_class_addProtocol func(unsafe.Pointer, unsafe.Pointer) bool
 	_class_conformsToProtocol func(unsafe.Pointer, unsafe.Pointer) bool
@@ -46,24 +25,23 @@ var (
 	_class_copyPropertyList func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_class_copyProtocolList func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_class_createInstance func(unsafe.Pointer, uintptr) unsafe.Pointer
-	_class_createInstanceFromZone func(unsafe.Pointer, uintptr, unsafe.Pointer) unsafe.Pointer
-	_class_getClassMethod func(unsafe.Pointer, unsafe.Pointer) Method
-	_class_getClassVariable func(unsafe.Pointer, unsafe.Pointer) Ivar
+	_class_getClassMethod func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_class_getClassVariable func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_class_getImageName func(unsafe.Pointer) unsafe.Pointer
-	_class_getInstanceMethod func(unsafe.Pointer, unsafe.Pointer) Method
+	_class_getInstanceMethod func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_class_getInstanceSize func(unsafe.Pointer) uintptr
-	_class_getInstanceVariable func(unsafe.Pointer, unsafe.Pointer) Ivar
+	_class_getInstanceVariable func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_class_getIvarLayout func(unsafe.Pointer) unsafe.Pointer
-	_class_getMethodImplementation func(unsafe.Pointer, unsafe.Pointer) IMP
-	_class_getMethodImplementation_stret func(unsafe.Pointer, unsafe.Pointer) IMP
+	_class_getMethodImplementation func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_class_getMethodImplementation_stret func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_class_getName func(unsafe.Pointer) unsafe.Pointer
-	_class_getProperty func(unsafe.Pointer, unsafe.Pointer) objc_property_t
+	_class_getProperty func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_class_getSuperclass func(unsafe.Pointer) unsafe.Pointer
 	_class_getVersion func(unsafe.Pointer) int
 	_class_getWeakIvarLayout func(unsafe.Pointer) unsafe.Pointer
 	_class_isMetaClass func(unsafe.Pointer) bool
-	_class_lookupMethod func(unsafe.Pointer, unsafe.Pointer) IMP
-	_class_replaceMethod func(unsafe.Pointer, unsafe.Pointer, IMP, unsafe.Pointer) IMP
+	_class_lookupMethod func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_class_replaceMethod func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_class_replaceProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_class_respondsToMethod func(unsafe.Pointer, unsafe.Pointer) bool
 	_class_respondsToSelector func(unsafe.Pointer, unsafe.Pointer) bool
@@ -71,93 +49,73 @@ var (
 	_class_setSuperclass func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_class_setVersion func(unsafe.Pointer, int)
 	_class_setWeakIvarLayout func(unsafe.Pointer, unsafe.Pointer)
-	_imp_getBlock func(IMP) unsafe.Pointer
-	_imp_implementationWithBlock func(unsafe.Pointer) IMP
-	_imp_removeBlock func(IMP) bool
-	_ivar_getName func(Ivar) unsafe.Pointer
-	_ivar_getOffset func(Ivar) unsafe.Pointer
-	_ivar_getTypeEncoding func(Ivar) unsafe.Pointer
-	_method_copyArgumentType func(Method, unsafe.Pointer) unsafe.Pointer
-	_method_copyReturnType func(Method) unsafe.Pointer
-	_method_exchangeImplementations func(Method, Method)
-	_method_getArgumentType func(Method, unsafe.Pointer, unsafe.Pointer, uintptr)
-	_method_getDescription func(Method) unsafe.Pointer
-	_method_getImplementation func(Method) IMP
-	_method_getName func(Method) unsafe.Pointer
-	_method_getNumberOfArguments func(Method) unsafe.Pointer
-	_method_getReturnType func(Method, unsafe.Pointer, uintptr)
-	_method_getTypeEncoding func(Method) unsafe.Pointer
-	_method_invoke func()
-	_method_invoke_stret func()
-	_method_setImplementation func(Method, IMP) IMP
-	_objc_addExceptionHandler func(objc_exception_handler, unsafe.Pointer) unsafe.Pointer
-	_objc_addLoadImageFunc func(objc_func_loadImage)
+	_imp_getBlock func(unsafe.Pointer) unsafe.Pointer
+	_imp_implementationWithBlock func(unsafe.Pointer) unsafe.Pointer
+	_imp_removeBlock func(unsafe.Pointer) bool
+	_ivar_getName func(unsafe.Pointer) unsafe.Pointer
+	_ivar_getOffset func(unsafe.Pointer) unsafe.Pointer
+	_ivar_getTypeEncoding func(unsafe.Pointer) unsafe.Pointer
+	_method_copyArgumentType func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_method_copyReturnType func(unsafe.Pointer) unsafe.Pointer
+	_method_exchangeImplementations func(unsafe.Pointer, unsafe.Pointer)
+	_method_getArgumentType func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr)
+	_method_getDescription func(unsafe.Pointer) unsafe.Pointer
+	_method_getImplementation func(unsafe.Pointer) unsafe.Pointer
+	_method_getName func(unsafe.Pointer) unsafe.Pointer
+	_method_getNumberOfArguments func(unsafe.Pointer) unsafe.Pointer
+	_method_getReturnType func(unsafe.Pointer, unsafe.Pointer, uintptr)
+	_method_getTypeEncoding func(unsafe.Pointer) unsafe.Pointer
+	_method_setImplementation func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_objc_addExceptionHandler func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_objc_addLoadImageFunc func(unsafe.Pointer)
 	_objc_allocateClassPair func(unsafe.Pointer, unsafe.Pointer, uintptr) unsafe.Pointer
 	_objc_allocateProtocol func(unsafe.Pointer) unsafe.Pointer
 	_objc_begin_catch func(unsafe.Pointer) unsafe.Pointer
-	_objc_constructInstance func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_objc_copyClassList func(unsafe.Pointer) unsafe.Pointer
 	_objc_copyClassNamesForImage func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_objc_copyImageNames func(unsafe.Pointer) unsafe.Pointer
 	_objc_copyProtocolList func(unsafe.Pointer) unsafe.Pointer
-	_objc_destructInstance func(unsafe.Pointer) unsafe.Pointer
 	_objc_disposeClassPair func(unsafe.Pointer)
 	_objc_duplicateClass func(unsafe.Pointer, unsafe.Pointer, uintptr) unsafe.Pointer
 	_objc_end_catch func()
-	_objc_enumerateClasses func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_objc_enumerationMutation func(unsafe.Pointer)
 	_objc_exception_rethrow func()
 	_objc_exception_throw func(unsafe.Pointer)
 	_objc_getAssociatedObject func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_objc_getClass func(unsafe.Pointer) unsafe.Pointer
 	_objc_getClassList func(unsafe.Pointer, int) int
-	_objc_getFutureClass func(unsafe.Pointer) unsafe.Pointer
 	_objc_getMetaClass func(unsafe.Pointer) unsafe.Pointer
 	_objc_getProtocol func(unsafe.Pointer) unsafe.Pointer
 	_objc_getRequiredClass func(unsafe.Pointer) unsafe.Pointer
 	_objc_loadWeak func(unsafe.Pointer) unsafe.Pointer
 	_objc_lookUpClass func(unsafe.Pointer) unsafe.Pointer
-	_objc_msgSend func()
-	_objc_msgSendSuper func()
-	_objc_msgSendSuper_stret func()
-	_objc_msgSend_fp2ret func()
-	_objc_msgSend_fpret func()
-	_objc_msgSend_stret func()
 	_objc_registerClassPair func(unsafe.Pointer)
 	_objc_registerProtocol func(unsafe.Pointer)
 	_objc_removeAssociatedObjects func(unsafe.Pointer)
 	_objc_removeExceptionHandler func(unsafe.Pointer)
 	_objc_setAssociatedObject func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_objc_setEnumerationMutationHandler func()
-	_objc_setExceptionMatcher func(objc_exception_matcher) objc_exception_matcher
-	_objc_setExceptionPreprocessor func(objc_exception_preprocessor) objc_exception_preprocessor
+	_objc_setExceptionMatcher func(unsafe.Pointer) unsafe.Pointer
+	_objc_setExceptionPreprocessor func(unsafe.Pointer) unsafe.Pointer
 	_objc_setForwardHandler func(unsafe.Pointer, unsafe.Pointer)
-	_objc_setHook_getClass func(objc_hook_getClass, unsafe.Pointer)
-	_objc_setHook_getImageName func(objc_hook_getImageName, unsafe.Pointer)
-	_objc_setHook_lazyClassNamer func(objc_hook_lazyClassNamer, unsafe.Pointer)
-	_objc_setUncaughtExceptionHandler func(objc_uncaught_exception_handler) objc_uncaught_exception_handler
+	_objc_setHook_getClass func(unsafe.Pointer, unsafe.Pointer)
+	_objc_setHook_getImageName func(unsafe.Pointer, unsafe.Pointer)
+	_objc_setHook_lazyClassNamer func(unsafe.Pointer, unsafe.Pointer)
+	_objc_setUncaughtExceptionHandler func(unsafe.Pointer) unsafe.Pointer
 	_objc_storeWeak func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_objc_sync_enter func(unsafe.Pointer) int
-	_objc_sync_exit func(unsafe.Pointer) int
 	_objc_terminate func()
-	_object_copy func(unsafe.Pointer, uintptr) unsafe.Pointer
-	_object_copyFromZone func(unsafe.Pointer, uintptr, unsafe.Pointer) unsafe.Pointer
-	_object_dispose func(unsafe.Pointer) unsafe.Pointer
 	_object_getClass func(unsafe.Pointer) unsafe.Pointer
 	_object_getClassName func(unsafe.Pointer) unsafe.Pointer
 	_object_getIndexedIvars func(unsafe.Pointer) unsafe.Pointer
-	_object_getInstanceVariable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) Ivar
-	_object_getIvar func(unsafe.Pointer, Ivar) unsafe.Pointer
+	_object_getIvar func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_object_isClass func(unsafe.Pointer) bool
 	_object_setClass func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_object_setInstanceVariable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) Ivar
-	_object_setInstanceVariableWithStrongDefault func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) Ivar
-	_object_setIvar func(unsafe.Pointer, Ivar, unsafe.Pointer)
-	_object_setIvarWithStrongDefault func(unsafe.Pointer, Ivar, unsafe.Pointer)
-	_property_copyAttributeList func(objc_property_t, unsafe.Pointer) unsafe.Pointer
-	_property_copyAttributeValue func(objc_property_t, unsafe.Pointer) unsafe.Pointer
-	_property_getAttributes func(objc_property_t) unsafe.Pointer
-	_property_getName func(objc_property_t) unsafe.Pointer
+	_object_setIvar func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_object_setIvarWithStrongDefault func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_property_copyAttributeList func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_property_copyAttributeValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_property_getAttributes func(unsafe.Pointer) unsafe.Pointer
+	_property_getName func(unsafe.Pointer) unsafe.Pointer
 	_protocol_addMethodDescription func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool, bool)
 	_protocol_addProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool, bool)
 	_protocol_addProtocol func(unsafe.Pointer, unsafe.Pointer)
@@ -168,7 +126,7 @@ var (
 	_protocol_copyProtocolList func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_protocol_getMethodDescription func(unsafe.Pointer, unsafe.Pointer, bool, bool) unsafe.Pointer
 	_protocol_getName func(unsafe.Pointer) unsafe.Pointer
-	_protocol_getProperty func(unsafe.Pointer, unsafe.Pointer, bool, bool) objc_property_t
+	_protocol_getProperty func(unsafe.Pointer, unsafe.Pointer, bool, bool) unsafe.Pointer
 	_protocol_isEqual func(unsafe.Pointer, unsafe.Pointer) bool
 	_sel_getName func(unsafe.Pointer) unsafe.Pointer
 	_sel_getUid func(unsafe.Pointer) unsafe.Pointer
@@ -182,27 +140,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	tryRegister(&_NXCompareHashTables, lib, "NXCompareHashTables")
-	tryRegister(&_NXCopyHashTable, lib, "NXCopyHashTable")
-	tryRegister(&_NXCountHashTable, lib, "NXCountHashTable")
-	tryRegister(&_NXCreateHashTable, lib, "NXCreateHashTable")
-	tryRegister(&_NXCreateHashTableFromZone, lib, "NXCreateHashTableFromZone")
-	tryRegister(&_NXEmptyHashTable, lib, "NXEmptyHashTable")
-	tryRegister(&_NXFreeHashTable, lib, "NXFreeHashTable")
-	tryRegister(&_NXHashGet, lib, "NXHashGet")
-	tryRegister(&_NXHashInsert, lib, "NXHashInsert")
-	tryRegister(&_NXHashInsertIfAbsent, lib, "NXHashInsertIfAbsent")
-	tryRegister(&_NXHashMember, lib, "NXHashMember")
-	tryRegister(&_NXHashRemove, lib, "NXHashRemove")
-	tryRegister(&_NXInitHashState, lib, "NXInitHashState")
-	tryRegister(&_NXNextHashState, lib, "NXNextHashState")
-	tryRegister(&_NXNoEffectFree, lib, "NXNoEffectFree")
-	tryRegister(&_NXPtrHash, lib, "NXPtrHash")
-	tryRegister(&_NXPtrIsEqual, lib, "NXPtrIsEqual")
-	tryRegister(&_NXReallyFree, lib, "NXReallyFree")
-	tryRegister(&_NXResetHashTable, lib, "NXResetHashTable")
-	tryRegister(&_NXStrHash, lib, "NXStrHash")
-	tryRegister(&_NXStrIsEqual, lib, "NXStrIsEqual")
 	tryRegister(&_class_addIvar, lib, "class_addIvar")
 	tryRegister(&_class_addMethod, lib, "class_addMethod")
 	tryRegister(&_class_addProperty, lib, "class_addProperty")
@@ -213,7 +150,6 @@ func init() {
 	tryRegister(&_class_copyPropertyList, lib, "class_copyPropertyList")
 	tryRegister(&_class_copyProtocolList, lib, "class_copyProtocolList")
 	tryRegister(&_class_createInstance, lib, "class_createInstance")
-	tryRegister(&_class_createInstanceFromZone, lib, "class_createInstanceFromZone")
 	tryRegister(&_class_getClassMethod, lib, "class_getClassMethod")
 	tryRegister(&_class_getClassVariable, lib, "class_getClassVariable")
 	tryRegister(&_class_getImageName, lib, "class_getImageName")
@@ -254,42 +190,30 @@ func init() {
 	tryRegister(&_method_getNumberOfArguments, lib, "method_getNumberOfArguments")
 	tryRegister(&_method_getReturnType, lib, "method_getReturnType")
 	tryRegister(&_method_getTypeEncoding, lib, "method_getTypeEncoding")
-	tryRegister(&_method_invoke, lib, "method_invoke")
-	tryRegister(&_method_invoke_stret, lib, "method_invoke_stret")
 	tryRegister(&_method_setImplementation, lib, "method_setImplementation")
 	tryRegister(&_objc_addExceptionHandler, lib, "objc_addExceptionHandler")
 	tryRegister(&_objc_addLoadImageFunc, lib, "objc_addLoadImageFunc")
 	tryRegister(&_objc_allocateClassPair, lib, "objc_allocateClassPair")
 	tryRegister(&_objc_allocateProtocol, lib, "objc_allocateProtocol")
 	tryRegister(&_objc_begin_catch, lib, "objc_begin_catch")
-	tryRegister(&_objc_constructInstance, lib, "objc_constructInstance")
 	tryRegister(&_objc_copyClassList, lib, "objc_copyClassList")
 	tryRegister(&_objc_copyClassNamesForImage, lib, "objc_copyClassNamesForImage")
 	tryRegister(&_objc_copyImageNames, lib, "objc_copyImageNames")
 	tryRegister(&_objc_copyProtocolList, lib, "objc_copyProtocolList")
-	tryRegister(&_objc_destructInstance, lib, "objc_destructInstance")
 	tryRegister(&_objc_disposeClassPair, lib, "objc_disposeClassPair")
 	tryRegister(&_objc_duplicateClass, lib, "objc_duplicateClass")
 	tryRegister(&_objc_end_catch, lib, "objc_end_catch")
-	tryRegister(&_objc_enumerateClasses, lib, "objc_enumerateClasses")
 	tryRegister(&_objc_enumerationMutation, lib, "objc_enumerationMutation")
 	tryRegister(&_objc_exception_rethrow, lib, "objc_exception_rethrow")
 	tryRegister(&_objc_exception_throw, lib, "objc_exception_throw")
 	tryRegister(&_objc_getAssociatedObject, lib, "objc_getAssociatedObject")
 	tryRegister(&_objc_getClass, lib, "objc_getClass")
 	tryRegister(&_objc_getClassList, lib, "objc_getClassList")
-	tryRegister(&_objc_getFutureClass, lib, "objc_getFutureClass")
 	tryRegister(&_objc_getMetaClass, lib, "objc_getMetaClass")
 	tryRegister(&_objc_getProtocol, lib, "objc_getProtocol")
 	tryRegister(&_objc_getRequiredClass, lib, "objc_getRequiredClass")
 	tryRegister(&_objc_loadWeak, lib, "objc_loadWeak")
 	tryRegister(&_objc_lookUpClass, lib, "objc_lookUpClass")
-	tryRegister(&_objc_msgSend, lib, "objc_msgSend")
-	tryRegister(&_objc_msgSendSuper, lib, "objc_msgSendSuper")
-	tryRegister(&_objc_msgSendSuper_stret, lib, "objc_msgSendSuper_stret")
-	tryRegister(&_objc_msgSend_fp2ret, lib, "objc_msgSend_fp2ret")
-	tryRegister(&_objc_msgSend_fpret, lib, "objc_msgSend_fpret")
-	tryRegister(&_objc_msgSend_stret, lib, "objc_msgSend_stret")
 	tryRegister(&_objc_registerClassPair, lib, "objc_registerClassPair")
 	tryRegister(&_objc_registerProtocol, lib, "objc_registerProtocol")
 	tryRegister(&_objc_removeAssociatedObjects, lib, "objc_removeAssociatedObjects")
@@ -304,21 +228,13 @@ func init() {
 	tryRegister(&_objc_setHook_lazyClassNamer, lib, "objc_setHook_lazyClassNamer")
 	tryRegister(&_objc_setUncaughtExceptionHandler, lib, "objc_setUncaughtExceptionHandler")
 	tryRegister(&_objc_storeWeak, lib, "objc_storeWeak")
-	tryRegister(&_objc_sync_enter, lib, "objc_sync_enter")
-	tryRegister(&_objc_sync_exit, lib, "objc_sync_exit")
 	tryRegister(&_objc_terminate, lib, "objc_terminate")
-	tryRegister(&_object_copy, lib, "object_copy")
-	tryRegister(&_object_copyFromZone, lib, "object_copyFromZone")
-	tryRegister(&_object_dispose, lib, "object_dispose")
 	tryRegister(&_object_getClass, lib, "object_getClass")
 	tryRegister(&_object_getClassName, lib, "object_getClassName")
 	tryRegister(&_object_getIndexedIvars, lib, "object_getIndexedIvars")
-	tryRegister(&_object_getInstanceVariable, lib, "object_getInstanceVariable")
 	tryRegister(&_object_getIvar, lib, "object_getIvar")
 	tryRegister(&_object_isClass, lib, "object_isClass")
 	tryRegister(&_object_setClass, lib, "object_setClass")
-	tryRegister(&_object_setInstanceVariable, lib, "object_setInstanceVariable")
-	tryRegister(&_object_setInstanceVariableWithStrongDefault, lib, "object_setInstanceVariableWithStrongDefault")
 	tryRegister(&_object_setIvar, lib, "object_setIvar")
 	tryRegister(&_object_setIvarWithStrongDefault, lib, "object_setIvarWithStrongDefault")
 	tryRegister(&_property_copyAttributeList, lib, "property_copyAttributeList")
@@ -358,237 +274,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// NXCompareHashTables is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXCompareHashTables
-func NXCompareHashTables(table1 unsafe.Pointer, table2 unsafe.Pointer) bool {
-	return _NXCompareHashTables(table1, table2)
-}
-
-// NXCopyHashTable is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXCopyHashTable
-func NXCopyHashTable(table unsafe.Pointer) unsafe.Pointer {
-	return _NXCopyHashTable(table)
-}
-
-// NXCountHashTable is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXCountHashTable
-func NXCountHashTable(table unsafe.Pointer) unsafe.Pointer {
-	return _NXCountHashTable(table)
-}
-
-// NXCreateHashTable is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXCreateHashTable
-func NXCreateHashTable(prototype unsafe.Pointer, capacity unsafe.Pointer, info unsafe.Pointer) unsafe.Pointer {
-	return _NXCreateHashTable(prototype, capacity, info)
-}
-
-// NXCreateHashTableFromZone is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXCreateHashTableFromZone
-func NXCreateHashTableFromZone(prototype unsafe.Pointer, capacity unsafe.Pointer, info unsafe.Pointer, zone unsafe.Pointer) unsafe.Pointer {
-	return _NXCreateHashTableFromZone(prototype, capacity, info, zone)
-}
-
-// NXEmptyHashTable is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXEmptyHashTable
-func NXEmptyHashTable(table unsafe.Pointer) {
-	_NXEmptyHashTable(table)
-}
-
-// NXFreeHashTable is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXFreeHashTable
-func NXFreeHashTable(table unsafe.Pointer) {
-	_NXFreeHashTable(table)
-}
-
-// NXHashGet is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXHashGet
-func NXHashGet(table unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
-	return _NXHashGet(table, data)
-}
-
-// NXHashInsert is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXHashInsert
-func NXHashInsert(table unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
-	return _NXHashInsert(table, data)
-}
-
-// NXHashInsertIfAbsent is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXHashInsertIfAbsent
-func NXHashInsertIfAbsent(table unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
-	return _NXHashInsertIfAbsent(table, data)
-}
-
-// NXHashMember is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXHashMember
-func NXHashMember(table unsafe.Pointer, data unsafe.Pointer) int {
-	return _NXHashMember(table, data)
-}
-
-// NXHashRemove is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXHashRemove
-func NXHashRemove(table unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
-	return _NXHashRemove(table, data)
-}
-
-// NXInitHashState is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXInitHashState
-func NXInitHashState(table unsafe.Pointer) unsafe.Pointer {
-	return _NXInitHashState(table)
-}
-
-// NXNextHashState is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXNextHashState
-func NXNextHashState(table unsafe.Pointer, state unsafe.Pointer, data unsafe.Pointer) int {
-	return _NXNextHashState(table, state, data)
-}
-
-// NXNoEffectFree is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXNoEffectFree
-func NXNoEffectFree(info unsafe.Pointer, data unsafe.Pointer) {
-	_NXNoEffectFree(info, data)
-}
-
-// NXPtrHash is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXPtrHash
-func NXPtrHash(info unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
-	return _NXPtrHash(info, data)
-}
-
-// NXPtrIsEqual is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXPtrIsEqual
-func NXPtrIsEqual(info unsafe.Pointer, data1 unsafe.Pointer, data2 unsafe.Pointer) int {
-	return _NXPtrIsEqual(info, data1, data2)
-}
-
-// NXReallyFree is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXReallyFree
-func NXReallyFree(info unsafe.Pointer, data unsafe.Pointer) {
-	_NXReallyFree(info, data)
-}
-
-// NXResetHashTable is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXResetHashTable
-func NXResetHashTable(table unsafe.Pointer) {
-	_NXResetHashTable(table)
-}
-
-// NXStrHash is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXStrHash
-func NXStrHash(info unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
-	return _NXStrHash(info, data)
-}
-
-// NXStrIsEqual is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.1.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXStrIsEqual
-func NXStrIsEqual(info unsafe.Pointer, data1 unsafe.Pointer, data2 unsafe.Pointer) int {
-	return _NXStrIsEqual(info, data1, data2)
-}
-
 // Adds a new instance variable to a class.
 //
 // Added in macOS 10.5.
@@ -607,7 +292,7 @@ func class_addIvar(cls unsafe.Pointer, name unsafe.Pointer, size uintptr, alignm
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_addMethod(_:_:_:_:)
-func class_addMethod(cls unsafe.Pointer, name unsafe.Pointer, imp IMP, types unsafe.Pointer) bool {
+func class_addMethod(cls unsafe.Pointer, name unsafe.Pointer, imp unsafe.Pointer, types unsafe.Pointer) bool {
 	return _class_addMethod(cls, name, imp, types)
 }
 
@@ -699,17 +384,6 @@ func class_createInstance(cls unsafe.Pointer, extraBytes uintptr) unsafe.Pointer
 	return _class_createInstance(cls, extraBytes)
 }
 
-// class_createInstanceFromZone is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.5.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_createInstanceFromZone
-func class_createInstanceFromZone(p0 unsafe.Pointer, idxIvars uintptr, zone unsafe.Pointer) unsafe.Pointer {
-	return _class_createInstanceFromZone(p0, idxIvars, zone)
-}
-
 // Returns a pointer to the data structure describing a given class method for a given class.
 //
 // Added in macOS 10.0.
@@ -717,7 +391,7 @@ func class_createInstanceFromZone(p0 unsafe.Pointer, idxIvars uintptr, zone unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getClassMethod(_:_:)
-func class_getClassMethod(cls unsafe.Pointer, name unsafe.Pointer) Method {
+func class_getClassMethod(cls unsafe.Pointer, name unsafe.Pointer) unsafe.Pointer {
 	return _class_getClassMethod(cls, name)
 }
 
@@ -728,7 +402,7 @@ func class_getClassMethod(cls unsafe.Pointer, name unsafe.Pointer) Method {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getClassVariable(_:_:)
-func class_getClassVariable(cls unsafe.Pointer, name unsafe.Pointer) Ivar {
+func class_getClassVariable(cls unsafe.Pointer, name unsafe.Pointer) unsafe.Pointer {
 	return _class_getClassVariable(cls, name)
 }
 
@@ -750,7 +424,7 @@ func class_getImageName(cls unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getInstanceMethod(_:_:)
-func class_getInstanceMethod(cls unsafe.Pointer, name unsafe.Pointer) Method {
+func class_getInstanceMethod(cls unsafe.Pointer, name unsafe.Pointer) unsafe.Pointer {
 	return _class_getInstanceMethod(cls, name)
 }
 
@@ -772,7 +446,7 @@ func class_getInstanceSize(cls unsafe.Pointer) uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getInstanceVariable(_:_:)
-func class_getInstanceVariable(cls unsafe.Pointer, name unsafe.Pointer) Ivar {
+func class_getInstanceVariable(cls unsafe.Pointer, name unsafe.Pointer) unsafe.Pointer {
 	return _class_getInstanceVariable(cls, name)
 }
 
@@ -794,7 +468,7 @@ func class_getIvarLayout(cls unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getMethodImplementation(_:_:)
-func class_getMethodImplementation(cls unsafe.Pointer, name unsafe.Pointer) IMP {
+func class_getMethodImplementation(cls unsafe.Pointer, name unsafe.Pointer) unsafe.Pointer {
 	return _class_getMethodImplementation(cls, name)
 }
 
@@ -805,7 +479,7 @@ func class_getMethodImplementation(cls unsafe.Pointer, name unsafe.Pointer) IMP 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getMethodImplementation_stret(_:_:)
-func class_getMethodImplementation_stret(cls unsafe.Pointer, name unsafe.Pointer) IMP {
+func class_getMethodImplementation_stret(cls unsafe.Pointer, name unsafe.Pointer) unsafe.Pointer {
 	return _class_getMethodImplementation_stret(cls, name)
 }
 
@@ -827,7 +501,7 @@ func class_getName(cls unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getProperty(_:_:)
-func class_getProperty(cls unsafe.Pointer, name unsafe.Pointer) objc_property_t {
+func class_getProperty(cls unsafe.Pointer, name unsafe.Pointer) unsafe.Pointer {
 	return _class_getProperty(cls, name)
 }
 
@@ -879,7 +553,7 @@ func class_isMetaClass(cls unsafe.Pointer) bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_lookupMethod(_:_:)
-func class_lookupMethod(cls unsafe.Pointer, sel unsafe.Pointer) IMP {
+func class_lookupMethod(cls unsafe.Pointer, sel unsafe.Pointer) unsafe.Pointer {
 	return _class_lookupMethod(cls, sel)
 }
 
@@ -890,7 +564,7 @@ func class_lookupMethod(cls unsafe.Pointer, sel unsafe.Pointer) IMP {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_replaceMethod(_:_:_:_:)
-func class_replaceMethod(cls unsafe.Pointer, name unsafe.Pointer, imp IMP, types unsafe.Pointer) IMP {
+func class_replaceMethod(cls unsafe.Pointer, name unsafe.Pointer, imp unsafe.Pointer, types unsafe.Pointer) unsafe.Pointer {
 	return _class_replaceMethod(cls, name, imp, types)
 }
 
@@ -974,7 +648,7 @@ func class_setWeakIvarLayout(cls unsafe.Pointer, layout unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/imp_getBlock(_:)
-func imp_getBlock(anImp IMP) unsafe.Pointer {
+func imp_getBlock(anImp unsafe.Pointer) unsafe.Pointer {
 	return _imp_getBlock(anImp)
 }
 
@@ -985,7 +659,7 @@ func imp_getBlock(anImp IMP) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/imp_implementationWithBlock(_:)
-func imp_implementationWithBlock(block unsafe.Pointer) IMP {
+func imp_implementationWithBlock(block unsafe.Pointer) unsafe.Pointer {
 	return _imp_implementationWithBlock(block)
 }
 
@@ -996,7 +670,7 @@ func imp_implementationWithBlock(block unsafe.Pointer) IMP {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/imp_removeBlock(_:)
-func imp_removeBlock(anImp IMP) bool {
+func imp_removeBlock(anImp unsafe.Pointer) bool {
 	return _imp_removeBlock(anImp)
 }
 
@@ -1007,7 +681,7 @@ func imp_removeBlock(anImp IMP) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/ivar_getName(_:)
-func ivar_getName(v Ivar) unsafe.Pointer {
+func ivar_getName(v unsafe.Pointer) unsafe.Pointer {
 	return _ivar_getName(v)
 }
 
@@ -1018,7 +692,7 @@ func ivar_getName(v Ivar) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/ivar_getOffset(_:)
-func ivar_getOffset(v Ivar) unsafe.Pointer {
+func ivar_getOffset(v unsafe.Pointer) unsafe.Pointer {
 	return _ivar_getOffset(v)
 }
 
@@ -1029,7 +703,7 @@ func ivar_getOffset(v Ivar) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/ivar_getTypeEncoding(_:)
-func ivar_getTypeEncoding(v Ivar) unsafe.Pointer {
+func ivar_getTypeEncoding(v unsafe.Pointer) unsafe.Pointer {
 	return _ivar_getTypeEncoding(v)
 }
 
@@ -1040,7 +714,7 @@ func ivar_getTypeEncoding(v Ivar) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_copyArgumentType(_:_:)
-func method_copyArgumentType(m Method, index unsafe.Pointer) unsafe.Pointer {
+func method_copyArgumentType(m unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
 	return _method_copyArgumentType(m, index)
 }
 
@@ -1051,7 +725,7 @@ func method_copyArgumentType(m Method, index unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_copyReturnType(_:)
-func method_copyReturnType(m Method) unsafe.Pointer {
+func method_copyReturnType(m unsafe.Pointer) unsafe.Pointer {
 	return _method_copyReturnType(m)
 }
 
@@ -1062,7 +736,7 @@ func method_copyReturnType(m Method) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_exchangeImplementations(_:_:)
-func method_exchangeImplementations(m1 Method, m2 Method) {
+func method_exchangeImplementations(m1 unsafe.Pointer, m2 unsafe.Pointer) {
 	_method_exchangeImplementations(m1, m2)
 }
 
@@ -1073,7 +747,7 @@ func method_exchangeImplementations(m1 Method, m2 Method) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_getArgumentType(_:_:_:_:)
-func method_getArgumentType(m Method, index unsafe.Pointer, dst unsafe.Pointer, dst_len uintptr) {
+func method_getArgumentType(m unsafe.Pointer, index unsafe.Pointer, dst unsafe.Pointer, dst_len uintptr) {
 	_method_getArgumentType(m, index, dst, dst_len)
 }
 
@@ -1084,7 +758,7 @@ func method_getArgumentType(m Method, index unsafe.Pointer, dst unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_getDescription(_:)
-func method_getDescription(m Method) unsafe.Pointer {
+func method_getDescription(m unsafe.Pointer) unsafe.Pointer {
 	return _method_getDescription(m)
 }
 
@@ -1095,7 +769,7 @@ func method_getDescription(m Method) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_getImplementation(_:)
-func method_getImplementation(m Method) IMP {
+func method_getImplementation(m unsafe.Pointer) unsafe.Pointer {
 	return _method_getImplementation(m)
 }
 
@@ -1106,7 +780,7 @@ func method_getImplementation(m Method) IMP {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_getName(_:)
-func method_getName(m Method) unsafe.Pointer {
+func method_getName(m unsafe.Pointer) unsafe.Pointer {
 	return _method_getName(m)
 }
 
@@ -1117,7 +791,7 @@ func method_getName(m Method) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_getNumberOfArguments(_:)
-func method_getNumberOfArguments(m Method) unsafe.Pointer {
+func method_getNumberOfArguments(m unsafe.Pointer) unsafe.Pointer {
 	return _method_getNumberOfArguments(m)
 }
 
@@ -1128,7 +802,7 @@ func method_getNumberOfArguments(m Method) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_getReturnType(_:_:_:)
-func method_getReturnType(m Method, dst unsafe.Pointer, dst_len uintptr) {
+func method_getReturnType(m unsafe.Pointer, dst unsafe.Pointer, dst_len uintptr) {
 	_method_getReturnType(m, dst, dst_len)
 }
 
@@ -1139,30 +813,8 @@ func method_getReturnType(m Method, dst unsafe.Pointer, dst_len uintptr) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_getTypeEncoding(_:)
-func method_getTypeEncoding(m Method) unsafe.Pointer {
+func method_getTypeEncoding(m unsafe.Pointer) unsafe.Pointer {
 	return _method_getTypeEncoding(m)
-}
-
-// Calls the implementation of a specified method.
-//
-// Added in macOS 10.5.
-// Calls the implementation of a specified method.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_invoke
-func method_invoke() {
-	_method_invoke()
-}
-
-// Calls the implementation of a specified method that returns a data-structure.
-//
-// Added in macOS 10.5.
-// Calls the implementation of a specified method that returns a data-structure.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_invoke_stret
-func method_invoke_stret() {
-	_method_invoke_stret()
 }
 
 // Sets the implementation of a method.
@@ -1172,7 +824,7 @@ func method_invoke_stret() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_setImplementation(_:_:)
-func method_setImplementation(m Method, imp IMP) IMP {
+func method_setImplementation(m unsafe.Pointer, imp unsafe.Pointer) unsafe.Pointer {
 	return _method_setImplementation(m, imp)
 }
 
@@ -1181,7 +833,7 @@ func method_setImplementation(m Method, imp IMP) IMP {
 // Added in macOS 10.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_addExceptionHandler(_:_:)
-func objc_addExceptionHandler(fn objc_exception_handler, context unsafe.Pointer) unsafe.Pointer {
+func objc_addExceptionHandler(fn unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
 	return _objc_addExceptionHandler(fn, context)
 }
 
@@ -1190,7 +842,7 @@ func objc_addExceptionHandler(fn objc_exception_handler, context unsafe.Pointer)
 // Added in macOS 10.15.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_addLoadImageFunc(_:)
-func objc_addLoadImageFunc(func_ objc_func_loadImage) {
+func objc_addLoadImageFunc(func_ unsafe.Pointer) {
 	_objc_addLoadImageFunc(func_)
 }
 
@@ -1223,17 +875,6 @@ func objc_allocateProtocol(name unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_begin_catch(_:)
 func objc_begin_catch(exc_buf unsafe.Pointer) unsafe.Pointer {
 	return _objc_begin_catch(exc_buf)
-}
-
-// Creates an instance of a class at the specified location.
-//
-// Added in macOS 10.6.
-// Creates an instance of a class at the specified location.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_constructInstance
-func objc_constructInstance(cls unsafe.Pointer, bytes unsafe.Pointer) unsafe.Pointer {
-	return _objc_constructInstance(cls, bytes)
 }
 
 // Creates and returns a list of pointers to all registered class definitions.
@@ -1280,17 +921,6 @@ func objc_copyProtocolList(outCount unsafe.Pointer) unsafe.Pointer {
 	return _objc_copyProtocolList(outCount)
 }
 
-// Destroys an instance of a class without freeing memory and removes any of its associated references.
-//
-// Added in macOS 10.6.
-// Destroys an instance of a class without freeing memory and removes any of its associated references.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_destructInstance
-func objc_destructInstance(obj unsafe.Pointer) unsafe.Pointer {
-	return _objc_destructInstance(obj)
-}
-
 // Destroys a class and its associated metaclass.
 //
 // Added in macOS 10.5.
@@ -1320,15 +950,6 @@ func objc_duplicateClass(original unsafe.Pointer, name unsafe.Pointer, extraByte
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_end_catch()
 func objc_end_catch() {
 	_objc_end_catch()
-}
-
-// objc_enumerateClasses is a ObjectiveC function.
-//
-// Added in macOS 13.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_enumerateClasses
-func objc_enumerateClasses(image unsafe.Pointer, namePrefix unsafe.Pointer, conformingTo unsafe.Pointer, subclassing unsafe.Pointer) {
-	_objc_enumerateClasses(image, namePrefix, conformingTo, subclassing)
 }
 
 // Inserted by the compiler when a mutation is detected during a foreach iteration.
@@ -1395,17 +1016,6 @@ func objc_getClassList(buffer unsafe.Pointer, bufferCount int) int {
 	return _objc_getClassList(buffer, bufferCount)
 }
 
-// Used by CoreFoundation’s toll-free bridging.
-//
-// Added in macOS 10.5.
-// Used by CoreFoundation’s toll-free bridging.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_getFutureClass
-func objc_getFutureClass(name unsafe.Pointer) unsafe.Pointer {
-	return _objc_getFutureClass(name)
-}
-
 // Returns the metaclass definition of a specified class.
 //
 // Added in macOS 10.0.
@@ -1459,70 +1069,6 @@ func objc_loadWeak(location unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_lookUpClass(_:)
 func objc_lookUpClass(name unsafe.Pointer) unsafe.Pointer {
 	return _objc_lookUpClass(name)
-}
-
-// Sends a message with a simple return value to an instance of a class.
-//
-// Added in macOS 10.0.
-// Sends a message with a simple return value to an instance of a class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_msgSend
-func objc_msgSend() {
-	_objc_msgSend()
-}
-
-// Sends a message with a simple return value to the superclass of an instance of a class.
-//
-// Added in macOS 10.0.
-// Sends a message with a simple return value to the superclass of an instance of a class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_msgSendSuper
-func objc_msgSendSuper() {
-	_objc_msgSendSuper()
-}
-
-// Sends a message with a data-structure return value to the superclass of an instance of a class.
-//
-// Added in macOS 10.0.
-// Sends a message with a data-structure return value to the superclass of an instance of a class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_msgSendSuper_stret
-func objc_msgSendSuper_stret() {
-	_objc_msgSendSuper_stret()
-}
-
-// objc_msgSend_fp2ret is a ObjectiveC function.
-//
-// Added in macOS 10.5.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_msgSend_fp2ret
-func objc_msgSend_fp2ret() {
-	_objc_msgSend_fp2ret()
-}
-
-// Sends a message with a floating-point return value to an instance of a class.
-//
-// Added in macOS 10.5.
-// Sends a message with a floating-point return value to an instance of a class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_msgSend_fpret
-func objc_msgSend_fpret() {
-	_objc_msgSend_fpret()
-}
-
-// Sends a message with a data-structure return value to an instance of a class.
-//
-// Added in macOS 10.0.
-// Sends a message with a data-structure return value to an instance of a class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_msgSend_stret
-func objc_msgSend_stret() {
-	_objc_msgSend_stret()
 }
 
 // Registers a class that was allocated using .
@@ -1594,7 +1140,7 @@ func objc_setEnumerationMutationHandler() {
 // Added in macOS 10.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_setExceptionMatcher(_:)
-func objc_setExceptionMatcher(fn objc_exception_matcher) objc_exception_matcher {
+func objc_setExceptionMatcher(fn unsafe.Pointer) unsafe.Pointer {
 	return _objc_setExceptionMatcher(fn)
 }
 
@@ -1603,7 +1149,7 @@ func objc_setExceptionMatcher(fn objc_exception_matcher) objc_exception_matcher 
 // Added in macOS 10.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_setExceptionPreprocessor(_:)
-func objc_setExceptionPreprocessor(fn objc_exception_preprocessor) objc_exception_preprocessor {
+func objc_setExceptionPreprocessor(fn unsafe.Pointer) unsafe.Pointer {
 	return _objc_setExceptionPreprocessor(fn)
 }
 
@@ -1623,7 +1169,7 @@ func objc_setForwardHandler(fwd unsafe.Pointer, fwd_stret unsafe.Pointer) {
 // Added in macOS 10.14.4.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_setHook_getClass(_:_:)
-func objc_setHook_getClass(newValue objc_hook_getClass, outOldValue unsafe.Pointer) {
+func objc_setHook_getClass(newValue unsafe.Pointer, outOldValue unsafe.Pointer) {
 	_objc_setHook_getClass(newValue, outOldValue)
 }
 
@@ -1632,7 +1178,7 @@ func objc_setHook_getClass(newValue objc_hook_getClass, outOldValue unsafe.Point
 // Added in macOS 10.14.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_setHook_getImageName(_:_:)
-func objc_setHook_getImageName(newValue objc_hook_getImageName, outOldValue unsafe.Pointer) {
+func objc_setHook_getImageName(newValue unsafe.Pointer, outOldValue unsafe.Pointer) {
 	_objc_setHook_getImageName(newValue, outOldValue)
 }
 
@@ -1641,7 +1187,7 @@ func objc_setHook_getImageName(newValue objc_hook_getImageName, outOldValue unsa
 // Added in macOS 11.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_setHook_lazyClassNamer(_:_:)
-func objc_setHook_lazyClassNamer(newValue objc_hook_lazyClassNamer, oldOutValue unsafe.Pointer) {
+func objc_setHook_lazyClassNamer(newValue unsafe.Pointer, oldOutValue unsafe.Pointer) {
 	_objc_setHook_lazyClassNamer(newValue, oldOutValue)
 }
 
@@ -1650,7 +1196,7 @@ func objc_setHook_lazyClassNamer(newValue objc_hook_lazyClassNamer, oldOutValue 
 // Added in macOS 10.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_setUncaughtExceptionHandler(_:)
-func objc_setUncaughtExceptionHandler(fn objc_uncaught_exception_handler) objc_uncaught_exception_handler {
+func objc_setUncaughtExceptionHandler(fn unsafe.Pointer) unsafe.Pointer {
 	return _objc_setUncaughtExceptionHandler(fn)
 }
 
@@ -1665,28 +1211,6 @@ func objc_storeWeak(location unsafe.Pointer, obj unsafe.Pointer) unsafe.Pointer 
 	return _objc_storeWeak(location, obj)
 }
 
-// Begin synchronizing on ‘obj’. Allocates recursive pthread_mutex associated with ‘obj’ if needed.
-//
-// Added in macOS 10.3.
-// Begin synchronizing on ‘obj’. Allocates recursive pthread_mutex associated with ‘obj’ if needed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_sync_enter
-func objc_sync_enter(obj unsafe.Pointer) int {
-	return _objc_sync_enter(obj)
-}
-
-// End synchronizing on ‘obj’.
-//
-// Added in macOS 10.3.
-// End synchronizing on ‘obj’.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_sync_exit
-func objc_sync_exit(obj unsafe.Pointer) int {
-	return _objc_sync_exit(obj)
-}
-
 // objc_terminate is a ObjectiveC function.
 //
 // Added in macOS 10.8.
@@ -1694,39 +1218,6 @@ func objc_sync_exit(obj unsafe.Pointer) int {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_terminate()
 func objc_terminate() {
 	_objc_terminate()
-}
-
-// Returns a copy of a given object.
-//
-// Added in macOS 10.0.
-// Returns a copy of a given object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_copy
-func object_copy(obj unsafe.Pointer, size uintptr) unsafe.Pointer {
-	return _object_copy(obj, size)
-}
-
-// object_copyFromZone is a ObjectiveC function.
-//
-// Deprecated: This function was deprecated in macOS 10.5.
-//
-// Added in macOS 10.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_copyFromZone
-func object_copyFromZone(anObject unsafe.Pointer, nBytes uintptr, zone unsafe.Pointer) unsafe.Pointer {
-	return _object_copyFromZone(anObject, nBytes, zone)
-}
-
-// Frees the memory occupied by a given object.
-//
-// Added in macOS 10.0.
-// Frees the memory occupied by a given object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_dispose
-func object_dispose(obj unsafe.Pointer) unsafe.Pointer {
-	return _object_dispose(obj)
 }
 
 // Returns the class of an object.
@@ -1762,17 +1253,6 @@ func object_getIndexedIvars(obj unsafe.Pointer) unsafe.Pointer {
 	return _object_getIndexedIvars(obj)
 }
 
-// Obtains the value of an instance variable of a class instance.
-//
-// Added in macOS 10.0.
-// Obtains the value of an instance variable of a class instance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_getInstanceVariable
-func object_getInstanceVariable(obj unsafe.Pointer, name unsafe.Pointer, outValue unsafe.Pointer) Ivar {
-	return _object_getInstanceVariable(obj, name, outValue)
-}
-
 // Reads the value of an instance variable in an object.
 //
 // Added in macOS 10.5.
@@ -1780,7 +1260,7 @@ func object_getInstanceVariable(obj unsafe.Pointer, name unsafe.Pointer, outValu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_getIvar(_:_:)
-func object_getIvar(obj unsafe.Pointer, ivar Ivar) unsafe.Pointer {
+func object_getIvar(obj unsafe.Pointer, ivar unsafe.Pointer) unsafe.Pointer {
 	return _object_getIvar(obj, ivar)
 }
 
@@ -1804,26 +1284,6 @@ func object_setClass(obj unsafe.Pointer, cls unsafe.Pointer) unsafe.Pointer {
 	return _object_setClass(obj, cls)
 }
 
-// Changes the value of an instance variable of a class instance.
-//
-// Added in macOS 10.0.
-// Changes the value of an instance variable of a class instance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_setInstanceVariable
-func object_setInstanceVariable(obj unsafe.Pointer, name unsafe.Pointer, value unsafe.Pointer) Ivar {
-	return _object_setInstanceVariable(obj, name, value)
-}
-
-// object_setInstanceVariableWithStrongDefault is a ObjectiveC function.
-//
-// Added in macOS 10.12.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_setInstanceVariableWithStrongDefault
-func object_setInstanceVariableWithStrongDefault(obj unsafe.Pointer, name unsafe.Pointer, value unsafe.Pointer) Ivar {
-	return _object_setInstanceVariableWithStrongDefault(obj, name, value)
-}
-
 // Sets the value of an instance variable in an object.
 //
 // Added in macOS 10.5.
@@ -1831,7 +1291,7 @@ func object_setInstanceVariableWithStrongDefault(obj unsafe.Pointer, name unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_setIvar(_:_:_:)
-func object_setIvar(obj unsafe.Pointer, ivar Ivar, value unsafe.Pointer) {
+func object_setIvar(obj unsafe.Pointer, ivar unsafe.Pointer, value unsafe.Pointer) {
 	_object_setIvar(obj, ivar, value)
 }
 
@@ -1840,7 +1300,7 @@ func object_setIvar(obj unsafe.Pointer, ivar Ivar, value unsafe.Pointer) {
 // Added in macOS 10.12.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_setIvarWithStrongDefault(_:_:_:)
-func object_setIvarWithStrongDefault(obj unsafe.Pointer, ivar Ivar, value unsafe.Pointer) {
+func object_setIvarWithStrongDefault(obj unsafe.Pointer, ivar unsafe.Pointer, value unsafe.Pointer) {
 	_object_setIvarWithStrongDefault(obj, ivar, value)
 }
 
@@ -1851,7 +1311,7 @@ func object_setIvarWithStrongDefault(obj unsafe.Pointer, ivar Ivar, value unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/property_copyAttributeList(_:_:)
-func property_copyAttributeList(property objc_property_t, outCount unsafe.Pointer) unsafe.Pointer {
+func property_copyAttributeList(property unsafe.Pointer, outCount unsafe.Pointer) unsafe.Pointer {
 	return _property_copyAttributeList(property, outCount)
 }
 
@@ -1862,7 +1322,7 @@ func property_copyAttributeList(property objc_property_t, outCount unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/property_copyAttributeValue(_:_:)
-func property_copyAttributeValue(property objc_property_t, attributeName unsafe.Pointer) unsafe.Pointer {
+func property_copyAttributeValue(property unsafe.Pointer, attributeName unsafe.Pointer) unsafe.Pointer {
 	return _property_copyAttributeValue(property, attributeName)
 }
 
@@ -1873,7 +1333,7 @@ func property_copyAttributeValue(property objc_property_t, attributeName unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/property_getAttributes(_:)
-func property_getAttributes(property objc_property_t) unsafe.Pointer {
+func property_getAttributes(property unsafe.Pointer) unsafe.Pointer {
 	return _property_getAttributes(property)
 }
 
@@ -1884,7 +1344,7 @@ func property_getAttributes(property objc_property_t) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/property_getName(_:)
-func property_getName(property objc_property_t) unsafe.Pointer {
+func property_getName(property unsafe.Pointer) unsafe.Pointer {
 	return _property_getName(property)
 }
 
@@ -2003,7 +1463,7 @@ func protocol_getName(proto unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/protocol_getProperty(_:_:_:_:)
-func protocol_getProperty(proto unsafe.Pointer, name unsafe.Pointer, isRequiredProperty bool, isInstanceProperty bool) objc_property_t {
+func protocol_getProperty(proto unsafe.Pointer, name unsafe.Pointer, isRequiredProperty bool, isInstanceProperty bool) unsafe.Pointer {
 	return _protocol_getProperty(proto, name, isRequiredProperty, isInstanceProperty)
 }
 

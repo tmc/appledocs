@@ -207,8 +207,12 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		return "objc.Class"
 	case "SEL":
 		return "objc.SEL"
-	case "BOOL":
+	case "BOOL", "Bool", "_Bool":
 		return "bool"
+	case "AnyClass":
+		return "objc.Class"
+	case "FourCharCode", "OSType":
+		return "uint32"
 	case "NSInteger", "Int":
 		return "int"
 	case "NSUInteger", "UInt":

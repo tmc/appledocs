@@ -7,20 +7,28 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/addressbook"
+	"github.com/tmc/appledocs/generated/automator"
+	"github.com/tmc/appledocs/generated/coredata"
+	"github.com/tmc/appledocs/generated/exceptionhandling"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/iobluetooth"
+	"github.com/tmc/appledocs/generated/quartz"
+	"github.com/tmc/appledocs/generated/quicklookui"
+	"github.com/tmc/appledocs/generated/securityinterface"
 )
 
 // The class instance for the [Object] class.
 var (
-	objectClass     _ObjectClass
-	objectClassOnce sync.Once
+	ObjectClass     _ObjectClass
+	ObjectClassOnce sync.Once
 )
 
 func getObjectClass() _ObjectClass {
-	objectClassOnce.Do(func() {
-		objectClass = _ObjectClass{objc.GetClass("NSObject")}
+	ObjectClassOnce.Do(func() {
+		ObjectClass = _ObjectClass{objc.GetClass("NSObject")}
 	})
-	return objectClass
+	return ObjectClass
 }
 
 type _ObjectClass struct {
@@ -29,219 +37,302 @@ type _ObjectClass struct {
 
 // An interface definition for the [Object] class.
 type IObject interface {
-	objc.IObject
-	URLResourceDataDidBecomeAvailable(sender unsafe.Pointer, newBytes unsafe.Pointer)
-	URLResourceDidFailLoadingWithReason(sender unsafe.Pointer, reason string)
-	URLResourceDidCancelLoading(sender unsafe.Pointer)
-	URLResourceDidFinishLoading(sender unsafe.Pointer)
-	AcceptsPreviewPanelControl(panel unsafe.Pointer) bool
-	AccessibilityActionNames() []string
-	AccessibilityActivate() bool
+	
+	// properties:
+	AccessibilityActivateBlock() unsafe.Pointer
+	SetAccessibilityActivateBlock(value unsafe.Pointer)
+	AccessibilityActivationPointBlock() unsafe.Pointer
+	SetAccessibilityActivationPointBlock(value unsafe.Pointer)
+	AccessibilityAttributedHintBlock() unsafe.Pointer
+	SetAccessibilityAttributedHintBlock(value unsafe.Pointer)
+	AccessibilityAttributedLabelBlock() unsafe.Pointer
+	SetAccessibilityAttributedLabelBlock(value unsafe.Pointer)
+	AccessibilityAttributedUserInputLabelsBlock() unsafe.Pointer
+	SetAccessibilityAttributedUserInputLabelsBlock(value unsafe.Pointer)
+	AccessibilityAttributedValueBlock() unsafe.Pointer
+	SetAccessibilityAttributedValueBlock(value unsafe.Pointer)
+	AccessibilityContainerType() objectivec.IObject
+	SetAccessibilityContainerType(value objectivec.IObject)
+	AccessibilityContainerTypeBlock() unsafe.Pointer
+	SetAccessibilityContainerTypeBlock(value unsafe.Pointer)
+	AccessibilityCustomActionsBlock() unsafe.Pointer
+	SetAccessibilityCustomActionsBlock(value unsafe.Pointer)
+	AccessibilityCustomRotors() objectivec.IObject
+	SetAccessibilityCustomRotors(value objectivec.IObject)
+	AccessibilityCustomRotorsBlock() unsafe.Pointer
+	SetAccessibilityCustomRotorsBlock(value unsafe.Pointer)
+	AccessibilityDecrementBlock() unsafe.Pointer
+	SetAccessibilityDecrementBlock(value unsafe.Pointer)
+	AccessibilityDirectTouchOptions() unsafe.Pointer
+	SetAccessibilityDirectTouchOptions(value unsafe.Pointer)
+	AccessibilityElements() unsafe.Pointer
+	SetAccessibilityElements(value unsafe.Pointer)
+	AccessibilityElementsBlock() unsafe.Pointer
+	SetAccessibilityElementsBlock(value unsafe.Pointer)
+	AccessibilityElementsHidden() bool /* primitive/slice/pointer. */
+	SetAccessibilityElementsHidden(value bool /* primitive/slice/pointer. */)
+	AccessibilityElementsHiddenBlock() unsafe.Pointer
+	SetAccessibilityElementsHiddenBlock(value unsafe.Pointer)
+	AccessibilityExpandedStatus() unsafe.Pointer
+	SetAccessibilityExpandedStatus(value unsafe.Pointer)
+	AccessibilityExpandedStatusBlock() unsafe.Pointer
+	SetAccessibilityExpandedStatusBlock(value unsafe.Pointer)
+	AccessibilityFocusedUIElement() unsafe.Pointer
+	SetAccessibilityFocusedUIElement(value unsafe.Pointer)
+	AccessibilityFrameBlock() unsafe.Pointer
+	SetAccessibilityFrameBlock(value unsafe.Pointer)
+	AccessibilityHeaderElements() unsafe.Pointer
+	SetAccessibilityHeaderElements(value unsafe.Pointer)
+	AccessibilityHeaderElementsBlock() unsafe.Pointer
+	SetAccessibilityHeaderElementsBlock(value unsafe.Pointer)
+	AccessibilityHintBlock() unsafe.Pointer
+	SetAccessibilityHintBlock(value unsafe.Pointer)
+	AccessibilityIdentifierBlock() unsafe.Pointer
+	SetAccessibilityIdentifierBlock(value unsafe.Pointer)
+	AccessibilityIncrementBlock() unsafe.Pointer
+	SetAccessibilityIncrementBlock(value unsafe.Pointer)
+	AccessibilityLabelBlock() unsafe.Pointer
+	SetAccessibilityLabelBlock(value unsafe.Pointer)
+	AccessibilityLanguageBlock() unsafe.Pointer
+	SetAccessibilityLanguageBlock(value unsafe.Pointer)
+	AccessibilityMagicTapBlock() unsafe.Pointer
+	SetAccessibilityMagicTapBlock(value unsafe.Pointer)
+	AccessibilityNavigationStyle() objectivec.IObject
+	SetAccessibilityNavigationStyle(value objectivec.IObject)
+	AccessibilityNavigationStyleBlock() unsafe.Pointer
+	SetAccessibilityNavigationStyleBlock(value unsafe.Pointer)
+	AccessibilityNextTextNavigationElement() unsafe.Pointer
+	SetAccessibilityNextTextNavigationElement(value unsafe.Pointer)
+	AccessibilityNextTextNavigationElementBlock() unsafe.Pointer
+	SetAccessibilityNextTextNavigationElementBlock(value unsafe.Pointer)
+	AccessibilityNotifiesWhenDestroyed() bool /* primitive/slice/pointer. */
+	SetAccessibilityNotifiesWhenDestroyed(value bool /* primitive/slice/pointer. */)
+	AccessibilityPathBlock() unsafe.Pointer
+	SetAccessibilityPathBlock(value unsafe.Pointer)
+	AccessibilityPerformEscapeBlock() unsafe.Pointer
+	SetAccessibilityPerformEscapeBlock(value unsafe.Pointer)
+	AccessibilityPreviousTextNavigationElement() unsafe.Pointer
+	SetAccessibilityPreviousTextNavigationElement(value unsafe.Pointer)
+	AccessibilityPreviousTextNavigationElementBlock() unsafe.Pointer
+	SetAccessibilityPreviousTextNavigationElementBlock(value unsafe.Pointer)
+	AccessibilityRespondsToUserInteraction() bool /* primitive/slice/pointer. */
+	SetAccessibilityRespondsToUserInteraction(value bool /* primitive/slice/pointer. */)
+	AccessibilityRespondsToUserInteractionBlock() unsafe.Pointer
+	SetAccessibilityRespondsToUserInteractionBlock(value unsafe.Pointer)
+	AccessibilityShouldGroupAccessibilityChildrenBlock() unsafe.Pointer
+	SetAccessibilityShouldGroupAccessibilityChildrenBlock(value unsafe.Pointer)
+	AccessibilityTextInputResponder() objectivec.IObject
+	SetAccessibilityTextInputResponder(value objectivec.IObject)
+	AccessibilityTextInputResponderBlock() unsafe.Pointer
+	SetAccessibilityTextInputResponderBlock(value unsafe.Pointer)
+	AccessibilityTextualContext() objectivec.IObject
+	SetAccessibilityTextualContext(value objectivec.IObject)
+	AccessibilityTextualContextBlock() unsafe.Pointer
+	SetAccessibilityTextualContextBlock(value unsafe.Pointer)
+	AccessibilityTraits() objectivec.IObject
+	SetAccessibilityTraits(value objectivec.IObject)
+	AccessibilityTraitsBlock() unsafe.Pointer
+	SetAccessibilityTraitsBlock(value unsafe.Pointer)
+	AccessibilityUserInputLabelsBlock() unsafe.Pointer
+	SetAccessibilityUserInputLabelsBlock(value unsafe.Pointer)
+	AccessibilityValueBlock() unsafe.Pointer
+	SetAccessibilityValueBlock(value unsafe.Pointer)
+	AccessibilityViewIsModal() bool /* primitive/slice/pointer. */
+	SetAccessibilityViewIsModal(value bool /* primitive/slice/pointer. */)
+	AccessibilityViewIsModalBlock() unsafe.Pointer
+	SetAccessibilityViewIsModalBlock(value unsafe.Pointer)
+	AutoContentAccessingProxy() unsafe.Pointer
+	SetAutoContentAccessingProxy(value unsafe.Pointer)
+	AutomationElements() unsafe.Pointer
+	SetAutomationElements(value unsafe.Pointer)
+	AutomationElementsBlock() unsafe.Pointer
+	SetAutomationElementsBlock(value unsafe.Pointer)
+	BrowserAccessibilityContainerType() unsafe.Pointer
+	SetBrowserAccessibilityContainerType(value unsafe.Pointer)
+	BrowserAccessibilityHasDOMFocus() bool /* primitive/slice/pointer. */
+	SetBrowserAccessibilityHasDOMFocus(value bool /* primitive/slice/pointer. */)
+	BrowserAccessibilityIsRequired() bool /* primitive/slice/pointer. */
+	SetBrowserAccessibilityIsRequired(value bool /* primitive/slice/pointer. */)
+	BrowserAccessibilityPressedState() unsafe.Pointer
+	SetBrowserAccessibilityPressedState(value unsafe.Pointer)
+	ClassCode() uint32 /* not a class type */
+	SetClassCode(value uint32 /* not a class type */)
+	ClassForArchiver() objc.Class
+	SetClassForArchiver(value objc.Class)
+	ClassForCoder() objc.Class
+	SetClassForCoder(value objc.Class)
+	ClassForKeyedArchiver() objc.Class
+	SetClassForKeyedArchiver(value objc.Class)
+	IsAccessibilityElement() bool /* primitive/slice/pointer. */
+	SetIsAccessibilityElement(value bool /* primitive/slice/pointer. */)
+	IsAccessibilityElementBlock() unsafe.Pointer
+	SetIsAccessibilityElementBlock(value unsafe.Pointer)
+	IsSelectable() bool /* primitive/slice/pointer. */
+	SetIsSelectable(value bool /* primitive/slice/pointer. */)
+	ShouldGroupAccessibilityChildren() bool /* primitive/slice/pointer. */
+	SetShouldGroupAccessibilityChildren(value bool /* primitive/slice/pointer. */)
+	// methods:
+	AcceptsPreviewPanelControl(panel objc.IObject /* cross-framework: PreviewPanel */) bool /* primitive/slice/pointer. */
+	AccessibilityActivate() bool /* primitive/slice/pointer. */
+	AccessibilityArrayAttributeCount(attribute AccessibilityAttributeName /* not a class type */) uint /* primitive/slice/pointer. */
 	AccessibilityAssistiveTechnologyFocusedIdentifiers() unsafe.Pointer
 	AccessibilityDecrement()
-	AccessibilityElementAtIndex(index int) objc.ID
-	AccessibilityElementCount() int
-	AccessibilityElementIsFocused() bool
-	AccessibilityHitTest(point Point) objc.ID
-	AccessibilityHitTestWithEvent(point coregraphics.CGPoint, event unsafe.Pointer) objc.ID
+	AccessibilityElementAtIndex(index int /* primitive/slice/pointer. */) objc.ID
+	AccessibilityElementCount() int /* primitive/slice/pointer. */
+	AccessibilityElementDidBecomeFocused()
+	AccessibilityElementDidLoseFocus()
+	AccessibilityElementIsFocused() bool /* primitive/slice/pointer. */
+	AccessibilityHitTest(point objectivec.IObject) objc.ID
+	AccessibilityHitTestWithEvent(point objectivec.IObject, event objectivec.IObject) objc.ID
 	AccessibilityIncrement()
-	AccessibilityLineEndPositionFromCurrentSelection() int
-	AccessibilityLineRangeForPosition(position int) Range
-	AccessibilityLineStartPositionFromCurrentSelection() int
-	AccessibilityPerformEscape() bool
-	AccessibilityPerformMagicTap() bool
-	AccessibilityScroll(direction unsafe.Pointer) bool
-	AccessibilitySetOverrideValueForAttribute(value objc.ID, attribute unsafe.Pointer) bool
-	AccessibilityZoomInAtPoint(point coregraphics.CGPoint) bool
-	AccessibilityZoomOutAtPoint(point coregraphics.CGPoint) bool
-	ActionProperty() unsafe.Pointer
-	ApplicationDelegateHandlesKey(sender unsafe.Pointer, key string) bool
-	AttemptRecoveryFromErrorOptionIndex(error unsafe.Pointer, recoveryOptionIndex uint) bool
-	AttemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorContextInfo(error unsafe.Pointer, recoveryOptionIndex uint, delegate objc.ID, didRecoverSelector objc.SEL, contextInfo unsafe.Pointer)
-	AttributedStringForIdentityPropertiesWithNamesInRecordComparisonRecordsFirstLineAttributesSecondLineAttributes(propertyNames objc.ID, record objc.ID, comparisonRecords objc.ID, firstLineAttributes objc.ID, secondLineAttributes objc.ID) unsafe.Pointer
-	AttributedStringForPropertiesWithNamesInRecordComparisonRecordsDefaultAttributes(propertyNames objc.ID, record objc.ID, comparisonRecords objc.ID, defaultAttributes objc.ID) unsafe.Pointer
-	AuthorizationViewCreatedAuthorization(view unsafe.Pointer)
-	AuthorizationViewDidAuthorize(view unsafe.Pointer)
-	AuthorizationViewDidDeauthorize(view unsafe.Pointer)
-	AuthorizationViewDidHide(view unsafe.Pointer)
-	AuthorizationViewReleasedAuthorization(view unsafe.Pointer)
-	AuthorizationViewShouldDeauthorize(view unsafe.Pointer) bool
-	AwakeFromNib()
-	BeginPreviewPanelControl(panel unsafe.Pointer)
-	BindToObjectWithKeyPathOptions(binding unsafe.Pointer, observable objc.ID, keyPath string, options unsafe.Pointer)
-	BrowserAccessibilityAttributedValueInRange(range_ Range) unsafe.Pointer
-	BrowserAccessibilityDeleteTextAtCursor(numberOfCharacters int)
-	BrowserAccessibilityInsertTextAtCursor(text string)
-	BrowserAccessibilitySelectedTextRange() Range
-	BrowserAccessibilitySetSelectedTextRange(range_ Range)
-	BrowserAccessibilityValueInRange(range_ Range) unsafe.Pointer
-	BurnProgressPanelBurnDidFinish(theBurnPanel unsafe.Pointer, burn unsafe.Pointer) bool
-	BurnProgressPanelDidFinish(aNotification unsafe.Pointer)
-	BurnProgressPanelWillBegin(aNotification unsafe.Pointer)
-	Candidates(sender objc.ID) unsafe.Pointer
-	CertificatePanelShowHelp(sender unsafe.Pointer) bool
-	ChangeColor(sender objc.ID)
-	ChangeFont(sender objc.ID)
-	ChooseIdentityPanelShowHelp(sender unsafe.Pointer) bool
-	CoerceValueForKey(value objc.ID, key string) objc.ID
-	CommitComposition(sender objc.ID)
-	CommitEditing() bool
-	CommitEditingAndReturnError(error unsafe.Pointer) bool
-	CommitEditingWithDelegateDidCommitSelectorContextInfo(delegate objc.ID, didCommitSelector objc.SEL, contextInfo unsafe.Pointer)
-	ComposedString(sender objc.ID) objc.ID
-	CompositionParameterViewDidChangeParameterWithKey(parameterView unsafe.Pointer, portKey string)
-	CompositionParameterViewShouldDisplayParameterWithKeyAttributes(parameterView unsafe.Pointer, portKey string, portAttributes objc.ID) bool
-	CompositionPickerViewDidSelectComposition(pickerView unsafe.Pointer, composition unsafe.Pointer)
-	CompositionPickerViewDidStartAnimating(pickerView unsafe.Pointer)
-	CompositionPickerViewWillStopAnimating(pickerView unsafe.Pointer)
-	ControlTextDidBeginEditing(obj unsafe.Pointer)
-	ControlTextDidChange(obj unsafe.Pointer)
-	ControlTextDidEndEditing(obj unsafe.Pointer)
-	CopyScriptingValueForKeyWithProperties(value objc.ID, key string, properties unsafe.Pointer) objc.ID
-	Dealloc()
-	DidCommandBySelectorClient(aSelector objc.SEL, sender objc.ID) bool
-	DiscardEditing()
-	DoesContain(object objc.ID) bool
-	DraggedImageBeganAt(image unsafe.Pointer, screenPoint Point)
-	DraggedImageEndedAtDeposited(image unsafe.Pointer, screenPoint Point, flag bool)
-	DraggedImageEndedAtOperation(image unsafe.Pointer, screenPoint Point, operation unsafe.Pointer)
-	DraggedImageMovedTo(image unsafe.Pointer, screenPoint Point)
-	DraggingSourceOperationMaskForLocal(flag bool) unsafe.Pointer
-	EndPreviewPanelControl(panel unsafe.Pointer)
-	EraseProgressPanelEraseDidFinish(theErasePanel unsafe.Pointer, erase unsafe.Pointer) bool
-	EraseProgressPanelDidFinish(aNotification unsafe.Pointer)
-	EraseProgressPanelWillBegin(aNotification unsafe.Pointer)
-	ExceptionHandlerShouldHandleExceptionMask(sender unsafe.Pointer, exception unsafe.Pointer, aMask uint) bool
-	ExceptionHandlerShouldLogExceptionMask(sender unsafe.Pointer, exception unsafe.Pointer, aMask uint) bool
-	FileManagerShouldProceedAfterError(fm unsafe.Pointer, errorInfo objc.ID) bool
-	FileManagerWillProcessPath(fm unsafe.Pointer, path string)
-	FileTransferServicesAbortCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
-	FileTransferServicesConnectionCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
-	FileTransferServicesCopyRemoteFileCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
-	FileTransferServicesCopyRemoteFileProgressTransferProgress(inServices unsafe.Pointer, inProgressDescription objc.ID)
-	FileTransferServicesCreateFolderCompleteErrorFolder(inServices unsafe.Pointer, inError unsafe.Pointer, inFolderName string)
-	FileTransferServicesDisconnectionCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
-	FileTransferServicesFilePreparationCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
-	FileTransferServicesPathChangeCompleteErrorFinalPath(inServices unsafe.Pointer, inError unsafe.Pointer, inPath string)
-	FileTransferServicesRemoveItemCompleteErrorRemovedItem(inServices unsafe.Pointer, inError unsafe.Pointer, inItemName string)
-	FileTransferServicesRetrieveFolderListingCompleteErrorListing(inServices unsafe.Pointer, inError unsafe.Pointer, inListing objc.ID)
-	FileTransferServicesSendFileCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
-	FileTransferServicesSendFileProgressTransferProgress(inServices unsafe.Pointer, inProgressDescription objc.ID)
-	GetL2CAPChannelRef() unsafe.Pointer
-	GetOpenGLBufferContextPixelFormat(contextOut unsafe.Pointer, pixelFormatOut unsafe.Pointer)
-	GetPixelBufferPixelFormat(pixelFormatOut unsafe.Pointer)
-	HandleEventClient(event unsafe.Pointer, sender objc.ID) bool
-	IgnoreModifierKeysWhileDragging() bool
-	ImageBrowserBackgroundWasRightClickedWithEvent(aBrowser unsafe.Pointer, event unsafe.Pointer)
-	ImageBrowserCellWasDoubleClickedAtIndex(aBrowser unsafe.Pointer, index uint)
-	ImageBrowserCellWasRightClickedAtIndexWithEvent(aBrowser unsafe.Pointer, index uint, event unsafe.Pointer)
-	ImageBrowserGroupAtIndex(aBrowser unsafe.Pointer, index uint) unsafe.Pointer
-	ImageBrowserItemAtIndex(aBrowser unsafe.Pointer, index uint) objc.ID
-	ImageBrowserMoveItemsAtIndexesToIndex(aBrowser unsafe.Pointer, indexes unsafe.Pointer, destinationIndex uint) bool
-	ImageBrowserRemoveItemsAtIndexes(aBrowser unsafe.Pointer, indexes unsafe.Pointer)
-	ImageBrowserWriteItemsAtIndexesToPasteboard(aBrowser unsafe.Pointer, itemIndexes unsafe.Pointer, pasteboard unsafe.Pointer) uint
-	ImageBrowserSelectionDidChange(aBrowser unsafe.Pointer)
+	AccessibilityIndexOfChild(child objectivec.IObject) uint /* primitive/slice/pointer. */
+	AccessibilityLineEndPositionFromCurrentSelection() int /* primitive/slice/pointer. */
+	AccessibilityLineStartPositionFromCurrentSelection() int /* primitive/slice/pointer. */
+	AccessibilityPerformEscape() bool /* primitive/slice/pointer. */
+	AccessibilityPerformMagicTap() bool /* primitive/slice/pointer. */
+	AccessibilityScroll(direction objectivec.IObject) bool /* primitive/slice/pointer. */
+	AccessibilityZoomInAtPoint(point objectivec.IObject) bool /* primitive/slice/pointer. */
+	AccessibilityZoomOutAtPoint(point objectivec.IObject) bool /* primitive/slice/pointer. */
+	AttemptRecoveryFromErrorOptionIndex(error_ objectivec.IObject, recoveryOptionIndex uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	AttemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorContextInfo(error_ objectivec.IObject, recoveryOptionIndex uint /* primitive/slice/pointer. */, delegate objectivec.IObject, didRecoverSelector objc.SEL, contextInfo unsafe.Pointer)
+	AuthorizationViewCreatedAuthorization(view objc.IObject /* cross-framework: SFAuthorizationView */)
+	AuthorizationViewDidAuthorize(view objc.IObject /* cross-framework: SFAuthorizationView */)
+	AuthorizationViewDidDeauthorize(view objc.IObject /* cross-framework: SFAuthorizationView */)
+	AuthorizationViewDidHide(view objc.IObject /* cross-framework: SFAuthorizationView */)
+	AuthorizationViewReleasedAuthorization(view objc.IObject /* cross-framework: SFAuthorizationView */)
+	AuthorizationViewShouldDeauthorize(view objc.IObject /* cross-framework: SFAuthorizationView */) bool /* primitive/slice/pointer. */
+	BeginPreviewPanelControl(panel objc.IObject /* cross-framework: PreviewPanel */)
+	BindToObjectWithKeyPathOptions(binding BindingName /* not a class type */, observable objectivec.IObject, keyPath objectivec.IObject, options objectivec.IObject)
+	BrowserAccessibilityDeleteTextAtCursor(numberOfCharacters int /* primitive/slice/pointer. */)
+	BrowserAccessibilityInsertTextAtCursor(text objectivec.IObject)
+	BrowserAccessibilitySetSelectedTextRange(range_ objectivec.IObject)
+	BurnProgressPanelBurnDidFinish(theBurnPanel unsafe.Pointer, burn unsafe.Pointer) bool /* primitive/slice/pointer. */
+	BurnProgressPanelDidFinish(aNotification objectivec.IObject)
+	BurnProgressPanelWillBegin(aNotification objectivec.IObject)
+	CertificatePanelShowHelp(sender objc.IObject /* cross-framework: SFCertificatePanel */) bool /* primitive/slice/pointer. */
+	ChooseIdentityPanelShowHelp(sender objc.IObject /* cross-framework: SFChooseIdentityPanel */) bool /* primitive/slice/pointer. */
+	CoerceValueForKey(value objectivec.IObject, key objectivec.IObject) objc.ID
+	CommitComposition(sender objectivec.IObject)
+	ComposedString(sender objectivec.IObject) objc.ID
+	CopyScriptingValueForKeyWithProperties(value objectivec.IObject, key objectivec.IObject, properties objectivec.IObject) objc.ID
+	DidChangeValueForKeyWithSetMutationUsingObjects(key objectivec.IObject, mutationKind KeyValueSetMutationKind /* not a class type */, objects objectivec.IObject)
+	DidCommandBySelectorClient(aSelector objc.SEL, sender objectivec.IObject) bool /* primitive/slice/pointer. */
+	DoesContain(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	DoesNotRecognizeSelector(aSelector objc.SEL)
+	EndPreviewPanelControl(panel objc.IObject /* cross-framework: PreviewPanel */)
+	EraseProgressPanelEraseDidFinish(theErasePanel unsafe.Pointer, erase unsafe.Pointer) bool /* primitive/slice/pointer. */
+	EraseProgressPanelDidFinish(aNotification objectivec.IObject)
+	EraseProgressPanelWillBegin(aNotification objectivec.IObject)
+	ExceptionHandlerShouldHandleExceptionMask(sender objc.IObject /* cross-framework: ExceptionHandler */, exception objectivec.IObject, aMask uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	ExceptionHandlerShouldLogExceptionMask(sender objc.IObject /* cross-framework: ExceptionHandler */, exception objectivec.IObject, aMask uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	FileTransferServicesAbortCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer)
+	FileTransferServicesConnectionCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer)
+	FileTransferServicesCopyRemoteFileCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer)
+	FileTransferServicesCopyRemoteFileProgressTransferProgress(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inProgressDescription objectivec.IObject)
+	FileTransferServicesCreateFolderCompleteErrorFolder(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer, inFolderName objectivec.IObject)
+	FileTransferServicesDisconnectionCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer)
+	FileTransferServicesFilePreparationCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer)
+	FileTransferServicesPathChangeCompleteErrorFinalPath(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer, inPath objectivec.IObject)
+	FileTransferServicesRemoveItemCompleteErrorRemovedItem(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer, inItemName objectivec.IObject)
+	FileTransferServicesRetrieveFolderListingCompleteErrorListing(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer, inListing objectivec.IObject)
+	FileTransferServicesSendFileCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer)
+	FileTransferServicesSendFileProgressTransferProgress(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inProgressDescription objectivec.IObject)
+	Finalize()
+	FinalizeForWebScript()
+	ForwardingTargetForSelector(aSelector objc.SEL) objc.ID
+	HandleEventClient(event objectivec.IObject, sender objectivec.IObject) bool /* primitive/slice/pointer. */
+	ImageBrowserBackgroundWasRightClickedWithEvent(aBrowser quartz.IKImageBrowserView /* already interface */, event objectivec.IObject)
+	ImageBrowserCellWasDoubleClickedAtIndex(aBrowser quartz.IKImageBrowserView /* already interface */, index uint /* primitive/slice/pointer. */)
+	ImageBrowserCellWasRightClickedAtIndexWithEvent(aBrowser quartz.IKImageBrowserView /* already interface */, index uint /* primitive/slice/pointer. */, event objectivec.IObject)
+	ImageBrowserItemAtIndex(aBrowser quartz.IKImageBrowserView /* already interface */, index uint /* primitive/slice/pointer. */) objc.ID
+	ImageBrowserMoveItemsAtIndexesToIndex(aBrowser quartz.IKImageBrowserView /* already interface */, indexes objectivec.IObject, destinationIndex uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	ImageBrowserRemoveItemsAtIndexes(aBrowser quartz.IKImageBrowserView /* already interface */, indexes objectivec.IObject)
+	ImageBrowserWriteItemsAtIndexesToPasteboard(aBrowser quartz.IKImageBrowserView /* already interface */, itemIndexes objectivec.IObject, pasteboard objectivec.IObject) uint /* primitive/slice/pointer. */
+	ImageBrowserSelectionDidChange(aBrowser quartz.IKImageBrowserView /* already interface */)
 	ImageRepresentation() objc.ID
-	ImageRepresentationType() unsafe.Pointer
-	ImageSubtitle() unsafe.Pointer
-	ImageTitle() unsafe.Pointer
-	ImageUID() unsafe.Pointer
-	ImageVersion() uint
-	IndexOfAccessibilityElement(element objc.ID) int
-	IndicesOfObjectsByEvaluatingObjectSpecifier(specifier unsafe.Pointer) []unsafe.Pointer
-	InputTextClient(string string, sender objc.ID) bool
-	InputTextKeyModifiersClient(string string, keyCode int, flags uint, sender objc.ID) bool
-	InsertValueAtIndexInPropertyWithKey(value objc.ID, index uint, key string)
-	InverseForRelationshipKey(relationshipKey string) unsafe.Pointer
-	IsCaseInsensitiveLike(object string) bool
-	IsEqualTo(object objc.ID) bool
-	IsGreaterThan(object objc.ID) bool
-	IsGreaterThanOrEqualTo(object objc.ID) bool
-	IsLessThan(object objc.ID) bool
-	IsLessThanOrEqualTo(object objc.ID) bool
-	IsLike(object string) bool
-	IsNotEqualTo(object objc.ID) bool
-	LayerShouldInheritContentsScaleFromWindow(layer unsafe.Pointer, newScale float64, window unsafe.Pointer) bool
+	ImageVersion() uint /* primitive/slice/pointer. */
+	IndexOfAccessibilityElement(element objectivec.IObject) int /* primitive/slice/pointer. */
+	IndicesOfObjectsByEvaluatingObjectSpecifier(specifier objectivec.IObject) objc.IObject /* cross-framework: Number */
+	InputTextClient(string_ objectivec.IObject, sender objectivec.IObject) bool /* primitive/slice/pointer. */
+	InputTextKeyModifiersClient(string_ objectivec.IObject, keyCode int /* primitive/slice/pointer. */, flags uint /* primitive/slice/pointer. */, sender objectivec.IObject) bool /* primitive/slice/pointer. */
+	InsertValueAtIndexInPropertyWithKey(value objectivec.IObject, index uint /* primitive/slice/pointer. */, key objectivec.IObject)
+	InsertValueInPropertyWithKey(value objectivec.IObject, key objectivec.IObject)
+	InvokeDefaultMethodWithArguments(arguments objectivec.IObject) objc.ID
+	InvokeUndefinedMethodFromWebScriptWithArguments(name objectivec.IObject, arguments objectivec.IObject) objc.ID
+	IsCaseInsensitiveLike(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	IsGreaterThan(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	IsGreaterThanOrEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	IsLessThan(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	IsLessThanOrEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	IsLike(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	IsNotEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */
 	MethodForSelector(aSelector objc.SEL) unsafe.Pointer
-	MutableArrayValueForKey(key string) unsafe.Pointer
-	MutableArrayValueForKeyPath(keyPath string) unsafe.Pointer
-	MutableOrderedSetValueForKey(key string) unsafe.Pointer
-	MutableOrderedSetValueForKeyPath(keyPath string) unsafe.Pointer
-	MutableSetValueForKey(key string) unsafe.Pointer
-	MutableSetValueForKeyPath(keyPath string) unsafe.Pointer
-	NamesOfPromisedFilesDroppedAtDestination(dropDestination unsafe.Pointer) []string
-	NewScriptingObjectOfClassForValueForKeyWithContentsValueProperties(objectClass objc.Class, key string, contentsValue objc.ID, properties unsafe.Pointer) objc.ID
-	NumberOfGroupsInImageBrowser(aBrowser unsafe.Pointer) uint
-	NumberOfItemsInImageBrowser(aBrowser unsafe.Pointer) uint
-	ObjectDidBeginEditing(editor objc.ID)
-	ObjectDidEndEditing(editor objc.ID)
-	OriginalString(sender objc.ID) unsafe.Pointer
-	PanelCompareFilenameWithCaseSensitive(sender objc.ID, name1 string, name2 string, caseSensitive bool) unsafe.Pointer
-	PanelDirectoryDidChange(sender objc.ID, path string)
-	PanelIsValidFilename(sender objc.ID, filename string) bool
-	PanelShouldShowFilename(sender objc.ID, filename string) bool
-	PasteboardProvideDataForType(sender unsafe.Pointer, type_ unsafe.Pointer)
-	PasteboardChangedOwner(sender unsafe.Pointer)
-	PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, thr unsafe.Pointer, arg objc.ID, wait bool, array unsafe.Pointer)
-	PerformActionForPersonIdentifier(person unsafe.Pointer, identifier string)
-	PerformSelectorOnMainThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, arg objc.ID, wait bool, array unsafe.Pointer)
-	PrepareForInterfaceBuilder()
-	ProvideImageToMTLTextureCommandBufferOriginxOriginyWidthHeightUserInfo(texture objc.ID, commandBuffer objc.ID, originx unsafe.Pointer, originy unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, info objc.ID)
-	ProvideImageDataBytesPerRowOriginSizeUserInfo(data unsafe.Pointer, rowbytes unsafe.Pointer, originx unsafe.Pointer, originy unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, info objc.ID)
-	QuartzFilterManagerDidAddFilter(sender unsafe.Pointer, filter unsafe.Pointer)
-	QuartzFilterManagerDidModifyFilter(sender unsafe.Pointer, filter unsafe.Pointer)
-	QuartzFilterManagerDidRemoveFilter(sender unsafe.Pointer, filter unsafe.Pointer)
-	QuartzFilterManagerDidSelectFilter(sender unsafe.Pointer, filter unsafe.Pointer)
-	ReadLinkQualityForDeviceCompleteDeviceInfoError(controller objc.ID, device unsafe.Pointer, info unsafe.Pointer, error unsafe.Pointer)
-	ReadRSSIForDeviceCompleteDeviceInfoError(controller objc.ID, device unsafe.Pointer, info unsafe.Pointer, error unsafe.Pointer)
-	RegisterIncomingDataListenerRefCon(listener unsafe.Pointer, refCon unsafe.Pointer) unsafe.Pointer
-	RemoveValueAtIndexFromPropertyWithKey(index uint, key string)
-	RenderIntoOpenGLBufferOnScreenForTime(buffer unsafe.Pointer, screenInOut unsafe.Pointer, timeStamp unsafe.Pointer) bool
-	RenderIntoPixelBufferForTime(buffer unsafe.Pointer, timeStamp unsafe.Pointer) bool
-	ReplaceValueAtIndexInPropertyWithKeyWithValue(index uint, key string, value objc.ID)
-	ReplacementObjectForKeyedArchiver(archiver unsafe.Pointer) objc.ID
-	ReplacementObjectForArchiver(archiver unsafe.Pointer) objc.ID
-	SaveOptionsShouldShowUTType(saveOptions unsafe.Pointer, utType string) bool
-	ScriptingValueForSpecifier(objectSpecifier unsafe.Pointer) objc.ID
-	SessionDriverDidNegotiateAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
-	SessionDriverDidPullAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
-	SessionDriverDidPushAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
-	SessionDriverDidReceiveSyncAlertAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
-	SessionDriverDidRegisterClientAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
-	SessionDriverWillFinishSessionAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
-	SessionDriverWillNegotiateAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
-	SessionDriverWillPullAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
-	SessionDriverWillPushAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
-	SessionDriverDidCancelSession(sender unsafe.Pointer)
-	SessionDriverDidFinishSession(sender unsafe.Pointer)
-	SessionDriverWillCancelSession(sender unsafe.Pointer)
-	SetSharedObservers(sharedObservers unsafe.Pointer)
+	NewScriptingObjectOfClassForValueForKeyWithContentsValueProperties(objectClass objc.Class, key objectivec.IObject, contentsValue objectivec.IObject, properties objectivec.IObject) objc.ID
+	NumberOfGroupsInImageBrowser(aBrowser quartz.IKImageBrowserView /* already interface */) uint /* primitive/slice/pointer. */
+	NumberOfItemsInImageBrowser(aBrowser quartz.IKImageBrowserView /* already interface */) uint /* primitive/slice/pointer. */
+	OptionDescriptionsForBinding(binding BindingName /* not a class type */) objc.IObject /* cross-framework: AttributeDescription */
+	PerformSelectorOnThreadWithObjectWaitUntilDone(aSelector objc.SEL, thr objectivec.IObject, arg objectivec.IObject, wait bool /* primitive/slice/pointer. */)
+	PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, thr objectivec.IObject, arg objectivec.IObject, wait bool /* primitive/slice/pointer. */, array []string /* primitive/slice/pointer. */)
+	PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgument objectivec.IObject, delay TimeInterval /* not a class type */)
+	PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, anArgument objectivec.IObject, delay TimeInterval /* not a class type */, modes []string /* primitive/slice/pointer. */)
+	PerformActionForPersonIdentifier(person objc.IObject /* cross-framework: ABPerson */, identifier objectivec.IObject)
+	PerformSelectorOnMainThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, arg objectivec.IObject, wait bool /* primitive/slice/pointer. */, array []string /* primitive/slice/pointer. */)
+	ProvideImageToMTLTextureCommandBufferOriginxOriginyWidthHeightUserInfo(texture objectivec.IObject, commandBuffer objectivec.IObject, originx uintptr /* not a class type */, originy uintptr /* not a class type */, width uintptr /* not a class type */, height uintptr /* not a class type */, info objectivec.IObject)
+	ProvideImageDataBytesPerRowOriginSizeUserInfo(data unsafe.Pointer, rowbytes uintptr /* not a class type */, originx uintptr /* not a class type */, originy uintptr /* not a class type */, width uintptr /* not a class type */, height uintptr /* not a class type */, info objectivec.IObject)
+	QuartzFilterManagerDidAddFilter(sender objc.IObject /* cross-framework: QuartzFilterManager */, filter objc.IObject /* cross-framework: QuartzFilter */)
+	QuartzFilterManagerDidModifyFilter(sender objc.IObject /* cross-framework: QuartzFilterManager */, filter objc.IObject /* cross-framework: QuartzFilter */)
+	QuartzFilterManagerDidRemoveFilter(sender objc.IObject /* cross-framework: QuartzFilterManager */, filter objc.IObject /* cross-framework: QuartzFilter */)
+	QuartzFilterManagerDidSelectFilter(sender objc.IObject /* cross-framework: QuartzFilterManager */, filter objc.IObject /* cross-framework: QuartzFilter */)
+	ReadLinkQualityForDeviceCompleteDeviceInfoError(controller objectivec.IObject, device objc.IObject /* cross-framework: BluetoothDevice */, info unsafe.Pointer, error_ Return /* not a class type */)
+	ReadRSSIForDeviceCompleteDeviceInfoError(controller objectivec.IObject, device objc.IObject /* cross-framework: BluetoothDevice */, info unsafe.Pointer, error_ Return /* not a class type */)
+	RemoveValueAtIndexFromPropertyWithKey(index uint /* primitive/slice/pointer. */, key objectivec.IObject)
+	ReplaceValueAtIndexInPropertyWithKeyWithValue(index uint /* primitive/slice/pointer. */, key objectivec.IObject, value objectivec.IObject)
+	ReplacementObjectForCoder(coder objectivec.IObject) objc.ID
+	ReplacementObjectForKeyedArchiver(archiver objectivec.IObject) objc.ID
+	SaveOptionsShouldShowUTType(saveOptions quartz.IKSaveOptions /* already interface */, utType objectivec.IObject) bool /* primitive/slice/pointer. */
+	ScriptingBeginsWith(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	ScriptingContains(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	ScriptingEndsWith(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	ScriptingIsEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	ScriptingIsGreaterThan(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	ScriptingIsGreaterThanOrEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	ScriptingIsLessThan(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	ScriptingIsLessThanOrEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */
+	ScriptingValueForSpecifier(objectSpecifier objectivec.IObject) objc.ID
+	SetSharedObservers(sharedObservers objectivec.IObject)
 	SetupPanelDetermineBestDeviceOfAOrB(aPanel unsafe.Pointer, deviceA unsafe.Pointer, device unsafe.Pointer) unsafe.Pointer
-	SetupPanelDeviceContainsSuitableMediaPromptString(aPanel unsafe.Pointer, device unsafe.Pointer, prompt string) bool
-	SetupPanelDeviceCouldBeTarget(aPanel unsafe.Pointer, device unsafe.Pointer) bool
-	SetupPanelDeviceSelectionChanged(aNotification unsafe.Pointer)
-	SetupPanelShouldHandleMediaReservations(aPanel unsafe.Pointer) bool
-	ShouldEnableActionForPersonIdentifier(person unsafe.Pointer, identifier string) bool
-	TableViewWriteRowsToPasteboard(tableView unsafe.Pointer, rows objc.ID, pboard unsafe.Pointer) bool
-	TitleForPersonIdentifier(person unsafe.Pointer, identifier string) unsafe.Pointer
-	Unbind(binding unsafe.Pointer)
-	ValidModesForFontPanel(fontPanel unsafe.Pointer) unsafe.Pointer
-	ValidateMenuItem(menuItem unsafe.Pointer) bool
-	ValidateToolbarItem(item unsafe.Pointer) bool
-	ValueAtIndexInPropertyWithKey(index uint, key string) objc.ID
-	ViewStringForToolTipPointUserData(view unsafe.Pointer, tag unsafe.Pointer, point Point, data unsafe.Pointer) unsafe.Pointer
-	WorkflowControllerDidError(controller unsafe.Pointer, error unsafe.Pointer)
-	WorkflowControllerDidRunAction(controller unsafe.Pointer, action unsafe.Pointer)
-	WorkflowControllerWillRunAction(controller unsafe.Pointer, action unsafe.Pointer)
-	WorkflowControllerDidRun(controller unsafe.Pointer)
-	WorkflowControllerDidStop(controller unsafe.Pointer)
-	WorkflowControllerWillRun(controller unsafe.Pointer)
-	WorkflowControllerWillStop(controller unsafe.Pointer)
-	WriteLength(data unsafe.Pointer, length unsafe.Pointer) unsafe.Pointer
+	SetupPanelDeviceContainsSuitableMediaPromptString(aPanel unsafe.Pointer, device unsafe.Pointer, prompt objectivec.IObject) bool /* primitive/slice/pointer. */
+	SetupPanelDeviceCouldBeTarget(aPanel unsafe.Pointer, device unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetupPanelDeviceSelectionChanged(aNotification objectivec.IObject)
+	SetupPanelShouldHandleMediaReservations(aPanel unsafe.Pointer) bool /* primitive/slice/pointer. */
+	ShouldEnableActionForPersonIdentifier(person objc.IObject /* cross-framework: ABPerson */, identifier objectivec.IObject) bool /* primitive/slice/pointer. */
+	Unbind(binding BindingName /* not a class type */)
+	ValidateValueForKeyError(ioValue unsafe.Pointer, inKey objectivec.IObject, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	ValidateValueForKeyPathError(ioValue unsafe.Pointer, inKeyPath objectivec.IObject, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	ValueAtIndexInPropertyWithKey(index uint /* primitive/slice/pointer. */, key objectivec.IObject) objc.ID
+	ValueWithNameInPropertyWithKey(name objectivec.IObject, key objectivec.IObject) objc.ID
+	ValueWithUniqueIDInPropertyWithKey(uniqueID objectivec.IObject, key objectivec.IObject) objc.ID
+	ValueClassForBinding(binding BindingName /* not a class type */) objc.Class
+	WebPlugInContainerLoadRequestInFrame(request objectivec.IObject, target objectivec.IObject)
+	WebPlugInContainerShowStatus(message objectivec.IObject)
+	WebPlugInDestroy()
+	WebPlugInInitialize()
+	WebPlugInMainResourceDidFailWithError(error_ objectivec.IObject)
+	WebPlugInMainResourceDidFinishLoading()
+	WebPlugInMainResourceDidReceiveData(data objectivec.IObject)
+	WebPlugInMainResourceDidReceiveResponse(response objectivec.IObject)
+	WebPlugInSetIsSelected(isSelected bool /* primitive/slice/pointer. */)
+	WebPlugInStart()
+	WebPlugInStop()
+	WillChangeValueForKeyWithSetMutationUsingObjects(key objectivec.IObject, mutationKind KeyValueSetMutationKind /* not a class type */, objects objectivec.IObject)
 }
 
 // The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.
+
+
+// The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class
 type Object struct {
 	objc.ID
@@ -287,3115 +378,2847 @@ func NewObject() Object {
 
 
 
+
 // Returns a Boolean value that indicates whether the observed object supports automatic key-value observation for the given key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/automaticallyNotifiesObservers(forKey:)
-func (oc _ObjectClass) AutomaticallyNotifiesObserversForKey(key string) bool {
-	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("automaticallyNotifiesObserversForKey:"), objc.String(key))
+func (oc _ObjectClass) AutomaticallyNotifiesObserversForKey(key objectivec.IObject) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("automaticallyNotifiesObserversForKey:"), key)
 	return rv
 }
+
 
 // Cancels perform requests previously registered with the instance method.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/cancelPreviousPerformRequests(withTarget:)
-func (oc _ObjectClass) CancelPreviousPerformRequestsWithTarget(aTarget objc.ID) {
+func (oc _ObjectClass) CancelPreviousPerformRequestsWithTarget(aTarget objectivec.IObject) {
 	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("cancelPreviousPerformRequestsWithTarget:"), aTarget)
 }
 
+
 // Cancels perform requests previously registered with .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/cancelPreviousPerformRequests(withTarget:selector:object:)
-func (oc _ObjectClass) CancelPreviousPerformRequestsWithTargetSelectorObject(aTarget objc.ID, aSelector objc.SEL, anArgument objc.ID) {
+func (oc _ObjectClass) CancelPreviousPerformRequestsWithTargetSelectorObject(aTarget objectivec.IObject, aSelector objc.SEL, anArgument objectivec.IObject) {
 	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("cancelPreviousPerformRequestsWithTarget:selector:object:"), aTarget, aSelector, anArgument)
 }
 
-// Returns the class object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/class
-func (oc _ObjectClass) Class() objc.Class {
-	rv := objc.Send[objc.Class](objc.ID(oc.class), objc.Sel("class"))
-	return rv
-}
 
 // Overridden to return the names of classes that can be used to decode objects if their class is unavailable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/classFallbacksForKeyedArchiver()
-func (oc _ObjectClass) ClassFallbacksForKeyedArchiver() []string {
+func (oc _ObjectClass) ClassFallbacksForKeyedArchiver() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](objc.ID(oc.class), objc.Sel("classFallbacksForKeyedArchiver"))
 	return rv
 }
 
+
 // Overridden by subclasses to substitute a new class during keyed unarchiving.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/classForKeyedUnarchiver()
 func (oc _ObjectClass) ClassForKeyedUnarchiver() objc.Class {
 	rv := objc.Send[objc.Class](objc.ID(oc.class), objc.Sel("classForKeyedUnarchiver"))
 	return rv
 }
 
+
 // Returns a Boolean value that indicates whether the target conforms to a given protocol.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/conforms(to:)
-func (oc _ObjectClass) ConformsToProtocol(protocol unsafe.Pointer) bool {
-	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("conformsToProtocol:"), protocol)
+func (oc _ObjectClass) ConformsToProtocol(protocol_ objc.IObject /* cross-framework: Protocol */) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("conformsToProtocol:"), protocol_)
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/debugDescription()
-func (oc _ObjectClass) DebugDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("debugDescription"))
-	return rv
-}
 
 // Returns an object that will be used as the placeholder for the , when a key value coding compliant property of an instance of the receiving class returns the value specified by , and no other placeholder has been specified.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/defaultPlaceholder(for:with:)
-func (oc _ObjectClass) DefaultPlaceholderForMarkerWithBinding(marker objc.ID, binding unsafe.Pointer) objc.ID {
+func (oc _ObjectClass) DefaultPlaceholderForMarkerWithBinding(marker objectivec.IObject, binding BindingName /* not a class type */) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("defaultPlaceholderForMarker:withBinding:"), marker, binding)
 	return rv
 }
 
-// Returns a string that represents the contents of the receiving class.
+
+// Exposes the specified , advertising its availability.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/description()
-func (oc _ObjectClass) Description() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("description"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/exposeBinding(_:)
+func (oc _ObjectClass) ExposeBinding(binding BindingName /* not a class type */) {
+	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("exposeBinding:"), binding)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/hash()
-func (oc _ObjectClass) Hash() uint {
+func (oc _ObjectClass) Hash() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](objc.ID(oc.class), objc.Sel("hash"))
 	return rv
 }
 
+
 // Initializes the class before it receives its first message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/initialize()
 func (oc _ObjectClass) Initialize() {
 	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("initialize"))
 }
 
+
 // Locates and returns the address of the implementation of the instance method identified by a given selector.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/instanceMethod(for:)
 func (oc _ObjectClass) InstanceMethodForSelector(aSelector objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("instanceMethodForSelector:"), aSelector)
 	return rv
 }
 
-// Returns an object that contains a description of the instance method identified by a given selector.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/instanceMethodSignatureForSelector:
-func (oc _ObjectClass) InstanceMethodSignatureForSelector(aSelector objc.SEL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("instanceMethodSignatureForSelector:"), aSelector)
-	return rv
-}
 
 // Returns a Boolean value that indicates whether instances of the receiver are capable of responding to a given selector.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/instancesRespond(to:)
-func (oc _ObjectClass) InstancesRespondToSelector(aSelector objc.SEL) bool {
+func (oc _ObjectClass) InstancesRespondToSelector(aSelector objc.SEL) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("instancesRespondToSelector:"), aSelector)
 	return rv
 }
 
+
+// Returns whether a key should be hidden from the scripting environment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isKeyExcluded(fromWebScript:)
+func (oc _ObjectClass) IsKeyExcludedFromWebScript(name unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("isKeyExcludedFromWebScript:"), name)
+	return rv
+}
+
+
+// Returns whether a selector should be hidden from the scripting environment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isSelectorExcluded(fromWebScript:)
+func (oc _ObjectClass) IsSelectorExcludedFromWebScript(selector objc.SEL) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("isSelectorExcludedFromWebScript:"), selector)
+	return rv
+}
+
+
 // Returns a Boolean value that indicates whether the receiving class is a subclass of, or identical to, a given class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isSubclass(of:)
-func (oc _ObjectClass) IsSubclassOfClass(aClass objc.Class) bool {
+func (oc _ObjectClass) IsSubclassOfClass(aClass objc.Class) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("isSubclassOfClass:"), aClass)
 	return rv
 }
 
+
 // Returns a set of key paths for properties whose values affect the value of the specified key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/keyPathsForValuesAffectingValue(forKey:)
-func (oc _ObjectClass) KeyPathsForValuesAffectingValueForKey(key string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("keyPathsForValuesAffectingValueForKey:"), objc.String(key))
+func (oc _ObjectClass) KeyPathsForValuesAffectingValueForKey(key objectivec.IObject) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("keyPathsForValuesAffectingValueForKey:"), key)
 	return rv
 }
 
+
 // Invoked whenever a class or category is added to the Objective-C runtime; implement this method to perform class-specific behavior upon loading.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/load()
 func (oc _ObjectClass) Load() {
 	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("load"))
 }
 
+
 // Dynamically provides an implementation for a given selector for a class method.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/resolveClassMethod(_:)
-func (oc _ObjectClass) ResolveClassMethod(sel objc.SEL) bool {
+func (oc _ObjectClass) ResolveClassMethod(sel objc.SEL) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("resolveClassMethod:"), sel)
 	return rv
 }
 
+
 // Dynamically provides an implementation for a given selector for an instance method.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/resolveInstanceMethod(_:)
-func (oc _ObjectClass) ResolveInstanceMethod(sel objc.SEL) bool {
+func (oc _ObjectClass) ResolveInstanceMethod(sel objc.SEL) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("resolveInstanceMethod:"), sel)
 	return rv
 }
 
-// Configures the observed object to post change notifications for a given property if any of the properties specified in a given array changes.
+
+// Sets as the default placeholder for the , when a key value coding compliant property of an instance of the receiving class returns the value specified by , and no other placeholder has been specified.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setKeys:triggerChangeNotificationsForDependentKey:
-func (oc _ObjectClass) SetKeysTriggerChangeNotificationsForDependentKey(keys objc.ID, dependentKey string) {
-	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("setKeys:triggerChangeNotificationsForDependentKey:"), keys, objc.String(dependentKey))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setDefaultPlaceholder(_:for:with:)
+func (oc _ObjectClass) SetDefaultPlaceholderForMarkerWithBinding(placeholder objectivec.IObject, marker objectivec.IObject, binding BindingName /* not a class type */) {
+	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("setDefaultPlaceholder:forMarker:withBinding:"), placeholder, marker, binding)
 }
+
 
 // Sets the receiver’s version number.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setVersion(_:)
-func (oc _ObjectClass) SetVersion(aVersion int) {
+func (oc _ObjectClass) SetVersion(aVersion int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("setVersion:"), aVersion)
 }
 
+
 // Returns the class object for the receiver’s superclass.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/superclass()
 func (oc _ObjectClass) Superclass() objc.Class {
 	rv := objc.Send[objc.Class](objc.ID(oc.class), objc.Sel("superclass"))
 	return rv
 }
 
+
+// Returns if the stored value methods and should use private accessor methods in preference to public accessors.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/useStoredAccessor()
+func (oc _ObjectClass) UseStoredAccessor() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](objc.ID(oc.class), objc.Sel("useStoredAccessor"))
+	return rv
+}
+
+
 // Returns the version number assigned to the class.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/version()
-func (oc _ObjectClass) Version() int {
+func (oc _ObjectClass) Version() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](objc.ID(oc.class), objc.Sel("version"))
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/withL2CAPChannelRef:
-func (oc _ObjectClass) WithL2CAPChannelRef(l2capChannelRef unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("withL2CAPChannelRef:"), l2capChannelRef)
-	return rv
-}
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/URL:resourceDataDidBecomeAvailable:
-func (o_ Object) URLResourceDataDidBecomeAvailable(sender unsafe.Pointer, newBytes unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("URL:resourceDataDidBecomeAvailable:"), sender, newBytes)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/URL:resourceDidFailLoadingWithReason:
-func (o_ Object) URLResourceDidFailLoadingWithReason(sender unsafe.Pointer, reason string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("URL:resourceDidFailLoadingWithReason:"), sender, objc.String(reason))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/URLResourceDidCancelLoading:
-func (o_ Object) URLResourceDidCancelLoading(sender unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("URLResourceDidCancelLoading:"), sender)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/URLResourceDidFinishLoading:
-func (o_ Object) URLResourceDidFinishLoading(sender unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("URLResourceDidFinishLoading:"), sender)
-}
-
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/acceptsPreviewPanelControl(_:)
-func (o_ Object) AcceptsPreviewPanelControl(panel unsafe.Pointer) bool {
+func (o_ Object) AcceptsPreviewPanelControl(panel objc.IObject /* cross-framework: PreviewPanel */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("acceptsPreviewPanelControl:"), panel)
 	return rv
 }
 
-// Returns an array of action names supported by the accessibility element.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityActionNames()
-func (o_ Object) AccessibilityActionNames() []string {
-	rv := objc.Send[[]string](o_.ID, objc.Sel("accessibilityActionNames"))
-	return rv
-}
 
 // Tells the element to activate itself and report the success or failure of the operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityActivate()
-func (o_ Object) AccessibilityActivate() bool {
+func (o_ Object) AccessibilityActivate() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityActivate"))
 	return rv
 }
 
+
+// Returns the count of the specified accessibility array attribute.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityArrayAttributeCount(_:)
+func (o_ Object) AccessibilityArrayAttributeCount(attribute AccessibilityAttributeName /* not a class type */) uint /* primitive/slice/pointer. */ {
+	rv := objc.Send[uint](o_.ID, objc.Sel("accessibilityArrayAttributeCount:"), attribute)
+	return rv
+}
+
+
 // Returns a set of identifier keys indicating which assistive app has focus on the accessibility element.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAssistiveTechnologyFocusedIdentifiers()
 func (o_ Object) AccessibilityAssistiveTechnologyFocusedIdentifiers() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityAssistiveTechnologyFocusedIdentifiers"))
 	return rv
 }
 
+
 // Tells the accessibility element to decrement the value of its content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityDecrement()
 func (o_ Object) AccessibilityDecrement() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityDecrement"))
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElement(at:)
-func (o_ Object) AccessibilityElementAtIndex(index int) objc.ID {
+func (o_ Object) AccessibilityElementAtIndex(index int /* primitive/slice/pointer. */) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityElementAtIndex:"), index)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementCount()
-func (o_ Object) AccessibilityElementCount() int {
+func (o_ Object) AccessibilityElementCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](o_.ID, objc.Sel("accessibilityElementCount"))
 	return rv
 }
 
+
+// Sent after an assistive technology has set its virtual focus on the accessibility element.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementDidBecomeFocused()
+func (o_ Object) AccessibilityElementDidBecomeFocused() {
+	objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityElementDidBecomeFocused"))
+}
+
+
+// Sent after an assistive technology has removed its virtual focus from an accessibility element.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementDidLoseFocus()
+func (o_ Object) AccessibilityElementDidLoseFocus() {
+	objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityElementDidLoseFocus"))
+}
+
+
 // Returns a Boolean value indicating whether an assistive technology is focused on the accessibility element.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementIsFocused()
-func (o_ Object) AccessibilityElementIsFocused() bool {
+func (o_ Object) AccessibilityElementIsFocused() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityElementIsFocused"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHitTest(_:)
-func (o_ Object) AccessibilityHitTest(point Point) objc.ID {
+func (o_ Object) AccessibilityHitTest(point objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityHitTest:"), point)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHitTest(_:event:)
-func (o_ Object) AccessibilityHitTestWithEvent(point coregraphics.CGPoint, event unsafe.Pointer) objc.ID {
+func (o_ Object) AccessibilityHitTestWithEvent(point objectivec.IObject, event objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityHitTest:withEvent:"), point, event)
 	return rv
 }
 
+
 // Tells the accessibility element to increment the value of its content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityIncrement()
 func (o_ Object) AccessibilityIncrement() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityIncrement"))
 }
 
+
+// Returns the index of the specified accessibility child in the parent.
 //
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityIndex(ofChild:)
+func (o_ Object) AccessibilityIndexOfChild(child objectivec.IObject) uint /* primitive/slice/pointer. */ {
+	rv := objc.Send[uint](o_.ID, objc.Sel("accessibilityIndexOfChild:"), child)
+	return rv
+}
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLineEndPositionFromCurrentSelection()
-func (o_ Object) AccessibilityLineEndPositionFromCurrentSelection() int {
+func (o_ Object) AccessibilityLineEndPositionFromCurrentSelection() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](o_.ID, objc.Sel("accessibilityLineEndPositionFromCurrentSelection"))
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLineRange(forPosition:)
-func (o_ Object) AccessibilityLineRangeForPosition(position int) Range {
-	rv := objc.Send[Range](o_.ID, objc.Sel("accessibilityLineRangeForPosition:"), position)
-	return rv
-}
 
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLineStartPositionFromCurrentSelection()
-func (o_ Object) AccessibilityLineStartPositionFromCurrentSelection() int {
+func (o_ Object) AccessibilityLineStartPositionFromCurrentSelection() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](o_.ID, objc.Sel("accessibilityLineStartPositionFromCurrentSelection"))
 	return rv
 }
 
+
 // Dismisses a modal view and returns the success or failure of the action.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPerformEscape()
-func (o_ Object) AccessibilityPerformEscape() bool {
+func (o_ Object) AccessibilityPerformEscape() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityPerformEscape"))
 	return rv
 }
 
+
 // Performs a salient action.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPerformMagicTap()
-func (o_ Object) AccessibilityPerformMagicTap() bool {
+func (o_ Object) AccessibilityPerformMagicTap() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityPerformMagicTap"))
 	return rv
 }
 
+
 // Scrolls screen content in an application-specific way and returns the success or failure of the action.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityScroll(_:)
-func (o_ Object) AccessibilityScroll(direction unsafe.Pointer) bool {
+func (o_ Object) AccessibilityScroll(direction objectivec.IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityScroll:"), direction)
 	return rv
 }
 
-// Overrides the specified attribute in the receiver or adds it if it does not exist, and sets its value to the specified value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilitySetOverrideValue(_:forAttribute:)
-func (o_ Object) AccessibilitySetOverrideValueForAttribute(value objc.ID, attribute unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilitySetOverrideValue:forAttribute:"), value, attribute)
-	return rv
-}
 
 // Zooms in on the content at the specified point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityZoomIn(at:)
-func (o_ Object) AccessibilityZoomInAtPoint(point coregraphics.CGPoint) bool {
+func (o_ Object) AccessibilityZoomInAtPoint(point objectivec.IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityZoomInAtPoint:"), point)
 	return rv
 }
 
+
 // Zooms out from the content at the specified point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityZoomOut(at:)
-func (o_ Object) AccessibilityZoomOutAtPoint(point coregraphics.CGPoint) bool {
+func (o_ Object) AccessibilityZoomOutAtPoint(point objectivec.IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityZoomOutAtPoint:"), point)
 	return rv
 }
 
-// Sent to the delegate to request the property the action applies to.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/actionProperty()
-func (o_ Object) ActionProperty() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("actionProperty"))
-	return rv
-}
 
 // Registers the observer object to receive KVO notifications for the key path relative to the object receiving this message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/addObserver(_:forKeyPath:options:context:)
-func (o_ Object) AddObserverForKeyPathOptionsContext(observer unsafe.Pointer, keyPath string, options unsafe.Pointer, context unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, objc.String(keyPath), options, context)
+func (o_ Object) AddObserverForKeyPathOptionsContext(observer objectivec.IObject, keyPath objectivec.IObject, options KeyValueObservingOptions /* not a class type */, context unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, keyPath, options, context)
 }
 
-// Sent by Cocoa’s built-in scripting support during execution of or script commands to find out if the delegate can handle operations on the specified key-value key.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/application:delegateHandlesKey:
-func (o_ Object) ApplicationDelegateHandlesKey(sender unsafe.Pointer, key string) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("application:delegateHandlesKey:"), sender, objc.String(key))
-	return rv
-}
 
 // Implemented to attempt a recovery from an error noted in an application-modal dialog.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/attemptRecovery(fromError:optionIndex:)
-func (o_ Object) AttemptRecoveryFromErrorOptionIndex(error unsafe.Pointer, recoveryOptionIndex uint) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("attemptRecoveryFromError:optionIndex:"), error, recoveryOptionIndex)
+func (o_ Object) AttemptRecoveryFromErrorOptionIndex(error_ objectivec.IObject, recoveryOptionIndex uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("attemptRecoveryFromError:optionIndex:"), error_, recoveryOptionIndex)
 	return rv
 }
+
 
 // Implemented to attempt a recovery from an error noted in a document-modal sheet.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/attemptRecovery(fromError:optionIndex:delegate:didRecoverSelector:contextInfo:)
-func (o_ Object) AttemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorContextInfo(error unsafe.Pointer, recoveryOptionIndex uint, delegate objc.ID, didRecoverSelector objc.SEL, contextInfo unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:"), error, recoveryOptionIndex, delegate, didRecoverSelector, contextInfo)
+func (o_ Object) AttemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorContextInfo(error_ objectivec.IObject, recoveryOptionIndex uint /* primitive/slice/pointer. */, delegate objectivec.IObject, didRecoverSelector objc.SEL, contextInfo unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:"), error_, recoveryOptionIndex, delegate, didRecoverSelector, contextInfo)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/attributedStringForIdentityPropertiesWithNames:inRecord:comparisonRecords:firstLineAttributes:secondLineAttributes:
-func (o_ Object) AttributedStringForIdentityPropertiesWithNamesInRecordComparisonRecordsFirstLineAttributesSecondLineAttributes(propertyNames objc.ID, record objc.ID, comparisonRecords objc.ID, firstLineAttributes objc.ID, secondLineAttributes objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("attributedStringForIdentityPropertiesWithNames:inRecord:comparisonRecords:firstLineAttributes:secondLineAttributes:"), propertyNames, record, comparisonRecords, firstLineAttributes, secondLineAttributes)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/attributedStringForPropertiesWithNames:inRecord:comparisonRecords:defaultAttributes:
-func (o_ Object) AttributedStringForPropertiesWithNamesInRecordComparisonRecordsDefaultAttributes(propertyNames objc.ID, record objc.ID, comparisonRecords objc.ID, defaultAttributes objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("attributedStringForPropertiesWithNames:inRecord:comparisonRecords:defaultAttributes:"), propertyNames, record, comparisonRecords, defaultAttributes)
-	return rv
-}
 
 // Sent to the delegate to indicate the authorization object has been created or changed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewCreatedAuthorization(_:)
-func (o_ Object) AuthorizationViewCreatedAuthorization(view unsafe.Pointer) {
+func (o_ Object) AuthorizationViewCreatedAuthorization(view objc.IObject /* cross-framework: SFAuthorizationView */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("authorizationViewCreatedAuthorization:"), view)
 }
 
+
 // Sent to the delegate to indicate the user was authorized and the authorization view was changed to unlocked.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewDidAuthorize(_:)
-func (o_ Object) AuthorizationViewDidAuthorize(view unsafe.Pointer) {
+func (o_ Object) AuthorizationViewDidAuthorize(view objc.IObject /* cross-framework: SFAuthorizationView */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("authorizationViewDidAuthorize:"), view)
 }
 
+
 // Sent to the delegate to indicate the user was deauthorized and the authorization view was changed to locked.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewDidDeauthorize(_:)
-func (o_ Object) AuthorizationViewDidDeauthorize(view unsafe.Pointer) {
+func (o_ Object) AuthorizationViewDidDeauthorize(view objc.IObject /* cross-framework: SFAuthorizationView */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("authorizationViewDidDeauthorize:"), view)
 }
 
+
 // Sent to the delegate to indicate that the view’s visibility has changed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewDidHide(_:)
-func (o_ Object) AuthorizationViewDidHide(view unsafe.Pointer) {
+func (o_ Object) AuthorizationViewDidHide(view objc.IObject /* cross-framework: SFAuthorizationView */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("authorizationViewDidHide:"), view)
 }
 
+
 // Sent to the delegate to indicate that deauthorization is about to occur.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewReleasedAuthorization(_:)
-func (o_ Object) AuthorizationViewReleasedAuthorization(view unsafe.Pointer) {
+func (o_ Object) AuthorizationViewReleasedAuthorization(view objc.IObject /* cross-framework: SFAuthorizationView */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("authorizationViewReleasedAuthorization:"), view)
 }
 
+
 // Sent to the delegate when a user clicks the open lock icon.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/authorizationViewShouldDeauthorize(_:)
-func (o_ Object) AuthorizationViewShouldDeauthorize(view unsafe.Pointer) bool {
+func (o_ Object) AuthorizationViewShouldDeauthorize(view objc.IObject /* cross-framework: SFAuthorizationView */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("authorizationViewShouldDeauthorize:"), view)
 	return rv
 }
 
+
 // Overridden by subclasses to substitute another object in place of the object that was decoded and subsequently received this message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/awakeAfter(using:)
-func (o_ Object) AwakeAfterUsingCoder(coder unsafe.Pointer) objc.ID {
+func (o_ Object) AwakeAfterUsingCoder(coder objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("awakeAfterUsingCoder:"), coder)
 	return rv
 }
 
-// Prepares the receiver for service after it has been loaded from an Interface Builder archive, or nib file.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/awakeFromNib()
-func (o_ Object) AwakeFromNib() {
-	objc.Send[objc.ID](o_.ID, objc.Sel("awakeFromNib"))
-}
 
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/beginPreviewPanelControl(_:)
-func (o_ Object) BeginPreviewPanelControl(panel unsafe.Pointer) {
+func (o_ Object) BeginPreviewPanelControl(panel objc.IObject /* cross-framework: PreviewPanel */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("beginPreviewPanelControl:"), panel)
 }
 
+
 // Establishes a binding between a given property of the receiver and the property of a given object specified by a given key path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/bind(_:to:withKeyPath:options:)
-func (o_ Object) BindToObjectWithKeyPathOptions(binding unsafe.Pointer, observable objc.ID, keyPath string, options unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("bind:toObject:withKeyPath:options:"), binding, observable, objc.String(keyPath), options)
+func (o_ Object) BindToObjectWithKeyPathOptions(binding BindingName /* not a class type */, observable objectivec.IObject, keyPath objectivec.IObject, options objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("bind:toObject:withKeyPath:options:"), binding, observable, keyPath, options)
 }
 
-// Returns the value for this element within the given range, as an attributed string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityAttributedValue(in:)
-func (o_ Object) BrowserAccessibilityAttributedValueInRange(range_ Range) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("browserAccessibilityAttributedValueInRange:"), range_)
-	return rv
-}
 
 // Deletes text from the element at the current cursor position.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityDeleteTextAtCursor(numberOfCharacters:)
-func (o_ Object) BrowserAccessibilityDeleteTextAtCursor(numberOfCharacters int) {
+func (o_ Object) BrowserAccessibilityDeleteTextAtCursor(numberOfCharacters int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilityDeleteTextAtCursor:"), numberOfCharacters)
 }
 
+
 // Inserts text into the element at the current cursor position.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityInsertTextAtCursor(text:)
-func (o_ Object) BrowserAccessibilityInsertTextAtCursor(text string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilityInsertTextAtCursor:"), objc.String(text))
+func (o_ Object) BrowserAccessibilityInsertTextAtCursor(text objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilityInsertTextAtCursor:"), text)
 }
 
-// Returns the range of selected text in the element.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilitySelectedTextRange()
-func (o_ Object) BrowserAccessibilitySelectedTextRange() Range {
-	rv := objc.Send[Range](o_.ID, objc.Sel("browserAccessibilitySelectedTextRange"))
-	return rv
-}
 
 // Updates the element’s selected text.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilitySetSelectedTextRange(_:)
-func (o_ Object) BrowserAccessibilitySetSelectedTextRange(range_ Range) {
+func (o_ Object) BrowserAccessibilitySetSelectedTextRange(range_ objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("browserAccessibilitySetSelectedTextRange:"), range_)
 }
 
-// Returns this element’s value in the given range.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityValue(in:)
-func (o_ Object) BrowserAccessibilityValueInRange(range_ Range) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("browserAccessibilityValueInRange:"), range_)
-	return rv
-}
 
 // Allows the delegate to handle the end-of-burn feedback.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/burnProgressPanel(_:burnDidFinish:)
-func (o_ Object) BurnProgressPanelBurnDidFinish(theBurnPanel unsafe.Pointer, burn unsafe.Pointer) bool {
+func (o_ Object) BurnProgressPanelBurnDidFinish(theBurnPanel unsafe.Pointer, burn unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("burnProgressPanel:burnDidFinish:"), theBurnPanel, burn)
 	return rv
 }
 
+
 // Notification sent by the panel after ordering out.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/burnProgressPanelDidFinish(_:)
-func (o_ Object) BurnProgressPanelDidFinish(aNotification unsafe.Pointer) {
+func (o_ Object) BurnProgressPanelDidFinish(aNotification objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("burnProgressPanelDidFinish:"), aNotification)
 }
 
+
 // Notification sent by the panel before display.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/burnProgressPanelWillBegin(_:)
-func (o_ Object) BurnProgressPanelWillBegin(aNotification unsafe.Pointer) {
+func (o_ Object) BurnProgressPanelWillBegin(aNotification objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("burnProgressPanelWillBegin:"), aNotification)
 }
 
-// Returns an array of candidates.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/candidates(_:)
-func (o_ Object) Candidates(sender objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("candidates:"), sender)
-	return rv
-}
 
 // Implements custom help behavior for the modal panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/certificatePanelShowHelp(_:)
-func (o_ Object) CertificatePanelShowHelp(sender unsafe.Pointer) bool {
+func (o_ Object) CertificatePanelShowHelp(sender objc.IObject /* cross-framework: SFCertificatePanel */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("certificatePanelShowHelp:"), sender)
 	return rv
 }
 
-// Sent to the first responder when the user selects a color in an object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/changeColor:
-func (o_ Object) ChangeColor(sender objc.ID) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("changeColor:"), sender)
-}
-
-// Informs responders of a font change.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/changeFont:
-func (o_ Object) ChangeFont(sender objc.ID) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("changeFont:"), sender)
-}
 
 // Implements custom help behavior for the modal panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/chooseIdentityPanelShowHelp(_:)
-func (o_ Object) ChooseIdentityPanelShowHelp(sender unsafe.Pointer) bool {
+func (o_ Object) ChooseIdentityPanelShowHelp(sender objc.IObject /* cross-framework: SFChooseIdentityPanel */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("chooseIdentityPanelShowHelp:"), sender)
 	return rv
 }
 
+
 // Uses type info from the class description and to attempt to convert for to the proper type, if necessary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/coerceValue(_:forKey:)
-func (o_ Object) CoerceValueForKey(value objc.ID, key string) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("coerceValue:forKey:"), value, objc.String(key))
+func (o_ Object) CoerceValueForKey(value objectivec.IObject, key objectivec.IObject) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("coerceValue:forKey:"), value, key)
 	return rv
 }
+
 
 // Informs the controller that the composition should be committed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/commitComposition(_:)
-func (o_ Object) CommitComposition(sender objc.ID) {
+func (o_ Object) CommitComposition(sender objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("commitComposition:"), sender)
 }
 
-// Returns whether the receiver was able to commit any pending edits.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/commitEditing
-func (o_ Object) CommitEditing() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("commitEditing"))
-	return rv
-}
-
-// Attempt to commit pending edits, returning an error in the case of failure.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/commitEditingAndReturnError:
-func (o_ Object) CommitEditingAndReturnError(error unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("commitEditingAndReturnError:"), error)
-	return rv
-}
-
-// Attempt to commit any currently edited results of the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/commitEditingWithDelegate:didCommitSelector:contextInfo:
-func (o_ Object) CommitEditingWithDelegateDidCommitSelectorContextInfo(delegate objc.ID, didCommitSelector objc.SEL, contextInfo unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("commitEditingWithDelegate:didCommitSelector:contextInfo:"), delegate, didCommitSelector, contextInfo)
-}
 
 // Return the current composed string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/composedString(_:)
-func (o_ Object) ComposedString(sender objc.ID) objc.ID {
+func (o_ Object) ComposedString(sender objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("composedString:"), sender)
 	return rv
 }
 
-// Called after an input parameter in the composition parameter view has been edited.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/compositionParameterView(_:didChangeParameterWithKey:)
-func (o_ Object) CompositionParameterViewDidChangeParameterWithKey(parameterView unsafe.Pointer, portKey string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("compositionParameterView:didChangeParameterWithKey:"), parameterView, objc.String(portKey))
-}
-
-// Allows you to define which composition parameters are visible in the user interface when the composition parameter view refreshes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/compositionParameterView(_:shouldDisplayParameterWithKey:attributes:)
-func (o_ Object) CompositionParameterViewShouldDisplayParameterWithKeyAttributes(parameterView unsafe.Pointer, portKey string, portAttributes objc.ID) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("compositionParameterView:shouldDisplayParameterWithKey:attributes:"), parameterView, objc.String(portKey), portAttributes)
-	return rv
-}
-
-// Performs custom tasks when the selected composition in the composition picker view changes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/compositionPickerView(_:didSelect:)
-func (o_ Object) CompositionPickerViewDidSelectComposition(pickerView unsafe.Pointer, composition unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("compositionPickerView:didSelectComposition:"), pickerView, composition)
-}
-
-// Performs custom tasks when the composition picker view starts animating a composition.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/compositionPickerViewDidStartAnimating(_:)
-func (o_ Object) CompositionPickerViewDidStartAnimating(pickerView unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("compositionPickerViewDidStartAnimating:"), pickerView)
-}
-
-// Performs custom tasks when the composition picker view stops animating a composition.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/compositionPickerViewWillStopAnimating(_:)
-func (o_ Object) CompositionPickerViewWillStopAnimating(pickerView unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("compositionPickerViewWillStopAnimating:"), pickerView)
-}
-
-// Sent when a control with editable text begins an editing session.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/controlTextDidBeginEditing:
-func (o_ Object) ControlTextDidBeginEditing(obj unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("controlTextDidBeginEditing:"), obj)
-}
-
-// Sent when the text in the receiving control changes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/controlTextDidChange:
-func (o_ Object) ControlTextDidChange(obj unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("controlTextDidChange:"), obj)
-}
-
-// Sent when a control with editable text ends an editing session.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/controlTextDidEndEditing:
-func (o_ Object) ControlTextDidEndEditing(obj unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("controlTextDidEndEditing:"), obj)
-}
 
 // Creates and returns one or more scripting objects to be inserted into the specified relationship by copying the passed-in value and setting the properties in the copied object or objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/copyScriptingValue(_:forKey:withProperties:)
-func (o_ Object) CopyScriptingValueForKeyWithProperties(value objc.ID, key string, properties unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("copyScriptingValue:forKey:withProperties:"), value, objc.String(key), properties)
+func (o_ Object) CopyScriptingValueForKeyWithProperties(value objectivec.IObject, key objectivec.IObject, properties objectivec.IObject) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("copyScriptingValue:forKey:withProperties:"), value, key, properties)
 	return rv
 }
 
-// Deallocates the memory occupied by the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/dealloc
-func (o_ Object) Dealloc() {
-	objc.Send[objc.ID](o_.ID, objc.Sel("dealloc"))
-}
-
-// Returns a dictionary containing the property values identified by each of the keys in a given array.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/dictionaryWithValues(forKeys:)
-func (o_ Object) DictionaryWithValuesForKeys(keys unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("dictionaryWithValuesForKeys:"), keys)
-	return rv
-}
 
 // Informs the observed object that the specified change has occurred on the indexes for a specified ordered to-many relationship.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/didChange(_:valuesAt:forKey:)
-func (o_ Object) DidChangeValuesAtIndexesForKey(changeKind unsafe.Pointer, indexes unsafe.Pointer, key string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("didChange:valuesAtIndexes:forKey:"), changeKind, indexes, objc.String(key))
+func (o_ Object) DidChangeValuesAtIndexesForKey(changeKind KeyValueChange /* not a class type */, indexes objectivec.IObject, key objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("didChange:valuesAtIndexes:forKey:"), changeKind, indexes, key)
 }
+
+
+// Informs the observed object that the value of a given property has changed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/didChangeValue(forKey:)
+func (o_ Object) DidChangeValueForKey(key objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("didChangeValueForKey:"), key)
+}
+
+
+// Informs the observed object that the specified change was made to a specified unordered to-many relationship.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/didChangeValue(forKey:withSetMutation:using:)
+func (o_ Object) DidChangeValueForKeyWithSetMutationUsingObjects(key objectivec.IObject, mutationKind KeyValueSetMutationKind /* not a class type */, objects objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("didChangeValueForKey:withSetMutation:usingObjects:"), key, mutationKind, objects)
+}
+
 
 // Processes a command generated by user action such as typing certain keys or pressing the mouse button.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/didCommand(by:client:)
-func (o_ Object) DidCommandBySelectorClient(aSelector objc.SEL, sender objc.ID) bool {
+func (o_ Object) DidCommandBySelectorClient(aSelector objc.SEL, sender objectivec.IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("didCommandBySelector:client:"), aSelector, sender)
 	return rv
 }
 
-// Causes the receiver to discard any changes, restoring the previous values.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/discardEditing
-func (o_ Object) DiscardEditing() {
-	objc.Send[objc.ID](o_.ID, objc.Sel("discardEditing"))
-}
 
 // Returns a Boolean value that indicates whether the receiver contains a given object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/doesContain(_:)
-func (o_ Object) DoesContain(object objc.ID) bool {
+func (o_ Object) DoesContain(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("doesContain:"), object)
 	return rv
 }
 
+
 // Handles messages the receiver doesn’t recognize.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/doesNotRecognizeSelector(_:)
 func (o_ Object) DoesNotRecognizeSelector(aSelector objc.SEL) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("doesNotRecognizeSelector:"), aSelector)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/draggedImage:beganAt:
-func (o_ Object) DraggedImageBeganAt(image unsafe.Pointer, screenPoint Point) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("draggedImage:beganAt:"), image, screenPoint)
-}
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/draggedImage:endedAt:deposited:
-func (o_ Object) DraggedImageEndedAtDeposited(image unsafe.Pointer, screenPoint Point, flag bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("draggedImage:endedAt:deposited:"), image, screenPoint, flag)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/draggedImage:endedAt:operation:
-func (o_ Object) DraggedImageEndedAtOperation(image unsafe.Pointer, screenPoint Point, operation unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("draggedImage:endedAt:operation:"), image, screenPoint, operation)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/draggedImage:movedTo:
-func (o_ Object) DraggedImageMovedTo(image unsafe.Pointer, screenPoint Point) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("draggedImage:movedTo:"), image, screenPoint)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/draggingSourceOperationMaskForLocal:
-func (o_ Object) DraggingSourceOperationMaskForLocal(flag bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("draggingSourceOperationMaskForLocal:"), flag)
-	return rv
-}
-
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/endPreviewPanelControl(_:)
-func (o_ Object) EndPreviewPanelControl(panel unsafe.Pointer) {
+func (o_ Object) EndPreviewPanelControl(panel objc.IObject /* cross-framework: PreviewPanel */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("endPreviewPanelControl:"), panel)
 }
 
+
 // Notification sent by the panel before display.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/eraseProgressPanel(_:eraseDidFinish:)
-func (o_ Object) EraseProgressPanelEraseDidFinish(theErasePanel unsafe.Pointer, erase unsafe.Pointer) bool {
+func (o_ Object) EraseProgressPanelEraseDidFinish(theErasePanel unsafe.Pointer, erase unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("eraseProgressPanel:eraseDidFinish:"), theErasePanel, erase)
 	return rv
 }
 
+
 // Notification sent by the panel after ordering out.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/eraseProgressPanelDidFinish(_:)
-func (o_ Object) EraseProgressPanelDidFinish(aNotification unsafe.Pointer) {
+func (o_ Object) EraseProgressPanelDidFinish(aNotification objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("eraseProgressPanelDidFinish:"), aNotification)
 }
 
+
 // Notification sent by the panel before display.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/eraseProgressPanelWillBegin(_:)
-func (o_ Object) EraseProgressPanelWillBegin(aNotification unsafe.Pointer) {
+func (o_ Object) EraseProgressPanelWillBegin(aNotification objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("eraseProgressPanelWillBegin:"), aNotification)
 }
 
+
 // Implemented by the delegate to evaluate whether the delegating exception handler should handle a given exception.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/exceptionHandler(_:shouldHandle:mask:)
-func (o_ Object) ExceptionHandlerShouldHandleExceptionMask(sender unsafe.Pointer, exception unsafe.Pointer, aMask uint) bool {
+func (o_ Object) ExceptionHandlerShouldHandleExceptionMask(sender objc.IObject /* cross-framework: ExceptionHandler */, exception objectivec.IObject, aMask uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("exceptionHandler:shouldHandleException:mask:"), sender, exception, aMask)
 	return rv
 }
 
+
 // Implemented by the delegate to evaluate whether the delegating exception hangler should log a given exception.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/exceptionHandler(_:shouldLogException:mask:)
-func (o_ Object) ExceptionHandlerShouldLogExceptionMask(sender unsafe.Pointer, exception unsafe.Pointer, aMask uint) bool {
+func (o_ Object) ExceptionHandlerShouldLogExceptionMask(sender objc.IObject /* cross-framework: ExceptionHandler */, exception objectivec.IObject, aMask uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("exceptionHandler:shouldLogException:mask:"), sender, exception, aMask)
 	return rv
 }
 
-// An object sends this message to its handler for each error it encounters when copying, moving, removing, or linking files or directories.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileManager(_:shouldProceedAfterError:)
-func (o_ Object) FileManagerShouldProceedAfterError(fm unsafe.Pointer, errorInfo objc.ID) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("fileManager:shouldProceedAfterError:"), fm, errorInfo)
-	return rv
-}
 
-// An object sends this message to a handler immediately before attempting to move, copy, rename, or delete, or before attempting to link to a given path.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileManager(_:willProcessPath:)
-func (o_ Object) FileManagerWillProcessPath(fm unsafe.Pointer, path string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("fileManager:willProcessPath:"), fm, objc.String(path))
-}
-
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesAbortComplete(_:error:)
-func (o_ Object) FileTransferServicesAbortCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer) {
+func (o_ Object) FileTransferServicesAbortCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesAbortComplete:error:"), inServices, inError)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesConnectionComplete(_:error:)
-func (o_ Object) FileTransferServicesConnectionCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer) {
+func (o_ Object) FileTransferServicesConnectionCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesConnectionComplete:error:"), inServices, inError)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesCopyRemoteFileComplete(_:error:)
-func (o_ Object) FileTransferServicesCopyRemoteFileCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer) {
+func (o_ Object) FileTransferServicesCopyRemoteFileCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesCopyRemoteFileComplete:error:"), inServices, inError)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesCopyRemoteFileProgress(_:transferProgress:)
-func (o_ Object) FileTransferServicesCopyRemoteFileProgressTransferProgress(inServices unsafe.Pointer, inProgressDescription objc.ID) {
+func (o_ Object) FileTransferServicesCopyRemoteFileProgressTransferProgress(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inProgressDescription objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesCopyRemoteFileProgress:transferProgress:"), inServices, inProgressDescription)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesCreateFolderComplete(_:error:folder:)
-func (o_ Object) FileTransferServicesCreateFolderCompleteErrorFolder(inServices unsafe.Pointer, inError unsafe.Pointer, inFolderName string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesCreateFolderComplete:error:folder:"), inServices, inError, objc.String(inFolderName))
+func (o_ Object) FileTransferServicesCreateFolderCompleteErrorFolder(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer, inFolderName objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesCreateFolderComplete:error:folder:"), inServices, inError, inFolderName)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesDisconnectionComplete(_:error:)
-func (o_ Object) FileTransferServicesDisconnectionCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer) {
+func (o_ Object) FileTransferServicesDisconnectionCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesDisconnectionComplete:error:"), inServices, inError)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesFilePreparationComplete(_:error:)
-func (o_ Object) FileTransferServicesFilePreparationCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer) {
+func (o_ Object) FileTransferServicesFilePreparationCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesFilePreparationComplete:error:"), inServices, inError)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesPathChangeComplete(_:error:finalPath:)
-func (o_ Object) FileTransferServicesPathChangeCompleteErrorFinalPath(inServices unsafe.Pointer, inError unsafe.Pointer, inPath string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesPathChangeComplete:error:finalPath:"), inServices, inError, objc.String(inPath))
+func (o_ Object) FileTransferServicesPathChangeCompleteErrorFinalPath(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer, inPath objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesPathChangeComplete:error:finalPath:"), inServices, inError, inPath)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesRemoveItemComplete(_:error:removedItem:)
-func (o_ Object) FileTransferServicesRemoveItemCompleteErrorRemovedItem(inServices unsafe.Pointer, inError unsafe.Pointer, inItemName string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesRemoveItemComplete:error:removedItem:"), inServices, inError, objc.String(inItemName))
+func (o_ Object) FileTransferServicesRemoveItemCompleteErrorRemovedItem(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer, inItemName objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesRemoveItemComplete:error:removedItem:"), inServices, inError, inItemName)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesRetrieveFolderListingComplete(_:error:listing:)
-func (o_ Object) FileTransferServicesRetrieveFolderListingCompleteErrorListing(inServices unsafe.Pointer, inError unsafe.Pointer, inListing objc.ID) {
+func (o_ Object) FileTransferServicesRetrieveFolderListingCompleteErrorListing(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer, inListing objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesRetrieveFolderListingComplete:error:listing:"), inServices, inError, inListing)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesSendFileComplete(_:error:)
-func (o_ Object) FileTransferServicesSendFileCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer) {
+func (o_ Object) FileTransferServicesSendFileCompleteError(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inError unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesSendFileComplete:error:"), inServices, inError)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/fileTransferServicesSendFileProgress(_:transferProgress:)
-func (o_ Object) FileTransferServicesSendFileProgressTransferProgress(inServices unsafe.Pointer, inProgressDescription objc.ID) {
+func (o_ Object) FileTransferServicesSendFileProgressTransferProgress(inServices objc.IObject /* cross-framework: OBEXFileTransferServices */, inProgressDescription objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("fileTransferServicesSendFileProgress:transferProgress:"), inServices, inProgressDescription)
 }
 
-// Overridden by subclasses to forward messages to other objects.
+
+// The garbage collector invokes this method on the receiver before disposing of the memory it uses.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/forwardInvocation:
-func (o_ Object) ForwardInvocation(anInvocation unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("forwardInvocation:"), anInvocation)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/finalize()
+func (o_ Object) Finalize() {
+	objc.Send[objc.ID](o_.ID, objc.Sel("finalize"))
 }
+
+
+// Performs cleanup when the scripting environment is reset.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/finalizeForWebScript()
+func (o_ Object) FinalizeForWebScript() {
+	objc.Send[objc.ID](o_.ID, objc.Sel("finalizeForWebScript"))
+}
+
 
 // Returns the object to which unrecognized messages should first be directed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/forwardingTarget(for:)
 func (o_ Object) ForwardingTargetForSelector(aSelector objc.SEL) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("forwardingTargetForSelector:"), aSelector)
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/getL2CAPChannelRef
-func (o_ Object) GetL2CAPChannelRef() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("getL2CAPChannelRef"))
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/getOpenGLBufferContext:pixelFormat:
-func (o_ Object) GetOpenGLBufferContextPixelFormat(contextOut unsafe.Pointer, pixelFormatOut unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("getOpenGLBufferContext:pixelFormat:"), contextOut, pixelFormatOut)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/getPixelBufferPixelFormat:
-func (o_ Object) GetPixelBufferPixelFormat(pixelFormatOut unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("getPixelBufferPixelFormat:"), pixelFormatOut)
-}
 
 // Handles key down and mouse events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/handle(_:client:)
-func (o_ Object) HandleEventClient(event unsafe.Pointer, sender objc.ID) bool {
+func (o_ Object) HandleEventClient(event objectivec.IObject, sender objectivec.IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("handleEvent:client:"), event, sender)
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/ignoreModifierKeysWhileDragging
-func (o_ Object) IgnoreModifierKeysWhileDragging() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("ignoreModifierKeysWhileDragging"))
-	return rv
-}
 
 // Performs custom tasks when the user right-clicks the image browser view background.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:backgroundWasRightClickedWith:)
-func (o_ Object) ImageBrowserBackgroundWasRightClickedWithEvent(aBrowser unsafe.Pointer, event unsafe.Pointer) {
+func (o_ Object) ImageBrowserBackgroundWasRightClickedWithEvent(aBrowser quartz.IKImageBrowserView /* already interface */, event objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowser:backgroundWasRightClickedWithEvent:"), aBrowser, event)
 }
 
+
 // Performs custom tasks when the user double-clicks an item in the image browser view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:cellWasDoubleClickedAt:)
-func (o_ Object) ImageBrowserCellWasDoubleClickedAtIndex(aBrowser unsafe.Pointer, index uint) {
+func (o_ Object) ImageBrowserCellWasDoubleClickedAtIndex(aBrowser quartz.IKImageBrowserView /* already interface */, index uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowser:cellWasDoubleClickedAtIndex:"), aBrowser, index)
 }
 
+
 // Performs custom tasks when the user right-clicks an item in the image browser view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:cellWasRightClickedAt:with:)
-func (o_ Object) ImageBrowserCellWasRightClickedAtIndexWithEvent(aBrowser unsafe.Pointer, index uint, event unsafe.Pointer) {
+func (o_ Object) ImageBrowserCellWasRightClickedAtIndexWithEvent(aBrowser quartz.IKImageBrowserView /* already interface */, index uint /* primitive/slice/pointer. */, event objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowser:cellWasRightClickedAtIndex:withEvent:"), aBrowser, index, event)
 }
 
-// Returns the group at the specified index.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:groupAt:)
-func (o_ Object) ImageBrowserGroupAtIndex(aBrowser unsafe.Pointer, index uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("imageBrowser:groupAtIndex:"), aBrowser, index)
-	return rv
-}
 
 // Returns an object for the item in an image browser view that corresponds to the specified index.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:itemAt:)
-func (o_ Object) ImageBrowserItemAtIndex(aBrowser unsafe.Pointer, index uint) objc.ID {
+func (o_ Object) ImageBrowserItemAtIndex(aBrowser quartz.IKImageBrowserView /* already interface */, index uint /* primitive/slice/pointer. */) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowser:itemAtIndex:"), aBrowser, index)
 	return rv
 }
 
+
 // Signals that the specified items should be moved to the specified destination.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:moveItemsAt:to:)
-func (o_ Object) ImageBrowserMoveItemsAtIndexesToIndex(aBrowser unsafe.Pointer, indexes unsafe.Pointer, destinationIndex uint) bool {
+func (o_ Object) ImageBrowserMoveItemsAtIndexesToIndex(aBrowser quartz.IKImageBrowserView /* already interface */, indexes objectivec.IObject, destinationIndex uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("imageBrowser:moveItemsAtIndexes:toIndex:"), aBrowser, indexes, destinationIndex)
 	return rv
 }
 
+
 // Signals that a remove operation should be applied to the specified items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:removeItemsAt:)
-func (o_ Object) ImageBrowserRemoveItemsAtIndexes(aBrowser unsafe.Pointer, indexes unsafe.Pointer) {
+func (o_ Object) ImageBrowserRemoveItemsAtIndexes(aBrowser quartz.IKImageBrowserView /* already interface */, indexes objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowser:removeItemsAtIndexes:"), aBrowser, indexes)
 }
 
+
 // Signals that a drag should begin.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowser(_:writeItemsAt:to:)
-func (o_ Object) ImageBrowserWriteItemsAtIndexesToPasteboard(aBrowser unsafe.Pointer, itemIndexes unsafe.Pointer, pasteboard unsafe.Pointer) uint {
+func (o_ Object) ImageBrowserWriteItemsAtIndexesToPasteboard(aBrowser quartz.IKImageBrowserView /* already interface */, itemIndexes objectivec.IObject, pasteboard objectivec.IObject) uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](o_.ID, objc.Sel("imageBrowser:writeItemsAtIndexes:toPasteboard:"), aBrowser, itemIndexes, pasteboard)
 	return rv
 }
 
+
 // Performs custom tasks when the selection changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageBrowserSelectionDidChange(_:)
-func (o_ Object) ImageBrowserSelectionDidChange(aBrowser unsafe.Pointer) {
+func (o_ Object) ImageBrowserSelectionDidChange(aBrowser quartz.IKImageBrowserView /* already interface */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("imageBrowserSelectionDidChange:"), aBrowser)
 }
 
+
 // Returns the image to display.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageRepresentation()
 func (o_ Object) ImageRepresentation() objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("imageRepresentation"))
 	return rv
 }
 
-// Returns the representation type of the image to display.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageRepresentationType()
-func (o_ Object) ImageRepresentationType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("imageRepresentationType"))
-	return rv
-}
-
-// Returns the display subtitle of the image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageSubtitle()
-func (o_ Object) ImageSubtitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("imageSubtitle"))
-	return rv
-}
-
-// Returns the display title of the image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageTitle()
-func (o_ Object) ImageTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("imageTitle"))
-	return rv
-}
-
-// Returns a unique string that identifies the data source item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageUID()
-func (o_ Object) ImageUID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("imageUID"))
-	return rv
-}
 
 // Returns the version of the item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/imageVersion()
-func (o_ Object) ImageVersion() uint {
+func (o_ Object) ImageVersion() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](o_.ID, objc.Sel("imageVersion"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/index(ofAccessibilityElement:)
-func (o_ Object) IndexOfAccessibilityElement(element objc.ID) int {
+func (o_ Object) IndexOfAccessibilityElement(element objectivec.IObject) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](o_.ID, objc.Sel("indexOfAccessibilityElement:"), element)
 	return rv
 }
 
+
 // Returns the indices of the specified container objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/indicesOfObjects(byEvaluatingObjectSpecifier:)
-func (o_ Object) IndicesOfObjectsByEvaluatingObjectSpecifier(specifier unsafe.Pointer) []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](o_.ID, objc.Sel("indicesOfObjectsByEvaluatingObjectSpecifier:"), specifier)
+func (o_ Object) IndicesOfObjectsByEvaluatingObjectSpecifier(specifier objectivec.IObject) objc.IObject /* cross-framework: Number */ {
+	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("indicesOfObjectsByEvaluatingObjectSpecifier:"), specifier)
 	return rv
 }
+
 
 // Handles key down events that do not map to an action method.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/inputText(_:client:)
-func (o_ Object) InputTextClient(string string, sender objc.ID) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("inputText:client:"), objc.String(string), sender)
+func (o_ Object) InputTextClient(string_ objectivec.IObject, sender objectivec.IObject) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("inputText:client:"), string_, sender)
 	return rv
 }
+
 
 // Receives Unicode, the key code that generated it, and any modifier flags.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/inputText(_:key:modifiers:client:)
-func (o_ Object) InputTextKeyModifiersClient(string string, keyCode int, flags uint, sender objc.ID) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("inputText:key:modifiers:client:"), objc.String(string), keyCode, flags, sender)
+func (o_ Object) InputTextKeyModifiersClient(string_ objectivec.IObject, keyCode int /* primitive/slice/pointer. */, flags uint /* primitive/slice/pointer. */, sender objectivec.IObject) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("inputText:key:modifiers:client:"), string_, keyCode, flags, sender)
 	return rv
 }
+
 
 // Inserts an object at the specified index in the collection specified by the passed key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/insertValue(_:at:inPropertyWithKey:)
-func (o_ Object) InsertValueAtIndexInPropertyWithKey(value objc.ID, index uint, key string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("insertValue:atIndex:inPropertyWithKey:"), value, index, objc.String(key))
+func (o_ Object) InsertValueAtIndexInPropertyWithKey(value objectivec.IObject, index uint /* primitive/slice/pointer. */, key objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("insertValue:atIndex:inPropertyWithKey:"), value, index, key)
 }
 
-// For a given key that defines the name of the relationship from the receiver’s class to another class, returns the name of the relationship from the other class to the receiver’s class.
+
+// Inserts an object in the collection specified by the passed key.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/inverse(forRelationshipKey:)
-func (o_ Object) InverseForRelationshipKey(relationshipKey string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("inverseForRelationshipKey:"), objc.String(relationshipKey))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/insertValue(_:inPropertyWithKey:)
+func (o_ Object) InsertValueInPropertyWithKey(value objectivec.IObject, key objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("insertValue:inPropertyWithKey:"), value, key)
+}
+
+
+// Executes when a script attempts to invoke a method on an exposed object directly.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/invokeDefaultMethod(withArguments:)
+func (o_ Object) InvokeDefaultMethodWithArguments(arguments objectivec.IObject) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("invokeDefaultMethodWithArguments:"), arguments)
 	return rv
 }
+
+
+// Handles undefined method invocation from the scripting environment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/invokeUndefinedMethod(fromWebScript:withArguments:)
+func (o_ Object) InvokeUndefinedMethodFromWebScriptWithArguments(name objectivec.IObject, arguments objectivec.IObject) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("invokeUndefinedMethodFromWebScript:withArguments:"), name, arguments)
+	return rv
+}
+
 
 // Returns a Boolean value that indicates whether receiver is considered to be “like” a given string when the case of characters in the receiver is ignored.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isCaseInsensitiveLike(_:)
-func (o_ Object) IsCaseInsensitiveLike(object string) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("isCaseInsensitiveLike:"), objc.String(object))
+func (o_ Object) IsCaseInsensitiveLike(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("isCaseInsensitiveLike:"), object)
 	return rv
 }
 
+
 // Returns a Boolean value that indicates whether the receiver is equal to another given object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isEqual(to:)
-func (o_ Object) IsEqualTo(object objc.ID) bool {
+func (o_ Object) IsEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isEqualTo:"), object)
 	return rv
 }
 
+
 // Returns a Boolean value that indicates whether the receiver is greater than another given object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isGreaterThan(_:)
-func (o_ Object) IsGreaterThan(object objc.ID) bool {
+func (o_ Object) IsGreaterThan(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isGreaterThan:"), object)
 	return rv
 }
 
+
 // Returns a Boolean value that indicates whether the receiver is greater than or equal to another given object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isGreaterThanOrEqual(to:)
-func (o_ Object) IsGreaterThanOrEqualTo(object objc.ID) bool {
+func (o_ Object) IsGreaterThanOrEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isGreaterThanOrEqualTo:"), object)
 	return rv
 }
 
+
 // Returns a Boolean value that indicates whether the receiver is less than another given object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isLessThan(_:)
-func (o_ Object) IsLessThan(object objc.ID) bool {
+func (o_ Object) IsLessThan(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isLessThan:"), object)
 	return rv
 }
 
+
 // Returns a Boolean value that indicates whether the receiver is less than or equal to another given object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isLessThanOrEqual(to:)
-func (o_ Object) IsLessThanOrEqualTo(object objc.ID) bool {
+func (o_ Object) IsLessThanOrEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isLessThanOrEqualTo:"), object)
 	return rv
 }
 
+
 // Returns a Boolean value that indicates whether the receiver is “like” another given object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isLike(_:)
-func (o_ Object) IsLike(object string) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("isLike:"), objc.String(object))
+func (o_ Object) IsLike(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("isLike:"), object)
 	return rv
 }
 
+
 // Returns a Boolean value that indicates whether the receiver is not equal to another given object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isNotEqual(to:)
-func (o_ Object) IsNotEqualTo(object objc.ID) bool {
+func (o_ Object) IsNotEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isNotEqualTo:"), object)
 	return rv
 }
 
-// Invoked when a resolution changes occurs for the window that hosts the layer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/layer:shouldInheritContentsScale:fromWindow:
-func (o_ Object) LayerShouldInheritContentsScaleFromWindow(layer unsafe.Pointer, newScale float64, window unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("layer:shouldInheritContentsScale:fromWindow:"), layer, newScale, window)
-	return rv
-}
 
 // Locates and returns the address of the receiver’s implementation of a method so it can be called as a function.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/method(for:)
 func (o_ Object) MethodForSelector(aSelector objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("methodForSelector:"), aSelector)
 	return rv
 }
 
-// Returns an object that contains a description of the method identified by a given selector.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/methodSignatureForSelector:
-func (o_ Object) MethodSignatureForSelector(aSelector objc.SEL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("methodSignatureForSelector:"), aSelector)
-	return rv
-}
-
-// Returns a mutable array proxy that provides read-write access to an ordered to-many relationship specified by a given key.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/mutableArrayValue(forKey:)
-func (o_ Object) MutableArrayValueForKey(key string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("mutableArrayValueForKey:"), objc.String(key))
-	return rv
-}
-
-// Returns a mutable array that provides read-write access to the ordered to-many relationship specified by a given key path.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/mutableArrayValue(forKeyPath:)
-func (o_ Object) MutableArrayValueForKeyPath(keyPath string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("mutableArrayValueForKeyPath:"), objc.String(keyPath))
-	return rv
-}
-
-// Returns a mutable ordered set that provides read-write access to the uniquing ordered to-many relationship specified by a given key.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/mutableOrderedSetValue(forKey:)
-func (o_ Object) MutableOrderedSetValueForKey(key string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("mutableOrderedSetValueForKey:"), objc.String(key))
-	return rv
-}
-
-// Returns a mutable ordered set that provides read-write access to the uniquing ordered to-many relationship specified by a given key path.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/mutableOrderedSetValue(forKeyPath:)
-func (o_ Object) MutableOrderedSetValueForKeyPath(keyPath string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("mutableOrderedSetValueForKeyPath:"), objc.String(keyPath))
-	return rv
-}
-
-// Returns a mutable set proxy that provides read-write access to the unordered to-many relationship specified by a given key.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/mutableSetValue(forKey:)
-func (o_ Object) MutableSetValueForKey(key string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("mutableSetValueForKey:"), objc.String(key))
-	return rv
-}
-
-// Returns a mutable set that provides read-write access to the unordered to-many relationship specified by a given key path.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/mutableSetValue(forKeyPath:)
-func (o_ Object) MutableSetValueForKeyPath(keyPath string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("mutableSetValueForKeyPath:"), objc.String(keyPath))
-	return rv
-}
-
-// Returns the names of the files that the receiver promises to create at a specified location.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/namesOfPromisedFilesDropped(atDestination:)
-func (o_ Object) NamesOfPromisedFilesDroppedAtDestination(dropDestination unsafe.Pointer) []string {
-	rv := objc.Send[[]string](o_.ID, objc.Sel("namesOfPromisedFilesDroppedAtDestination:"), dropDestination)
-	return rv
-}
 
 // Creates and returns an instance of a scriptable class, setting its contents and properties, for insertion into the relationship identified by the key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/newScriptingObject(of:forValueForKey:withContentsValue:properties:)
-func (o_ Object) NewScriptingObjectOfClassForValueForKeyWithContentsValueProperties(objectClass objc.Class, key string, contentsValue objc.ID, properties unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:"), objectClass, objc.String(key), contentsValue, properties)
+func (o_ Object) NewScriptingObjectOfClassForValueForKeyWithContentsValueProperties(objectClass objc.Class, key objectivec.IObject, contentsValue objectivec.IObject, properties objectivec.IObject) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:"), objectClass, key, contentsValue, properties)
 	return rv
 }
 
+
 // Returns the number of groups in an image browser view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/numberOfGroups(inImageBrowser:)
-func (o_ Object) NumberOfGroupsInImageBrowser(aBrowser unsafe.Pointer) uint {
+func (o_ Object) NumberOfGroupsInImageBrowser(aBrowser quartz.IKImageBrowserView /* already interface */) uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](o_.ID, objc.Sel("numberOfGroupsInImageBrowser:"), aBrowser)
 	return rv
 }
 
+
 // Returns the number of records managed by the data source object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/numberOfItems(inImageBrowser:)
-func (o_ Object) NumberOfItemsInImageBrowser(aBrowser unsafe.Pointer) uint {
+func (o_ Object) NumberOfItemsInImageBrowser(aBrowser quartz.IKImageBrowserView /* already interface */) uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](o_.ID, objc.Sel("numberOfItemsInImageBrowser:"), aBrowser)
 	return rv
 }
 
-// This message should be sent to the receiver when has uncommitted changes that can affect the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/objectDidBeginEditing:
-func (o_ Object) ObjectDidBeginEditing(editor objc.ID) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("objectDidBeginEditing:"), editor)
-}
-
-// This message should be sent to the receiver when has finished editing a property belonging to the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/objectDidEndEditing:
-func (o_ Object) ObjectDidEndEditing(editor objc.ID) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("objectDidEndEditing:"), editor)
-}
 
 // Informs the observing object when the value at the specified key path relative to the observed object has changed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/observeValue(forKeyPath:of:change:context:)
-func (o_ Object) ObserveValueForKeyPathOfObjectChangeContext(keyPath string, object objc.ID, change unsafe.Pointer, context unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("observeValueForKeyPath:ofObject:change:context:"), objc.String(keyPath), object, change, context)
+func (o_ Object) ObserveValueForKeyPathOfObjectChangeContext(keyPath objectivec.IObject, object objectivec.IObject, change objectivec.IObject, context unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("observeValueForKeyPath:ofObject:change:context:"), keyPath, object, change, context)
 }
 
-// Return the string that consists of the precomposed Unicode characters.
+
+// Returns an array describing the options for the specified binding.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/originalString(_:)
-func (o_ Object) OriginalString(sender objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("originalString:"), sender)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/optionDescriptionsForBinding(_:)
+func (o_ Object) OptionDescriptionsForBinding(binding BindingName /* not a class type */) objc.IObject /* cross-framework: AttributeDescription */ {
+	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("optionDescriptionsForBinding:"), binding)
 	return rv
 }
 
-// Controls the ordering of files presented by the object specified.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/panel:compareFilename:with:caseSensitive:
-func (o_ Object) PanelCompareFilenameWithCaseSensitive(sender objc.ID, name1 string, name2 string, caseSensitive bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("panel:compareFilename:with:caseSensitive:"), sender, objc.String(name1), objc.String(name2), caseSensitive)
-	return rv
-}
-
-// Tells the delegate that the user has changed the selected directory in the object specified.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/panel:directoryDidChange:
-func (o_ Object) PanelDirectoryDidChange(sender objc.ID, path string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("panel:directoryDidChange:"), sender, objc.String(path))
-}
-
-// Gives the delegate the opportunity to validate selected items.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/panel:isValidFilename:
-func (o_ Object) PanelIsValidFilename(sender objc.ID, filename string) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("panel:isValidFilename:"), sender, objc.String(filename))
-	return rv
-}
-
-// Gives the delegate the opportunity to filter items that it doesn’t want the user to choose.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/panel:shouldShowFilename:
-func (o_ Object) PanelShouldShowFilename(sender objc.ID, filename string) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("panel:shouldShowFilename:"), sender, objc.String(filename))
-	return rv
-}
-
-// Implemented by an owner object to provide promised data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/pasteboard:provideDataForType:
-func (o_ Object) PasteboardProvideDataForType(sender unsafe.Pointer, type_ unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("pasteboard:provideDataForType:"), sender, type_)
-}
-
-// Notifies a prior owner of the specified pasteboard (and owners of representations on the pasteboard) that the pasteboard has changed owners.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/pasteboardChangedOwner:
-func (o_ Object) PasteboardChangedOwner(sender unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("pasteboardChangedOwner:"), sender)
-}
 
 // Invokes a method of the receiver on the specified thread using the default mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/perform(_:on:with:waitUntilDone:)
-func (o_ Object) PerformSelectorOnThreadWithObjectWaitUntilDone(aSelector objc.SEL, thr unsafe.Pointer, arg objc.ID, wait bool) {
+func (o_ Object) PerformSelectorOnThreadWithObjectWaitUntilDone(aSelector objc.SEL, thr objectivec.IObject, arg objectivec.IObject, wait bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelector:onThread:withObject:waitUntilDone:"), aSelector, thr, arg, wait)
 }
 
+
 // Invokes a method of the receiver on the specified thread using the specified modes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/perform(_:on:with:waitUntilDone:modes:)
-func (o_ Object) PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, thr unsafe.Pointer, arg objc.ID, wait bool, array unsafe.Pointer) {
+func (o_ Object) PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, thr objectivec.IObject, arg objectivec.IObject, wait bool /* primitive/slice/pointer. */, array []string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelector:onThread:withObject:waitUntilDone:modes:"), aSelector, thr, arg, wait, array)
 }
 
+
 // Invokes a method of the receiver on the current thread using the default mode after a delay.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/perform(_:with:afterDelay:)
-func (o_ Object) PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgument objc.ID, delay TimeInterval) {
+func (o_ Object) PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgument objectivec.IObject, delay TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelector:withObject:afterDelay:"), aSelector, anArgument, delay)
 }
 
+
 // Invokes a method of the receiver on the current thread using the specified modes after a delay.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/perform(_:with:afterDelay:inModes:)
-func (o_ Object) PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, anArgument objc.ID, delay TimeInterval, modes unsafe.Pointer) {
+func (o_ Object) PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, anArgument objectivec.IObject, delay TimeInterval /* not a class type */, modes []string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelector:withObject:afterDelay:inModes:"), aSelector, anArgument, delay, modes)
 }
 
+
 // Sent to the delegate to perform the action.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/performAction(for:identifier:)
-func (o_ Object) PerformActionForPersonIdentifier(person unsafe.Pointer, identifier string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("performActionForPerson:identifier:"), person, objc.String(identifier))
+func (o_ Object) PerformActionForPersonIdentifier(person objc.IObject /* cross-framework: ABPerson */, identifier objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("performActionForPerson:identifier:"), person, identifier)
 }
+
 
 // Invokes a method of the receiver on a new background thread.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/performSelector(inBackground:with:)
-func (o_ Object) PerformSelectorInBackgroundWithObject(aSelector objc.SEL, arg objc.ID) {
+func (o_ Object) PerformSelectorInBackgroundWithObject(aSelector objc.SEL, arg objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelectorInBackground:withObject:"), aSelector, arg)
 }
 
+
 // Invokes a method of the receiver on the main thread using the default mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/performSelector(onMainThread:with:waitUntilDone:)
-func (o_ Object) PerformSelectorOnMainThreadWithObjectWaitUntilDone(aSelector objc.SEL, arg objc.ID, wait bool) {
+func (o_ Object) PerformSelectorOnMainThreadWithObjectWaitUntilDone(aSelector objc.SEL, arg objectivec.IObject, wait bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelectorOnMainThread:withObject:waitUntilDone:"), aSelector, arg, wait)
 }
 
+
 // Invokes a method of the receiver on the main thread using the specified modes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/performSelector(onMainThread:with:waitUntilDone:modes:)
-func (o_ Object) PerformSelectorOnMainThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, arg objc.ID, wait bool, array unsafe.Pointer) {
+func (o_ Object) PerformSelectorOnMainThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, arg objectivec.IObject, wait bool /* primitive/slice/pointer. */, array []string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("performSelectorOnMainThread:withObject:waitUntilDone:modes:"), aSelector, arg, wait, array)
 }
 
-// Called when a designable object is created in Interface Builder.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/prepareForInterfaceBuilder()
-func (o_ Object) PrepareForInterfaceBuilder() {
-	objc.Send[objc.ID](o_.ID, objc.Sel("prepareForInterfaceBuilder"))
-}
 
 // An optional method that an image provider object way implement. With this method, the provider object can use the Metal API to provide pixel data into a MTLTexture when the image object is rendered.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/provideImage(to:commandBuffer:originx:originy:width:height:userInfo:)
-func (o_ Object) ProvideImageToMTLTextureCommandBufferOriginxOriginyWidthHeightUserInfo(texture objc.ID, commandBuffer objc.ID, originx unsafe.Pointer, originy unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, info objc.ID) {
+func (o_ Object) ProvideImageToMTLTextureCommandBufferOriginxOriginyWidthHeightUserInfo(texture objectivec.IObject, commandBuffer objectivec.IObject, originx uintptr /* not a class type */, originy uintptr /* not a class type */, width uintptr /* not a class type */, height uintptr /* not a class type */, info objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("provideImageToMTLTexture:commandBuffer:originx:originy:width:height:userInfo:"), texture, commandBuffer, originx, originy, width, height, info)
 }
 
+
 // Supplies data to a object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/provideImageData(_:bytesPerRow:origin:_:size:_:userInfo:)
-func (o_ Object) ProvideImageDataBytesPerRowOriginSizeUserInfo(data unsafe.Pointer, rowbytes unsafe.Pointer, originx unsafe.Pointer, originy unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, info objc.ID) {
+func (o_ Object) ProvideImageDataBytesPerRowOriginSizeUserInfo(data unsafe.Pointer, rowbytes uintptr /* not a class type */, originx uintptr /* not a class type */, originy uintptr /* not a class type */, width uintptr /* not a class type */, height uintptr /* not a class type */, info objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("provideImageData:bytesPerRow:origin::size::userInfo:"), data, rowbytes, originx, originy, width, height, info)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/quartzFilterManager(_:didAdd:)
-func (o_ Object) QuartzFilterManagerDidAddFilter(sender unsafe.Pointer, filter unsafe.Pointer) {
+func (o_ Object) QuartzFilterManagerDidAddFilter(sender objc.IObject /* cross-framework: QuartzFilterManager */, filter objc.IObject /* cross-framework: QuartzFilter */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("quartzFilterManager:didAddFilter:"), sender, filter)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/quartzFilterManager(_:didModifyFilter:)
-func (o_ Object) QuartzFilterManagerDidModifyFilter(sender unsafe.Pointer, filter unsafe.Pointer) {
+func (o_ Object) QuartzFilterManagerDidModifyFilter(sender objc.IObject /* cross-framework: QuartzFilterManager */, filter objc.IObject /* cross-framework: QuartzFilter */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("quartzFilterManager:didModifyFilter:"), sender, filter)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/quartzFilterManager(_:didRemove:)
-func (o_ Object) QuartzFilterManagerDidRemoveFilter(sender unsafe.Pointer, filter unsafe.Pointer) {
+func (o_ Object) QuartzFilterManagerDidRemoveFilter(sender objc.IObject /* cross-framework: QuartzFilterManager */, filter objc.IObject /* cross-framework: QuartzFilter */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("quartzFilterManager:didRemoveFilter:"), sender, filter)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/quartzFilterManager(_:didSelect:)
-func (o_ Object) QuartzFilterManagerDidSelectFilter(sender unsafe.Pointer, filter unsafe.Pointer) {
+func (o_ Object) QuartzFilterManagerDidSelectFilter(sender objc.IObject /* cross-framework: QuartzFilterManager */, filter objc.IObject /* cross-framework: QuartzFilter */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("quartzFilterManager:didSelectFilter:"), sender, filter)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/readLinkQuality(forDeviceComplete:device:info:error:)
-func (o_ Object) ReadLinkQualityForDeviceCompleteDeviceInfoError(controller objc.ID, device unsafe.Pointer, info unsafe.Pointer, error unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("readLinkQualityForDeviceComplete:device:info:error:"), controller, device, info, error)
+func (o_ Object) ReadLinkQualityForDeviceCompleteDeviceInfoError(controller objectivec.IObject, device objc.IObject /* cross-framework: BluetoothDevice */, info unsafe.Pointer, error_ Return /* not a class type */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("readLinkQualityForDeviceComplete:device:info:error:"), controller, device, info, error_)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/readRSSI(forDeviceComplete:device:info:error:)
-func (o_ Object) ReadRSSIForDeviceCompleteDeviceInfoError(controller objc.ID, device unsafe.Pointer, info unsafe.Pointer, error unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("readRSSIForDeviceComplete:device:info:error:"), controller, device, info, error)
+func (o_ Object) ReadRSSIForDeviceCompleteDeviceInfoError(controller objectivec.IObject, device objc.IObject /* cross-framework: BluetoothDevice */, info unsafe.Pointer, error_ Return /* not a class type */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("readRSSIForDeviceComplete:device:info:error:"), controller, device, info, error_)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/registerIncomingDataListener:refCon:
-func (o_ Object) RegisterIncomingDataListenerRefCon(listener unsafe.Pointer, refCon unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("registerIncomingDataListener:refCon:"), listener, refCon)
-	return rv
-}
 
 // Stops the observer object from receiving change notifications for the property specified by the key path relative to the object receiving this message.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/removeObserver(_:forKeyPath:)
-func (o_ Object) RemoveObserverForKeyPath(observer unsafe.Pointer, keyPath string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("removeObserver:forKeyPath:"), observer, objc.String(keyPath))
+func (o_ Object) RemoveObserverForKeyPath(observer objectivec.IObject, keyPath objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("removeObserver:forKeyPath:"), observer, keyPath)
 }
+
 
 // Stops the observer object from receiving change notifications for the property specified by the key path relative to the object receiving this message, given the context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/removeObserver(_:forKeyPath:context:)
-func (o_ Object) RemoveObserverForKeyPathContext(observer unsafe.Pointer, keyPath string, context unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, objc.String(keyPath), context)
+func (o_ Object) RemoveObserverForKeyPathContext(observer objectivec.IObject, keyPath objectivec.IObject, context unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, keyPath, context)
 }
+
 
 // Removes the object at the specified index from the collection specified by the passed key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/removeValue(at:fromPropertyWithKey:)
-func (o_ Object) RemoveValueAtIndexFromPropertyWithKey(index uint, key string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("removeValueAtIndex:fromPropertyWithKey:"), index, objc.String(key))
+func (o_ Object) RemoveValueAtIndexFromPropertyWithKey(index uint /* primitive/slice/pointer. */, key objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("removeValueAtIndex:fromPropertyWithKey:"), index, key)
 }
 
-// Called for each frame to be sent to Messages. This method will not be called on the main thread.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/renderIntoOpenGLBuffer:onScreen:forTime:
-func (o_ Object) RenderIntoOpenGLBufferOnScreenForTime(buffer unsafe.Pointer, screenInOut unsafe.Pointer, timeStamp unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("renderIntoOpenGLBuffer:onScreen:forTime:"), buffer, screenInOut, timeStamp)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/renderIntoPixelBuffer:forTime:
-func (o_ Object) RenderIntoPixelBufferForTime(buffer unsafe.Pointer, timeStamp unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("renderIntoPixelBuffer:forTime:"), buffer, timeStamp)
-	return rv
-}
 
 // Replaces the object at the specified index in the collection specified by the passed key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/replaceValue(at:inPropertyWithKey:withValue:)
-func (o_ Object) ReplaceValueAtIndexInPropertyWithKeyWithValue(index uint, key string, value objc.ID) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("replaceValueAtIndex:inPropertyWithKey:withValue:"), index, objc.String(key), value)
+func (o_ Object) ReplaceValueAtIndexInPropertyWithKeyWithValue(index uint /* primitive/slice/pointer. */, key objectivec.IObject, value objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("replaceValueAtIndex:inPropertyWithKey:withValue:"), index, key, value)
 }
+
 
 // Overridden by subclasses to substitute another object for itself during encoding.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/replacementObject(for:)-2l8ox
-func (o_ Object) ReplacementObjectForCoder(coder unsafe.Pointer) objc.ID {
+func (o_ Object) ReplacementObjectForCoder(coder objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("replacementObjectForCoder:"), coder)
 	return rv
 }
 
+
 // Overridden by subclasses to substitute another object for itself during keyed archiving.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/replacementObject(for:)-60vwc
-func (o_ Object) ReplacementObjectForKeyedArchiver(archiver unsafe.Pointer) objc.ID {
+func (o_ Object) ReplacementObjectForKeyedArchiver(archiver objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("replacementObjectForKeyedArchiver:"), archiver)
 	return rv
 }
 
-// Overridden by subclasses to substitute another object for itself during archiving.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/replacementObject(for:)-8ih2x
-func (o_ Object) ReplacementObjectForArchiver(archiver unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("replacementObjectForArchiver:"), archiver)
-	return rv
-}
 
 // Called to determine if the specified uniform type identifier should be shown in the save panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/saveOptions(_:shouldShowUTType:)
-func (o_ Object) SaveOptionsShouldShowUTType(saveOptions unsafe.Pointer, utType string) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("saveOptions:shouldShowUTType:"), saveOptions, objc.String(utType))
+func (o_ Object) SaveOptionsShouldShowUTType(saveOptions quartz.IKSaveOptions /* already interface */, utType objectivec.IObject) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("saveOptions:shouldShowUTType:"), saveOptions, utType)
 	return rv
 }
 
+
+// Returns if, in a scripting comparison, the compared object matches the beginning of .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingBegins(with:)
+func (o_ Object) ScriptingBeginsWith(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingBeginsWith:"), object)
+	return rv
+}
+
+
+// Returns if, in a scripting comparison, the compared object contains .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingContains(_:)
+func (o_ Object) ScriptingContains(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingContains:"), object)
+	return rv
+}
+
+
+// Returns if, in a scripting comparison, the compared object matches the end of .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingEnds(with:)
+func (o_ Object) ScriptingEndsWith(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingEndsWith:"), object)
+	return rv
+}
+
+
+// Returns if, in a scripting comparison, the compared object is equal to .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingIsEqual(to:)
+func (o_ Object) ScriptingIsEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingIsEqualTo:"), object)
+	return rv
+}
+
+
+// Returns if, in a scripting comparison, the compared object is greater than .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingIsGreaterThan(_:)
+func (o_ Object) ScriptingIsGreaterThan(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingIsGreaterThan:"), object)
+	return rv
+}
+
+
 // Returns if, in a scripting comparison, the compared object is greater than or equal to .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingIsGreaterThanOrEqual(to:)
-func (o_ Object) ScriptingIsGreaterThanOrEqualTo(object objc.ID) bool {
+func (o_ Object) ScriptingIsGreaterThanOrEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingIsGreaterThanOrEqualTo:"), object)
 	return rv
 }
 
+
 // Returns if, in a scripting comparison, the compared object is less than .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingIsLessThan(_:)
-func (o_ Object) ScriptingIsLessThan(object objc.ID) bool {
+func (o_ Object) ScriptingIsLessThan(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingIsLessThan:"), object)
 	return rv
 }
 
+
+// Returns if, in a scripting comparison, the compared object is less than or equal to .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingIsLessThanOrEqual(to:)
+func (o_ Object) ScriptingIsLessThanOrEqualTo(object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("scriptingIsLessThanOrEqualTo:"), object)
+	return rv
+}
+
+
 // Given an object specifier, returns the specified object or objects in the receiving container.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingValue(for:)
-func (o_ Object) ScriptingValueForSpecifier(objectSpecifier unsafe.Pointer) objc.ID {
+func (o_ Object) ScriptingValueForSpecifier(objectSpecifier objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("scriptingValueForSpecifier:"), objectSpecifier)
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/sessionDriver:didNegotiateAndReturnError:
-func (o_ Object) SessionDriverDidNegotiateAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("sessionDriver:didNegotiateAndReturnError:"), sender, outError)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/sessionDriver:didPullAndReturnError:
-func (o_ Object) SessionDriverDidPullAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("sessionDriver:didPullAndReturnError:"), sender, outError)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/sessionDriver:didPushAndReturnError:
-func (o_ Object) SessionDriverDidPushAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("sessionDriver:didPushAndReturnError:"), sender, outError)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/sessionDriver:didReceiveSyncAlertAndReturnError:
-func (o_ Object) SessionDriverDidReceiveSyncAlertAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("sessionDriver:didReceiveSyncAlertAndReturnError:"), sender, outError)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/sessionDriver:didRegisterClientAndReturnError:
-func (o_ Object) SessionDriverDidRegisterClientAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("sessionDriver:didRegisterClientAndReturnError:"), sender, outError)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/sessionDriver:willFinishSessionAndReturnError:
-func (o_ Object) SessionDriverWillFinishSessionAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("sessionDriver:willFinishSessionAndReturnError:"), sender, outError)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/sessionDriver:willNegotiateAndReturnError:
-func (o_ Object) SessionDriverWillNegotiateAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("sessionDriver:willNegotiateAndReturnError:"), sender, outError)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/sessionDriver:willPullAndReturnError:
-func (o_ Object) SessionDriverWillPullAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("sessionDriver:willPullAndReturnError:"), sender, outError)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/sessionDriver:willPushAndReturnError:
-func (o_ Object) SessionDriverWillPushAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("sessionDriver:willPushAndReturnError:"), sender, outError)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/sessionDriverDidCancelSession:
-func (o_ Object) SessionDriverDidCancelSession(sender unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("sessionDriverDidCancelSession:"), sender)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/sessionDriverDidFinishSession:
-func (o_ Object) SessionDriverDidFinishSession(sender unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("sessionDriverDidFinishSession:"), sender)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/sessionDriverWillCancelSession:
-func (o_ Object) SessionDriverWillCancelSession(sender unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("sessionDriverWillCancelSession:"), sender)
-}
 
 // Invoked by when it’s given a value for a scalar value (such as an or ).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setNilValueForKey(_:)
-func (o_ Object) SetNilValueForKey(key string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setNilValueForKey:"), objc.String(key))
+func (o_ Object) SetNilValueForKey(key objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setNilValueForKey:"), key)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setSharedObservers(_:)
-func (o_ Object) SetSharedObservers(sharedObservers unsafe.Pointer) {
+func (o_ Object) SetSharedObservers(sharedObservers objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSharedObservers:"), sharedObservers)
 }
 
+
 // Sets the property of the receiver specified by a given key to a given value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setValue(_:forKey:)
-func (o_ Object) SetValueForKey(value objc.ID, key string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forKey:"), value, objc.String(key))
+func (o_ Object) SetValueForKey(value objectivec.IObject, key objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forKey:"), value, key)
 }
+
 
 // Sets the value for the property identified by a given key path to a given value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setValue(_:forKeyPath:)
-func (o_ Object) SetValueForKeyPath(value objc.ID, keyPath string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forKeyPath:"), value, objc.String(keyPath))
+func (o_ Object) SetValueForKeyPath(value objectivec.IObject, keyPath objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forKeyPath:"), value, keyPath)
 }
+
 
 // Invoked by when it finds no property for a given key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setValue(_:forUndefinedKey:)
-func (o_ Object) SetValueForUndefinedKey(value objc.ID, key string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forUndefinedKey:"), value, objc.String(key))
+func (o_ Object) SetValueForUndefinedKey(value objectivec.IObject, key objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forUndefinedKey:"), value, key)
 }
+
 
 // Sets properties of the receiver with values from a given dictionary, using its keys to identify the properties.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setValuesForKeys(_:)
-func (o_ Object) SetValuesForKeysWithDictionary(keyedValues unsafe.Pointer) {
+func (o_ Object) SetValuesForKeysWithDictionary(keyedValues objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setValuesForKeysWithDictionary:"), keyedValues)
 }
 
+
 // Allows the delegate to specify which device is its preferred.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setupPanel(_:determineBestDeviceOfA:orB:)
 func (o_ Object) SetupPanelDetermineBestDeviceOfAOrB(aPanel unsafe.Pointer, deviceA unsafe.Pointer, device unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("setupPanel:determineBestDeviceOfA:orB:"), aPanel, deviceA, device)
 	return rv
 }
 
+
 // This delegate method allows the delegate to determine if the media inserted in the device is suitable for whatever operation is to be performed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setupPanel(_:deviceContainsSuitableMedia:promptString:)
-func (o_ Object) SetupPanelDeviceContainsSuitableMediaPromptString(aPanel unsafe.Pointer, device unsafe.Pointer, prompt string) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("setupPanel:deviceContainsSuitableMedia:promptString:"), aPanel, device, objc.String(prompt))
+func (o_ Object) SetupPanelDeviceContainsSuitableMediaPromptString(aPanel unsafe.Pointer, device unsafe.Pointer, prompt objectivec.IObject) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("setupPanel:deviceContainsSuitableMedia:promptString:"), aPanel, device, prompt)
 	return rv
 }
 
+
 // Allows the delegate to determine if device can be used as a target.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setupPanel(_:deviceCouldBeTarget:)
-func (o_ Object) SetupPanelDeviceCouldBeTarget(aPanel unsafe.Pointer, device unsafe.Pointer) bool {
+func (o_ Object) SetupPanelDeviceCouldBeTarget(aPanel unsafe.Pointer, device unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("setupPanel:deviceCouldBeTarget:"), aPanel, device)
 	return rv
 }
 
+
 // Sent by the default notification center when the device selection in the panel has changed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setupPanelDeviceSelectionChanged(_:)
-func (o_ Object) SetupPanelDeviceSelectionChanged(aNotification unsafe.Pointer) {
+func (o_ Object) SetupPanelDeviceSelectionChanged(aNotification objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setupPanelDeviceSelectionChanged:"), aNotification)
 }
 
+
 // This delegate method allows the delegate to control how media reservations are handled.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/setupPanelShouldHandleMediaReservations(_:)
-func (o_ Object) SetupPanelShouldHandleMediaReservations(aPanel unsafe.Pointer) bool {
+func (o_ Object) SetupPanelShouldHandleMediaReservations(aPanel unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("setupPanelShouldHandleMediaReservations:"), aPanel)
 	return rv
 }
 
+
 // Sent to the delegate to determine whether the action should be enabled.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/shouldEnableAction(for:identifier:)
-func (o_ Object) ShouldEnableActionForPersonIdentifier(person unsafe.Pointer, identifier string) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("shouldEnableActionForPerson:identifier:"), person, objc.String(identifier))
+func (o_ Object) ShouldEnableActionForPersonIdentifier(person objc.IObject /* cross-framework: ABPerson */, identifier objectivec.IObject) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("shouldEnableActionForPerson:identifier:"), person, identifier)
 	return rv
 }
 
-// Writes the specified rows to the specified pasteboard.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/tableView:writeRows:toPasteboard:
-func (o_ Object) TableViewWriteRowsToPasteboard(tableView unsafe.Pointer, rows objc.ID, pboard unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("tableView:writeRows:toPasteboard:"), tableView, rows, pboard)
-	return rv
-}
-
-// Sent to the delegate to request the title of the menu item for the action.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/title(for:identifier:)
-func (o_ Object) TitleForPersonIdentifier(person unsafe.Pointer, identifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("titleForPerson:identifier:"), person, objc.String(identifier))
-	return rv
-}
 
 // Removes a given binding between the receiver and a controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/unbind(_:)
-func (o_ Object) Unbind(binding unsafe.Pointer) {
+func (o_ Object) Unbind(binding BindingName /* not a class type */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("unbind:"), binding)
 }
 
-// Returns the mode mask corresponding to the expected font panel mode.
+
+// Indicates whether the value specified by a given pointer is valid, or can be made valid, for the property identified by a given key.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/validModesForFontPanel:
-func (o_ Object) ValidModesForFontPanel(fontPanel unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("validModesForFontPanel:"), fontPanel)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/validateValue(_:forKey:)
+func (o_ Object) ValidateValueForKeyError(ioValue unsafe.Pointer, inKey objectivec.IObject, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("validateValue:forKey:error:"), ioValue, inKey, outError)
 	return rv
 }
 
-// Implemented to override the default action of enabling or disabling a specific menu item.
+
+// Indicates whether the value specified by a given pointer is not valid for a given key path relative to the receiver.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/validateMenuItem:
-func (o_ Object) ValidateMenuItem(menuItem unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("validateMenuItem:"), menuItem)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/validateValue(_:forKeyPath:)
+func (o_ Object) ValidateValueForKeyPathError(ioValue unsafe.Pointer, inKeyPath objectivec.IObject, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("validateValue:forKeyPath:error:"), ioValue, inKeyPath, outError)
 	return rv
 }
 
-// If this method is implemented and returns , NSToolbar will disable ; returning causes to be enabled.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/validateToolbarItem:
-func (o_ Object) ValidateToolbarItem(item unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("validateToolbarItem:"), item)
-	return rv
-}
 
 // Retrieves an indexed object from the collection specified by the passed key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/value(at:inPropertyWithKey:)
-func (o_ Object) ValueAtIndexInPropertyWithKey(index uint, key string) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueAtIndex:inPropertyWithKey:"), index, objc.String(key))
+func (o_ Object) ValueAtIndexInPropertyWithKey(index uint /* primitive/slice/pointer. */, key objectivec.IObject) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueAtIndex:inPropertyWithKey:"), index, key)
 	return rv
 }
+
 
 // Returns the value for the property identified by a given key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/value(forKey:)
-func (o_ Object) ValueForKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForKey:"), objc.String(key))
+func (o_ Object) ValueForKey(key objectivec.IObject) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForKey:"), key)
 	return rv
 }
+
 
 // Returns the value for the derived property identified by a given key path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/value(forKeyPath:)
-func (o_ Object) ValueForKeyPath(keyPath string) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForKeyPath:"), objc.String(keyPath))
+func (o_ Object) ValueForKeyPath(keyPath objectivec.IObject) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForKeyPath:"), keyPath)
 	return rv
 }
+
 
 // Invoked by when it finds no property corresponding to a given key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/value(forUndefinedKey:)
-func (o_ Object) ValueForUndefinedKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForUndefinedKey:"), objc.String(key))
+func (o_ Object) ValueForUndefinedKey(key objectivec.IObject) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueForUndefinedKey:"), key)
 	return rv
 }
 
-// Returns the tool tip string to be displayed due to the cursor pausing at location within the tool tip rectangle identified by in the view .
+
+// Retrieves a named object from the collection specified by the passed key.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/view:stringForToolTip:point:userData:
-func (o_ Object) ViewStringForToolTipPointUserData(view unsafe.Pointer, tag unsafe.Pointer, point Point, data unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("view:stringForToolTip:point:userData:"), view, tag, point, data)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/value(withName:inPropertyWithKey:)
+func (o_ Object) ValueWithNameInPropertyWithKey(name objectivec.IObject, key objectivec.IObject) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueWithName:inPropertyWithKey:"), name, key)
 	return rv
 }
+
+
+// Retrieves an object by ID from the collection specified by the passed key.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/value(withUniqueID:inPropertyWithKey:)
+func (o_ Object) ValueWithUniqueIDInPropertyWithKey(uniqueID objectivec.IObject, key objectivec.IObject) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("valueWithUniqueID:inPropertyWithKey:"), uniqueID, key)
+	return rv
+}
+
+
+// Returns the class of the value that will be returned for the specified binding.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/valueClassForBinding(_:)
+func (o_ Object) ValueClassForBinding(binding BindingName /* not a class type */) objc.Class {
+	rv := objc.Send[objc.Class](o_.ID, objc.Sel("valueClassForBinding:"), binding)
+	return rv
+}
+
+
+// Loads a URL into a web frame.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInContainerLoad(_:inFrame:)
+func (o_ Object) WebPlugInContainerLoadRequestInFrame(request objectivec.IObject, target objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInContainerLoadRequest:inFrame:"), request, target)
+}
+
+
+// Tells the container to show a status message.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInContainerShowStatus(_:)
+func (o_ Object) WebPlugInContainerShowStatus(message objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInContainerShowStatus:"), message)
+}
+
+
+// Prepares the plug-in for deallocation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInDestroy()
+func (o_ Object) WebPlugInDestroy() {
+	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInDestroy"))
+}
+
+
+// Initializes the plug-in.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInInitialize()
+func (o_ Object) WebPlugInInitialize() {
+	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInInitialize"))
+}
+
+
+// Invoked when an error occurs loading the main resource.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInMainResourceDidFailWithError(_:)
+func (o_ Object) WebPlugInMainResourceDidFailWithError(error_ objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInMainResourceDidFailWithError:"), error_)
+}
+
+
+// Invoked when the connection successfully finishes loading data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInMainResourceDidFinishLoading()
+func (o_ Object) WebPlugInMainResourceDidFinishLoading() {
+	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInMainResourceDidFinishLoading"))
+}
+
+
+// Invoked when the connection loads data incrementally.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInMainResourceDidReceive(_:)-5b6f6
+func (o_ Object) WebPlugInMainResourceDidReceiveData(data objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInMainResourceDidReceiveData:"), data)
+}
+
+
+// Invoked when the connection receives sufficient data to construct the URL response for its request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInMainResourceDidReceive(_:)-6x7b9
+func (o_ Object) WebPlugInMainResourceDidReceiveResponse(response objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInMainResourceDidReceiveResponse:"), response)
+}
+
+
+// Controls plug-in behavior based on its selection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInSetIsSelected(_:)
+func (o_ Object) WebPlugInSetIsSelected(isSelected bool /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInSetIsSelected:"), isSelected)
+}
+
+
+// Tells the plug-in to start normal operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInStart()
+func (o_ Object) WebPlugInStart() {
+	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInStart"))
+}
+
+
+// Tells the plug-in to stop normal operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInStop()
+func (o_ Object) WebPlugInStop() {
+	objc.Send[objc.ID](o_.ID, objc.Sel("webPlugInStop"))
+}
+
 
 // Informs the observed object that the specified change is about to be executed at given indexes for a specified ordered to-many relationship.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/willChange(_:valuesAt:forKey:)
-func (o_ Object) WillChangeValuesAtIndexesForKey(changeKind unsafe.Pointer, indexes unsafe.Pointer, key string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("willChange:valuesAtIndexes:forKey:"), changeKind, indexes, objc.String(key))
+func (o_ Object) WillChangeValuesAtIndexesForKey(changeKind KeyValueChange /* not a class type */, indexes objectivec.IObject, key objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("willChange:valuesAtIndexes:forKey:"), changeKind, indexes, key)
 }
+
+
+// Informs the observed object that the value of a given property is about to change.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/willChangeValue(forKey:)
+func (o_ Object) WillChangeValueForKey(key objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("willChangeValueForKey:"), key)
+}
+
 
 // Informs the observed object that the specified change is about to be made to a specified unordered to-many relationship.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/willChangeValue(forKey:withSetMutation:using:)
-func (o_ Object) WillChangeValueForKeyWithSetMutationUsingObjects(key string, mutationKind unsafe.Pointer, objects objc.ID) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("willChangeValueForKey:withSetMutation:usingObjects:"), objc.String(key), mutationKind, objects)
+func (o_ Object) WillChangeValueForKeyWithSetMutationUsingObjects(key objectivec.IObject, mutationKind KeyValueSetMutationKind /* not a class type */, objects objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("willChangeValueForKey:withSetMutation:usingObjects:"), key, mutationKind, objects)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/workflowController(_:didError:)
-func (o_ Object) WorkflowControllerDidError(controller unsafe.Pointer, error unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("workflowController:didError:"), controller, error)
-}
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/workflowController(_:didRun:)
-func (o_ Object) WorkflowControllerDidRunAction(controller unsafe.Pointer, action unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("workflowController:didRunAction:"), controller, action)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/workflowController(_:willRun:)
-func (o_ Object) WorkflowControllerWillRunAction(controller unsafe.Pointer, action unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("workflowController:willRunAction:"), controller, action)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/workflowControllerDidRun(_:)
-func (o_ Object) WorkflowControllerDidRun(controller unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("workflowControllerDidRun:"), controller)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/workflowControllerDidStop(_:)
-func (o_ Object) WorkflowControllerDidStop(controller unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("workflowControllerDidStop:"), controller)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/workflowControllerWillRun(_:)
-func (o_ Object) WorkflowControllerWillRun(controller unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("workflowControllerWillRun:"), controller)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/workflowControllerWillStop(_:)
-func (o_ Object) WorkflowControllerWillStop(controller unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("workflowControllerWillStop:"), controller)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/write:length:
-func (o_ Object) WriteLength(data unsafe.Pointer, length unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("write:length:"), data, length)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityActivateBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityactivateblock
 func (o_ Object) AccessibilityActivateBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityActivateBlock"))
 	return rv
 }
 
 
-// SetAccessibilityActivateBlock sets the value of the accessibilityActivateBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityActivateBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityactivateblock
 func (o_ Object) SetAccessibilityActivateBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityActivateBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityActivationPoint
-func (o_ Object) AccessibilityActivationPoint() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](o_.ID, objc.Sel("accessibilityActivationPoint"))
-	return rv
-}
 
 
-// SetAccessibilityActivationPoint sets the value of the accessibilityActivationPoint property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityActivationPoint
-func (o_ Object) SetAccessibilityActivationPoint(value coregraphics.CGPoint) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityActivationPoint:"), value)
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityActivationPointBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityactivationpointblock
 func (o_ Object) AccessibilityActivationPointBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityActivationPointBlock"))
 	return rv
 }
 
 
-// SetAccessibilityActivationPointBlock sets the value of the accessibilityActivationPointBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityActivationPointBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityactivationpointblock
 func (o_ Object) SetAccessibilityActivationPointBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityActivationPointBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedHint
-func (o_ Object) AccessibilityAttributedHint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityAttributedHint"))
-	return rv
-}
 
 
-// SetAccessibilityAttributedHint sets the value of the accessibilityAttributedHint property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedHint
-func (o_ Object) SetAccessibilityAttributedHint(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityAttributedHint:"), value)
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedHintBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityattributedhintblock
 func (o_ Object) AccessibilityAttributedHintBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityAttributedHintBlock"))
 	return rv
 }
 
 
-// SetAccessibilityAttributedHintBlock sets the value of the accessibilityAttributedHintBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedHintBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityattributedhintblock
 func (o_ Object) SetAccessibilityAttributedHintBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityAttributedHintBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedLabel
-func (o_ Object) AccessibilityAttributedLabel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityAttributedLabel"))
-	return rv
-}
 
 
-// SetAccessibilityAttributedLabel sets the value of the accessibilityAttributedLabel property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedLabel
-func (o_ Object) SetAccessibilityAttributedLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityAttributedLabel:"), value)
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedLabelBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityattributedlabelblock
 func (o_ Object) AccessibilityAttributedLabelBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityAttributedLabelBlock"))
 	return rv
 }
 
 
-// SetAccessibilityAttributedLabelBlock sets the value of the accessibilityAttributedLabelBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedLabelBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityattributedlabelblock
 func (o_ Object) SetAccessibilityAttributedLabelBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityAttributedLabelBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedUserInputLabels
-func (o_ Object) AccessibilityAttributedUserInputLabels() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](o_.ID, objc.Sel("accessibilityAttributedUserInputLabels"))
-	return rv
-}
 
 
-// SetAccessibilityAttributedUserInputLabels sets the value of the accessibilityAttributedUserInputLabels property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedUserInputLabels
-func (o_ Object) SetAccessibilityAttributedUserInputLabels(value []unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityAttributedUserInputLabels:"), value)
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedUserInputLabelsBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityattributeduserinputlabelsblock
 func (o_ Object) AccessibilityAttributedUserInputLabelsBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityAttributedUserInputLabelsBlock"))
 	return rv
 }
 
 
-// SetAccessibilityAttributedUserInputLabelsBlock sets the value of the accessibilityAttributedUserInputLabelsBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedUserInputLabelsBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityattributeduserinputlabelsblock
 func (o_ Object) SetAccessibilityAttributedUserInputLabelsBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityAttributedUserInputLabelsBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedValue
-func (o_ Object) AccessibilityAttributedValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityAttributedValue"))
-	return rv
-}
 
 
-// SetAccessibilityAttributedValue sets the value of the accessibilityAttributedValue property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedValue
-func (o_ Object) SetAccessibilityAttributedValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityAttributedValue:"), value)
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedValueBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityattributedvalueblock
 func (o_ Object) AccessibilityAttributedValueBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityAttributedValueBlock"))
 	return rv
 }
 
 
-// SetAccessibilityAttributedValueBlock sets the value of the accessibilityAttributedValueBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedValueBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityattributedvalueblock
 func (o_ Object) SetAccessibilityAttributedValueBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityAttributedValueBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityContainerType
-func (o_ Object) AccessibilityContainerType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityContainerType"))
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitycontainertype
+func (o_ Object) AccessibilityContainerType() objectivec.IObject {
+	rv := objc.Send[IObject](o_.ID, objc.Sel("accessibilityContainerType"))
 	return rv
 }
 
 
-// SetAccessibilityContainerType sets the value of the accessibilityContainerType property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityContainerType
-func (o_ Object) SetAccessibilityContainerType(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitycontainertype
+func (o_ Object) SetAccessibilityContainerType(value objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityContainerType:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityContainerTypeBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitycontainertypeblock
 func (o_ Object) AccessibilityContainerTypeBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityContainerTypeBlock"))
 	return rv
 }
 
 
-// SetAccessibilityContainerTypeBlock sets the value of the accessibilityContainerTypeBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityContainerTypeBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitycontainertypeblock
 func (o_ Object) SetAccessibilityContainerTypeBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityContainerTypeBlock:"), value)
 }
-// An array of custom actions to display along with the built-in actions.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomActions
-func (o_ Object) AccessibilityCustomActions() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](o_.ID, objc.Sel("accessibilityCustomActions"))
-	return rv
-}
 
 
-// SetAccessibilityCustomActions sets the value of the accessibilityCustomActions property.
-// An array of custom actions to display along with the built-in actions.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomActions
-func (o_ Object) SetAccessibilityCustomActions(value []unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityCustomActions:"), value)
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomActionsBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitycustomactionsblock
 func (o_ Object) AccessibilityCustomActionsBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityCustomActionsBlock"))
 	return rv
 }
 
 
-// SetAccessibilityCustomActionsBlock sets the value of the accessibilityCustomActionsBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomActionsBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitycustomactionsblock
 func (o_ Object) SetAccessibilityCustomActionsBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityCustomActionsBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomRotors
-func (o_ Object) AccessibilityCustomRotors() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](o_.ID, objc.Sel("accessibilityCustomRotors"))
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitycustomrotors
+func (o_ Object) AccessibilityCustomRotors() objectivec.IObject {
+	rv := objc.Send[IObject](o_.ID, objc.Sel("accessibilityCustomRotors"))
 	return rv
 }
 
 
-// SetAccessibilityCustomRotors sets the value of the accessibilityCustomRotors property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomRotors
-func (o_ Object) SetAccessibilityCustomRotors(value []unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitycustomrotors
+func (o_ Object) SetAccessibilityCustomRotors(value objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityCustomRotors:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomRotorsBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitycustomrotorsblock
 func (o_ Object) AccessibilityCustomRotorsBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityCustomRotorsBlock"))
 	return rv
 }
 
 
-// SetAccessibilityCustomRotorsBlock sets the value of the accessibilityCustomRotorsBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomRotorsBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitycustomrotorsblock
 func (o_ Object) SetAccessibilityCustomRotorsBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityCustomRotorsBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityDecrementBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitydecrementblock
 func (o_ Object) AccessibilityDecrementBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityDecrementBlock"))
 	return rv
 }
 
 
-// SetAccessibilityDecrementBlock sets the value of the accessibilityDecrementBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityDecrementBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitydecrementblock
 func (o_ Object) SetAccessibilityDecrementBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityDecrementBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityDirectTouchOptions
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitydirecttouchoptions
 func (o_ Object) AccessibilityDirectTouchOptions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityDirectTouchOptions"))
 	return rv
 }
 
 
-// SetAccessibilityDirectTouchOptions sets the value of the accessibilityDirectTouchOptions property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityDirectTouchOptions
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitydirecttouchoptions
 func (o_ Object) SetAccessibilityDirectTouchOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityDirectTouchOptions:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElements
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityelements
 func (o_ Object) AccessibilityElements() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityElements"))
 	return rv
 }
 
 
-// SetAccessibilityElements sets the value of the accessibilityElements property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElements
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityelements
 func (o_ Object) SetAccessibilityElements(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityElements:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementsBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityelementsblock
 func (o_ Object) AccessibilityElementsBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityElementsBlock"))
 	return rv
 }
 
 
-// SetAccessibilityElementsBlock sets the value of the accessibilityElementsBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementsBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityelementsblock
 func (o_ Object) SetAccessibilityElementsBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityElementsBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementsHidden
-func (o_ Object) AccessibilityElementsHidden() bool {
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityelementshidden
+func (o_ Object) AccessibilityElementsHidden() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityElementsHidden"))
 	return rv
 }
 
 
-// SetAccessibilityElementsHidden sets the value of the accessibilityElementsHidden property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementsHidden
-func (o_ Object) SetAccessibilityElementsHidden(value bool) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityelementshidden
+func (o_ Object) SetAccessibilityElementsHidden(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityElementsHidden:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementsHiddenBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityelementshiddenblock
 func (o_ Object) AccessibilityElementsHiddenBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityElementsHiddenBlock"))
 	return rv
 }
 
 
-// SetAccessibilityElementsHiddenBlock sets the value of the accessibilityElementsHiddenBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementsHiddenBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityelementshiddenblock
 func (o_ Object) SetAccessibilityElementsHiddenBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityElementsHiddenBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityExpandedStatus
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityexpandedstatus
 func (o_ Object) AccessibilityExpandedStatus() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityExpandedStatus"))
 	return rv
 }
 
 
-// SetAccessibilityExpandedStatus sets the value of the accessibilityExpandedStatus property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityExpandedStatus
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityexpandedstatus
 func (o_ Object) SetAccessibilityExpandedStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityExpandedStatus:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityExpandedStatusBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityexpandedstatusblock
 func (o_ Object) AccessibilityExpandedStatusBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityExpandedStatusBlock"))
 	return rv
 }
 
 
-// SetAccessibilityExpandedStatusBlock sets the value of the accessibilityExpandedStatusBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityExpandedStatusBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityexpandedstatusblock
 func (o_ Object) SetAccessibilityExpandedStatusBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityExpandedStatusBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityFocusedUIElement
-func (o_ Object) AccessibilityFocusedUIElement() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityFocusedUIElement"))
-	return rv
-}
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityFrame
-func (o_ Object) AccessibilityFrame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](o_.ID, objc.Sel("accessibilityFrame"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityfocuseduielement
+func (o_ Object) AccessibilityFocusedUIElement() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityFocusedUIElement"))
 	return rv
 }
 
 
-// SetAccessibilityFrame sets the value of the accessibilityFrame property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityFrame
-func (o_ Object) SetAccessibilityFrame(value coregraphics.CGRect) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityFrame:"), value)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityfocuseduielement
+func (o_ Object) SetAccessibilityFocusedUIElement(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityFocusedUIElement:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityFrameBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityframeblock
 func (o_ Object) AccessibilityFrameBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityFrameBlock"))
 	return rv
 }
 
 
-// SetAccessibilityFrameBlock sets the value of the accessibilityFrameBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityFrameBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityframeblock
 func (o_ Object) SetAccessibilityFrameBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityFrameBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHeaderElements
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityheaderelements
 func (o_ Object) AccessibilityHeaderElements() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityHeaderElements"))
 	return rv
 }
 
 
-// SetAccessibilityHeaderElements sets the value of the accessibilityHeaderElements property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHeaderElements
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityheaderelements
 func (o_ Object) SetAccessibilityHeaderElements(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityHeaderElements:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHeaderElementsBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityheaderelementsblock
 func (o_ Object) AccessibilityHeaderElementsBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityHeaderElementsBlock"))
 	return rv
 }
 
 
-// SetAccessibilityHeaderElementsBlock sets the value of the accessibilityHeaderElementsBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHeaderElementsBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityheaderelementsblock
 func (o_ Object) SetAccessibilityHeaderElementsBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityHeaderElementsBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHint
-func (o_ Object) AccessibilityHint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityHint"))
-	return rv
-}
 
 
-// SetAccessibilityHint sets the value of the accessibilityHint property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHint
-func (o_ Object) SetAccessibilityHint(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityHint:"), value)
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHintBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityhintblock
 func (o_ Object) AccessibilityHintBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityHintBlock"))
 	return rv
 }
 
 
-// SetAccessibilityHintBlock sets the value of the accessibilityHintBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHintBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityhintblock
 func (o_ Object) SetAccessibilityHintBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityHintBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityIdentifierBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityidentifierblock
 func (o_ Object) AccessibilityIdentifierBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityIdentifierBlock"))
 	return rv
 }
 
 
-// SetAccessibilityIdentifierBlock sets the value of the accessibilityIdentifierBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityIdentifierBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityidentifierblock
 func (o_ Object) SetAccessibilityIdentifierBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityIdentifierBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityIncrementBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityincrementblock
 func (o_ Object) AccessibilityIncrementBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityIncrementBlock"))
 	return rv
 }
 
 
-// SetAccessibilityIncrementBlock sets the value of the accessibilityIncrementBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityIncrementBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityincrementblock
 func (o_ Object) SetAccessibilityIncrementBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityIncrementBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLabel
-func (o_ Object) AccessibilityLabel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityLabel"))
-	return rv
-}
 
 
-// SetAccessibilityLabel sets the value of the accessibilityLabel property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLabel
-func (o_ Object) SetAccessibilityLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityLabel:"), value)
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLabelBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitylabelblock
 func (o_ Object) AccessibilityLabelBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityLabelBlock"))
 	return rv
 }
 
 
-// SetAccessibilityLabelBlock sets the value of the accessibilityLabelBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLabelBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitylabelblock
 func (o_ Object) SetAccessibilityLabelBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityLabelBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLanguage
-func (o_ Object) AccessibilityLanguage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityLanguage"))
-	return rv
-}
 
 
-// SetAccessibilityLanguage sets the value of the accessibilityLanguage property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLanguage
-func (o_ Object) SetAccessibilityLanguage(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityLanguage:"), value)
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLanguageBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitylanguageblock
 func (o_ Object) AccessibilityLanguageBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityLanguageBlock"))
 	return rv
 }
 
 
-// SetAccessibilityLanguageBlock sets the value of the accessibilityLanguageBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLanguageBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitylanguageblock
 func (o_ Object) SetAccessibilityLanguageBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityLanguageBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityMagicTapBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitymagictapblock
 func (o_ Object) AccessibilityMagicTapBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityMagicTapBlock"))
 	return rv
 }
 
 
-// SetAccessibilityMagicTapBlock sets the value of the accessibilityMagicTapBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityMagicTapBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitymagictapblock
 func (o_ Object) SetAccessibilityMagicTapBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityMagicTapBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityNavigationStyle
-func (o_ Object) AccessibilityNavigationStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityNavigationStyle"))
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitynavigationstyle
+func (o_ Object) AccessibilityNavigationStyle() objectivec.IObject {
+	rv := objc.Send[IObject](o_.ID, objc.Sel("accessibilityNavigationStyle"))
 	return rv
 }
 
 
-// SetAccessibilityNavigationStyle sets the value of the accessibilityNavigationStyle property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityNavigationStyle
-func (o_ Object) SetAccessibilityNavigationStyle(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitynavigationstyle
+func (o_ Object) SetAccessibilityNavigationStyle(value objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityNavigationStyle:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityNavigationStyleBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitynavigationstyleblock
 func (o_ Object) AccessibilityNavigationStyleBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityNavigationStyleBlock"))
 	return rv
 }
 
 
-// SetAccessibilityNavigationStyleBlock sets the value of the accessibilityNavigationStyleBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityNavigationStyleBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitynavigationstyleblock
 func (o_ Object) SetAccessibilityNavigationStyleBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityNavigationStyleBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityNextTextNavigationElement
-func (o_ Object) AccessibilityNextTextNavigationElement() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityNextTextNavigationElement"))
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitynexttextnavigationelement
+func (o_ Object) AccessibilityNextTextNavigationElement() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityNextTextNavigationElement"))
 	return rv
 }
 
 
-// SetAccessibilityNextTextNavigationElement sets the value of the accessibilityNextTextNavigationElement property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityNextTextNavigationElement
-func (o_ Object) SetAccessibilityNextTextNavigationElement(value objc.ID) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitynexttextnavigationelement
+func (o_ Object) SetAccessibilityNextTextNavigationElement(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityNextTextNavigationElement:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityNextTextNavigationElementBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitynexttextnavigationelementblock
 func (o_ Object) AccessibilityNextTextNavigationElementBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityNextTextNavigationElementBlock"))
 	return rv
 }
 
 
-// SetAccessibilityNextTextNavigationElementBlock sets the value of the accessibilityNextTextNavigationElementBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityNextTextNavigationElementBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitynexttextnavigationelementblock
 func (o_ Object) SetAccessibilityNextTextNavigationElementBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityNextTextNavigationElementBlock:"), value)
 }
+
+
 // A Boolean value that indicates whether a custom accessibility object sends a notification when its corresponding UI element is destroyed.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityNotifiesWhenDestroyed
-func (o_ Object) AccessibilityNotifiesWhenDestroyed() bool {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitynotifieswhendestroyed
+func (o_ Object) AccessibilityNotifiesWhenDestroyed() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityNotifiesWhenDestroyed"))
 	return rv
 }
 
+
+// A Boolean value that indicates whether a custom accessibility object sends a notification when its corresponding UI element is destroyed.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPath
-func (o_ Object) AccessibilityPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityPath"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitynotifieswhendestroyed
+func (o_ Object) SetAccessibilityNotifiesWhenDestroyed(value bool /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityNotifiesWhenDestroyed:"), value)
 }
 
 
-// SetAccessibilityPath sets the value of the accessibilityPath property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPath
-func (o_ Object) SetAccessibilityPath(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityPath:"), value)
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPathBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitypathblock
 func (o_ Object) AccessibilityPathBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityPathBlock"))
 	return rv
 }
 
 
-// SetAccessibilityPathBlock sets the value of the accessibilityPathBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPathBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitypathblock
 func (o_ Object) SetAccessibilityPathBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityPathBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPerformEscapeBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityperformescapeblock
 func (o_ Object) AccessibilityPerformEscapeBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityPerformEscapeBlock"))
 	return rv
 }
 
 
-// SetAccessibilityPerformEscapeBlock sets the value of the accessibilityPerformEscapeBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPerformEscapeBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityperformescapeblock
 func (o_ Object) SetAccessibilityPerformEscapeBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityPerformEscapeBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPreviousTextNavigationElement
-func (o_ Object) AccessibilityPreviousTextNavigationElement() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityPreviousTextNavigationElement"))
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityprevioustextnavigationelement
+func (o_ Object) AccessibilityPreviousTextNavigationElement() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityPreviousTextNavigationElement"))
 	return rv
 }
 
 
-// SetAccessibilityPreviousTextNavigationElement sets the value of the accessibilityPreviousTextNavigationElement property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPreviousTextNavigationElement
-func (o_ Object) SetAccessibilityPreviousTextNavigationElement(value objc.ID) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityprevioustextnavigationelement
+func (o_ Object) SetAccessibilityPreviousTextNavigationElement(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityPreviousTextNavigationElement:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPreviousTextNavigationElementBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityprevioustextnavigationelementblock
 func (o_ Object) AccessibilityPreviousTextNavigationElementBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityPreviousTextNavigationElementBlock"))
 	return rv
 }
 
 
-// SetAccessibilityPreviousTextNavigationElementBlock sets the value of the accessibilityPreviousTextNavigationElementBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPreviousTextNavigationElementBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityprevioustextnavigationelementblock
 func (o_ Object) SetAccessibilityPreviousTextNavigationElementBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityPreviousTextNavigationElementBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityRespondsToUserInteraction
-func (o_ Object) AccessibilityRespondsToUserInteraction() bool {
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityrespondstouserinteraction
+func (o_ Object) AccessibilityRespondsToUserInteraction() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityRespondsToUserInteraction"))
 	return rv
 }
 
 
-// SetAccessibilityRespondsToUserInteraction sets the value of the accessibilityRespondsToUserInteraction property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityRespondsToUserInteraction
-func (o_ Object) SetAccessibilityRespondsToUserInteraction(value bool) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityrespondstouserinteraction
+func (o_ Object) SetAccessibilityRespondsToUserInteraction(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityRespondsToUserInteraction:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityRespondsToUserInteractionBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityrespondstouserinteractionblock
 func (o_ Object) AccessibilityRespondsToUserInteractionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityRespondsToUserInteractionBlock"))
 	return rv
 }
 
 
-// SetAccessibilityRespondsToUserInteractionBlock sets the value of the accessibilityRespondsToUserInteractionBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityRespondsToUserInteractionBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityrespondstouserinteractionblock
 func (o_ Object) SetAccessibilityRespondsToUserInteractionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityRespondsToUserInteractionBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityShouldGroupAccessibilityChildrenBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityshouldgroupaccessibilitychildrenblock
 func (o_ Object) AccessibilityShouldGroupAccessibilityChildrenBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityShouldGroupAccessibilityChildrenBlock"))
 	return rv
 }
 
 
-// SetAccessibilityShouldGroupAccessibilityChildrenBlock sets the value of the accessibilityShouldGroupAccessibilityChildrenBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityShouldGroupAccessibilityChildrenBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityshouldgroupaccessibilitychildrenblock
 func (o_ Object) SetAccessibilityShouldGroupAccessibilityChildrenBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityShouldGroupAccessibilityChildrenBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTextInputResponder
-func (o_ Object) AccessibilityTextInputResponder() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityTextInputResponder"))
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytextinputresponder
+func (o_ Object) AccessibilityTextInputResponder() objectivec.IObject {
+	rv := objc.Send[IObject](o_.ID, objc.Sel("accessibilityTextInputResponder"))
 	return rv
 }
 
 
-// SetAccessibilityTextInputResponder sets the value of the accessibilityTextInputResponder property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTextInputResponder
-func (o_ Object) SetAccessibilityTextInputResponder(value objc.ID) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytextinputresponder
+func (o_ Object) SetAccessibilityTextInputResponder(value objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityTextInputResponder:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTextInputResponderBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytextinputresponderblock
 func (o_ Object) AccessibilityTextInputResponderBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityTextInputResponderBlock"))
 	return rv
 }
 
 
-// SetAccessibilityTextInputResponderBlock sets the value of the accessibilityTextInputResponderBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTextInputResponderBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytextinputresponderblock
 func (o_ Object) SetAccessibilityTextInputResponderBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityTextInputResponderBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTextualContext
-func (o_ Object) AccessibilityTextualContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityTextualContext"))
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytextualcontext
+func (o_ Object) AccessibilityTextualContext() objectivec.IObject {
+	rv := objc.Send[IObject](o_.ID, objc.Sel("accessibilityTextualContext"))
 	return rv
 }
 
 
-// SetAccessibilityTextualContext sets the value of the accessibilityTextualContext property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTextualContext
-func (o_ Object) SetAccessibilityTextualContext(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytextualcontext
+func (o_ Object) SetAccessibilityTextualContext(value objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityTextualContext:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTextualContextBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytextualcontextblock
 func (o_ Object) AccessibilityTextualContextBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityTextualContextBlock"))
 	return rv
 }
 
 
-// SetAccessibilityTextualContextBlock sets the value of the accessibilityTextualContextBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTextualContextBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytextualcontextblock
 func (o_ Object) SetAccessibilityTextualContextBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityTextualContextBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTraits
-func (o_ Object) AccessibilityTraits() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityTraits"))
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytraits
+func (o_ Object) AccessibilityTraits() objectivec.IObject {
+	rv := objc.Send[IObject](o_.ID, objc.Sel("accessibilityTraits"))
 	return rv
 }
 
 
-// SetAccessibilityTraits sets the value of the accessibilityTraits property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTraits
-func (o_ Object) SetAccessibilityTraits(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytraits
+func (o_ Object) SetAccessibilityTraits(value objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityTraits:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTraitsBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytraitsblock
 func (o_ Object) AccessibilityTraitsBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityTraitsBlock"))
 	return rv
 }
 
 
-// SetAccessibilityTraitsBlock sets the value of the accessibilityTraitsBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTraitsBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitytraitsblock
 func (o_ Object) SetAccessibilityTraitsBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityTraitsBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityUserInputLabels
-func (o_ Object) AccessibilityUserInputLabels() []string {
-	rv := objc.Send[[]string](o_.ID, objc.Sel("accessibilityUserInputLabels"))
-	return rv
-}
 
 
-// SetAccessibilityUserInputLabels sets the value of the accessibilityUserInputLabels property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityUserInputLabels
-func (o_ Object) SetAccessibilityUserInputLabels(value []string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityUserInputLabels:"), value)
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityUserInputLabelsBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityuserinputlabelsblock
 func (o_ Object) AccessibilityUserInputLabelsBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityUserInputLabelsBlock"))
 	return rv
 }
 
 
-// SetAccessibilityUserInputLabelsBlock sets the value of the accessibilityUserInputLabelsBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityUserInputLabelsBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityuserinputlabelsblock
 func (o_ Object) SetAccessibilityUserInputLabelsBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityUserInputLabelsBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityValue
-func (o_ Object) AccessibilityValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityValue"))
-	return rv
-}
 
 
-// SetAccessibilityValue sets the value of the accessibilityValue property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityValue
-func (o_ Object) SetAccessibilityValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityValue:"), value)
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityValueBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityvalueblock
 func (o_ Object) AccessibilityValueBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityValueBlock"))
 	return rv
 }
 
 
-// SetAccessibilityValueBlock sets the value of the accessibilityValueBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityValueBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityvalueblock
 func (o_ Object) SetAccessibilityValueBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityValueBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityViewIsModal
-func (o_ Object) AccessibilityViewIsModal() bool {
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityviewismodal
+func (o_ Object) AccessibilityViewIsModal() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("accessibilityViewIsModal"))
 	return rv
 }
 
 
-// SetAccessibilityViewIsModal sets the value of the accessibilityViewIsModal property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityViewIsModal
-func (o_ Object) SetAccessibilityViewIsModal(value bool) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityviewismodal
+func (o_ Object) SetAccessibilityViewIsModal(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityViewIsModal:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityViewIsModalBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityviewismodalblock
 func (o_ Object) AccessibilityViewIsModalBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityViewIsModalBlock"))
 	return rv
 }
 
 
-// SetAccessibilityViewIsModalBlock sets the value of the accessibilityViewIsModalBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityViewIsModalBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityviewismodalblock
 func (o_ Object) SetAccessibilityViewIsModalBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityViewIsModalBlock:"), value)
 }
-// An array of objects containing the names of immutable values that instances of the receiver’s class contain.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/attributeKeys
-func (o_ Object) AttributeKeys() []string {
-	rv := objc.Send[[]string](o_.ID, objc.Sel("attributeKeys"))
-	return rv
-}
+
 
 // A proxy for the receiving object
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/autoContentAccessingProxy
-func (o_ Object) AutoContentAccessingProxy() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("autoContentAccessingProxy"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/autocontentaccessingproxy
+func (o_ Object) AutoContentAccessingProxy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("autoContentAccessingProxy"))
 	return rv
 }
 
+
+// A proxy for the receiving object
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/automationElements
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/autocontentaccessingproxy
+func (o_ Object) SetAutoContentAccessingProxy(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setAutoContentAccessingProxy:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/automationelements
 func (o_ Object) AutomationElements() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("automationElements"))
 	return rv
 }
 
 
-// SetAutomationElements sets the value of the automationElements property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/automationElements
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/automationelements
 func (o_ Object) SetAutomationElements(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAutomationElements:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/automationElementsBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/automationelementsblock
 func (o_ Object) AutomationElementsBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("automationElementsBlock"))
 	return rv
 }
 
 
-// SetAutomationElementsBlock sets the value of the automationElementsBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/automationElementsBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/automationelementsblock
 func (o_ Object) SetAutomationElementsBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAutomationElementsBlock:"), value)
 }
+
+
 // The kind of container that contains this element.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityContainerType
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/browseraccessibilitycontainertype
 func (o_ Object) BrowserAccessibilityContainerType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("browserAccessibilityContainerType"))
 	return rv
 }
 
 
-// SetBrowserAccessibilityContainerType sets the value of the browserAccessibilityContainerType property.
 // The kind of container that contains this element.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityContainerType
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/browseraccessibilitycontainertype
 func (o_ Object) SetBrowserAccessibilityContainerType(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setBrowserAccessibilityContainerType:"), value)
 }
-// A string that’s the element’s value for aria-current.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityCurrentStatus
-func (o_ Object) BrowserAccessibilityCurrentStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("browserAccessibilityCurrentStatus"))
-	return rv
-}
 
 
-// SetBrowserAccessibilityCurrentStatus sets the value of the browserAccessibilityCurrentStatus property.
-// A string that’s the element’s value for aria-current.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityCurrentStatus
-func (o_ Object) SetBrowserAccessibilityCurrentStatus(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBrowserAccessibilityCurrentStatus:"), value)
-}
 // A Boolean value that indicates whether the element has native focus in the browser Document Object Model.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityHasDOMFocus
-func (o_ Object) BrowserAccessibilityHasDOMFocus() bool {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/browseraccessibilityhasdomfocus
+func (o_ Object) BrowserAccessibilityHasDOMFocus() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("browserAccessibilityHasDOMFocus"))
 	return rv
 }
 
 
-// SetBrowserAccessibilityHasDOMFocus sets the value of the browserAccessibilityHasDOMFocus property.
 // A Boolean value that indicates whether the element has native focus in the browser Document Object Model.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityHasDOMFocus
-func (o_ Object) SetBrowserAccessibilityHasDOMFocus(value bool) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/browseraccessibilityhasdomfocus
+func (o_ Object) SetBrowserAccessibilityHasDOMFocus(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setBrowserAccessibilityHasDOMFocus:"), value)
 }
+
+
 // A Boolean value that’s the element’s value for aria-required.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityIsRequired
-func (o_ Object) BrowserAccessibilityIsRequired() bool {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/browseraccessibilityisrequired
+func (o_ Object) BrowserAccessibilityIsRequired() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("browserAccessibilityIsRequired"))
 	return rv
 }
 
 
-// SetBrowserAccessibilityIsRequired sets the value of the browserAccessibilityIsRequired property.
 // A Boolean value that’s the element’s value for aria-required.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityIsRequired
-func (o_ Object) SetBrowserAccessibilityIsRequired(value bool) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/browseraccessibilityisrequired
+func (o_ Object) SetBrowserAccessibilityIsRequired(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setBrowserAccessibilityIsRequired:"), value)
 }
+
+
 // The element’s value for aria-pressed.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityPressedState
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/browseraccessibilitypressedstate
 func (o_ Object) BrowserAccessibilityPressedState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("browserAccessibilityPressedState"))
 	return rv
 }
 
 
-// SetBrowserAccessibilityPressedState sets the value of the browserAccessibilityPressedState property.
 // The element’s value for aria-pressed.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityPressedState
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/browseraccessibilitypressedstate
 func (o_ Object) SetBrowserAccessibilityPressedState(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setBrowserAccessibilityPressedState:"), value)
 }
-// A string that describes the element’s role for assistive technologies.
+
+
+// The receiver’s Apple event type code, as stored in the
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityRoleDescription
-func (o_ Object) BrowserAccessibilityRoleDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("browserAccessibilityRoleDescription"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/classcode
+func (o_ Object) ClassCode() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](o_.ID, objc.Sel("classCode"))
 	return rv
 }
 
 
-// SetBrowserAccessibilityRoleDescription sets the value of the browserAccessibilityRoleDescription property.
-// A string that describes the element’s role for assistive technologies.
-
+// The receiver’s Apple event type code, as stored in the
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilityRoleDescription
-func (o_ Object) SetBrowserAccessibilityRoleDescription(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBrowserAccessibilityRoleDescription:"), value)
-}
-// A string that’s the element’s value for aria-sort.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilitySortDirection
-func (o_ Object) BrowserAccessibilitySortDirection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("browserAccessibilitySortDirection"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/classcode
+func (o_ Object) SetClassCode(value uint32 /* not a class type */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setClassCode:"), value)
 }
 
-
-// SetBrowserAccessibilitySortDirection sets the value of the browserAccessibilitySortDirection property.
-// A string that’s the element’s value for aria-sort.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/browserAccessibilitySortDirection
-func (o_ Object) SetBrowserAccessibilitySortDirection(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBrowserAccessibilitySortDirection:"), value)
-}
-// The receiver’s Apple event type code, as stored in the object for the object’s class.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/classCode
-func (o_ Object) ClassCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("classCode"))
-	return rv
-}
-
-// An object containing information about the attributes and relationships of the receiver’s class.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/classDescription
-func (o_ Object) ClassDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("classDescription"))
-	return rv
-}
 
 // The class to substitute for the receiver’s own class during archiving.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/classForArchiver
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/classforarchiver
 func (o_ Object) ClassForArchiver() objc.Class {
 	rv := objc.Send[objc.Class](o_.ID, objc.Sel("classForArchiver"))
 	return rv
 }
 
+
+// The class to substitute for the receiver’s own class during archiving.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/classforarchiver
+func (o_ Object) SetClassForArchiver(value objc.Class) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setClassForArchiver:"), value)
+}
+
+
 // Overridden by subclasses to substitute a class other than its own during coding.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/classForCoder
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/classforcoder
 func (o_ Object) ClassForCoder() objc.Class {
 	rv := objc.Send[objc.Class](o_.ID, objc.Sel("classForCoder"))
 	return rv
 }
 
+
+// Overridden by subclasses to substitute a class other than its own during coding.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/classforcoder
+func (o_ Object) SetClassForCoder(value objc.Class) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setClassForCoder:"), value)
+}
+
+
 // Subclasses to substitute a new class for instances during keyed archiving.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/classForKeyedArchiver
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/classforkeyedarchiver
 func (o_ Object) ClassForKeyedArchiver() objc.Class {
 	rv := objc.Send[objc.Class](o_.ID, objc.Sel("classForKeyedArchiver"))
 	return rv
 }
 
-// Class to substitute for the receiver in distribution encoding.
+
+// Subclasses to substitute a new class for instances during keyed archiving.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/classForPortCoder
-func (o_ Object) ClassForPortCoder() objc.Class {
-	rv := objc.Send[objc.Class](o_.ID, objc.Sel("classForPortCoder"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/classforkeyedarchiver
+func (o_ Object) SetClassForKeyedArchiver(value objc.Class) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setClassForKeyedArchiver:"), value)
 }
 
-// A string containing the name of the class.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/className
-func (o_ Object) ClassName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("className"))
-	return rv
-}
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isAccessibilityElement
-func (o_ Object) IsAccessibilityElement() bool {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/isaccessibilityelement
+func (o_ Object) IsAccessibilityElement() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isAccessibilityElement"))
 	return rv
 }
 
 
-// SetIsAccessibilityElement sets the value of the isAccessibilityElement property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isAccessibilityElement
-func (o_ Object) SetIsAccessibilityElement(value bool) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/isaccessibilityelement
+func (o_ Object) SetIsAccessibilityElement(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsAccessibilityElement:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isAccessibilityElementBlock
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/isaccessibilityelementblock
 func (o_ Object) IsAccessibilityElementBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("isAccessibilityElementBlock"))
 	return rv
 }
 
 
-// SetIsAccessibilityElementBlock sets the value of the isAccessibilityElementBlock property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isAccessibilityElementBlock
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/isaccessibilityelementblock
 func (o_ Object) SetIsAccessibilityElementBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsAccessibilityElementBlock:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isSelectable
-func (o_ Object) Selectable() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("selectable"))
-	return rv
-}
 
-// Returns an object specifier for the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/objectSpecifier
-func (o_ Object) ObjectSpecifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("objectSpecifier"))
-	return rv
-}
 
-// An -keyed dictionary of the receiver’s scriptable properties.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingProperties
-func (o_ Object) ScriptingProperties() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("scriptingProperties"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/isselectable
+func (o_ Object) IsSelectable() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("isSelectable"))
 	return rv
 }
 
 
-// SetScriptingProperties sets the value of the scriptingProperties property.
-// An -keyed dictionary of the receiver’s scriptable properties.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/scriptingProperties
-func (o_ Object) SetScriptingProperties(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setScriptingProperties:"), value)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/isselectable
+func (o_ Object) SetIsSelectable(value bool /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setIsSelectable:"), value)
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/shouldGroupAccessibilityChildren
-func (o_ Object) ShouldGroupAccessibilityChildren() bool {
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/shouldgroupaccessibilitychildren
+func (o_ Object) ShouldGroupAccessibilityChildren() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("shouldGroupAccessibilityChildren"))
 	return rv
 }
 
 
-// SetShouldGroupAccessibilityChildren sets the value of the shouldGroupAccessibilityChildren property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/shouldGroupAccessibilityChildren
-func (o_ Object) SetShouldGroupAccessibilityChildren(value bool) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/objectivec/nsobject-swift.class/shouldgroupaccessibilitychildren
+func (o_ Object) SetShouldGroupAccessibilityChildren(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setShouldGroupAccessibilityChildren:"), value)
-}
-// An array containing the keys for the to-many relationship properties of the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/toManyRelationshipKeys
-func (o_ Object) ToManyRelationshipKeys() []string {
-	rv := objc.Send[[]string](o_.ID, objc.Sel("toManyRelationshipKeys"))
-	return rv
-}
-
-// The keys for the to-one relationship properties of the receiver, if any.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/toOneRelationshipKeys
-func (o_ Object) ToOneRelationshipKeys() []string {
-	rv := objc.Send[[]string](o_.ID, objc.Sel("toOneRelationshipKeys"))
-	return rv
-}
-
-// Returns the plug-in selection color.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/webPlugInContainerSelectionColor
-func (o_ Object) WebPlugInContainerSelectionColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("webPlugInContainerSelectionColor"))
-	return rv
 }
 
 

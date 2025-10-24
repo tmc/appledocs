@@ -157,13 +157,26 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 			if isGoPrimitive(strippedType) {
 				return strippedType, true
 			}
+			// Check framework hierarchy - prevent lower-level frameworks from importing higher-level ones
+			// (fixes appledocs-519: ObjectiveC shouldn't import UIKit types)
+			currentLevel := getFrameworkLevel(strings.ToLower(framework))
+			targetLevel := getFrameworkLevel(frameworkPkg)
+			if currentLevel >= 0 && targetLevel > currentLevel {
+				// Higher-level framework dependency detected - use generic interface type
+				Debug.TypeMap("framework layering violation detected", objcType, "objectivec.IObject",
+					"currentFramework", framework,
+					"currentLevel", currentLevel,
+					"targetFramework", frameworkPkg,
+					"targetLevel", targetLevel)
+				return "objectivec.IObject", true
+			}
 			result := frameworkPkg + "." + strippedType
 			Debug.TypeMap("returning qualified type (before heuristic)", objcType, result,
 				"result", result)
 			return result, true
 		}
 
-		// HEURISTIC: Types with NS/CG/CA prefix that are NOT pointer types are likely enums
+		// HEURISTIC: Types with NS/CG/CA/UI prefix that are NOT pointer types are likely enums
 		// Classes are always used as pointers (*), but enums are value types
 		// Only apply this if objcType does NOT contain " *" (not a pointer type)
 		// IMPORTANT: Return STRIPPED name since enums are generated without prefixes
@@ -171,6 +184,20 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 		Debug.TypeMap("HEURISTIC CHECK", objcType, strippedType,
 			"hasPointer", strings.Contains(objcType, " *"))
 		if !strings.Contains(objcType, " *") {
+			// Check for framework layering violations BEFORE returning stripped name
+			// UI-prefixed types are from UIKit (level 3), which is higher than ObjectiveC (level 0)
+			// (fixes appledocs-519: ObjectiveC shouldn't import UIKit enums)
+			if strings.HasPrefix(objcType, "UI") && len(objcType) > 2 && objcType[2] >= 'A' && objcType[2] <= 'Z' {
+				currentLevel := getFrameworkLevel(strings.ToLower(framework))
+				uikitLevel := getFrameworkLevel("uikit")
+				if currentLevel >= 0 && uikitLevel > currentLevel {
+					Debug.TypeMap("HEURISTIC: UI-prefixed type, framework layering violation", objcType, "objectivec.IObject",
+						"currentFramework", framework,
+						"currentLevel", currentLevel,
+						"uikitLevel", uikitLevel)
+					return "objectivec.IObject", true
+				}
+			}
 			// Type has a prefix and is not a pointer type - likely an enum
 			Debug.TypeMap("HEURISTIC: non-pointer with prefix, likely enum", objcType, strippedType,
 				"returning", "STRIPPED name")
@@ -197,6 +224,19 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 			// NEVER qualify Go built-in primitives, even if they appear in cross-framework registry
 			if isGoPrimitive(strippedType) {
 				return strippedType, true
+			}
+			// Check framework hierarchy - prevent lower-level frameworks from importing higher-level ones
+			// (fixes appledocs-519: ObjectiveC shouldn't import UIKit types)
+			currentLevel := getFrameworkLevel(strings.ToLower(framework))
+			targetLevel := getFrameworkLevel(frameworkPkg)
+			if currentLevel >= 0 && targetLevel > currentLevel {
+				// Higher-level framework dependency detected - use generic interface type
+				Debug.TypeMap("framework layering violation detected (stripped path)", objcType, "objectivec.IObject",
+					"currentFramework", framework,
+					"currentLevel", currentLevel,
+					"targetFramework", frameworkPkg,
+					"targetLevel", targetLevel)
+				return "objectivec.IObject", true
 			}
 			result := frameworkPkg + "." + strippedType
 			Debug.TypeMap("returning qualified type", objcType, result,

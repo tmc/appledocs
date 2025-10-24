@@ -336,6 +336,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 
 		// Process regular symbols
 		phaseStart = time.Now()
+		funcCount := 0
 		for _, doc := range appledocs.Symbols(fsys, framework) {
 			processedFiles++
 
@@ -343,6 +344,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			if err == nil {
 				if fn != nil {
 					functions = append(functions, fn)
+					funcCount++
 				}
 				if cls != nil {
 					// Only include classes that actually belong to this framework
@@ -533,6 +535,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			}
 		}
 
+		fmt.Fprintf(os.Stderr, "DEBUG: During parsing loop - parsed %d functions from ParseDocument\n", funcCount)
 		if verbose {
 			fmt.Fprintf(os.Stderr, "[%s] Parsed %d files in %.2fs (%d errors)\n", framework, processedFiles, time.Since(phaseStart).Seconds(), parseErrors)
 			fmt.Fprintf(os.Stderr, "[%s] Found: %d functions, %d classes, %d protocols, %d enums, %d typedefs, %d constants\n", framework, len(functions), len(classes), len(protocols), len(enums), len(typedefs), len(constants))
@@ -691,7 +694,13 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 					RelaxMethodParameters(classes[i].Name, methods, framework)
 					// Filter out methods that would create upward dependency violations
 					originalCount := len(methods)
+					if classes[i].Name == "NSObject" {
+						fmt.Fprintf(os.Stderr, "DEBUG: NSObject has %d methods before FilterMethodsByHierarchy\n", originalCount)
+					}
 					classes[i].Methods = FilterMethodsByHierarchy(methods, framework)
+					if classes[i].Name == "NSObject" {
+						fmt.Fprintf(os.Stderr, "DEBUG: NSObject has %d methods after FilterMethodsByHierarchy\n", len(classes[i].Methods))
+					}
 					skippedMethodCount += (originalCount - len(classes[i].Methods))
 				}
 				if properties, ok := classPropertiesMap[classes[i].Name]; ok {
@@ -769,6 +778,8 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			}
 		}
 	} // end if !usedCache
+
+	fmt.Fprintf(os.Stderr, "DEBUG: After parsing - functions=%d, classes=%d\n", len(functions), len(classes))
 
 	// Save parsed symbols to cache for next run
 	if os.Getenv("NO_CACHE") != "1" {
@@ -884,6 +895,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	if verbose {
 		fmt.Fprintf(os.Stderr, "[%s] Starting code generation\n", framework)
 	}
+	fmt.Fprintf(os.Stderr, "DEBUG: About to generate - functions=%d, classes=%d\n", len(functions), len(classes))
 	if txtarOutput {
 		if err := generateTxtar(os.Stdout, framework, packageName, inputDir, functions, classes, protocols, enums, typedefs, constants, structs, withRefMethods, generateTests, generateExamples, variant); err != nil {
 			return fmt.Errorf("failed to generate bindings: %w", err)

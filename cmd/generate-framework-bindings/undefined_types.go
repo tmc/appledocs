@@ -47,8 +47,10 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 				} else {
 					collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
 					// Also collect the stripped ObjC type name for objc.Send[T] usage
-					// When mappedType is objc.IObject or cross-framework, we still need the unqualified type
-					if strings.HasPrefix(mappedType, "objc.") || strings.Contains(mappedType, ".") {
+					// When mappedType is cross-framework (but NOT objectivec.IObject), we need the unqualified type
+					// IMPORTANT: Skip if mappedType is objectivec.IObject - this indicates framework layering violation
+					// and the type should NOT be generated as an undefined type (fixes appledocs-519)
+					if (strings.HasPrefix(mappedType, "objc.") || strings.Contains(mappedType, ".")) && mappedType != "objectivec.IObject" {
 						strippedObjcType := stripObjCPrefix(method.ReturnType)
 						collectTypeReferences(strippedObjcType, undefined, g.Framework, typedefNames)
 					}
@@ -63,7 +65,8 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 					if mappedType == "unsafe.Pointer" && !strings.Contains(param.Type, "*") && !strings.Contains(param.Type, "^") && !strings.Contains(param.Type, "Block") {
 						typeToCollect := stripObjCPrefix(param.Type)
 						collectTypeReferences(typeToCollect, undefined, g.Framework, typedefNames)
-					} else {
+					} else if mappedType != "objectivec.IObject" {
+						// Skip objectivec.IObject - indicates framework layering violation (fixes appledocs-519)
 						collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
 					}
 				}
@@ -87,7 +90,8 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 						typeToCollect = typeToCollect[2:]
 					}
 					collectTypeReferences(typeToCollect, undefined, g.Framework, typedefNames)
-				} else {
+				} else if mappedType != "objectivec.IObject" {
+					// Skip objectivec.IObject - indicates framework layering violation (fixes appledocs-519)
 					collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
 				}
 			}

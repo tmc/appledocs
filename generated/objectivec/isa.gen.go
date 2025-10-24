@@ -11,15 +11,15 @@ import (
 
 // The class instance for the [isa] class.
 var (
-	isaClass     _isaClass
-	isaClassOnce sync.Once
+	IsaClass     _isaClass
+	IsaClassOnce sync.Once
 )
 
 func getisaClass() _isaClass {
-	isaClassOnce.Do(func() {
-		isaClass = _isaClass{objc.GetClass("isa")}
+	IsaClassOnce.Do(func() {
+		IsaClass = _isaClass{objc.GetClass("isa")}
 	})
-	return isaClass
+	return IsaClass
 }
 
 type _isaClass struct {
@@ -28,10 +28,14 @@ type _isaClass struct {
 
 // An interface definition for the [isa] class.
 type Iisa interface {
-	IObject
+	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isa
 type isa struct {
 	Object
