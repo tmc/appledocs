@@ -333,6 +333,13 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 		return goType
 	}
 
+	// Check if this is an enum - enums are also distinct types that need to be preserved
+	// For example: type ISO8601DateFormatOptions uint means objc.Send needs ISO8601DateFormatOptions, not uint
+	if _, isEnum := gf.enumIndex[goType]; isEnum {
+		// Preserve the enum name - objc.Send can use it directly
+		return goType
+	}
+
 	// Handle qualified types from standard packages (objc., unsafe., etc.)
 	if strings.HasPrefix(goType, "objc.") || strings.HasPrefix(goType, "unsafe.") {
 		// Map objc.IObject to objc.ID for Send calls (IObject is interface, ID is concrete)
