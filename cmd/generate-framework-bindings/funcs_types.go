@@ -50,7 +50,10 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 		"objc.Class":     true,
 		"objc.ID":        true,
 		"objc.SEL":       true,
-		"IMP":            true, // Function pointer typedef
+		"IMP":            true,    // Function pointer typedef
+		"Method":         true,    // Objective-C method typedef
+		"Ivar":           true,    // Objective-C instance variable typedef
+		"Category":       true,    // Objective-C category typedef
 	}
 	if goPrimitives[goType] || strings.HasPrefix(goType, "[]") {
 		return goType
@@ -212,6 +215,12 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		return "objc.Class"
 	case "SEL":
 		return "objc.SEL"
+	case "Method":
+		return "Method"
+	case "Ivar":
+		return "Ivar"
+	case "Category":
+		return "Category"
 	case "BOOL", "Bool", "_Bool":
 		return "bool"
 	case "AnyClass":

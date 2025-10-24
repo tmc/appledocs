@@ -211,6 +211,14 @@ func MapCTypeToGo(cType, framework string) string {
 		return "bool"
 	case cType == "Class":
 		return "objc.Class" // Objective-C class type
+	case cType == "SEL":
+		return "objc.SEL" // Objective-C selector type
+	case cType == "Method":
+		return "Method" // Objective-C method type - defined as typedef
+	case cType == "Ivar":
+		return "Ivar" // Objective-C instance variable type - defined as typedef
+	case cType == "Category":
+		return "Category" // Objective-C category type - defined as typedef
 	case cType == "IMP":
 		return "IMP" // Objective-C method implementation pointer - defined as typedef
 	case cType == "id":
